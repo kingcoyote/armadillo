@@ -18,11 +18,11 @@ namespace SRPG.Scene.Overworld
         {
             base.Initialize();
 
-            Avatar = CharacterClass.GenerateCharacter("fighter");
+            Avatar = CharacterClass.GenerateCharacter("link");
             Avatar.Direction = Direction.Down;
             Avatar.Sprite.SetAnimation("standing down");
-            Avatar.Location.X = 200;
-            Avatar.Location.Y = 200;
+            Avatar.Location.X = 2600;
+            Avatar.Location.Y = 2600;
 
             Layers.Add("keyboardinput", new KeyboardInput(this));
             Layers.Add("environment", new Environment(this));
@@ -40,26 +40,41 @@ namespace SRPG.Scene.Overworld
             Avatar.Velocity.X = MathHelper.Clamp(Avatar.Velocity.X, -1, 1);
             Avatar.Location.X += Avatar.Velocity.X * dt;
 
-            // if the location hits a black square on the sandbag
-            if(!IsValidLocation(new Rectangle((int)Avatar.Location.X, (int)Avatar.Location.Y, Avatar.Sprite.Width, Avatar.Sprite.Height)))
+            var feet = new Rectangle(
+                (int) (Avatar.Location.X + Avatar.Sprite.Width / 2 - 20), 
+                (int) (Avatar.Location.Y + Avatar.Sprite.Height - 25), 
+                40, 
+                25
+            );
+
+            if(!IsValidLocation(feet))
             {
-                Avatar.Location.X -= Avatar.Velocity.X * dt;
                 xRevert = Avatar.Velocity.X;
+                Avatar.Location.X -= Avatar.Velocity.X*dt;
                 Avatar.Velocity.X = 0;
+
             }
 
             Avatar.Velocity.Y = MathHelper.Clamp(Avatar.Velocity.Y, -1, 1);
             Avatar.Location.Y += Avatar.Velocity.Y * dt;
 
-            // if the location hits a black square on the sandbag
-            if (!IsValidLocation(new Rectangle((int)Avatar.Location.X, (int)Avatar.Location.Y, Avatar.Sprite.Width, Avatar.Sprite.Height)))
+           feet = new Rectangle(
+                (int)(Avatar.Location.X + Avatar.Sprite.Width / 2 - 20),
+                (int)(Avatar.Location.Y + Avatar.Sprite.Height - 25),
+                40,
+                25
+            );
+
+            if (!IsValidLocation(feet))
             {
-                Avatar.Location.Y -= Avatar.Velocity.Y * dt;
                 yRevert = Avatar.Velocity.Y;
+                Avatar.Location.Y -= Avatar.Velocity.Y*dt;
                 Avatar.Velocity.Y = 0;
             }
 
             UpdateAnimation();
+
+            Avatar.Sprite.Z = Avatar.Sprite.Y + Avatar.Sprite.Height;
 
             Avatar.Velocity.X += xRevert;
             Avatar.Velocity.Y += yRevert;
@@ -72,7 +87,7 @@ namespace SRPG.Scene.Overworld
                 for(var y = rect.Y; y < rect.Y + rect.Height; y += 6)
                 {
                     // sandbag grids have a 1:6 scaling
-                    if (Zone.Sandbag.Weight[x / 6, y / 6] < 64)
+                    if (Zone.Sandbag.Weight[x / 6, y / 6] < 250)
                     {
                         return false;
                     }

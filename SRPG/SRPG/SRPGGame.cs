@@ -51,7 +51,7 @@ namespace SRPG
         {
             base.Initialize();
 
-            ((OverworldScene) Scenes["overworld"]).SetZone(Zone.Factory("barracks"));
+            ((OverworldScene) Scenes["overworld"]).SetZone(Zone.Factory("kakariko"));
         }
     }
 }
