@@ -153,6 +153,9 @@ namespace SRPG.Scene.Overworld
 
         public void StartDialog(Dialog dialog)
         {
+            Avatar.Velocity.X = 0;
+            Avatar.Velocity.Y = 0;
+
             _isPaused = true;
             Layers.Add("dialog", new DialogLayer(this, dialog));
         }
