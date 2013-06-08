@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using SRPG.Data;
+using SRPG.Data.Layers;
 using Torch;
 using Game = Torch.Game;
 
 namespace SRPG.Scene.Overworld
 {
-    class OverworldScene : Torch.Scene
+    public class OverworldScene : Torch.Scene
     {
         public Character Avatar;
         public Zone Zone;
+
+        private bool _isPaused = false;
 
         public OverworldScene(Game game) : base(game) { }
 
@@ -91,6 +94,8 @@ namespace SRPG.Scene.Overworld
 
         public void ChangeDirection(Direction direction, bool enabled)
         {
+            if (_isPaused) return;
+
             switch (direction)
             {
                 case Direction.Up: Avatar.Velocity.Y += enabled ? -1 : 1; break;
@@ -98,68 +103,64 @@ namespace SRPG.Scene.Overworld
                 case Direction.Right: Avatar.Velocity.X += enabled ? 1 : -1; break;
                 case Direction.Left: Avatar.Velocity.X += enabled ? -1 : 1; break;
             }
-
-            
         }
 
-        public void SetZone(Zone zone)
+        public void Interact()
         {
-            Zone = zone;
-            ((Environment)Layers["environment"]).SetZone(zone);
-        }
+            if (_isPaused) return;
 
-        private void UpdateAnimation()
-        {
-            // if they are currently moving
-            if (Math.Abs(Avatar.Velocity.X) > 0 || Math.Abs(Avatar.Velocity.Y) > 0)
+            var eventArgs = new InteractEventArgs() {Character = Avatar, Scene = this};
+            Rectangle scanBox;
+
+            Rectangle feet = Avatar.GetFeet();
+
+            switch(Avatar.Direction)
             {
-                // find out what directions they are actually moving...
-                var actualDir = ParseActualDirection(Avatar.Velocity.X, Avatar.Velocity.Y);
-                // ... and what direction the animation is facing
-                var currentDir = StringToDirection(Avatar.Sprite.GetAnimation().Split(' ')[1]);
+                case Direction.Up:
+                    scanBox = new Rectangle(feet.X, feet.Y - 5, feet.Width, 5);
+                    break;
+                case Direction.Down:
+                    scanBox = new Rectangle(feet.X, feet.Y + feet.Height + 5, feet.Width, 5);
+                    break;
+                case Direction.Left:
+                    scanBox = new Rectangle(feet.X - 5, feet.Y, 5, feet.Height);
+                    break;
+                case Direction.Right:
+                    scanBox = new Rectangle(feet.X + feet.Width, feet.Y, 5, feet.Height);
+                    break;
+                default:
+                    throw new Exception("unable to process interaction without a valid avatar direction");
 
-                // if they aren't facing a valid direction, correct it
-                if (!actualDir.Contains(currentDir))
+            }
+
+            foreach(InteractiveObject obj in Zone.Objects)
+            {
+                if (obj.Location.Intersects(scanBox))
                 {
-                    Avatar.Sprite.SetAnimation(String.Format("walking {0}", actualDir[0].ToString().ToLower()));
-                }
-
-                // if the animation is standing, change it to moving
-                if (Avatar.Sprite.GetAnimation().Split(' ')[0] == "standing")
-                {
-                    Avatar.Sprite.SetAnimation(Avatar.Sprite.GetAnimation().Replace("standing", "walking"));
+                    obj.Interact.Invoke(this, eventArgs);
                 }
             }
-            else
-            {
-                // make sure they are standing if they have no velocity
-                Avatar.Sprite.SetAnimation(Avatar.Sprite.GetAnimation().Replace("walking", "standing"));
-            }
+
+            // scan the area in front of the player
+            // if there is a valid interaction object
+            //    execute the interact callback for that object
+
+            // dialog would need to pause the controls and create a dialog layer, which will unpause when done
+            // doors would need to change the zone
+            // chests would need to pause the controls, create a dialog layer, give the player a new item, and unpause when done
+            // levers would need to update some part of the zone (i have zero ways to do this!)
         }
 
-        private static List<Direction> ParseActualDirection(float x, float y)
+        public void StartDialog(Dialog dialog)
         {
-            var dirs = new List<Direction>();
-
-            if (x > 0) dirs.Add(Direction.Right);
-            if (x < 0) dirs.Add(Direction.Left);
-
-            if (y > 0) dirs.Add(Direction.Down);
-            if (y < 0) dirs.Add(Direction.Up);
-
-            return dirs;
+            _isPaused = true;
+            Layers.Add("dialog", new DialogLayer(this, dialog));
         }
 
-        private static Direction StringToDirection(string str)
+        public void EndDialog()
         {
-            switch (str.ToLower())
-            {
-                case "up": return Direction.Up;
-                case "down": return Direction.Down;
-                case "left": return Direction.Left;
-                case "right": return Direction.Right;
-                default: throw new Exception();
-            }
+            Layers.Remove("dialog");
+            _isPaused = false;
         }
     }
 }

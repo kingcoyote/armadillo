@@ -54,7 +54,7 @@ namespace SRPG.Scene.Overworld
             }
             else if (args.WhichKey == _controls["interact"])
             {
-
+                ((OverworldScene) Scene).Interact();
             }
         }
 

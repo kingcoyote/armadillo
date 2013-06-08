@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 using SRPG.Data;
 using Torch;
+using Game = Torch.Game;
 
 namespace SRPG.Scene.Overworld
 {
@@ -26,12 +28,20 @@ namespace SRPG.Scene.Overworld
                 i++;
             }
 
+            // test code to show interactive objects. this should not make it into release.
+            i = 0;
+            foreach (var obj in zone.Objects)
+            {
+                Objects.Add("interact" + i, new TextureObject { Color = Color.Red, X = obj.Location.X, Y = obj.Location.Y, Width = obj.Location.Width, Height = obj.Location.Height, Z = 9999 });
+                i++;
+            }
+
             // sandbags are down scaled 1:6
             _width = zone.Sandbag.Size.Width * 6;
             _height = zone.Sandbag.Size.Height * 6;
         }
 
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime, Input input)
+        public override void Update(GameTime gameTime, Input input)
         {
             base.Update(gameTime, input);
 

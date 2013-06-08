@@ -9,8 +9,12 @@ namespace SRPG.Data
     public struct DialogNode
     {
         public string Text;
-        public EventHandler OnEntry;
+        public int Identifier;
+        public EventHandler<DialogNodeEventArgs> OnEnter;
+        public EventHandler<DialogNodeEventArgs> OnExit;
         public Dictionary<string, int> Options;
         public SpriteObject Sprite;
     }
+
+    public class DialogNodeEventArgs : EventArgs { }
 }

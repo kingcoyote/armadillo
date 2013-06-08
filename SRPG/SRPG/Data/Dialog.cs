@@ -8,7 +8,7 @@ namespace SRPG.Data
     public class Dialog
     {
         public Dictionary<int, DialogNode> Nodes;
-        public readonly DialogNode CurrentNode;
+        public DialogNode CurrentNode { get; private set; }
 
         public void SetOption(int optionNumber)
         {
