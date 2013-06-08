@@ -1,0 +1,8 @@
+﻿{
+	nodes : [
+		{
+			identifier : 1,
+			text : "this is a mailbox. use it wisely"
+		}
+	]
+}

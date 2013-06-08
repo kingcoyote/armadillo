@@ -32,7 +32,7 @@ namespace SRPG.Data.Zones
         public void CheckMailbox1(object sender, InteractEventArgs args)
         {
             var scene = ((OverworldScene) sender);
-            var dialog = new Dialog();
+            var dialog = Dialog.FetchByFile("kakariko/mailbox");
             scene.StartDialog(dialog);
         }
     }

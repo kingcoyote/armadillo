@@ -6,7 +6,7 @@ using Torch;
 
 namespace SRPG.Data
 {
-    public struct DialogNode
+    public class DialogNode
     {
         public string Text;
         public int Identifier;
