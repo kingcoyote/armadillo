@@ -29,7 +29,7 @@ namespace SRPG.Data.Zones
             Objects.Add(obj);
 
             // statue
-            obj = new InteractiveObject { Location = new Rectangle(1512, 1224, 1608 - 1512, 1317 - 1224) };
+            obj = new InteractiveObject { Location = new Rectangle(1512, 1224, 96, 96) };
             obj.Interact += SimpleDialog("kakariko/statue");
             Objects.Add(obj);
         }
