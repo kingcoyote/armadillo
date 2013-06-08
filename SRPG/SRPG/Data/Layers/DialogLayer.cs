@@ -55,6 +55,8 @@ namespace SRPG.Data.Layers
                     ExitDialog();
                     return;
                 case (Keys.Enter):
+                case (Keys.E):
+                case (Keys.Space):
                     dialogContinues = UpdateDialog();
                     break;
                 case (Keys.Up):
