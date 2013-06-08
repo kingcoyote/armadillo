@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
+using SRPG.Scene.Overworld;
 using Torch;
 
 namespace SRPG.Data
@@ -40,9 +41,18 @@ namespace SRPG.Data
                     break;
             }
 
-            
-
             return zone;
+        }
+
+        public EventHandler<InteractEventArgs> SimpleDialog(string filename)
+        {
+            return (sender, args) =>
+                {
+                    var scene = ((OverworldScene)sender);
+                    var dialog = Dialog.FetchByFile(filename);
+                    scene.StartDialog(dialog);
+                };
+            
         }
     }
 }

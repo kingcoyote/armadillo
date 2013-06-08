@@ -23,17 +23,11 @@ namespace SRPG.Data.Zones
 
             Objects = new List<InteractiveObject>();
 
+            // mailbox
             var obj = new InteractiveObject { Location = new Rectangle(486, 1200, 36, 24) };
-            obj.Interact += CheckMailbox1;
-
+            obj.Interact += SimpleDialog("kakariko/mailbox");
             Objects.Add(obj);
-        }
 
-        public void CheckMailbox1(object sender, InteractEventArgs args)
-        {
-            var scene = ((OverworldScene) sender);
-            var dialog = Dialog.FetchByFile("kakariko/mailbox");
-            scene.StartDialog(dialog);
         }
     }
 }
