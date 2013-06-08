@@ -157,6 +157,7 @@ namespace SRPG.Scene.Overworld
             Avatar.Velocity.Y = 0;
 
             _isPaused = true;
+            dialog.OnExit += EndDialogEvent;
             Layers.Add("dialog", new DialogLayer(this, dialog));
         }
 
@@ -164,6 +165,11 @@ namespace SRPG.Scene.Overworld
         {
             Layers.Remove("dialog");
             _isPaused = false;
+        }
+
+        public void EndDialogEvent(object sender, EventArgs args)
+        {
+            EndDialog();
         }
     }
 }
