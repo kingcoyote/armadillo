@@ -9,6 +9,8 @@ namespace SRPG.Data
     {
         public Dictionary<int, DialogNode> Nodes;
         public DialogNode CurrentNode { get; private set; }
+        public EventHandler OnEnter;
+        public EventHandler OnExit;
 
         public void SetOption(int optionNumber)
         {

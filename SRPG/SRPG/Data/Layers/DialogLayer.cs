@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Torch;
+using Game = Torch.Game;
 
 namespace SRPG.Data.Layers
 {
@@ -18,9 +20,27 @@ namespace SRPG.Data.Layers
         {
             _dialog = dialog;
 
-            Objects.Add("dialog window", new TextureObject() { Color = Color.BlueViolet, Z = 100000 });
+            Objects.Add("dialog window", new TextureObject()
+                {
+                    Color = Color.Blue, 
+                    Z = 100000, 
+                    X = (int)(Game.GetInstance().Window.ClientBounds.Width * 0.05),
+                    Y = (int)(Game.GetInstance().Window.ClientBounds.Height* 0.75),
+                    Width = (int)(Game.GetInstance().Window.ClientBounds.Width * 0.9),
+                    Height = (int)(Game.GetInstance().Window.ClientBounds.Height * 0.2)
+                });
             Objects.Add("dialog highlight", new TextureObject() { Color = Color.Yellow, Z = 100001 });
-            Objects.Add("dialog text", new TextObject() { Color = Color.White, Z = 100002, Value = "" });
+            Objects.Add("dialog text", new TextObject()
+                {
+                    Color = Color.White, 
+                    Z = 100002, 
+                    Value = "", 
+                    Font = Game.GetInstance().Content.Load<SpriteFont>("dialogfont"),
+                    X = Objects["dialog window"].X + 10,
+                    Y = Objects["dialog window"].Y + 10,
+                    Width = Objects["dialog window"].Width - 20,
+                    Height = Objects["dialog window"].Height - 20
+                });
 
             KeyDown += OnKeyPress;
         }
@@ -31,6 +51,9 @@ namespace SRPG.Data.Layers
 
             switch (args.WhichKey)
             {
+                case (Keys.Escape):
+                    ExitDialog();
+                    return;
                 case (Keys.Enter):
                     dialogContinues = UpdateDialog();
                     break;
@@ -104,8 +127,8 @@ namespace SRPG.Data.Layers
 
         private void ExitDialog()
         {
-            // todo remove the dialog layer
-            throw new NotImplementedException();
+            Objects.Clear();
+            _dialog.OnExit.Invoke(this, new EventArgs());
         }
     }
 }
