@@ -34,7 +34,7 @@ namespace SRPG.Data.Layers
                 {
                     Color = Color.White, 
                     Z = 100002, 
-                    Value = _dialog.CurrentNode.Text, 
+                    Value = "", 
                     Font = Game.GetInstance().Content.Load<SpriteFont>("dialogfont"),
                     X = Objects["dialog window"].X + 10,
                     Y = Objects["dialog window"].Y + 10,
@@ -43,6 +43,8 @@ namespace SRPG.Data.Layers
                 });
 
             KeyDown += OnKeyPress;
+
+            InitializeDialog();
         }
 
         public void OnKeyPress(object sender, KeyboardEventArgs args)
@@ -83,6 +85,30 @@ namespace SRPG.Data.Layers
             // todo highlight the current option
         }
 
+        private void InitializeDialog()
+        {
+            _charCount = 0;
+            UpdateText(_dialog.CurrentNode.Text);
+        }
+
+        private void UpdateText(string text)
+        {
+            var dialogText = ((TextObject)Objects["dialog text"]);
+            var dialogWindow = ((TextureObject)Objects["dialog window"]);
+            
+            dialogText.Value = text.Trim();
+
+            while (dialogText.Height > dialogWindow.Height - 20)
+            {
+                // find the last space
+                // trim everything after it
+                // adjust char count down by trimmed length
+
+                dialogText.Value = dialogText.Value.Substring(0, dialogText.Value.Length - 1);
+                _charCount++;
+            }
+        }
+
         private bool UpdateDialog()
         {
             // if the current node has leftover text
@@ -93,6 +119,7 @@ namespace SRPG.Data.Layers
                 // while text can fit in the window and there is more text
                 //   add the next word to the window
                 // update _charCount
+                UpdateText(_dialog.CurrentNode.Text.Substring(_dialog.CurrentNode.Text.Length - _charCount));
                 return true;
             }
 
