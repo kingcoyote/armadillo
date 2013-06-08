@@ -40,14 +40,7 @@ namespace SRPG.Scene.Overworld
             Avatar.Velocity.X = MathHelper.Clamp(Avatar.Velocity.X, -1, 1);
             Avatar.Location.X += Avatar.Velocity.X * dt;
 
-            var feet = new Rectangle(
-                (int) (Avatar.Location.X + Avatar.Sprite.Width / 2 - 20), 
-                (int) (Avatar.Location.Y + Avatar.Sprite.Height - 25), 
-                40, 
-                25
-            );
-
-            if(!IsValidLocation(feet))
+            if(!IsValidLocation(Avatar.GetFeet()))
             {
                 xRevert = Avatar.Velocity.X;
                 Avatar.Location.X -= Avatar.Velocity.X*dt;
@@ -58,21 +51,14 @@ namespace SRPG.Scene.Overworld
             Avatar.Velocity.Y = MathHelper.Clamp(Avatar.Velocity.Y, -1, 1);
             Avatar.Location.Y += Avatar.Velocity.Y * dt;
 
-           feet = new Rectangle(
-                (int)(Avatar.Location.X + Avatar.Sprite.Width / 2 - 20),
-                (int)(Avatar.Location.Y + Avatar.Sprite.Height - 25),
-                40,
-                25
-            );
-
-            if (!IsValidLocation(feet))
+            if (!IsValidLocation(Avatar.GetFeet()))
             {
                 yRevert = Avatar.Velocity.Y;
                 Avatar.Location.Y -= Avatar.Velocity.Y*dt;
                 Avatar.Velocity.Y = 0;
             }
 
-            UpdateAnimation();
+            Avatar.UpdateAnimation();
 
             Avatar.Sprite.Z = Avatar.Sprite.Y + Avatar.Sprite.Height;
 
@@ -95,6 +81,12 @@ namespace SRPG.Scene.Overworld
             }
 
             return true;
+        }
+
+        public void SetZone(Zone zone)
+        {
+            Zone = zone;
+            ((Environment)Layers["environment"]).SetZone(zone);
         }
 
         public void ChangeDirection(Direction direction, bool enabled)
