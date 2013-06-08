@@ -130,8 +130,6 @@ namespace SRPG.Data.Layers
             // advance to the next node
             _dialog.Continue();
 
-            _charCount = 0;
-
             // if there is no next node, return false to indicate as much
             if (_dialog.CurrentNode.Identifier == -1)
             {
@@ -140,12 +138,9 @@ namespace SRPG.Data.Layers
 
             // invoke the new node's OnEnter method
             _dialog.CurrentNode.OnEnter.Invoke(_dialog, new DialogNodeEventArgs());
-            
-            // todo add the new text to the page
 
-            // take the text in the current node and put it into the layer
-            //   if there is leftover text
-            //     return false
+            _charCount = 0;
+            UpdateText(_dialog.CurrentNode.Text);
 
             // todo add options to the page
             // take each option and put them into the layer 
