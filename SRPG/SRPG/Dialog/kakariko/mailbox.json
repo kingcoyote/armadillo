@@ -2,7 +2,7 @@
 	nodes : [
 		{
 			identifier : 1,
-			text : "this is a mailbox. use it wisely. and now i'm going to put enough text in this box to run down several lines. i think i need at least 4 lines to test the multi page ability. this should cause some issues. i wonder how this will work in practice. am i just going to have some massively long lines, or am i going to break this into multiple nodes? really? just barely. that's kinda weird. should i increase the font size?"
+			text : "There is nothing in the mailbox."
 		}
 	]
 }
