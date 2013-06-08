@@ -145,6 +145,9 @@
     <Compile Include="SRPGGame.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dialog\kakariko\town.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
   </ItemGroup>

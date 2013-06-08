@@ -25,12 +25,12 @@ namespace SRPG.Data.Zones
 
             // mailbox
             var obj = new InteractiveObject { Location = new Rectangle(486, 1200, 36, 24) };
-            obj.Interact += SimpleDialog("kakariko/mailbox");
+            obj.Interact += SimpleDialog("kakariko/town", "mailbox");
             Objects.Add(obj);
 
             // statue
             obj = new InteractiveObject { Location = new Rectangle(1512, 1224, 96, 96) };
-            obj.Interact += SimpleDialog("kakariko/statue");
+            obj.Interact += SimpleDialog("kakariko/town", "statue");
             Objects.Add(obj);
         }
     }

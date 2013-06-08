@@ -39,16 +39,16 @@ namespace SRPG.Data
             }
         }
 
-        public static Dialog FetchByFile(string filename)
+        public static Dialog Fetch(string filename, string objectname)
         {
             var dialog = new Dialog();
             dialog.Nodes = new Dictionary<int, DialogNode>();
 
-            string settingString = String.Join("\r\n", File.ReadAllLines("Dialog/" + filename + ".json"));
+            string settingString = String.Join("\r\n", File.ReadAllLines("Dialog/" + filename + ".js"));
 
             var nodeList = Newtonsoft.Json.Linq.JObject.Parse(settingString);
 
-            foreach(var node in nodeList["nodes"])
+            foreach(var node in nodeList[objectname]["nodes"])
             {
                 var dialogNode = new DialogNode
                     {

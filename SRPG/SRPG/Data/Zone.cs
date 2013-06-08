@@ -44,12 +44,12 @@ namespace SRPG.Data
             return zone;
         }
 
-        public EventHandler<InteractEventArgs> SimpleDialog(string filename)
+        public EventHandler<InteractEventArgs> SimpleDialog(string filename, string objectname)
         {
             return (sender, args) =>
                 {
                     var scene = ((OverworldScene)sender);
-                    var dialog = Dialog.FetchByFile(filename);
+                    var dialog = Dialog.Fetch(filename, objectname);
                     scene.StartDialog(dialog);
                 };
             
