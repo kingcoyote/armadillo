@@ -61,12 +61,12 @@ namespace SRPG.Scene.Overworld
                 Avatar.Velocity.Y = 0;
             }
 
-            Avatar.UpdateAnimation();
-
             Avatar.Sprite.Z = Avatar.Sprite.Y + Avatar.Sprite.Height;
 
             Avatar.Velocity.X += xRevert;
             Avatar.Velocity.Y += yRevert;
+
+            Avatar.UpdateAnimation();
         }
 
         private bool IsValidLocation(Rectangle rect)
