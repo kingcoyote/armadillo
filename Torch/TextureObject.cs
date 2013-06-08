@@ -13,8 +13,7 @@ namespace Torch
 
         public TextureObject()
         {
-            throw new NotImplementedException();
-            // _texture = new Texture2D(SRPGGame.GetInstance().GraphicsDevice(), 1, 1);
+            _texture = new Texture2D(Game.GetInstance().GraphicsDevice, 1, 1);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
