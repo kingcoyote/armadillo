@@ -80,7 +80,7 @@ namespace Torch
             {
                 e.Handled = false;
 
-                foreach(var layer in from layer in Layers.Values where layer.Visible select layer)
+                foreach(var layer in from layer in Layers.Values.ToList() where layer.Visible select layer)
                 {
                     if (e.Handled) continue;
 
