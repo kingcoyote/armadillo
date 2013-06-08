@@ -151,8 +151,9 @@
       <Name>Torch</Name>
     </ProjectReference>
     <ProjectReference Include="..\SRPGContent\SRPGContent.contentproj">
-      <Name>SRPGContent</Name>
+      <Name>SRPGContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
+      <Project>{6F77CD33-33DE-4509-ACC8-CF3E3C5620E1}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRPG", "SRPG\SRPG\SRPG.csproj", "{4277DBFE-3D3A-4D39-BD81-88A3E6C82353}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "SRPGContent", "SRPG\SRPGContent\SRPGContent.contentproj", "{6F77CD33-33DE-4509-ACC8-CF3E3C5620E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRPGContent", "SRPG\SRPGContent\SRPGContent.contentproj", "{6F77CD33-33DE-4509-ACC8-CF3E3C5620E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torch", "Torch\Torch.csproj", "{0C966DA6-5F71-4FA5-9B68-7B0DB18D86D3}"
 EndProject
