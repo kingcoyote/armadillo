@@ -111,6 +111,7 @@
     <Compile Include="Data\DialogNode.cs" />
     <Compile Include="Data\InteractEventArgs.cs" />
     <Compile Include="Data\InteractiveObject.cs" />
+    <Compile Include="Data\Zones\Kakariko.cs" />
     <Compile Include="Scene\Battle\BattleScene.cs" />
     <Compile Include="Data\Ability.cs" />
     <Compile Include="Data\BattleBoard.cs" />
