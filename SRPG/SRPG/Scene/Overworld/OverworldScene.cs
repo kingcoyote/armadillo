@@ -24,8 +24,8 @@ namespace SRPG.Scene.Overworld
             Avatar = CharacterClass.GenerateCharacter("link");
             Avatar.Direction = Direction.Down;
             Avatar.Sprite.SetAnimation("standing down");
-            Avatar.Location.X = 2600;
-            Avatar.Location.Y = 2600;
+            Avatar.Location.X = 600;
+            Avatar.Location.Y = 1300;
 
             Layers.Add("keyboardinput", new KeyboardInput(this));
             Layers.Add("environment", new Environment(this));
