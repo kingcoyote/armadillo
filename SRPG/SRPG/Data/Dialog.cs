@@ -25,6 +25,14 @@ namespace SRPG.Data
             {
                 CurrentNode = Nodes[1];
             }
+            else if(CurrentNode.Options.Count > 0)
+            {
+
+            }
+            else
+            {
+                CurrentNode = new DialogNode() { Identifier = -1 };
+            }
         }
 
         public static Dialog FetchByFile(string filename)

@@ -87,7 +87,6 @@ namespace SRPG.Data.Layers
 
         private void InitializeDialog()
         {
-            _charCount = 0;
             UpdateText(_dialog.CurrentNode.Text);
         }
 
@@ -98,6 +97,8 @@ namespace SRPG.Data.Layers
             
             dialogText.Value = text.Trim();
 
+            _charCount += text.Length;
+
             while (dialogText.Height > dialogWindow.Height - 20)
             {
                 // find the last space
@@ -105,7 +106,7 @@ namespace SRPG.Data.Layers
                 // adjust char count down by trimmed length
 
                 dialogText.Value = dialogText.Value.Substring(0, dialogText.Value.Length - 1);
-                _charCount++;
+                _charCount--;
             }
         }
 
@@ -119,7 +120,7 @@ namespace SRPG.Data.Layers
                 // while text can fit in the window and there is more text
                 //   add the next word to the window
                 // update _charCount
-                UpdateText(_dialog.CurrentNode.Text.Substring(_dialog.CurrentNode.Text.Length - _charCount));
+                UpdateText(_dialog.CurrentNode.Text.Substring(_charCount));
                 return true;
             }
 

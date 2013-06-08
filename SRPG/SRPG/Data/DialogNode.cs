@@ -10,9 +10,9 @@ namespace SRPG.Data
     {
         public string Text;
         public int Identifier;
-        public EventHandler<DialogNodeEventArgs> OnEnter;
-        public EventHandler<DialogNodeEventArgs> OnExit;
-        public Dictionary<string, int> Options;
+        public EventHandler<DialogNodeEventArgs> OnEnter = ( (sender, args) => { });
+        public EventHandler<DialogNodeEventArgs> OnExit = ((sender, args) => { });
+        public Dictionary<string, int> Options = new Dictionary<string, int>();
         public SpriteObject Sprite;
     }
 
