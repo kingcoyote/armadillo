@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Torch
@@ -25,7 +26,7 @@ namespace Torch
         }
         public override int Height
         {
-            get { return Font.LineSpacing; }
+            get { return Font.LineSpacing * GetPrintedLines().Count; }
         }
 
         public override Rectangle Rectangle
@@ -41,9 +42,19 @@ namespace Torch
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            var printedLines = GetPrintedLines();
+
+            for(var i = 0; i < printedLines.Count; i++)
+            {
+                PrintString(spriteBatch, printedLines[i], Alignment, X, Y + Font.LineSpacing * i);
+            }
+        }
+
+        private List<string> GetPrintedLines()
+        {
             if (_width == -1)
             {
-                PrintString(spriteBatch, Value, Alignment, X, Y);
+                return new List<string>() { Value };
             }
             else
             {
@@ -53,7 +64,7 @@ namespace Torch
                 // set string as null
                 var printedString = "";
 
-                int lines = 0;
+                var lines = new List<string>();
 
                 // loop through split value
                 for (int i = 0; i < words.Length; i++)
@@ -65,16 +76,18 @@ namespace Torch
                     if ((i == words.Length - 1) || (i + 1 < words.Length && Font.MeasureString(printedString + " " + words[i + 1]).X > _width))
                     {
                         // print (including alignment offset)
-                        PrintString(spriteBatch, printedString, Alignment, X, Y + Font.LineSpacing * lines);
+                        lines.Add(printedString);
+
                         // clear string
                         printedString = "";
-                        lines++;
                     }
                     else
                     {
                         printedString += " ";
                     }
                 }
+
+                return lines;
             }
         }
 
