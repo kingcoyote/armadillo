@@ -14,6 +14,8 @@ namespace SRPG.Scene.Overworld
         public Zone Zone;
 
         private bool _isPaused = false;
+        private readonly Dictionary<Direction, bool> _directions = new Dictionary<Direction, bool>(4)
+            {{ Direction.Up, false},{Direction.Down,false},{Direction.Left, false},{Direction.Right,false}};
 
         public OverworldScene(Game game) : base(game) { }
 
@@ -96,6 +98,9 @@ namespace SRPG.Scene.Overworld
         {
             if (_isPaused) return;
 
+            if (_directions[direction] == enabled) return;
+            _directions[direction] = enabled;
+
             switch (direction)
             {
                 case Direction.Up: Avatar.Velocity.Y += enabled ? -1 : 1; break;
@@ -155,6 +160,10 @@ namespace SRPG.Scene.Overworld
         {
             Avatar.Velocity.X = 0;
             Avatar.Velocity.Y = 0;
+            _directions[Direction.Up] = false;
+            _directions[Direction.Down] = false;
+            _directions[Direction.Left] = false;
+            _directions[Direction.Right] = false;
 
             _isPaused = true;
             dialog.OnExit += EndDialogEvent;
