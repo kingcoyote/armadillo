@@ -18,7 +18,9 @@ namespace SRPG.Data.Zones
                 {
                     new ImageObject(Game.GetInstance().Content.Load<Texture2D>("kakariko")) {Z = -1}, 
                     new ImageObject(Game.GetInstance().Content.Load<Texture2D>("kakariko_arch")) {X = 2568, Y = 2784, Z = 2925}, 
-                    new ImageObject(Game.GetInstance().Content.Load<Texture2D>("kakariko_house_1")) {X = 1728, Y = 336, Z = 587}
+                    new ImageObject(Game.GetInstance().Content.Load<Texture2D>("kakariko_house_1")) {X = 1728, Y = 336, Z = 587},
+                    new ImageObject(Game.GetInstance().Content.Load<Texture2D>("kakariko_mailbox")) {X = 483, Y = 1152, Z = 1224},
+                    new ImageObject(Game.GetInstance().Content.Load<Texture2D>("kakariko_cave")) {X = 534, Y = 565, Z = 660},
                 };
 
             Objects = new List<InteractiveObject>();
