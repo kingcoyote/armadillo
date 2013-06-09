@@ -19,7 +19,7 @@ namespace SRPG.Data
         /// <summary>
         /// An X,Y pair indicating where in the zone this door is located.
         /// </summary>
-        public Point Location;
+        public Rectangle Location;
         /// <summary>
         /// A machine readable string indicating which zone this door will lead to. This corresponds to Zone.Name
         /// </summary>
