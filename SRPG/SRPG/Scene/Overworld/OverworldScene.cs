@@ -18,6 +18,8 @@ namespace SRPG.Scene.Overworld
         private readonly Dictionary<Direction, bool> _directions = new Dictionary<Direction, bool>(4)
             {{ Direction.Up, false},{Direction.Down,false},{Direction.Left, false},{Direction.Right,false}};
 
+        private string _startDoor = "";
+
         public OverworldScene(Game game) : base(game) { }
 
         public override void Initialize()
@@ -69,9 +71,13 @@ namespace SRPG.Scene.Overworld
 
             // find a door that the avatar is in that leads elsewhere
             var door = (from d in Zone.Doors where d.Location.Intersects(Avatar.GetFeet()) && !String.IsNullOrEmpty(d.Zone) select d);
-            if(door.Any())
+            if(door.Any() && door.First().Name != _startDoor)
             {
                 SetZone(Zone.Factory(door.First().Zone), door.First().ZoneDoor);    
+            }
+            else if (!door.Any())
+            {
+                _startDoor = "";
             }
             
         }
@@ -101,9 +107,10 @@ namespace SRPG.Scene.Overworld
             var door = (from d in zone.Doors where d.Name == doorName select d).First();
             Avatar.Sprite.SetAnimation(string.Format("standing {0}", door.Orientation.ToString().ToLower()));
             Avatar.Location.X = door.Location.X + (door.Location.Width/2) - (Avatar.Sprite.Width/2);
-            Avatar.Location.Y = door.Location.Y + (door.Location.Height / 2) - (Avatar.Sprite.Height / 2);
+            Avatar.Location.Y = door.Location.Y + (door.Location.Height / 2) - (Avatar.Sprite.Height / 2) - (Avatar.Sprite.Height - Avatar.GetFeet().Height) / 2;
             Avatar.Direction = door.Orientation;
-            
+
+            _startDoor = doorName;
         }
 
         public void ChangeDirection(Direction direction, bool enabled)
