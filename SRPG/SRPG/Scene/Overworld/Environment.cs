@@ -79,6 +79,27 @@ namespace SRPG.Scene.Overworld
             {
                 Y -= Objects["avatar"].Y - (0 - Y + screenHeight - deadzoneHeight);
             }
+
+            // ensure that there is no black area at the edge of the screen. 
+            // this can happen when the start point is near the bottom or right edge
+            if (_width > screenWidth)
+            {
+                if (X < 0 - _width + screenWidth) X = 0 - _width + screenWidth;
+                if (X > 0) X = 0;
+            }
+            else
+            {
+                X = screenWidth/2 - _width/2;
+            }
+
+            if (_height > screenHeight)
+            {
+                if (Y < 0 - _height + screenHeight) Y = 0 - _height + screenHeight;
+            }
+            else
+            {
+                Y = screenHeight / 2 - _height / 2;
+            }
         }
     }
 }
