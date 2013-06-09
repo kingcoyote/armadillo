@@ -66,7 +66,7 @@ namespace SRPG.Data
                     character = new Character
                         {
                             Class = new CharacterClass(className, ItemType.Sword, ItemType.Plate),
-                            Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("fighter")),
+                            Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/fighter")),
                             FeetWidth = 40,
                             FeetHeight = 25
                         };
@@ -85,7 +85,7 @@ namespace SRPG.Data
                     character = new Character
                         {
                             Class = new CharacterClass(className, ItemType.Sword, ItemType.Mail),
-                            Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("link")),
+                            Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/link")),
                             FeetWidth = 40,
                             FeetHeight = 25
                         };

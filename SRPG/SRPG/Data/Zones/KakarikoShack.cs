@@ -14,10 +14,10 @@ namespace SRPG.Data.Zones
         public KakarikoShack()
         {
             Name = "Kakariko Shop";
-            Sandbag = Grid.FromBitmap("kakariko_shop_sandbag");
+            Sandbag = Grid.FromBitmap("Zones/Kakariko/Bombshop/sandbag");
             ImageLayers = new List<ImageObject>
                 {
-                    new ImageObject(Game.GetInstance().Content.Load<Texture2D>("kakariko_shop")) {Z = -1},
+                    new ImageObject(Game.GetInstance().Content.Load<Texture2D>("Zones/Kakariko/Bombshop/bombshop")) {Z = -1},
                 };
 
             Objects = new List<InteractiveObject>();

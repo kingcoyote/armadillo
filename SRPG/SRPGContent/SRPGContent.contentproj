@@ -42,55 +42,55 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fighter.png">
+    <Compile Include="Characters\fighter.png">
       <Name>fighter</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="barracks.png">
+    <Compile Include="Zones\Barracks\barracks.png">
       <Name>barracks</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="barracks_sandbag.png">
+    <Compile Include="Zones\Barracks\barracks_sandbag.png">
       <Name>barracks_sandbag</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="link.png">
+    <Compile Include="Characters\link.png">
       <Name>link</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="kakariko.png">
-      <Name>kakariko</Name>
+    <Compile Include="Zones\Kakariko\Village\village.png">
+      <Name>village</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="kakariko_sandbag.png">
-      <Name>kakariko_sandbag</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="kakariko_arch.png">
-      <Name>kakariko_arch</Name>
+    <Compile Include="Zones\Kakariko\Village\sandbag.png">
+      <Name>sandbag</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="kakariko_house_1.png">
-      <Name>kakariko_house_1</Name>
+    <Compile Include="Zones\Kakariko\Village\arch.png">
+      <Name>arch</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Zones\Kakariko\Village\house_1.png">
+      <Name>house_1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -103,34 +103,34 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="kakariko_mailbox.png">
-      <Name>kakariko_mailbox</Name>
+    <Compile Include="Zones\Kakariko\Village\mailbox.png">
+      <Name>mailbox</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="kakariko_cave.png">
-      <Name>kakariko_cave</Name>
+    <Compile Include="Zones\Kakariko\Village\cave.png">
+      <Name>cave</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="kakariko_shack.png">
-      <Name>kakariko_shack</Name>
+    <Compile Include="Zones\Kakariko\Village\bombshop.png">
+      <Name>bombshop</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="kakariko_shop.png">
-      <Name>kakariko_shop</Name>
+    <Compile Include="Zones\Kakariko\Bombshop\bombshop.png">
+      <Name>bombshop</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="kakariko_shop_sandbag.png">
-      <Name>kakariko_shop_sandbag</Name>
+    <Compile Include="Zones\Kakariko\Bombshop\sandbag.png">
+      <Name>sandbag</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
