@@ -15,6 +15,7 @@ namespace SRPG.Data.Layers
         private readonly Dialog _dialog;
         private int _currentOption;
         private int _charCount;
+        private bool _optionsDisplayed;
 
         public DialogLayer(Torch.Scene scene, Dialog dialog) : base(scene)
         {
@@ -29,17 +30,25 @@ namespace SRPG.Data.Layers
                     Width = (int)(Game.GetInstance().Window.ClientBounds.Width * 0.9),
                     Height = (int)(Game.GetInstance().Window.ClientBounds.Height * 0.2)
                 });
-            Objects.Add("dialog highlight", new TextureObject() { Color = Color.Yellow, Z = 100001 });
             Objects.Add("dialog text", new TextObject()
                 {
                     Color = Color.White, 
                     Z = 100002, 
                     Value = "", 
                     Font = Game.GetInstance().Content.Load<SpriteFont>("dialogfont"),
-                    X = Objects["dialog window"].X + 10,
+                    X = Objects["dialog window"].X + 20,
                     Y = Objects["dialog window"].Y + 10,
-                    Width = Objects["dialog window"].Width - 20,
+                    Width = Objects["dialog window"].Width - 40,
                     Height = Objects["dialog window"].Height - 20
+                });
+            Objects.Add("dialog highlight", new TextureObject()
+                {
+                    Color = Color.Black, 
+                    Z = 100001, 
+                    Y = -9999, 
+                    Width = Objects["dialog window"].Width - 20,
+                    Height = ((TextObject)Objects["dialog text"]).Font.LineSpacing,
+                    X = Objects["dialog window"].X + 10
                 });
 
             KeyDown += OnKeyPress;
@@ -62,13 +71,19 @@ namespace SRPG.Data.Layers
                     dialogContinues = UpdateDialog();
                     break;
                 case (Keys.Up):
+                case (Keys.W):
+                    if (_optionsDisplayed == false) break;
                     _currentOption++;
                     if (_currentOption >= _dialog.CurrentNode.Options.Count) _currentOption = 0;
+                    _dialog.SetOption(_currentOption);
                     UpdateOptionHighlight();
                     break;
                 case (Keys.Down):
+                case (Keys.S):
+                    if (_optionsDisplayed == false) break;
                     _currentOption--;
                     if (_currentOption < 0) _currentOption = _dialog.CurrentNode.Options.Count - 1;
+                    _dialog.SetOption(_currentOption);
                     UpdateOptionHighlight();
                     break;
             }
@@ -81,8 +96,14 @@ namespace SRPG.Data.Layers
 
         private void UpdateOptionHighlight()
         {
-            // move the highlight boxes to surround the option object whose key matches _currentOption
-            // todo highlight the current option
+            if (_currentOption == -1)
+            {
+                Objects["dialog highlight"].Y = -1000;
+            }
+            else
+            {
+                Objects["dialog highlight"].Y = Objects["dialog text"].Y + Objects["dialog text"].Height*_currentOption;
+            }
         }
 
         private void InitializeDialog()
@@ -112,15 +133,32 @@ namespace SRPG.Data.Layers
 
         private bool UpdateDialog()
         {
+            /*
+             * if there is more text on the node
+             *   display it
+             * if there is an option menu to display that has not been displayed
+             *   display it
+             * else
+             *   continue
+             */
+
+
             // if the current node has leftover text
             if (_charCount < _dialog.CurrentNode.Text.Length)
             {
-                // todo update the dialog to the next page of text
-                // clear the text
-                // while text can fit in the window and there is more text
-                //   add the next word to the window
-                // update _charCount
+                // display the next page
                 UpdateText(_dialog.CurrentNode.Text.Substring(_charCount));
+                return true;
+            }
+
+            // if there is more than 1 option to choose from
+            if (_dialog.CurrentNode.Options.Count > 1 && _optionsDisplayed == false)
+            {
+                ((TextObject)Objects["dialog text"]).Value = String.Join(" \n", _dialog.CurrentNode.Options.Keys);
+                _currentOption = 0;
+                UpdateOptionHighlight();
+                _dialog.SetOption(_currentOption);
+                _optionsDisplayed = true;
                 return true;
             }
 
@@ -129,6 +167,10 @@ namespace SRPG.Data.Layers
 
             // advance to the next node
             _dialog.Continue();
+
+            _currentOption = -1;
+            _optionsDisplayed = false;
+            UpdateOptionHighlight();
 
             // if there is no next node, return false to indicate as much
             if (_dialog.CurrentNode.Identifier == -1)
@@ -139,13 +181,9 @@ namespace SRPG.Data.Layers
             // invoke the new node's OnEnter method
             _dialog.CurrentNode.OnEnter.Invoke(_dialog, new DialogNodeEventArgs());
 
+            // display the first page of the new node
             _charCount = 0;
             UpdateText(_dialog.CurrentNode.Text);
-
-            // todo add options to the page
-            // take each option and put them into the layer 
-            // set the first option as current
-            // update option highlight
 
             return true;
         }

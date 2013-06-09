@@ -72,8 +72,8 @@ namespace Torch
                     // append current chunk to string
                     printedString += words[i];
 
-                    // if attaching next chunk would go greater than width
-                    if ((i == words.Length - 1) || (i + 1 < words.Length && Font.MeasureString(printedString + " " + words[i + 1]).X > _width))
+                    // if attaching next chunk would go greater than width, or a newline is specified
+                    if ((i == words.Length - 1) || (words[i + 1] == "\n") || (i + 1 < words.Length && Font.MeasureString(printedString + " " + words[i + 1]).X > _width))
                     {
                         // print (including alignment offset)
                         lines.Add(printedString);

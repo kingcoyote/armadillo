@@ -32,6 +32,11 @@ namespace SRPG.Data.Zones
             obj = new InteractiveObject { Location = new Rectangle(1512, 1224, 96, 96) };
             obj.Interact += SimpleDialog("kakariko/town", "statue");
             Objects.Add(obj);
+
+            // cliff
+            obj = new InteractiveObject { Location = new Rectangle(268, 445, 312 - 268, 5) };
+            obj.Interact += SimpleDialog("kakariko/town", "cliff");
+            Objects.Add(obj);
         }
     }
 }

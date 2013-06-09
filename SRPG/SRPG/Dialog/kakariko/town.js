@@ -21,5 +21,26 @@
                 text: "There is nothing in the mailbox."
             }
         ]
+    },
+    cliff : {
+        nodes : [
+            {
+                identifier:1,
+                text : "Looks unsafe to jump. Want to do it anyway?",
+                options: [
+                    { text: "Sure!", node: 2 },
+                    { text: "Nope!", node: 4 }
+                ]
+            },
+            {
+                identifier:2,
+                text:"You really shouldn't...",
+                options: [
+                    { text: "default", node : 3 }
+                ]
+            },
+            { identifier: 3, text: "...and won't." },
+            { identifier: 4, text: "Good call." }
+        ]
     }
 }

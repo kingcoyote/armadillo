@@ -14,9 +14,11 @@ namespace SRPG.Data
         public EventHandler OnEnter;
         public EventHandler OnExit;
 
+        private int _currentOption = -1;
+
         public void SetOption(int optionNumber)
         {
-            throw new NotImplementedException();
+            _currentOption = optionNumber;
         }
 
         public void Continue()
@@ -31,7 +33,7 @@ namespace SRPG.Data
             }
             else if (CurrentNode.Options.Count > 1)
             {
-                
+                CurrentNode = (from node in Nodes.Values where node.Identifier == CurrentNode.Options.ElementAt(_currentOption).Value select node).First();
             }
             else
             {
