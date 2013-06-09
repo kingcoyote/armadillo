@@ -100,7 +100,6 @@ namespace SRPG.Data
                     break;
                 default:
                     throw new Exception("unknown character class");
-                    break;
             }
 
             return character;
