@@ -40,6 +40,12 @@ namespace SRPG.Data.Zones
             obj = new InteractiveObject { Location = new Rectangle(268, 445, 312 - 268, 5) };
             obj.Interact += SimpleDialog("kakariko/town", "cliff");
             Objects.Add(obj);
+
+            Doors = new List<Door>
+                {
+                    new Door { Location = new Rectangle(312, 2725, 48, 8), Name = "shack", Orientation = Direction.Down, Zone = "kakariko shack", ZoneDoor = "entrance" },
+                    new Door { Location = new Rectangle(2664, 2997, 48, 32), Name = "arch", Orientation = Direction.Up }
+                };
         }
     }
 }

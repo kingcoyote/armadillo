@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using SRPG.Data;
 using SRPG.Data.Layers;
@@ -24,10 +25,6 @@ namespace SRPG.Scene.Overworld
             base.Initialize();
 
             Avatar = CharacterClass.GenerateCharacter("link");
-            Avatar.Direction = Direction.Down;
-            Avatar.Sprite.SetAnimation("standing down");
-            Avatar.Location.X = 600;
-            Avatar.Location.Y = 1300;
 
             Layers.Add("keyboardinput", new KeyboardInput(this));
             Layers.Add("environment", new Environment(this));
@@ -69,6 +66,14 @@ namespace SRPG.Scene.Overworld
             Avatar.Velocity.Y += yRevert;
 
             Avatar.UpdateAnimation();
+
+            // find a door that the avatar is in that leads elsewhere
+            var door = (from d in Zone.Doors where d.Location.Intersects(Avatar.GetFeet()) && !String.IsNullOrEmpty(d.Zone) select d);
+            if(door.Any())
+            {
+                SetZone(Zone.Factory(door.First().Zone), door.First().ZoneDoor);    
+            }
+            
         }
 
         private bool IsValidLocation(Rectangle rect)
@@ -88,10 +93,17 @@ namespace SRPG.Scene.Overworld
             return true;
         }
 
-        public void SetZone(Zone zone)
+        public void SetZone(Zone zone, string doorName)
         {
             Zone = zone;
             ((Environment)Layers["environment"]).SetZone(zone);
+
+            var door = (from d in zone.Doors where d.Name == doorName select d).First();
+            Avatar.Sprite.SetAnimation(string.Format("standing {0}", door.Orientation.ToString().ToLower()));
+            Avatar.Location.X = door.Location.X + (door.Location.Width/2) - (Avatar.Sprite.Width/2);
+            Avatar.Location.Y = door.Location.Y + (door.Location.Height / 2) - (Avatar.Sprite.Height / 2);
+            Avatar.Direction = door.Orientation;
+            
         }
 
         public void ChangeDirection(Direction direction, bool enabled)

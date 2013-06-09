@@ -14,13 +14,14 @@ namespace SRPG.Scene.Overworld
         private int _width;
         private int _height;
 
-        public Environment(Torch.Scene scene) : base(scene)
-        {
-            Objects.Add("avatar", ((OverworldScene)Scene).Avatar.Sprite);
-        }
+        public Environment(Torch.Scene scene) : base(scene) { }
 
         public void SetZone(Zone zone)
         {
+            Objects.Clear();
+
+            Objects.Add("avatar", ((OverworldScene)Scene).Avatar.Sprite);
+
             var i = 0;
             foreach (var image in zone.ImageLayers)
             {

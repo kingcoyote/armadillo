@@ -39,6 +39,9 @@ namespace SRPG.Data
                 case "kakariko":
                     return new Zones.Kakariko();
                     break;
+                case "kakariko shack":
+                    return new Zones.KakarikoShack();
+                    break;
             }
 
             return zone;
