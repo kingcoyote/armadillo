@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using SRPG.Data;
 using SRPG.Scene.Battle;
 using SRPG.Scene.Intro;
-using SRPG.Scene.Menu;
+using SRPG.Scene.PartyMenu;
 using SRPG.Scene.Options;
 using SRPG.Scene.Overworld;
 using SRPG.Scene.Shop;
@@ -38,7 +38,7 @@ namespace SRPG
         public SRPGGame()
         {
             Scenes.Add("intro", new IntroScene(this));
-            Scenes.Add("menu", new MenuScene(this));
+            Scenes.Add("party menu", new PartyMenuScene(this));
             Scenes.Add("overworld", new OverworldScene(this));
             Scenes.Add("battle", new BattleScene(this));
             Scenes.Add("shop", new ShopScene(this));

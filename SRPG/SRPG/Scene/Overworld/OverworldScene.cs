@@ -177,16 +177,21 @@ namespace SRPG.Scene.Overworld
 
         public void StartDialog(Dialog dialog)
         {
+            StopCharacter();
+
+            _isPaused = true;
+            dialog.OnExit += EndDialogEvent;
+            Layers.Add("dialog", new DialogLayer(this, dialog));
+        }
+
+        private void StopCharacter()
+        {
             Avatar.Velocity.X = 0;
             Avatar.Velocity.Y = 0;
             _directions[Direction.Up] = false;
             _directions[Direction.Down] = false;
             _directions[Direction.Left] = false;
             _directions[Direction.Right] = false;
-
-            _isPaused = true;
-            dialog.OnExit += EndDialogEvent;
-            Layers.Add("dialog", new DialogLayer(this, dialog));
         }
 
         public void EndDialog()
@@ -198,6 +203,14 @@ namespace SRPG.Scene.Overworld
         public void EndDialogEvent(object sender, EventArgs args)
         {
             EndDialog();
+        }
+
+        public void OpenPartyMenu()
+        {
+            if (_isPaused) return;
+            StopCharacter();
+
+            Game.ChangeScenes("party menu");
         }
     }
 }

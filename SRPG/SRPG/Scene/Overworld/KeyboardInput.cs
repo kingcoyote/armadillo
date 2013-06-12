@@ -28,25 +28,27 @@ namespace SRPG.Scene.Overworld
 
         public void HandleKeyDown(object sender, KeyboardEventArgs args)
         {
+            var scene = ((OverworldScene) Scene);
+
             if (args.WhichKey == _controls["left"])
             {
-                ((OverworldScene)Scene).ChangeDirection(Direction.Left, true);
+                scene.ChangeDirection(Direction.Left, true);
             }
             else if (args.WhichKey == _controls["right"])
             {
-                ((OverworldScene)Scene).ChangeDirection(Direction.Right, true);
+                scene.ChangeDirection(Direction.Right, true);
             }
             else if (args.WhichKey == _controls["up"])
             {
-                ((OverworldScene)Scene).ChangeDirection(Direction.Up, true);
+                scene.ChangeDirection(Direction.Up, true);
             }
             else if (args.WhichKey == _controls["down"])
             {
-                ((OverworldScene)Scene).ChangeDirection(Direction.Down, true);
+                scene.ChangeDirection(Direction.Down, true);
             }
             else if (args.WhichKey == _controls["party menu"])
             {
-
+                scene.OpenPartyMenu();
             }
             else if (args.WhichKey == _controls["config menu"])
             {
