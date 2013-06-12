@@ -36,10 +36,14 @@ namespace SRPG.Data
 
             switch(name)
             {
-                case "kakariko":
-                    return new Zones.Kakariko();
-                case "kakariko shack":
-                    return new Zones.KakarikoShack();
+                case "kakariko/village":
+                    return new Zones.Kakariko.Village();
+                case "kakariko/bombshop":
+                    return new Zones.Kakariko.Bombshop();
+                case "kakariko/inn":
+                    return new Zones.Kakariko.Inn();
+                default:
+                    throw new ZoneException(String.Format("Unable to generate unknown zone '{0}'.", name));
             }
 
             return zone;
@@ -53,7 +57,16 @@ namespace SRPG.Data
                     var dialog = Dialog.Fetch(filename, objectname);
                     scene.StartDialog(dialog);
                 };
-            
         }
+
+        public EventHandler<InteractEventArgs> SimpleDoor(string zone, string zonedoor)
+        {
+            return (sender, args) => ((OverworldScene) sender).SetZone(Factory(zone), zonedoor);
+        }
+    }
+
+    class ZoneException : Exception
+    {
+        public ZoneException(string message) : base(message) { }
     }
 }

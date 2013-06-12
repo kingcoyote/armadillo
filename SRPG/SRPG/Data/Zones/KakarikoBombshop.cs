@@ -7,11 +7,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Torch;
 using Game = Torch.Game;
 
-namespace SRPG.Data.Zones
+namespace SRPG.Data.Zones.Kakariko
 {
-    class KakarikoShack : Zone
+    class Bombshop : Zone
     {
-        public KakarikoShack()
+        public Bombshop()
         {
             Name = "Kakariko Shop";
             Sandbag = Grid.FromBitmap("Zones/Kakariko/Bombshop/sandbag");
@@ -24,7 +24,7 @@ namespace SRPG.Data.Zones
 
             Doors = new List<Door>
                 {
-                    new Door { Location = new Rectangle(264, 457, 48, 14), Name = "entrance", Orientation = Direction.Up, Zone = "kakariko", ZoneDoor = "shack" }
+                    new Door { Location = new Rectangle(264, 457, 48, 14), Name = "entrance", Orientation = Direction.Up, Zone = "kakariko/village", ZoneDoor = "bombshop" }
                 };
         }
     }
