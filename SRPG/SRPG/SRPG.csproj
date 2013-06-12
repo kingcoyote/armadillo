@@ -135,6 +135,7 @@
     <Compile Include="Data\Zone.cs" />
     <Compile Include="Scene\Intro\CoyoteGames.cs" />
     <Compile Include="Scene\Intro\IntroScene.cs" />
+    <Compile Include="Scene\PartyMenu\InventoryMenu.cs" />
     <Compile Include="Scene\PartyMenu\KeyboardInput.cs" />
     <Compile Include="Scene\PartyMenu\Menu.cs" />
     <Compile Include="Scene\PartyMenu\PartyMenuScene.cs" />
@@ -145,6 +146,8 @@
     <Compile Include="Scene\Overworld\OverworldScene.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Scene\PartyMenu\SettingsMenu.cs" />
+    <Compile Include="Scene\PartyMenu\StatusMenu.cs" />
     <Compile Include="Scene\Shop\ShopScene.cs" />
     <Compile Include="SRPGGame.cs" />
   </ItemGroup>
