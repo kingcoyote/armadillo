@@ -194,7 +194,7 @@ namespace SRPG.Data
                     character.Sprite.AddAnimation("standing right", new SpriteAnimation { FrameCount = 1, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = spriteHeight*3, FrameRate = 1 });
                     break;
                 default:
-                    throw new Exception("unknown character class");
+                    throw new Exception(string.Format("unknown character class {0}", className));
             }
 
             return character;
