@@ -14,9 +14,18 @@ namespace SRPG.Scene.PartyMenu
 
             Layers.Add("keyboard input", new KeyboardInput(this));
             Layers.Add("main menu", new Menu(this));
-            Layers.Add("status menu", new StatusMenu(this) { X = -10000 });
-            Layers.Add("inventory menu", new InventoryMenu(this) { X = -1000 });
-            Layers.Add("settings menu", new SettingsMenu(this) { X = -1000 });
+            Layers.Add("status menu", new StatusMenu(this));
+            Layers.Add("inventory menu", new InventoryMenu(this));
+            Layers.Add("settings menu", new SettingsMenu(this));
+        }
+
+        public override void Start()
+        {
+            base.Start();
+
+            Layers["status menu"].X = -1000;
+            Layers["inventory menu"].X = -1000;
+            Layers["settings menu"].X = -1000;
         }
 
         public void ReturnToGame()

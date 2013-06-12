@@ -52,6 +52,33 @@ namespace SRPG
             base.Initialize();
 
             ((OverworldScene) Scenes["overworld"]).SetZone(Zone.Factory("kakariko/village"), "arch");
+
+            Party = new List<Character>();
+
+            var character = CharacterClass.GenerateCharacter("fighter");
+            character.Name = "Jaha";
+            character.MaxHealth = 20;
+            Party.Add(character);
+
+            character = CharacterClass.GenerateCharacter("cleric");
+            character.Name = "Aeris";
+            character.MaxHealth = 12;
+            Party.Add(character);
+
+            character = CharacterClass.GenerateCharacter("ranger");
+            character.Name = "Meera";
+            character.MaxHealth = 14;
+            Party.Add(character);
+
+            character = CharacterClass.GenerateCharacter("wizard");
+            character.Name = "Raistlin";
+            character.MaxHealth = 12;
+            Party.Add(character);
+
+            character = CharacterClass.GenerateCharacter("monk");
+            character.Name = "Gratho";
+            character.MaxHealth = 18;
+            Party.Add(character);
         }
     }
 }

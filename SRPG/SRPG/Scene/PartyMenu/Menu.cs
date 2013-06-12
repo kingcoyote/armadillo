@@ -20,8 +20,8 @@ namespace SRPG.Scene.PartyMenu
             var font = cm.Load<SpriteFont>("Menu");
             Objects.Add("cursor", new ImageObject(cm.Load<Texture2D>("PartyMenu/cursor")));
             Objects.Add("status", new TextObject() { Color = Color.White, Font = font, Value = "Status", X = 50, Y = 50 });
-            Objects.Add("inventory", new TextObject() { Color = Color.White, Font = font, Value = "Inventory", X = 50, Y = 90 });
-            Objects.Add("settings", new TextObject() { Color = Color.White, Font = font, Value = "Settings", X = 50, Y = 130 });
+            Objects.Add("inventory", new TextObject() { Color = Color.White, Font = font, Value = "Inventory", X = 50, Y = 100 });
+            Objects.Add("settings", new TextObject() { Color = Color.White, Font = font, Value = "Settings", X = 50, Y = 150 });
 
             Objects["status"].MouseClick += ChangeMenu("status menu");
             Objects["inventory"].MouseClick += ChangeMenu("inventory menu");

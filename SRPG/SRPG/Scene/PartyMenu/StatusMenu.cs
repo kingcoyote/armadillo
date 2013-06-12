@@ -12,14 +12,22 @@ namespace SRPG.Scene.PartyMenu
     {
         public StatusMenu(Torch.Scene scene) : base(scene)
         {
-            Objects.Add("status", new TextObject()
+            var game = ((SRPGGame)Torch.Game.GetInstance());
+            var font = game.Content.Load<SpriteFont>("menu");
+
+
+            for (var i = 0; i < game.Party.Count; i++)
             {
-                Color = Color.White,
-                X = 50,
-                Y = 50,
-                Font = Torch.Game.GetInstance().Content.Load<SpriteFont>("menu"),
-                Value = "Status"
-            });
+                var character = game.Party[i];
+                Objects.Add("party " + character.Name, new TextObject
+                    {
+                        Font = font,
+                        Value = character.Name,
+                        X = 50,
+                        Y = 50 + (50 * i),
+                        Color = Color.White
+                    });
+            }
         }
     }
 }
