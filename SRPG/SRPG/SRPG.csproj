@@ -136,6 +136,7 @@
     <Compile Include="Scene\Intro\CoyoteGames.cs" />
     <Compile Include="Scene\Intro\IntroScene.cs" />
     <Compile Include="Scene\PartyMenu\KeyboardInput.cs" />
+    <Compile Include="Scene\PartyMenu\Menu.cs" />
     <Compile Include="Scene\PartyMenu\PartyMenuScene.cs" />
     <Compile Include="Scene\Options\OptionsScene.cs" />
     <Compile Include="Scene\Overworld\Environment.cs" />

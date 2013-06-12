@@ -11,6 +11,8 @@ namespace SRPG.Scene.PartyMenu
             base.Initialize();
 
             Layers.Add("keyboard input", new KeyboardInput(this));
+            Layers.Add("menu", new Menu(this));
+            
         }
 
         public void ReturnToGame()
