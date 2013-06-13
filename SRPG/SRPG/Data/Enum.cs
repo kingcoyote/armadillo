@@ -5,7 +5,6 @@ using System.Text;
 
 namespace SRPG.Data
 {
-    [Flags]
     public enum Stat
     {
         Health,
@@ -18,7 +17,6 @@ namespace SRPG.Data
         Hit
     }
 
-    [Flags]
     public enum ItemType
     {
         Sword,
@@ -36,21 +34,18 @@ namespace SRPG.Data
         Consumable
     }
 
-    [Flags]
     public enum AbilityType
     {
         Passive,
         Active
     }
 
-    [Flags]
     public enum AbilityTarget
     {
         Friendly,
         Enemy
     }
 
-    [Flags]
     public enum StatusAilmentType
     {
         Sleep,
@@ -59,7 +54,6 @@ namespace SRPG.Data
         Poison
     }
 
-    [Flags]
     public enum Direction
     {
         None = 0,

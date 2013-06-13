@@ -1,4 +1,5 @@
-﻿using Torch;
+﻿using SRPG.Data;
+using Torch;
 
 namespace SRPG.Scene.PartyMenu
 {
@@ -17,15 +18,16 @@ namespace SRPG.Scene.PartyMenu
             Layers.Add("status menu", new StatusMenu(this));
             Layers.Add("inventory menu", new InventoryMenu(this));
             Layers.Add("settings menu", new SettingsMenu(this));
+            Layers.Add("character menu", new CharacterMenu(this));
         }
 
         public override void Start()
         {
             base.Start();
 
-            Layers["status menu"].X = -1000;
-            Layers["inventory menu"].X = -1000;
-            Layers["settings menu"].X = -1000;
+            Layers["status menu"].X = 5000;
+            Layers["inventory menu"].X = 5000;
+            Layers["settings menu"].X = 5000;
         }
 
         public void ReturnToGame()
@@ -37,7 +39,18 @@ namespace SRPG.Scene.PartyMenu
         {
             if(Layers.ContainsKey(_currentMenu)) Layers[_currentMenu].X = -10000;
             _currentMenu = menu;
-            Layers[_currentMenu].X = 350;
+            Layers[_currentMenu].X = 225;
+        }
+
+        public void SetCharacter(Character character)
+        {
+            ((CharacterMenu)Layers["character menu"]).SetCharacter(character);
+        }
+
+        public void AnchorLayer(string layer, int offsetX, int offsetY)
+        {
+            Layers[layer].X = offsetX;
+            Layers[layer].Y = offsetY;
         }
     }
 }

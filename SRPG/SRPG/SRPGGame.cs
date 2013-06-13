@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SRPG.Data;
+using SRPG.Data.Items;
 using SRPG.Scene.Battle;
 using SRPG.Scene.Intro;
 using SRPG.Scene.PartyMenu;
@@ -63,10 +64,13 @@ namespace SRPG
         private void BeginNewGame()
         {
             Party = new List<Character>();
+            Inventory = new List<Item>();
 
             var character = CharacterClass.GenerateCharacter("fighter");
             character.Name = "Jaha";
             character.MaxHealth = 20;
+            character.Inventory.Add(new Shortsword());
+            character.Inventory.Add(new Breastplate());
             Party.Add(character);
 
             character = CharacterClass.GenerateCharacter("cleric");
@@ -88,6 +92,10 @@ namespace SRPG
             character.Name = "Gratho";
             character.MaxHealth = 18;
             Party.Add(character);
+
+            Inventory.Add(new Shortsword());
+            Inventory.Add(new Breastplate());
+            Inventory.Add(new Longsword());
         }
     }
 }

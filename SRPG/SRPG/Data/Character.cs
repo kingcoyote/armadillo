@@ -40,14 +40,15 @@ namespace SRPG.Data
         /// or status ailments such as blind.
         /// </summary>
         public Dictionary<Stat, int> BonusStats;
+
         /// <summary>
         /// List of items currently equipped by the character, including weapon, armor and accessory.
         /// </summary>
-        public List<Item> Inventory;
+        public List<Item> Inventory = new List<Item>() {};
         /// <summary>
         /// List of abilities the character can perform. This includes active, passive and attack.
         /// </summary>
-        public List<Ability> Abilities;
+        public List<Ability> Abilities = new List<Ability>(){};
         /// <summary>
         /// A small portrait to be shown when this character is highlighted.
         /// </summary>
@@ -151,6 +152,16 @@ namespace SRPG.Data
         public int GenerateExperience()
         {
             throw new NotImplementedException();
+        }
+
+        public Item GetEquippedWeapon()
+        {
+            return (from item in Inventory where item.ItemType == Class.WeaponTypes select item).FirstOrDefault();
+        }
+
+        public Item GetEquippedArmor()
+        {
+            return (from item in Inventory where item.ItemType == Class.ArmorTypes select item).FirstOrDefault();
         }
 
         public void UpdateAnimation()

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SRPG.Data
 {
-    public struct Item
+    public class Item
     {
         /// <summary>
         /// Human readable name of this item.

@@ -27,7 +27,18 @@ namespace SRPG.Scene.PartyMenu
                         Y = 50 + (50 * i),
                         Color = Color.White
                     });
+                Objects["party " + character.Name].MouseClick += (sender, args) =>
+                    {
+                        ((PartyMenuScene) Scene).SetCharacter(character);
+                    };
             }
+        }
+
+        public override void Update(GameTime gameTime, Input input)
+        {
+            base.Update(gameTime, input);
+
+            ((PartyMenuScene) Scene).AnchorLayer("character menu", (int)X + 225, (int)Y);
         }
     }
 }

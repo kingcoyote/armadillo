@@ -24,7 +24,7 @@ namespace SRPG.Data
         /// </summary>
         public readonly ItemType WeaponTypes;
 
-        public CharacterClass(string name, ItemType armorTypes, ItemType weaponTypes)
+        public CharacterClass(string name, ItemType weaponTypes, ItemType armorTypes)
         {
             Name = name;
             ArmorTypes = armorTypes;
@@ -84,7 +84,7 @@ namespace SRPG.Data
                     spriteHeight = 75;
                     character = new Character
                     {
-                        Class = new CharacterClass(className, ItemType.Sword, ItemType.Plate),
+                        Class = new CharacterClass(className, ItemType.Gun, ItemType.Mail),
                         Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/TempRanger")),
                         FeetWidth = 40,
                         FeetHeight = 25
@@ -103,7 +103,7 @@ namespace SRPG.Data
                     spriteHeight = 75;
                     character = new Character
                     {
-                        Class = new CharacterClass(className, ItemType.Sword, ItemType.Plate),
+                        Class = new CharacterClass(className, ItemType.Book, ItemType.Cloth),
                         Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/TempCleric")),
                         FeetWidth = 40,
                         FeetHeight = 25
@@ -122,7 +122,7 @@ namespace SRPG.Data
                     spriteHeight = 75;
                     character = new Character
                     {
-                        Class = new CharacterClass(className, ItemType.Sword, ItemType.Plate),
+                        Class = new CharacterClass(className, ItemType.Staff, ItemType.Cloth),
                         Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/TempWizard")),
                         FeetWidth = 40,
                         FeetHeight = 25
@@ -141,7 +141,7 @@ namespace SRPG.Data
                     spriteHeight = 75;
                     character = new Character
                     {
-                        Class = new CharacterClass(className, ItemType.Sword, ItemType.Plate),
+                        Class = new CharacterClass(className, ItemType.Unarmed, ItemType.Leather),
                         Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/TempMonk")),
                         FeetWidth = 40,
                         FeetHeight = 25

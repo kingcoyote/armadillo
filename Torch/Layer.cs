@@ -101,9 +101,9 @@ namespace Torch
 
         public void HandleMouseClick(object sender, MouseEventArgs args)
         {
-            foreach (var obj in Objects.Values)
+            foreach (var obj in Objects.Values.ToList())
             {
-                if (obj.Rectangle.Contains(args.X + (int)X, args.Y + (int)Y))
+                if (obj.Rectangle.Contains(args.X - (int)X, args.Y - (int)Y))
                 {
                     obj.MouseClick.Invoke(obj, args);
                 }
@@ -112,7 +112,7 @@ namespace Torch
 
         public void HandleMouseRelease(object sender, MouseEventArgs args)
         {
-            foreach (var obj in Objects.Values)
+            foreach (var obj in Objects.Values.ToList())
             {
                 if (obj.Rectangle.Contains(args.X, args.Y))
                 {
