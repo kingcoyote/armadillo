@@ -52,6 +52,11 @@ namespace SRPG
 
             ((OverworldScene) Scenes["overworld"]).SetZone(Zone.Factory("kakariko/village"), "arch");
 
+            BeginNewGame();
+        }
+
+        private void BeginNewGame()
+        {
             Party = new List<Character>();
 
             var character = CharacterClass.GenerateCharacter("fighter");
