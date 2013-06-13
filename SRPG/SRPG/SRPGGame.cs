@@ -61,6 +61,20 @@ namespace SRPG
             BeginNewGame();
         }
 
+        public void EquipCharacter(Character character, Item newItem)
+        {
+            if(Inventory.Contains(newItem))
+            {
+                var oldItem = character.EquipItem(newItem);
+                Inventory.Remove(newItem);
+                Inventory.Add(oldItem);
+            }
+            else
+            {
+                throw new Exception("this item cannot be equipped because it is not in the inventory");
+            }
+        }
+
         private void BeginNewGame()
         {
             Party = new List<Character>();

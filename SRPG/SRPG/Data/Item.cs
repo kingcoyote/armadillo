@@ -36,5 +36,30 @@ namespace SRPG.Data
         /// An ItemType value indicating what type of item this is, to ensure that items are only equipped when valid.
         /// </summary>
         public ItemType ItemType;
+
+        public ItemEquipType GetEquipType()
+        {
+            switch(ItemType)
+            {
+                case ItemType.Sword:
+                case ItemType.Gun:
+                case ItemType.Book:
+                case ItemType.Staff:
+                case ItemType.Unarmed:
+                    return ItemEquipType.Weapon;
+
+                case ItemType.Cloth:
+                case ItemType.Leather:
+                case ItemType.Mail:
+                case ItemType.Plate:
+                    return ItemEquipType.Armor;
+
+                case ItemType.Accessory:
+                    return ItemEquipType.Accessory;
+
+                default:
+                    return ItemEquipType.None;
+            }
+        }
     }
 }

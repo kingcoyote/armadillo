@@ -42,37 +42,25 @@ namespace SRPG.Scene.PartyMenu
             var armorName = _character.GetEquippedArmor() != null ? _character.GetEquippedArmor().Name : "--";
             Objects.Add("armor", new TextObject() { Font = font, Y = 150, X = 225, Value = armorName, Color = Color.Yellow });
 
+            // when you click on one of the equipped items, display a list of items that can be used in that slot...
             Objects["weapon"].MouseClick += ChangeWeapon;
             Objects["armor"].MouseClick += ChangeArmor;
         }
 
+        
         private void ChangeWeapon(object sender, MouseEventArgs args)
         {
             var weapons = (from item in ((SRPGGame) Game.GetInstance()).Inventory where item.ItemType == _character.Class.WeaponTypes select item);
-            GenerateItemMenu(weapons.ToList(), (newItem) => (s, a) =>
-                {
-                    var currWeapon = from item in _character.Inventory
-                                     where item.ItemType == _character.Class.WeaponTypes
-                                     select item;
-
-                    if (currWeapon.Any())
-                    {
-                        _character.Inventory.Remove(currWeapon.First());
-                    }
-
-                    _character.Inventory.Add(newItem);
-
-                    UpdateObjects();
-                });
+            GenerateItemMenu(weapons.ToList());
         }
 
         private void ChangeArmor(object sender, MouseEventArgs args)
         {
             var armors = (from item in ((SRPGGame)Game.GetInstance()).Inventory where item.ItemType == _character.Class.ArmorTypes select item);
-            GenerateItemMenu(armors.ToList(), (item) => (s, a) => { });
+            GenerateItemMenu(armors.ToList());
         }
 
-        private void GenerateItemMenu(List<Item> items, Func<Item, EventHandler<MouseEventArgs>> callback)
+        private void GenerateItemMenu(IEnumerable<Item> items)
         {
             var oldKeys = (from key in Objects.Keys where key.Length > 15 && key.Substring(0, 15) == "selectable item" select key);
 
@@ -85,8 +73,10 @@ namespace SRPG.Scene.PartyMenu
 
             var font = Game.GetInstance().Content.Load<SpriteFont>("Menu");
 
-            foreach(var item in items)
+            foreach(var item in items.ToList())
             {
+                var tempItem = item;
+                
                 Objects.Add("selectable item " + i, new TextObject()
                     {
                         Font = font,
@@ -95,7 +85,12 @@ namespace SRPG.Scene.PartyMenu
                         Y = 50 * (i + 1),
                         Color = Color.White
                     });
-                Objects["selectable item " + i].MouseClick += callback(item);
+                
+                Objects["selectable item " + i].MouseClick += (sender, args) =>
+                    {
+                        ((SRPGGame) Game.GetInstance()).EquipCharacter(_character, tempItem);
+                        UpdateObjects();
+                    };
 
                 i++;
             }

@@ -21,17 +21,27 @@ namespace SRPG.Data
     {
         Sword,
         Hammer,
-        Bow,
         Gun,
         Book,
         Staff,
         Unarmed,
+
         Cloth,
         Leather,
         Mail,
         Plate,
+        
         Accessory,
+        
         Consumable
+    }
+
+    public enum ItemEquipType
+    {
+        None,
+        Weapon,
+        Armor,
+        Accessory
     }
 
     public enum AbilityType

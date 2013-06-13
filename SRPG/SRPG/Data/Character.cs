@@ -164,6 +164,32 @@ namespace SRPG.Data
             return (from item in Inventory where item.ItemType == Class.ArmorTypes select item).FirstOrDefault();
         }
 
+        public Item EquipItem(Item item)
+        {
+            var oldItem = new Item();
+            
+            switch(item.GetEquipType())
+            {
+                case ItemEquipType.Weapon:
+                    oldItem = GetEquippedWeapon();
+                    break;
+                case ItemEquipType.Armor:
+                    oldItem = GetEquippedArmor();
+                    break;
+                case ItemEquipType.Accessory:
+                    throw new NotImplementedException();
+                    break;
+
+                default:
+                    throw new Exception("unable to equip this item");
+            }
+
+            if (oldItem.Name != "") Inventory.Remove(oldItem);
+            Inventory.Add(item);
+
+            return oldItem;
+        }
+
         public void UpdateAnimation()
         {
             // if they are currently moving
