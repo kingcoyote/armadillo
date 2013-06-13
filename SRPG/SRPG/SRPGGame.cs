@@ -67,7 +67,7 @@ namespace SRPG
             {
                 var oldItem = character.EquipItem(newItem);
                 Inventory.Remove(newItem);
-                Inventory.Add(oldItem);
+                if(oldItem != null) Inventory.Add(oldItem);
             }
             else
             {

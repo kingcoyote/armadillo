@@ -184,7 +184,7 @@ namespace SRPG.Data
                     throw new Exception("unable to equip this item");
             }
 
-            if (oldItem.Name != "") Inventory.Remove(oldItem);
+            if (oldItem != null) Inventory.Remove(oldItem);
             Inventory.Add(item);
 
             return oldItem;
