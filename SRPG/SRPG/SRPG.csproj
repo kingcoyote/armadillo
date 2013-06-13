@@ -133,8 +133,9 @@
     <Compile Include="Data\SaveGame.cs" />
     <Compile Include="Data\StatusAilment.cs" />
     <Compile Include="Data\Zone.cs" />
-    <Compile Include="Scene\Intro\CoyoteGames.cs" />
+    <Compile Include="Scene\Intro\CreditSlide.cs" />
     <Compile Include="Scene\Intro\IntroScene.cs" />
+    <Compile Include="Scene\Intro\XnaSlide.cs" />
     <Compile Include="Scene\PartyMenu\InventoryMenu.cs" />
     <Compile Include="Scene\PartyMenu\KeyboardInput.cs" />
     <Compile Include="Scene\PartyMenu\Menu.cs" />

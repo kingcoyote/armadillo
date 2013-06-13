@@ -6,8 +6,8 @@ using Torch;
 
 namespace SRPG.Scene.Intro
 {
-    class CoyoteGames : Layer
+    class XnaSlide : Layer
     {
-        public CoyoteGames(Torch.Scene scene) : base(scene) { }
+        public XnaSlide(Torch.Scene scene) : base(scene) { }
     }
 }

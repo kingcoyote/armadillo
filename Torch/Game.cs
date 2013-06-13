@@ -17,7 +17,7 @@ namespace Torch
 
         protected bool IsFullScreen = true;
         protected int ScreenWidth = 1280;
-        protected int ScreenHeight = 1024;
+        protected int ScreenHeight = 960;
 
         public AppSettings Settings;
 
@@ -29,7 +29,6 @@ namespace Torch
             Content.RootDirectory = "Content";
 
             _graphics = new GraphicsDeviceManager(this);
-            
 
             _instance = this;
         }
@@ -47,6 +46,8 @@ namespace Torch
             else
             {
                 _graphics.IsFullScreen = false;
+                _graphics.PreferredBackBufferWidth = ScreenWidth;
+                _graphics.PreferredBackBufferHeight = ScreenHeight;
             }
 
             _graphics.ApplyChanges();
@@ -64,6 +65,8 @@ namespace Torch
             LoadSettings();
 
             _input = new Input();
+
+            InitializeGraphics();
 
             base.Initialize();
         }

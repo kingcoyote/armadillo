@@ -32,7 +32,7 @@ namespace SRPG
 
         public SRPGGame()
         {
-            IsFullScreen = true;
+            IsFullScreen = false;
 
             Scenes.Add("intro", new IntroScene(this));
             Scenes.Add("party menu", new PartyMenuScene(this));
@@ -41,16 +41,21 @@ namespace SRPG
             Scenes.Add("shop", new ShopScene(this));
             Scenes.Add("options", new OptionsScene(this));
 
-            CurrentScene = "overworld";
+            CurrentScene = "intro";
         }
 
         protected override void Initialize()
         {
             base.Initialize();
 
-            InitializeGraphics();
+            
+        }
 
-            ((OverworldScene) Scenes["overworld"]).SetZone(Zone.Factory("kakariko/village"), "arch");
+        public void StartGame()
+        {
+            ChangeScenes("overworld");
+            
+            ((OverworldScene)Scenes["overworld"]).SetZone(Zone.Factory("kakariko/village"), "arch");
 
             BeginNewGame();
         }
