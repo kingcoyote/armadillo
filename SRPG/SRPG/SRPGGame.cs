@@ -107,9 +107,7 @@ namespace SRPG
             character.MaxHealth = 18;
             Party.Add(character);
 
-            Inventory.Add(new Shortsword());
-            Inventory.Add(new Breastplate());
-            Inventory.Add(new Longsword());
+            Inventory.Add(new Revolver());
         }
     }
 }
