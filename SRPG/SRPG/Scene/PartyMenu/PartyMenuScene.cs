@@ -18,7 +18,6 @@ namespace SRPG.Scene.PartyMenu
             Layers.Add("status menu", new StatusMenu(this));
             Layers.Add("inventory menu", new InventoryMenu(this));
             Layers.Add("settings menu", new SettingsMenu(this));
-            Layers.Add("character menu", new CharacterMenu(this));
         }
 
         public override void Start()
@@ -44,13 +43,7 @@ namespace SRPG.Scene.PartyMenu
 
         public void SetCharacter(Character character)
         {
-            ((CharacterMenu)Layers["character menu"]).SetCharacter(character);
-        }
-
-        public void AnchorLayer(string layer, int offsetX, int offsetY)
-        {
-            Layers[layer].X = offsetX;
-            Layers[layer].Y = offsetY;
+            ((StatusMenu)Layers["status menu"]).SetCharacter(character);
         }
     }
 }
