@@ -24,11 +24,6 @@ namespace SRPG
     /// </summary>
     public class SRPGGame : Torch.Game
     {
-        private int _screenWidth = 1280;
-        private int _screenHeight = 1024;
-        protected override int ScreenWidth { get { return _screenWidth; } set { _screenWidth = value; } }
-        protected override int ScreenHeight { get { return _screenHeight; } set { _screenHeight = value; } }
-
         public List<Character> Party;
         public List<Item> Inventory;
         public int Money;
@@ -37,6 +32,8 @@ namespace SRPG
 
         public SRPGGame()
         {
+            IsFullScreen = true;
+
             Scenes.Add("intro", new IntroScene(this));
             Scenes.Add("party menu", new PartyMenuScene(this));
             Scenes.Add("overworld", new OverworldScene(this));
@@ -50,6 +47,8 @@ namespace SRPG
         protected override void Initialize()
         {
             base.Initialize();
+
+            InitializeGraphics();
 
             ((OverworldScene) Scenes["overworld"]).SetZone(Zone.Factory("kakariko/village"), "arch");
 

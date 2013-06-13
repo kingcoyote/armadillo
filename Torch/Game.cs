@@ -7,7 +7,7 @@ namespace Torch
 {
     abstract public class Game : Microsoft.Xna.Framework.Game
     {
-        private readonly GraphicsDeviceManager _graphics;
+        private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Input _input;
 
@@ -15,25 +15,41 @@ namespace Torch
         protected string CurrentScene;
         protected string SettingsFile;
 
-        abstract protected int ScreenWidth { get; set; }
-        abstract protected int ScreenHeight { get; set; }
+        protected bool IsFullScreen = true;
+        protected int ScreenWidth = 1280;
+        protected int ScreenHeight = 1024;
 
         public AppSettings Settings;
 
-        private static GraphicsDevice _graphicsDevice ;
         protected static Game _instance;
 
         protected Game()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            
             Content.RootDirectory = "Content";
 
-            _graphicsDevice = GraphicsDevice;
-
-            _graphics.PreferredBackBufferWidth = ScreenWidth;
-            _graphics.PreferredBackBufferHeight = ScreenHeight;
+            _graphics = new GraphicsDeviceManager(this);
+            
 
             _instance = this;
+        }
+
+        protected void InitializeGraphics()
+        {
+            _graphics.PreferMultiSampling = false;
+
+            if (IsFullScreen)
+            {
+                _graphics.IsFullScreen = true;
+                _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            }
+            else
+            {
+                _graphics.IsFullScreen = false;
+            }
+
+            _graphics.ApplyChanges();
         }
 
         /// <summary>
