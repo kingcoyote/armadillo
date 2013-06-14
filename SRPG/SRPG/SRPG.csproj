@@ -114,10 +114,9 @@
     <Compile Include="Data\DialogNode.cs" />
     <Compile Include="Data\InteractEventArgs.cs" />
     <Compile Include="Data\InteractiveObject.cs" />
-    <Compile Include="Data\Items\Breastplate.cs" />
-    <Compile Include="Data\Items\Revolver.cs" />
-    <Compile Include="Data\Items\Longsword.cs" />
-    <Compile Include="Data\Items\Shortsword.cs" />
+    <Compile Include="Data\Items\Plate.cs" />
+    <Compile Include="Data\Items\Gun.cs" />
+    <Compile Include="Data\Items\Sword.cs" />
     <Compile Include="Data\Layers\DialogLayer.cs" />
     <Compile Include="Data\Zones\Kakariko\Inn.cs" />
     <Compile Include="Data\Zones\Kakariko\Village.cs" />

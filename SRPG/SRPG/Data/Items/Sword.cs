@@ -5,6 +5,15 @@ using System.Text;
 
 namespace SRPG.Data.Items
 {
+    class Shortsword : Item
+    {
+        public Shortsword()
+        {
+            Name = "Shortsword";
+            ItemType = ItemType.Sword;
+        }
+    }
+
     class Longsword : Item
     {
         public Longsword()
