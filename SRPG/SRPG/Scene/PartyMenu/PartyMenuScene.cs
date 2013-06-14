@@ -27,9 +27,9 @@ namespace SRPG.Scene.PartyMenu
         {
             base.Start();
 
-            Layers["status menu"].X = 5000;
-            Layers["inventory menu"].X = 5000;
-            Layers["settings menu"].X = 5000;
+            Layers["status menu"].Visible = false;
+            Layers["inventory menu"].Visible = false;
+            Layers["settings menu"].Visible = false;
         }
 
         public void ReturnToGame()
@@ -39,9 +39,10 @@ namespace SRPG.Scene.PartyMenu
 
         public void ChangeMenu(string menu)
         {
-            if(Layers.ContainsKey(_currentMenu)) Layers[_currentMenu].X = -10000;
+            if(Layers.ContainsKey(_currentMenu)) Layers[_currentMenu].Visible = false;
             _currentMenu = menu;
-            Layers[_currentMenu].X = 225;
+            Layers[_currentMenu].Visible = true;
+            ((SubmenuLayer)Layers[_currentMenu]).Reset();
         }
 
         public void SetCharacter(Character character)

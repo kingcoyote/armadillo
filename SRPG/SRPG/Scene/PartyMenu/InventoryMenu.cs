@@ -8,24 +8,28 @@ using Torch;
 
 namespace SRPG.Scene.PartyMenu
 {
-    class InventoryMenu : Layer
+    class InventoryMenu : SubmenuLayer
     {
-        public InventoryMenu(Torch.Scene scene) : base(scene)
+        public InventoryMenu(Torch.Scene scene) : base(scene) { }
+
+        public override void Reset()
         {
-            var inventory = ((SRPGGame) Torch.Game.GetInstance()).Inventory;
+            Objects.Clear();
+            
+            var inventory = ((SRPGGame)Torch.Game.GetInstance()).Inventory;
             var font = Torch.Game.GetInstance().Content.Load<SpriteFont>("menu");
 
             for (var i = 0; i < inventory.Count; i++)
             {
                 var item = inventory[i];
                 Objects.Add("inventory/" + i, new TextObject
-                    {
-                        Color = Color.White,
-                        X = 50,
-                        Y = (i + 1) * 50,
-                        Font = font,
-                        Value = item.Name
-                    });
+                {
+                    Color = Color.White,
+                    X = 275,
+                    Y = (i + 1) * 50,
+                    Font = font,
+                    Value = item.Name
+                });
             }
         }
     }

@@ -151,6 +151,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Scene\PartyMenu\SettingsMenu.cs" />
     <Compile Include="Scene\PartyMenu\StatusMenu.cs" />
+    <Compile Include="Scene\PartyMenu\SubmenuLayer.cs" />
     <Compile Include="Scene\Shop\ShopScene.cs" />
     <Compile Include="SRPGGame.cs" />
   </ItemGroup>

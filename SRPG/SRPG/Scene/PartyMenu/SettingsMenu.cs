@@ -8,14 +8,14 @@ using Torch;
 
 namespace SRPG.Scene.PartyMenu
 {
-    class SettingsMenu : Layer
+    class SettingsMenu : SubmenuLayer
     {
         public SettingsMenu(Torch.Scene scene) : base(scene)
         {
             Objects.Add("settings", new TextObject()
                 {
                     Color = Color.White, 
-                    X = 50, 
+                    X = 275, 
                     Y = 50, 
                     Font = Torch.Game.GetInstance().Content.Load<SpriteFont>("menu"), Value="Settings"
                 });

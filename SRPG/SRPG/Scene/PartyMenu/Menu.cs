@@ -19,15 +19,18 @@ namespace SRPG.Scene.PartyMenu
 
             var font = cm.Load<SpriteFont>("Menu");
             Objects.Add("cursor", new ImageObject(cm.Load<Texture2D>("PartyMenu/cursor")));
-            Objects.Add("status", new TextObject() { Color = Color.White, Font = font, Value = "Status", X = 50, Y = 50 });
-            Objects.Add("inventory", new TextObject() { Color = Color.White, Font = font, Value = "Inventory", X = 50, Y = 100 });
-            Objects.Add("settings", new TextObject() { Color = Color.White, Font = font, Value = "Settings", X = 50, Y = 150 });
+
+            var screenWidth = Game.GetInstance().GraphicsDevice.Viewport.Width;
+
+            Objects.Add("status", new TextObject { Color = Color.White, Font = font, Value = "Status", X = screenWidth / 5, Y = 50, Alignment = TextObject.AlignTypes.Center });
+            Objects.Add("inventory", new TextObject { Color = Color.White, Font = font, Value = "Inventory", X = screenWidth / 2, Y = 50, Alignment = TextObject.AlignTypes.Center });
+            Objects.Add("settings", new TextObject { Color = Color.White, Font = font, Value = "Settings", X = screenWidth / 5 * 4, Y = 50, Alignment = TextObject.AlignTypes.Center });
 
             Objects["status"].MouseClick += ChangeMenu("status menu");
             Objects["inventory"].MouseClick += ChangeMenu("inventory menu");
             Objects["settings"].MouseClick += ChangeMenu("settings menu");
 
-            Objects.Add("background", new TextureObject() { Color = Color.Blue, Z = -1, Width = Game.GetInstance().GraphicsDevice.Viewport.Width, Height = Game.GetInstance().GraphicsDevice.Viewport.Height });
+            Objects.Add("background", new TextureObject { Color = Color.Blue, Z = -1, Width = Game.GetInstance().GraphicsDevice.Viewport.Width, Height = Game.GetInstance().GraphicsDevice.Viewport.Height });
         }
 
         public override void Update(GameTime gameTime, Input input)
