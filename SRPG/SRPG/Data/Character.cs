@@ -34,7 +34,15 @@ namespace SRPG.Data
         /// DAWISH stat list for this character. This list is the unmodified list, and thus ignores status ailments,
         /// buffs and debuffs
         /// </summary>
-        public Dictionary<Stat, int> Stats;
+        public Dictionary<Stat, int> Stats = new Dictionary<Stat, int>()
+            {
+                {Stat.Defense, 0},
+                {Stat.Attack, 0},
+                {Stat.Wisdom, 0},
+                {Stat.Intelligence, 0},
+                {Stat.Speed, 0},
+                {Stat.Hit, 0}
+            };
         /// <summary>
         /// Temporary modifications to a character's DAWISH stats, such as from passive abilities, buffs, debuffs
         /// or status ailments such as blind.
@@ -162,6 +170,11 @@ namespace SRPG.Data
         public Item GetEquippedArmor()
         {
             return (from item in Inventory where item.ItemType == Class.ArmorTypes select item).FirstOrDefault();
+        }
+
+        public Item GetEquippedAccessory()
+        {
+            return (from item in Inventory where item.ItemType == ItemType.Accessory select item).FirstOrDefault();
         }
 
         public Item EquipItem(Item item)
