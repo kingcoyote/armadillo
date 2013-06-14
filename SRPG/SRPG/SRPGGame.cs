@@ -33,8 +33,6 @@ namespace SRPG
             Scenes.Add("options", new OptionsScene(this));
 
             CurrentScene = "intro";
-
-            Item.InitializeItemList();
         }
 
         public void StartGame()
@@ -68,56 +66,62 @@ namespace SRPG
             var character = CharacterClass.GenerateCharacter("fighter");
             character.Name = "Jaha";
             character.MaxHealth = 20;
+            character.Stats[Stat.Defense] = 22;
+            character.Stats[Stat.Attack] = 18;
+            character.Stats[Stat.Wisdom] = 6;
+            character.Stats[Stat.Intelligence] = 8;
+            character.Stats[Stat.Speed] = 12;
+            character.Stats[Stat.Hit] = 15;
             Party.Add(character);
 
             character = CharacterClass.GenerateCharacter("cleric");
             character.Name = "Aeris";
             character.MaxHealth = 12;
+            character.Stats[Stat.Defense] = 8;
+            character.Stats[Stat.Attack] = 6;
+            character.Stats[Stat.Wisdom] = 22;
+            character.Stats[Stat.Intelligence] = 15;
+            character.Stats[Stat.Speed] = 12;
+            character.Stats[Stat.Hit] = 18;
             Party.Add(character);
 
             character = CharacterClass.GenerateCharacter("ranger");
             character.Name = "Meera";
             character.MaxHealth = 14;
+            character.Stats[Stat.Defense] = 12;
+            character.Stats[Stat.Attack] = 15;
+            character.Stats[Stat.Wisdom] = 8;
+            character.Stats[Stat.Intelligence] = 6;
+            character.Stats[Stat.Speed] = 18;
+            character.Stats[Stat.Hit] = 22;
             Party.Add(character);
 
             character = CharacterClass.GenerateCharacter("wizard");
             character.Name = "Raistlin";
             character.MaxHealth = 12;
+            character.Stats[Stat.Defense] = 6;
+            character.Stats[Stat.Attack] = 12;
+            character.Stats[Stat.Wisdom] = 22;
+            character.Stats[Stat.Intelligence] = 18;
+            character.Stats[Stat.Speed] = 8;
+            character.Stats[Stat.Hit] = 15;
             Party.Add(character);
 
             character = CharacterClass.GenerateCharacter("monk");
             character.Name = "Gratho";
             character.MaxHealth = 18;
+            character.Stats[Stat.Defense] = 8;
+            character.Stats[Stat.Attack] = 15;
+            character.Stats[Stat.Wisdom] = 12;
+            character.Stats[Stat.Intelligence] = 6;
+            character.Stats[Stat.Speed] = 22;
+            character.Stats[Stat.Hit] = 18;
             Party.Add(character);
 
-            Inventory.Add(Item.Factory("Shortsword"));
-            Inventory.Add(Item.Factory("Longsword"));
-            Inventory.Add(Item.Factory("Greatsword"));
-            Inventory.Add(Item.Factory("Pistol"));
-            Inventory.Add(Item.Factory("Revolver"));
-            Inventory.Add(Item.Factory("Big Iron"));
-            Inventory.Add(Item.Factory("Scroll"));
-            Inventory.Add(Item.Factory("Holy Book"));
-            Inventory.Add(Item.Factory("Anthology"));
-            Inventory.Add(Item.Factory("Fire Wand"));
-            Inventory.Add(Item.Factory("Spark Staff"));
-            Inventory.Add(Item.Factory("Ground Staff"));
-            Inventory.Add(Item.Factory("Brass Knuckles"));
-            Inventory.Add(Item.Factory("Tiger Claws"));
-            Inventory.Add(Item.Factory("Old Shoes"));
+            Inventory.Add(Item.Factory("sword/shortsword"));
+            Inventory.Add(Item.Factory("sword/longsword"));
+            Inventory.Add(Item.Factory("sword/greatsword"));
 
-            Inventory.Add(Item.Factory("Vest"));
-            Inventory.Add(Item.Factory("Robe"));
-            Inventory.Add(Item.Factory("Kimono"));
-            Inventory.Add(Item.Factory("Jerkin"));
-            Inventory.Add(Item.Factory("Studded Leather"));
-            Inventory.Add(Item.Factory("Brigandine"));
-            Inventory.Add(Item.Factory("Hauberk"));
-            Inventory.Add(Item.Factory("Scale Mail"));
-            Inventory.Add(Item.Factory("Dragonskin"));
-            Inventory.Add(Item.Factory("Breastplate"));
-            Inventory.Add(Item.Factory("Full Plate"));
-            Inventory.Add(Item.Factory("Gothic Plate"));
 
 
         }
