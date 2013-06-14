@@ -80,14 +80,14 @@ namespace SRPG.Scene.PartyMenu
             Objects.Add("stat/health", new TextObject { Font = font, Y = 175, X = 500, Value = _character.MaxHealth.ToString(), Color = Color.Yellow });
             Objects.Add("stat/mana", new TextObject{ Font = font, Y = 225, X = 500, Value = _character.MaxMana.ToString(), Color = Color.Yellow });
 
-            Objects.Add("stat/def", new TextObject { Font = font, Y = 275, X = 387, Value = _character.Stats[Stat.Defense].ToString(), Color = Color.Yellow });
-            Objects.Add("stat/atk", new TextObject { Font = font, Y = 275, X = 612, Value = _character.Stats[Stat.Attack].ToString(), Color = Color.Yellow });
+            Objects.Add("stat/def", new TextObject { Font = font, Y = 275, X = 387, Value = _character.ReadStat(Stat.Defense).ToString(), Color = Color.Yellow });
+            Objects.Add("stat/atk", new TextObject { Font = font, Y = 275, X = 612, Value = _character.ReadStat(Stat.Attack).ToString(), Color = Color.Yellow });
 
-            Objects.Add("stat/wis", new TextObject { Font = font, Y = 325, X = 387, Value = _character.Stats[Stat.Wisdom].ToString(), Color = Color.Yellow });
-            Objects.Add("stat/int", new TextObject { Font = font, Y = 325, X = 612, Value = _character.Stats[Stat.Intelligence].ToString(), Color = Color.Yellow });
+            Objects.Add("stat/wis", new TextObject { Font = font, Y = 325, X = 387, Value = _character.ReadStat(Stat.Wisdom).ToString(), Color = Color.Yellow });
+            Objects.Add("stat/int", new TextObject { Font = font, Y = 325, X = 612, Value = _character.ReadStat(Stat.Intelligence).ToString(), Color = Color.Yellow });
 
-            Objects.Add("stat/spd", new TextObject { Font = font, Y = 375, X = 387, Value = _character.Stats[Stat.Speed].ToString(), Color = Color.Yellow });
-            Objects.Add("stat/hit", new TextObject { Font = font, Y = 375, X = 612, Value = _character.Stats[Stat.Hit].ToString(), Color = Color.Yellow });
+            Objects.Add("stat/spd", new TextObject { Font = font, Y = 375, X = 387, Value = _character.ReadStat(Stat.Speed).ToString(), Color = Color.Yellow });
+            Objects.Add("stat/hit", new TextObject { Font = font, Y = 375, X = 612, Value = _character.ReadStat(Stat.Hit).ToString(), Color = Color.Yellow });
 
             var weaponName = _character.GetEquippedWeapon() != null ? _character.GetEquippedWeapon().Name : "--";
             var armorName = _character.GetEquippedArmor() != null ? _character.GetEquippedArmor().Name : "--";

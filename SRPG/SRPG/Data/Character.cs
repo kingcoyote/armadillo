@@ -157,6 +157,17 @@ namespace SRPG.Data
             
         }
 
+        public int ReadStat(Stat stat)
+        {
+            var number = Stats[stat];
+
+            if (GetEquippedWeapon() != null) number += GetEquippedWeapon().StatBoosts[stat];
+            if (GetEquippedArmor() != null) number += GetEquippedArmor().StatBoosts[stat];
+            if (GetEquippedAccessory() != null) number += GetEquippedAccessory().StatBoosts[stat];
+
+            return number;
+        }
+
         public int GenerateExperience()
         {
             throw new NotImplementedException();
