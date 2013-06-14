@@ -1,4 +1,5 @@
-﻿using SRPG.Data;
+﻿using Microsoft.Xna.Framework.Input;
+using SRPG.Data;
 using Torch;
 
 namespace SRPG.Scene.PartyMenu
@@ -13,7 +14,9 @@ namespace SRPG.Scene.PartyMenu
         {
             base.Initialize();
 
-            Layers.Add("keyboard input", new KeyboardInput(this));
+            var keyboard = new KeyboardInputLayer(this);
+            keyboard.AddKeyDownBinding(Keys.Escape, () => Game.ChangeScenes("overworld"));
+            Layers.Add("keyboard input", keyboard);
             Layers.Add("main menu", new Menu(this));
             Layers.Add("status menu", new StatusMenu(this));
             Layers.Add("inventory menu", new InventoryMenu(this));

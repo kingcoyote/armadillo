@@ -12,14 +12,21 @@ namespace SRPG.Scene.PartyMenu
     {
         public InventoryMenu(Torch.Scene scene) : base(scene)
         {
-            Objects.Add("inventory", new TextObject()
+            var inventory = ((SRPGGame) Torch.Game.GetInstance()).Inventory;
+            var font = Torch.Game.GetInstance().Content.Load<SpriteFont>("menu");
+
+            for (var i = 0; i < inventory.Count; i++)
             {
-                Color = Color.White,
-                X = 50,
-                Y = 50,
-                Font = Torch.Game.GetInstance().Content.Load<SpriteFont>("menu"),
-                Value = "Inventory"
-            });
+                var item = inventory[i];
+                Objects.Add("inventory/" + i, new TextObject
+                    {
+                        Color = Color.White,
+                        X = 50,
+                        Y = (i + 1) * 50,
+                        Font = font,
+                        Value = item.Name
+                    });
+            }
         }
     }
 }
