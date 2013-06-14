@@ -54,10 +54,6 @@ namespace SRPG.Data
         /// </summary>
         public List<Item> Inventory = new List<Item>() {};
         /// <summary>
-        /// List of abilities the character can perform. This includes active, passive and attack.
-        /// </summary>
-        public List<Ability> Abilities = new List<Ability>(){};
-        /// <summary>
         /// A small portrait to be shown when this character is highlighted.
         /// </summary>
         public Texture2D Portrait;
@@ -96,7 +92,7 @@ namespace SRPG.Data
         public Vector2 Velocity;
 
         public Dictionary<Stat, int> StatExperienceLevels;
-        public Dictionary<Ability, int> AbilityExperienceLevels;
+        public Dictionary<Ability, int> AbilityExperienceLevels = new Dictionary<Ability, int>();
 
         public int FeetWidth = 0;
         public int FeetHeight = 0;
@@ -166,6 +162,46 @@ namespace SRPG.Data
             if (GetEquippedAccessory() != null) number += GetEquippedAccessory().StatBoosts[stat];
 
             return number;
+        }
+        
+        /// <summary>
+        /// Return a list of abilities that this character is capable of performing. This includes learned abilities,
+        /// abilities derived from the currently equipped weapon/armor, and disabled abilities that apply to other
+        /// weapon/armor types.
+        /// </summary>
+        /// <returns></returns>
+        public List<Ability> GetAbilities()
+        {
+            // todo: so much boilerplate with checking equipped gear and avoiding null...
+            
+            // get known abilities
+            var abilities = (from ability in AbilityExperienceLevels where ability.Value > 100 select ability.Key).ToList();
+
+            var weapon = GetEquippedWeapon();
+            if (weapon != null && !abilities.Contains(weapon.Ability) && weapon.Ability != null) abilities.Add(weapon.Ability);
+
+            var armor = GetEquippedArmor();
+            if (armor != null && !abilities.Contains(armor.Ability) && armor.Ability != null) abilities.Add(armor.Ability);
+            
+            // todo remove duplicate abilities
+            return abilities;
+        }
+
+        /// <summary>
+        /// Return true or false to indicate if this character can use the specified ability. This is dependent
+        /// on the weapon and armor currently equipped and should only be used in conjuction with GetAbilities.
+        /// </summary>
+        /// <param name="ability"></param>
+        /// <returns></returns>
+        public bool CanUseAbility(Ability ability)
+        {
+            var weapon = GetEquippedWeapon();
+            if (weapon != null && ability.ItemType == weapon.ItemType) return true;
+
+            var armor = GetEquippedArmor();
+            if (armor != null && ability.ItemType == armor.ItemType) return true;
+
+            return false;
         }
 
         public int GenerateExperience()

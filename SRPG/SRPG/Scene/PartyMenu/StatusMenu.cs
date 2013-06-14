@@ -68,6 +68,8 @@ namespace SRPG.Scene.PartyMenu
             Objects.Add("stat/armor label", new TextObject { Font = font, X = 275, Y = 525, Value = "Armor", Color = Color.White });
             Objects.Add("stat/accessory label", new TextObject { Font = font, X = 275, Y = 575, Value = "Accessory", Color = Color.White });
 
+            Objects.Add("stat/ability label", new TextObject { Font = font, X = 275, Y = 675, Value = "Abilities", Color = Color.White });
+
             // health
             // mana
             // dawish
@@ -101,6 +103,29 @@ namespace SRPG.Scene.PartyMenu
             Objects["stat/weapon"].MouseClick += ChangeWeapon;
             Objects["stat/armor"].MouseClick += ChangeArmor;
             Objects["stat/accessory"].MouseClick += ChangeAccessory;
+
+            var abilities = _character.GetAbilities();
+            var x = 0;
+            var y = 0;
+
+            for(var i = 0; i < abilities.Count; i++)
+            {
+                Objects.Add("stat/ability-" + i, new TextObject()
+                    {
+                        Font = font, 
+                        Y = 725 + (y * 50), 
+                        X = 275 + (x * 225), 
+                        Value = abilities[i].Name,
+                        Color = _character.CanUseAbility(abilities[i]) ? Color.Yellow : Color.Gray
+                    });
+
+                x++;
+                if(x == 3)
+                {
+                    x = 0;
+                    y++;
+                }
+            }
         }
 
         private void ChangeWeapon(object sender, MouseEventArgs args)

@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SRPG.Abilities;
 
 namespace SRPG.Data
 {
-    public class Ability
+    abstract public class Ability
     {
+        public string Name;
+        public int ManaCost;
         /// <summary>
         /// The character who this ability is tied to. This is used to generate the hit, especially base damage.
         /// </summary>
@@ -54,6 +57,17 @@ namespace SRPG.Data
         public Grid GenerateImpactGrid(BattleBoard battleboard)
         {
             throw new NotImplementedException();
+        }
+
+        public static Ability Factory(string name)
+        {
+            switch(name)
+            {
+                case "lunge":
+                    return new Lunge();
+            }
+
+            throw new Exception("unknown ability");
         }
     }
 }

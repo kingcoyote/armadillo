@@ -5,7 +5,8 @@
         statBoosts :
         [
            { stat : "attack", amount : "10" }
-        ]
+        ],
+        ability : "lunge"
     },
     longsword : {
         name: "Longsword",

@@ -72,6 +72,7 @@ namespace SRPG
             character.Stats[Stat.Intelligence] = 8;
             character.Stats[Stat.Speed] = 12;
             character.Stats[Stat.Hit] = 15;
+            character.AbilityExperienceLevels.Add(Ability.Factory("lunge"), 200);
             Party.Add(character);
 
             character = CharacterClass.GenerateCharacter("cleric");

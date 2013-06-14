@@ -96,6 +96,11 @@ namespace SRPG.Data
                 item.StatBoosts[StringToStat(node["stat"].ToString())] = Convert.ToUInt16(node["amount"].ToString());
             }
 
+            if(nodeList[itemName].SelectToken("ability") != null)
+            {
+                item.Ability = Ability.Factory(nodeList[itemName].SelectToken("ability").ToString());
+            }
+
             _itemList.Add(name, item);
 
             return item;
