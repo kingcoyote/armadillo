@@ -83,8 +83,6 @@ namespace SRPG
             var character = CharacterClass.GenerateCharacter("fighter");
             character.Name = "Jaha";
             character.MaxHealth = 20;
-            character.Inventory.Add(new Shortsword());
-            character.Inventory.Add(new Breastplate());
             Party.Add(character);
 
             character = CharacterClass.GenerateCharacter("cleric");
@@ -107,7 +105,36 @@ namespace SRPG
             character.MaxHealth = 18;
             Party.Add(character);
 
-            Inventory.Add(new Revolver());
+            Inventory.Add(Item.Factory("Shortsword"));
+            Inventory.Add(Item.Factory("Longsword"));
+            Inventory.Add(Item.Factory("Greatsword"));
+            Inventory.Add(Item.Factory("Pistol"));
+            Inventory.Add(Item.Factory("Revolver"));
+            Inventory.Add(Item.Factory("Big Iron"));
+            Inventory.Add(Item.Factory("Scroll"));
+            Inventory.Add(Item.Factory("Holy Book"));
+            Inventory.Add(Item.Factory("Anthology"));
+            Inventory.Add(Item.Factory("Fire Wand"));
+            Inventory.Add(Item.Factory("Spark Staff"));
+            Inventory.Add(Item.Factory("Ground Staff"));
+            Inventory.Add(Item.Factory("Brass Knuckles"));
+            Inventory.Add(Item.Factory("Tiger Claws"));
+            Inventory.Add(Item.Factory("Old Shoes"));
+
+            Inventory.Add(Item.Factory("Vest"));
+            Inventory.Add(Item.Factory("Robe"));
+            Inventory.Add(Item.Factory("Kimono"));
+            Inventory.Add(Item.Factory("Jerkin"));
+            Inventory.Add(Item.Factory("Studded Leather"));
+            Inventory.Add(Item.Factory("Brigandine"));
+            Inventory.Add(Item.Factory("Hauberk"));
+            Inventory.Add(Item.Factory("Scale Mail"));
+            Inventory.Add(Item.Factory("Dragonskin"));
+            Inventory.Add(Item.Factory("Breastplate"));
+            Inventory.Add(Item.Factory("Full Plate"));
+            Inventory.Add(Item.Factory("Gothic Plate"));
+
+
         }
     }
 }
