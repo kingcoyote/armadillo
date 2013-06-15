@@ -65,6 +65,8 @@ namespace SRPG.Data
             {
                 case "lunge":
                     return new Lunge();
+                case "cleave":
+                    return new Cleave();
             }
 
             throw new Exception("unknown ability");

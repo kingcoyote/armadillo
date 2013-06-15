@@ -110,6 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abilities\Cleave.cs" />
     <Compile Include="Abilities\Lunge.cs" />
     <Compile Include="Data\Command.cs" />
     <Compile Include="Data\DialogNode.cs" />

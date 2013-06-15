@@ -14,7 +14,8 @@
         statBoosts :
         [
             { stat : "attack", amount : "20" }
-        ]
+        ],
+        ability : "cleave"
     },
     greatsword : {
         name: "Greatsword",
