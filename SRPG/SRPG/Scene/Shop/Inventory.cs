@@ -13,25 +13,58 @@ namespace SRPG.Scene.Shop
     class Inventory : Layer
     {
         private List<Item> _inventory;
+        private List<int> _selectedItems = new List<int>();
 
         public Inventory(Torch.Scene scene, List<Item> inventory) : base(scene)
         {
             _inventory = inventory;
 
+            Objects.Add("background", new TextureObject() { Color = Color.Black, Width = 350, Z = -1, Height = Game.GetInstance().GraphicsDevice.Viewport.Height - 100});
+
+            RefreshItems();
+
+            MouseClick += SelectItems;
+        }
+
+        private void RefreshItems()
+        {
+            ClearByName("inventory");
+
             var font = Game.GetInstance().Content.Load<SpriteFont>("Menu");
 
-            for (var i = 0; i < inventory.Count; i++)
+            for (var i = 0; i < _inventory.Count; i++)
             {
-                var item = inventory[i];
+                var item = _inventory[i];
 
                 Objects.Add("inventory/" + i, new TextObject
                     {
                         Font = font,
-                        Color = Color.White,
+                        Color = _selectedItems.Contains(i) ? Color.Yellow : Color.White,
                         Value = item.Name,
-                        Y = i * 50
+                        Y = 25 + i*40,
+                        X = 25
                     });
             }
+        }
+
+        private void SelectItems(object sender, MouseEventArgs args)
+        {
+            for(var i = 0; i < _inventory.Count; i++)
+            {
+                if(Objects["inventory/" + i].Rectangle.Contains(new Point((int)(args.X - X), (int)(args.Y - Y))))
+                {
+                    if(_selectedItems.Contains(i))
+                    {
+                        _selectedItems.Remove(i);
+                    }
+                    else
+                    {
+                        _selectedItems.Add(i);
+                    }
+                }
+            }
+
+            RefreshItems();
         }
     }
 }
