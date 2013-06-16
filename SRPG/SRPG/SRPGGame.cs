@@ -44,6 +44,12 @@ namespace SRPG
             BeginNewGame();
         }
 
+        public void LaunchShop(List<Item> inventory)
+        {
+            ((ShopScene)Scenes["shop"]).SetInventory(inventory);
+            ChangeScenes("shop");
+        }
+
         public void EquipCharacter(Character character, Item newItem)
         {
             if(Inventory.Contains(newItem))

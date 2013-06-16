@@ -68,8 +68,14 @@ namespace SRPG.Data
         {
             return (sender, args) =>
                 {
+                    var scene = ((OverworldScene) sender);
                     var dialog = Dialog.Fetch(filename, merchantname);
-                    
+                    dialog.OnExit = (s, a) =>
+                        {
+                            var inventory = new List<Item>();
+                            ((SRPGGame)Game.GetInstance()).LaunchShop(inventory);
+                        };
+                    scene.StartDialog(dialog);
                 };
         }
     }

@@ -42,5 +42,18 @@
             { identifier: 3, text: "...and won't." },
             { identifier: 4, text: "Good call." }
         ]
+    },
+    merchant : {
+        nodes : [
+            {
+                identifier : 1,
+                text : "Welcome to my shop. Take a look around."
+            }
+        ],
+        inventory : [
+            "sword/shortsword",
+            "sword/longsword",
+            "sword/greatsword"
+        ]
     }
 }

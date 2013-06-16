@@ -47,7 +47,7 @@ namespace SRPG.Data.Zones.Kakariko
             Objects.Add(obj);
 
             // merchant
-            obj = new InteractiveObject {Location = new Rectangle()};
+            obj = new InteractiveObject {Location = new Rectangle(1941, 2736, 54, 12)};
             obj.Interact += SimpleMerchant("kakariko/town", "merchant");
             Objects.Add(obj);
 
