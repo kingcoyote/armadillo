@@ -72,7 +72,8 @@ namespace SRPG.Data
                     var dialog = Dialog.Fetch(filename, merchantname);
                     dialog.OnExit = (s, a) =>
                         {
-                            var inventory = new List<Item>();
+                            var inventory = new List<Item> { Item.Factory("sword/shortsword"), Item.Factory("sword/longsword")};
+                            // todo acquire the item list from the .js file
                             ((SRPGGame)Game.GetInstance()).LaunchShop(inventory);
                         };
                     scene.StartDialog(dialog);
