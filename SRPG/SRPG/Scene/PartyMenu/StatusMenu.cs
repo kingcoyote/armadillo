@@ -47,6 +47,7 @@ namespace SRPG.Scene.PartyMenu
         private void UpdateObjects()
         {
             ClearStats();
+            ClearItems();
 
             var font = Game.GetInstance().Content.Load<SpriteFont>("Menu");
 
