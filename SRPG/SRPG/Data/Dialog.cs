@@ -45,8 +45,8 @@ namespace SRPG.Data
         {
             var dialog = new Dialog();
             dialog.Nodes = new Dictionary<int, DialogNode>();
-
-            string settingString = String.Join("\r\n", File.ReadAllLines("Dialog/" + filename + ".js"));
+            
+            string settingString = String.Join("\r\n", File.ReadAllLines("Content/Dialog/" + filename + ".js"));
 
             var nodeList = Newtonsoft.Json.Linq.JObject.Parse(settingString);
 

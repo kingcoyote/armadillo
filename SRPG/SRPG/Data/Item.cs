@@ -84,7 +84,7 @@ namespace SRPG.Data
             var itemType = name.Split('/')[0];
             var itemName = name.Split('/')[1];
 
-            string settingString = String.Join("\r\n", File.ReadAllLines("Items/" + itemType + ".js"));
+            string settingString = String.Join("\r\n", File.ReadAllLines("Content/Items/" + itemType + ".js"));
 
             var nodeList = Newtonsoft.Json.Linq.JObject.Parse(settingString);
 

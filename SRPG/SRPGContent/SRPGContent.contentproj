@@ -195,6 +195,56 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Dialog\kakariko\town.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>town</Name>
+    </None>
+    <None Include="Items\Accessory.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Accessory</Name>
+    </None>
+    <None Include="Items\Book.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Book</Name>
+    </None>
+    <None Include="Items\Cloth.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Cloth</Name>
+    </None>
+    <None Include="Items\Consumable.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Consumable</Name>
+    </None>
+    <None Include="Items\Gun.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Gun</Name>
+    </None>
+    <None Include="Items\Leather.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Leather</Name>
+    </None>
+    <None Include="Items\Mail.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Mail</Name>
+    </None>
+    <None Include="Items\Plate.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Plate</Name>
+    </None>
+    <None Include="Items\Staff.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Staff</Name>
+    </None>
+    <None Include="Items\Sword.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Sword</Name>
+    </None>
+    <None Include="Items\Unarmed.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>Unarmed</Name>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
