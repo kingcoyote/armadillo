@@ -40,14 +40,14 @@ namespace SRPG.Scene.PartyMenu
 
         public override void Reset()
         {
-            ClearStats();
-            ClearItems();
+            ClearByName("stat");
+            ClearByName("selectable item");
         }
 
         private void UpdateObjects()
         {
-            ClearStats();
-            ClearItems();
+            ClearByName("stat");
+            ClearByName("selectable item");
 
             var font = Game.GetInstance().Content.Load<SpriteFont>("Menu");
 
@@ -149,7 +149,7 @@ namespace SRPG.Scene.PartyMenu
 
         private void GenerateItemMenu(IEnumerable<Item> items)
         {
-            ClearItems();
+            ClearByName("selectable item");
 
             var i = 0;
 
@@ -172,32 +172,10 @@ namespace SRPG.Scene.PartyMenu
                     {
                         ((SRPGGame) Game.GetInstance()).EquipCharacter(_character, tempItem);
                         UpdateObjects();
-                        ClearItems();
+                        ClearByName("selectable item");
                     };
 
                 i++;
-            }
-        }
-
-        private void ClearItems()
-        {
-            var oldKeys =
-                (from key in Objects.Keys where key.Length > 15 && key.Substring(0, 15) == "selectable item" select key);
-
-            foreach (var key in oldKeys.ToList())
-            {
-                Objects.Remove(key);
-            }
-        }
-
-        private void ClearStats()
-        {
-            var oldKeys =
-                (from key in Objects.Keys where key.Length > 4 && key.Substring(0, 4) == "stat" select key);
-
-            foreach (var key in oldKeys.ToList())
-            {
-                Objects.Remove(key);
             }
         }
     }

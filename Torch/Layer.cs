@@ -120,5 +120,16 @@ namespace Torch
                 }
             }
         }
+
+        protected void ClearByName(string name)
+        {
+            var oldKeys =
+                (from key in Objects.Keys where key.Length > name.Length && key.Substring(0, name.Length) == name select key);
+
+            foreach (var key in oldKeys.ToList())
+            {
+                Objects.Remove(key);
+            }
+        }
     }
 }
