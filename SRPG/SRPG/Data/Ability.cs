@@ -61,15 +61,71 @@ namespace SRPG.Data
 
         public static Ability Factory(string name)
         {
+            // todo : there has to be a less tedious way to do this...
+
             switch(name)
             {
                 case "lunge":
                     return new Lunge();
                 case "cleave":
                     return new Cleave();
-            }
+                // todo : 3rd sword ability
 
-            throw new Exception("unknown ability");
+                case "headshot":
+                    return new Headshot();
+                case "drill":
+                    return new Drill();
+                // todo : 3rd gun ability
+
+                case "healing":
+                    return new Healing();
+                case "protect":
+                    return new Protect();
+                case "revive":
+                    return new Revive();
+
+                case "fire":
+                    return new Fire();
+                case "lightning":
+                    return new Lightning();
+                case "quake":
+                    return new Quake();
+
+                case "cobra punch":
+                    return new CobraPunch();
+                case "flying knee":
+                    return new FlyingKnee();
+                case "whip kick":
+                    return new WhipKick();
+
+                case "target":
+                    return new Target();
+                case "focus":
+                    return new Focus();
+                case "serenity":
+                    return new Serenity();
+
+                case "sprint":
+                    return new Sprint();
+                case "untouchable":
+                    return new Untouchable();
+                case "blur":
+                    return new Blur();
+
+                case "awareness":
+                    return new Awareness();
+                case "vengeance":
+                    return new Vengeance();
+
+                case "deflection":
+                    return new Deflection();
+                case "steel wall":
+                    return new SteelWall();
+
+                default:
+                    throw new Exception(string.Format("Unknown ability {0}", name));
+
+            }
         }
     }
 }

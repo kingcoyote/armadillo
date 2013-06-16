@@ -5,7 +5,8 @@
         statBoosts :
         [
            
-        ]
+        ],
+        ability : "cobra punch"
     },
     tigerclaws : {
         name: "Tiger Claws",
@@ -13,7 +14,8 @@
         statBoosts :
         [
             
-        ]
+        ],
+        ability : "flying knee"
     },
     oldshoes : {
         name: "Old Shoes",
@@ -21,6 +23,7 @@
         statBoosts:
         [
             
-        ]
+        ],
+        ability : "whip kick"
     }
 }

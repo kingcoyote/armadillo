@@ -5,7 +5,8 @@
         statBoosts :
         [
 
-        ]
+        ],
+        ability : "headshot"
     },
     revolver : {
         name: "Revolver",
@@ -13,7 +14,8 @@
         statBoosts :
         [
 
-        ]
+        ],
+        ability : "drill"
     },
     bigiron : {
         name: "Big Iron",

@@ -1,26 +1,29 @@
 ﻿{
-    shortsword : {
+    firewand : {
         name : "Fire Wand",
         itemType : ["staff"],
         statBoosts :
         [
 
-        ]
+        ],
+        ability : "fire"           
     },
-    longsword : {
+    sparkstaff : {
         name: "Spark Staff",
         itemType : ["staff"],
         statBoosts :
         [
 
-        ]
+        ],
+        ability : "lightning"
     },
-    greatsword : {
+    groundstaff : {
         name: "Ground Staff",
         itemType: ["staff"],
         statBoosts:
         [
 
-        ]
+        ],
+        ability : "quake"
     }
 }

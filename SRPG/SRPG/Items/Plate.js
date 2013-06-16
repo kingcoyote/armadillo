@@ -5,7 +5,8 @@
         statBoosts :
         [
 
-        ]
+        ],
+        ability : "deflection"
     },
     fullplate : {
         name: "Full Plate",
@@ -21,6 +22,7 @@
         statBoosts:
         [
 
-        ]
+        ],
+        ability : "steel wall"
     }
 }

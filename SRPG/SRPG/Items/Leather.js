@@ -5,7 +5,8 @@
         statBoosts :
         [
 
-        ]
+        ],
+        ability : "sprint"
     },
     studdedleather : {
         name: "Studded Leather",
@@ -13,7 +14,8 @@
         statBoosts :
         [
 
-        ]
+        ],
+        ability : "untouchable"
     },
     brigandine : {
         name: "Brigandine",
@@ -21,6 +23,7 @@
         statBoosts:
         [
 
-        ]
+        ],
+        ability : "blur"
     }
 }

@@ -5,7 +5,8 @@
         statBoosts :
         [
 
-        ]
+        ],
+        ability : "focus"
     },
     robe : {
         name: "Robe",
@@ -13,7 +14,8 @@
         statBoosts :
         [
 
-        ]
+        ],
+        ability : "target"
     },
     kimono : {
         name: "Kimono",
@@ -21,6 +23,7 @@
         statBoosts:
         [
 
-        ]
+        ],
+        ability : "serenity"
     }
 }

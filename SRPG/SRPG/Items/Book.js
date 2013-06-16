@@ -5,7 +5,8 @@
         statBoosts :
         [
 
-        ]
+        ],
+        ability : "healing"
     },
     holybook : {
         name: "Holy Book",
@@ -13,7 +14,8 @@
         statBoosts :
         [
 
-        ]
+        ],
+        ability : "protect"
     },
     anthology : {
         name: "Anthology",
@@ -21,6 +23,7 @@
         statBoosts:
         [
 
-        ]
+        ],
+        ability : "revive"
     }
 }

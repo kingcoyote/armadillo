@@ -110,8 +110,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abilities\Awareness.cs" />
+    <Compile Include="Abilities\Blur.cs" />
     <Compile Include="Abilities\Cleave.cs" />
+    <Compile Include="Abilities\CobraPunch.cs" />
+    <Compile Include="Abilities\Deflection.cs" />
+    <Compile Include="Abilities\Drill.cs" />
+    <Compile Include="Abilities\Fire.cs" />
+    <Compile Include="Abilities\FlyingKnee.cs" />
+    <Compile Include="Abilities\Focus.cs" />
+    <Compile Include="Abilities\Headshot.cs" />
+    <Compile Include="Abilities\Healing.cs" />
+    <Compile Include="Abilities\Lightning.cs" />
     <Compile Include="Abilities\Lunge.cs" />
+    <Compile Include="Abilities\Protect.cs" />
+    <Compile Include="Abilities\Quake.cs" />
+    <Compile Include="Abilities\Revive.cs" />
+    <Compile Include="Abilities\Serenity.cs" />
+    <Compile Include="Abilities\Sprint.cs" />
+    <Compile Include="Abilities\SteelWall.cs" />
+    <Compile Include="Abilities\Target.cs" />
+    <Compile Include="Abilities\Untouchable.cs" />
+    <Compile Include="Abilities\Vengeance.cs" />
+    <Compile Include="Abilities\WhipKick.cs" />
     <Compile Include="Data\Command.cs" />
     <Compile Include="Data\DialogNode.cs" />
     <Compile Include="Data\InteractEventArgs.cs" />

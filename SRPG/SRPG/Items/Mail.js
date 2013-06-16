@@ -13,7 +13,8 @@
         statBoosts :
         [
 
-        ]
+        ],
+        ability : "awareness"
     },
     dragonskin : {
         name: "Dragonskin",
@@ -21,6 +22,7 @@
         statBoosts:
         [
 
-        ]
+        ],
+        ability : "vengeance"
     }
 }
