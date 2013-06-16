@@ -63,6 +63,15 @@ namespace SRPG.Data
         {
             return (sender, args) => ((OverworldScene) sender).SetZone(Factory(zone), zonedoor);
         }
+
+        public EventHandler<InteractEventArgs> SimpleMerchant(string filename, string merchantname)
+        {
+            return (sender, args) =>
+                {
+                    var dialog = Dialog.Fetch(filename, merchantname);
+                    
+                };
+        }
     }
 
     class ZoneException : Exception

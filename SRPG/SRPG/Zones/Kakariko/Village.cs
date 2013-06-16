@@ -41,8 +41,14 @@ namespace SRPG.Data.Zones.Kakariko
             obj.Interact += SimpleDialog("kakariko/town", "cliff");
             Objects.Add(obj);
 
+            // inn
             obj = new InteractiveObject {Location = new Rectangle(1895, 2009, 48, 7)};
             obj.Interact += SimpleDoor("kakariko/inn", "entrance");
+            Objects.Add(obj);
+
+            // merchant
+            obj = new InteractiveObject {Location = new Rectangle()};
+            obj.Interact += SimpleMerchant("kakariko/town", "merchant");
             Objects.Add(obj);
 
             Doors = new List<Door>
