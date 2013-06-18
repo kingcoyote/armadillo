@@ -70,12 +70,7 @@ namespace SRPG.Data
                 {
                     var scene = ((OverworldScene) sender);
                     var dialog = Dialog.Fetch(filename, merchantname);
-                    dialog.OnExit = (s, a) =>
-                        {
-                            var inventory = new List<Item> { Item.Factory("sword/shortsword"), Item.Factory("sword/longsword")};
-                            // todo acquire the item list from the .js file
-                            ((SRPGGame)Game.GetInstance()).LaunchShop(inventory);
-                        };
+                    dialog.OnExit = (s, a) => ((SRPGGame)Game.GetInstance()).LaunchShop(filename, merchantname);
                     scene.StartDialog(dialog);
                 };
         }

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using SRPG.Data;
 using SRPG.Scene.Battle;
 using SRPG.Scene.Intro;
@@ -44,8 +46,9 @@ namespace SRPG
             BeginNewGame();
         }
 
-        public void LaunchShop(List<Item> inventory)
+        public void LaunchShop(string filename, string merchantname)
         {
+            var inventory = GenerateShopInventory(filename, merchantname);
             ((ShopScene)Scenes["shop"]).SetInventory(inventory);
             ChangeScenes("shop");
         }
@@ -86,6 +89,15 @@ namespace SRPG
             Inventory.Add(item);
 
             Money -= item.Cost;
+        }
+
+        private List<Item> GenerateShopInventory(string filename, string merchantname)
+        {
+            string settingString = String.Join("\r\n", File.ReadAllLines("Content/Dialog/" + filename + ".js"));
+
+            var nodeList = Newtonsoft.Json.Linq.JObject.Parse(settingString);
+
+            return nodeList[merchantname]["inventory"].Select(node => Item.Factory(node.ToString())).ToList();
         }
 
         private void BeginNewGame()
