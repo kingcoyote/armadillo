@@ -6,7 +6,8 @@
         [
 
         ],
-        ability : "fire"           
+        ability : "fire",
+        cost : 10
     },
     sparkstaff : {
         name: "Spark Staff",
@@ -15,7 +16,8 @@
         [
 
         ],
-        ability : "lightning"
+        ability : "lightning",
+        cost : 25
     },
     groundstaff : {
         name: "Ground Staff",
@@ -24,6 +26,7 @@
         [
 
         ],
-        ability : "quake"
+        ability : "quake",
+        cost : 100
     }
 }

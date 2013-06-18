@@ -6,7 +6,8 @@
         [
            { stat : "attack", amount : "10" }
         ],
-        ability : "lunge"
+        ability : "lunge",
+        cost : 10
     },
     longsword : {
         name: "Longsword",
@@ -15,7 +16,8 @@
         [
             { stat : "attack", amount : "20" }
         ],
-        ability : "cleave"
+        ability : "cleave",
+        cost : 25
     },
     greatsword : {
         name: "Greatsword",
@@ -24,6 +26,7 @@
         [
             { stat : "attack", amount : "30" },
             { stat : "hit", amount : "10" }
-        ]
+        ],
+        cost : 100
     }
 }

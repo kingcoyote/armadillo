@@ -90,6 +90,7 @@ namespace SRPG.Data
 
             item.Name = nodeList[itemName]["name"].ToString();
             item.ItemType = StringToItemType(nodeList[itemName]["itemType"][0].ToString());
+            item.Cost = (int)(nodeList[itemName]["cost"]);
 
             if (nodeList[itemName].SelectToken("statBoosts") != null) foreach (var node in nodeList[itemName]["statBoosts"])
             {

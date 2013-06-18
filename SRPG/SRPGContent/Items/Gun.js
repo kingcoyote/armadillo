@@ -6,7 +6,8 @@
         [
 
         ],
-        ability : "headshot"
+        ability : "headshot",
+        cost : 10
     },
     revolver : {
         name: "Revolver",
@@ -15,7 +16,8 @@
         [
 
         ],
-        ability : "drill"
+        ability : "drill",
+        cost : 25
     },
     bigiron : {
         name: "Big Iron",
@@ -23,6 +25,7 @@
         statBoosts:
         [
 
-        ]
+        ],
+        cost : 100
     }
 }

@@ -6,7 +6,8 @@
         [
 
         ],
-        ability : "deflection"
+        ability : "deflection",
+        cost : 10
     },
     fullplate : {
         name: "Full Plate",
@@ -14,7 +15,8 @@
         statBoosts :
         [
 
-        ]
+        ],
+        cost : 25
     },
     gothicplate : {
         name: "Gothic Plate",
@@ -23,6 +25,7 @@
         [
 
         ],
-        ability : "steel wall"
+        ability : "steel wall",
+        cost : 100
     }
 }

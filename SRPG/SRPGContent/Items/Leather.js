@@ -6,7 +6,8 @@
         [
 
         ],
-        ability : "sprint"
+        ability : "sprint",
+        cost : 10
     },
     studdedleather : {
         name: "Studded Leather",
@@ -15,7 +16,8 @@
         [
 
         ],
-        ability : "untouchable"
+        ability : "untouchable",
+        cost : 25
     },
     brigandine : {
         name: "Brigandine",
@@ -24,6 +26,7 @@
         [
 
         ],
-        ability : "blur"
+        ability : "blur",
+        cost : 100
     }
 }

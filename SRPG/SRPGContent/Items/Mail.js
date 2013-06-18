@@ -5,7 +5,8 @@
         statBoosts :
         [
 
-        ]
+        ],
+        cost : 10
     },
     scalemail : {
         name: "Scale Mail",
@@ -14,7 +15,8 @@
         [
 
         ],
-        ability : "awareness"
+        ability : "awareness",
+        cost : 25
     },
     dragonskin : {
         name: "Dragonskin",
@@ -23,6 +25,7 @@
         [
 
         ],
-        ability : "vengeance"
+        ability : "vengeance",
+        cost : 100
     }
 }

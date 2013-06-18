@@ -6,7 +6,8 @@
         [
 
         ],
-        ability : "healing"
+        ability : "healing",
+        cost : 10
     },
     holybook : {
         name: "Holy Book",
@@ -15,7 +16,8 @@
         [
 
         ],
-        ability : "protect"
+        ability : "protect",
+        cost : 25
     },
     anthology : {
         name: "Anthology",
@@ -24,6 +26,7 @@
         [
 
         ],
-        ability : "revive"
+        ability : "revive",
+        cost : 100
     }
 }

@@ -6,7 +6,8 @@
         [
            
         ],
-        ability : "cobra punch"
+        ability : "cobra punch",
+        cost : 10
     },
     tigerclaws : {
         name: "Tiger Claws",
@@ -15,7 +16,8 @@
         [
             
         ],
-        ability : "flying knee"
+        ability : "flying knee",
+        cost : 25
     },
     oldshoes : {
         name: "Old Shoes",
@@ -24,6 +26,7 @@
         [
             
         ],
-        ability : "whip kick"
+        ability : "whip kick",
+        cost : 100
     }
 }

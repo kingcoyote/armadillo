@@ -6,7 +6,8 @@
         [
 
         ],
-        ability : "focus"
+        ability : "focus",
+        cost : 10
     },
     robe : {
         name: "Robe",
@@ -15,7 +16,8 @@
         [
 
         ],
-        ability : "target"
+        ability : "target",
+        cost : 25
     },
     kimono : {
         name: "Kimono",
@@ -24,6 +26,7 @@
         [
 
         ],
-        ability : "serenity"
+        ability : "serenity",
+        cost : 100
     }
 }
