@@ -52,8 +52,14 @@
         ],
         inventory : [
             "sword/shortsword",
-            "sword/longsword",
-            "sword/greatsword"
+            "staff/firewand",
+            "book/scroll",
+            "gun/pistol",
+            "unarmed/brassknuckles",
+            "cloth/vest",
+            "leather/jerkin",
+            "mail/hauberk",
+            "plate/breastplate"
         ]
     }
 }
