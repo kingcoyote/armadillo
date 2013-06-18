@@ -168,45 +168,7 @@ namespace SRPG
             character.AbilityExperienceLevels.Add(Ability.Factory("blur"), 200);
             Party.Add(character);
 
-            Inventory.Add(Item.Factory("sword/shortsword"));
-            Inventory.Add(Item.Factory("sword/longsword"));
-            Inventory.Add(Item.Factory("sword/greatsword"));
-
-            Inventory.Add(Item.Factory("staff/firewand"));
-            Inventory.Add(Item.Factory("staff/sparkstaff"));
-            Inventory.Add(Item.Factory("staff/groundstaff"));
-
-            Inventory.Add(Item.Factory("book/scroll"));
-            Inventory.Add(Item.Factory("book/holybook"));
-            Inventory.Add(Item.Factory("book/anthology"));
-
-            Inventory.Add(Item.Factory("gun/pistol"));
-            Inventory.Add(Item.Factory("gun/revolver"));
-            Inventory.Add(Item.Factory("gun/bigiron"));
-
-            Inventory.Add(Item.Factory("unarmed/brassknuckles"));
-            Inventory.Add(Item.Factory("unarmed/tigerclaws"));
-            Inventory.Add(Item.Factory("unarmed/oldshoes"));
-
-            Inventory.Add(Item.Factory("cloth/vest"));
-            Inventory.Add(Item.Factory("cloth/robe"));
-            Inventory.Add(Item.Factory("cloth/kimono"));
-
-            Inventory.Add(Item.Factory("cloth/vest"));
-            Inventory.Add(Item.Factory("cloth/robe"));
-            Inventory.Add(Item.Factory("cloth/kimono"));
-
-            Inventory.Add(Item.Factory("leather/jerkin"));
-            Inventory.Add(Item.Factory("leather/studdedleather"));
-            Inventory.Add(Item.Factory("leather/brigandine"));
-
-            Inventory.Add(Item.Factory("mail/hauberk"));
-            Inventory.Add(Item.Factory("mail/scalemail"));
-            Inventory.Add(Item.Factory("mail/dragonskin"));
-
-            Inventory.Add(Item.Factory("plate/breastplate"));
-            Inventory.Add(Item.Factory("plate/fullplate"));
-            Inventory.Add(Item.Factory("plate/gothicplate"));
+            Money = 500;
         }
     }
 }
