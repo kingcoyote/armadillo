@@ -76,6 +76,18 @@ namespace SRPG
             Money += item.Cost;
         }
 
+        public void BuyItem(Item item)
+        {
+            if(item.Cost > Money)
+            {
+                throw new Exception("cannot buy item - too expensive");
+            }
+
+            Inventory.Add(item);
+
+            Money -= item.Cost;
+        }
+
         private void BeginNewGame()
         {
             Party = new List<Character>();

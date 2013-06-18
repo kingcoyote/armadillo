@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SRPG.Data;
@@ -75,7 +76,17 @@ namespace SRPG.Scene.Shop
 
         public void BuySelectedItems()
         {
-            
+            var items = ((Inventory) Layers["shop inventory"]).GetSelectedInventory();
+            var cost = (from item in items select item.Cost).Sum();
+
+            if (cost > ((SRPGGame)Game.GetInstance()).Money) return;
+
+            foreach(var item in items)
+            {
+                ((SRPGGame) Game).BuyItem(item);
+            }
+
+            Initialize();
         }
     }
 }
