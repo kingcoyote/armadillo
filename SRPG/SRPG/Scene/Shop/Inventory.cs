@@ -26,6 +26,11 @@ namespace SRPG.Scene.Shop
             MouseClick += SelectItems;
         }
 
+        public List<Item> GetSelectedInventory()
+        {
+            return _selectedItems.Select(index => _inventory[index]).ToList();
+        }
+
         private void RefreshItems()
         {
             ClearByName("inventory");

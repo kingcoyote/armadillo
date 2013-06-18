@@ -64,6 +64,18 @@ namespace SRPG
             }
         }
 
+        public void SellItem(Item item)
+        {
+            if( ! Inventory.Contains(item))
+            {
+                throw new Exception("cannot sell item that isn't in inventory");
+            }
+
+            Inventory.Remove(item);
+
+            Money += item.Cost;
+        }
+
         private void BeginNewGame()
         {
             Party = new List<Character>();

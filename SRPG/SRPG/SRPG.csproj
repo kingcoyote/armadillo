@@ -140,7 +140,9 @@
     <Compile Include="Data\Layers\DialogLayer.cs" />
     <Compile Include="Scene\Shop\Background.cs" />
     <Compile Include="Scene\Shop\Inventory.cs" />
+    <Compile Include="Scene\Shop\Options.cs" />
     <Compile Include="Scene\Shop\PlayerInventory.cs" />
+    <Compile Include="Scene\Shop\PlayerStats.cs" />
     <Compile Include="Scene\Shop\ShopInventory.cs" />
     <Compile Include="Zones\Kakariko\Inn.cs" />
     <Compile Include="Zones\Kakariko\Village.cs" />

@@ -31,6 +31,9 @@ namespace SRPG.Scene.Shop
             // player inventory layer
             Layers.Add("shop inventory", new ShopInventory(this, _inventory) { X = 50, Y = 50 });
 
+            Layers.Add("options", new Options(this));
+            Layers.Add("player stats", new PlayerStats(this));
+
             // buy selected
             // sell selected
 
@@ -56,6 +59,23 @@ namespace SRPG.Scene.Shop
         public void SetInventory(List<Item> inventory)
         {
             _inventory = inventory;
+        }
+
+        public void SellSelectedItems()
+        {
+            var items = ((Inventory) Layers["player inventory"]).GetSelectedInventory();
+
+            foreach (var item in items)
+            {
+                ((SRPGGame) Game).SellItem(item);
+            }
+
+            Initialize();
+        }
+
+        public void BuySelectedItems()
+        {
+            
         }
     }
 }
