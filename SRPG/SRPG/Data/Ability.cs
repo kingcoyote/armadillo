@@ -127,5 +127,12 @@ namespace SRPG.Data
 
             }
         }
+
+        public override bool Equals(object a)
+        {
+            if (!(a is Ability)) return false;
+
+            return ((Ability) a).Name == Name;
+        }
     }
 }
