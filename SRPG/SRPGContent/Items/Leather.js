@@ -4,7 +4,9 @@
         itemType : ["leather"],
         statBoosts :
         [
-
+            { stat : "defense", amount : "10" },
+            { stat : "hit", amount : "10" },
+            { stat : "speed", amount : "10" }
         ],
         ability : "sprint",
         cost : 10
@@ -14,7 +16,9 @@
         itemType : ["leather"],
         statBoosts :
         [
-
+            { stat : "defense", amount : "10" },
+            { stat : "hit", amount : "10" },
+            { stat : "speed", amount : "10" }
         ],
         ability : "untouchable",
         cost : 25
@@ -24,7 +28,9 @@
         itemType: ["leather"],
         statBoosts:
         [
-
+            { stat : "defense", amount : "10" },
+            { stat : "hit", amount : "10" },
+            { stat : "speed", amount : "10" }
         ],
         ability : "blur",
         cost : 100

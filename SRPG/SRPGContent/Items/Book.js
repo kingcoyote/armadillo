@@ -4,7 +4,7 @@
         itemType : ["book"],
         statBoosts :
         [
-
+            { stat : "intelligence", amount : "10" }
         ],
         ability : "healing",
         cost : 10
@@ -14,7 +14,7 @@
         itemType : ["book"],
         statBoosts :
         [
-
+            { stat : "intelligence", amount : "20" }
         ],
         ability : "protect",
         cost : 25
@@ -24,7 +24,8 @@
         itemType: ["book"],
         statBoosts:
         [
-
+            { stat : "intelligence", amount : "30" },
+            { stat : "wisdom", amount : "10" }
         ],
         ability : "revive",
         cost : 100

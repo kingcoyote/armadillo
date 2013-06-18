@@ -4,7 +4,7 @@
         itemType : ["unarmed"],
         statBoosts :
         [
-           
+           { stat : "hit", amount : "10" }
         ],
         ability : "cobra punch",
         cost : 10
@@ -14,7 +14,7 @@
         itemType : ["unarmed"],
         statBoosts :
         [
-            
+            { stat : "hit", amount : "20" }
         ],
         ability : "flying knee",
         cost : 25
@@ -24,7 +24,8 @@
         itemType: ["unarmed"],
         statBoosts:
         [
-            
+            { stat : "hit", amount : "30" },
+            { stat : "attack", amount : "10" }
         ],
         ability : "whip kick",
         cost : 100
