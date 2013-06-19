@@ -48,7 +48,7 @@ namespace Torch
         // update
         public virtual void Update(GameTime gameTime, Input input)
         {
-            foreach (var obj in Objects.Values)
+            foreach (var obj in Objects.Values.ToList())
             {
                 obj.Update(gameTime);
 
