@@ -166,7 +166,9 @@ namespace SRPG
             character.AbilityExperienceLevels.Add(Ability.Factory("sprint"), 200);
             character.AbilityExperienceLevels.Add(Ability.Factory("untouchable"), 200);
             character.AbilityExperienceLevels.Add(Ability.Factory("blur"), 200);
+            character.Inventory.Add(Item.Factory("unarmed/tigerclaws"));
             Party.Add(character);
+
 
             Money = 500;
         }

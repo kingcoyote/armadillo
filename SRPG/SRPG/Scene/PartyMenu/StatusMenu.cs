@@ -83,14 +83,14 @@ namespace SRPG.Scene.PartyMenu
             Objects.Add("stat/health", new TextObject { Font = font, Y = 175, X = 500, Value = _character.MaxHealth.ToString(), Color = Color.Yellow });
             Objects.Add("stat/mana", new TextObject{ Font = font, Y = 225, X = 500, Value = _character.MaxMana.ToString(), Color = Color.Yellow });
 
-            Objects.Add("stat/def", new TextObject { Font = font, Y = 275, X = 387, Value = _character.ReadStat(Stat.Defense).ToString(), Color = Color.Yellow });
-            Objects.Add("stat/atk", new TextObject { Font = font, Y = 275, X = 612, Value = _character.ReadStat(Stat.Attack).ToString(), Color = Color.Yellow });
+            Objects.Add("stat/def", new TextObject { Font = font, Y = 275, X = 357, Value = _character.ReadStat(Stat.Defense).ToString(), Color = Color.Yellow });
+            Objects.Add("stat/atk", new TextObject { Font = font, Y = 275, X = 582, Value = _character.ReadStat(Stat.Attack).ToString(), Color = Color.Yellow });
+            
+            Objects.Add("stat/wis", new TextObject { Font = font, Y = 325, X = 357, Value = _character.ReadStat(Stat.Wisdom).ToString(), Color = Color.Yellow });
+            Objects.Add("stat/int", new TextObject { Font = font, Y = 325, X = 582, Value = _character.ReadStat(Stat.Intelligence).ToString(), Color = Color.Yellow });
 
-            Objects.Add("stat/wis", new TextObject { Font = font, Y = 325, X = 387, Value = _character.ReadStat(Stat.Wisdom).ToString(), Color = Color.Yellow });
-            Objects.Add("stat/int", new TextObject { Font = font, Y = 325, X = 612, Value = _character.ReadStat(Stat.Intelligence).ToString(), Color = Color.Yellow });
-
-            Objects.Add("stat/spd", new TextObject { Font = font, Y = 375, X = 387, Value = _character.ReadStat(Stat.Speed).ToString(), Color = Color.Yellow });
-            Objects.Add("stat/hit", new TextObject { Font = font, Y = 375, X = 612, Value = _character.ReadStat(Stat.Hit).ToString(), Color = Color.Yellow });
+            Objects.Add("stat/spd", new TextObject { Font = font, Y = 375, X = 357, Value = _character.ReadStat(Stat.Speed).ToString(), Color = Color.Yellow });
+            Objects.Add("stat/hit", new TextObject { Font = font, Y = 375, X = 582, Value = _character.ReadStat(Stat.Hit).ToString(), Color = Color.Yellow });
 
             var weaponName = _character.GetEquippedWeapon() != null ? _character.GetEquippedWeapon().Name : "--";
             var armorName = _character.GetEquippedArmor() != null ? _character.GetEquippedArmor().Name : "--";
@@ -173,10 +173,94 @@ namespace SRPG.Scene.PartyMenu
                         ((SRPGGame) Game.GetInstance()).EquipCharacter(_character, tempItem);
                         UpdateObjects();
                         ClearByName("selectable item");
+                        ClearItemPreview();
                     };
+
+                Objects["selectable item/" + i].MouseOver += (sender, args) => SetItemPreview(tempItem);
+                Objects["selectable item/" + i].MouseOut += (sender, args) => ClearItemPreview();
 
                 i++;
             }
+        }
+
+        public void SetItemPreview(Item item)
+        {
+            var oldStats = _character.ReadAllStats();
+            var oldItem = _character.EquipItem(item);
+            var newStats = _character.ReadAllStats();
+            if(oldItem != null)
+            {
+                _character.EquipItem(oldItem);
+            } else
+            {
+                _character.Inventory.Remove(item);
+            }
+
+            var font = Game.GetInstance().Content.Load<SpriteFont>("Menu");
+
+            foreach(var stat in oldStats.Keys)
+            {
+                newStats[stat] -= oldStats[stat];
+            }
+
+            if(newStats[Stat.Defense] != 0 ) Objects.Add("preview/defense", new TextObject()
+            {
+                Y = 275,
+                X = 387 + 30,
+                Color = newStats[Stat.Defense] < 0 ? Color.Red : Color.LightGreen,
+                Value = newStats[Stat.Defense].ToString(),
+                Font = font
+            });
+
+            if (newStats[Stat.Attack] != 0) Objects.Add("preview/attack", new TextObject()
+            {
+                Y = 275,
+                X = 612 + 30,
+                Color = newStats[Stat.Attack] < 0 ? Color.Red : Color.LightGreen,
+                Value = newStats[Stat.Attack].ToString(),
+                Font = font
+            });
+
+            if (newStats[Stat.Wisdom] != 0) Objects.Add("preview/wisdom", new TextObject()
+            {
+                Y = 325,
+                X = 387 + 30,
+                Color = newStats[Stat.Wisdom] < 0 ? Color.Red : Color.LightGreen,
+                Value = newStats[Stat.Wisdom].ToString(),
+                Font = font
+            });
+
+            if (newStats[Stat.Intelligence] != 0) Objects.Add("preview/intelligence", new TextObject()
+            {
+                Y = 325,
+                X = 612 + 30,
+                Color = newStats[Stat.Intelligence] < 0 ? Color.Red : Color.LightGreen,
+                Value = newStats[Stat.Intelligence].ToString(),
+                Font = font
+            });
+
+            if (newStats[Stat.Speed] != 0) Objects.Add("preview/speed", new TextObject()
+            {
+                Y = 375,
+                X = 387 + 30,
+                Color = newStats[Stat.Speed] < 0 ? Color.Red : Color.LightGreen,
+                Value = newStats[Stat.Speed].ToString(),
+                Font = font
+            });
+
+            if (newStats[Stat.Hit] != 0) Objects.Add("preview/hit", new TextObject()
+            {
+                Y = 375,
+                X = 612 + 30,
+                Color = newStats[Stat.Hit] < 0 ? Color.Red : Color.LightGreen,
+                Value = newStats[Stat.Hit].ToString(),
+                Font = font
+            });
+        }
+
+        public void ClearItemPreview()
+        {
+            ClearByName("preview");
         }
     }
 }

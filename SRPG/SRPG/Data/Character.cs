@@ -163,6 +163,19 @@ namespace SRPG.Data
 
             return number;
         }
+
+        public Dictionary<Stat, int> ReadAllStats()
+        {
+            return new Dictionary<Stat, int>
+                {
+                    {Stat.Defense, ReadStat(Stat.Defense)},
+                    {Stat.Attack, ReadStat(Stat.Attack)},
+                    {Stat.Wisdom, ReadStat(Stat.Wisdom)},
+                    {Stat.Intelligence, ReadStat(Stat.Intelligence)},
+                    {Stat.Speed, ReadStat(Stat.Speed)},
+                    {Stat.Hit, ReadStat(Stat.Hit)}
+                };
+        }
         
         /// <summary>
         /// Return a list of abilities that this character is capable of performing. This includes learned abilities,

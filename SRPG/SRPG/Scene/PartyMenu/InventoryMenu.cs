@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SRPG.Data;
 using Torch;
 
 namespace SRPG.Scene.PartyMenu
