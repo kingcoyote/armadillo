@@ -45,6 +45,11 @@ namespace SRPG.Data
                 case "village/town":
                     return new Zones.Village.Town();
 
+                case "coliseum/cell":
+                    return new Zones.Coliseum.Cell();
+                case "coliseum/halls":
+                    return new Zones.Coliseum.Halls();
+
                 default:
                     throw new ZoneException(String.Format("Unable to generate unknown zone '{0}'.", name));
             }

@@ -49,20 +49,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Zones\Barracks\barracks.png">
-      <Name>barracks</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Zones\Barracks\barracks_sandbag.png">
-      <Name>barracks_sandbag</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Characters\link.png">
       <Name>link</Name>
       <Importer>TextureImporter</Importer>
@@ -253,6 +239,28 @@
     </Compile>
     <Compile Include="Zones\Village\Village\town.png">
       <Name>town</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Zones\Coliseum\Cell\cell.jpg">
+      <Name>cell</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Zones\Coliseum\Cell\sandbag.jpg">
+      <Name>sandbag</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Zones\Coliseum\Halls\halls.jpg">
+      <Name>halls</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Zones\Coliseum\Halls\sandbag.jpg">
+      <Name>sandbag</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
