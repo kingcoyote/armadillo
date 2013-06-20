@@ -34,7 +34,7 @@ namespace SRPG.Scene.Overworld
             foreach (var obj in zone.Objects)
             {
                 //Objects.Add("interact" + i, new TextureObject { Color = Color.Red, X = obj.Location.X, Y = obj.Location.Y, Width = obj.Location.Width, Height = obj.Location.Height, Z = 9999 });
-                //i++;
+                i++;
             }
 
             // sandbags are down scaled 1:6

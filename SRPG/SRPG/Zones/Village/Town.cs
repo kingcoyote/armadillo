@@ -16,15 +16,10 @@ namespace SRPG.Zones.Village
         {
             Name = "Desert Village";
             Sandbag = Grid.FromBitmap("Zones/Village/Village/sandbag");
-            ImageLayers = new List<ImageObject>()
-                {
-                    new ImageObject(Game.GetInstance().Content.Load<Texture2D>("Zones/Village/Village/town"))
-                };
+            
+            ImageLayers.Add(new ImageObject(Game.GetInstance().Content.Load<Texture2D>("Zones/Village/Village/town")));
 
-            Doors = new List<Door>()
-                {
-                    new Door { Location = new Rectangle(1442, 2057, 171, 37), Name = "coliseum", Orientation = Direction.Up },
-                };
+            Doors.Add(new Door { Location = new Rectangle(1442, 2057, 171, 37), Name = "coliseum", Orientation = Direction.Up, Zone = "coliseum/halls", ZoneDoor = "village" });
         }
     }
 }
