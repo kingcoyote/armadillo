@@ -41,7 +41,7 @@ namespace SRPG
         {
             ChangeScenes("overworld");
             
-            ((OverworldScene)Scenes["overworld"]).SetZone(Zone.Factory("kakariko/village"), "arch");
+            ((OverworldScene)Scenes["overworld"]).SetZone(Zone.Factory("village/town"), "coliseum");
 
             BeginNewGame();
         }
