@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using SRPG.Scene.Overworld;
 using Torch;
+using SRPG.Zones;
 
 namespace SRPG.Data
 {
@@ -22,18 +23,16 @@ namespace SRPG.Data
         /// A collection of images that represent the visual elements of this zone. The player is at Z-index 1, so anything below
         /// will be background, anything above will be above the player.
         /// </summary>
-        public List<ImageObject> ImageLayers;
+        public List<ImageObject> ImageLayers = new List<ImageObject>();
         /// <summary>
         /// A collection of doors that, when entered by the player, will go to a new zone.
         /// </summary>
-        public List<Door> Doors;
+        public List<Door> Doors = new List<Door>();
 
-        public List<InteractiveObject> Objects;
+        public List<InteractiveObject> Objects = new List<InteractiveObject>();
 
         public static Zone Factory(string name)
         {
-            var zone = new Zone();
-
             switch(name)
             {
                 case "kakariko/village":
@@ -45,8 +44,6 @@ namespace SRPG.Data
                 default:
                     throw new ZoneException(String.Format("Unable to generate unknown zone '{0}'.", name));
             }
-
-            return zone;
         }
 
         public EventHandler<InteractEventArgs> SimpleDialog(string filename, string objectname)

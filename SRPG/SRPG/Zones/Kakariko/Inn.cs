@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SRPG.Data;
 using Torch;
 using Game = Torch.Game;
 
-namespace SRPG.Data.Zones.Kakariko
+namespace SRPG.Zones.Kakariko
 {
     class Inn : Zone
     {
