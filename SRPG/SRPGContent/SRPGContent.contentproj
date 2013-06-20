@@ -245,6 +245,18 @@
       <Name>Unarmed</Name>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Zones\Village\Village\sandbag.png">
+      <Name>sandbag</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Zones\Village\Village\town.png">
+      <Name>town</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

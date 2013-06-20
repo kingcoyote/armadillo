@@ -41,6 +41,10 @@ namespace SRPG.Data
                     return new Zones.Kakariko.Bombshop();
                 case "kakariko/inn":
                     return new Zones.Kakariko.Inn();
+
+                case "village/town":
+                    return new Zones.Village.Town();
+
                 default:
                     throw new ZoneException(String.Format("Unable to generate unknown zone '{0}'.", name));
             }
