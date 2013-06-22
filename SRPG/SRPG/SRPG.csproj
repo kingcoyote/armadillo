@@ -183,6 +183,7 @@
     <Compile Include="Scene\Shop\ShopScene.cs" />
     <Compile Include="SRPGGame.cs" />
     <Compile Include="Zones\Village\Village.cs" />
+    <Compile Include="Zones\Village\Warehouse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

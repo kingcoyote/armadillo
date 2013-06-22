@@ -44,6 +44,8 @@ namespace SRPG.Data
 
                 case "village/village":
                     return new Zones.Village.Village();
+                case "village/warehouse":
+                    return new Zones.Village.Warehouse();
 
                 case "coliseum/cell":
                     return new Zones.Coliseum.Cell();
