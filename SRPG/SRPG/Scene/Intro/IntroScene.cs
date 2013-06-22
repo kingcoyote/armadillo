@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Timers;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
 using Torch;
 
@@ -12,11 +9,10 @@ namespace SRPG.Scene.Intro
         public IntroScene(Game game) : base(game) { }
         private const int SlideDuration = 3000;
         private int _slideTimer = SlideDuration;
-        private int _currentSlide = 0;
-        private List<string> _slides = new List<string>()
+        private int _currentSlide;
+        private readonly List<string> _slides = new List<string>
             {
-                "credit slide", 
-                "xna slide"
+                "credit slide",
             };
 
         public override void Initialize()
