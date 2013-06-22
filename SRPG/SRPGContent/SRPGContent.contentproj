@@ -237,8 +237,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Zones\Village\Village\town.png">
-      <Name>town</Name>
+    <Compile Include="Zones\Village\Village\village.png">
+      <Name>village</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

@@ -182,7 +182,7 @@
     <Compile Include="Scene\PartyMenu\SubmenuLayer.cs" />
     <Compile Include="Scene\Shop\ShopScene.cs" />
     <Compile Include="SRPGGame.cs" />
-    <Compile Include="Zones\Village\Town.cs" />
+    <Compile Include="Zones\Village\Village.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

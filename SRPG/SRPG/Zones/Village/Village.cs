@@ -10,14 +10,14 @@ using Game = Torch.Game;
 
 namespace SRPG.Zones.Village
 {
-    public class Town : Zone
+    public class Village : Zone
     {
-        public Town()
+        public Village()
         {
             Name = "Desert Village";
             Sandbag = Grid.FromBitmap("Zones/Village/Village/sandbag");
             
-            ImageLayers.Add(new ImageObject(Game.GetInstance().Content.Load<Texture2D>("Zones/Village/Village/town")));
+            ImageLayers.Add(new ImageObject(Game.GetInstance().Content.Load<Texture2D>("Zones/Village/Village/village")));
 
             Doors.Add(new Door { Location = new Rectangle(1442, 2057, 171, 37), Name = "coliseum", Orientation = Direction.Up, Zone = "coliseum/halls", ZoneDoor = "village" });
         }

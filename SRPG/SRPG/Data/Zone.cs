@@ -42,8 +42,8 @@ namespace SRPG.Data
                 case "kakariko/inn":
                     return new Zones.Kakariko.Inn();
 
-                case "village/town":
-                    return new Zones.Village.Town();
+                case "village/village":
+                    return new Zones.Village.Village();
 
                 case "coliseum/cell":
                     return new Zones.Coliseum.Cell();
