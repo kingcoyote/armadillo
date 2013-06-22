@@ -5,6 +5,7 @@ using System.Linq;
 using SRPG.Data;
 using SRPG.Scene.Battle;
 using SRPG.Scene.Intro;
+using SRPG.Scene.MainMenu;
 using SRPG.Scene.PartyMenu;
 using SRPG.Scene.Options;
 using SRPG.Scene.Overworld;
@@ -33,6 +34,7 @@ namespace SRPG
             Scenes.Add("battle", new BattleScene(this));
             Scenes.Add("shop", new ShopScene(this));
             Scenes.Add("options", new OptionsScene(this));
+            Scenes.Add("main menu", new MainMenu(this));
 
             CurrentScene = "intro";
         }

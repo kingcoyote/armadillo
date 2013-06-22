@@ -71,7 +71,7 @@ namespace SRPG.Scene.Intro
         /// </summary>
         public void Skip()
         {
-            ((SRPGGame)Game).StartGame();
+            ((SRPGGame)Game).ChangeScenes("main menu");
         }
     }
 }
