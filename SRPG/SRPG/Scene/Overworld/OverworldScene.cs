@@ -96,6 +96,14 @@ namespace SRPG.Scene.Overworld
                 }
             }
 
+            foreach(var character in Zone.Characters.Values)
+            {
+                if (rect.Intersects(character.GetFeet()))
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
 
@@ -162,6 +170,14 @@ namespace SRPG.Scene.Overworld
                 if (obj.Location.Intersects(scanBox))
                 {
                     obj.Interact.Invoke(this, eventArgs);
+                }
+            }
+
+            foreach(var character in Zone.Characters.Values)
+            {
+                if(scanBox.Intersects(character.GetFeet()))
+                {
+                    
                 }
             }
 
