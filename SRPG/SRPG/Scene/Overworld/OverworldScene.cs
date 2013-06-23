@@ -18,6 +18,8 @@ namespace SRPG.Scene.Overworld
         private readonly Dictionary<Direction, bool> _directions = new Dictionary<Direction, bool>(4)
             {{ Direction.Up, false},{Direction.Down,false},{Direction.Left, false},{Direction.Right,false}};
 
+        private readonly Dictionary<string, Vector2[]> _characterMovements = new Dictionary<string, Vector2[]>();
+
         private string _startDoor = "";
 
         public OverworldScene(Game game) : base(game) { }
@@ -37,28 +39,29 @@ namespace SRPG.Scene.Overworld
         {
             base.Update(gameTime, input);
 
-            var dt = (150 * ((float)gameTime.ElapsedGameTime.Milliseconds / 1000));
+            var dt = (((float)gameTime.ElapsedGameTime.Milliseconds / 1000));
+            var movementSpeed = 150;
 
             float yRevert = 0, xRevert = 0;
 
             Avatar.Velocity.X = MathHelper.Clamp(Avatar.Velocity.X, -1, 1);
-            Avatar.Location.X += Avatar.Velocity.X * dt;
+            Avatar.Location.X += Avatar.Velocity.X * dt * movementSpeed;
 
             if(!IsValidLocation(Avatar.GetFeet()))
             {
                 xRevert = Avatar.Velocity.X;
-                Avatar.Location.X -= Avatar.Velocity.X*dt;
+                Avatar.Location.X -= Avatar.Velocity.X*dt*movementSpeed;
                 Avatar.Velocity.X = 0;
 
             }
 
             Avatar.Velocity.Y = MathHelper.Clamp(Avatar.Velocity.Y, -1, 1);
-            Avatar.Location.Y += Avatar.Velocity.Y * dt;
+            Avatar.Location.Y += Avatar.Velocity.Y * dt * movementSpeed;
 
             if (!IsValidLocation(Avatar.GetFeet()))
             {
                 yRevert = Avatar.Velocity.Y;
-                Avatar.Location.Y -= Avatar.Velocity.Y*dt;
+                Avatar.Location.Y -= Avatar.Velocity.Y*dt*movementSpeed;
                 Avatar.Velocity.Y = 0;
             }
 
@@ -78,6 +81,33 @@ namespace SRPG.Scene.Overworld
             else if (!door.Any())
             {
                 _startDoor = "";
+            }
+
+            foreach(var character in _characterMovements.Keys.ToList())
+            {
+                var vector = _characterMovements[character][0];
+                float x = 0;
+                float y = 0;
+
+                if(vector.X > 1) x = movementSpeed;
+                else if (vector.X < -1) x = 0 - movementSpeed;
+                
+                _characterMovements[character][0].X -= x*dt;
+                Zone.Characters[character].Location.X += x * dt;
+
+                if (vector.Y > 1) y = movementSpeed;
+                else if (vector.Y < -1) y = 0 - movementSpeed;
+
+                _characterMovements[character][0].Y -= y * dt;
+                Zone.Characters[character].Location.Y += y * dt;
+
+                if(Math.Abs(vector.X) <= 1 && Math.Abs(vector.Y) <= 1)
+                {
+                    var movements = _characterMovements[character].ToList();
+                    movements.RemoveAt(0);
+                    if (movements.Count == 0) _characterMovements.Remove(character);
+                    else _characterMovements[character] = movements.ToArray();
+                }
             }
             
         }
@@ -189,6 +219,12 @@ namespace SRPG.Scene.Overworld
             // doors would need to change the zone
             // chests would need to pause the controls, create a dialog layer, give the player a new item, and unpause when done
             // levers would need to update some part of the zone (i have zero ways to do this!)
+        }
+
+        public void MoveCharacter(string name, Vector2[] directions)
+        {
+            if (_characterMovements.Keys.Contains(name)) _characterMovements.Remove(name);
+            _characterMovements.Add(name, directions);
         }
 
         public void StartDialog(Dialog dialog)
