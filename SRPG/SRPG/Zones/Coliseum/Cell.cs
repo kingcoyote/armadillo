@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SRPG.Data;
+using SRPG.Scene.Overworld;
 using Torch;
 using Game = Torch.Game;
 
@@ -12,6 +13,8 @@ namespace SRPG.Zones.Coliseum
 {
     class Cell : Zone
     {
+        private bool _guardMoved;
+
         public Cell()
         {
             Name = "Coliseum Slave Cells";
@@ -24,7 +27,29 @@ namespace SRPG.Zones.Coliseum
 
             Characters.Add("guard", CharacterClass.GenerateCharacter("enemy"));
             Characters["guard"].Location.X = 303;
-            Characters["guard"].Location.Y = 340;
+            Characters["guard"].Location.Y = 530;
+
+            Characters["guard"].Interact = TalkToGuard;
+        }
+
+        public void TalkToGuard(object sender, EventArgs args)
+        {
+            if (_guardMoved)
+            {
+                var dialog = Dialog.Fetch("coliseum/cell", "guardMoved");
+                ((OverworldScene)sender).StartDialog(dialog);
+            }
+            else
+            {
+                var dialog = Dialog.Fetch("coliseum/cell", "guard");
+                dialog.OnExit = (o, eventArgs) =>
+                    {
+                        ((SRPGGame) ((Torch.Scene) sender).Game).Inventory.Add(Item.Factory("sword/shortsword"));
+                        ((OverworldScene) sender).MoveCharacter("guard", new[] {new Vector2(100, 0), new Vector2(-2, 0)});
+                    };
+                ((OverworldScene) sender).StartDialog(dialog);
+                _guardMoved = true;
+            }
         }
     }
 }

@@ -177,7 +177,7 @@ namespace SRPG.Scene.Overworld
             {
                 if(scanBox.Intersects(character.GetFeet()))
                 {
-                    
+                    character.Interact(this, new EventArgs());
                 }
             }
 
