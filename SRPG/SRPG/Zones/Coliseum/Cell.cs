@@ -17,7 +17,7 @@ namespace SRPG.Zones.Coliseum
             Name = "Coliseum Slave Cells";
             Sandbag = Grid.FromBitmap("Zones/Coliseum/Cell/sandbag");
             ImageLayers.Add(new ImageObject(Game.GetInstance().Content.Load<Texture2D>("Zones/Coliseum/Cell/cell")));
-            Doors.Add(new Door { Location = new Rectangle(254, 731, 70, 64), Name = "bed", Orientation = Direction.Right });
+            Doors.Add(new Door { Location = new Rectangle(36*6, 126*6, 7*6, 8*6), Name = "bed", Orientation = Direction.Right });
             Doors.Add(new Door { Location = new Rectangle(1851, 162, 48, 9), Name = "halls", Orientation = Direction.Down });
 
             Objects.Add(new InteractiveObject { Interact = SimpleDoor("coliseum/halls", "cell"), Location = new Rectangle(1850, 143, 49, 12) });
