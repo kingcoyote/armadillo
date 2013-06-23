@@ -21,6 +21,10 @@ namespace SRPG.Zones.Coliseum
             Doors.Add(new Door { Location = new Rectangle(1851, 162, 48, 9), Name = "halls", Orientation = Direction.Down });
 
             Objects.Add(new InteractiveObject { Interact = SimpleDoor("coliseum/halls", "cell"), Location = new Rectangle(1850, 143, 49, 12) });
+
+            Characters.Add("guard", CharacterClass.GenerateCharacter("enemy"));
+            Characters["guard"].Location.X = 303;
+            Characters["guard"].Location.Y = 340;
         }
     }
 }
