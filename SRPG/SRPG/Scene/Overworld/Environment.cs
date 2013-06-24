@@ -14,10 +14,14 @@ namespace SRPG.Scene.Overworld
         private int _width;
         private int _height;
 
+        private Zone _zone;
+
         public Environment(Torch.Scene scene) : base(scene) { }
 
         public void SetZone(Zone zone)
         {
+            _zone = zone;
+
             Objects.Clear();
 
             Objects.Add("avatar", ((OverworldScene)Scene).Avatar.Sprite);
@@ -27,6 +31,11 @@ namespace SRPG.Scene.Overworld
             {
                 Objects.Add("zone" + i, image);
                 i++;
+            }
+
+            foreach(var character in zone.Characters.Keys)
+            {
+                Objects.Add("character/" + character, zone.Characters[character].Sprite);
             }
 
             // test code to show interactive objects. this should not make it into release.
@@ -99,6 +108,12 @@ namespace SRPG.Scene.Overworld
             else
             {
                 Y = screenHeight / 2 - _height / 2;
+            }
+
+            foreach(var character in _zone.Characters.Keys)
+            {
+                Objects["character/" + character].X = (int)_zone.Characters[character].Location.X;
+                Objects["character/" + character].Y = (int)_zone.Characters[character].Location.Y;
             }
         }
     }

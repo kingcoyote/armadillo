@@ -97,6 +97,7 @@ namespace SRPG.Data
         public int FeetWidth = 0;
         public int FeetHeight = 0;
 
+        public EventHandler Interact = (sender, args) => { };
         
         /// <summary>
         /// Process any status ailments that would impact a character at the start of the round,

@@ -31,6 +31,8 @@ namespace SRPG.Data
 
         public List<InteractiveObject> Objects = new List<InteractiveObject>();
 
+        public Dictionary<string, Character> Characters = new Dictionary<string, Character>();
+
         public static Zone Factory(string name)
         {
             switch(name)
@@ -42,8 +44,10 @@ namespace SRPG.Data
                 case "kakariko/inn":
                     return new Zones.Kakariko.Inn();
 
-                case "village/town":
-                    return new Zones.Village.Town();
+                case "village/village":
+                    return new Zones.Village.Village();
+                case "village/warehouse":
+                    return new Zones.Village.Warehouse();
 
                 case "coliseum/cell":
                     return new Zones.Coliseum.Cell();

@@ -138,6 +138,8 @@
     <Compile Include="Data\InteractEventArgs.cs" />
     <Compile Include="Data\InteractiveObject.cs" />
     <Compile Include="Data\Layers\DialogLayer.cs" />
+    <Compile Include="Scene\MainMenu\MainMenu.cs" />
+    <Compile Include="Scene\MainMenu\MenuOptions.cs" />
     <Compile Include="Scene\Shop\Background.cs" />
     <Compile Include="Scene\Shop\Inventory.cs" />
     <Compile Include="Scene\Shop\Options.cs" />
@@ -182,7 +184,8 @@
     <Compile Include="Scene\PartyMenu\SubmenuLayer.cs" />
     <Compile Include="Scene\Shop\ShopScene.cs" />
     <Compile Include="SRPGGame.cs" />
-    <Compile Include="Zones\Village\Town.cs" />
+    <Compile Include="Zones\Village\Village.cs" />
+    <Compile Include="Zones\Village\Warehouse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
