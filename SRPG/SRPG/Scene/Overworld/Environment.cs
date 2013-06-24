@@ -114,6 +114,7 @@ namespace SRPG.Scene.Overworld
             {
                 Objects["character/" + character].X = (int)_zone.Characters[character].Location.X;
                 Objects["character/" + character].Y = (int)_zone.Characters[character].Location.Y;
+                Objects["character/" + character].Z = Objects["character/" + character].Y + ((SpriteObject)(Objects["character/" + character])).Height;
             }
         }
     }
