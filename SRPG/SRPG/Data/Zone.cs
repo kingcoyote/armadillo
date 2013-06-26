@@ -61,6 +61,8 @@ namespace SRPG.Data
             }
         }
 
+        #region "InteractiveObject helpers"
+
         public EventHandler<InteractEventArgs> SimpleDialog(string filename, string objectname)
         {
             return (sender, args) =>
@@ -95,18 +97,11 @@ namespace SRPG.Data
 
                     var scene = ((OverworldScene) sender);
                     var dialog = new Dialog();
-                    dialog.Nodes.Add(1, new DialogNode { Identifier = 1, Text = "Found items:", Options = new Dictionary<string, int> { { "default", 2 } } });
-                    var i = 2;
+                    dialog.Nodes.Add(1, new DialogNode { Identifier = 1, Text = "Found items:" });
 
                     foreach(var item in contents)
                     {
-                        var node = new DialogNode {Identifier = i, Text = item.Name};
-                        if (contents.Count > i - 1)
-                        {
-                            node.Options.Add("default", i + 1);
-                        }
-                        i++;
-                        dialog.Nodes.Add(i, node);
+                        dialog.Nodes[1].Text += "\n" + item.Name;
                     }
 
                     dialog.OnExit = (o, eventArgs) => ((SRPGGame) scene.Game).Inventory.AddRange(contents);
@@ -115,6 +110,8 @@ namespace SRPG.Data
                     _clearedChests.Add(name);
                 };
         }
+
+        #endregion
     }
 
     class ZoneException : Exception
