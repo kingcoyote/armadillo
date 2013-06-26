@@ -108,6 +108,10 @@ namespace SRPG.Scene.Overworld
                     if (movements.Count == 0) _characterMovements.Remove(character);
                     else _characterMovements[character] = movements.ToArray();
                 }
+
+                Zone.Characters[character].Velocity.X = x;
+                Zone.Characters[character].Velocity.Y = y;
+                Zone.Characters[character].UpdateAnimation();
             }
             
         }
