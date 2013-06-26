@@ -33,6 +33,8 @@ namespace SRPG.Data
 
         public Dictionary<string, Character> Characters = new Dictionary<string, Character>();
 
+        private List<string> _clearedChests = new List<string>();
+
         public static Zone Factory(string name)
         {
             switch(name)
@@ -82,6 +84,35 @@ namespace SRPG.Data
                     var dialog = Dialog.Fetch(filename, merchantname);
                     dialog.OnExit = (s, a) => ((SRPGGame)Game.GetInstance()).LaunchShop(filename, merchantname);
                     scene.StartDialog(dialog);
+                };
+        }
+
+        public EventHandler<InteractEventArgs> SimpleChest(string name, List<Item> contents)
+        {
+            return (sender, args) =>
+                {
+                    if (_clearedChests.Contains(name)) return;
+
+                    var scene = ((OverworldScene) sender);
+                    var dialog = new Dialog();
+                    dialog.Nodes.Add(1, new DialogNode { Identifier = 1, Text = "Found items:", Options = new Dictionary<string, int> { { "default", 2 } } });
+                    var i = 2;
+
+                    foreach(var item in contents)
+                    {
+                        var node = new DialogNode {Identifier = i, Text = item.Name};
+                        if (contents.Count > i - 1)
+                        {
+                            node.Options.Add("default", i + 1);
+                        }
+                        i++;
+                        dialog.Nodes.Add(i, node);
+                    }
+
+                    dialog.OnExit = (o, eventArgs) => ((SRPGGame) scene.Game).Inventory.AddRange(contents);
+                    dialog.Continue();
+                    scene.StartDialog(dialog);
+                    _clearedChests.Add(name);
                 };
         }
     }

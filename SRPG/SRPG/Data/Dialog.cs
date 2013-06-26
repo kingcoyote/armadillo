@@ -9,7 +9,7 @@ namespace SRPG.Data
 {
     public class Dialog
     {
-        public Dictionary<int, DialogNode> Nodes;
+        public Dictionary<int, DialogNode> Nodes = new Dictionary<int, DialogNode>();
         public DialogNode CurrentNode { get; private set; }
         public EventHandler OnEnter;
         public EventHandler OnExit;
