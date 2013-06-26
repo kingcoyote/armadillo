@@ -18,7 +18,7 @@ namespace SRPG
     /// </summary>
     public class SRPGGame : Torch.Game
     {
-        public List<Character> Party;
+        public List<Combatant> Party;
         public List<Item> Inventory;
         public int Money;
 
@@ -55,7 +55,7 @@ namespace SRPG
             ChangeScenes("shop");
         }
 
-        public void EquipCharacter(Character character, Item newItem)
+        public void EquipCharacter(Combatant character, Item newItem)
         {
             if(Inventory.Contains(newItem))
             {
@@ -104,10 +104,13 @@ namespace SRPG
 
         private void BeginNewGame()
         {
-            Party = new List<Character>();
+            Party = new List<Combatant>();
             Inventory = new List<Item>();
 
-            var character = CharacterClass.GenerateCharacter("fighter");
+            Combatant character;
+
+            character = new Combatant();
+            character.Class = new CharacterClass("fighter", ItemType.Sword, ItemType.Plate);
             character.Name = "Jaha";
             character.MaxHealth = 20;
             character.Stats[Stat.Defense] = 22;
@@ -119,7 +122,8 @@ namespace SRPG
             character.AbilityExperienceLevels.Add(Ability.Factory("lunge"), 200);
             Party.Add(character);
 
-            character = CharacterClass.GenerateCharacter("cleric");
+            character = new Combatant();
+            character.Class = new CharacterClass("cleric", ItemType.Book, ItemType.Cloth);
             character.Name = "Aeris";
             character.MaxHealth = 12;
             character.Stats[Stat.Defense] = 8;
@@ -130,7 +134,8 @@ namespace SRPG
             character.Stats[Stat.Hit] = 18;
             Party.Add(character);
 
-            character = CharacterClass.GenerateCharacter("ranger");
+            character = new Combatant();
+            character.Class = new CharacterClass("ranger", ItemType.Gun, ItemType.Mail);
             character.Name = "Meera";
             character.MaxHealth = 14;
             character.Stats[Stat.Defense] = 12;
@@ -141,7 +146,8 @@ namespace SRPG
             character.Stats[Stat.Hit] = 22;
             Party.Add(character);
 
-            character = CharacterClass.GenerateCharacter("wizard");
+            character = new Combatant();
+            character.Class = new CharacterClass("wizard", ItemType.Staff, ItemType.Cloth);
             character.Name = "Raistlin";
             character.MaxHealth = 12;
             character.Stats[Stat.Defense] = 6;
@@ -152,7 +158,8 @@ namespace SRPG
             character.Stats[Stat.Hit] = 15;
             Party.Add(character);
 
-            character = CharacterClass.GenerateCharacter("monk");
+            character = new Combatant();
+            character.Class = new CharacterClass("monk", ItemType.Unarmed, ItemType.Leather);
             character.Name = "Gratho";
             character.MaxHealth = 18;
             character.Stats[Stat.Defense] = 8;

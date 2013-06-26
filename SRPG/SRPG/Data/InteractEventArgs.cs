@@ -6,6 +6,6 @@ namespace SRPG.Data
     public class InteractEventArgs : EventArgs
     {
         public OverworldScene Scene;
-        public Character Character;
+        public Avatar Character;
     }
 }

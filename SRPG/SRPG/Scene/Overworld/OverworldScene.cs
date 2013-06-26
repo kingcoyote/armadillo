@@ -11,7 +11,7 @@ namespace SRPG.Scene.Overworld
 {
     public class OverworldScene : Torch.Scene
     {
-        public Character Avatar;
+        public Avatar Avatar;
         public Zone Zone;
 
         private bool _isPaused = false;

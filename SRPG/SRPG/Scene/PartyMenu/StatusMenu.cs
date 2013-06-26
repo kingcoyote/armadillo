@@ -10,7 +10,7 @@ namespace SRPG.Scene.PartyMenu
 {
     class StatusMenu : SubmenuLayer
     {
-        private Character _character;
+        private Combatant _character;
 
         public StatusMenu(Torch.Scene scene) : base(scene)
         {
@@ -32,7 +32,7 @@ namespace SRPG.Scene.PartyMenu
             }
         }
 
-        public void SetCharacter(Character character)
+        public void SetCharacter(Combatant character)
         {
             _character = character;
             UpdateObjects();

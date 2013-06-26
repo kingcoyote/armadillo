@@ -11,7 +11,7 @@ namespace SRPG.Data
         /// <summary>
         /// The character who is performing the action
         /// </summary>
-        public Character Character;
+        public Combatant Character;
         /// <summary>
         /// The ability being performed.
         /// </summary>

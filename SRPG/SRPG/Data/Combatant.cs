@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Torch;
 
 namespace SRPG.Data
 {
-    public class Character
+    public class Combatant
     {
-        /// <summary>
-        /// Printable name for the character.
-        /// </summary>
         public string Name;
         /// <summary>
         /// Character's current maximum health pool.
@@ -52,24 +47,15 @@ namespace SRPG.Data
         /// <summary>
         /// List of items currently equipped by the character, including weapon, armor and accessory.
         /// </summary>
-        public List<Item> Inventory = new List<Item>() {};
+        public List<Item> Inventory = new List<Item>() { };
         /// <summary>
         /// A small portrait to be shown when this character is highlighted.
         /// </summary>
         public Texture2D Portrait;
         /// <summary>
-        /// The SpriteObject that acts as a visual representation of this character on the battlefield.
-        /// </summary>
-        public SpriteObject Sprite;
-        /// <summary>
         /// An indicator of the character's class, which will determine weapon / armor usability.
         /// </summary>
         public CharacterClass Class;
-        /// <summary>
-        /// An X,Y pair indicating where on the current battlefield this character is located. Outside of a battle scene,
-        /// this is not applicable and can be ignored.
-        /// </summary>
-        public Vector2 Location;
         /// <summary>
         /// An integer indicating what faction this character belongs to - 0 represents the player and 1 represents the enemy.
         /// This is used to determine targeting, AI control, player control, and character movement grids.
@@ -87,18 +73,11 @@ namespace SRPG.Data
         /// </summary>
         public bool CanAct;
 
-        public Direction Direction;
-
-        public Vector2 Velocity;
+        public Avatar Sprite;
 
         public Dictionary<Stat, int> StatExperienceLevels;
         public Dictionary<Ability, int> AbilityExperienceLevels = new Dictionary<Ability, int>();
 
-        public int FeetWidth = 0;
-        public int FeetHeight = 0;
-
-        public EventHandler Interact = (sender, args) => { };
-        
         /// <summary>
         /// Process any status ailments that would impact a character at the start of the round,
         /// such as sleep or stun.
@@ -151,7 +130,7 @@ namespace SRPG.Data
 
         public void Die()
         {
-            
+
         }
 
         public int ReadStat(Stat stat)
@@ -177,7 +156,7 @@ namespace SRPG.Data
                     {Stat.Hit, ReadStat(Stat.Hit)}
                 };
         }
-        
+
         /// <summary>
         /// Return a list of abilities that this character is capable of performing. This includes learned abilities,
         /// abilities derived from the currently equipped weapon/armor, and disabled abilities that apply to other
@@ -187,7 +166,7 @@ namespace SRPG.Data
         public List<Ability> GetAbilities()
         {
             // todo: so much boilerplate with checking equipped gear and avoiding null...
-            
+
             // get known abilities
             var abilities = (from ability in AbilityExperienceLevels where ability.Value > 100 select ability.Key).ToList();
 
@@ -196,7 +175,7 @@ namespace SRPG.Data
 
             var armor = GetEquippedArmor();
             if (armor != null && !abilities.Contains(armor.Ability) && armor.Ability != null) abilities.Add(armor.Ability);
-            
+
             // todo remove duplicate abilities
             return abilities;
         }
@@ -241,8 +220,8 @@ namespace SRPG.Data
         public Item EquipItem(Item item)
         {
             var oldItem = new Item();
-            
-            switch(item.GetEquipType())
+
+            switch (item.GetEquipType())
             {
                 case ItemEquipType.Weapon:
                     oldItem = GetEquippedWeapon();
@@ -262,72 +241,6 @@ namespace SRPG.Data
             Inventory.Add(item);
 
             return oldItem;
-        }
-
-        public void UpdateAnimation()
-        {
-            // if they are currently moving
-            if (Math.Abs(Velocity.X) > 0 || Math.Abs(Velocity.Y) > 0)
-            {
-                // find out what directions they are actually moving...
-                var actualDir = ParseActualDirection(Velocity.X, Velocity.Y);
-                // ... and what direction the animation is facing
-                var currentDir = StringToDirection(Sprite.GetAnimation().Split(' ')[1]);
-
-                Direction = actualDir[0];
-
-                // if they aren't facing a valid direction, correct it
-                if (!actualDir.Contains(currentDir))
-                {
-                    Sprite.SetAnimation(String.Format("walking {0}", actualDir[0].ToString().ToLower()));
-                }
-
-                // if the animation is standing, change it to moving
-                if (Sprite.GetAnimation().Split(' ')[0] == "standing")
-                {
-                    Sprite.SetAnimation(Sprite.GetAnimation().Replace("standing", "walking"));
-                }
-            }
-            else
-            {
-                // make sure they are standing if they have no velocity
-                Sprite.SetAnimation(Sprite.GetAnimation().Replace("walking", "standing"));
-            }
-        }
-
-        private static List<Direction> ParseActualDirection(float x, float y)
-        {
-            var dirs = new List<Direction>();
-
-            if (x > 0) dirs.Add(Direction.Right);
-            if (x < 0) dirs.Add(Direction.Left);
-
-            if (y > 0) dirs.Add(Direction.Down);
-            if (y < 0) dirs.Add(Direction.Up);
-
-            return dirs;
-        }
-
-        private static Direction StringToDirection(string str)
-        {
-            switch (str.ToLower())
-            {
-                case "up": return Direction.Up;
-                case "down": return Direction.Down;
-                case "left": return Direction.Left;
-                case "right": return Direction.Right;
-                default: throw new Exception();
-            }
-        }
-
-        public Rectangle GetFeet()
-        {
-            return new Rectangle(
-                (int)(Location.X + Sprite.Width / 2 - FeetWidth / 2),
-                (int)(Location.Y + Sprite.Height - FeetHeight),
-                FeetWidth,
-                FeetHeight
-            );
         }
     }
 }

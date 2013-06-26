@@ -133,6 +133,8 @@
     <Compile Include="Abilities\Untouchable.cs" />
     <Compile Include="Abilities\Vengeance.cs" />
     <Compile Include="Abilities\WhipKick.cs" />
+    <Compile Include="Data\Avatar.cs" />
+    <Compile Include="Data\Combatant.cs" />
     <Compile Include="Data\Command.cs" />
     <Compile Include="Data\DialogNode.cs" />
     <Compile Include="Data\InteractEventArgs.cs" />
@@ -154,7 +156,6 @@
     <Compile Include="Scene\Battle\BattleScene.cs" />
     <Compile Include="Data\Ability.cs" />
     <Compile Include="Data\BattleBoard.cs" />
-    <Compile Include="Data\Character.cs" />
     <Compile Include="Data\CharacterClass.cs" />
     <Compile Include="Data\Dialog.cs" />
     <Compile Include="Data\Door.cs" />

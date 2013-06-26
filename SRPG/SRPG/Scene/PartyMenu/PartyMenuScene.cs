@@ -45,7 +45,7 @@ namespace SRPG.Scene.PartyMenu
             ((SubmenuLayer)Layers[_currentMenu]).Reset();
         }
 
-        public void SetCharacter(Character character)
+        public void SetCharacter(Combatant character)
         {
             ((StatusMenu)Layers["status menu"]).SetCharacter(character);
         }

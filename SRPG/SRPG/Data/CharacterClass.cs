@@ -51,9 +51,9 @@ namespace SRPG.Data
             throw new NotImplementedException();
         }
 
-        public static Character GenerateCharacter(string className)
+        public static Avatar GenerateCharacter(string className)
         {
-            Character character;
+            Avatar character;
 
             int spriteWidth;
             int spriteHeight;
@@ -63,9 +63,8 @@ namespace SRPG.Data
                 case "fighter":
                     spriteWidth = 50;
                     spriteHeight = 100;
-                    character = new Character
+                    character = new Avatar
                         {
-                            Class = new CharacterClass("Fighter", ItemType.Sword, ItemType.Plate),
                             Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/Fighter6")),
                             FeetWidth = 40,
                             FeetHeight = 25
@@ -83,9 +82,8 @@ namespace SRPG.Data
                 case "ranger":
                     spriteWidth = 65;
                     spriteHeight = 75;
-                    character = new Character
+                    character = new Avatar
                     {
-                        Class = new CharacterClass("Ranger", ItemType.Gun, ItemType.Mail),
                         Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/TempRanger")),
                         FeetWidth = 40,
                         FeetHeight = 25
@@ -103,9 +101,8 @@ namespace SRPG.Data
                 case "cleric":
                     spriteWidth = 65;
                     spriteHeight = 75;
-                    character = new Character
+                    character = new Avatar
                     {
-                        Class = new CharacterClass("Cleric", ItemType.Book, ItemType.Cloth),
                         Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/TempCleric")),
                         FeetWidth = 40,
                         FeetHeight = 25
@@ -123,9 +120,8 @@ namespace SRPG.Data
                 case "wizard":
                     spriteWidth = 65;
                     spriteHeight = 75;
-                    character = new Character
+                    character = new Avatar
                     {
-                        Class = new CharacterClass("Wizard", ItemType.Staff, ItemType.Cloth),
                         Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/TempWizard")),
                         FeetWidth = 40,
                         FeetHeight = 25
@@ -143,9 +139,8 @@ namespace SRPG.Data
                 case "monk":
                     spriteWidth = 65;
                     spriteHeight = 75;
-                    character = new Character
+                    character = new Avatar
                     {
-                        Class = new CharacterClass("Monk", ItemType.Unarmed, ItemType.Leather),
                         Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/TempMonk")),
                         FeetWidth = 40,
                         FeetHeight = 25
@@ -163,9 +158,8 @@ namespace SRPG.Data
                 case "enemy":
                     spriteWidth = 65;
                     spriteHeight = 75;
-                    character = new Character
+                    character = new Avatar
                     {
-                        Class = new CharacterClass(className, ItemType.Sword, ItemType.Plate),
                         Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/TempEnemy")),
                         FeetWidth = 40,
                         FeetHeight = 25
@@ -183,9 +177,8 @@ namespace SRPG.Data
                 case "link":
                     spriteWidth = 87;
                     spriteHeight = 72;
-                    character = new Character
+                    character = new Avatar
                         {
-                            Class = new CharacterClass(className, ItemType.Sword, ItemType.Mail),
                             Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/link")),
                             FeetWidth = 40,
                             FeetHeight = 25

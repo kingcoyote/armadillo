@@ -10,7 +10,7 @@ namespace SRPG.Data
         /// <summary>
         /// The character that this status ailment is afflicting.
         /// </summary>
-        private Character _character;
+        private Combatant _character;
 
         /// <summary>
         /// Process status ailment effects that happen at the start of the round, such as sleep or stun

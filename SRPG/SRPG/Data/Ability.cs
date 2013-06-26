@@ -13,7 +13,7 @@ namespace SRPG.Data
         /// <summary>
         /// The character who this ability is tied to. This is used to generate the hit, especially base damage.
         /// </summary>
-        public Character Character;
+        public Avatar Character;
         /// <summary>
         /// Indicating whether this is a passive or active ability.
         /// </summary>

@@ -7,7 +7,7 @@ namespace SRPG.Data
 {
     public class SaveGame
     {
-        public List<Character> Party;
+        public List<Combatant> Party;
         public List<Item> Inventory;
         public int Money;
         public List<Byte> BattlesCompleted;

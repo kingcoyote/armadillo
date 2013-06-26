@@ -31,7 +31,7 @@ namespace SRPG.Data
 
         public List<InteractiveObject> Objects = new List<InteractiveObject>();
 
-        public Dictionary<string, Character> Characters = new Dictionary<string, Character>();
+        public Dictionary<string, Avatar> Characters = new Dictionary<string, Avatar>();
 
         private List<string> _clearedChests = new List<string>();
 
