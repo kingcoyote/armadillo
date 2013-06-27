@@ -185,6 +185,7 @@
     <Compile Include="Scene\PartyMenu\SubmenuLayer.cs" />
     <Compile Include="Scene\Shop\ShopScene.cs" />
     <Compile Include="SRPGGame.cs" />
+    <Compile Include="Zones\Village\Inn.cs" />
     <Compile Include="Zones\Village\Village.cs" />
     <Compile Include="Zones\Village\Warehouse.cs" />
   </ItemGroup>
