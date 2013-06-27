@@ -28,7 +28,7 @@ namespace SRPG.Scene.Overworld
         {
             base.Initialize();
 
-            Avatar = CharacterClass.GenerateCharacter("ranger");
+            Avatar = CharacterClass.GenerateCharacter("fighter");
 
             Layers.Add("keyboardinput", new KeyboardInput(this));
             Layers.Add("environment", new Environment(this));

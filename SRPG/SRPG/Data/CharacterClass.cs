@@ -65,18 +65,18 @@ namespace SRPG.Data
                     spriteHeight = 100;
                     character = new Avatar
                         {
-                            Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/Fighter6")),
+                            Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/fighter")),
                             FeetWidth = 40,
                             FeetHeight = 25
                         };
                     character.Sprite.AddAnimation("walking down", new SpriteAnimation { FrameCount = 7, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = 1, FrameRate = 12 });
                     character.Sprite.AddAnimation("standing down", new SpriteAnimation { FrameCount = 1, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = 1, FrameRate = 1 });
-                    character.Sprite.AddAnimation("walking up", new SpriteAnimation { FrameCount = 7, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = 1, FrameRate = 12 });
-                    character.Sprite.AddAnimation("standing up", new SpriteAnimation { FrameCount = 1, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = 1, FrameRate = 1 });
-                    character.Sprite.AddAnimation("walking left", new SpriteAnimation { FrameCount = 7, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = 1, FrameRate = 12 });
-                    character.Sprite.AddAnimation("standing left", new SpriteAnimation { FrameCount = 1, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = 1, FrameRate = 1 });
-                    character.Sprite.AddAnimation("walking right", new SpriteAnimation { FrameCount = 7, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = 1, FrameRate = 12 });
-                    character.Sprite.AddAnimation("standing right", new SpriteAnimation { FrameCount = 1, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = 1, FrameRate = 1 });
+                    character.Sprite.AddAnimation("walking up", new SpriteAnimation { FrameCount = 7, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = 101, FrameRate = 12 });
+                    character.Sprite.AddAnimation("standing up", new SpriteAnimation { FrameCount = 1, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = 101, FrameRate = 1 });
+                    character.Sprite.AddAnimation("walking left", new SpriteAnimation { FrameCount = 7, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = 201, FrameRate = 12 });
+                    character.Sprite.AddAnimation("standing left", new SpriteAnimation { FrameCount = 1, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = 201, FrameRate = 1 });
+                    character.Sprite.AddAnimation("walking right", new SpriteAnimation { FrameCount = 7, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = 301, FrameRate = 12 });
+                    character.Sprite.AddAnimation("standing right", new SpriteAnimation { FrameCount = 1, Size = new Rectangle(0, 0, spriteWidth, spriteHeight), StartRow = 301, FrameRate = 1 });
                     character.Sprite.SetAnimation("standing down");
                     break;
                 case "ranger":
