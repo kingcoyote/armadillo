@@ -53,34 +53,30 @@ namespace SRPG.Scene.Overworld
         {
             float newX = 0;
             float newY = 0;
-            var feet = Avatar.GetFeet();
 
             if (_directions[Direction.Left] && !_directions[Direction.Right]) newX = -1;
             else if (_directions[Direction.Right] && !_directions[Direction.Left]) newX = 1;
 
-            feet.X += (int)(newX*dt*Avatar.Speed);
+            Avatar.Location.X += newX * dt * Avatar.Speed;
 
-            if (!IsValidLocation(feet))
+            if (!IsValidLocation(Avatar.GetFeet()))
             {
+                Avatar.Location.X -= (newX * dt * Avatar.Speed);
                 newX = 0;
-                feet.X -= (int) (newX*dt*Avatar.Speed);
             }
 
             if (_directions[Direction.Up] && !_directions[Direction.Down]) newY = -1;
             else if (_directions[Direction.Down] && !_directions[Direction.Up]) newY = 1;
 
-            feet.Y += (int)(newY*dt*Avatar.Speed);
+            Avatar.Location.Y += newY*dt*Avatar.Speed;
 
-            if (!IsValidLocation(feet))
+            if (!IsValidLocation(Avatar.GetFeet()))
             {
+                Avatar.Location.Y -= (newY * dt * Avatar.Speed);
                 newY = 0;
-                feet.Y -= (int) (newY*dt*Avatar.Speed);
             }
 
             Avatar.Sprite.Z = Avatar.Sprite.Y + Avatar.Sprite.Height;
-
-            Avatar.Location.X += newX * Avatar.Speed * dt;
-            Avatar.Location.Y += newY * Avatar.Speed * dt;
 
             Avatar.UpdateVelocity(newX, newY);
         }
@@ -133,9 +129,9 @@ namespace SRPG.Scene.Overworld
 
         private bool IsValidLocation(Rectangle rect)
         {
-            for(var x = rect.X; x < rect.X + rect.Width; x += 6)
+            for(var x = rect.X; x < rect.X + rect.Width; x++)
             {
-                for(var y = rect.Y; y < rect.Y + rect.Height; y += 6)
+                for(var y = rect.Y; y < rect.Y + rect.Height; y++)
                 {
                     // sandbag grids have a 1:6 scaling
                     if (Zone.Sandbag.Weight[x / 6, y / 6] < 250)

@@ -17,6 +17,7 @@ namespace SRPG.Data
         /// <summary>
         /// The SpriteObject that acts as a visual representation of this character on the battlefield.
         /// </summary>
+        /// 
         public SpriteObject Sprite;
         /// <summary>
         /// An X,Y pair indicating where on the current battlefield this character is located. Outside of a battle scene,
@@ -27,16 +28,39 @@ namespace SRPG.Data
 
         public Direction Direction;
 
+
         private Vector2 Velocity;
 
 
-
         public int FeetWidth = 0;
+
+
         public int FeetHeight = 0;
+
 
         public EventHandler Interact = (sender, args) => { };
 
+
         public int Speed = 150;
+
+
+        public Rectangle GetFeet()
+        {
+            return new Rectangle(
+                (int)(Location.X + Sprite.Width / 2 - FeetWidth / 2),
+                (int)(Location.Y + Sprite.Height - FeetHeight),
+                FeetWidth,
+                FeetHeight
+            );
+        }
+
+
+        public void UpdateVelocity(float x, float y)
+        {
+            Velocity.X = x;
+            Velocity.Y = y;
+            UpdateAnimation();
+        }
 
 
         private void UpdateAnimation()
@@ -70,6 +94,7 @@ namespace SRPG.Data
             }
         }
 
+
         private static List<Direction> ParseActualDirection(float x, float y)
         {
             var dirs = new List<Direction>();
@@ -83,6 +108,7 @@ namespace SRPG.Data
             return dirs;
         }
 
+
         private static Direction StringToDirection(string str)
         {
             switch (str.ToLower())
@@ -93,23 +119,6 @@ namespace SRPG.Data
                 case "right": return Direction.Right;
                 default: throw new Exception();
             }
-        }
-
-        public Rectangle GetFeet()
-        {
-            return new Rectangle(
-                (int)(Location.X + Sprite.Width / 2 - FeetWidth / 2),
-                (int)(Location.Y + Sprite.Height - FeetHeight),
-                FeetWidth,
-                FeetHeight
-            );
-        }
-
-        public void UpdateVelocity(float x, float y)
-        {
-            Velocity.X = x;
-            Velocity.Y = y;
-            UpdateAnimation();
         }
     }
 }
