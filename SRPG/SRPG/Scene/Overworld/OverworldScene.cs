@@ -40,68 +40,86 @@ namespace SRPG.Scene.Overworld
             base.Update(gameTime, input);
 
             var dt = (((float)gameTime.ElapsedGameTime.Milliseconds / 1000));
-            var movementSpeed = 150;
 
-            float yRevert = 0, xRevert = 0;
+            // update the player's avatar
+            UpdateAvatarMovement(dt);
+            CheckAvatarDoor();
 
-            Avatar.Velocity.X = MathHelper.Clamp(Avatar.Velocity.X, -1, 1);
-            Avatar.Location.X += Avatar.Velocity.X * dt * movementSpeed;
+            // update all characters in the zone
+            UpdateCharacterMovements(dt);
+        }
 
-            if(!IsValidLocation(Avatar.GetFeet()))
+        private void UpdateAvatarMovement(float dt)
+        {
+            float newX = 0;
+            float newY = 0;
+            var feet = Avatar.GetFeet();
+
+            if (_directions[Direction.Left] && !_directions[Direction.Right]) newX = -1;
+            else if (_directions[Direction.Right] && !_directions[Direction.Left]) newX = 1;
+
+            feet.X += (int)(newX*dt*Avatar.Speed);
+
+            if (!IsValidLocation(feet))
             {
-                xRevert = Avatar.Velocity.X;
-                Avatar.Location.X -= Avatar.Velocity.X*dt*movementSpeed;
-                Avatar.Velocity.X = 0;
-
+                newX = 0;
+                feet.X -= (int) (newX*dt*Avatar.Speed);
             }
 
-            Avatar.Velocity.Y = MathHelper.Clamp(Avatar.Velocity.Y, -1, 1);
-            Avatar.Location.Y += Avatar.Velocity.Y * dt * movementSpeed;
+            if (_directions[Direction.Up] && !_directions[Direction.Down]) newY = -1;
+            else if (_directions[Direction.Down] && !_directions[Direction.Up]) newY = 1;
 
-            if (!IsValidLocation(Avatar.GetFeet()))
+            feet.Y += (int)(newY*dt*Avatar.Speed);
+
+            if (!IsValidLocation(feet))
             {
-                yRevert = Avatar.Velocity.Y;
-                Avatar.Location.Y -= Avatar.Velocity.Y*dt*movementSpeed;
-                Avatar.Velocity.Y = 0;
+                newY = 0;
+                feet.Y -= (int) (newY*dt*Avatar.Speed);
             }
 
             Avatar.Sprite.Z = Avatar.Sprite.Y + Avatar.Sprite.Height;
 
-            Avatar.Velocity.X += xRevert;
-            Avatar.Velocity.Y += yRevert;
+            Avatar.Location.X += newX * Avatar.Speed * dt;
+            Avatar.Location.Y += newY * Avatar.Speed * dt;
 
-            Avatar.UpdateAnimation();
+            Avatar.UpdateVelocity(newX, newY);
+        }
 
-            // find a door that the avatar is in that leads elsewhere
-            var door = (from d in Zone.Doors where d.Location.Intersects(Avatar.GetFeet()) && !String.IsNullOrEmpty(d.Zone) select d);
-            if(door.Any() && door.First().Name != _startDoor)
+        private void CheckAvatarDoor()
+        {
+            var door =
+                (from d in Zone.Doors where d.Location.Intersects(Avatar.GetFeet()) && !String.IsNullOrEmpty(d.Zone) select d);
+            if (door.Any() && door.First().Name != _startDoor)
             {
-                SetZone(Zone.Factory(door.First().Zone), door.First().ZoneDoor);    
+                SetZone(Zone.Factory(door.First().Zone), door.First().ZoneDoor);
             }
             else if (!door.Any())
             {
                 _startDoor = "";
             }
+        }
 
-            foreach(var character in _characterMovements.Keys.ToList())
+        private void UpdateCharacterMovements(float dt)
+        {
+            foreach (var character in _characterMovements.Keys.ToList())
             {
                 var vector = _characterMovements[character][0];
                 float x = 0;
                 float y = 0;
 
-                if(vector.X > 1) x = movementSpeed;
-                else if (vector.X < -1) x = 0 - movementSpeed;
-                
+                if (vector.X > 1) x = Zone.Characters[character].Speed;
+                else if (vector.X < -1) x = 0 - Zone.Characters[character].Speed;
+
                 _characterMovements[character][0].X -= x*dt;
-                Zone.Characters[character].Location.X += x * dt;
+                Zone.Characters[character].Location.X += x*dt;
 
-                if (vector.Y > 1) y = movementSpeed;
-                else if (vector.Y < -1) y = 0 - movementSpeed;
+                if (vector.Y > 1) y = Zone.Characters[character].Speed;
+                else if (vector.Y < -1) y = 0 - Zone.Characters[character].Speed;
 
-                _characterMovements[character][0].Y -= y * dt;
-                Zone.Characters[character].Location.Y += y * dt;
+                _characterMovements[character][0].Y -= y*dt;
+                Zone.Characters[character].Location.Y += y*dt;
 
-                if(Math.Abs(vector.X) <= 1 && Math.Abs(vector.Y) <= 1)
+                if (Math.Abs(vector.X) <= 1 && Math.Abs(vector.Y) <= 1)
                 {
                     var movements = _characterMovements[character].ToList();
                     movements.RemoveAt(0);
@@ -109,11 +127,8 @@ namespace SRPG.Scene.Overworld
                     else _characterMovements[character] = movements.ToArray();
                 }
 
-                Zone.Characters[character].Velocity.X = x;
-                Zone.Characters[character].Velocity.Y = y;
-                Zone.Characters[character].UpdateAnimation();
+                Zone.Characters[character].UpdateVelocity(x, y);
             }
-            
         }
 
         private bool IsValidLocation(Rectangle rect)
@@ -158,17 +173,7 @@ namespace SRPG.Scene.Overworld
         public void ChangeDirection(Direction direction, bool enabled)
         {
             if (_isPaused) return;
-
-            if (_directions[direction] == enabled) return;
             _directions[direction] = enabled;
-
-            switch (direction)
-            {
-                case Direction.Up: Avatar.Velocity.Y += enabled ? -1 : 1; break;
-                case Direction.Down: Avatar.Velocity.Y += enabled ? 1 : -1; break;
-                case Direction.Right: Avatar.Velocity.X += enabled ? 1 : -1; break;
-                case Direction.Left: Avatar.Velocity.X += enabled ? -1 : 1; break;
-            }
         }
 
         public void Interact()
@@ -242,8 +247,7 @@ namespace SRPG.Scene.Overworld
 
         private void StopCharacter()
         {
-            Avatar.Velocity.X = 0;
-            Avatar.Velocity.Y = 0;
+            Avatar.UpdateVelocity(0, 0);
             _directions[Direction.Up] = false;
             _directions[Direction.Down] = false;
             _directions[Direction.Left] = false;

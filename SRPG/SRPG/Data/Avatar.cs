@@ -27,7 +27,7 @@ namespace SRPG.Data
 
         public Direction Direction;
 
-        public Vector2 Velocity;
+        private Vector2 Velocity;
 
 
 
@@ -36,9 +36,10 @@ namespace SRPG.Data
 
         public EventHandler Interact = (sender, args) => { };
 
+        public int Speed = 150;
 
 
-        public void UpdateAnimation()
+        private void UpdateAnimation()
         {
             // if they are currently moving
             if (Math.Abs(Velocity.X) > 0 || Math.Abs(Velocity.Y) > 0)
@@ -102,6 +103,13 @@ namespace SRPG.Data
                 FeetWidth,
                 FeetHeight
             );
+        }
+
+        public void UpdateVelocity(float x, float y)
+        {
+            Velocity.X = x;
+            Velocity.Y = y;
+            UpdateAnimation();
         }
     }
 }
