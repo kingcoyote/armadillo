@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using SRPG.Data;
 using Torch;
+using Game = Torch.Game;
 
 namespace SRPG.Scene.Battle
 {
@@ -9,17 +13,73 @@ namespace SRPG.Scene.Battle
     {
         public BattleBoard BattleBoard;
         public int FactionTurn;
-        public List<SpriteObject> ImageLayers;
         public bool AwaitingAction;
 
         public BattleScene(Game game) : base(game) { }
+
+        private Dictionary<Direction, bool> _camDirections = new Dictionary<Direction, bool>() 
+            { {Direction.Up, false}, {Direction.Right, false}, {Direction.Down, false}, {Direction.Left, false} }; 
+
+        private const int CamScrollSpeed = 450;
+
+        private float _x;
+        private float _y;
 
         /// <summary>
         /// Pre-battle initialization sequence to load characters, the battleboard and the image layers.
         /// </summary>
         public override void Initialize()
         {
-            throw new NotImplementedException();
+
+        }
+
+        public override void Update(GameTime gameTime, Input input)
+        {
+            float dt = gameTime.ElapsedGameTime.Milliseconds/1000F;
+
+            if(FactionTurn == 0)
+            {
+                float x = 0;
+                float y = 0;
+
+                if(input.IsKeyDown(Keys.A) && !input.IsKeyDown(Keys.D))
+                {
+                    x = 1;
+                } else if (input.IsKeyDown(Keys.D) && !input.IsKeyDown(Keys.A))
+                {
+                    x = -1;
+                }
+
+                if (input.IsKeyDown(Keys.S) && !input.IsKeyDown(Keys.W))
+                {
+                    y = -1;
+                }
+                else if (input.IsKeyDown(Keys.W) && !input.IsKeyDown(Keys.S))
+                {
+                    y = 1;
+                }
+
+                _x += x * dt * CamScrollSpeed;
+                _y += y * dt * CamScrollSpeed;
+            }
+
+            UpdateCamera();
+        }
+
+        private void UpdateCamera()
+        {
+            Layers["bg"].X = _x;
+            Layers["bg"].Y = _y;
+        }
+
+        public void SetBattle(string battleName)
+        {
+            switch(battleName)
+            {
+                case "coliseum/hall":
+                    Layers.Add("bg", new BackgroundLayer(this, "Zones/Coliseum/Halls/halls"));
+                    break;
+            }
         }
 
         /// <summary>

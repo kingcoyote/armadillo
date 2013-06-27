@@ -55,6 +55,12 @@ namespace SRPG
             ChangeScenes("shop");
         }
 
+        public void StartBattle(string battleName)
+        {
+            ChangeScenes("battle");
+            ((BattleScene) Scenes["battle"]).SetBattle(battleName);
+        }
+
         public void EquipCharacter(Combatant character, Item newItem)
         {
             if(Inventory.Contains(newItem))

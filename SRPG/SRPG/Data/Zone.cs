@@ -114,6 +114,14 @@ namespace SRPG.Data
         }
 
         #endregion
+
+        public EventHandler<InteractEventArgs> TestBattle(string battleName)
+        {
+            return (sender, args) =>
+                {
+                    ((SRPGGame) Game.GetInstance()).StartBattle(battleName);
+                };
+        }
     }
 
     class ZoneException : Exception
