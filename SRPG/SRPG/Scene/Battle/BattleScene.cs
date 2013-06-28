@@ -30,7 +30,19 @@ namespace SRPG.Scene.Battle
         /// </summary>
         public override void Initialize()
         {
+            Layers.Add("character stats", new CharacterStats(this) { ZIndex = 5000, Visible = false});
+        }
 
+        public override void Start()
+        {
+            base.Start();
+            Game.GetInstance().IsMouseVisible = true;
+        }
+
+        public override void Stop()
+        {
+            base.Stop();
+            Game.GetInstance().IsMouseVisible = false;
         }
 
         public override void Update(GameTime gameTime, Input input)
@@ -141,5 +153,19 @@ namespace SRPG.Scene.Battle
         // onclick handlers for selecting characters
         // onclick handlers for selecting menu items
         // round change
+
+        public void ShowCharacterStats(Combatant character)
+        {
+            ((CharacterStats) Layers["character stats"]).SetCharacter(character);
+            Layers["character stats"].Visible = true;
+        }
+
+        public void HideCharacterStats(Combatant character)
+        {
+            if (((CharacterStats)Layers["character stats"]).Character == character)
+            {
+                Layers["character stats"].Visible = false;
+            }
+        }
     }
 }
