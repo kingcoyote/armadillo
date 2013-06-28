@@ -11,7 +11,7 @@ namespace SRPG.Data
         /// <summary>
         /// A list of all characters that are currently on the board.
         /// </summary>
-        public List<Combatant> Characters;
+        public List<Combatant> Characters = new List<Combatant>();
         /// <summary>
         /// A grid indicating what squares are inaccessible due to obstructions, such as water, walls, tables, etc. A 0 indicates
         /// that a square is inaccessible.

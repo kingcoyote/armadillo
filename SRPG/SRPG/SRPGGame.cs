@@ -126,6 +126,7 @@ namespace SRPG
             character.Stats[Stat.Speed] = 12;
             character.Stats[Stat.Hit] = 15;
             character.AbilityExperienceLevels.Add(Ability.Factory("lunge"), 200);
+            character.Sprite = CharacterClass.GenerateCharacter("fighter");
             Party.Add(character);
 
             character = new Combatant();
@@ -138,6 +139,7 @@ namespace SRPG
             character.Stats[Stat.Intelligence] = 15;
             character.Stats[Stat.Speed] = 12;
             character.Stats[Stat.Hit] = 18;
+            character.Sprite = CharacterClass.GenerateCharacter("cleric");
             Party.Add(character);
 
             character = new Combatant();
@@ -150,6 +152,7 @@ namespace SRPG
             character.Stats[Stat.Intelligence] = 6;
             character.Stats[Stat.Speed] = 18;
             character.Stats[Stat.Hit] = 22;
+            character.Sprite = CharacterClass.GenerateCharacter("ranger");
             Party.Add(character);
 
             character = new Combatant();
@@ -162,6 +165,7 @@ namespace SRPG
             character.Stats[Stat.Intelligence] = 18;
             character.Stats[Stat.Speed] = 8;
             character.Stats[Stat.Hit] = 15;
+            character.Sprite = CharacterClass.GenerateCharacter("wizard");
             Party.Add(character);
 
             character = new Combatant();
@@ -182,6 +186,7 @@ namespace SRPG
             character.AbilityExperienceLevels.Add(Ability.Factory("untouchable"), 200);
             character.AbilityExperienceLevels.Add(Ability.Factory("blur"), 200);
             character.Inventory.Add(Item.Factory("unarmed/tigerclaws"));
+            character.Sprite = CharacterClass.GenerateCharacter("monk");
             Party.Add(character);
 
 

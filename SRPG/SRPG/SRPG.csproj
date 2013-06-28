@@ -140,6 +140,7 @@
     <Compile Include="Data\InteractEventArgs.cs" />
     <Compile Include="Data\InteractiveObject.cs" />
     <Compile Include="Data\Layers\DialogLayer.cs" />
+    <Compile Include="Scene\Battle\BattleBoardLayer.cs" />
     <Compile Include="Scene\Battle\BattleGridLayer.cs" />
     <Compile Include="Scene\MainMenu\MainMenu.cs" />
     <Compile Include="Scene\MainMenu\MenuOptions.cs" />

@@ -35,6 +35,8 @@ namespace SRPG.Scene.Battle
 
         public override void Update(GameTime gameTime, Input input)
         {
+            base.Update(gameTime, input);
+
             float dt = gameTime.ElapsedGameTime.Milliseconds/1000F;
 
             if(FactionTurn == 0)
@@ -70,16 +72,43 @@ namespace SRPG.Scene.Battle
         {
             Layers["battlegrid"].X = _x;
             Layers["battlegrid"].Y = _y;
+
+            Layers["battleboardlayer"].X = _x;
+            Layers["battleboardlayer"].Y = _y;
         }
 
         public void SetBattle(string battleName)
         {
+            BattleBoard = new BattleBoard();
+
+            var partyGrid = new List<Point>();
+
             switch(battleName)
             {
                 case "coliseum/hall":
                     Layers.Add("battlegrid", new BattleGridLayer(this, "Zones/Coliseum/Halls/halls", "Zones/Coliseum/Halls/battle"));
+                    BattleBoard.Sandbag = Grid.FromBitmap("Zones/Coliseum/Halls/battle");
+
+                    partyGrid.Add(new Point(14,35));
+                    partyGrid.Add(new Point(15,35));
+                    partyGrid.Add(new Point(13,35));
+                    partyGrid.Add(new Point(14,36));
+                    partyGrid.Add(new Point(15,36));
+                    partyGrid.Add(new Point(13,36));
+
                     break;
             }
+
+
+            for(var i = 0; i < ((SRPGGame)Game).Party.Count; i++)
+            {
+                var character = ((SRPGGame) Game).Party[i];
+                character.Sprite.Location.X = partyGrid[i].X;
+                character.Sprite.Location.Y = partyGrid[i].Y;
+                BattleBoard.Characters.Add(character);
+            }
+
+            Layers.Add("battleboardlayer", new BattleBoardLayer(this, BattleBoard));
         }
 
         /// <summary>
