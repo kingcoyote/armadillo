@@ -254,11 +254,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Zones\Coliseum\Halls\sandbag.jpg">
-      <Name>sandbag</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Characters\Fighter6.png">
@@ -321,6 +316,16 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
     <Compile Include="Zones\Village\Inn\sandbag.png">
+      <Name>sandbag</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Zones\Coliseum\Halls\battle.png">
+      <Name>battle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Zones\Coliseum\Halls\sandbag.png">
       <Name>sandbag</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
