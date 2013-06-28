@@ -68,9 +68,6 @@ namespace SRPG.Scene.Battle
 
         private void UpdateCamera()
         {
-            Layers["bg"].X = _x;
-            Layers["bg"].Y = _y;
-
             Layers["battlegrid"].X = _x;
             Layers["battlegrid"].Y = _y;
         }
@@ -80,8 +77,7 @@ namespace SRPG.Scene.Battle
             switch(battleName)
             {
                 case "coliseum/hall":
-                    Layers.Add("bg", new BackgroundLayer(this, "Zones/Coliseum/Halls/halls"));
-                    Layers.Add("battlegrid", new BattleGridLayer(this, "Zones/Coliseum/Halls/battle"));
+                    Layers.Add("battlegrid", new BattleGridLayer(this, "Zones/Coliseum/Halls/halls", "Zones/Coliseum/Halls/battle"));
                     break;
             }
         }

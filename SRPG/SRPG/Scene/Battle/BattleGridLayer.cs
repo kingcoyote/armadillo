@@ -12,8 +12,9 @@ namespace SRPG.Scene.Battle
     {
         private Grid _grid;
 
-        public BattleGridLayer(Torch.Scene scene, string gridName) : base(scene)
+        public BattleGridLayer(Torch.Scene scene, string imageName, string gridName) : base(scene)
         {
+            Objects.Add("bg", new ImageObject(imageName) { Z = -1 });
             _grid = Grid.FromBitmap(gridName);
 
             UpdateGrid();
@@ -32,7 +33,7 @@ namespace SRPG.Scene.Battle
                         Objects.Add(
                             string.Format("grid/{0}-{1}", i, j),
                             new ImageObject("Battle/gridhighlight") 
-                                {X = i*50, Y = j*50, Z = 5000}
+                                {X = i*50, Y = j*50, Z = 10}
                         );
                     }
                 }
