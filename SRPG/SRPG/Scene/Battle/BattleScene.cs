@@ -70,6 +70,9 @@ namespace SRPG.Scene.Battle
         {
             Layers["bg"].X = _x;
             Layers["bg"].Y = _y;
+
+            Layers["battlegrid"].X = _x;
+            Layers["battlegrid"].Y = _y;
         }
 
         public void SetBattle(string battleName)
@@ -78,6 +81,7 @@ namespace SRPG.Scene.Battle
             {
                 case "coliseum/hall":
                     Layers.Add("bg", new BackgroundLayer(this, "Zones/Coliseum/Halls/halls"));
+                    Layers.Add("battlegrid", new BattleGridLayer(this, "Zones/Coliseum/Halls/battle"));
                     break;
             }
         }
