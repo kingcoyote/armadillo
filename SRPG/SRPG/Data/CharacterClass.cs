@@ -65,7 +65,7 @@ namespace SRPG.Data
                     spriteHeight = 100;
                     character = new Avatar
                         {
-                            Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/fighter")),
+                            Sprite = new SpriteObject("Characters/fighter"),
                             FeetWidth = 40,
                             FeetHeight = 25
                         };
@@ -84,7 +84,7 @@ namespace SRPG.Data
                     spriteHeight = 75;
                     character = new Avatar
                     {
-                        Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/TempRanger")),
+                        Sprite = new SpriteObject("Characters/TempRanger"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -103,7 +103,7 @@ namespace SRPG.Data
                     spriteHeight = 75;
                     character = new Avatar
                     {
-                        Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/TempCleric")),
+                        Sprite = new SpriteObject("Characters/TempCleric"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -122,7 +122,7 @@ namespace SRPG.Data
                     spriteHeight = 75;
                     character = new Avatar
                     {
-                        Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/TempWizard")),
+                        Sprite = new SpriteObject("Characters/TempWizard"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -141,7 +141,7 @@ namespace SRPG.Data
                     spriteHeight = 75;
                     character = new Avatar
                     {
-                        Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/TempMonk")),
+                        Sprite = new SpriteObject("Characters/TempMonk"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -160,7 +160,7 @@ namespace SRPG.Data
                     spriteHeight = 75;
                     character = new Avatar
                     {
-                        Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/TempEnemy")),
+                        Sprite = new SpriteObject("Characters/TempEnemy"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -179,7 +179,7 @@ namespace SRPG.Data
                     spriteHeight = 72;
                     character = new Avatar
                         {
-                            Sprite = new SpriteObject(Game.GetInstance().Content.Load<Texture2D>("Characters/link")),
+                            Sprite = new SpriteObject("Characters/link"),
                             FeetWidth = 40,
                             FeetHeight = 25
                         };

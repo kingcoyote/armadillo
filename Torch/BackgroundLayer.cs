@@ -13,8 +13,7 @@ namespace Torch
 
         public BackgroundLayer(Scene scene, string image) : base(scene)
         {
-            _backgroundImage = Scene.Game.Content.Load<Texture2D>(image);
-            Objects.Add("bg", new ImageObject(_backgroundImage));
+            Objects.Add("bg", new ImageObject(image));
         }
 
         public override void Update(GameTime gameTime, Input input) { }

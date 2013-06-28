@@ -15,7 +15,7 @@ namespace SRPG.Zones.Kakariko
             Sandbag = Grid.FromBitmap("Zones/Kakariko/Bombshop/sandbag");
             ImageLayers = new List<ImageObject>
                 {
-                    new ImageObject(Game.GetInstance().Content.Load<Texture2D>("Zones/Kakariko/Bombshop/bombshop")) {Z = -1},
+                    new ImageObject("Zones/Kakariko/Bombshop/bombshop") {Z = -1},
                 };
 
             Objects = new List<InteractiveObject>();

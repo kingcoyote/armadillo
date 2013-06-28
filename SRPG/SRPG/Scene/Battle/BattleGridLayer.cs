@@ -31,7 +31,7 @@ namespace SRPG.Scene.Battle
                     {
                         Objects.Add(
                             string.Format("grid/{0}-{1}", i, j),
-                            new ImageObject(Game.GetInstance().Content.Load<Texture2D>("Battle/gridhighlight")) 
+                            new ImageObject("Battle/gridhighlight") 
                                 {X = i*50, Y = j*50, Z = 5000}
                         );
                     }

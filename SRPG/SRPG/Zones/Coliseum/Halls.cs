@@ -16,7 +16,7 @@ namespace SRPG.Zones.Coliseum
         {
             Name = "Coliseum Halls";
             Sandbag = Grid.FromBitmap("Zones/Coliseum/Halls/sandbag");
-            ImageLayers.Add(new ImageObject(Game.GetInstance().Content.Load<Texture2D>("Zones/Coliseum/Halls/halls")));
+            ImageLayers.Add(new ImageObject("Zones/Coliseum/Halls/halls"));
 
             Doors.Add(new Door {Location = new Rectangle(691, 1847, 67, 43), Name = "cell", Orientation = Direction.Up });
             Doors.Add(new Door { Location = new Rectangle(446, 108, 57, 31), Name = "village", Orientation = Direction.Down });

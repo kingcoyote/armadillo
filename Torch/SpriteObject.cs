@@ -7,7 +7,7 @@ namespace Torch
 {
     public class SpriteObject : ImageObject
     {
-        public SpriteObject(Texture2D image) : base(image) { }
+        public SpriteObject(string image) : base(image) { }
         private readonly Dictionary<string, SpriteAnimation> _animations = new Dictionary<string, SpriteAnimation>();
         private string _currentAnimation;
         private int _currentFrame;

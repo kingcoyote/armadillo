@@ -18,7 +18,7 @@ namespace SRPG.Scene.PartyMenu
             ContentManager cm = Game.GetInstance().Content;
 
             var font = cm.Load<SpriteFont>("Menu");
-            Objects.Add("cursor", new ImageObject(cm.Load<Texture2D>("PartyMenu/cursor")));
+            Objects.Add("cursor", new ImageObject("PartyMenu/cursor"));
 
             var screenWidth = Game.GetInstance().GraphicsDevice.Viewport.Width;
 

@@ -25,9 +25,9 @@ namespace Torch
             set { _height = value; }
         }
 
-        public ImageObject(Texture2D image)
+        public ImageObject(string imageName)
         {
-            _image = image;
+            _image = Game.GetInstance().Content.Load<Texture2D>(imageName);
             SourceRectangle = new Rectangle(0, 0, _image.Width, _image.Height);
         }
 

@@ -17,7 +17,7 @@ namespace SRPG.Zones.Village
             Name = "Village Warehouse";
             Sandbag = Grid.FromBitmap("Zones/Village/Warehouse/sandbag");
 
-            ImageLayers.Add(new ImageObject(Game.GetInstance().Content.Load<Texture2D>("Zones/Village/Warehouse/warehouse")));
+            ImageLayers.Add(new ImageObject("Zones/Village/Warehouse/warehouse"));
 
             Doors.Add(new Door { Location = new Rectangle(56*6, 130*6, 10*6, 1), Name = "entrance", Orientation = Direction.Up, Zone = "village/village", ZoneDoor = "warehouse exit"});
         }
