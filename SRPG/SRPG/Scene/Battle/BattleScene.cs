@@ -103,8 +103,8 @@ namespace SRPG.Scene.Battle
             for(var i = 0; i < ((SRPGGame)Game).Party.Count; i++)
             {
                 var character = ((SRPGGame) Game).Party[i];
-                character.Sprite.Location.X = partyGrid[i].X;
-                character.Sprite.Location.Y = partyGrid[i].Y;
+                character.Avatar.Location.X = partyGrid[i].X;
+                character.Avatar.Location.Y = partyGrid[i].Y;
                 BattleBoard.Characters.Add(character);
             }
 

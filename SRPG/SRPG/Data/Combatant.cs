@@ -73,7 +73,7 @@ namespace SRPG.Data
         /// </summary>
         public bool CanAct;
 
-        public Avatar Sprite;
+        public Avatar Avatar;
 
         public Dictionary<Stat, int> StatExperienceLevels;
         public Dictionary<Ability, int> AbilityExperienceLevels = new Dictionary<Ability, int>();

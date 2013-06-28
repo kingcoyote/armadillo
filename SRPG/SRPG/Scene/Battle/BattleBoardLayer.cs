@@ -24,10 +24,10 @@ namespace SRPG.Scene.Battle
 
             foreach(var character in _board.Characters)
             {
-                character.Sprite.Sprite.X = (int)(character.Sprite.Location.X * 50 + 25 - character.Sprite.Sprite.Width/2);
-                character.Sprite.Sprite.Y = (int)(character.Sprite.Location.Y * 50 + 25 - character.Sprite.Sprite.Height + character.Sprite.GetFeet().Height / 2);
-                character.Sprite.Sprite.Z = character.Sprite.Sprite.Y;
-                Objects.Add("character/" + character.Name, character.Sprite.Sprite);
+                character.Avatar.Sprite.X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width/2);
+                character.Avatar.Sprite.Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2);
+                character.Avatar.Sprite.Z = character.Avatar.Sprite.Y;
+                Objects.Add("character/" + character.Name, character.Avatar.Sprite);
             }
         }
     }
