@@ -30,23 +30,7 @@ namespace SRPG.Scene.Overworld
         {
             var scene = ((OverworldScene) Scene);
 
-            if (args.WhichKey == _controls["left"])
-            {
-                scene.ChangeDirection(Direction.Left, true);
-            }
-            else if (args.WhichKey == _controls["right"])
-            {
-                scene.ChangeDirection(Direction.Right, true);
-            }
-            else if (args.WhichKey == _controls["up"])
-            {
-                scene.ChangeDirection(Direction.Up, true);
-            }
-            else if (args.WhichKey == _controls["down"])
-            {
-                scene.ChangeDirection(Direction.Down, true);
-            }
-            else if (args.WhichKey == _controls["party menu"])
+            if (args.WhichKey == _controls["party menu"])
             {
                 scene.OpenPartyMenu();
             }
@@ -62,22 +46,7 @@ namespace SRPG.Scene.Overworld
 
         public void HandleKeyUp(object sender, KeyboardEventArgs args)
         {
-            if (args.WhichKey == _controls["left"])
-            {
-                ((OverworldScene) Scene).ChangeDirection(Direction.Left, false);
-            }
-            else if (args.WhichKey == _controls["right"])
-            {
-                ((OverworldScene)Scene).ChangeDirection(Direction.Right, false);
-            }
-            else if (args.WhichKey == _controls["up"])
-            {
-                ((OverworldScene)Scene).ChangeDirection(Direction.Up, false);
-            }
-            else if (args.WhichKey == _controls["down"])
-            {
-                ((OverworldScene)Scene).ChangeDirection(Direction.Down, false);
-            }
+            
         }
     }
 }

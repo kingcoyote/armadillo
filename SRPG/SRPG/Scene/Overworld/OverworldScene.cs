@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using SRPG.Data;
 using SRPG.Data.Layers;
 using Torch;
@@ -15,8 +16,6 @@ namespace SRPG.Scene.Overworld
         public Zone Zone;
 
         private bool _isPaused = false;
-        private readonly Dictionary<Direction, bool> _directions = new Dictionary<Direction, bool>(4)
-            {{ Direction.Up, false},{Direction.Down,false},{Direction.Left, false},{Direction.Right,false}};
 
         private readonly Dictionary<string, Vector2[]> _characterMovements = new Dictionary<string, Vector2[]>();
 
@@ -42,20 +41,20 @@ namespace SRPG.Scene.Overworld
             var dt = (((float)gameTime.ElapsedGameTime.Milliseconds / 1000));
 
             // update the player's avatar
-            UpdateAvatarMovement(dt);
+            UpdateAvatarMovement(dt, input);
             CheckAvatarDoor();
 
             // update all characters in the zone
             UpdateCharacterMovements(dt);
         }
 
-        private void UpdateAvatarMovement(float dt)
+        private void UpdateAvatarMovement(float dt, Input input)
         {
             float newX = 0;
             float newY = 0;
 
-            if (_directions[Direction.Left] && !_directions[Direction.Right]) newX = -1;
-            else if (_directions[Direction.Right] && !_directions[Direction.Left]) newX = 1;
+            if (input.IsKeyDown(Keys.A) && !input.IsKeyDown(Keys.D)) newX = -1;
+            else if (input.IsKeyDown(Keys.D) && !input.IsKeyDown(Keys.A)) newX = 1;
 
             Avatar.Location.X += newX * dt * Avatar.Speed;
 
@@ -65,8 +64,8 @@ namespace SRPG.Scene.Overworld
                 newX = 0;
             }
 
-            if (_directions[Direction.Up] && !_directions[Direction.Down]) newY = -1;
-            else if (_directions[Direction.Down] && !_directions[Direction.Up]) newY = 1;
+            if (input.IsKeyDown(Keys.W) && !input.IsKeyDown(Keys.S)) newY = -1;
+            else if (input.IsKeyDown(Keys.S) && !input.IsKeyDown(Keys.W)) newY = 1;
 
             Avatar.Location.Y += newY*dt*Avatar.Speed;
 
@@ -166,12 +165,6 @@ namespace SRPG.Scene.Overworld
             _startDoor = doorName;
         }
 
-        public void ChangeDirection(Direction direction, bool enabled)
-        {
-            if (_isPaused) return;
-            _directions[direction] = enabled;
-        }
-
         public void Interact()
         {
             if (_isPaused) return;
@@ -244,10 +237,6 @@ namespace SRPG.Scene.Overworld
         private void StopCharacter()
         {
             Avatar.UpdateVelocity(0, 0);
-            _directions[Direction.Up] = false;
-            _directions[Direction.Down] = false;
-            _directions[Direction.Left] = false;
-            _directions[Direction.Right] = false;
         }
 
         public void EndDialog()
