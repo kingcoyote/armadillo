@@ -24,7 +24,7 @@ namespace SRPG.Zones.Coliseum
             Objects.Add(new InteractiveObject{ Interact = SimpleDoor("coliseum/cell", "halls"), Location = new Rectangle(691, 1895, 67, 12) });
             Objects.Add(new InteractiveObject { Interact = SimpleDoor("village/village", "coliseum"), Location = new Rectangle(446, 90, 57, 12) });
 
-            Objects.Add(new InteractiveObject { Interact = TestBattle("coliseum/hall"), Location = new Rectangle(1839, 1070, 16, 65) });
+            Objects.Add(new InteractiveObject { Interact = TestBattle("coliseum/halls"), Location = new Rectangle(1839, 1070, 16, 65) });
         }
     }
 }

@@ -97,7 +97,7 @@ namespace SRPG.Scene.Battle
 
             switch(battleName)
             {
-                case "coliseum/hall":
+                case "coliseum/halls":
                     Layers.Add("battlegrid", new BattleGridLayer(this, "Zones/Coliseum/Halls/halls", "Zones/Coliseum/Halls/battle"));
                     BattleBoard.Sandbag = Grid.FromBitmap("Zones/Coliseum/Halls/battle");
 
