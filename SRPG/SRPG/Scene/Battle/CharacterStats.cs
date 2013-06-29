@@ -22,7 +22,9 @@ namespace SRPG.Scene.Battle
             var y = 50;
 
             Objects.Add("box", new TextureObject { Color = Color.Blue, X = x, Y = y, Width = 400, Height = 200, Z = -1 });
+            
             Objects.Add("name", new TextObject { Font = font, X = x + 25, Y = y + 25, Color = Color.White, Value = "" });
+            Objects.Add("class", new TextObject { Font = font, X = x + 375, Y = y + 25, Color = Color.White, Value = "", Alignment = TextObject.AlignTypes.Right });
 
             Objects.Add("health bar back", new TextureObject { Color = Color.Black, Height = 25, X = x + 25, Y = y + 75, Width = 300, Z = 0 });
             Objects.Add("mana bar back", new TextureObject { Color = Color.Black, Height = 25, X = x + 25, Y = y + 125, Width = 300, Z = 0 });
@@ -39,6 +41,8 @@ namespace SRPG.Scene.Battle
             Character = character;
 
             ((TextObject)Objects["name"]).Value = Character.Name;
+            ((TextObject)Objects["class"]).Value = Character.Class.Name;
+
             ((TextObject)Objects["health num"]).Value = Character.CurrentHealth.ToString();
             ((TextObject)Objects["mana num"]).Value = Character.CurrentMana.ToString();
 
