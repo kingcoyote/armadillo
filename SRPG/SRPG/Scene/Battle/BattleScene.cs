@@ -109,6 +109,8 @@ namespace SRPG.Scene.Battle
                     partyGrid.Add(new Point(13,36));
 
                     break;
+                default:
+                    throw new Exception("unknown battle " + battleName);
             }
 
 
