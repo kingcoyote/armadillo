@@ -11,11 +11,16 @@ namespace SRPG.Scene.Battle
     class BattleGridLayer : Layer
     {
         private Grid _grid;
+        public readonly int Width;
+        public readonly int Height;
 
         public BattleGridLayer(Torch.Scene scene, string imageName, string gridName) : base(scene)
         {
             Objects.Add("bg", new ImageObject(imageName) { Z = -1 });
             _grid = Grid.FromBitmap(gridName);
+
+            Width = Objects["bg"].Width;
+            Height = Objects["bg"].Height;
 
             UpdateGrid();
         }
