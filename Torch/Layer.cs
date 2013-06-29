@@ -52,14 +52,18 @@ namespace Torch
             {
                 obj.Update(gameTime);
 
+                var rect = obj.Rectangle;
+                rect.X += (int)X;
+                rect.Y += (int)Y;
+
                 // check for mouse over
-                if (obj.Rectangle.Contains(input.Cursor) && !obj.Rectangle.Contains(_oldMouseX, _oldMouseY))
+                if (rect.Contains(input.Cursor) && !rect.Contains(_oldMouseX, _oldMouseY))
                 {
                     obj.MouseOver.Invoke(obj, new MouseEventArgs { X = input.Cursor.X, Y = input.Cursor.Y });
                 }
 
                 // check for mouseout
-                if (!obj.Rectangle.Contains(input.Cursor) && obj.Rectangle.Contains(_oldMouseX, _oldMouseY))
+                if (!rect.Contains(input.Cursor) && rect.Contains(_oldMouseX, _oldMouseY))
                 {
                     obj.MouseOut.Invoke(obj, new MouseEventArgs { X = input.Cursor.X, Y = input.Cursor.Y });
                 }
