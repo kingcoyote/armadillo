@@ -53,8 +53,27 @@ namespace SRPG.Scene.Overworld
             float newX = 0;
             float newY = 0;
 
-            if (input.IsKeyDown(Keys.A) && !input.IsKeyDown(Keys.D)) newX = -1;
-            else if (input.IsKeyDown(Keys.D) && !input.IsKeyDown(Keys.A)) newX = 1;
+            if (input.IsKeyDown(Keys.A) && !input.IsKeyDown(Keys.D))
+            {
+                newX = -1;
+                Avatar.Direction = Direction.Left;
+            }
+            else if (input.IsKeyDown(Keys.D) && !input.IsKeyDown(Keys.A))
+            {
+                newX = 1;
+                Avatar.Direction = Direction.Right;
+            }
+
+            if (input.IsKeyDown(Keys.W) && !input.IsKeyDown(Keys.S))
+            {
+                newY = -1;
+                Avatar.Direction = Direction.Up;
+            }
+            else if (input.IsKeyDown(Keys.S) && !input.IsKeyDown(Keys.W))
+            {
+                newY = 1;
+                Avatar.Direction = Direction.Down;
+            }
 
             Avatar.Location.X += newX * dt * Avatar.Speed;
 
@@ -63,9 +82,6 @@ namespace SRPG.Scene.Overworld
                 Avatar.Location.X -= (newX * dt * Avatar.Speed);
                 newX = 0;
             }
-
-            if (input.IsKeyDown(Keys.W) && !input.IsKeyDown(Keys.S)) newY = -1;
-            else if (input.IsKeyDown(Keys.S) && !input.IsKeyDown(Keys.W)) newY = 1;
 
             Avatar.Location.Y += newY*dt*Avatar.Speed;
 

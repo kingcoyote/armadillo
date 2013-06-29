@@ -90,7 +90,7 @@ namespace SRPG.Data
             else
             {
                 // make sure they are standing if they have no velocity
-                Sprite.SetAnimation(Sprite.GetAnimation().Replace("walking", "standing"));
+                Sprite.SetAnimation("standing " + Direction.ToString().ToLower());
             }
         }
 
