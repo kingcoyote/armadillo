@@ -131,6 +131,11 @@ namespace SRPG.Scene.Battle
             }
 
             Layers.Add("battleboardlayer", new BattleBoardLayer(this, BattleBoard));
+
+            _x = 0 - partyGrid[0].X*50 + Game.GetInstance().GraphicsDevice.Viewport.Width / 2;
+            _y = 0 - partyGrid[0].Y*50 + Game.GetInstance().GraphicsDevice.Viewport.Height / 2;
+
+            UpdateCamera();
         }
 
         /// <summary>
