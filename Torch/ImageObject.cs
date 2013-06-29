@@ -13,13 +13,13 @@ namespace Torch
         private int _width = -1;
         private int _height = -1;
 
-        public new int Width 
+        public override int Width 
         {
             get { return _width == -1 ? _image.Width : _width; }
             set { _width = value; }
         }
 
-        public new int Height
+        public override int Height
         {
             get { return _height == -1 ? _image.Height : _height; }
             set { _height = value; }

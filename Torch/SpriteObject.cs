@@ -13,12 +13,12 @@ namespace Torch
         private int _currentFrame;
         private int _frameTimer;
 
-        public new int Width
+        public override int Width
         {
             get { return _animations[_currentAnimation].Size.Width; }
         }
 
-        public new int Height
+        public override int Height
         {
             get { return _animations[_currentAnimation].Size.Height; }
         }
