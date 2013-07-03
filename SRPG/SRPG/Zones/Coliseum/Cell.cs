@@ -27,7 +27,7 @@ namespace SRPG.Zones.Coliseum
             Objects.Add(new InteractiveObject
                 {Interact = TestBattle("coliseum/halls"), Location = new Rectangle(818, 159, 32, 32)});
 
-            Characters.Add("guard", CharacterClass.GenerateCharacter("enemy"));
+            Characters.Add("guard", Avatar.GenerateAvatar("enemy"));
             Characters["guard"].Location.X = 303;
             Characters["guard"].Location.Y = 530;
 

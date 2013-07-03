@@ -113,15 +113,18 @@ namespace SRPG
             Party = new List<Combatant>();
             Inventory = new List<Item>();
 
-            Combatant character;
-
-            character = new Combatant();
-            character.Class = new CharacterClass("fighter", ItemType.Sword, ItemType.Plate);
-            character.Name = "Jaha";
-            character.CurrentHealth = 20;
-            character.MaxHealth = 20;
-            character.CurrentMana = 20;
-            character.MaxMana = 20;
+            var character = new Combatant
+                {
+                    Class = "fighter",
+                    WeaponTypes = ItemType.Sword,
+                    ArmorTypes = ItemType.Plate,
+                    Name = "Jaha",
+                    CurrentHealth = 20,
+                    MaxHealth = 20,
+                    CurrentMana = 20,
+                    MaxMana = 20,
+                    Avatar = Avatar.GenerateAvatar("fighter")
+                };
             character.Stats[Stat.Defense] = 22;
             character.Stats[Stat.Attack] = 18;
             character.Stats[Stat.Wisdom] = 6;
@@ -129,83 +132,7 @@ namespace SRPG
             character.Stats[Stat.Speed] = 12;
             character.Stats[Stat.Hit] = 15;
             character.AbilityExperienceLevels.Add(Ability.Factory("lunge"), 200);
-            character.Avatar = CharacterClass.GenerateCharacter("fighter");
             Party.Add(character);
-
-            character = new Combatant();
-            character.Class = new CharacterClass("cleric", ItemType.Book, ItemType.Cloth);
-            character.Name = "Aeris";
-            character.CurrentHealth = 20;
-            character.MaxHealth = 20;
-            character.CurrentMana = 20;
-            character.MaxMana = 20;
-            character.Stats[Stat.Defense] = 8;
-            character.Stats[Stat.Attack] = 6;
-            character.Stats[Stat.Wisdom] = 22;
-            character.Stats[Stat.Intelligence] = 15;
-            character.Stats[Stat.Speed] = 12;
-            character.Stats[Stat.Hit] = 18;
-            character.Avatar = CharacterClass.GenerateCharacter("cleric");
-            Party.Add(character);
-
-            character = new Combatant();
-            character.Class = new CharacterClass("ranger", ItemType.Gun, ItemType.Mail);
-            character.Name = "Meera";
-            character.CurrentHealth = 20;
-            character.MaxHealth = 20;
-            character.CurrentMana = 20;
-            character.MaxMana = 20;
-            character.Stats[Stat.Defense] = 12;
-            character.Stats[Stat.Attack] = 15;
-            character.Stats[Stat.Wisdom] = 8;
-            character.Stats[Stat.Intelligence] = 6;
-            character.Stats[Stat.Speed] = 18;
-            character.Stats[Stat.Hit] = 22;
-            character.Avatar = CharacterClass.GenerateCharacter("ranger");
-            Party.Add(character);
-
-            character = new Combatant();
-            character.Class = new CharacterClass("wizard", ItemType.Staff, ItemType.Cloth);
-            character.Name = "Raistlin";
-            character.CurrentHealth = 20;
-            character.MaxHealth = 20;
-            character.CurrentMana = 5;
-            character.MaxMana = 20;
-            character.Stats[Stat.Defense] = 6;
-            character.Stats[Stat.Attack] = 12;
-            character.Stats[Stat.Wisdom] = 22;
-            character.Stats[Stat.Intelligence] = 18;
-            character.Stats[Stat.Speed] = 8;
-            character.Stats[Stat.Hit] = 15;
-            character.Avatar = CharacterClass.GenerateCharacter("wizard");
-            Party.Add(character);
-
-            character = new Combatant();
-            character.Class = new CharacterClass("monk", ItemType.Unarmed, ItemType.Leather);
-            character.Name = "Gratho";
-            character.CurrentHealth = 5;
-            character.MaxHealth = 20;
-            character.CurrentMana = 20;
-            character.MaxMana = 20;
-            character.Stats[Stat.Defense] = 8;
-            character.Stats[Stat.Attack] = 15;
-            character.Stats[Stat.Wisdom] = 12;
-            character.Stats[Stat.Intelligence] = 6;
-            character.Stats[Stat.Speed] = 22;
-            character.Stats[Stat.Hit] = 18;
-            character.AbilityExperienceLevels.Add(Ability.Factory("lunge"), 200);
-            character.AbilityExperienceLevels.Add(Ability.Factory("cobra punch"), 200);
-            character.AbilityExperienceLevels.Add(Ability.Factory("flying knee"), 200);
-            character.AbilityExperienceLevels.Add(Ability.Factory("whip kick"), 200);
-            character.AbilityExperienceLevels.Add(Ability.Factory("sprint"), 200);
-            character.AbilityExperienceLevels.Add(Ability.Factory("untouchable"), 200);
-            character.AbilityExperienceLevels.Add(Ability.Factory("blur"), 200);
-            character.Inventory.Add(Item.Factory("unarmed/tigerclaws"));
-            character.Avatar = CharacterClass.GenerateCharacter("monk");
-            Party.Add(character);
-
-
-            Money = 500;
         }
     }
 }

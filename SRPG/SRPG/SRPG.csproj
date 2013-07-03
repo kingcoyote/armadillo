@@ -159,7 +159,6 @@
     <Compile Include="Scene\Battle\BattleScene.cs" />
     <Compile Include="Data\Ability.cs" />
     <Compile Include="Data\BattleBoard.cs" />
-    <Compile Include="Data\CharacterClass.cs" />
     <Compile Include="Data\Dialog.cs" />
     <Compile Include="Data\Door.cs" />
     <Compile Include="Data\Enum.cs" />

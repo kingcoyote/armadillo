@@ -53,9 +53,17 @@ namespace SRPG.Data
         /// </summary>
         public Texture2D Portrait;
         /// <summary>
-        /// An indicator of the character's class, which will determine weapon / armor usability.
+        /// Human readable class name.
         /// </summary>
-        public CharacterClass Class;
+        public string Class;
+        /// <summary>
+        /// Flags indicating what armor types this class can equip.
+        /// </summary>
+        public ItemType ArmorTypes;
+        /// <summary>
+        /// Flags indicating what weapon types this class can equip.
+        /// </summary>
+        public ItemType WeaponTypes;
         /// <summary>
         /// An integer indicating what faction this character belongs to - 0 represents the player and 1 represents the enemy.
         /// This is used to determine targeting, AI control, player control, and character movement grids.
@@ -204,12 +212,12 @@ namespace SRPG.Data
 
         public Item GetEquippedWeapon()
         {
-            return (from item in Inventory where item.ItemType == Class.WeaponTypes select item).FirstOrDefault();
+            return (from item in Inventory where item.ItemType == WeaponTypes select item).FirstOrDefault();
         }
 
         public Item GetEquippedArmor()
         {
-            return (from item in Inventory where item.ItemType == Class.ArmorTypes select item).FirstOrDefault();
+            return (from item in Inventory where item.ItemType == ArmorTypes select item).FirstOrDefault();
         }
 
         public Item GetEquippedAccessory()
@@ -241,6 +249,33 @@ namespace SRPG.Data
             Inventory.Add(item);
 
             return oldItem;
+        }
+
+        /// <summary>
+        /// Indicate if this class is able to equip the specified armor.
+        /// </summary>
+        /// <param name="armor">The armor that is being requested.</param>
+        /// <returns>true if this class can equip this armor.</returns>
+        public bool CanEquipArmor(Item armor)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Indicate if this class is able to equip the specified weapon.
+        /// </summary>
+        /// <param name="weapon">The weapon that is being requested.</param>
+        /// <returns>true if this class can equip this weapon.</returns>
+        public bool CanEquipWeapon(Item weapon)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Combatant Generate(Dictionary<string, object> args)
+        {
+            var combatant = new Combatant();
+
+            return combatant;
         }
     }
 }

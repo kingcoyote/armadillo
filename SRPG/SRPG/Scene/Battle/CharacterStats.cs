@@ -41,7 +41,7 @@ namespace SRPG.Scene.Battle
             Character = character;
 
             ((TextObject)Objects["name"]).Value = Character.Name;
-            ((TextObject)Objects["class"]).Value = Character.Class.Name;
+            ((TextObject)Objects["class"]).Value = Character.Class;
 
             ((TextObject)Objects["health num"]).Value = Character.CurrentHealth.ToString();
             ((TextObject)Objects["mana num"]).Value = Character.CurrentMana.ToString();

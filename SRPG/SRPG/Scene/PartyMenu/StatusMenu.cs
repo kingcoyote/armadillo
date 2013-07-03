@@ -79,7 +79,7 @@ namespace SRPG.Scene.PartyMenu
 
             // values
             //Objects.Add("portrait", new ImageObject(_character.Portrait));
-            Objects.Add("stat/class", new TextObject { Font = font, Y = 125, X = 500, Value = _character.Class.Name, Color = Color.Yellow });
+            Objects.Add("stat/class", new TextObject { Font = font, Y = 125, X = 500, Value = _character.Class, Color = Color.Yellow });
             Objects.Add("stat/health", new TextObject { Font = font, Y = 175, X = 500, Value = _character.MaxHealth.ToString(), Color = Color.Yellow });
             Objects.Add("stat/mana", new TextObject{ Font = font, Y = 225, X = 500, Value = _character.MaxMana.ToString(), Color = Color.Yellow });
 
@@ -131,13 +131,13 @@ namespace SRPG.Scene.PartyMenu
 
         private void ChangeWeapon(object sender, MouseEventArgs args)
         {
-            var weapons = (from item in ((SRPGGame) Game.GetInstance()).Inventory where item.ItemType == _character.Class.WeaponTypes select item);
+            var weapons = (from item in ((SRPGGame) Game.GetInstance()).Inventory where item.ItemType == _character.WeaponTypes select item);
             GenerateItemMenu(weapons.ToList());
         }
 
         private void ChangeArmor(object sender, MouseEventArgs args)
         {
-            var armors = (from item in ((SRPGGame)Game.GetInstance()).Inventory where item.ItemType == _character.Class.ArmorTypes select item);
+            var armors = (from item in ((SRPGGame)Game.GetInstance()).Inventory where item.ItemType == _character.ArmorTypes select item);
             GenerateItemMenu(armors.ToList());
         }
 

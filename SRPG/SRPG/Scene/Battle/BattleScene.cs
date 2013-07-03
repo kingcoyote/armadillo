@@ -209,8 +209,10 @@ namespace SRPG.Scene.Battle
             combatant.MaxMana = 20;
             combatant.CurrentMana = 20;
             combatant.Name = charName;
-            combatant.Avatar = CharacterClass.GenerateCharacter(className);
-            combatant.Class = new CharacterClass(className, ItemType.Sword, ItemType.Plate);
+            combatant.Avatar = Avatar.GenerateAvatar(className);
+            combatant.Class = className;
+            combatant.WeaponTypes = ItemType.Sword;
+            combatant.WeaponTypes = ItemType.Plate;
             combatant.Avatar.Location = location;
 
             return combatant;
