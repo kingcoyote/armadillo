@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
+using Newtonsoft.Json;
 
 namespace SRPG.Data
 {
@@ -281,7 +283,20 @@ namespace SRPG.Data
         {
             var combatant = new Combatant();
 
-            combatant.Avatar = Avatar.GenerateAvatar("enemy");
+            var templateType = template.Split('/')[0];
+            var templateName = template.Split('/')[1];
+
+            string settingString = String.Join("\r\n", File.ReadAllLines("Content/Battle/Combatants/" + templateType + ".js"));
+
+            var nodeList = Newtonsoft.Json.Linq.JObject.Parse(settingString);
+
+            combatant.Class = nodeList[templateName]["class"].ToString();
+            combatant.Avatar = Avatar.GenerateAvatar(nodeList[templateName]["avatar"].ToString());
+
+            combatant.CurrentHealth = (int)(nodeList[templateName]["health"]);
+            combatant.MaxHealth = (int)(nodeList[templateName]["health"]);
+            combatant.CurrentMana = (int)(nodeList[templateName]["mana"]);
+            combatant.MaxMana = (int)(nodeList[templateName]["mana"]);
 
             // fetch template information from json
             // begin applying template information, with the level modifier

@@ -294,6 +294,12 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Content Include="Battle\Combatants\coliseum.js">
+      <Name>coliseum</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Dialog\coliseum\cell.js">
       <Name>cell</Name>
       <Importer>XmlImporter</Importer>
