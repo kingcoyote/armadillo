@@ -116,23 +116,7 @@ namespace SRPG.Scene.Battle
                     partyGrid.Add(new Point(15,36));
                     partyGrid.Add(new Point(13,36));
 
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard1", new Vector2(5, 5)));
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard2", new Vector2(5, 6)));
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard3", new Vector2(5, 7)));
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard4", new Vector2(5, 8)));
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard5", new Vector2(5, 9)));
-
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard6", new Vector2(34, 22)));
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard7", new Vector2(33, 21)));
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard8", new Vector2(35, 21)));
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard9", new Vector2(33, 23)));
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard10", new Vector2(35, 23)));
-
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard11", new Vector2(14, 21)));
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard12", new Vector2(15, 21)));
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard13", new Vector2(13, 21)));
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard14", new Vector2(13, 23)));
-                    BattleBoard.Characters.Add(GenerateCombatant("enemy", "guard15", new Vector2(15, 23)));
+                    BattleBoard.Characters.Add(GenerateCombatant("Guard", "coliseum/guard", 1, new Vector2(9, 2)));
 
                     break;
                 default:
@@ -201,18 +185,10 @@ namespace SRPG.Scene.Battle
             }
         }
 
-        private Combatant GenerateCombatant(string className, string charName, Vector2 location)
+        public Combatant GenerateCombatant(string name, string template, int level, Vector2 location)
         {
-            var combatant = new Combatant();
-            combatant.MaxHealth = 20;
-            combatant.CurrentHealth = 20;
-            combatant.MaxMana = 20;
-            combatant.CurrentMana = 20;
-            combatant.Name = charName;
-            combatant.Avatar = Avatar.GenerateAvatar(className);
-            combatant.Class = className;
-            combatant.WeaponTypes = ItemType.Sword;
-            combatant.WeaponTypes = ItemType.Plate;
+            var combatant = Combatant.FromTemplate(template, level);
+            combatant.Name = name;
             combatant.Avatar.Location = location;
 
             return combatant;

@@ -271,9 +271,20 @@ namespace SRPG.Data
             throw new NotImplementedException();
         }
 
-        public static Combatant Generate(Dictionary<string, object> args)
+        /// <summary>
+        /// Generate a combatant based on a predefined template
+        /// </summary>
+        /// <param name="template">Template to be used to generate a combatant</param>
+        /// <param name="level">Experience level to be applied to this combatant's skills</param>
+        /// <returns>A combatant generated from the template, modified to be at the specified level.</returns>
+        public static Combatant FromTemplate(string template, int level)
         {
             var combatant = new Combatant();
+
+            combatant.Avatar = Avatar.GenerateAvatar("enemy");
+
+            // fetch template information from json
+            // begin applying template information, with the level modifier
 
             return combatant;
         }
