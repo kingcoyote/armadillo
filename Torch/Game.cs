@@ -37,18 +37,9 @@ namespace Torch
         {
             _graphics.PreferMultiSampling = false;
 
-            if (IsFullScreen)
-            {
-                _graphics.IsFullScreen = true;
-                _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-                _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            }
-            else
-            {
-                _graphics.IsFullScreen = false;
-                _graphics.PreferredBackBufferWidth = ScreenWidth;
-                _graphics.PreferredBackBufferHeight = ScreenHeight;
-            }
+            _graphics.PreferredBackBufferWidth = ScreenWidth;
+            _graphics.PreferredBackBufferHeight = ScreenHeight;
+            _graphics.IsFullScreen = IsFullScreen;
 
             _graphics.ApplyChanges();
         }
@@ -158,6 +149,19 @@ namespace Torch
             Scenes[scene].Start();
 
             CurrentScene = scene;
+        }
+
+        public void ChangeResolution(int width, int height)
+        {
+            ScreenWidth = width;
+            ScreenHeight = height;
+            InitializeGraphics();
+        }
+
+        public void SetFullScreen(bool enabled)
+        {
+            IsFullScreen = enabled;
+            InitializeGraphics();
         }
 
         public static Game GetInstance()
