@@ -42,8 +42,8 @@ namespace SRPG
         public void StartGame()
         {
             ChangeScenes("overworld");
-            
-            ((OverworldScene)Scenes["overworld"]).SetZone(Zone.Factory("coliseum/cell"), "bed");
+
+            ((OverworldScene) Scenes["overworld"]).SetZone(Zone.Factory("coliseum/cell"), "bed");
 
             BeginNewGame();
         }
@@ -51,7 +51,7 @@ namespace SRPG
         public void LaunchShop(string filename, string merchantname)
         {
             var inventory = GenerateShopInventory(filename, merchantname);
-            ((ShopScene)Scenes["shop"]).SetInventory(inventory);
+            ((ShopScene) Scenes["shop"]).SetInventory(inventory);
             ChangeScenes("shop");
         }
 
@@ -63,11 +63,11 @@ namespace SRPG
 
         public void EquipCharacter(Combatant character, Item newItem)
         {
-            if(Inventory.Contains(newItem))
+            if (Inventory.Contains(newItem))
             {
                 var oldItem = character.EquipItem(newItem);
                 Inventory.Remove(newItem);
-                if(oldItem != null) Inventory.Add(oldItem);
+                if (oldItem != null) Inventory.Add(oldItem);
             }
             else
             {
@@ -77,7 +77,7 @@ namespace SRPG
 
         public void SellItem(Item item)
         {
-            if( ! Inventory.Contains(item))
+            if (!Inventory.Contains(item))
             {
                 throw new Exception("cannot sell item that isn't in inventory");
             }
@@ -89,7 +89,7 @@ namespace SRPG
 
         public void BuyItem(Item item)
         {
-            if(item.Cost > Money)
+            if (item.Cost > Money)
             {
                 throw new Exception("cannot buy item - too expensive");
             }
