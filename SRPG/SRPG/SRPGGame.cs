@@ -27,6 +27,8 @@ namespace SRPG
         public SRPGGame()
         {
             IsFullScreen = false;
+            ScreenWidth = 1280;
+            ScreenHeight = 1024;
 
             Scenes.Add("intro", new IntroScene(this));
             Scenes.Add("party menu", new PartyMenuScene(this));
