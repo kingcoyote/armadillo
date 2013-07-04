@@ -44,11 +44,7 @@ namespace SRPG.Zones.Coliseum
             else
             {
                 var dialog = Dialog.Fetch("coliseum/cell", "guard");
-                dialog.OnExit = (o, eventArgs) =>
-                    {
-                        ((SRPGGame) ((Torch.Scene) sender).Game).Inventory.Add(Item.Factory("sword/shortsword"));
-                        ((OverworldScene) sender).MoveCharacter("guard", new[] {new Vector2(100, 0), new Vector2(-2, 0)});
-                    };
+                dialog.OnExit = (o, eventArgs) => ((OverworldScene) sender).MoveCharacter("guard", new[] {new Vector2(100, 0), new Vector2(-2, 0)});
                 ((OverworldScene) sender).StartDialog(dialog);
                 _guardMoved = true;
             }
