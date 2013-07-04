@@ -300,6 +300,12 @@
       <Processor>PassThroughProcessor</Processor>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Battle\Combatants\party.js">
+      <Name>party</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Dialog\coliseum\cell.js">
       <Name>cell</Name>
       <Importer>XmlImporter</Importer>

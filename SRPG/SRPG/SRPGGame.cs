@@ -113,25 +113,20 @@ namespace SRPG
             Party = new List<Combatant>();
             Inventory = new List<Item>();
 
-            var character = new Combatant
-                {
-                    Class = "fighter",
-                    WeaponTypes = ItemType.Sword,
-                    ArmorTypes = ItemType.Plate,
-                    Name = "Jaha",
-                    CurrentHealth = 20,
-                    MaxHealth = 20,
-                    CurrentMana = 20,
-                    MaxMana = 20,
-                    Avatar = Avatar.GenerateAvatar("fighter")
-                };
-            character.Stats[Stat.Defense] = 22;
-            character.Stats[Stat.Attack] = 18;
-            character.Stats[Stat.Wisdom] = 6;
-            character.Stats[Stat.Intelligence] = 8;
-            character.Stats[Stat.Speed] = 12;
-            character.Stats[Stat.Hit] = 15;
-            character.AbilityExperienceLevels.Add(Ability.Factory("lunge"), 200);
+            var character = Combatant.FromTemplate("party/jaha");
+            character.Name = "Jaha";
+            Party.Add(character);
+
+            character = Combatant.FromTemplate("party/meera");
+            character.Name = "Meera";
+            Party.Add(character);
+
+            character = Combatant.FromTemplate("party/aeris");
+            character.Name = "Aeris";
+            Party.Add(character);
+
+            character = Combatant.FromTemplate("party/raistlin");
+            character.Name = "Raistlin";
             Party.Add(character);
         }
     }
