@@ -36,12 +36,13 @@ namespace SRPG.Scene.Overworld
             }
             else if (args.WhichKey == _controls["config menu"])
             {
-                Game.GetInstance().Exit();
+                Game.GetInstance().ChangeScenes("options");
             }
             else if (args.WhichKey == _controls["interact"])
             {
                 ((OverworldScene) Scene).Interact();
             }
+
         }
 
         public void HandleKeyUp(object sender, KeyboardEventArgs args)
