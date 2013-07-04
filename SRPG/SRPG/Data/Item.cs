@@ -124,7 +124,7 @@ namespace SRPG.Data
             throw new Exception("item has invalid stat boost");
         }
 
-        private static ItemType StringToItemType(string name)
+        public static ItemType StringToItemType(string name)
         {
             switch (name)
             {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace SRPG.Data
 {
@@ -279,7 +280,7 @@ namespace SRPG.Data
         /// <param name="template">Template to be used to generate a combatant</param>
         /// <param name="level">Experience level to be applied to this combatant's skills</param>
         /// <returns>A combatant generated from the template, modified to be at the specified level.</returns>
-        public static Combatant FromTemplate(string template, int level)
+        public static Combatant FromTemplate(string template)
         {
             var combatant = new Combatant();
 
@@ -288,7 +289,7 @@ namespace SRPG.Data
 
             string settingString = String.Join("\r\n", File.ReadAllLines("Content/Battle/Combatants/" + templateType + ".js"));
 
-            var nodeList = Newtonsoft.Json.Linq.JObject.Parse(settingString);
+            var nodeList = JObject.Parse(settingString);
 
             combatant.Class = nodeList[templateName]["class"].ToString();
             combatant.Avatar = Avatar.GenerateAvatar(nodeList[templateName]["avatar"].ToString());
@@ -298,8 +299,25 @@ namespace SRPG.Data
             combatant.CurrentMana = (int)(nodeList[templateName]["mana"]);
             combatant.MaxMana = (int)(nodeList[templateName]["mana"]);
 
-            // fetch template information from json
-            // begin applying template information, with the level modifier
+            combatant.ArmorTypes = Item.StringToItemType(nodeList[templateName]["armortype"].ToString());
+            combatant.WeaponTypes = Item.StringToItemType(nodeList[templateName]["weapontype"].ToString());
+
+            combatant.Inventory = nodeList[templateName]["inventory"].Select(item => Item.Factory(item.ToString())).ToList();
+
+            combatant.Stats = new Dictionary<Stat, int>
+                {
+                    {Stat.Defense, (int)(nodeList[templateName]["stats"]["defense"])},
+                    {Stat.Attack, (int)(nodeList[templateName]["stats"]["attack"])},
+                    {Stat.Wisdom, (int)(nodeList[templateName]["stats"]["wisdom"])},
+                    {Stat.Intelligence, (int)(nodeList[templateName]["stats"]["intelligence"])},
+                    {Stat.Speed, (int)(nodeList[templateName]["stats"]["speed"])},
+                    {Stat.Hit, (int)(nodeList[templateName]["stats"]["hit"])},
+                };
+
+            combatant.AbilityExperienceLevels = nodeList[templateName]["abilities"].ToDictionary(
+                ability => Ability.Factory(ability["name"].ToString()), 
+                ability => (int) ability["experience"]
+            );
 
             return combatant;
         }

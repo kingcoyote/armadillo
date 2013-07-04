@@ -116,7 +116,7 @@ namespace SRPG.Scene.Battle
                     partyGrid.Add(new Point(15,36));
                     partyGrid.Add(new Point(13,36));
 
-                    BattleBoard.Characters.Add(GenerateCombatant("Guard", "coliseum/guard", 1, new Vector2(9, 2)));
+                    BattleBoard.Characters.Add(GenerateCombatant("Guard", "coliseum/guard", new Vector2(9, 2)));
 
                     break;
                 default:
@@ -185,9 +185,9 @@ namespace SRPG.Scene.Battle
             }
         }
 
-        public Combatant GenerateCombatant(string name, string template, int level, Vector2 location)
+        public Combatant GenerateCombatant(string name, string template, Vector2 location)
         {
-            var combatant = Combatant.FromTemplate(template, level);
+            var combatant = Combatant.FromTemplate(template);
             combatant.Name = name;
             combatant.Avatar.Location = location;
 
