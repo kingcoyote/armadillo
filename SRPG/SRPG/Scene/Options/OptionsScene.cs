@@ -21,9 +21,14 @@ namespace SRPG.Scene.Options
             Layers.Add("menu", new Menu(this));
         }
 
-        public override void Initialize()
+        public override void Start()
         {
-            
+            Game.GetInstance().IsMouseVisible = true;
+        }
+
+        public override void Stop()
+        {
+            Game.GetInstance().IsMouseVisible = false;
         }
     }
 }
