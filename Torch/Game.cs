@@ -151,14 +151,14 @@ namespace Torch
             CurrentScene = scene;
         }
 
-        public void ChangeResolution(int width, int height)
+        public virtual void ChangeResolution(int width, int height)
         {
             ScreenWidth = width;
             ScreenHeight = height;
             InitializeGraphics();
         }
 
-        public void SetFullScreen(bool enabled)
+        public virtual void SetFullScreen(bool enabled)
         {
             IsFullScreen = enabled;
             InitializeGraphics();

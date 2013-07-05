@@ -44,7 +44,7 @@ namespace SRPG
 
         protected override void Initialize()
         {
-            FontManager.Initialize(FontSize.Normal);
+            FontManager.Initialize(ScreenHeight >= 1024 ? FontSize.Normal : FontSize.Small);
             
             FontManager.Add("Menu", FontSize.Normal, Content.Load<SpriteFont>("Fonts/MenuNormal"));
             FontManager.Add("Menu", FontSize.Small, Content.Load<SpriteFont>("Fonts/MenuSmall"));
@@ -144,6 +144,13 @@ namespace SRPG
             character = Combatant.FromTemplate("party/raistlin");
             character.Name = "Raistlin";
             Party.Add(character);
+        }
+
+        public override void ChangeResolution(int width, int height)
+        {
+            base.ChangeResolution(width, height);
+
+            FontManager.Initialize(ScreenHeight >= 1024 ? FontSize.Normal : FontSize.Small);
         }
     }
 }
