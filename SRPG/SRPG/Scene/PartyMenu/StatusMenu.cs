@@ -25,7 +25,7 @@ namespace SRPG.Scene.PartyMenu
                         Font = font,
                         Value = character.Name,
                         X = 50,
-                        Y = 125 + (50 * i),
+                        Y = 125 + (int)(font.LineSpacing * 1.5 * i),
                         Color = Color.White
                     });
                 Objects["party/" + character.Name].MouseClick += (sender, args) => ((PartyMenuScene) Scene).SetCharacter(character);
@@ -53,23 +53,23 @@ namespace SRPG.Scene.PartyMenu
 
             // labels
             Objects.Add("stat/class label", new TextObject{ Font = font, X = 275, Y = 125, Value = "Class", Color = Color.White });
-            Objects.Add("stat/health label", new TextObject { Font = font, X = 275, Y = 175, Value = "Health", Color = Color.White });
-            Objects.Add("stat/mana label", new TextObject { Font = font, X = 275, Y = 225, Value = "Mana", Color = Color.White });
+            Objects.Add("stat/health label", new TextObject { Font = font, X = 275, Y = (int)(125 + font.LineSpacing * 1.5), Value = "Health", Color = Color.White });
+            Objects.Add("stat/mana label", new TextObject { Font = font, X = 275, Y = (int)(125 + font.LineSpacing * 3), Value = "Mana", Color = Color.White });
 
-            Objects.Add("stat/def label", new TextObject { Font = font, X = 275, Y = 275, Value = "DEF", Color = Color.White });
-            Objects.Add("stat/atk label", new TextObject { Font = font, X = 500, Y = 275, Value = "ATK", Color = Color.White });
+            Objects.Add("stat/def label", new TextObject { Font = font, X = 275, Y = (int)(125 + font.LineSpacing * 4.5), Value = "DEF", Color = Color.White });
+            Objects.Add("stat/atk label", new TextObject { Font = font, X = 500, Y = (int)(125 + font.LineSpacing * 4.5), Value = "ATK", Color = Color.White });
 
-            Objects.Add("stat/wis label", new TextObject { Font = font, X = 275, Y = 325, Value = "WIS", Color = Color.White });
-            Objects.Add("stat/int label", new TextObject { Font = font, X = 500, Y = 325, Value = "INT", Color = Color.White });
-            
-            Objects.Add("stat/spd label", new TextObject { Font = font, X = 275, Y = 375, Value = "SPD", Color = Color.White });
-            Objects.Add("stat/hit label", new TextObject { Font = font, X = 500, Y = 375, Value = "HIT", Color = Color.White });
+            Objects.Add("stat/wis label", new TextObject { Font = font, X = 275, Y = (int)(125 + font.LineSpacing * 6), Value = "WIS", Color = Color.White });
+            Objects.Add("stat/int label", new TextObject { Font = font, X = 500, Y = (int)(125 + font.LineSpacing * 6), Value = "INT", Color = Color.White });
 
-            Objects.Add("stat/weapon label", new TextObject { Font = font, X = 275, Y = 475, Value = "Weapon", Color = Color.White });
-            Objects.Add("stat/armor label", new TextObject { Font = font, X = 275, Y = 525, Value = "Armor", Color = Color.White });
-            Objects.Add("stat/accessory label", new TextObject { Font = font, X = 275, Y = 575, Value = "Accessory", Color = Color.White });
+            Objects.Add("stat/spd label", new TextObject { Font = font, X = 275, Y = (int)(125 + font.LineSpacing * 7.5), Value = "SPD", Color = Color.White });
+            Objects.Add("stat/hit label", new TextObject { Font = font, X = 500, Y = (int)(125 + font.LineSpacing * 7.5), Value = "HIT", Color = Color.White });
 
-            Objects.Add("stat/ability label", new TextObject { Font = font, X = 275, Y = 675, Value = "Abilities", Color = Color.White });
+            Objects.Add("stat/weapon label", new TextObject { Font = font, X = 275, Y = (int)(125 + font.LineSpacing * 10.5), Value = "Weapon", Color = Color.White });
+            Objects.Add("stat/armor label", new TextObject { Font = font, X = 275, Y = (int)(125 + font.LineSpacing * 12), Value = "Armor", Color = Color.White });
+            Objects.Add("stat/accessory label", new TextObject { Font = font, X = 275, Y = (int)(125 + font.LineSpacing * 13.5), Value = "Accessory", Color = Color.White });
+
+            Objects.Add("stat/ability label", new TextObject { Font = font, X = 275, Y = (int)(125 + font.LineSpacing * 16.5), Value = "Abilities", Color = Color.White });
 
             // health
             // mana
@@ -80,25 +80,25 @@ namespace SRPG.Scene.PartyMenu
             // values
             //Objects.Add("portrait", new ImageObject(_character.Portrait));
             Objects.Add("stat/class", new TextObject { Font = font, Y = 125, X = 500, Value = _character.Class, Color = Color.Yellow });
-            Objects.Add("stat/health", new TextObject { Font = font, Y = 175, X = 500, Value = _character.MaxHealth.ToString(), Color = Color.Yellow });
-            Objects.Add("stat/mana", new TextObject{ Font = font, Y = 225, X = 500, Value = _character.MaxMana.ToString(), Color = Color.Yellow });
+            Objects.Add("stat/health", new TextObject { Font = font, Y = (int)(125 + font.LineSpacing * 1.5), X = 500, Value = _character.MaxHealth.ToString(), Color = Color.Yellow });
+            Objects.Add("stat/mana", new TextObject { Font = font, Y = (int)(125 + font.LineSpacing * 3), X = 500, Value = _character.MaxMana.ToString(), Color = Color.Yellow });
 
-            Objects.Add("stat/def", new TextObject { Font = font, Y = 275, X = 357, Value = _character.ReadStat(Stat.Defense).ToString(), Color = Color.Yellow });
-            Objects.Add("stat/atk", new TextObject { Font = font, Y = 275, X = 582, Value = _character.ReadStat(Stat.Attack).ToString(), Color = Color.Yellow });
-            
-            Objects.Add("stat/wis", new TextObject { Font = font, Y = 325, X = 357, Value = _character.ReadStat(Stat.Wisdom).ToString(), Color = Color.Yellow });
-            Objects.Add("stat/int", new TextObject { Font = font, Y = 325, X = 582, Value = _character.ReadStat(Stat.Intelligence).ToString(), Color = Color.Yellow });
+            Objects.Add("stat/def", new TextObject { Font = font, Y = (int)(125 + font.LineSpacing * 4.5), X = 357, Value = _character.ReadStat(Stat.Defense).ToString(), Color = Color.Yellow });
+            Objects.Add("stat/atk", new TextObject { Font = font, Y = (int)(125 + font.LineSpacing * 4.5), X = 582, Value = _character.ReadStat(Stat.Attack).ToString(), Color = Color.Yellow });
 
-            Objects.Add("stat/spd", new TextObject { Font = font, Y = 375, X = 357, Value = _character.ReadStat(Stat.Speed).ToString(), Color = Color.Yellow });
-            Objects.Add("stat/hit", new TextObject { Font = font, Y = 375, X = 582, Value = _character.ReadStat(Stat.Hit).ToString(), Color = Color.Yellow });
+            Objects.Add("stat/wis", new TextObject { Font = font, Y = (int)(125 + font.LineSpacing * 6), X = 357, Value = _character.ReadStat(Stat.Wisdom).ToString(), Color = Color.Yellow });
+            Objects.Add("stat/int", new TextObject { Font = font, Y = (int)(125 + font.LineSpacing * 6), X = 582, Value = _character.ReadStat(Stat.Intelligence).ToString(), Color = Color.Yellow });
+
+            Objects.Add("stat/spd", new TextObject { Font = font, Y = (int)(125 + font.LineSpacing * 7.5), X = 357, Value = _character.ReadStat(Stat.Speed).ToString(), Color = Color.Yellow });
+            Objects.Add("stat/hit", new TextObject { Font = font, Y = (int)(125 + font.LineSpacing * 7.5), X = 582, Value = _character.ReadStat(Stat.Hit).ToString(), Color = Color.Yellow });
 
             var weaponName = _character.GetEquippedWeapon() != null ? _character.GetEquippedWeapon().Name : "--";
             var armorName = _character.GetEquippedArmor() != null ? _character.GetEquippedArmor().Name : "--";
             var accessoryName = _character.GetEquippedAccessory() != null ? _character.GetEquippedAccessory().Name : "--";
 
-            Objects.Add("stat/weapon", new TextObject { Font = font, Y = 475, X = 500, Value = weaponName, Color = Color.Yellow });
-            Objects.Add("stat/armor", new TextObject { Font = font, Y = 525, X = 500, Value = armorName, Color = Color.Yellow });
-            Objects.Add("stat/accessory", new TextObject { Font = font, Y = 575, X = 500, Value = accessoryName, Color = Color.Yellow });
+            Objects.Add("stat/weapon", new TextObject { Font = font, Y = (int)(125 + font.LineSpacing * 10.5), X = 500, Value = weaponName, Color = Color.Yellow });
+            Objects.Add("stat/armor", new TextObject { Font = font, Y = (int)(125 + font.LineSpacing * 12), X = 500, Value = armorName, Color = Color.Yellow });
+            Objects.Add("stat/accessory", new TextObject { Font = font, Y = (int)(125 + font.LineSpacing * 13.5), X = 500, Value = accessoryName, Color = Color.Yellow });
 
             // when you click on one of the equipped items, display a list of items that can be used in that slot...
             Objects["stat/weapon"].MouseClick += ChangeWeapon;
@@ -113,8 +113,8 @@ namespace SRPG.Scene.PartyMenu
             {
                 Objects.Add("stat/ability-" + i, new TextObject()
                     {
-                        Font = font, 
-                        Y = 725 + (y * 50), 
+                        Font = font,
+                        Y = (int)(125 + font.LineSpacing * (18 + y * 1.5)), 
                         X = 275 + (x * 225), 
                         Value = abilities[i].Name,
                         Color = _character.CanUseAbility(abilities[i]) ? Color.Yellow : Color.Gray
@@ -164,7 +164,7 @@ namespace SRPG.Scene.PartyMenu
                         Font = font,
                         Value = item.Name,
                         X = 725,
-                        Y = 125 + 50 * (i),
+                        Y = 125 + (int)(font.LineSpacing * (i) * 1.5),
                         Color = Color.White
                     });
                 
@@ -205,7 +205,7 @@ namespace SRPG.Scene.PartyMenu
 
             if(newStats[Stat.Defense] != 0 ) Objects.Add("preview/defense", new TextObject()
             {
-                Y = 275,
+                Y = (int)(125 + font.LineSpacing * 4.5),
                 X = 387 + 30,
                 Color = newStats[Stat.Defense] < 0 ? Color.Red : Color.LightGreen,
                 Value = newStats[Stat.Defense].ToString(),
@@ -214,7 +214,7 @@ namespace SRPG.Scene.PartyMenu
 
             if (newStats[Stat.Attack] != 0) Objects.Add("preview/attack", new TextObject()
             {
-                Y = 275,
+                Y = (int)(125 + font.LineSpacing * 4.5),
                 X = 612 + 30,
                 Color = newStats[Stat.Attack] < 0 ? Color.Red : Color.LightGreen,
                 Value = newStats[Stat.Attack].ToString(),
@@ -223,7 +223,7 @@ namespace SRPG.Scene.PartyMenu
 
             if (newStats[Stat.Wisdom] != 0) Objects.Add("preview/wisdom", new TextObject()
             {
-                Y = 325,
+                Y = (int)(125 + font.LineSpacing * 6),
                 X = 387 + 30,
                 Color = newStats[Stat.Wisdom] < 0 ? Color.Red : Color.LightGreen,
                 Value = newStats[Stat.Wisdom].ToString(),
@@ -232,7 +232,7 @@ namespace SRPG.Scene.PartyMenu
 
             if (newStats[Stat.Intelligence] != 0) Objects.Add("preview/intelligence", new TextObject()
             {
-                Y = 325,
+                Y = (int)(125 + font.LineSpacing * 6),
                 X = 612 + 30,
                 Color = newStats[Stat.Intelligence] < 0 ? Color.Red : Color.LightGreen,
                 Value = newStats[Stat.Intelligence].ToString(),
@@ -241,7 +241,7 @@ namespace SRPG.Scene.PartyMenu
 
             if (newStats[Stat.Speed] != 0) Objects.Add("preview/speed", new TextObject()
             {
-                Y = 375,
+                Y = (int)(125 + font.LineSpacing * 7.5),
                 X = 387 + 30,
                 Color = newStats[Stat.Speed] < 0 ? Color.Red : Color.LightGreen,
                 Value = newStats[Stat.Speed].ToString(),
@@ -250,7 +250,7 @@ namespace SRPG.Scene.PartyMenu
 
             if (newStats[Stat.Hit] != 0) Objects.Add("preview/hit", new TextObject()
             {
-                Y = 375,
+                Y = (int)(125 + font.LineSpacing * 7.5),
                 X = 612 + 30,
                 Color = newStats[Stat.Hit] < 0 ? Color.Red : Color.LightGreen,
                 Value = newStats[Stat.Hit].ToString(),
