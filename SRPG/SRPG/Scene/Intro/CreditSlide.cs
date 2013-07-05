@@ -13,7 +13,7 @@ namespace SRPG.Scene.Intro
     {
         public CreditSlide(Torch.Scene scene) : base(scene)
         {
-            var font = Game.GetInstance().Content.Load<SpriteFont>("Menu");
+            var font = FontManager.Get("Menu");
             
             Objects.Add("steve", new TextObject
             {

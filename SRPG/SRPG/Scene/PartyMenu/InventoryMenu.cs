@@ -18,7 +18,7 @@ namespace SRPG.Scene.PartyMenu
             Objects.Clear();
             
             var inventory = ((SRPGGame)Torch.Game.GetInstance()).Inventory;
-            var font = Torch.Game.GetInstance().Content.Load<SpriteFont>("menu");
+            var font = FontManager.Get("Menu");
 
             var x = 0;
             int y = 0;

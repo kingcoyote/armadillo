@@ -13,7 +13,7 @@ namespace SRPG.Scene.Shop
     {
         public PlayerStats(Torch.Scene scene) : base(scene)
         {
-            var font = Game.GetInstance().Content.Load<SpriteFont>("Menu");
+            var font = FontManager.Get("Menu");
 
             Objects.Add("money", new TextObject()
                 {

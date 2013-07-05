@@ -82,8 +82,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DialogFont.spritefont">
-      <Name>DialogFont</Name>
+    <Compile Include="Fonts\DialogNormal.spritefont">
+      <Name>DialogNormal</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
@@ -134,8 +134,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Menu.spriteFont">
-      <Name>Menu</Name>
+    <Compile Include="Fonts\MenuNormal.spritefont">
+      <Name>MenuNormal</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
@@ -186,6 +186,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>town</Name>
     </None>
+    <Compile Include="Fonts\MenuSmall.spritefont">
+      <Name>MenuSmall</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\DialogSmall.spritefont">
+      <Name>DialogSmall</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <None Include="Items\Accessory.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Name>Accessory</Name>

@@ -17,7 +17,7 @@ namespace SRPG.Scene.PartyMenu
                     Color = Color.White, 
                     X = 50, 
                     Y = 125, 
-                    Font = Torch.Game.GetInstance().Content.Load<SpriteFont>("menu"), Value="Settings"
+                    Font = FontManager.Get("Menu"), Value="Settings"
                 });
         }
     }

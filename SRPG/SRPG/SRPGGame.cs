@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Microsoft.Xna.Framework.Graphics;
 using SRPG.Data;
 using SRPG.Scene.Battle;
 using SRPG.Scene.Intro;
@@ -39,6 +40,19 @@ namespace SRPG
             Scenes.Add("main menu", new MainMenu(this));
 
             CurrentScene = "intro";
+        }
+
+        protected override void Initialize()
+        {
+            FontManager.Initialize(FontSize.Normal);
+            
+            FontManager.Add("Menu", FontSize.Normal, Content.Load<SpriteFont>("Fonts/MenuNormal"));
+            FontManager.Add("Menu", FontSize.Small, Content.Load<SpriteFont>("Fonts/MenuSmall"));
+
+            FontManager.Add("Dialog", FontSize.Normal, Content.Load<SpriteFont>("Fonts/DialogNormal"));
+            FontManager.Add("Dialog", FontSize.Small, Content.Load<SpriteFont>("Fonts/DialogSmall"));
+
+            base.Initialize();
         }
 
         public void StartGame()

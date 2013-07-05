@@ -15,7 +15,7 @@ namespace SRPG.Scene.PartyMenu
         public StatusMenu(Torch.Scene scene) : base(scene)
         {
             var game = ((SRPGGame)Game.GetInstance());
-            var font = game.Content.Load<SpriteFont>("menu");
+            var font = FontManager.Get("Menu");
 
             for (var i = 0; i < game.Party.Count; i++)
             {
@@ -49,7 +49,7 @@ namespace SRPG.Scene.PartyMenu
             ClearByName("stat");
             ClearByName("selectable item");
 
-            var font = Game.GetInstance().Content.Load<SpriteFont>("Menu");
+            var font = FontManager.Get("Menu");
 
             // labels
             Objects.Add("stat/class label", new TextObject{ Font = font, X = 275, Y = 125, Value = "Class", Color = Color.White });
@@ -153,7 +153,7 @@ namespace SRPG.Scene.PartyMenu
 
             var i = 0;
 
-            var font = Game.GetInstance().Content.Load<SpriteFont>("Menu");
+            var font = FontManager.Get("Menu");
 
             foreach(var item in items.ToList())
             {
@@ -196,7 +196,7 @@ namespace SRPG.Scene.PartyMenu
                 _character.Inventory.Remove(item);
             }
 
-            var font = Game.GetInstance().Content.Load<SpriteFont>("Menu");
+            var font = FontManager.Get("Menu");
 
             foreach(var stat in oldStats.Keys)
             {

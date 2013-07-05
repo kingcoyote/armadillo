@@ -16,7 +16,7 @@ namespace SRPG.Scene.Battle
         
         public CharacterStats(Torch.Scene scene) : base(scene)
         {
-            var font = Game.GetInstance().Content.Load<SpriteFont>("menu");
+            var font = FontManager.Get("Menu");
 
             var x = Game.GetInstance().GraphicsDevice.Viewport.Width - 450;
             var y = 50;

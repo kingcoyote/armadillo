@@ -14,7 +14,7 @@ namespace SRPG.Scene.Options
         public Menu(Torch.Scene scene) : base(scene)
         {
 
-            var font = Game.GetInstance().Content.Load<SpriteFont>("menu");
+            var font = FontManager.Get("Menu");
 
             Objects.Add("return", new TextObject() { Font = font, Color = Color.White, Value = "Return to Game", X = 50, Y = 50 });
             Objects["return"].MouseClick += (sender, args) => Game.GetInstance().ChangeScenes("overworld");

@@ -35,7 +35,7 @@ namespace SRPG.Scene.Shop
         {
             ClearByName("inventory");
 
-            var font = Game.GetInstance().Content.Load<SpriteFont>("Menu");
+            var font = FontManager.Get("Menu");
 
             for (var i = 0; i < _inventory.Count; i++)
             {

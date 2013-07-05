@@ -13,7 +13,7 @@ namespace SRPG.Scene.MainMenu
     {
         public MenuOptions(Torch.Scene scene) : base(scene)
         {
-            var font = Game.GetInstance().Content.Load<SpriteFont>("Menu");
+            var font = FontManager.Get("Menu");
 
             Objects.Add("New Game", new TextObject { Font = font, Color = Color.White, Value = "New Game", X = 50, Y = 50 });
             Objects["New Game"].MouseClick = (sender, args) => ((SRPGGame) Scene.Game).StartGame();

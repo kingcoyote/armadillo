@@ -35,7 +35,7 @@ namespace SRPG.Data.Layers
                     Color = Color.White, 
                     Z = 100002, 
                     Value = "", 
-                    Font = Game.GetInstance().Content.Load<SpriteFont>("dialogfont"),
+                    Font = FontManager.Get("Dialog"),
                     X = Objects["dialog window"].X + 20,
                     Y = Objects["dialog window"].Y + 10,
                     Width = Objects["dialog window"].Width - 40,
