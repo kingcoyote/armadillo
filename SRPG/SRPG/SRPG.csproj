@@ -145,6 +145,7 @@
     <Compile Include="Scene\Battle\CharacterStats.cs" />
     <Compile Include="Scene\MainMenu\MainMenu.cs" />
     <Compile Include="Scene\MainMenu\MenuOptions.cs" />
+    <Compile Include="Scene\Options\Menu.cs" />
     <Compile Include="Scene\Shop\Background.cs" />
     <Compile Include="Scene\Shop\Inventory.cs" />
     <Compile Include="Scene\Shop\Options.cs" />
