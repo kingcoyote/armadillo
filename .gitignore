@@ -4,3 +4,4 @@ bin
 obj
 *.DotSettings.user
 *.cachefile
+*.contentproj.user
