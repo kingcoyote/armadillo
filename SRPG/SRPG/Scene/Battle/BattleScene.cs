@@ -260,8 +260,8 @@ namespace SRPG.Scene.Battle
 
             icon.SetAnimation("normal");
 
-            icon.MouseOver += (sender, args) => { ((SpriteObject)args.Target).SetAnimation("hover"); };
-            icon.MouseOut += (sender, args) => { ((SpriteObject)args.Target).SetAnimation("normal"); };
+            icon.MouseOver += (sender, args) => ((SpriteObject)args.Target).SetAnimation("hover"); 
+            icon.MouseOut += (sender, args) => ((SpriteObject)args.Target).SetAnimation("normal");
         }
 
         private EventHandler<MouseEventArgs> SelectMovementTarget(Combatant character)
