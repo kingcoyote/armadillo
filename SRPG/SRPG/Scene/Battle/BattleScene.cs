@@ -25,6 +25,7 @@ namespace SRPG.Scene.Battle
 
         private float _x;
         private float _y;
+        private Combatant _selectedCharacter = null;
 
         /// <summary>
         /// Pre-battle initialization sequence to load characters, the battleboard and the image layers.
@@ -89,7 +90,27 @@ namespace SRPG.Scene.Battle
             if (_y > 0) _y = 0;
             if (_y < 0 - ((BattleGridLayer)Layers["battlegrid"]).Height + viewport.Height) _y = 0 - ((BattleGridLayer)Layers["battlegrid"]).Height + viewport.Height;
 
+            if (_selectedCharacter != null)
+            {
+                var cursorDistance = CalculateDistance(
+                    input.Cursor.X + (0 - _x), 
+                    input.Cursor.Y + (0 - _y),
+                    _selectedCharacter.Avatar.Sprite.X + _selectedCharacter.Avatar.Sprite.Width / 2,
+                    _selectedCharacter.Avatar.Sprite.Y + _selectedCharacter.Avatar.Sprite.Height / 2
+                );
+
+                if(cursorDistance > 125)
+                {
+                    DeselectCharacter();
+                }
+            }
+
             UpdateCamera();
+        }
+
+        private double CalculateDistance(float x1, float y1, float x2, float y2)
+        {
+            return Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
         }
 
         private void UpdateCamera()
@@ -186,12 +207,16 @@ namespace SRPG.Scene.Battle
 
         public void ShowCharacterStats(Combatant character)
         {
+            if (_selectedCharacter != null) return;
+
             ((CharacterStats) Layers["character stats"]).SetCharacter(character);
             Layers["character stats"].Visible = true;
         }
 
         public void HideCharacterStats(Combatant character)
         {
+            if (_selectedCharacter != null) return;
+
             if (((CharacterStats)Layers["character stats"]).Character == character)
             {
                 Layers["character stats"].Visible = false;
@@ -242,6 +267,24 @@ namespace SRPG.Scene.Battle
             menu.AddOption("item", icon);
 
             Layers.Add("radial menu", menu);
+
+            _selectedCharacter = character;
+        }
+
+        public void DeselectCharacter()
+        {
+            if(Layers.ContainsKey("radial menu"))
+            {
+                Layers.Remove("radial menu");
+            }
+
+            ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+
+            var character = _selectedCharacter;
+
+            _selectedCharacter = null;
+
+            HideCharacterStats(character);
         }
 
         private static void SetCharacterMenuAnimations(SpriteObject icon)
