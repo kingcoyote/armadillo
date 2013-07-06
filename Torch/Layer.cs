@@ -59,13 +59,13 @@ namespace Torch
                 // check for mouse over
                 if (rect.Contains(input.Cursor) && !rect.Contains(_oldMouseX, _oldMouseY))
                 {
-                    obj.MouseOver.Invoke(obj, new MouseEventArgs { X = input.Cursor.X, Y = input.Cursor.Y });
+                    obj.MouseOver.Invoke(obj, new MouseEventArgs { X = input.Cursor.X, Y = input.Cursor.Y, Target = obj });
                 }
 
                 // check for mouseout
                 if (!rect.Contains(input.Cursor) && rect.Contains(_oldMouseX, _oldMouseY))
                 {
-                    obj.MouseOut.Invoke(obj, new MouseEventArgs { X = input.Cursor.X, Y = input.Cursor.Y });
+                    obj.MouseOut.Invoke(obj, new MouseEventArgs { X = input.Cursor.X, Y = input.Cursor.Y, Target = obj });
                 }
             }
 
@@ -109,6 +109,7 @@ namespace Torch
             {
                 if (obj.Rectangle.Contains(args.X - (int)X, args.Y - (int)Y))
                 {
+                    args.Target = obj;
                     obj.MouseClick.Invoke(obj, args);
                 }
             }
@@ -120,6 +121,7 @@ namespace Torch
             {
                 if (obj.Rectangle.Contains(args.X, args.Y))
                 {
+                    args.Target = obj;
                     obj.MouseRelease.Invoke(obj, args);
                 }
             }

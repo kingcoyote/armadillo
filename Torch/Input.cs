@@ -203,5 +203,6 @@ namespace Torch
         public int X;
         public int Y;
         public bool Press;
+        public Object Target;
     }
 }
