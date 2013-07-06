@@ -225,6 +225,7 @@ namespace SRPG.Scene.Battle
             var icon = new SpriteObject("Battle/Menu/move");
             SetCharacterMenuAnimations(icon);
             icon.MouseOver += ShowMovementGrid(character);
+            icon.MouseRelease += SelectMovementTarget(character);
             menu.AddOption("move", icon);
 
             icon = new SpriteObject("Battle/Menu/attack");
@@ -272,10 +273,20 @@ namespace SRPG.Scene.Battle
         {
             return (sender, args) =>
                 {
-                    if (!character.CanMove) return;
+                    //if (!character.CanMove) return;
 
                     var grid = GetMovementGrid(character);
                     
+                    for(var i = 0; i < grid.Size.Width; i++)
+                    {
+                        for(var j = 0; j < grid.Size.Height; j++)
+                        {
+                            if(grid.Weight[i,j] > 0)
+                            {
+                                ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid((int)character.Avatar.Location.X + i, (int)character.Avatar.Location.Y + j, GridHighlight.Selectable);
+                            }
+                        }
+                    }
                 };
         }
 
@@ -285,9 +296,33 @@ namespace SRPG.Scene.Battle
 
             grid.Weight[12, 12] = 1;
 
+            List<int[]> currentRound;
+            var neighbors = new List<int[]> {new[] {0, -1}, new[] {1, 0}, new[] {0, 1}, new[] {-1, 0}};
+            var lastRound = new List<int[]> {new[] {12, 12}};
+
             for (var i = 0; i < character.Stats[Stat.Speed]; i++)
             {
-                
+                currentRound = new List<int[]>();
+
+                foreach (var square in lastRound)
+                {
+                    foreach (var neighbor in neighbors)
+                    {
+                        if (grid.Weight[square[0] + neighbor[0], square[1] + neighbor[1]] == 1) continue;
+
+                        if (BattleBoard.IsAccessible(new Point(square[0] + neighbor[0], square[1] + neighbor[1]), character.Faction))
+                        {
+                            currentRound.Add(new[] {square[0] + neighbor[0], square[1] + neighbor[1]});
+                        }
+                    }
+                }
+
+                foreach(var newSquare in currentRound)
+                {
+                    grid.Weight[newSquare[0], newSquare[1]] = 1;
+                }
+
+                lastRound = currentRound;
             }
 
             return grid;

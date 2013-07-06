@@ -38,11 +38,23 @@ namespace SRPG.Scene.Battle
                         Objects.Add(
                             string.Format("grid/{0}-{1}", i, j),
                             new ImageObject("Battle/gridhighlight") 
-                                {X = i*50, Y = j*50, Z = 10}
+                                { X = i*50, Y = j*50, Z = 10 }
                         );
                     }
                 }
             }
         }
+
+        public void HighlightGrid(int x, int y, GridHighlight type)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public enum GridHighlight
+    {
+        Selectable,
+        Targetted,
+        Splashed
     }
 }

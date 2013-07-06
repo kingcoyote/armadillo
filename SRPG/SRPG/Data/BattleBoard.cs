@@ -28,7 +28,26 @@ namespace SRPG.Data
         /// <returns>true if the square is accessible</returns>
         public bool IsAccessible(Point location, int faction)
         {
-            throw new NotImplementedException();
+            // out of bounds
+            if (location.X < 0 || location.X >= Sandbag.Size.Width || location.Y < 0 || location.Y >= Sandbag.Size.Height)
+            {
+                return false;
+            }
+
+            // can't walk here - wall, table, tree, etc.
+            if (Sandbag.Weight[location.X, location.Y] < 1)
+            {
+                return false;
+            }
+
+            // enemy is standing here
+            var character = (from c in Characters where Math.Abs(c.Avatar.Location.X - location.X) < 0.1 && Math.Abs(c.Avatar.Location.Y - location.Y) < 0.1 select c);
+            if(character.Any() && character.First().Faction != faction)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
