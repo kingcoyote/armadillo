@@ -57,7 +57,13 @@ namespace SRPG.Scene.Battle
 
         public EventHandler<MouseEventArgs> MouseClickCharacter(Combatant character)
         {
-            return (sender, args) => { };
+            return (sender, args) =>
+                {
+                    if (((BattleScene)Scene).FactionTurn != 0) return;
+
+                    ((BattleScene) Scene).SelectCharacter(character);
+
+                };
         }
     }
 }

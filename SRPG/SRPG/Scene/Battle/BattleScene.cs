@@ -99,6 +99,12 @@ namespace SRPG.Scene.Battle
 
             Layers["battleboardlayer"].X = _x;
             Layers["battleboardlayer"].Y = _y;
+
+            if (Layers.ContainsKey("radial menu"))
+            {
+                Layers["radial menu"].X = _x;
+                Layers["radial menu"].Y = _y;
+            }
         }
 
         public void SetBattle(string battleName)
@@ -197,8 +203,94 @@ namespace SRPG.Scene.Battle
             var combatant = Combatant.FromTemplate(template);
             combatant.Name = name;
             combatant.Avatar.Location = location;
+            combatant.Faction = 1;
 
             return combatant;
+        }
+
+        public void SelectCharacter(Combatant character)
+        {
+            if (Layers.ContainsKey("radial menu"))
+            {
+                Layers.Remove("radial menu");
+            }
+
+            var menu = new RadialMenu(this)
+            {
+                CenterX = character.Avatar.Sprite.X + character.Avatar.Sprite.Width / 2,
+                CenterY = character.Avatar.Sprite.Y + character.Avatar.Sprite.Height / 2,
+                ZIndex = 5000
+            };
+
+            var icon = new SpriteObject("Battle/Menu/move");
+            SetCharacterMenuAnimations(icon);
+            icon.MouseOver += ShowMovementGrid(character);
+            menu.AddOption("move", icon);
+
+            icon = new SpriteObject("Battle/Menu/attack");
+            SetCharacterMenuAnimations(icon);
+            menu.AddOption("attack", icon);
+
+            icon = new SpriteObject("Battle/Menu/special");
+            SetCharacterMenuAnimations(icon);
+            menu.AddOption("special", icon);
+
+            icon = new SpriteObject("Battle/Menu/item");
+            SetCharacterMenuAnimations(icon);
+            menu.AddOption("item", icon);
+
+            Layers.Add("radial menu", menu);
+        }
+
+        private static void SetCharacterMenuAnimations(SpriteObject icon)
+        {
+            icon.AddAnimation(
+                "normal",
+                new SpriteAnimation {FrameCount = 1, Size = new Rectangle(0, 0, 50, 50), FrameRate = 1, StartRow = 1}
+            );
+            icon.AddAnimation(
+                "hover",
+                new SpriteAnimation {FrameCount = 1, Size = new Rectangle(0, 0, 50, 50), FrameRate = 1, StartRow = 51}
+            );
+            icon.AddAnimation(
+                "click",
+                new SpriteAnimation {FrameCount = 1, Size = new Rectangle(0, 0, 50, 50), FrameRate = 1, StartRow = 101}
+            );
+
+            icon.SetAnimation("normal");
+
+            icon.MouseOver += (sender, args) => { ((SpriteObject)args.Target).SetAnimation("hover"); };
+            icon.MouseOut += (sender, args) => { ((SpriteObject)args.Target).SetAnimation("normal"); };
+        }
+
+        private EventHandler<MouseEventArgs> SelectMovementTarget(Combatant character)
+        {
+            return (sender, args) => { };
+        }
+
+        private EventHandler<MouseEventArgs> ShowMovementGrid(Combatant character)
+        {
+            return (sender, args) =>
+                {
+                    if (!character.CanMove) return;
+
+                    var grid = GetMovementGrid(character);
+                    
+                };
+        }
+
+        private Grid GetMovementGrid(Combatant character)
+        {
+            var grid = new Grid(25, 25);
+
+            grid.Weight[12, 12] = 1;
+
+            for (var i = 0; i < character.Stats[Stat.Speed]; i++)
+            {
+                
+            }
+
+            return grid;
         }
     }
 }
