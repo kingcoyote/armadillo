@@ -14,6 +14,7 @@ namespace SRPG.Scene.Battle
         public BattleBoard BattleBoard;
         public int FactionTurn;
         public bool AwaitingAction;
+        public int RoundNumber;
 
         public BattleScene(Game game) : base(game) { }
 
@@ -30,7 +31,10 @@ namespace SRPG.Scene.Battle
         /// </summary>
         public override void Initialize()
         {
+            base.Initialize();
+
             Layers.Add("character stats", new CharacterStats(this) { ZIndex = 5000, Visible = false});
+            Layers.Add("hud", new HUD(this) { ZIndex = 5000 });
         }
 
         public override void Start()
@@ -100,6 +104,9 @@ namespace SRPG.Scene.Battle
         public void SetBattle(string battleName)
         {
             BattleBoard = new BattleBoard();
+
+            RoundNumber = 1;
+            FactionTurn = 0;
 
             var partyGrid = new List<Point>();
 
