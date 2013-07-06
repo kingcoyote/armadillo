@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SRPG.Data;
 using Torch;
@@ -35,10 +36,16 @@ namespace SRPG.Scene.Battle
                 {
                     if (_grid.Weight[i, j] > 128)
                     {
+                        var gridCell = new SpriteObject("Battle/gridhighlight") { X = i*50, Y = j*50, Z = 10 };
+                        gridCell.AddAnimation("Normal", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 1});
+                        gridCell.AddAnimation("Selectable", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 51 });
+                        gridCell.AddAnimation("Targetted", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 101 });
+                        gridCell.AddAnimation("Splashed", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 151 });
+                        gridCell.SetAnimation("Normal");
+
                         Objects.Add(
                             string.Format("grid/{0}-{1}", i, j),
-                            new ImageObject("Battle/gridhighlight") 
-                                { X = i*50, Y = j*50, Z = 10 }
+                            gridCell
                         );
                     }
                 }
@@ -47,12 +54,24 @@ namespace SRPG.Scene.Battle
 
         public void HighlightGrid(int x, int y, GridHighlight type)
         {
-            throw new NotImplementedException();
+            if(Objects.ContainsKey(string.Format("grid/{0}-{1}", x, y)))
+            {
+                ((SpriteObject)Objects[string.Format("grid/{0}-{1}", x, y)]).SetAnimation(type.ToString());
+            }
+        }
+
+        public void ResetGrid()
+        {
+            foreach(SpriteObject grid in (from o in Objects.Keys where o.Length > 4 && o.Substring(0,4) == "grid" select Objects[o]))
+            {
+                grid.SetAnimation("Normal");
+            }
         }
     }
 
     public enum GridHighlight
     {
+        Normal,
         Selectable,
         Targetted,
         Splashed

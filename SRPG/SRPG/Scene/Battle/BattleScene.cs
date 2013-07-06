@@ -225,6 +225,7 @@ namespace SRPG.Scene.Battle
             var icon = new SpriteObject("Battle/Menu/move");
             SetCharacterMenuAnimations(icon);
             icon.MouseOver += ShowMovementGrid(character);
+            icon.MouseOut += (sender, args) => ((BattleGridLayer)Layers["battlegrid"]).ResetGrid();
             icon.MouseRelease += SelectMovementTarget(character);
             menu.AddOption("move", icon);
 
@@ -283,7 +284,7 @@ namespace SRPG.Scene.Battle
                         {
                             if(grid.Weight[i,j] > 0)
                             {
-                                ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid((int)character.Avatar.Location.X + i, (int)character.Avatar.Location.Y + j, GridHighlight.Selectable);
+                                ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid((int)character.Avatar.Location.X + i - 12, (int)character.Avatar.Location.Y + j - 12, GridHighlight.Selectable);
                             }
                         }
                     }
@@ -300,7 +301,7 @@ namespace SRPG.Scene.Battle
             var neighbors = new List<int[]> {new[] {0, -1}, new[] {1, 0}, new[] {0, 1}, new[] {-1, 0}};
             var lastRound = new List<int[]> {new[] {12, 12}};
 
-            for (var i = 0; i < character.Stats[Stat.Speed]; i++)
+            for (var i = 0; i < character.Stats[Stat.Speed] / 3; i++)
             {
                 currentRound = new List<int[]>();
 
@@ -308,6 +309,7 @@ namespace SRPG.Scene.Battle
                 {
                     foreach (var neighbor in neighbors)
                     {
+                        // check if this cell has already been processed
                         if (grid.Weight[square[0] + neighbor[0], square[1] + neighbor[1]] == 1) continue;
 
                         if (BattleBoard.IsAccessible(new Point(square[0] + neighbor[0], square[1] + neighbor[1]), character.Faction))
