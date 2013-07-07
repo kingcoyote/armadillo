@@ -233,6 +233,11 @@ namespace SRPG.Scene.Battle
 
         public void SelectCharacter(Combatant character)
         {
+            if (character == _selectedCharacter)
+            {
+                DeselectCharacter();
+                return;
+            }
             if (_state != BattleState.PlayerTurn) return;
 
             if (Layers.ContainsKey("radial menu"))
