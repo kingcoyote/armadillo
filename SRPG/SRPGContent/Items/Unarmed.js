@@ -7,7 +7,8 @@
            { stat : "hit", amount : "10" }
         ],
         ability : "cobra punch",
-        cost : 10
+        cost : 10,
+        targetGrid : "target_melee_small"
     },
     tigerclaws : {
         name: "Tiger Claws",
@@ -17,7 +18,8 @@
             { stat : "hit", amount : "20" }
         ],
         ability : "flying knee",
-        cost : 25
+        cost : 25,
+        targetGrid : "target_melee_small"
     },
     oldshoes : {
         name: "Old Shoes",
@@ -28,6 +30,7 @@
             { stat : "attack", amount : "10" }
         ],
         ability : "whip kick",
-        cost : 100
+        cost : 100,
+        targetGrid : "target_melee_small"
     }
 }

@@ -48,6 +48,13 @@ namespace SRPG.Data
         /// </summary>
         public ItemType ItemType;
 
+        /// <summary>
+        /// A 25x25 grid indicating where this item can target. This generally applies only to weapons and consumables.
+        /// 12,12 is the center and is oriented on the character using the item. The orientation is always up and it
+        /// is the caller's responsibility to adjust orientation.
+        /// </summary>
+        public Grid TargetGrid;
+
         public ItemEquipType GetEquipType()
         {
             switch(ItemType)
@@ -91,6 +98,8 @@ namespace SRPG.Data
             item.Name = nodeList[itemName]["name"].ToString();
             item.ItemType = StringToItemType(nodeList[itemName]["itemType"][0].ToString());
             item.Cost = (int)(nodeList[itemName]["cost"]);
+
+            item.TargetGrid = nodeList[itemName].SelectToken("targetGrid") != null ? Grid.FromBitmap("Items/" + nodeList[itemName]["targetGrid"].ToString()) : new Grid(25, 25);
 
             if (nodeList[itemName].SelectToken("statBoosts") != null) foreach (var node in nodeList[itemName]["statBoosts"])
             {

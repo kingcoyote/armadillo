@@ -7,7 +7,8 @@
             { stat : "intelligence", amount : "10" }
         ],
         ability : "healing",
-        cost : 10
+        cost : 10,
+        targetGrid : "target_melee_small"
     },
     holybook : {
         name: "Holy Book",
@@ -17,7 +18,8 @@
             { stat : "intelligence", amount : "20" }
         ],
         ability : "protect",
-        cost : 25
+        cost : 25,
+        targetGrid : "target_melee_small"
     },
     anthology : {
         name: "Anthology",
@@ -28,6 +30,7 @@
             { stat : "wisdom", amount : "10" }
         ],
         ability : "revive",
-        cost : 100
+        cost : 100,
+        targetGrid : "target_melee_small"
     }
 }
