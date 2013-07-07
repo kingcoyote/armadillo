@@ -384,8 +384,8 @@ namespace SRPG.Scene.Battle
                         if (grid.Weight[square[0] + neighbor[0], square[1] + neighbor[1]] == 1) continue;
 
                         var checkPoint = new Point(
-                            (int) (character.Avatar.Location.X + square[0] + neighbor[0]),
-                            (int) (character.Avatar.Location.Y + square[1] + neighbor[1])
+                            (int) (character.Avatar.Location.X + square[0] + neighbor[0]) - 12,
+                            (int) (character.Avatar.Location.Y + square[1] + neighbor[1]) - 12
                         );
 
                         if (BattleBoard.IsAccessible(checkPoint, character.Faction))
