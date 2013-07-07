@@ -369,7 +369,12 @@ namespace SRPG.Scene.Battle
                         // check if this cell has already been processed
                         if (grid.Weight[square[0] + neighbor[0], square[1] + neighbor[1]] == 1) continue;
 
-                        if (BattleBoard.IsAccessible(new Point(square[0] + neighbor[0], square[1] + neighbor[1]), character.Faction))
+                        var checkPoint = new Point(
+                            (int) (character.Avatar.Location.X + square[0] + neighbor[0]),
+                            (int) (character.Avatar.Location.Y + square[1] + neighbor[1])
+                        );
+
+                        if (BattleBoard.IsAccessible(checkPoint, character.Faction))
                         {
                             currentRound.Add(new[] {square[0] + neighbor[0], square[1] + neighbor[1]});
                         }
