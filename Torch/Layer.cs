@@ -119,7 +119,7 @@ namespace Torch
         {
             foreach (var obj in Objects.Values.ToList())
             {
-                if (obj.Rectangle.Contains(args.X, args.Y))
+                if (obj.Rectangle.Contains(args.X - (int)X, args.Y - (int)Y))
                 {
                     args.Target = obj;
                     obj.MouseRelease.Invoke(obj, args);
