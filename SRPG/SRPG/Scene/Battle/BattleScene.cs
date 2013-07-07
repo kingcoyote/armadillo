@@ -263,6 +263,8 @@ namespace SRPG.Scene.Battle
 
             icon = new SpriteObject("Battle/Menu/attack");
             SetCharacterMenuAnimations(icon);
+            icon.MouseOver += ShowAttackGrid(character);
+            icon.MouseOut += (sender, args) => ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
             menu.AddOption("attack", icon);
 
             icon = new SpriteObject("Battle/Menu/special");
@@ -344,6 +346,27 @@ namespace SRPG.Scene.Battle
                         }
                     }
                 };
+        }
+
+        private EventHandler<MouseEventArgs> ShowAttackGrid(Combatant character)
+        {
+            return (sender, args) =>
+            {
+                //if (!character.CanMove) return;
+
+                var grid = character.GetEquippedWeapon().TargetGrid;
+
+                for (var i = 0; i < grid.Size.Width; i++)
+                {
+                    for (var j = 0; j < grid.Size.Height; j++)
+                    {
+                        if (grid.Weight[i, j] > 0)
+                        {
+                            ((BattleGridLayer)Layers["battlegrid"]).HighlightGrid((int)character.Avatar.Location.X + i - 12, (int)character.Avatar.Location.Y + j - 12, GridHighlight.Selectable);
+                        }
+                    }
+                }
+            };
         }
 
         private Grid GetMovementGrid(Combatant character)
