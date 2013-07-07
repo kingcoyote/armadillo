@@ -26,6 +26,7 @@ namespace SRPG.Scene.Battle
         private float _x;
         private float _y;
         private Combatant _selectedCharacter = null;
+        private BattleState _state;
 
         /// <summary>
         /// Pre-battle initialization sequence to load characters, the battleboard and the image layers.
@@ -135,6 +136,8 @@ namespace SRPG.Scene.Battle
             RoundNumber = 1;
             FactionTurn = 0;
 
+            _state = BattleState.PlayerTurn;
+
             var partyGrid = new List<Point>();
 
             switch(battleName)
@@ -207,7 +210,7 @@ namespace SRPG.Scene.Battle
 
         public void ShowCharacterStats(Combatant character)
         {
-            if (_selectedCharacter != null) return;
+            if (_state != BattleState.PlayerTurn) return;
 
             ((CharacterStats) Layers["character stats"]).SetCharacter(character);
             Layers["character stats"].Visible = true;
@@ -230,6 +233,8 @@ namespace SRPG.Scene.Battle
 
         public void SelectCharacter(Combatant character)
         {
+            if (_state != BattleState.PlayerTurn) return;
+
             if (Layers.ContainsKey("radial menu"))
             {
                 Layers.Remove("radial menu");
@@ -264,10 +269,13 @@ namespace SRPG.Scene.Battle
             Layers.Add("radial menu", menu);
 
             _selectedCharacter = character;
+            _state = BattleState.CharacterSelected;
         }
 
         public void DeselectCharacter()
         {
+            if (!(_state == BattleState.CharacterSelected || _state == BattleState.SelectingAbility || _state == BattleState.AimingAbility)) return;
+
             if(Layers.ContainsKey("radial menu"))
             {
                 Layers.Remove("radial menu");
@@ -278,6 +286,8 @@ namespace SRPG.Scene.Battle
             _selectedCharacter = null;
 
             HideCharacterStats();
+
+            _state = BattleState.PlayerTurn;
         }
 
         private static void SetCharacterMenuAnimations(SpriteObject icon)
@@ -367,5 +377,15 @@ namespace SRPG.Scene.Battle
 
             return grid;
         }
+    }
+
+    enum BattleState
+    {
+        EnemyTurn,
+        PlayerTurn,
+        CharacterSelected,
+        SelectingAbility,
+        AimingAbility,
+        ExecutingAbility,
     }
 }
