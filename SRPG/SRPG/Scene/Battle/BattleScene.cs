@@ -313,7 +313,7 @@ namespace SRPG.Scene.Battle
 
         public void DeselectCharacter()
         {
-            if (!(_state == BattleState.CharacterSelected || _state == BattleState.SelectingAbility || _state == BattleState.AimingAbility)) return;
+            if (_state != BattleState.CharacterSelected) return;
 
             if(Layers.ContainsKey("radial menu"))
             {
