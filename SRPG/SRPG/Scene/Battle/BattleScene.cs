@@ -175,6 +175,8 @@ namespace SRPG.Scene.Battle
             _y = 0 - partyGrid[0].Y*50 + Game.GetInstance().GraphicsDevice.Viewport.Height / 2;
 
             UpdateCamera();
+
+            ChangeFaction(0);
         }
 
         /// <summary>
@@ -183,7 +185,19 @@ namespace SRPG.Scene.Battle
         /// <param name="faction"></param>
         public void ChangeFaction(int faction)
         {
-            throw new NotImplementedException();
+            _state = faction == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
+
+            foreach(var character in BattleBoard.Characters)
+            {
+                if (character.Faction == faction)
+                {
+                    character.BeginRound();
+                }
+                else
+                {
+                    character.EndRound();
+                }
+            }
         }
 
         /// <summary>

@@ -95,7 +95,8 @@ namespace SRPG.Data
         /// </summary>
         public void BeginRound()
         {
-            throw new NotImplementedException();
+            CanMove = true;
+            CanAct = true;
         }
 
         /// <summary>
@@ -105,7 +106,8 @@ namespace SRPG.Data
         /// </summary>
         public void EndRound()
         {
-            throw new NotImplementedException();
+            CanMove = false;
+            CanAct = false;
         }
 
         /// <summary>
