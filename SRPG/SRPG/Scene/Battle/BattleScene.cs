@@ -256,14 +256,14 @@ namespace SRPG.Scene.Battle
 
             var icon = new SpriteObject("Battle/Menu/move");
             SetCharacterMenuAnimations(icon);
-            icon.MouseOver += ShowMovementGrid(character);
+            icon.MouseOver += ShowGrid(character, GetMovementGrid(character), GridHighlight.Selectable);
             icon.MouseOut += (sender, args) => ((BattleGridLayer)Layers["battlegrid"]).ResetGrid();
             icon.MouseRelease += SelectMovementTarget(character);
             menu.AddOption("move", icon);
 
             icon = new SpriteObject("Battle/Menu/attack");
             SetCharacterMenuAnimations(icon);
-            icon.MouseOver += ShowAttackGrid(character);
+            icon.MouseOver += ShowGrid(character, character.GetEquippedWeapon().TargetGrid, GridHighlight.Selectable);
             icon.MouseOut += (sender, args) => ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
             menu.AddOption("attack", icon);
 
@@ -327,42 +327,21 @@ namespace SRPG.Scene.Battle
             return (sender, args) => { };
         }
 
-        private EventHandler<MouseEventArgs> ShowMovementGrid(Combatant character)
-        {
-            return (sender, args) =>
-                {
-                    //if (!character.CanMove) return;
-
-                    var grid = GetMovementGrid(character);
-                    
-                    for(var i = 0; i < grid.Size.Width; i++)
-                    {
-                        for(var j = 0; j < grid.Size.Height; j++)
-                        {
-                            if(grid.Weight[i,j] > 0)
-                            {
-                                ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid((int)character.Avatar.Location.X + i - 12, (int)character.Avatar.Location.Y + j - 12, GridHighlight.Selectable);
-                            }
-                        }
-                    }
-                };
-        }
-
-        private EventHandler<MouseEventArgs> ShowAttackGrid(Combatant character)
+        private EventHandler<MouseEventArgs> ShowGrid(Combatant character, Grid grid, GridHighlight highlightType)
         {
             return (sender, args) =>
             {
-                //if (!character.CanMove) return;
-
-                var grid = character.GetEquippedWeapon().TargetGrid;
-
                 for (var i = 0; i < grid.Size.Width; i++)
                 {
                     for (var j = 0; j < grid.Size.Height; j++)
                     {
                         if (grid.Weight[i, j] > 0)
                         {
-                            ((BattleGridLayer)Layers["battlegrid"]).HighlightGrid((int)character.Avatar.Location.X + i - 12, (int)character.Avatar.Location.Y + j - 12, GridHighlight.Selectable);
+                            ((BattleGridLayer)Layers["battlegrid"]).HighlightGrid(
+                                (int)character.Avatar.Location.X + i - (int)(Math.Floor(grid.Size.Width / 2.0)), 
+                                (int)character.Avatar.Location.Y + j - (int)(Math.Floor(grid.Size.Height / 2.0)), 
+                                highlightType
+                            );
                         }
                     }
                 }
