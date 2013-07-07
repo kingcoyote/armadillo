@@ -213,14 +213,9 @@ namespace SRPG.Scene.Battle
             Layers["character stats"].Visible = true;
         }
 
-        public void HideCharacterStats(Combatant character)
+        public void HideCharacterStats()
         {
-            if (_selectedCharacter != null) return;
-
-            if (((CharacterStats)Layers["character stats"]).Character == character)
-            {
-                Layers["character stats"].Visible = false;
-            }
+            Layers["character stats"].Visible = false;
         }
 
         public Combatant GenerateCombatant(string name, string template, Vector2 location)
@@ -280,11 +275,9 @@ namespace SRPG.Scene.Battle
 
             ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
 
-            var character = _selectedCharacter;
-
             _selectedCharacter = null;
 
-            HideCharacterStats(character);
+            HideCharacterStats();
         }
 
         private static void SetCharacterMenuAnimations(SpriteObject icon)

@@ -49,10 +49,7 @@ namespace SRPG.Scene.Battle
 
         public EventHandler<MouseEventArgs> MouseOutCharacter(Combatant character)
         {
-            return (sender, args) =>
-                {
-                    ((BattleScene) Scene).HideCharacterStats(character);
-                };
+            return (sender, args) => ((BattleScene) Scene).HideCharacterStats();
         }
 
         public EventHandler<MouseEventArgs> MouseClickCharacter(Combatant character)
