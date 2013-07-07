@@ -112,6 +112,23 @@ namespace SRPG.Scene.Battle
             {
                 ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
                 ShowGrid(_selectedCharacter, _aimGrid, GridHighlight.Selectable);
+
+                // compensate for the camera not being at 0,0
+                // as well as do a 50:1 scaling to convert from the screen to the grid
+                var cursor = new Point(
+                    (int)Math.Floor((input.Cursor.X - _x)/50.0), 
+                    (int)Math.Floor((input.Cursor.Y - _y)/50.0)
+                );
+
+                // compensate for the character's position, since they likely aren't at 0, 0
+                var checkX = (int) (cursor.X - _selectedCharacter.Avatar.Location.X + Math.Floor(_aimGrid.Size.Width/2.0));
+                var checkY = (int) (cursor.Y - _selectedCharacter.Avatar.Location.Y + Math.Floor(_aimGrid.Size.Height/2.0));
+
+                if(checkX >= 0 && checkX < _aimGrid.Size.Width && checkY >= 0 && checkY < _aimGrid.Size.Height && _aimGrid.Weight[checkX, checkY] > 0)
+                {
+                    ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid(cursor.X, cursor.Y, GridHighlight.Targetted);
+                }
+                
             }
 
             UpdateCamera();
