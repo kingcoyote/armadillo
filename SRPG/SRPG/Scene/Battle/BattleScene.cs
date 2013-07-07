@@ -270,14 +270,22 @@ namespace SRPG.Scene.Battle
 
             var icon = new SpriteObject("Battle/Menu/move");
             SetCharacterMenuAnimations(icon);
-            icon.MouseOver += ShowGrid(character, GetMovementGrid(character), GridHighlight.Selectable);
+            icon.MouseOver += (sender, args) =>
+                {
+                    if (!character.CanMove) return;
+                    ShowGrid(character, GetMovementGrid(character), GridHighlight.Selectable);
+                };
             icon.MouseOut += (sender, args) => ((BattleGridLayer)Layers["battlegrid"]).ResetGrid();
             icon.MouseRelease += SelectMovementTarget(character);
             menu.AddOption("move", icon);
 
             icon = new SpriteObject("Battle/Menu/attack");
             SetCharacterMenuAnimations(icon);
-            icon.MouseOver += ShowGrid(character, character.GetEquippedWeapon().TargetGrid, GridHighlight.Selectable);
+            icon.MouseOver += (sender, args) =>
+                {
+                    if (!character.CanAct) return;
+                    ShowGrid(character, character.GetEquippedWeapon().TargetGrid, GridHighlight.Selectable);
+                };
             icon.MouseOut += (sender, args) => ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
             menu.AddOption("attack", icon);
 
@@ -341,25 +349,22 @@ namespace SRPG.Scene.Battle
             return (sender, args) => { };
         }
 
-        private EventHandler<MouseEventArgs> ShowGrid(Combatant character, Grid grid, GridHighlight highlightType)
+        private void ShowGrid(Combatant character, Grid grid, GridHighlight highlightType)
         {
-            return (sender, args) =>
+            for (var i = 0; i < grid.Size.Width; i++)
             {
-                for (var i = 0; i < grid.Size.Width; i++)
+                for (var j = 0; j < grid.Size.Height; j++)
                 {
-                    for (var j = 0; j < grid.Size.Height; j++)
+                    if (grid.Weight[i, j] > 0)
                     {
-                        if (grid.Weight[i, j] > 0)
-                        {
-                            ((BattleGridLayer)Layers["battlegrid"]).HighlightGrid(
-                                (int)character.Avatar.Location.X + i - (int)(Math.Floor(grid.Size.Width / 2.0)), 
-                                (int)character.Avatar.Location.Y + j - (int)(Math.Floor(grid.Size.Height / 2.0)), 
-                                highlightType
-                            );
-                        }
+                        ((BattleGridLayer)Layers["battlegrid"]).HighlightGrid(
+                            (int)character.Avatar.Location.X + i - (int)(Math.Floor(grid.Size.Width / 2.0)), 
+                            (int)character.Avatar.Location.Y + j - (int)(Math.Floor(grid.Size.Height / 2.0)), 
+                            highlightType
+                        );
                     }
                 }
-            };
+            }
         }
 
         private Grid GetMovementGrid(Combatant character)
