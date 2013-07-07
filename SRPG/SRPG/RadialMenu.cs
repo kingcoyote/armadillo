@@ -30,8 +30,8 @@ namespace SRPG
             {
                 var key = Objects.Keys.ElementAt(i);
 
-                Objects[key].X = (int)(CenterX + Math.Sin(degs * (i - 1)) * Distance) - Objects[key].Width / 2;
-                Objects[key].Y = (int)(CenterY - Math.Cos(degs * (i - 1)) * Distance) - Objects[key].Height / 2;
+                Objects[key].X = (int)(CenterX + Math.Sin(degs * (i)) * Distance) - Objects[key].Width / 2;
+                Objects[key].Y = (int)(CenterY - Math.Cos(degs * (i)) * Distance) - Objects[key].Height / 2;
             }
         }
     }
