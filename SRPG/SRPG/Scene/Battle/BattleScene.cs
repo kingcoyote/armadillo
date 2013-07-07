@@ -218,6 +218,8 @@ namespace SRPG.Scene.Battle
 
         public void HideCharacterStats()
         {
+            if (_state != BattleState.PlayerTurn) return;
+
             Layers["character stats"].Visible = false;
         }
 
@@ -290,9 +292,9 @@ namespace SRPG.Scene.Battle
 
             _selectedCharacter = null;
 
-            HideCharacterStats();
-
             _state = BattleState.PlayerTurn;
+
+            HideCharacterStats();
         }
 
         private static void SetCharacterMenuAnimations(SpriteObject icon)
