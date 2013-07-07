@@ -27,6 +27,8 @@ namespace SRPG.Scene.Battle
         private float _y;
         private Combatant _selectedCharacter = null;
         private BattleState _state;
+        private Action _aimAbility = () => { };
+        private Grid _aimGrid;
 
         /// <summary>
         /// Pre-battle initialization sequence to load characters, the battleboard and the image layers.
@@ -104,6 +106,12 @@ namespace SRPG.Scene.Battle
                 {
                     DeselectCharacter();
                 }
+            }
+
+            if (_state == BattleState.AimingAbility)
+            {
+                ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+                ShowGrid(_selectedCharacter, _aimGrid, GridHighlight.Selectable);
             }
 
             UpdateCamera();
@@ -346,7 +354,13 @@ namespace SRPG.Scene.Battle
 
         private EventHandler<MouseEventArgs> SelectMovementTarget(Combatant character)
         {
-            return (sender, args) => { };
+            return (sender, args) =>
+                {
+                    _state = BattleState.AimingAbility;
+                    Layers.Remove("radial menu");
+                    _aimGrid = GetMovementGrid(character);
+                    _aimAbility = () => { };
+                };
         }
 
         private void ShowGrid(Combatant character, Grid grid, GridHighlight highlightType)
