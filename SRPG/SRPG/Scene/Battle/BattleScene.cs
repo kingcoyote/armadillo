@@ -283,6 +283,8 @@ namespace SRPG.Scene.Battle
 
             if (Math.Abs(x - 0) < 0.05 && Math.Abs(y - 0) < 0.05)
             {
+                _selectedCharacter.Avatar.Location.X = _movementCoords[0].X;
+                _selectedCharacter.Avatar.Location.Y = _movementCoords[0].Y;
                 _movementCoords.RemoveAt(0);
             }
 
