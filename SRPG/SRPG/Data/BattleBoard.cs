@@ -51,13 +51,15 @@ namespace SRPG.Data
         }
 
         /// <summary>
-        /// Return an integer value specifying which faction occupies a square.
+        /// Return an integer value specifying which faction occupies a square, or -1 for empty.
         /// </summary>
         /// <param name="location">An X,Y pair indicating which location to check.</param>
         /// <returns>-1 for unoccupied, 0 for the player's faction, 1 for the enemy faction.</returns>
         public int IsOccupied(Point location)
         {
-            throw new NotImplementedException();
+            var character = (from c in Characters where Math.Abs(c.Avatar.Location.X - location.X) < 0.1 && Math.Abs(c.Avatar.Location.Y - location.Y) < 0.1 select c);
+
+            return character.Any() ? character.First().Faction : -1;
         }
     }
 }

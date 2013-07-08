@@ -123,6 +123,7 @@
     <Compile Include="Abilities\Healing.cs" />
     <Compile Include="Abilities\Lightning.cs" />
     <Compile Include="Abilities\Lunge.cs" />
+    <Compile Include="Abilities\Move.cs" />
     <Compile Include="Abilities\Protect.cs" />
     <Compile Include="Abilities\Quake.cs" />
     <Compile Include="Abilities\Revive.cs" />

@@ -99,6 +99,8 @@ namespace SRPG.Data
                 case "deflection": return new Deflection();
                 case "steel wall": return new SteelWall();
 
+                case "move": return new Move();
+
                 default: throw new Exception(string.Format("Unknown ability {0}", name));
 
             }

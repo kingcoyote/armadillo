@@ -27,8 +27,10 @@ namespace SRPG.Scene.Battle
         private float _y;
         private Combatant _selectedCharacter = null;
         private BattleState _state;
-        private Action _aimAbility = () => { };
+        private Action<int, int> _aimAbility = (int x, int y) => { };
         private Grid _aimGrid;
+        private Command _currentCommand;
+        private List<Point> _movementCoords;
 
         /// <summary>
         /// Pre-battle initialization sequence to load characters, the battleboard and the image layers.
@@ -121,14 +123,23 @@ namespace SRPG.Scene.Battle
                 );
 
                 // compensate for the character's position, since they likely aren't at 0, 0
+                // also adjust for them being centered in the aim grid
                 var checkX = (int) (cursor.X - _selectedCharacter.Avatar.Location.X + Math.Floor(_aimGrid.Size.Width/2.0));
                 var checkY = (int) (cursor.Y - _selectedCharacter.Avatar.Location.Y + Math.Floor(_aimGrid.Size.Height/2.0));
 
                 if(checkX >= 0 && checkX < _aimGrid.Size.Width && checkY >= 0 && checkY < _aimGrid.Size.Height && _aimGrid.Weight[checkX, checkY] > 0)
                 {
                     ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid(cursor.X, cursor.Y, GridHighlight.Targetted);
+                    if (input.LeftButton == ButtonState.Pressed)
+                    {
+                        _aimAbility(cursor.X, cursor.Y);
+                    }
                 }
-                
+            }
+
+            if(_state == BattleState.ExecutingCommand && _currentCommand.Ability.Name == "Move")
+            {
+                UpdateMovement(dt);
             }
 
             UpdateCamera();
@@ -240,12 +251,60 @@ namespace SRPG.Scene.Battle
         /// <param name="command">The command to be executed.</param>
         public void ExecuteCommand(Command command)
         {
-            
+            _state = BattleState.ExecutingCommand;
+
+            _currentCommand = command;
+
+            if (command.Ability.Name == "Move")
+            {
+                // special case for movement
+                _movementCoords = Pathfind(_selectedCharacter, command.Target);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
-        // execute a command
-        // onclick handlers for selecting characters
-        // onclick handlers for selecting menu items
-        // round change
+
+        private void UpdateMovement(float dt)
+        {
+            var x = 0 - (_selectedCharacter.Avatar.Location.X - _movementCoords[0].X);
+            var y = 0 - (_selectedCharacter.Avatar.Location.Y - _movementCoords[0].Y);
+
+            if (x < -0.1) x = -1;
+            if (x > 0.1) x = 1;
+            if (y < -0.1) y = -1;
+            if (y > 0.1) y = 1;
+
+            _selectedCharacter.Avatar.UpdateVelocity(x, y);
+
+            _selectedCharacter.Avatar.Location.X += x*dt*_selectedCharacter.Avatar.Speed/50;
+            _selectedCharacter.Avatar.Location.Y += y*dt*_selectedCharacter.Avatar.Speed/50;
+
+            if (Math.Abs(x - 0) < 0.05 && Math.Abs(y - 0) < 0.05)
+            {
+                _movementCoords.RemoveAt(0);
+            }
+
+            if (_movementCoords.Count == 0)
+            {
+                _state = _selectedCharacter.Faction == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
+                _selectedCharacter.Avatar.UpdateVelocity(0, 0);
+                DeselectCharacter();
+            }
+
+            // update x,y for _selectedCharacter
+            // if x,y meets the current target
+            //   splice target
+            // if there is no next target
+            //    change state to either playerturn or enemyturn
+            //    deselect character
+        }
+
+        private List<Point> Pathfind(Combatant character, Point target)
+        {
+            return new List<Point>() { target };
+        }
 
         public void ShowCharacterStats(Combatant character)
         {
@@ -376,7 +435,18 @@ namespace SRPG.Scene.Battle
                     _state = BattleState.AimingAbility;
                     Layers.Remove("radial menu");
                     _aimGrid = GetMovementGrid(character);
-                    _aimAbility = () => { };
+                    _aimAbility = (x, y) =>
+                        {
+                            if (BattleBoard.IsOccupied(new Point(x, y)) != -1) return;
+
+                            ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+
+                            var command = new Command();
+                            command.Character = character;
+                            command.Target = new Point(x, y);
+                            command.Ability = Ability.Factory("move");
+                            ExecuteCommand(command);
+                        };
                 };
         }
 
@@ -451,5 +521,6 @@ namespace SRPG.Scene.Battle
         SelectingAbility,
         AimingAbility,
         ExecutingAbility,
+        ExecutingCommand
     }
 }
