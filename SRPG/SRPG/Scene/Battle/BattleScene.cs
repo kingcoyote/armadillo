@@ -292,7 +292,7 @@ namespace SRPG.Scene.Battle
             {
                 _state = _selectedCharacter.Faction == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
                 _selectedCharacter.Avatar.UpdateVelocity(0, 0);
-                DeselectCharacter();
+                _selectedCharacter = null;
             }
 
             // update x,y for _selectedCharacter
