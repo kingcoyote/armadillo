@@ -310,16 +310,16 @@ namespace SRPG.Scene.Battle
             var closedSet = new List<Point>();
             var openSet = new List<Point> { start };
             var cameFrom = new Dictionary<Point, Point>();
-            var gScore = new Dictionary<Point, int>();
-            var fScore = new Dictionary<Point, float>();
+            var currentDistance = new Dictionary<Point, int>();
+            var predictedDistance = new Dictionary<Point, float>();
 
-            gScore.Add(start, 0);
-            fScore.Add(start, 0 + (int)CalculateDistance(start.X, start.Y, end.X, end.Y));
+            currentDistance.Add(start, 0);
+            predictedDistance.Add(start, 0 + (int)CalculateDistance(start.X, start.Y, end.X, end.Y));
 
             while (openSet.Count > 0)
             {
                 // get the node with the lowest estimated cost to finish
-                var current = (from p in openSet orderby fScore[p] ascending select p).First();
+                var current = (from p in openSet orderby predictedDistance[p] ascending select p).First();
 
                 // if it is the finish, return the path
                 if(current.X == end.X && current.Y == end.Y)
@@ -346,16 +346,16 @@ namespace SRPG.Scene.Battle
                 // process each valid node around the current node
                 foreach(var neighbor in GetNeighborNodes(current, faction))
                 {
-                    var tempGScore = gScore[current] + 1;
+                    var tempCurrentDistance = currentDistance[current] + 1;
                     
                     // if we already know a faster way to this neighbor, use that route and ignore this one
-                    if(closedSet.Contains(neighbor) && tempGScore >= gScore[neighbor])
+                    if(closedSet.Contains(neighbor) && tempCurrentDistance >= currentDistance[neighbor])
                     {
                         continue;
                     }
 
                     // if we don't know a route to this neighbor, or if this is faster, store this route
-                    if(!closedSet.Contains(neighbor) || tempGScore < gScore[neighbor])
+                    if(!closedSet.Contains(neighbor) || tempCurrentDistance < currentDistance[neighbor])
                     {
                         if(cameFrom.Keys.Contains(neighbor))
                         {
@@ -366,8 +366,8 @@ namespace SRPG.Scene.Battle
                             cameFrom.Add(neighbor, current);
                         }
 
-                        gScore[neighbor] = tempGScore;
-                        fScore[neighbor] = gScore[neighbor] + (float)CalculateDistance(neighbor.X, neighbor.Y, end.X, end.Y);
+                        currentDistance[neighbor] = tempCurrentDistance;
+                        predictedDistance[neighbor] = currentDistance[neighbor] + (float)CalculateDistance(neighbor.X, neighbor.Y, end.X, end.Y);
 
                         // if this is a new node, add it to processing
                         if (!openSet.Contains(neighbor))
