@@ -502,6 +502,7 @@ namespace SRPG.Scene.Battle
                     ShowGrid(character, character.GetEquippedWeapon().TargetGrid, GridHighlight.Selectable);
                 };
             icon.MouseOut += (sender, args) => ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+            icon.MouseRelease += SelectAttackTarget(character);
             menu.AddOption("attack", icon);
 
             icon = new SpriteObject("Battle/Menu/special");
@@ -580,6 +581,20 @@ namespace SRPG.Scene.Battle
                             character.CanMove = false;
                         };
                 };
+        }
+
+        private EventHandler<MouseEventArgs> SelectAttackTarget(Combatant character)
+        {
+            return (sender, args) =>
+            {
+                _state = BattleState.AimingAbility;
+                Layers.Remove("radial menu");
+                _aimGrid = character.GetEquippedWeapon().TargetGrid;
+                _aimAbility = (x, y) =>
+                {
+                    
+                };
+            };
         }
 
         private void ShowGrid(Combatant character, Grid grid, GridHighlight highlightType)
