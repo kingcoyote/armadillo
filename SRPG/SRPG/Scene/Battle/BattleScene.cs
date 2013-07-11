@@ -28,10 +28,12 @@ namespace SRPG.Scene.Battle
         private float _y;
         private Combatant _selectedCharacter = null;
         private BattleState _state;
-        private Action<int, int> _aimAbility = (int x, int y) => { };
+        private Func<int, int, bool> _aimAbility = (x, y) => true; 
         private Grid _aimGrid;
         private Command _currentCommand;
         private List<Point> _movementCoords;
+
+        private List<Command> _queuedCommands = new List<Command>();
 
         /// <summary>
         /// Pre-battle initialization sequence to load characters, the battleboard and the image layers.
@@ -133,7 +135,15 @@ namespace SRPG.Scene.Battle
                     ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid(cursor.X, cursor.Y, GridHighlight.Targetted);
                     if (input.LeftButton == ButtonState.Pressed)
                     {
-                        _aimAbility(cursor.X, cursor.Y);
+                        if(_aimAbility(cursor.X, cursor.Y))
+                        {
+                            ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+                            
+                        }
+                        else
+                        {
+                            
+                        }
                     }
                 }
             }
@@ -191,6 +201,7 @@ namespace SRPG.Scene.Battle
                     partyGrid.Add(new Point(13,36));
 
                     BattleBoard.Characters.Add(GenerateCombatant("Guard", "coliseum/guard", new Vector2(9, 2)));
+                    BattleBoard.Characters.Add(GenerateCombatant("Guard Captain", "coliseum/guard", new Vector2(14, 33)));
 
                     break;
                 default:
@@ -260,6 +271,10 @@ namespace SRPG.Scene.Battle
             {
                 // special case for movement
                 _movementCoords = Pathfind(new Point((int)_selectedCharacter.Avatar.Location.X, (int)_selectedCharacter.Avatar.Location.Y), command.Target, _selectedCharacter.Faction);
+            }
+            else if (command.Ability.Name == "Attack")
+            {
+                
             }
             else
             {
@@ -569,9 +584,7 @@ namespace SRPG.Scene.Battle
                     _aimGrid = GetMovementGrid(character);
                     _aimAbility = (x, y) =>
                         {
-                            if (BattleBoard.IsOccupied(new Point(x, y)) != -1) return;
-
-                            ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+                            if (BattleBoard.IsOccupied(new Point(x, y)) != -1) return false;
 
                             var command = new Command();
                             command.Character = character;
@@ -579,6 +592,8 @@ namespace SRPG.Scene.Battle
                             command.Ability = Ability.Factory("move");
                             ExecuteCommand(command);
                             character.CanMove = false;
+
+                            return true;
                         };
                 };
         }
@@ -591,9 +606,20 @@ namespace SRPG.Scene.Battle
                 Layers.Remove("radial menu");
                 _aimGrid = character.GetEquippedWeapon().TargetGrid;
                 _aimAbility = (x, y) =>
-                {
-                    
-                };
+                    {
+                        if (BattleBoard.IsOccupied(new Point(x, y)) == -1 || BattleBoard.IsOccupied(new Point(x, y)) == character.Faction)
+                            return false;
+
+                        var command = new Command();
+                        command.Character = character;
+                        command.Target = new Point(x, y);
+                        command.Ability = Ability.Factory("target");
+                        _queuedCommands.Add(command);
+
+                        _state = BattleState.PlayerTurn;
+
+                        return true;
+                    };
             };
         }
 
@@ -692,6 +718,12 @@ namespace SRPG.Scene.Battle
                     break;
 
             }
+        }
+
+        public void ExecuteQueuedCommands()
+        {
+            ExecuteCommand(_queuedCommands[0]);
+            _queuedCommands.RemoveAt(0);
         }
     }
 

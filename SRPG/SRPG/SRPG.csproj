@@ -110,6 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abilities\Attack.cs" />
     <Compile Include="Abilities\Awareness.cs" />
     <Compile Include="Abilities\Blur.cs" />
     <Compile Include="Abilities\Cleave.cs" />
