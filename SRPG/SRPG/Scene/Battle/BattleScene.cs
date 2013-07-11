@@ -474,13 +474,24 @@ namespace SRPG.Scene.Battle
 
             var icon = new SpriteObject("Battle/Menu/move");
             SetCharacterMenuAnimations(icon);
-            icon.MouseOver += (sender, args) =>
-                {
-                    if (!character.CanMove) return;
-                    ShowGrid(character, GetMovementGrid(character), GridHighlight.Selectable);
-                };
-            icon.MouseOut += (sender, args) => ((BattleGridLayer)Layers["battlegrid"]).ResetGrid();
-            icon.MouseRelease += SelectMovementTarget(character);
+            if (character.CanMove)
+            {
+                icon.MouseOver += (sender, args) =>
+                    {
+                        if (!character.CanMove) return;
+                        ShowGrid(character, GetMovementGrid(character), GridHighlight.Selectable);
+                    };
+                icon.MouseOut += (sender, args) => ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+                icon.MouseRelease += SelectMovementTarget(character);
+            }
+            else
+            {
+                icon.MouseOver = (sender, args) => { };
+                icon.MouseOut = (sender, args) => { };
+                icon.MouseClick = (sender, args) => { };
+                icon.MouseRelease = (sender, args) => { };
+                
+            }
             menu.AddOption("move", icon);
 
             icon = new SpriteObject("Battle/Menu/attack");
@@ -566,6 +577,7 @@ namespace SRPG.Scene.Battle
                             command.Target = new Point(x, y);
                             command.Ability = Ability.Factory("move");
                             ExecuteCommand(command);
+                            character.CanMove = false;
                         };
                 };
         }
