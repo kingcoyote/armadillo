@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SRPG.Data;
 using Torch;
@@ -12,28 +11,67 @@ namespace SRPG.Scene.Battle
 {
     class BattleScene : Torch.Scene
     {
+        /// <summary>
+        /// The BattleBoard representing the current characters in battle, as well as the battle grid.
+        /// </summary>
         public BattleBoard BattleBoard;
+        /// <summary>
+        /// A number representing which faction currently has control. 0 is the player, 1 is the computer.
+        /// </summary>
         public int FactionTurn;
         public bool AwaitingAction;
+        /// <summary>
+        /// The current round number. This incremenmts once for each cycle of player/computer.
+        /// </summary>
         public int RoundNumber;
 
         public BattleScene(Game game) : base(game) { }
 
-        private Dictionary<Direction, bool> _camDirections = new Dictionary<Direction, bool>() 
-            { {Direction.Up, false}, {Direction.Right, false}, {Direction.Down, false}, {Direction.Left, false} }; 
-
+        /// <summary>
+        /// Default camera movement speed, in pixels per second
+        /// </summary>
         private const int CamScrollSpeed = 450;
-
+        /// <summary>
+        /// X value offset of the camera compared to the board.
+        /// </summary>
         private float _x;
+        /// <summary>
+        /// Y value offset of the camera compared to the board.
+        /// </summary>
         private float _y;
-        private Combatant _selectedCharacter = null;
+        /// <summary>
+        /// The character currently being selected by either the player or the computer, used
+        /// to determine command targets and stats to display.
+        /// </summary>
+        private Combatant _selectedCharacter;
+        /// <summary>
+        /// Finite state machine indicating the current state of the battle. This changes on certain actions, such as clicking
+        /// a character, executing a command, selecting a command, or switching to the enemy turn. Large numbers of methods
+        /// check the state to determine fi the current action is valid.
+        /// </summary>
         private BattleState _state;
+        /// <summary>
+        /// Callback that executes when an ability is aimed. This can be a move ability callback moving a character, or a combat ability
+        /// callback queuing the command.
+        /// </summary>
         private Func<int, int, bool> _aimAbility = (x, y) => true; 
+        /// <summary>
+        /// A grid associated with the aimed ability, showing what tiles can be aimed at. For instance - a movement grid for aiming a move
+        /// or a targeting grid for aiming an attack.
+        /// </summary>
         private Grid _aimGrid;
+        /// <summary>
+        /// When executing a command, this will store the command currently being executed.
+        /// </summary>
         private Command _currentCommand;
+        /// <summary>
+        /// A queued list of commands awaiting execution. This list is added to when telling a character to attack, use an ability or use an item.
+        /// </summary>
+        private readonly List<Command> _queuedCommands = new List<Command>();
+        /// <summary>
+        /// When the current command is a move, and it is being executed, this is the coordinates for the character to follow from point A to point B.
+        /// </summary>
         private List<Point> _movementCoords;
-
-        private List<Command> _queuedCommands = new List<Command>();
 
         /// <summary>
         /// Pre-battle initialization sequence to load characters, the battleboard and the image layers.
@@ -140,10 +178,6 @@ namespace SRPG.Scene.Battle
                             ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
                             
                         }
-                        else
-                        {
-                            
-                        }
                     }
                 }
             }
@@ -156,11 +190,22 @@ namespace SRPG.Scene.Battle
             UpdateCamera();
         }
 
-        private double CalculateDistance(float x1, float y1, float x2, float y2)
+        /// <summary>
+        /// Simple pythagorean theorem processing to determine the straightline distance between two points.
+        /// </summary>
+        /// <param name="x1"></param>
+        /// <param name="y1"></param>
+        /// <param name="x2"></param>
+        /// <param name="y2"></param>
+        /// <returns></returns>
+        private static double CalculateDistance(float x1, float y1, float x2, float y2)
         {
             return Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
         }
 
+        /// <summary>
+        /// Move layers that are relevant to the battlegrid in relation to the camera.
+        /// </summary>
         private void UpdateCamera()
         {
             Layers["battlegrid"].X = _x;
@@ -282,6 +327,10 @@ namespace SRPG.Scene.Battle
             }
         }
 
+        /// <summary>
+        /// Process a single time tick and move whatever character is currently on the move towards their current destination.
+        /// </summary>
+        /// <param name="dt">Time, in seconds, since the last update. This is often in the 0.01 - 0.02 range.</param>
         private void UpdateMovement(float dt)
         {
             var x = 0 - (_selectedCharacter.Avatar.Location.X - _movementCoords[0].X);
@@ -314,12 +363,13 @@ namespace SRPG.Scene.Battle
         }
 
         /// <summary>
-        /// A* algorithm for calculating a path between two points.
+        /// A* algorithm for calculating a path between two points on the battlegrid. An optional faction parameter
+        /// can indicate which faction is moving, since enemies cannot be walked through.
         /// </summary>
-        /// <param name="start"></param>
-        /// <param name="end"></param>
-        /// <param name="faction"></param>
-        /// <returns></returns>
+        /// <param name="start">The start point to begin calculation.</param>
+        /// <param name="end">The destination to seek out.</param>
+        /// <param name="faction">The faction of the moving character, used to determine enemies blocking movement.</param>
+        /// <returns>A list of points to move the character through to reach the destination in the shortest possible distance.</returns>
         private List<Point> Pathfind(Point start, Point end, int faction = -1)
         {
             var closedSet = new List<Point>();
@@ -396,7 +446,13 @@ namespace SRPG.Scene.Battle
             throw new Exception(string.Format("unable to find a path between {0},{1} and {2},{3}", start.X, start.Y, end.X, end.Y));
         }
 
-        private List<Point> GetNeighborNodes(Point node, int faction)
+        /// <summary>
+        /// Return a list of accessible nodes neighboring a specified node, taking faction into account.
+        /// </summary>
+        /// <param name="node">The center node to be analyzed.</param>
+        /// <param name="faction">The faction of the character attempting to step into the neighbor nodes.</param>
+        /// <returns>A list of nodes neighboring the center node that a character of the specified faction may enter.</returns>
+        private IEnumerable<Point> GetNeighborNodes(Point node, int faction)
         {
             var nodes = new List<Point>();
             
@@ -427,20 +483,28 @@ namespace SRPG.Scene.Battle
             return nodes;
         }
 
+        /// <summary>
+        /// Process a list of valid paths generated by the Pathfind function and return a coherent path to current.
+        /// </summary>
+        /// <param name="cameFrom">A list of nodes and the optimal origin to that node.</param>
+        /// <param name="current">The destination node being sought out.</param>
+        /// <returns>The shortest path possible from the start to the destination node.</returns>
         private List<Point> ReconstructPath(Dictionary<Point, Point> cameFrom, Point current)
         {
-            if(cameFrom.Keys.Contains(current))
+            if (!cameFrom.Keys.Contains(current))
             {
-                var path = ReconstructPath(cameFrom, cameFrom[current]);
-                path.Add(current);
-                return path;
+                return new List<Point> {current};
             }
-            else
-            {
-                return new List<Point> { current };
-            }
+
+            var path = ReconstructPath(cameFrom, cameFrom[current]);
+            path.Add(current);
+            return path;
         }
 
+        /// <summary>
+        /// Display a HUD element indicating basic stats for a specified character
+        /// </summary>
+        /// <param name="character">The character to be shown.</param>
         public void ShowCharacterStats(Combatant character)
         {
             if (_state != BattleState.PlayerTurn) return;
@@ -449,6 +513,9 @@ namespace SRPG.Scene.Battle
             Layers["character stats"].Visible = true;
         }
 
+        /// <summary>
+        /// Hide the HUD element created by ShowCharacterStats
+        /// </summary>
         public void HideCharacterStats()
         {
             if (_state != BattleState.PlayerTurn) return;
@@ -456,6 +523,13 @@ namespace SRPG.Scene.Battle
             Layers["character stats"].Visible = false;
         }
 
+        /// <summary>
+        /// Create a Combatant object from a template to inject into the battle
+        /// </summary>
+        /// <param name="name">The human readable name of the combatant.</param>
+        /// <param name="template">The template name to build the combatant from.</param>
+        /// <param name="location">The location of the combatant on the battleboard.</param>
+        /// <returns>The generated combatant.</returns>
         public Combatant GenerateCombatant(string name, string template, Vector2 location)
         {
             var combatant = Combatant.FromTemplate(template);
@@ -466,6 +540,10 @@ namespace SRPG.Scene.Battle
             return combatant;
         }
 
+        /// <summary>
+        /// Process a character that has been selected by the player, showing a radial menu of options.
+        /// </summary>
+        /// <param name="character">The character whose options are to be displayed.</param>
         public void SelectCharacter(Combatant character)
         {
             if (character == _selectedCharacter)
@@ -534,6 +612,9 @@ namespace SRPG.Scene.Battle
             _state = BattleState.CharacterSelected;
         }
 
+        /// <summary>
+        /// Deselect a character, hiding the radial menu of options and resetting the battlegrid to normal highlighting.
+        /// </summary>
         public void DeselectCharacter()
         {
             if (_state != BattleState.CharacterSelected) return;
@@ -575,6 +656,12 @@ namespace SRPG.Scene.Battle
             icon.MouseRelease += (sender, args) => ((SpriteObject) args.Target).SetAnimation("normal");
         }
 
+        /// <summary>
+        /// Create a callback function to process if the player chooses to move a character. This callback will display the movement grid
+        /// and bind _aimAbility to a function that moves the character.
+        /// </summary>
+        /// <param name="character">The character whose movement is being chosen.</param>
+        /// <returns></returns>
         private EventHandler<MouseEventArgs> SelectMovementTarget(Combatant character)
         {
             return (sender, args) =>
@@ -586,10 +673,12 @@ namespace SRPG.Scene.Battle
                         {
                             if (BattleBoard.IsOccupied(new Point(x, y)) != -1) return false;
 
-                            var command = new Command();
-                            command.Character = character;
-                            command.Target = new Point(x, y);
-                            command.Ability = Ability.Factory("move");
+                            var command = new Command
+                                {
+                                    Character = character, 
+                                    Target = new Point(x, y), 
+                                    Ability = Ability.Factory("move")
+                                };
                             ExecuteCommand(command);
                             character.CanMove = false;
 
@@ -598,6 +687,12 @@ namespace SRPG.Scene.Battle
                 };
         }
 
+        /// <summary>
+        /// Create a callback function to process if the player chooses to have a character attack. This callback will display the targetting grid
+        /// and bind _aimAbility to a function that queues an attack command from the character onto the target.
+        /// </summary>
+        /// <param name="character">The character whose attack is being chosen.</param>
+        /// <returns></returns>
         private EventHandler<MouseEventArgs> SelectAttackTarget(Combatant character)
         {
             return (sender, args) =>
@@ -610,10 +705,12 @@ namespace SRPG.Scene.Battle
                         if (BattleBoard.IsOccupied(new Point(x, y)) == -1 || BattleBoard.IsOccupied(new Point(x, y)) == character.Faction)
                             return false;
 
-                        var command = new Command();
-                        command.Character = character;
-                        command.Target = new Point(x, y);
-                        command.Ability = Ability.Factory("target");
+                        var command = new Command
+                            {
+                                Character = character, 
+                                Target = new Point(x, y), 
+                                Ability = Ability.Factory("target")
+                            };
                         _queuedCommands.Add(command);
 
                         _state = BattleState.PlayerTurn;
@@ -623,6 +720,13 @@ namespace SRPG.Scene.Battle
             };
         }
 
+        /// <summary>
+        /// Generic function to display a sub-grid onto the main grid, centered on a certain character with a specified highlight type.
+        /// Usage examples are : display movement grid for a character, display attack grid for a character.
+        /// </summary>
+        /// <param name="character">The character to center the grid on.</param>
+        /// <param name="grid">The grid to highlight, a value greater than 0 will be highlighted.</param>
+        /// <param name="highlightType">The type of highlighting to use.</param>
         private void ShowGrid(Combatant character, Grid grid, GridHighlight highlightType)
         {
             for (var i = 0; i < grid.Size.Width; i++)
@@ -641,19 +745,23 @@ namespace SRPG.Scene.Battle
             }
         }
 
+        /// <summary>
+        /// Process a character's position and the condition of the battleboard and return a grid indicating where this character can move.
+        /// </summary>
+        /// <param name="character">The character to process.</param>
+        /// <returns>A grid indicating movement range, with a 1 being a square that can be entered and a 0 being blocked.</returns>
         private Grid GetMovementGrid(Combatant character)
         {
             var grid = new Grid(25, 25);
 
             grid.Weight[12, 12] = 1;
 
-            List<int[]> currentRound;
             var neighbors = new List<int[]> {new[] {0, -1}, new[] {1, 0}, new[] {0, 1}, new[] {-1, 0}};
             var lastRound = new List<int[]> {new[] {12, 12}};
 
             for (var i = 0; i < character.Stats[Stat.Speed] / 3; i++)
             {
-                currentRound = new List<int[]>();
+                var currentRound = new List<int[]>();
 
                 foreach (var square in lastRound)
                 {
@@ -685,6 +793,9 @@ namespace SRPG.Scene.Battle
             return grid;
         }
 
+        /// <summary>
+        /// Handle a cancel request from the player. This will change behavior depending on the BattleState.
+        /// </summary>
         public void Cancel()
         {
             switch(_state)
