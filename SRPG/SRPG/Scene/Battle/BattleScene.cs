@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -258,7 +259,7 @@ namespace SRPG.Scene.Battle
             if (command.Ability.Name == "Move")
             {
                 // special case for movement
-                _movementCoords = Pathfind(_selectedCharacter, command.Target);
+                _movementCoords = Pathfind(new Point((int)_selectedCharacter.Avatar.Location.X, (int)_selectedCharacter.Avatar.Location.Y), command.Target, _selectedCharacter.Faction);
             }
             else
             {
@@ -293,19 +294,136 @@ namespace SRPG.Scene.Battle
                 _state = _selectedCharacter.Faction == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
                 _selectedCharacter.Avatar.UpdateVelocity(0, 0);
                 _selectedCharacter = null;
+                HideCharacterStats();
             }
-
-            // update x,y for _selectedCharacter
-            // if x,y meets the current target
-            //   splice target
-            // if there is no next target
-            //    change state to either playerturn or enemyturn
-            //    deselect character
         }
 
-        private List<Point> Pathfind(Combatant character, Point target)
+        /// <summary>
+        /// A* algorithm for calculating a path between two points.
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="faction"></param>
+        /// <returns></returns>
+        private List<Point> Pathfind(Point start, Point end, int faction = -1)
         {
-            return new List<Point>() { target };
+            var closedSet = new List<Point>();
+            var openSet = new List<Point> { start };
+            var cameFrom = new Dictionary<Point, Point>();
+            var gScore = new Dictionary<Point, int>();
+            var fScore = new Dictionary<Point, float>();
+
+            gScore.Add(start, 0);
+            fScore.Add(start, 0 + (int)CalculateDistance(start.X, start.Y, end.X, end.Y));
+
+            while (openSet.Count > 0)
+            {
+                // get the node with the lowest estimated cost to finish
+                var current = (from p in openSet orderby fScore[p] ascending select p).First();
+
+                // if it is the finish, return the path
+                if(current.X == end.X && current.Y == end.Y)
+                {
+                    // generate the found path
+                    var path = ReconstructPath(cameFrom, end);
+                    
+                    // filter out items that are not a direction change
+                    for(var i = path.Count - 2; i > 0; i--)
+                    {
+                        if(path.ElementAt(i - 1).X == path.ElementAt(i + 1).X || path.ElementAt(i - 1).Y == path.ElementAt(i + 1).Y)
+                        {
+                            path.RemoveAt(i);
+                        }
+                    }
+
+                    return path;
+                }
+
+                // move current node from open to closed
+                openSet.Remove(current);
+                closedSet.Add(current);
+
+                // process each valid node around the current node
+                foreach(var neighbor in GetNeighborNodes(current, faction))
+                {
+                    var tempGScore = gScore[current] + 1;
+                    
+                    // if we already know a faster way to this neighbor, use that route and ignore this one
+                    if(closedSet.Contains(neighbor) && tempGScore >= gScore[neighbor])
+                    {
+                        continue;
+                    }
+
+                    // if we don't know a route to this neighbor, or if this is faster, store this route
+                    if(!closedSet.Contains(neighbor) || tempGScore < gScore[neighbor])
+                    {
+                        if(cameFrom.Keys.Contains(neighbor))
+                        {
+                            cameFrom[neighbor] = current;
+                        }
+                        else
+                        {
+                            cameFrom.Add(neighbor, current);
+                        }
+
+                        gScore[neighbor] = tempGScore;
+                        fScore[neighbor] = gScore[neighbor] + (float)CalculateDistance(neighbor.X, neighbor.Y, end.X, end.Y);
+
+                        // if this is a new node, add it to processing
+                        if (!openSet.Contains(neighbor))
+                        {
+                            openSet.Add(neighbor);
+                        }
+                    }
+                }
+            }
+
+            throw new Exception(string.Format("unable to find a path between {0},{1} and {2},{3}", start.X, start.Y, end.X, end.Y));
+        }
+
+        private List<Point> GetNeighborNodes(Point node, int faction)
+        {
+            var nodes = new List<Point>();
+            
+            // up
+            if(BattleBoard.IsAccessible(new Point(node.X, node.Y - 1), faction))
+            {
+                nodes.Add(new Point(node.X, node.Y - 1));
+            }
+
+            // right
+            if (BattleBoard.IsAccessible(new Point(node.X + 1, node.Y), faction))
+            {
+                nodes.Add(new Point(node.X + 1, node.Y));
+            }
+
+            // down
+            if (BattleBoard.IsAccessible(new Point(node.X, node.Y + 1), faction))
+            {
+                nodes.Add(new Point(node.X, node.Y + 1));
+            }
+
+            // left
+            if (BattleBoard.IsAccessible(new Point(node.X - 1, node.Y), faction))
+            {
+                nodes.Add(new Point(node.X - 1, node.Y));
+            }
+
+            return nodes;
+        }
+
+        private List<Point> ReconstructPath(Dictionary<Point, Point> cameFrom, Point current)
+        {
+            if(cameFrom.Keys.Contains(current))
+            {
+                var path = ReconstructPath(cameFrom, cameFrom[current]);
+                path.Add(current);
+                return path;
+            }
+            else
+            {
+                return new List<Point> { current };
+            }
         }
 
         public void ShowCharacterStats(Combatant character)
