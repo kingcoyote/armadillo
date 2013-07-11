@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Torch;
 
 namespace SRPG.Scene.Battle
@@ -18,6 +19,8 @@ namespace SRPG.Scene.Battle
 
             // faction
             Objects.Add("faction label", new TextObject { Font = font, X = 35, Y = (int)(35 + font.LineSpacing * 1.5), Color = Color.White, Value = ""});
+
+            KeyDown += CheckCancel;
         }
 
         public override void Update(GameTime gameTime, Input input)
@@ -27,6 +30,13 @@ namespace SRPG.Scene.Battle
             ((TextObject)Objects["round number"]).Value = ((BattleScene) Scene).RoundNumber.ToString();
             ((TextObject)Objects["faction label"]).Value = ((BattleScene) Scene).FactionTurn == 0 ? "Player Turn" : "Enemy Turn";
 
+        }
+
+        private void CheckCancel(object sender, KeyboardEventArgs args)
+        {
+            if (args.WhichKey != Keys.Escape) return;
+
+            ((BattleScene) sender).Cancel();
         }
     }
 }

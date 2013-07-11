@@ -658,6 +658,41 @@ namespace SRPG.Scene.Battle
 
             return grid;
         }
+
+        public void Cancel()
+        {
+            switch(_state)
+            {
+                case BattleState.EnemyTurn:
+                    // nothing
+                    break;
+                case BattleState.PlayerTurn:
+                    // remove last command
+                    break;
+                case BattleState.CharacterSelected:
+                    DeselectCharacter();
+                    break;
+                case BattleState.SelectingAbility:
+                    break;
+                case BattleState.AimingAbility:
+                    // todo turn this into a method
+                    ((BattleGridLayer)Layers["battlegrid"]).ResetGrid();
+                    _aimGrid = new Grid(1, 1);
+                    _aimAbility = null;
+                    _selectedCharacter = null;
+                    
+                    _state = BattleState.PlayerTurn;
+                    HideCharacterStats();
+                    break;
+                case BattleState.ExecutingAbility:
+                    // nothing;
+                    break;
+                case BattleState.ExecutingCommand:
+                    // nothing
+                    break;
+
+            }
+        }
     }
 
     enum BattleState
