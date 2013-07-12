@@ -128,11 +128,8 @@ namespace SRPG.Scene.Battle
 
             var viewport = Game.GetInstance().GraphicsDevice.Viewport;
 
-            if (_x > 0) _x = 0;
-            if (_x < 0 - ((BattleGridLayer)Layers["battlegrid"]).Width + viewport.Width) _x = 0 - ((BattleGridLayer)Layers["battlegrid"]).Width + viewport.Width;
-
-            if (_y > 0) _y = 0;
-            if (_y < 0 - ((BattleGridLayer)Layers["battlegrid"]).Height + viewport.Height) _y = 0 - ((BattleGridLayer)Layers["battlegrid"]).Height + viewport.Height;
+            _x = MathHelper.Clamp(_x, 0 - ((BattleGridLayer) Layers["battlegrid"]).Width + viewport.Width, 0);
+            _y = MathHelper.Clamp(_y, 0 - ((BattleGridLayer) Layers["battlegrid"]).Height + viewport.Height, 0);
 
             if (_selectedCharacter != null)
             {
