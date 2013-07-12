@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 using SRPG.Abilities;
 
 namespace SRPG.Data
@@ -32,7 +33,7 @@ namespace SRPG.Data
         /// Generate one or more hits to be used to damage the targets.
         /// </summary>
         /// <returns>A non-zero list of hits to be applied to a target.</returns>
-        public virtual List<Hit> GenerateHits()
+        public virtual List<Hit> GenerateHits(BattleBoard board, Point target)
         {
             throw new NotImplementedException();
         }

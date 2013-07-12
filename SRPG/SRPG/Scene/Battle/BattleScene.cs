@@ -74,8 +74,6 @@ namespace SRPG.Scene.Battle
         private List<Point> _movementCoords;
 
         private List<Hit> _hits = new List<Hit>();
-        private Point _hitTarget;
-        private Grid _hitImpactGrid;
 
         /// <summary>
         /// Pre-battle initialization sequence to load characters, the battleboard and the image layers.
@@ -176,23 +174,7 @@ namespace SRPG.Scene.Battle
                 hit.Delay -= (int)(dt*1000);
                 if(hit.Delay <= 0)
                 {
-                    for(var x = 0; x < _hitImpactGrid.Size.Width; x++)
-                    {
-                        for(var y = 0; y < _hitImpactGrid.Size.Height; y++)
-                        {
-                            if (_hitImpactGrid.Weight[x, y] == 0) continue;
-
-                            var checkpoint = new Point(
-                                _hitTarget.X - (int)(Math.Floor(_hitImpactGrid.Size.Width/2.0)) + x,
-                                _hitTarget.Y - (int)(Math.Floor(_hitImpactGrid.Size.Height/2.0)) + y
-                            );
-
-                            if(BattleBoard.IsOccupied(checkpoint) == hit.Faction)
-                            {
-                                ((HitLayer) Layers["hitlayer"]).DisplayHit(hit.Damage, Color.White, checkpoint);
-                            }
-                        }
-                    }
+                    ((HitLayer) Layers["hitlayer"]).DisplayHit(hit.Damage, Color.White, hit.Target);
                 }
                 else
                 {
@@ -387,9 +369,7 @@ namespace SRPG.Scene.Battle
                     }
                     break;
                 case "Attack":
-                    var hits = _currentCommand.Ability.GenerateHits();
-                    _hitTarget = _currentCommand.Target;
-                    _hitImpactGrid = _currentCommand.Ability.GenerateImpactGrid();
+                    var hits = _currentCommand.Ability.GenerateHits(BattleBoard, command.Target);
                     DisplayHits(hits);
                     break;
                 default:

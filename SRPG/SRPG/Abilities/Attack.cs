@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 using SRPG.Data;
 
 namespace SRPG.Abilities
@@ -13,7 +14,7 @@ namespace SRPG.Abilities
             Name = "Attack";
         }
 
-        public override List<Hit> GenerateHits()
+        public override List<Hit> GenerateHits(BattleBoard board, Point target)
         {
             return new List<Hit>()
                 {
@@ -22,7 +23,7 @@ namespace SRPG.Abilities
                             Critical = 50,
                             Damage = 5,
                             Delay = 200,
-                            Faction = Character.Faction == 0 ? 1 : 0
+                            Target = target
                         }
                 };
         }
