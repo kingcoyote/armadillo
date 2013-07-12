@@ -79,5 +79,15 @@ namespace SRPG.Data
 
             return grid;
         }
+
+        public Combatant GetCharacterAt(Point target)
+        {
+            var character =
+                (from c in Characters where Math.Abs(c.Avatar.Location.X - target.X) < 0.01 && Math.Abs(c.Avatar.Location.Y - target.Y) < 0.01 select c);
+
+            IEnumerable<Combatant> combatants = character as Combatant[] ?? character.ToArray();
+
+            return combatants.Any() ? combatants.First() : null;
+        }
     }
 }

@@ -166,22 +166,33 @@ namespace SRPG.Scene.Battle
 
         private void UpdateBattleStateDisplayingHits(Input input, float dt)
         {
+            // newhits stores hits that will remain in queue
             var newHits = new List<Hit>();
             
+            // process each hit in the old queue
             for(var i = 0; i < _hits.Count; i++)
             {
                 var hit = _hits.ElementAt(i);
+                
+                // decrease the delay
                 hit.Delay -= (int)(dt*1000);
+
+                // if the hit is ready to display
                 if(hit.Delay <= 0)
                 {
-                    ((HitLayer) Layers["hitlayer"]).DisplayHit(hit.Damage, Color.White, hit.Target);
+                    // display it
+                    var character = BattleBoard.GetCharacterAt(hit.Target);
+                    var damage = character.ProcessHit(hit);
+                    ((HitLayer) Layers["hitlayer"]).DisplayHit(damage, Color.White, hit.Target);
                 }
                 else
                 {
+                    // keep it in queue
                     newHits.Add(hit);
                 }
             }
 
+            // update the queue
             _hits = newHits;
         }
 
