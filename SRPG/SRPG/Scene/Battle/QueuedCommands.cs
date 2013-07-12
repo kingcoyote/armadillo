@@ -24,8 +24,30 @@ namespace SRPG.Scene.Battle
             var font = FontManager.Get("Menu");
             var viewport = Game.GetInstance().GraphicsDevice.Viewport;
 
-            Objects["box"].Height = (commands.Count + 1)*font.LineSpacing*2;
+            Objects["box"].Height = (int)((commands.Count + 1)*font.LineSpacing*1.5);
             Objects["box"].Y = viewport.Height - 25 - Objects["box"].Height;
+
+            ClearByName("command");
+
+            var i = 0;
+
+            foreach(var command in commands)
+            {
+                //Objects.Add("command/" + i + "/portrait", command.Character.Portrait);
+                //Objects["command/" + i + "/portrait"].X = 35;
+                //Objects["command/" + i + "/portrait"].Y = Objects["box"].Y + 10 + (int) (i*font.LineSpacing*1.5);
+
+                Objects.Add("command/" + i + "/name", new TextObject
+                    {
+                        Font = font, 
+                        Color = Color.White, 
+                        X = 70, 
+                        Y = Objects["box"].Y + 10 + (int)(i * font.LineSpacing * 1.5), 
+                        Value = command.Ability.Name
+                    });
+
+                i++;
+            }
         }
     }
 }
