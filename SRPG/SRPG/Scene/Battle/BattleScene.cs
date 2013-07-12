@@ -197,8 +197,8 @@ namespace SRPG.Scene.Battle
         private void UpdateBattleStateCharacterSelected(Input input, float dt)
         {
             var cursorDistance = Math.Sqrt(
-                Math.Pow(input.Cursor.X + (0 - _x) - _selectedCharacter.Avatar.Sprite.X + _selectedCharacter.Avatar.Sprite.Width/2.0, 2) + 
-                Math.Pow(input.Cursor.Y + (0 - _y) - _selectedCharacter.Avatar.Sprite.Y + _selectedCharacter.Avatar.Sprite.Height/2.0, 2)
+                Math.Pow((input.Cursor.X + (0 - _x)) - (_selectedCharacter.Avatar.Sprite.X + _selectedCharacter.Avatar.Sprite.Width/2.0), 2) + 
+                Math.Pow((input.Cursor.Y + (0 - _y)) - (_selectedCharacter.Avatar.Sprite.Y + _selectedCharacter.Avatar.Sprite.Height/2.0), 2)
             );
 
             if (cursorDistance > 125)
