@@ -60,10 +60,6 @@ namespace SRPG.Scene.Battle
         /// </summary>
         private Grid _aimGrid;
         /// <summary>
-        /// When executing a command, this will store the command currently being executed.
-        /// </summary>
-        private Command _currentCommand;
-        /// <summary>
         /// A queued list of commands awaiting execution. This list is added to when telling a character to attack, use an ability or use an item.
         /// </summary>
         public List<Command> QueuedCommands { get; private set; }
@@ -161,6 +157,9 @@ namespace SRPG.Scene.Battle
                 case BattleState.DisplayingHits:
                     UpdateBattleStateDisplayingHits(input, dt);
                     break;
+                case BattleState.MovingCharacter:
+                    UpdateBattleStateMovingCharacter(input, dt);
+                    break;
             }
         }
 
@@ -192,15 +191,58 @@ namespace SRPG.Scene.Battle
                 }
             }
 
-            // update the queue
-            _hits = newHits;
+            if (newHits.Count > 0)
+            {
+                // update the queue
+                _hits = newHits;
+            }
+            else
+            {
+                _state = BattleState.ExecutingCommand;
+            }
         }
 
         private void UpdateBattleStateExecutingCommand(Input input, float dt)
         {
-            if (_currentCommand.Ability.Name == "Move")
+            if (QueuedCommands.Count > 0)
             {
-                UpdateMovement(dt);
+                ExecuteCommand(QueuedCommands[0]);
+                QueuedCommands.RemoveAt(0);
+            }
+            else
+            {
+                _state = FactionTurn == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
+            }
+        }
+
+        private void UpdateBattleStateMovingCharacter(Input input, float dt)
+        {
+            var x = 0 - (_selectedCharacter.Avatar.Location.X - _movementCoords[0].X);
+            var y = 0 - (_selectedCharacter.Avatar.Location.Y - _movementCoords[0].Y);
+
+            if (x < -0.1) x = -1;
+            if (x > 0.1) x = 1;
+            if (y < -0.1) y = -1;
+            if (y > 0.1) y = 1;
+
+            _selectedCharacter.Avatar.UpdateVelocity(x, y);
+
+            _selectedCharacter.Avatar.Location.X += x * dt * _selectedCharacter.Avatar.Speed / 50;
+            _selectedCharacter.Avatar.Location.Y += y * dt * _selectedCharacter.Avatar.Speed / 50;
+
+            if (Math.Abs(x - 0) < 0.05 && Math.Abs(y - 0) < 0.05)
+            {
+                _selectedCharacter.Avatar.Location.X = _movementCoords[0].X;
+                _selectedCharacter.Avatar.Location.Y = _movementCoords[0].Y;
+                _movementCoords.RemoveAt(0);
+            }
+
+            if (_movementCoords.Count == 0)
+            {
+                _state = _selectedCharacter.Faction == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
+                _selectedCharacter.Avatar.UpdateVelocity(0, 0);
+                _selectedCharacter = null;
+                HideCharacterStats();
             }
         }
 
@@ -358,8 +400,6 @@ namespace SRPG.Scene.Battle
         {
             _state = BattleState.ExecutingCommand;
 
-            _currentCommand = command;
-
             switch (command.Ability.Name)
             {
                 case "Move":
@@ -377,49 +417,16 @@ namespace SRPG.Scene.Battle
                         }
 
                         _movementCoords = coords;
+
+                        _state = BattleState.MovingCharacter;
                     }
                     break;
                 case "Attack":
-                    var hits = _currentCommand.Ability.GenerateHits(BattleBoard, command.Target);
+                    var hits = command.Ability.GenerateHits(BattleBoard, command.Target);
                     DisplayHits(hits);
                     break;
                 default:
                     throw new NotImplementedException();
-            }
-        }
-
-        /// <summary>
-        /// Process a single time tick and move whatever character is currently on the move towards their current destination.
-        /// </summary>
-        /// <param name="dt">Time, in seconds, since the last update. This is often in the 0.01 - 0.02 range.</param>
-        private void UpdateMovement(float dt)
-        {
-            var x = 0 - (_selectedCharacter.Avatar.Location.X - _movementCoords[0].X);
-            var y = 0 - (_selectedCharacter.Avatar.Location.Y - _movementCoords[0].Y);
-
-            if (x < -0.1) x = -1;
-            if (x > 0.1) x = 1;
-            if (y < -0.1) y = -1;
-            if (y > 0.1) y = 1;
-
-            _selectedCharacter.Avatar.UpdateVelocity(x, y);
-
-            _selectedCharacter.Avatar.Location.X += x*dt*_selectedCharacter.Avatar.Speed/50;
-            _selectedCharacter.Avatar.Location.Y += y*dt*_selectedCharacter.Avatar.Speed/50;
-
-            if (Math.Abs(x - 0) < 0.05 && Math.Abs(y - 0) < 0.05)
-            {
-                _selectedCharacter.Avatar.Location.X = _movementCoords[0].X;
-                _selectedCharacter.Avatar.Location.Y = _movementCoords[0].Y;
-                _movementCoords.RemoveAt(0);
-            }
-
-            if (_movementCoords.Count == 0)
-            {
-                _state = _selectedCharacter.Faction == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
-                _selectedCharacter.Avatar.UpdateVelocity(0, 0);
-                _selectedCharacter = null;
-                HideCharacterStats();
             }
         }
 
@@ -693,8 +700,7 @@ namespace SRPG.Scene.Battle
 
         public void ExecuteQueuedCommands()
         {
-            ExecuteCommand(QueuedCommands[0]);
-            QueuedCommands.RemoveAt(0);
+            _state = BattleState.ExecutingCommand;
         }
 
         public void DisplayHits(List<Hit> hits)
@@ -713,6 +719,7 @@ namespace SRPG.Scene.Battle
         AimingAbility,
         ExecutingAbility,
         ExecutingCommand,
-        DisplayingHits
+        DisplayingHits,
+        MovingCharacter
     }
 }
