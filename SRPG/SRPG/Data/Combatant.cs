@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -322,6 +323,49 @@ namespace SRPG.Data
             );
 
             return combatant;
+        }
+
+        public Grid GetMovementGrid(Grid battleboard)
+        {
+            var grid = new Grid(25, 25);
+
+            grid.Weight[12, 12] = 1;
+
+            var neighbors = new List<int[]> { new[] { 0, -1 }, new[] { 1, 0 }, new[] { 0, 1 }, new[] { -1, 0 } };
+            var lastRound = new List<int[]> { new[] { 12, 12 } };
+
+            for (var i = 0; i < Stats[Stat.Speed] / 3; i++)
+            {
+                var currentRound = new List<int[]>();
+
+                foreach (var square in lastRound)
+                {
+                    foreach (var neighbor in neighbors)
+                    {
+                        // check if this cell has already been processed
+                        if (grid.Weight[square[0] + neighbor[0], square[1] + neighbor[1]] == 1) continue;
+
+                        var checkPoint = new Point(
+                            (int)(Avatar.Location.X + square[0] + neighbor[0]) - 12,
+                            (int)(Avatar.Location.Y + square[1] + neighbor[1]) - 12
+                        );
+
+                        if (battleboard.Weight[checkPoint.X, checkPoint.Y] > 0)
+                        {
+                            currentRound.Add(new[] { square[0] + neighbor[0], square[1] + neighbor[1] });
+                        }
+                    }
+                }
+
+                foreach (var newSquare in currentRound)
+                {
+                    grid.Weight[newSquare[0], newSquare[1]] = 1;
+                }
+
+                lastRound = currentRound;
+            }
+
+            return grid;
         }
     }
 }

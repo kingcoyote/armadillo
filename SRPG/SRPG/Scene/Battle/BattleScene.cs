@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SRPG.Data;
@@ -19,7 +18,6 @@ namespace SRPG.Scene.Battle
         /// A number representing which faction currently has control. 0 is the player, 1 is the computer.
         /// </summary>
         public int FactionTurn;
-        public bool AwaitingAction;
         /// <summary>
         /// The current round number. This incremenmts once for each cycle of player/computer.
         /// </summary>
@@ -151,7 +149,7 @@ namespace SRPG.Scene.Battle
                 }
             }
 
-            if (_state == BattleState.AimingAbility)
+            if (_state == BattleState.AimingAbility && _selectedCharacter != null)
             {
                 ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
                 ShowGrid(_selectedCharacter, _aimGrid, GridHighlight.Selectable);
@@ -462,7 +460,7 @@ namespace SRPG.Scene.Battle
                 icon.MouseOver += (sender, args) =>
                     {
                         if (!character.CanMove) return;
-                        ShowGrid(character, GetMovementGrid(character), GridHighlight.Selectable);
+                        ShowGrid(character, character.GetMovementGrid(GetAccessibleGrid(character.Faction)), GridHighlight.Selectable);
                     };
                 icon.MouseOut += (sender, args) => ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
                 icon.MouseRelease += SelectMovementTarget(character);
@@ -558,7 +556,7 @@ namespace SRPG.Scene.Battle
                 {
                     _state = BattleState.AimingAbility;
                     Layers.Remove("radial menu");
-                    _aimGrid = GetMovementGrid(character);
+                    _aimGrid = character.GetMovementGrid(GetAccessibleGrid(character.Faction));
                     _aimAbility = (x, y) =>
                         {
                             if (BattleBoard.IsOccupied(new Point(x, y)) != -1) return false;
@@ -635,53 +633,7 @@ namespace SRPG.Scene.Battle
             }
         }
 
-        /// <summary>
-        /// Process a character's position and the condition of the battleboard and return a grid indicating where this character can move.
-        /// </summary>
-        /// <param name="character">The character to process.</param>
-        /// <returns>A grid indicating movement range, with a 1 being a square that can be entered and a 0 being blocked.</returns>
-        private Grid GetMovementGrid(Combatant character)
-        {
-            var grid = new Grid(25, 25);
-
-            grid.Weight[12, 12] = 1;
-
-            var neighbors = new List<int[]> {new[] {0, -1}, new[] {1, 0}, new[] {0, 1}, new[] {-1, 0}};
-            var lastRound = new List<int[]> {new[] {12, 12}};
-
-            for (var i = 0; i < character.Stats[Stat.Speed] / 3; i++)
-            {
-                var currentRound = new List<int[]>();
-
-                foreach (var square in lastRound)
-                {
-                    foreach (var neighbor in neighbors)
-                    {
-                        // check if this cell has already been processed
-                        if (grid.Weight[square[0] + neighbor[0], square[1] + neighbor[1]] == 1) continue;
-
-                        var checkPoint = new Point(
-                            (int) (character.Avatar.Location.X + square[0] + neighbor[0]) - 12,
-                            (int) (character.Avatar.Location.Y + square[1] + neighbor[1]) - 12
-                        );
-
-                        if (BattleBoard.IsAccessible(checkPoint, character.Faction))
-                        {
-                            currentRound.Add(new[] {square[0] + neighbor[0], square[1] + neighbor[1]});
-                        }
-                    }
-                }
-
-                foreach(var newSquare in currentRound)
-                {
-                    grid.Weight[newSquare[0], newSquare[1]] = 1;
-                }
-
-                lastRound = currentRound;
-            }
-
-            return grid;
-        }
+        
 
         /// <summary>
         /// Handle a cancel request from the player. This will change behavior depending on the BattleState.
