@@ -18,8 +18,8 @@ namespace SRPG.Scene.Battle
         {
             var font = FontManager.Get("Menu");
 
-            var x = Game.GetInstance().GraphicsDevice.Viewport.Width - 450;
-            var y = 50;
+            var x = Game.GetInstance().GraphicsDevice.Viewport.Width - 425;
+            var y = 25;
 
             Objects.Add("box", new TextureObject { Color = Color.Blue, X = x, Y = y, Width = 400, Height = 200, Z = -1 });
             
