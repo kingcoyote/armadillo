@@ -599,7 +599,7 @@ namespace SRPG.Scene.Battle
                             {
                                 Character = character, 
                                 Target = new Point(x, y), 
-                                Ability = Ability.Factory("target")
+                                Ability = Ability.Factory("attack")
                             };
                         QueuedCommands.Add(command);
 
