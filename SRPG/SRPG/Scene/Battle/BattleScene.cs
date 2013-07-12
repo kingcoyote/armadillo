@@ -131,71 +131,76 @@ namespace SRPG.Scene.Battle
             _x = MathHelper.Clamp(_x, 0 - ((BattleGridLayer) Layers["battlegrid"]).Width + viewport.Width, 0);
             _y = MathHelper.Clamp(_y, 0 - ((BattleGridLayer) Layers["battlegrid"]).Height + viewport.Height, 0);
 
-            if (_state == BattleState.CharacterSelected && _selectedCharacter != null)
-            {
-                var cursorDistance = CalculateDistance(
-                    input.Cursor.X + (0 - _x), 
-                    input.Cursor.Y + (0 - _y),
-                    _selectedCharacter.Avatar.Sprite.X + _selectedCharacter.Avatar.Sprite.Width / 2,
-                    _selectedCharacter.Avatar.Sprite.Y + _selectedCharacter.Avatar.Sprite.Height / 2
-                );
-
-                if(cursorDistance > 125)
-                {
-                    DeselectCharacter();
-                }
-            }
-
-            if (_state == BattleState.AimingAbility && _selectedCharacter != null)
-            {
-                ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
-                ShowGrid(_selectedCharacter, _aimGrid, GridHighlight.Selectable);
-
-                // compensate for the camera not being at 0,0
-                // as well as do a 50:1 scaling to convert from the screen to the grid
-                var cursor = new Point(
-                    (int)Math.Floor((input.Cursor.X - _x)/50.0), 
-                    (int)Math.Floor((input.Cursor.Y - _y)/50.0)
-                );
-
-                // compensate for the character's position, since they likely aren't at 0, 0
-                // also adjust for them being centered in the aim grid
-                var checkX = (int) (cursor.X - _selectedCharacter.Avatar.Location.X + Math.Floor(_aimGrid.Size.Width/2.0));
-                var checkY = (int) (cursor.Y - _selectedCharacter.Avatar.Location.Y + Math.Floor(_aimGrid.Size.Height/2.0));
-
-                if(checkX >= 0 && checkX < _aimGrid.Size.Width && checkY >= 0 && checkY < _aimGrid.Size.Height && _aimGrid.Weight[checkX, checkY] > 0)
-                {
-                    ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid(cursor.X, cursor.Y, GridHighlight.Targetted);
-                    if (input.LeftButton == ButtonState.Pressed)
-                    {
-                        if(_aimAbility(cursor.X, cursor.Y))
-                        {
-                            ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
-                            
-                        }
-                    }
-                }
-            }
-
-            if(_state == BattleState.ExecutingCommand && _currentCommand.Ability.Name == "Move")
-            {
-                UpdateMovement(dt);
-            }
-
+            UpdateBattleState(input, dt);
             UpdateCamera();
         }
 
-        /// <summary>
-        /// Simple pythagorean theorem processing to determine the straightline distance between two points.
-        /// </summary>
-        /// <param name="x1"></param>
-        /// <param name="y1"></param>
-        /// <param name="x2"></param>
-        /// <param name="y2"></param>
-        /// <returns></returns>
-        private static double CalculateDistance(float x1, float y1, float x2, float y2)
+        private void UpdateBattleState(Input input, float dt)
         {
-            return Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
+            switch(_state)
+            {
+                case BattleState.CharacterSelected:
+                    UpdateBattleStateCharacterSelected(input, dt);
+                    break;
+                case BattleState.AimingAbility:
+                    UpdateBattleStateAimingAbility(input, dt);
+                    break;
+                case BattleState.ExecutingCommand:
+                    UpdateBattleStateExecutingCommand(input, dt);
+                    break;
+            }
+        }
+
+        private void UpdateBattleStateExecutingCommand(Input input, float dt)
+        {
+            if (_currentCommand.Ability.Name == "Move")
+            {
+                UpdateMovement(dt);
+            }
+        }
+
+        private void UpdateBattleStateAimingAbility(Input input, float dt)
+        {
+            ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+            ShowGrid(_selectedCharacter, _aimGrid, GridHighlight.Selectable);
+
+            // compensate for the camera not being at 0,0
+            // as well as do a 50:1 scaling to convert from the screen to the grid
+            var cursor = new Point(
+                (int) Math.Floor((input.Cursor.X - _x)/50.0),
+                (int) Math.Floor((input.Cursor.Y - _y)/50.0)
+                );
+
+            // compensate for the character's position, since they likely aren't at 0, 0
+            // also adjust for them being centered in the aim grid
+            var checkX = (int) (cursor.X - _selectedCharacter.Avatar.Location.X + Math.Floor(_aimGrid.Size.Width/2.0));
+            var checkY = (int) (cursor.Y - _selectedCharacter.Avatar.Location.Y + Math.Floor(_aimGrid.Size.Height/2.0));
+
+            if (checkX >= 0 && checkX < _aimGrid.Size.Width && checkY >= 0 && checkY < _aimGrid.Size.Height &&
+                _aimGrid.Weight[checkX, checkY] > 0)
+            {
+                ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid(cursor.X, cursor.Y, GridHighlight.Targetted);
+                if (input.LeftButton == ButtonState.Pressed)
+                {
+                    if (_aimAbility(cursor.X, cursor.Y))
+                    {
+                        ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+                    }
+                }
+            }
+        }
+
+        private void UpdateBattleStateCharacterSelected(Input input, float dt)
+        {
+            var cursorDistance = Math.Sqrt(
+                Math.Pow(input.Cursor.X + (0 - _x) - _selectedCharacter.Avatar.Sprite.X + _selectedCharacter.Avatar.Sprite.Width/2.0, 2) + 
+                Math.Pow(input.Cursor.Y + (0 - _y) - _selectedCharacter.Avatar.Sprite.Y + _selectedCharacter.Avatar.Sprite.Height/2.0, 2)
+            );
+
+            if (cursorDistance > 125)
+            {
+                DeselectCharacter();
+            }
         }
 
         /// <summary>
