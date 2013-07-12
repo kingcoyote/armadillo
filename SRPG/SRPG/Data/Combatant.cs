@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Torch;
 
 namespace SRPG.Data
 {
@@ -55,7 +56,7 @@ namespace SRPG.Data
         /// <summary>
         /// A small portrait to be shown when this character is highlighted.
         /// </summary>
-        public Texture2D Portrait;
+        public SpriteObject Portrait;
         /// <summary>
         /// Human readable class name.
         /// </summary>
