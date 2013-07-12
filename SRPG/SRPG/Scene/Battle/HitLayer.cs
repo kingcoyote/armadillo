@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
-using SRPG.Data;
 using Torch;
 
 namespace SRPG.Scene.Battle
 {
     class HitLayer : Layer
     {
-        private Dictionary<string, int> _displayedHits = new Dictionary<string, int>();
-        private Dictionary<string, float> _hitLocations = new Dictionary<string, float>();
+        private readonly Dictionary<string, int> _displayedHits = new Dictionary<string, int>();
+        private readonly Dictionary<string, float> _hitLocations = new Dictionary<string, float>();
         
         public HitLayer(Torch.Scene scene) : base(scene) { }
 
