@@ -131,7 +131,7 @@ namespace SRPG.Scene.Battle
             _x = MathHelper.Clamp(_x, 0 - ((BattleGridLayer) Layers["battlegrid"]).Width + viewport.Width, 0);
             _y = MathHelper.Clamp(_y, 0 - ((BattleGridLayer) Layers["battlegrid"]).Height + viewport.Height, 0);
 
-            if (_selectedCharacter != null)
+            if (_state == BattleState.CharacterSelected && _selectedCharacter != null)
             {
                 var cursorDistance = CalculateDistance(
                     input.Cursor.X + (0 - _x), 
