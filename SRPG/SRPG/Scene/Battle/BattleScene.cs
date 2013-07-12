@@ -312,48 +312,30 @@ namespace SRPG.Scene.Battle
 
             _currentCommand = command;
 
-            if (command.Ability.Name == "Move")
+            switch (command.Ability.Name)
             {
-                // special case for movement
-                var grid = GetAccessibleGrid(_selectedCharacter.Faction);
-                var coords = grid.Pathfind(new Point((int)_selectedCharacter.Avatar.Location.X, (int)_selectedCharacter.Avatar.Location.Y), command.Target);
-
-                for (var i = coords.Count - 2; i > 0; i--)
-                {
-                    if(coords[i - 1].X == coords[i + 1].X || coords[i - 1].Y == coords[i + 1].Y)
+                case "Move":
                     {
-                        coords.RemoveAt(i);
+                        // special case for movement
+                        var grid = BattleBoard.GetAccessibleGrid(_selectedCharacter.Faction);
+                        var coords = grid.Pathfind(new Point((int)_selectedCharacter.Avatar.Location.X, (int)_selectedCharacter.Avatar.Location.Y), command.Target);
+
+                        for (var i = coords.Count - 2; i > 0; i--)
+                        {
+                            if(coords[i - 1].X == coords[i + 1].X || coords[i - 1].Y == coords[i + 1].Y)
+                            {
+                                coords.RemoveAt(i);
+                            }
+                        }
+
+                        _movementCoords = coords;
                     }
-                }
-
-                _movementCoords = coords;
+                    break;
+                case "Attack":
+                    break;
+                default:
+                    throw new NotImplementedException();
             }
-            else if (command.Ability.Name == "Attack")
-            {
-                
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        private Grid GetAccessibleGrid(int faction)
-        {
-            var grid = new Grid(BattleBoard.Sandbag.Size.Width, BattleBoard.Sandbag.Size.Height);
-            
-            for(var i = 0; i < grid.Size.Width; i++)
-            {
-                for(var j = 0; j < grid.Size.Height; j++)
-                {
-                    if(BattleBoard.IsAccessible(new Point(i, j), faction))
-                    {
-                        grid.Weight[i, j] = 255;
-                    }
-                }
-            }
-
-            return grid;
         }
 
         /// <summary>
@@ -462,7 +444,7 @@ namespace SRPG.Scene.Battle
                 icon.MouseOver += (sender, args) =>
                     {
                         if (!character.CanMove) return;
-                        ShowGrid(character, character.GetMovementGrid(GetAccessibleGrid(character.Faction)), GridHighlight.Selectable);
+                        ShowGrid(character, character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)), GridHighlight.Selectable);
                     };
                 icon.MouseOut += (sender, args) => ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
                 icon.MouseRelease += SelectMovementTarget(character);
@@ -558,7 +540,7 @@ namespace SRPG.Scene.Battle
                 {
                     _state = BattleState.AimingAbility;
                     Layers.Remove("radial menu");
-                    _aimGrid = character.GetMovementGrid(GetAccessibleGrid(character.Faction));
+                    _aimGrid = character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction));
                     _aimAbility = (x, y) =>
                         {
                             if (BattleBoard.IsOccupied(new Point(x, y)) != -1) return false;

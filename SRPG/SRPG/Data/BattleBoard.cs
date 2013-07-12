@@ -61,5 +61,23 @@ namespace SRPG.Data
 
             return character.Any() ? character.First().Faction : -1;
         }
+
+        public Grid GetAccessibleGrid(int faction)
+        {
+            var grid = new Grid(Sandbag.Size.Width, Sandbag.Size.Height);
+
+            for (var i = 0; i < grid.Size.Width; i++)
+            {
+                for (var j = 0; j < grid.Size.Height; j++)
+                {
+                    if (IsAccessible(new Point(i, j), faction))
+                    {
+                        grid.Weight[i, j] = 255;
+                    }
+                }
+            }
+
+            return grid;
+        }
     }
 }
