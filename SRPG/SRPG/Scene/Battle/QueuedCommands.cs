@@ -48,6 +48,17 @@ namespace SRPG.Scene.Battle
 
                 i++;
             }
+
+            Objects.Add("command/execute", new TextObject
+            {
+                Font = font,
+                Color = Color.Yellow,
+                X = 150,
+                Y = Objects["box"].Y + 10 + (int)(i * font.LineSpacing * 1.5),
+                Alignment = TextObject.AlignTypes.Center,
+                Value = "Execute!",
+                MouseRelease = (sender, args) => ((BattleScene)Scene).ExecuteQueuedCommands()
+            });
         }
     }
 }
