@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SRPG.Data;
@@ -72,6 +73,10 @@ namespace SRPG.Scene.Battle
         /// </summary>
         private List<Point> _movementCoords;
 
+        private List<Hit> _hits = new List<Hit>();
+        private Point _hitTarget;
+        private Grid _hitImpactGrid;
+
         /// <summary>
         /// Pre-battle initialization sequence to load characters, the battleboard and the image layers.
         /// </summary>
@@ -84,6 +89,7 @@ namespace SRPG.Scene.Battle
             Layers.Add("character stats", new CharacterStats(this) { ZIndex = 5000, Visible = false});
             Layers.Add("hud", new HUD(this) { ZIndex = 5000 });
             Layers.Add("queuedcommands", new QueuedCommands(this) { ZIndex = 5000, Visible = false });
+            Layers.Add("hitlayer", new HitLayer(this) { ZIndex = 5000 });
         }
 
         public override void Start()
@@ -154,7 +160,47 @@ namespace SRPG.Scene.Battle
                 case BattleState.ExecutingCommand:
                     UpdateBattleStateExecutingCommand(input, dt);
                     break;
+                case BattleState.DisplayingHits:
+                    UpdateBattleStateDisplayingHits(input, dt);
+                    break;
             }
+        }
+
+        private void UpdateBattleStateDisplayingHits(Input input, float dt)
+        {
+            var newHits = new List<Hit>();
+            
+            for(var i = 0; i < _hits.Count; i++)
+            {
+                var hit = _hits.ElementAt(i);
+                hit.Delay -= (int)(dt*1000);
+                if(hit.Delay <= 0)
+                {
+                    for(var x = 0; x < _hitImpactGrid.Size.Width; x++)
+                    {
+                        for(var y = 0; y < _hitImpactGrid.Size.Height; y++)
+                        {
+                            if (_hitImpactGrid.Weight[x, y] == 0) continue;
+
+                            var checkpoint = new Point(
+                                _hitTarget.X - (int)(Math.Floor(_hitImpactGrid.Size.Width/2.0)) + x,
+                                _hitTarget.Y - (int)(Math.Floor(_hitImpactGrid.Size.Height/2.0)) + y
+                            );
+
+                            if(BattleBoard.IsOccupied(checkpoint) == hit.Faction)
+                            {
+                                ((HitLayer) Layers["hitlayer"]).DisplayHit(hit.Damage, Color.White, checkpoint);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    newHits.Add(hit);
+                }
+            }
+
+            _hits = newHits;
         }
 
         private void UpdateBattleStateExecutingCommand(Input input, float dt)
@@ -218,16 +264,15 @@ namespace SRPG.Scene.Battle
         /// </summary>
         private void UpdateCamera()
         {
-            Layers["battlegrid"].X = _x;
-            Layers["battlegrid"].Y = _y;
+            var layers = new List<string>() {"battlegrid", "battleboardlayer", "radial menu", "hitlayer"};
 
-            Layers["battleboardlayer"].X = _x;
-            Layers["battleboardlayer"].Y = _y;
-
-            if (Layers.ContainsKey("radial menu"))
+            foreach (var layer in layers)
             {
-                Layers["radial menu"].X = _x;
-                Layers["radial menu"].Y = _y;
+                if (Layers.ContainsKey(layer))
+                {
+                    Layers[layer].X = _x;
+                    Layers[layer].Y = _y;
+                }
             }
         }
 
@@ -342,6 +387,10 @@ namespace SRPG.Scene.Battle
                     }
                     break;
                 case "Attack":
+                    var hits = _currentCommand.Ability.GenerateHits();
+                    _hitTarget = _currentCommand.Target;
+                    _hitImpactGrid = _currentCommand.Ability.GenerateImpactGrid();
+                    DisplayHits(hits);
                     break;
                 default:
                     throw new NotImplementedException();
@@ -595,11 +644,14 @@ namespace SRPG.Scene.Battle
                         if (BattleBoard.IsOccupied(new Point(x, y)) == -1 || BattleBoard.IsOccupied(new Point(x, y)) == character.Faction)
                             return false;
 
+                        var ability = Ability.Factory("attack");
+                        ability.Character = character;
+
                         var command = new Command
                             {
                                 Character = character, 
                                 Target = new Point(x, y), 
-                                Ability = Ability.Factory("attack")
+                                Ability = ability
                             };
                         QueuedCommands.Add(command);
 
@@ -653,6 +705,12 @@ namespace SRPG.Scene.Battle
             ExecuteCommand(QueuedCommands[0]);
             QueuedCommands.RemoveAt(0);
         }
+
+        public void DisplayHits(List<Hit> hits)
+        {
+            _hits = hits;
+            _state = BattleState.DisplayingHits;
+        }
     }
 
     enum BattleState
@@ -663,6 +721,7 @@ namespace SRPG.Scene.Battle
         SelectingAbility,
         AimingAbility,
         ExecutingAbility,
-        ExecutingCommand
+        ExecutingCommand,
+        DisplayingHits
     }
 }

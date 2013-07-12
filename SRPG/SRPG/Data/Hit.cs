@@ -29,5 +29,7 @@ namespace SRPG.Data
         /// A small sprite animation of what to show at the target when the hit is received.
         /// </summary>
         public SpriteObject Animation;
+
+        public int Faction;
     }
 }

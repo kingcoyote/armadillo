@@ -13,7 +13,7 @@ namespace SRPG.Data
         /// <summary>
         /// The character who this ability is tied to. This is used to generate the hit, especially base damage.
         /// </summary>
-        public Avatar Character;
+        public Combatant Character;
         /// <summary>
         /// Indicating whether this is a passive or active ability.
         /// </summary>
@@ -32,7 +32,7 @@ namespace SRPG.Data
         /// Generate one or more hits to be used to damage the targets.
         /// </summary>
         /// <returns>A non-zero list of hits to be applied to a target.</returns>
-        public List<Hit> GenerateHits()
+        public virtual List<Hit> GenerateHits()
         {
             throw new NotImplementedException();
         }
@@ -43,7 +43,7 @@ namespace SRPG.Data
         /// indicates that this square can be targetted, 0 indicates it cannot be.
         /// </summary>
         /// <returns>A grid indicating where this ability can be cast.</returns>
-        public Grid GenerateTargetGrid(BattleBoard battleboard)
+        public Grid GenerateTargetGrid()
         {
             throw new NotImplementedException();
         }
@@ -54,7 +54,7 @@ namespace SRPG.Data
         /// up. The caller is responsible for proper orientation.
         /// </summary>
         /// <returns>A grid indicating the impact zone of an ability.</returns>
-        public Grid GenerateImpactGrid(BattleBoard battleboard)
+        public virtual Grid GenerateImpactGrid()
         {
             throw new NotImplementedException();
         }
