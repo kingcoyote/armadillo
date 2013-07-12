@@ -148,6 +148,7 @@
     <Compile Include="Scene\Battle\BattleGridLayer.cs" />
     <Compile Include="Scene\Battle\CharacterStats.cs" />
     <Compile Include="Scene\Battle\HUD.cs" />
+    <Compile Include="Scene\Battle\QueuedCommands.cs" />
     <Compile Include="Scene\MainMenu\MainMenu.cs" />
     <Compile Include="Scene\MainMenu\MenuOptions.cs" />
     <Compile Include="Scene\Options\Menu.cs" />

@@ -65,7 +65,8 @@ namespace SRPG.Scene.Battle
         /// <summary>
         /// A queued list of commands awaiting execution. This list is added to when telling a character to attack, use an ability or use an item.
         /// </summary>
-        private readonly List<Command> _queuedCommands = new List<Command>();
+        public List<Command> QueuedCommands { get; private set; }
+
         /// <summary>
         /// When the current command is a move, and it is being executed, this is the coordinates for the character to follow from point A to point B.
         /// </summary>
@@ -78,8 +79,11 @@ namespace SRPG.Scene.Battle
         {
             base.Initialize();
 
+            QueuedCommands = new List<Command>();
+
             Layers.Add("character stats", new CharacterStats(this) { ZIndex = 5000, Visible = false});
             Layers.Add("hud", new HUD(this) { ZIndex = 5000 });
+            Layers.Add("queuedcommands", new QueuedCommands(this) { ZIndex = 5000, Visible = false });
         }
 
         public override void Start()
@@ -130,6 +134,8 @@ namespace SRPG.Scene.Battle
 
             _x = MathHelper.Clamp(_x, 0 - ((BattleGridLayer) Layers["battlegrid"]).Width + viewport.Width, 0);
             _y = MathHelper.Clamp(_y, 0 - ((BattleGridLayer) Layers["battlegrid"]).Height + viewport.Height, 0);
+
+            Layers["queuedcommands"].Visible = _state != BattleState.EnemyTurn && QueuedCommands.Count > 0;
 
             UpdateBattleState(input, dt);
             UpdateCamera();
@@ -595,7 +601,7 @@ namespace SRPG.Scene.Battle
                                 Target = new Point(x, y), 
                                 Ability = Ability.Factory("target")
                             };
-                        _queuedCommands.Add(command);
+                        QueuedCommands.Add(command);
 
                         _state = BattleState.PlayerTurn;
 
@@ -644,8 +650,8 @@ namespace SRPG.Scene.Battle
 
         public void ExecuteQueuedCommands()
         {
-            ExecuteCommand(_queuedCommands[0]);
-            _queuedCommands.RemoveAt(0);
+            ExecuteCommand(QueuedCommands[0]);
+            QueuedCommands.RemoveAt(0);
         }
     }
 
