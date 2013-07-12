@@ -162,7 +162,11 @@ namespace SRPG.Scene.Battle
         private void UpdateBattleStateAimingAbility(Input input, float dt)
         {
             ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
-            ShowGrid(_selectedCharacter, _aimGrid, GridHighlight.Selectable);
+            ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid(
+                new Point((int)_selectedCharacter.Avatar.Location.X, (int)_selectedCharacter.Avatar.Location.Y), 
+                _aimGrid, 
+                GridHighlight.Selectable
+            );
 
             // compensate for the camera not being at 0,0
             // as well as do a 50:1 scaling to convert from the screen to the grid
@@ -179,7 +183,7 @@ namespace SRPG.Scene.Battle
             if (checkX >= 0 && checkX < _aimGrid.Size.Width && checkY >= 0 && checkY < _aimGrid.Size.Height &&
                 _aimGrid.Weight[checkX, checkY] > 0)
             {
-                ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid(cursor.X, cursor.Y, GridHighlight.Targetted);
+                ((BattleGridLayer) Layers["battlegrid"]).HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
                 if (input.LeftButton == ButtonState.Pressed)
                 {
                     if (_aimAbility(cursor.X, cursor.Y))
@@ -444,7 +448,11 @@ namespace SRPG.Scene.Battle
                 icon.MouseOver += (sender, args) =>
                     {
                         if (!character.CanMove) return;
-                        ShowGrid(character, character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)), GridHighlight.Selectable);
+                        ((BattleGridLayer)Layers["battlegrid"]).HighlightGrid(
+                            new Point((int)character.Avatar.Location.X, (int)character.Avatar.Location.Y), 
+                            character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)), 
+                            GridHighlight.Selectable
+                        );
                     };
                 icon.MouseOut += (sender, args) => ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
                 icon.MouseRelease += SelectMovementTarget(character);
@@ -464,7 +472,11 @@ namespace SRPG.Scene.Battle
             icon.MouseOver += (sender, args) =>
                 {
                     if (!character.CanAct) return;
-                    ShowGrid(character, character.GetEquippedWeapon().TargetGrid, GridHighlight.Selectable);
+                    ((BattleGridLayer)Layers["battlegrid"]).HighlightGrid(
+                        new Point((int)character.Avatar.Location.X, (int)character.Avatar.Location.Y), 
+                        character.GetEquippedWeapon().TargetGrid, 
+                        GridHighlight.Selectable
+                    );
                 };
             icon.MouseOut += (sender, args) => ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
             icon.MouseRelease += SelectAttackTarget(character);
@@ -591,33 +603,6 @@ namespace SRPG.Scene.Battle
                     };
             };
         }
-
-        /// <summary>
-        /// Generic function to display a sub-grid onto the main grid, centered on a certain character with a specified highlight type.
-        /// Usage examples are : display movement grid for a character, display attack grid for a character.
-        /// </summary>
-        /// <param name="character">The character to center the grid on.</param>
-        /// <param name="grid">The grid to highlight, a value greater than 0 will be highlighted.</param>
-        /// <param name="highlightType">The type of highlighting to use.</param>
-        private void ShowGrid(Combatant character, Grid grid, GridHighlight highlightType)
-        {
-            for (var i = 0; i < grid.Size.Width; i++)
-            {
-                for (var j = 0; j < grid.Size.Height; j++)
-                {
-                    if (grid.Weight[i, j] > 0)
-                    {
-                        ((BattleGridLayer)Layers["battlegrid"]).HighlightGrid(
-                            (int)character.Avatar.Location.X + i - (int)(Math.Floor(grid.Size.Width / 2.0)), 
-                            (int)character.Avatar.Location.Y + j - (int)(Math.Floor(grid.Size.Height / 2.0)), 
-                            highlightType
-                        );
-                    }
-                }
-            }
-        }
-
-        
 
         /// <summary>
         /// Handle a cancel request from the player. This will change behavior depending on the BattleState.

@@ -52,11 +52,29 @@ namespace SRPG.Scene.Battle
             }
         }
 
-        public void HighlightGrid(int x, int y, GridHighlight type)
+        public void HighlightCell(int x, int y, GridHighlight type)
         {
             if(Objects.ContainsKey(string.Format("grid/{0}-{1}", x, y)))
             {
                 ((SpriteObject)Objects[string.Format("grid/{0}-{1}", x, y)]).SetAnimation(type.ToString());
+            }
+        }
+
+        public void HighlightGrid(Point center, Grid grid, GridHighlight highlightType)
+        {
+            for (var i = 0; i < grid.Size.Width; i++)
+            {
+                for (var j = 0; j < grid.Size.Height; j++)
+                {
+                    if (grid.Weight[i, j] > 0)
+                    {
+                        HighlightCell(
+                            center.X + i - (int)(Math.Floor(grid.Size.Width / 2.0)),
+                            center.Y + j - (int)(Math.Floor(grid.Size.Height / 2.0)),
+                            highlightType
+                        );
+                    }
+                }
             }
         }
 
