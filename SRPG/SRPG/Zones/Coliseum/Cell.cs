@@ -28,8 +28,8 @@ namespace SRPG.Zones.Coliseum
                 {Interact = TestBattle("coliseum/halls"), Location = new Rectangle(818, 159, 32, 32)});
 
             Characters.Add("guard", Avatar.GenerateAvatar("enemy"));
-            Characters["guard"].Location.X = 303;
-            Characters["guard"].Location.Y = 530;
+            Characters["guard"].Location.X = 315;
+            Characters["guard"].Location.Y = 515;
 
             Characters["guard"].Interact = TalkToGuard;
         }

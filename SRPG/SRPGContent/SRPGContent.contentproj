@@ -317,6 +317,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Characters\guard.png">
+      <Name>guard</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="Dialog\coliseum\cell.js">
       <Name>cell</Name>
       <Importer>XmlImporter</Importer>
