@@ -63,7 +63,7 @@ namespace Torch
             spriteBatch.Draw(
                 _image, 
                 new Vector2(X, Y),
-                new Rectangle(_currentFrame*a.Size.Width + 1, a.StartRow , a.Size.Width, a.Size.Height),
+                new Rectangle(a.StartCol + _currentFrame*a.Size.Width + 1, a.StartRow , a.Size.Width, a.Size.Height),
                 Color.White
             );
         }
@@ -89,5 +89,6 @@ namespace Torch
         public int FrameRate;
         public Rectangle Size;
         public int StartRow;
+        public int StartCol;
     }
 }
