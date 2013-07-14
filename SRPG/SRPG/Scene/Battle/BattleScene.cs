@@ -23,9 +23,6 @@ namespace SRPG.Scene.Battle
         /// The current round number. This incremenmts once for each cycle of player/computer.
         /// </summary>
         public int RoundNumber;
-
-        public BattleScene(Game game) : base(game) { }
-
         /// <summary>
         /// Default camera movement speed, in pixels per second
         /// </summary>
@@ -63,13 +60,14 @@ namespace SRPG.Scene.Battle
         /// A queued list of commands awaiting execution. This list is added to when telling a character to attack, use an ability or use an item.
         /// </summary>
         public List<Command> QueuedCommands { get; private set; }
-
         /// <summary>
         /// When the current command is a move, and it is being executed, this is the coordinates for the character to follow from point A to point B.
         /// </summary>
         private List<Point> _movementCoords;
 
         private List<Hit> _hits = new List<Hit>();
+
+        public BattleScene(Game game) : base(game) { }
 
         /// <summary>
         /// Pre-battle initialization sequence to load characters, the battleboard and the image layers.
