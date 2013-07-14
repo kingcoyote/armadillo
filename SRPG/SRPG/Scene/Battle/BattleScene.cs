@@ -419,8 +419,8 @@ namespace SRPG.Scene.Battle
                 case "Move":
                     {
                         // special case for movement
-                        var grid = BattleBoard.GetAccessibleGrid(_selectedCharacter.Faction);
-                        var coords = grid.Pathfind(new Point((int)_selectedCharacter.Avatar.Location.X, (int)_selectedCharacter.Avatar.Location.Y), command.Target);
+                        var grid = BattleBoard.GetAccessibleGrid(command.Character.Faction);
+                        var coords = grid.Pathfind(new Point((int)command.Character.Avatar.Location.X, (int)command.Character.Avatar.Location.Y), command.Target);
 
                         for (var i = coords.Count - 2; i > 0; i--)
                         {
@@ -433,10 +433,13 @@ namespace SRPG.Scene.Battle
                         _movementCoords = coords;
 
                         _state = BattleState.MovingCharacter;
+
+                        command.Character.CanMove = false;
                     }
                     break;
                 case "Attack":
                     var hits = command.Ability.GenerateHits(BattleBoard, command.Target);
+                    command.Character.CanAct = false;
                     DisplayHits(hits);
                     break;
                 default:
@@ -631,7 +634,7 @@ namespace SRPG.Scene.Battle
                                     Ability = Ability.Factory("move")
                                 };
                             ExecuteCommand(command);
-                            character.CanMove = false;
+                            
 
                             return true;
                         };
