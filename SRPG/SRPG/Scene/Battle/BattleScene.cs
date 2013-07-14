@@ -497,7 +497,9 @@ namespace SRPG.Scene.Battle
                 DeselectCharacter();
                 return;
             }
+
             if (_state != BattleState.PlayerTurn) return;
+            if (character.Faction != 0) return;
 
             if (Layers.ContainsKey("radial menu"))
             {
