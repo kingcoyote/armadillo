@@ -505,11 +505,11 @@ namespace SRPG.Scene.Battle
             }
 
             var menu = new RadialMenu(this)
-            {
-                CenterX = character.Avatar.Sprite.X + character.Avatar.Sprite.Width / 2,
-                CenterY = character.Avatar.Sprite.Y + character.Avatar.Sprite.Height / 2,
-                ZIndex = 5000
-            };
+                {
+                    CenterX = character.Avatar.Sprite.X + character.Avatar.Sprite.Width/2,
+                    CenterY = character.Avatar.Sprite.Y + character.Avatar.Sprite.Height/2,
+                    ZIndex = 5000
+                };
 
             var icon = new SpriteObject("Battle/Menu/move");
             SetCharacterMenuAnimations(icon);
@@ -518,11 +518,11 @@ namespace SRPG.Scene.Battle
                 icon.MouseOver += (sender, args) =>
                     {
                         if (!character.CanMove) return;
-                        ((BattleGridLayer)Layers["battlegrid"]).HighlightGrid(
-                            new Point((int)character.Avatar.Location.X, (int)character.Avatar.Location.Y), 
-                            character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)), 
+                        ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid(
+                            new Point((int) character.Avatar.Location.X, (int) character.Avatar.Location.Y),
+                            character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)),
                             GridHighlight.Selectable
-                        );
+                            );
                     };
                 icon.MouseOut += (sender, args) => ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
                 icon.MouseRelease += SelectMovementTarget(character);
@@ -533,23 +533,34 @@ namespace SRPG.Scene.Battle
                 icon.MouseOut = (sender, args) => { };
                 icon.MouseClick = (sender, args) => { };
                 icon.MouseRelease = (sender, args) => { };
-                
             }
+
             menu.AddOption("move", icon);
 
             icon = new SpriteObject("Battle/Menu/attack");
             SetCharacterMenuAnimations(icon);
-            icon.MouseOver += (sender, args) =>
-                {
-                    if (!character.CanAct) return;
-                    ((BattleGridLayer)Layers["battlegrid"]).HighlightGrid(
-                        new Point((int)character.Avatar.Location.X, (int)character.Avatar.Location.Y), 
-                        character.GetEquippedWeapon().TargetGrid, 
-                        GridHighlight.Selectable
-                    );
-                };
-            icon.MouseOut += (sender, args) => ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
-            icon.MouseRelease += SelectAttackTarget(character);
+            if (character.CanAct)
+            {
+                icon.MouseOver += (sender, args) =>
+                    {
+                        if (!character.CanAct) return;
+                        ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid(
+                            new Point((int) character.Avatar.Location.X, (int) character.Avatar.Location.Y),
+                            character.GetEquippedWeapon().TargetGrid,
+                            GridHighlight.Selectable
+                            );
+                    };
+                icon.MouseOut += (sender, args) => ((BattleGridLayer)Layers["battlegrid"]).ResetGrid();
+                icon.MouseRelease += SelectAttackTarget(character);
+            }
+            else
+            {
+                icon.MouseOver = (sender, args) => { };
+                icon.MouseOut = (sender, args) => { };
+                icon.MouseClick = (sender, args) => { };
+                icon.MouseRelease = (sender, args) => { };
+            }
+
             menu.AddOption("attack", icon);
 
             icon = new SpriteObject("Battle/Menu/special");
