@@ -198,6 +198,8 @@ namespace SRPG.Scene.Battle
             }
             else
             {
+                // todo : 1 sec delay between commands
+                CheckCharacterDeath();
                 _state = BattleState.ExecutingCommand;
             }
         }
@@ -291,6 +293,20 @@ namespace SRPG.Scene.Battle
             if (cursorDistance > 125)
             {
                 DeselectCharacter();
+            }
+        }
+
+        private void CheckCharacterDeath()
+        {
+            var dead = (from c in BattleBoard.Characters where c.CurrentHealth <= 0 select c);
+
+            if (!dead.Any()) return;
+
+            foreach(var character in dead.ToArray())
+            {
+                character.Die();
+                BattleBoard.Characters.Remove(character);
+                ((BattleBoardLayer)Layers["battleboardlayer"]).RemoveCharacter(character);
             }
         }
 

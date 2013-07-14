@@ -39,6 +39,11 @@ namespace SRPG.Scene.Battle
             }
         }
 
+        public void RemoveCharacter(Combatant character)
+        {
+            Objects.Remove("character/" + character.Name);
+        }
+
         public EventHandler<MouseEventArgs> MouseOverCharacter(Combatant character)
         {
             return (sender, args) =>
