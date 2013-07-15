@@ -383,6 +383,7 @@ namespace SRPG.Scene.Battle
         public void ChangeFaction(int faction)
         {
             _state = faction == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
+            FactionTurn = faction;
 
             foreach(var character in BattleBoard.Characters)
             {
@@ -737,6 +738,13 @@ namespace SRPG.Scene.Battle
         {
             _hits = hits;
             _state = BattleState.DisplayingHits;
+        }
+
+        public void EndPlayerTurn()
+        {
+            if (_state != BattleState.PlayerTurn) return;
+
+            ChangeFaction(1);
         }
     }
 
