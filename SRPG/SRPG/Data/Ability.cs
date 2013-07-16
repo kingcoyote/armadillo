@@ -117,5 +117,20 @@ namespace SRPG.Data
 
             return ((Ability) a).Name == Name;
         }
+
+        protected void SetIcon(string iconName, int i)
+        {
+            Icon = new SpriteObject("Abilities/" + iconName) {Height = 50, Width = 50};
+            Icon.AddAnimation(Name,
+                              new SpriteAnimation
+                                  {
+                                      StartRow = 0,
+                                      StartCol = i * 50,
+                                      FrameCount = 1,
+                                      FrameRate = 1,
+                                      Size = new Rectangle(0, 0, 50, 50)
+                                  });
+            Icon.SetAnimation(Name);
+        }
     }
 }

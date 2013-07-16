@@ -14,6 +14,7 @@ namespace SRPG.Abilities
             AbilityType = AbilityType.Active;
             AbilityTarget = AbilityTarget.Enemy;
             ItemType = ItemType.Sword;
+            SetIcon("swordicons", 1);
         }
     }
 }
