@@ -192,6 +192,11 @@ namespace SRPG.Data
             var armor = GetEquippedArmor();
             if (armor != null && !abilities.Contains(armor.Ability) && armor.Ability != null) abilities.Add(armor.Ability);
 
+            foreach(var ability in abilities)
+            {
+                ability.Character = this;
+            }
+
             // todo remove duplicate abilities
             return abilities;
         }

@@ -18,5 +18,10 @@ namespace SRPG.Abilities
             ItemType = ItemType.Sword;
             SetIcon("swordicons", 0);
         }
+
+        public override Grid GenerateTargetGrid()
+        {
+            return Grid.FromBitmap("Items/target_melee_small");
+        }
     }
 }

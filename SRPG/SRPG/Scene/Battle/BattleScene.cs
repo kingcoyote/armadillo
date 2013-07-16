@@ -719,7 +719,10 @@ namespace SRPG.Scene.Battle
                         Ability ability1 = ability;
 
                         ability.Icon.MouseOver = (o, eventArgs) => PreviewAbility(ability1);
-                        ability.Icon.MouseOut = (o, eventArgs) => Layers["abilitystat"].Visible = false;
+                        ability.Icon.MouseOut = (o, eventArgs) => { 
+                            Layers["abilitystat"].Visible = false;
+                            ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+                        };
                         ability.Icon.MouseClick = (o, eventArgs) => { };
                         ability.Icon.MouseRelease = (o, eventArgs) => { };
 
@@ -732,6 +735,11 @@ namespace SRPG.Scene.Battle
         {
             ((AbilityStatLayer) Layers["abilitystat"]).SetAbility(ability);
             Layers["abilitystat"].Visible = true;
+            ((BattleGridLayer)Layers["battlegrid"]).HighlightGrid(
+                new Point((int)ability.Character.Avatar.Location.X, (int)ability.Character.Avatar.Location.Y), 
+                ability.GenerateTargetGrid(), 
+                GridHighlight.Selectable
+            );
         }
 
         /// <summary>

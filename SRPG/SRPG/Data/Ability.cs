@@ -47,7 +47,7 @@ namespace SRPG.Data
         /// indicates that this square can be targetted, 0 indicates it cannot be.
         /// </summary>
         /// <returns>A grid indicating where this ability can be cast.</returns>
-        public Grid GenerateTargetGrid()
+        public virtual Grid GenerateTargetGrid()
         {
             throw new NotImplementedException();
         }
