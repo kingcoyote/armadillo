@@ -203,6 +203,7 @@ namespace SRPG.Scene.Battle
                 // todo : 1 sec delay between commands
                 CheckCharacterDeath();
                 _state = BattleState.ExecutingCommand;
+                _selectedCharacter = null;
             }
         }
 
