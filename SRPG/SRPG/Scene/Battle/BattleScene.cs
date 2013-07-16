@@ -573,6 +573,17 @@ namespace SRPG.Scene.Battle
 
             icon = new SpriteObject("Battle/Menu/special");
             SetCharacterMenuAnimations(icon);
+            if (character.CanAct)
+            {
+                icon.MouseRelease += SelectSpecialAbility(character);
+            }
+            else
+            {
+                icon.MouseOver = (sender, args) => { };
+                icon.MouseOut = (sender, args) => { };
+                icon.MouseClick = (sender, args) => { };
+                icon.MouseRelease = (sender, args) => { };
+            }
             menu.AddOption("special", icon);
 
             icon = new SpriteObject("Battle/Menu/item");
@@ -690,6 +701,26 @@ namespace SRPG.Scene.Battle
                         return true;
                     };
             };
+        }
+
+        private EventHandler<MouseEventArgs> SelectSpecialAbility(Combatant character)
+        {
+            return (sender, args) =>
+                {
+                    var radialMenu = ((RadialMenu) Layers["radial menu"]);
+
+                    radialMenu.ClearOptions();
+
+                    foreach (var ability in character.GetAbilities().Where(character.CanUseAbility))
+                    {
+                        ability.Icon.MouseOver = (o, eventArgs) => { };
+                        ability.Icon.MouseOut = (o, eventArgs) => { };
+                        ability.Icon.MouseClick = (o, eventArgs) => { };
+                        ability.Icon.MouseRelease = (o, eventArgs) => { };
+
+                        radialMenu.AddOption(ability.Name, ability.Icon);
+                    }
+                };
         }
 
         /// <summary>

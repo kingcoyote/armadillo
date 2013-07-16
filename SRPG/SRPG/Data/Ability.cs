@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using SRPG.Abilities;
+using Torch;
 
 namespace SRPG.Data
 {
@@ -28,6 +29,8 @@ namespace SRPG.Data
         /// An indication of who this ability can target - friend or foe.
         /// </summary>
         public AbilityTarget AbilityTarget;
+
+        public SpriteObject Icon;
 
         /// <summary>
         /// Generate one or more hits to be used to damage the targets.

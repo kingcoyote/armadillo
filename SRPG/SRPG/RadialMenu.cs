@@ -34,5 +34,10 @@ namespace SRPG
                 Objects[key].Y = (int)(CenterY - Math.Cos(degs * (i)) * Distance) - Objects[key].Height / 2;
             }
         }
+
+        public void ClearOptions()
+        {
+            Objects.Clear();
+        }
     }
 }
