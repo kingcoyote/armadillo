@@ -12,19 +12,16 @@ namespace SRPG.Scene.Battle
     {
         public Ability Ability;
 
-        private int _x;
-        private int _y;
-
         public AbilityStatLayer(Torch.Scene scene) : base(scene)
         {
-            _x = Torch.Game.GetInstance().GraphicsDevice.Viewport.Width - 425;
-            _y = Torch.Game.GetInstance().GraphicsDevice.Viewport.Height - 225;
+            var x = Torch.Game.GetInstance().GraphicsDevice.Viewport.Width - 425;
+            var y = Torch.Game.GetInstance().GraphicsDevice.Viewport.Height - 225;
 
             var font = FontManager.Get("Menu");
 
-            Objects.Add("box", new TextureObject { Color = Color.Blue, X = _x, Y = _y, Width = 400, Height = 200 });
-            Objects.Add("name", new TextObject { Font = font, Color = Color.White, Value = "", X = _x + 10, Y = _y + 10 });
-            Objects.Add("mana", new TextObject { Font = font, Color = Color.White, Value = "", X = _x + 400 - 10, Y = _y + 10, Alignment = TextObject.AlignTypes.Right });
+            Objects.Add("box", new TextureObject { Color = Color.Blue, X = x, Y = y, Width = 400, Height = 200 });
+            Objects.Add("name", new TextObject { Font = font, Color = Color.White, Value = "", X = x + 10, Y = y + 10 });
+            Objects.Add("mana", new TextObject { Font = font, Color = Color.White, Value = "", X = x + 400 - 10, Y = y + 10, Alignment = TextObject.AlignTypes.Right });
 
             // ability name
             // mana cost
