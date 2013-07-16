@@ -302,9 +302,11 @@ namespace SRPG.Scene.Battle
         {
             var dead = (from c in BattleBoard.Characters where c.CurrentHealth <= 0 select c);
 
-            if (!dead.Any()) return;
+            IEnumerable<Combatant> combatants = dead as Combatant[] ?? dead.ToArray();
 
-            foreach(var character in dead.ToArray())
+            if (!combatants.Any()) return;
+
+            foreach(var character in combatants.ToArray())
             {
                 character.Die();
                 BattleBoard.Characters.Remove(character);
@@ -317,7 +319,7 @@ namespace SRPG.Scene.Battle
         /// </summary>
         private void UpdateCamera()
         {
-            var layers = new List<string>() {"battlegrid", "battleboardlayer", "radial menu", "hitlayer"};
+            var layers = new List<string> {"battlegrid", "battleboardlayer", "radial menu", "hitlayer"};
 
             foreach (var layer in layers)
             {
@@ -730,12 +732,6 @@ namespace SRPG.Scene.Battle
         {
             switch(_state)
             {
-                case BattleState.EnemyTurn:
-                    // nothing
-                    break;
-                case BattleState.PlayerTurn:
-                    // remove last command
-                    break;
                 case BattleState.CharacterSelected:
                     DeselectCharacter();
                     break;
@@ -746,13 +742,6 @@ namespace SRPG.Scene.Battle
                     _state = BattleState.PlayerTurn;
                     HideCharacterStats();
                     break;
-                case BattleState.ExecutingAbility:
-                    // nothing;
-                    break;
-                case BattleState.ExecutingCommand:
-                    // nothing
-                    break;
-
             }
         }
 
