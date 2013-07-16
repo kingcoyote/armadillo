@@ -82,6 +82,7 @@ namespace SRPG.Scene.Battle
             Layers.Add("hud", new HUD(this) { ZIndex = 5000 });
             Layers.Add("queuedcommands", new QueuedCommands(this) { ZIndex = 5000, Visible = false });
             Layers.Add("hitlayer", new HitLayer(this) { ZIndex = 5000 });
+            Layers.Add("abilitystat", new AbilityStatLayer(this) { ZIndex = 5000, Visible = false });
         }
 
         public override void Start()
@@ -713,16 +714,24 @@ namespace SRPG.Scene.Battle
 
                     radialMenu.ClearOptions();
 
-                    foreach (var ability in character.GetAbilities().Where(character.CanUseAbility))
+                    foreach (var ability in character.GetAbilities().Where(character.CanUseAbility).Where(a => a.AbilityType == AbilityType.Active))
                     {
-                        ability.Icon.MouseOver = (o, eventArgs) => { };
-                        ability.Icon.MouseOut = (o, eventArgs) => { };
+                        Ability ability1 = ability;
+
+                        ability.Icon.MouseOver = (o, eventArgs) => PreviewAbility(ability1);
+                        ability.Icon.MouseOut = (o, eventArgs) => Layers["abilitystat"].Visible = false;
                         ability.Icon.MouseClick = (o, eventArgs) => { };
                         ability.Icon.MouseRelease = (o, eventArgs) => { };
 
                         radialMenu.AddOption(ability.Name, ability.Icon);
                     }
                 };
+        }
+
+        private void PreviewAbility(Ability ability)
+        {
+            ((AbilityStatLayer) Layers["abilitystat"]).SetAbility(ability);
+            Layers["abilitystat"].Visible = true;
         }
 
         /// <summary>

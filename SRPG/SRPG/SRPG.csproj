@@ -144,6 +144,7 @@
     <Compile Include="Data\Layers\DialogLayer.cs" />
     <Compile Include="FontManager.cs" />
     <Compile Include="RadialMenu.cs" />
+    <Compile Include="Scene\Battle\AbilityStatLayer.cs" />
     <Compile Include="Scene\Battle\BattleBoardLayer.cs" />
     <Compile Include="Scene\Battle\BattleGridLayer.cs" />
     <Compile Include="Scene\Battle\CharacterStats.cs" />
