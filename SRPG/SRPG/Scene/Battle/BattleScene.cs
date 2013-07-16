@@ -203,7 +203,7 @@ namespace SRPG.Scene.Battle
                 // todo : 1 sec delay between commands
                 CheckCharacterDeath();
                 _state = BattleState.ExecutingCommand;
-                _selectedCharacter = null;
+                ResetState();
             }
         }
 
@@ -246,8 +246,7 @@ namespace SRPG.Scene.Battle
             {
                 _state = _selectedCharacter.Faction == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
                 _selectedCharacter.Avatar.UpdateVelocity(0, 0);
-                _selectedCharacter = null;
-                HideCharacterStats();
+                ResetState();
             }
         }
 
@@ -598,13 +597,9 @@ namespace SRPG.Scene.Battle
                 Layers.Remove("radial menu");
             }
 
-            ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
-
-            _selectedCharacter = null;
+            ResetState();
 
             _state = BattleState.PlayerTurn;
-
-            HideCharacterStats();
         }
 
         private static void SetCharacterMenuAnimations(SpriteObject icon)
@@ -716,12 +711,7 @@ namespace SRPG.Scene.Battle
                 case BattleState.SelectingAbility:
                     break;
                 case BattleState.AimingAbility:
-                    // todo turn this into a method
-                    ((BattleGridLayer)Layers["battlegrid"]).ResetGrid();
-                    _aimGrid = new Grid(1, 1);
-                    _aimAbility = null;
-                    _selectedCharacter = null;
-                    
+                    ResetState();
                     _state = BattleState.PlayerTurn;
                     HideCharacterStats();
                     break;
@@ -733,6 +723,15 @@ namespace SRPG.Scene.Battle
                     break;
 
             }
+        }
+
+        private void ResetState()
+        {
+            ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+            _aimGrid = new Grid(1, 1);
+            _aimAbility = null;
+            _selectedCharacter = null;
+            HideCharacterStats();
         }
 
         public void ExecuteQueuedCommands()
