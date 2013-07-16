@@ -127,6 +127,10 @@ namespace SRPG.Scene.Battle
                 _x += x * dt * CamScrollSpeed;
                 _y += y * dt * CamScrollSpeed;
             }
+            else if (input.IsKeyDown(Keys.Enter))
+            {
+                ChangeFaction(0);
+            }
 
             var viewport = Game.GetInstance().GraphicsDevice.Viewport;
 
@@ -329,7 +333,7 @@ namespace SRPG.Scene.Battle
         {
             BattleBoard = new BattleBoard();
 
-            RoundNumber = 1;
+            RoundNumber = 0;
             FactionTurn = 0;
 
             _state = BattleState.PlayerTurn;
@@ -384,6 +388,7 @@ namespace SRPG.Scene.Battle
         {
             _state = faction == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
             FactionTurn = faction;
+            if (faction == 0) RoundNumber++;
 
             foreach(var character in BattleBoard.Characters)
             {
