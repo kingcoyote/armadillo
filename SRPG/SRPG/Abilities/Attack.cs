@@ -12,6 +12,7 @@ namespace SRPG.Abilities
         public Attack()
         {
             Name = "Attack";
+            AbilityTarget = AbilityTarget.Enemy;
         }
 
         public override List<Hit> GenerateHits(BattleBoard board, Point target)

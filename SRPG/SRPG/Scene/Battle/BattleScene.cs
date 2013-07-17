@@ -677,6 +677,7 @@ namespace SRPG.Scene.Battle
         /// and bind _aimAbility to a function that queues an attack command from the character onto the target.
         /// </summary>
         /// <param name="character">The character whose attack is being chosen.</param>
+        /// <param name="ability">The ability currently being aimed.</param>
         /// <returns></returns>
         private EventHandler<MouseEventArgs> SelectAbilityTarget(Combatant character, Ability ability)
         {
@@ -687,7 +688,7 @@ namespace SRPG.Scene.Battle
                 _aimGrid = ability.GenerateTargetGrid();
                 _aimAbility = (x, y) =>
                     {
-                        if (BattleBoard.IsOccupied(new Point(x, y)) == -1 || BattleBoard.IsOccupied(new Point(x, y)) == ((ability.AbilityTarget == AbilityTarget.Enemy && character.Faction == 0) ? 1 : 0))
+                        if (BattleBoard.IsOccupied(new Point(x, y)) == -1 || BattleBoard.IsOccupied(new Point(x, y)) != ((ability.AbilityTarget == AbilityTarget.Enemy && character.Faction == 0) ? 1 : 0))
                             return false;
 
                         ability.Character = character;
@@ -717,15 +718,15 @@ namespace SRPG.Scene.Battle
 
                     foreach (var ability in character.GetAbilities().Where(character.CanUseAbility).Where(a => a.AbilityType == AbilityType.Active))
                     {
-                        Ability ability1 = ability;
+                        var tempAbility = ability;
 
-                        ability.Icon.MouseOver = (o, eventArgs) => PreviewAbility(ability1);
+                        ability.Icon.MouseOver = (o, eventArgs) => PreviewAbility(tempAbility);
                         ability.Icon.MouseOut = (o, eventArgs) => { 
                             Layers["abilitystat"].Visible = false;
                             ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
                         };
                         ability.Icon.MouseClick = (o, eventArgs) => { };
-                        ability.Icon.MouseRelease = (o, eventArgs) => { };
+                        ability.Icon.MouseRelease = SelectAbilityTarget(character, tempAbility);
 
                         radialMenu.AddOption(ability.Name, ability.Icon);
                     }
