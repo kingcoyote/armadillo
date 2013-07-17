@@ -751,8 +751,10 @@ namespace SRPG.Scene.Battle
             {
                 case BattleState.CharacterSelected:
                     DeselectCharacter();
+                    ResetState();
                     break;
                 case BattleState.SelectingAbility:
+                    ResetState();
                     break;
                 case BattleState.AimingAbility:
                     ResetState();
@@ -769,6 +771,7 @@ namespace SRPG.Scene.Battle
             _aimAbility = null;
             _selectedCharacter = null;
             HideCharacterStats();
+            Layers["abilitystat"].Visible = false;
         }
 
         public void ExecuteQueuedCommands()
