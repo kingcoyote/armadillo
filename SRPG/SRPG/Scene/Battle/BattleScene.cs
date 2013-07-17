@@ -719,13 +719,21 @@ namespace SRPG.Scene.Battle
                     {
                         var tempAbility = ability;
 
-                        ability.Icon.MouseOver = (o, eventArgs) => PreviewAbility(tempAbility);
-                        ability.Icon.MouseOut = (o, eventArgs) => { 
-                            Layers["abilitystat"].Visible = false;
-                            ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
-                        };
-                        ability.Icon.MouseClick = (o, eventArgs) => { };
-                        ability.Icon.MouseRelease = SelectAbilityTarget(character, tempAbility);
+                        if (ability.ManaCost <= character.CurrentMana)
+                        {
+                            ability.Icon.MouseOver = (o, eventArgs) => PreviewAbility(tempAbility);
+                            ability.Icon.MouseOut = (o, eventArgs) =>
+                                {
+                                    Layers["abilitystat"].Visible = false;
+                                    ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+                                };
+                            ability.Icon.MouseClick = (o, eventArgs) => { };
+                            ability.Icon.MouseRelease = SelectAbilityTarget(character, tempAbility);
+                        }
+                        else
+                        {
+                            ability.Icon.MouseRelease =  (o, eventArgs) => { };;
+                        }
 
                         radialMenu.AddOption(ability.Name, ability.Icon);
                     }
