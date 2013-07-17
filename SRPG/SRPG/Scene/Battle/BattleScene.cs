@@ -446,13 +446,12 @@ namespace SRPG.Scene.Battle
                         command.Character.CanMove = false;
                     }
                     break;
-                case "Attack":
+                default:
                     var hits = command.Ability.GenerateHits(BattleBoard, command.Target);
                     command.Character.CanAct = false;
                     DisplayHits(hits);
+                    command.Character.CurrentMana -= command.Ability.ManaCost;
                     break;
-                default:
-                    throw new NotImplementedException();
             }
         }
 
