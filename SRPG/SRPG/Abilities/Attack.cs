@@ -17,9 +17,9 @@ namespace SRPG.Abilities
 
         public override List<Hit> GenerateHits(BattleBoard board, Point target)
         {
-            return new List<Hit>()
+            return new List<Hit>
                 {
-                    new Hit()
+                    new Hit
                         {
                             Critical = 50,
                             Damage = 5,
