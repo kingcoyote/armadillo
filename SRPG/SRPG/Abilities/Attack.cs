@@ -28,6 +28,11 @@ namespace SRPG.Abilities
                 };
         }
 
+        public override Grid GenerateTargetGrid()
+        {
+            return Character.GetEquippedWeapon().TargetGrid;
+        }
+
         public override Grid GenerateImpactGrid()
         {
             var grid = new Grid(25, 25);

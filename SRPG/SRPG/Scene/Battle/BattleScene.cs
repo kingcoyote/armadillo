@@ -562,7 +562,9 @@ namespace SRPG.Scene.Battle
                             );
                     };
                 icon.MouseOut += (sender, args) => ((BattleGridLayer)Layers["battlegrid"]).ResetGrid();
-                icon.MouseRelease += SelectAttackTarget(character);
+                var ability = Ability.Factory("attack");
+                ability.Character = character;
+                icon.MouseRelease += SelectAbilityTarget(character, ability);
             }
             else
             {
@@ -676,19 +678,18 @@ namespace SRPG.Scene.Battle
         /// </summary>
         /// <param name="character">The character whose attack is being chosen.</param>
         /// <returns></returns>
-        private EventHandler<MouseEventArgs> SelectAttackTarget(Combatant character)
+        private EventHandler<MouseEventArgs> SelectAbilityTarget(Combatant character, Ability ability)
         {
             return (sender, args) =>
             {
                 _state = BattleState.AimingAbility;
                 Layers.Remove("radial menu");
-                _aimGrid = character.GetEquippedWeapon().TargetGrid;
+                _aimGrid = ability.GenerateTargetGrid();
                 _aimAbility = (x, y) =>
                     {
-                        if (BattleBoard.IsOccupied(new Point(x, y)) == -1 || BattleBoard.IsOccupied(new Point(x, y)) == character.Faction)
+                        if (BattleBoard.IsOccupied(new Point(x, y)) == -1 || BattleBoard.IsOccupied(new Point(x, y)) == ((ability.AbilityTarget == AbilityTarget.Enemy && character.Faction == 0) ? 1 : 0))
                             return false;
 
-                        var ability = Ability.Factory("attack");
                         ability.Character = character;
 
                         var command = new Command
