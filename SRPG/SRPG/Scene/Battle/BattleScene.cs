@@ -142,8 +142,8 @@ namespace SRPG.Scene.Battle
             var viewport = Game.GetInstance().GraphicsDevice.Viewport;
 
             // lock the camera to within the bounds of the map
-            _x = MathHelper.Clamp(_x, 0 - ((BattleGridLayer) Layers["battlegrid"]).Width + viewport.Width, 0);
-            _y = MathHelper.Clamp(_y, 0 - ((BattleGridLayer) Layers["battlegrid"]).Height + viewport.Height, 0);
+            _x = MathHelper.Clamp(_x, 0 - ((BattleBoardLayer) Layers["battleboardlayer"]).Width + viewport.Width, 0);
+            _y = MathHelper.Clamp(_y, 0 - ((BattleBoardLayer) Layers["battleboardlayer"]).Height + viewport.Height, 0);
 
             // during player turn, show queued commands if possible
             Layers["queuedcommands"].Visible = _state != BattleState.EnemyTurn && QueuedCommands.Count > 0;
@@ -287,8 +287,8 @@ namespace SRPG.Scene.Battle
         private void UpdateBattleStateAimingAbility(Input input, float dt)
         {
             // refresh grid status
-            ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
-            ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid(
+            ((BattleBoardLayer) Layers["battleboardlayer"]).ResetGrid();
+            ((BattleBoardLayer) Layers["battleboardlayer"]).HighlightGrid(
                 new Point((int)_selectedCharacter.Avatar.Location.X, (int)_selectedCharacter.Avatar.Location.Y), 
                 _aimGrid, 
                 GridHighlight.Selectable
@@ -311,7 +311,7 @@ namespace SRPG.Scene.Battle
                 _aimGrid.Weight[checkX, checkY] > 0)
             {
                 // highlight that spot
-                ((BattleGridLayer) Layers["battlegrid"]).HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
+                ((BattleBoardLayer) Layers["battleboardlayer"]).HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
 
                 // did they click?
                 if (input.LeftButton == ButtonState.Pressed)
@@ -320,7 +320,7 @@ namespace SRPG.Scene.Battle
                     if (_aimAbility(cursor.X, cursor.Y))
                     {
                         // if callback returns true, the click was valid
-                        ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+                        ((BattleBoardLayer) Layers["battleboardlayer"]).ResetGrid();
                     }
                 }
             }
@@ -360,7 +360,7 @@ namespace SRPG.Scene.Battle
         /// </summary>
         private void UpdateCamera(Input input, float dt)
         {
-            var layers = new List<string> {"battlegrid", "battleboardlayer", "radial menu", "hitlayer"};
+            var layers = new List<string> {"battleboardlayer", "radial menu", "hitlayer"};
 
             // update all layers that are locked to the camera
             foreach (var layer in layers)
@@ -402,10 +402,13 @@ namespace SRPG.Scene.Battle
             _state = BattleState.PlayerTurn;
             var partyGrid = new List<Point>();
 
+            Layers.Add("battleboardlayer", new BattleBoardLayer(this));
+
             switch(battleName)
             {
                 case "coliseum/halls":
-                    Layers.Add("battlegrid", new BattleGridLayer(this, "Zones/Coliseum/Halls/halls", "Zones/Coliseum/Halls/battle"));
+                    ((BattleBoardLayer)Layers["battleboardlayer"]).SetBackground("Zones/Coliseum/Halls/halls");
+                    ((BattleBoardLayer)Layers["battleboardlayer"]).SetGrid("Zones/Coliseum/Halls/battle");
                     BattleBoard.Sandbag = Grid.FromBitmap("Zones/Coliseum/Halls/battle");
 
                     partyGrid.Add(new Point(14,35));
@@ -417,6 +420,8 @@ namespace SRPG.Scene.Battle
 
                     BattleBoard.Characters.Add(GenerateCombatant("Guard", "coliseum/guard", new Vector2(9, 2)));
                     BattleBoard.Characters.Add(GenerateCombatant("Guard Captain", "coliseum/guard", new Vector2(14, 33)));
+
+                    
 
                     break;
                 default:
@@ -432,7 +437,7 @@ namespace SRPG.Scene.Battle
                 BattleBoard.Characters.Add(character);
             }
 
-            Layers.Add("battleboardlayer", new BattleBoardLayer(this, BattleBoard));
+            ((BattleBoardLayer)Layers["battleboardlayer"]).SetBoard(BattleBoard);
 
             // center camera on partyGrid[0]
             _x = 0 - partyGrid[0].X*50 + Game.GetInstance().GraphicsDevice.Viewport.Width / 2;
@@ -622,13 +627,13 @@ namespace SRPG.Scene.Battle
                 icon.MouseOver += (sender, args) =>
                     {
                         if (!character.CanMove) return;
-                        ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid(
+                        ((BattleBoardLayer) Layers["battleboardlayer"]).HighlightGrid(
                             new Point((int) character.Avatar.Location.X, (int) character.Avatar.Location.Y),
                             character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)),
                             GridHighlight.Selectable
                             );
                     };
-                icon.MouseOut += (sender, args) => ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+                icon.MouseOut += (sender, args) => ((BattleBoardLayer) Layers["battleboardlayer"]).ResetGrid();
                 icon.MouseRelease += SelectMovementTarget(character);
             }
             else
@@ -650,13 +655,13 @@ namespace SRPG.Scene.Battle
                 icon.MouseOver += (sender, args) =>
                     {
                         if (!character.CanAct) return;
-                        ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid(
+                        ((BattleBoardLayer) Layers["battleboardlayer"]).HighlightGrid(
                             new Point((int) character.Avatar.Location.X, (int) character.Avatar.Location.Y),
                             character.GetEquippedWeapon().TargetGrid,
                             GridHighlight.Selectable
                             );
                     };
-                icon.MouseOut += (sender, args) => ((BattleGridLayer)Layers["battlegrid"]).ResetGrid();
+                icon.MouseOut += (sender, args) => ((BattleBoardLayer)Layers["battleboardlayer"]).ResetGrid();
                 var ability = Ability.Factory("attack");
                 ability.Character = character;
                 icon.MouseRelease += SelectAbilityTarget(character, ability);
@@ -844,7 +849,7 @@ namespace SRPG.Scene.Battle
                             ability.Icon.MouseOut = (o, eventArgs) =>
                                 {
                                     Layers["abilitystat"].Visible = false;
-                                    ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+                                    ((BattleBoardLayer) Layers["battleboardlayer"]).ResetGrid();
                                 };
                             ability.Icon.MouseClick = (o, eventArgs) => { };
                             ability.Icon.MouseRelease = SelectAbilityTarget(character, tempAbility);
@@ -867,7 +872,7 @@ namespace SRPG.Scene.Battle
         {
             ((AbilityStatLayer) Layers["abilitystat"]).SetAbility(ability);
             Layers["abilitystat"].Visible = true;
-            ((BattleGridLayer)Layers["battlegrid"]).HighlightGrid(
+            ((BattleBoardLayer)Layers["battleboardlayer"]).HighlightGrid(
                 new Point((int)ability.Character.Avatar.Location.X, (int)ability.Character.Avatar.Location.Y), 
                 ability.GenerateTargetGrid(), 
                 GridHighlight.Selectable
@@ -902,7 +907,7 @@ namespace SRPG.Scene.Battle
         /// </summary>
         private void ResetState()
         {
-            ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
+            ((BattleBoardLayer) Layers["battleboardlayer"]).ResetGrid();
             _aimGrid = new Grid(1, 1);
             _aimAbility = null;
             _selectedCharacter = null;
