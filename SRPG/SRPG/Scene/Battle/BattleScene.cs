@@ -24,18 +24,6 @@ namespace SRPG.Scene.Battle
         /// </summary>
         public int RoundNumber;
         /// <summary>
-        /// Default camera movement speed, in pixels per second
-        /// </summary>
-        private const int CamScrollSpeed = 450;
-        /// <summary>
-        /// X value offset of the camera compared to the board.
-        /// </summary>
-        private float _x;
-        /// <summary>
-        /// Y value offset of the camera compared to the board.
-        /// </summary>
-        private float _y;
-        /// <summary>
         /// The character currently being selected by either the player or the computer, used
         /// to determine command targets and stats to display.
         /// </summary>
@@ -105,54 +93,19 @@ namespace SRPG.Scene.Battle
 
             // get the amount of time, in seconds, since the last frame. this should be 0.016 at 60fps.
             float dt = gameTime.ElapsedGameTime.Milliseconds/1000F;
-
-            // if the player is in control, allow them to move the camera around
-            if(FactionTurn == 0)
-            {
-                float x = 0;
-                float y = 0;
-
-                if(input.IsKeyDown(Keys.A) && !input.IsKeyDown(Keys.D))
-                {
-                    x = 1;
-                } else if (input.IsKeyDown(Keys.D) && !input.IsKeyDown(Keys.A))
-                {
-                    x = -1;
-                }
-
-                if (input.IsKeyDown(Keys.S) && !input.IsKeyDown(Keys.W))
-                {
-                    y = -1;
-                }
-                else if (input.IsKeyDown(Keys.W) && !input.IsKeyDown(Keys.S))
-                {
-                    y = 1;
-                }
-
-                _x += x * dt * CamScrollSpeed;
-                _y += y * dt * CamScrollSpeed;
-            }
-            else if (input.IsKeyDown(Keys.Enter))
+            
+            if (input.IsKeyDown(Keys.Enter))
             {
                 // placeholder for switching back to the player's turn.
                 // this will eventually be the AI control logic
                 ChangeFaction(0);
             }
 
-            var viewport = Game.GetInstance().GraphicsDevice.Viewport;
-
-            // lock the camera to within the bounds of the map
-            _x = MathHelper.Clamp(_x, 0 - ((BattleBoardLayer) Layers["battleboardlayer"]).Width + viewport.Width, 0);
-            _y = MathHelper.Clamp(_y, 0 - ((BattleBoardLayer) Layers["battleboardlayer"]).Height + viewport.Height, 0);
-
             // during player turn, show queued commands if possible
             Layers["queuedcommands"].Visible = _state != BattleState.EnemyTurn && QueuedCommands.Count > 0;
 
             // misc update logic for the current state
             UpdateBattleState(input, dt);
-
-            // move layers around that are locked to the battlefield
-            UpdateCamera(input, dt);
         }
 
         /// <summary>
@@ -297,8 +250,8 @@ namespace SRPG.Scene.Battle
             // compensate for the camera not being at 0,0
             // as well as do a 50:1 scaling to convert from the screen to the grid
             var cursor = new Point(
-                (int) Math.Floor((input.Cursor.X - _x)/50.0),
-                (int) Math.Floor((input.Cursor.Y - _y)/50.0)
+                (int) Math.Floor((input.Cursor.X - Layers["battleboardlayer"].X)/50.0),
+                (int) Math.Floor((input.Cursor.Y - Layers["battleboardlayer"].Y)/50.0)
                 );
 
             // compensate for the character's position, since they likely aren't at 0, 0
@@ -330,8 +283,8 @@ namespace SRPG.Scene.Battle
         {
             // remove radial menu if the cursor strays too far from the character
             var cursorDistance = Math.Sqrt(
-                Math.Pow((input.Cursor.X + (0 - _x)) - (_selectedCharacter.Avatar.Sprite.X + _selectedCharacter.Avatar.Sprite.Width/2.0), 2) + 
-                Math.Pow((input.Cursor.Y + (0 - _y)) - (_selectedCharacter.Avatar.Sprite.Y + _selectedCharacter.Avatar.Sprite.Height/2.0), 2)
+                Math.Pow((input.Cursor.X + (0 - Layers["battleboardlayer"].X)) - (_selectedCharacter.Avatar.Sprite.X + _selectedCharacter.Avatar.Sprite.Width/2.0), 2) + 
+                Math.Pow((input.Cursor.Y + (0 - Layers["battleboardlayer"].Y)) - (_selectedCharacter.Avatar.Sprite.Y + _selectedCharacter.Avatar.Sprite.Height/2.0), 2)
             );
 
             if (cursorDistance > 125)
@@ -358,7 +311,7 @@ namespace SRPG.Scene.Battle
         /// <summary>
         /// Move layers that are relevant to the battlegrid in relation to the camera.
         /// </summary>
-        private void UpdateCamera(Input input, float dt)
+        public void UpdateCamera(float x, float y)
         {
             var layers = new List<string> {"battleboardlayer", "radial menu", "hitlayer"};
 
@@ -367,22 +320,8 @@ namespace SRPG.Scene.Battle
             {
                 if (Layers.ContainsKey(layer))
                 {
-                    Layers[layer].X = _x;
-                    Layers[layer].Y = _y;
-                }
-            }
-
-            // check if the cursor is over a character
-            foreach (var character in BattleBoard.Characters)
-            {
-                if (character.Avatar.Sprite.Rectangle.Contains((int)(input.Cursor.X - _x), (int)(input.Cursor.Y - _y)))
-                {
-                    ShowCharacterStats(character);
-                    break;
-                }
-                else
-                {
-                    HideCharacterStats();
+                    Layers[layer].X = x;
+                    Layers[layer].Y = y;
                 }
             }
         }
@@ -440,8 +379,10 @@ namespace SRPG.Scene.Battle
             ((BattleBoardLayer)Layers["battleboardlayer"]).SetBoard(BattleBoard);
 
             // center camera on partyGrid[0]
-            _x = 0 - partyGrid[0].X*50 + Game.GetInstance().GraphicsDevice.Viewport.Width / 2;
-            _y = 0 - partyGrid[0].Y*50 + Game.GetInstance().GraphicsDevice.Viewport.Height / 2;
+            UpdateCamera(
+                0 - partyGrid[0].X*50 + Game.GetInstance().GraphicsDevice.Viewport.Width/2,
+                0 - partyGrid[0].Y*50 + Game.GetInstance().GraphicsDevice.Viewport.Height/2
+            );
 
             ChangeFaction(0);
         }

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using SRPG.Data;
 using Torch;
+using Game = Torch.Game;
 
 namespace SRPG.Scene.Battle
 {
@@ -13,6 +15,11 @@ namespace SRPG.Scene.Battle
         private Grid _grid;
         public int Width;
         public int Height;
+
+        /// <summary>
+        /// Default camera movement speed, in pixels per second
+        /// </summary>
+        private const int CamScrollSpeed = 450;
 
         private BattleBoard _board;
 
@@ -49,11 +56,61 @@ namespace SRPG.Scene.Battle
         {
             base.Update(gameTime, input);
 
+            var scene = ((BattleScene) Scene);
+
             foreach(var character in _board.Characters)
             {
                 Objects["character/" + character.Name].X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width/2);
                 Objects["character/" + character.Name].Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2);
                 Objects["character/" + character.Name].Z = character.Avatar.Sprite.Y;
+            }
+
+            // if the player is in control, allow them to move the camera around
+            if (scene.FactionTurn == 0)
+            {
+                float x = 0;
+                float y = 0;
+
+                if (input.IsKeyDown(Keys.A) && !input.IsKeyDown(Keys.D))
+                {
+                    x = 1;
+                }
+                else if (input.IsKeyDown(Keys.D) && !input.IsKeyDown(Keys.A))
+                {
+                    x = -1;
+                }
+
+                if (input.IsKeyDown(Keys.S) && !input.IsKeyDown(Keys.W))
+                {
+                    y = -1;
+                }
+                else if (input.IsKeyDown(Keys.W) && !input.IsKeyDown(Keys.S))
+                {
+                    y = 1;
+                }
+
+                X += x * gameTime.ElapsedGameTime.Milliseconds / 1000F * CamScrollSpeed;
+                Y += y * gameTime.ElapsedGameTime.Milliseconds / 1000F * CamScrollSpeed;
+            }
+
+            var viewport = Game.GetInstance().GraphicsDevice.Viewport;
+
+            // lock the camera to within the bounds of the map
+            X = MathHelper.Clamp(X, 0 - Width + viewport.Width, 0);
+            Y = MathHelper.Clamp(Y, 0 - Height + viewport.Height, 0);
+
+            scene.UpdateCamera(X, Y);
+
+            // check if the cursor is over a character
+            foreach (var character in _board.Characters)
+            {
+                if (character.Avatar.Sprite.Rectangle.Contains((int)(input.Cursor.X - X), (int)(input.Cursor.Y - Y)))
+                {
+                    scene.ShowCharacterStats(character);
+                    break;
+                }
+                
+                scene.HideCharacterStats();
             }
         }
 
