@@ -448,9 +448,22 @@ namespace SRPG.Scene.Battle
                     break;
                 default:
                     var hits = command.Ability.GenerateHits(BattleBoard, command.Target);
-                    command.Character.CanAct = false;
-                    DisplayHits(hits);
-                    command.Character.CurrentMana -= command.Ability.ManaCost;
+
+                    for (var i = hits.Count - 1; i >= 0; i--)
+                    {
+                        if(BattleBoard.GetCharacterAt(hits[i].Target) == null)
+                        {
+                            hits.RemoveAt(i);
+                        }
+                    }
+
+                    if (hits.Count > 0)
+                    {
+                        command.Character.CanAct = false;
+                        DisplayHits(hits);
+                        command.Character.CurrentMana -= command.Ability.ManaCost;
+                    }
+
                     break;
             }
         }
