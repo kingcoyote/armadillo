@@ -21,8 +21,6 @@ namespace SRPG.Scene.Battle
                 character.Avatar.Sprite.Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2);
                 character.Avatar.Sprite.Z = character.Avatar.Sprite.Y;
                 Objects.Add("character/" + character.Name, character.Avatar.Sprite);
-                Objects["character/" + character.Name].MouseOver = MouseOverCharacter(character);
-                Objects["character/" + character.Name].MouseOut = MouseOutCharacter(character);
                 Objects["character/" + character.Name].MouseClick = MouseClickCharacter(character);
             }
         }
@@ -42,19 +40,6 @@ namespace SRPG.Scene.Battle
         public void RemoveCharacter(Combatant character)
         {
             Objects.Remove("character/" + character.Name);
-        }
-
-        public EventHandler<MouseEventArgs> MouseOverCharacter(Combatant character)
-        {
-            return (sender, args) =>
-                {
-                    ((BattleScene) Scene).ShowCharacterStats(character);
-                };
-        }
-
-        public EventHandler<MouseEventArgs> MouseOutCharacter(Combatant character)
-        {
-            return (sender, args) => ((BattleScene) Scene).HideCharacterStats();
         }
 
         public EventHandler<MouseEventArgs> MouseClickCharacter(Combatant character)

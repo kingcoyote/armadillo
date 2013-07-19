@@ -141,7 +141,7 @@ namespace SRPG.Scene.Battle
             Layers["queuedcommands"].Visible = _state != BattleState.EnemyTurn && QueuedCommands.Count > 0;
 
             UpdateBattleState(input, dt);
-            UpdateCamera();
+            UpdateCamera(input, dt);
         }
 
         private void UpdateBattleState(Input input, float dt)
@@ -318,7 +318,7 @@ namespace SRPG.Scene.Battle
         /// <summary>
         /// Move layers that are relevant to the battlegrid in relation to the camera.
         /// </summary>
-        private void UpdateCamera()
+        private void UpdateCamera(Input input, float dt)
         {
             var layers = new List<string> {"battlegrid", "battleboardlayer", "radial menu", "hitlayer"};
 
@@ -328,6 +328,19 @@ namespace SRPG.Scene.Battle
                 {
                     Layers[layer].X = _x;
                     Layers[layer].Y = _y;
+                }
+            }
+
+            foreach (var character in BattleBoard.Characters)
+            {
+                if (character.Avatar.Sprite.Rectangle.Contains((int)(input.Cursor.X - _x), (int)(input.Cursor.Y - _y)))
+                {
+                    ShowCharacterStats(character);
+                    break;
+                }
+                else
+                {
+                    HideCharacterStats();
                 }
             }
         }
@@ -377,8 +390,6 @@ namespace SRPG.Scene.Battle
 
             _x = 0 - partyGrid[0].X*50 + Game.GetInstance().GraphicsDevice.Viewport.Width / 2;
             _y = 0 - partyGrid[0].Y*50 + Game.GetInstance().GraphicsDevice.Viewport.Height / 2;
-
-            UpdateCamera();
 
             ChangeFaction(0);
         }
