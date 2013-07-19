@@ -404,6 +404,8 @@ namespace SRPG.Scene.Battle
             FactionTurn = faction;
             if (faction == 0) RoundNumber++;
 
+            QueuedCommands.Clear();
+
             foreach(var character in BattleBoard.Characters)
             {
                 if (character.Faction == faction)
