@@ -455,6 +455,14 @@ namespace SRPG.Scene.Battle
                         _state = BattleState.MovingCharacter;
 
                         command.Character.CanMove = false;
+
+                        var queuedCommands = (from c in QueuedCommands where c.Character == command.Character select c).ToArray();
+
+                        if(queuedCommands.Length > 0)
+                        {
+                            QueuedCommands.Remove(queuedCommands[0]);
+                            command.Character.CanAct = true;
+                        }
                     }
                     break;
                 default:
