@@ -64,7 +64,9 @@ namespace SRPG.Scene.Battle
         /// When the current command is a move, and it is being executed, this is the coordinates for the character to follow from point A to point B.
         /// </summary>
         private List<Point> _movementCoords;
-
+        /// <summary>
+        /// A list of hits that are currently being displayed by a recently executed command.
+        /// </summary>
         private List<Hit> _hits = new List<Hit>();
 
         public BattleScene(Game game) : base(game) { }
@@ -101,8 +103,10 @@ namespace SRPG.Scene.Battle
         {
             base.Update(gameTime, input);
 
+            // get the amount of time, in seconds, since the last frame. this should be 0.016 at 60fps.
             float dt = gameTime.ElapsedGameTime.Milliseconds/1000F;
 
+            // if the player is in control, allow them to move the camera around
             if(FactionTurn == 0)
             {
                 float x = 0;
@@ -130,20 +134,33 @@ namespace SRPG.Scene.Battle
             }
             else if (input.IsKeyDown(Keys.Enter))
             {
+                // placeholder for switching back to the player's turn.
+                // this will eventually be the AI control logic
                 ChangeFaction(0);
             }
 
             var viewport = Game.GetInstance().GraphicsDevice.Viewport;
 
+            // lock the camera to within the bounds of the map
             _x = MathHelper.Clamp(_x, 0 - ((BattleGridLayer) Layers["battlegrid"]).Width + viewport.Width, 0);
             _y = MathHelper.Clamp(_y, 0 - ((BattleGridLayer) Layers["battlegrid"]).Height + viewport.Height, 0);
 
+            // during player turn, show queued commands if possible
             Layers["queuedcommands"].Visible = _state != BattleState.EnemyTurn && QueuedCommands.Count > 0;
 
+            // misc update logic for the current state
             UpdateBattleState(input, dt);
+
+            // move layers around that are locked to the battlefield
             UpdateCamera(input, dt);
         }
 
+        /// <summary>
+        /// Depending on the current state, this will simply redirect to another function
+        /// allowing for custom logic for that state to update itself.
+        /// </summary>
+        /// <param name="input">Keyboard/Mouse status for the current frame.</param>
+        /// <param name="dt">The number of seconds since the last frame, typically 0.016 @ 60fps.</param>
         private void UpdateBattleState(Input input, float dt)
         {
             switch(_state)
@@ -202,8 +219,12 @@ namespace SRPG.Scene.Battle
             else
             {
                 // todo : 1 sec delay between commands
+                // all hits are done displaying - did anyone die?
                 CheckCharacterDeath();
+
+                // move on to the next command
                 _state = BattleState.ExecutingCommand;
+
                 ResetState();
             }
         }
@@ -212,40 +233,52 @@ namespace SRPG.Scene.Battle
         {
             if (QueuedCommands.Count > 0)
             {
+                // process the next command
                 ExecuteCommand(QueuedCommands[0]);
                 QueuedCommands.RemoveAt(0);
             }
             else
             {
+                // all done with queued commands, return to either Player or Enemy turn
                 _state = FactionTurn == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
             }
         }
 
         private void UpdateBattleStateMovingCharacter(Input input, float dt)
         {
+            // calculate distance to target
             var x = 0 - (_selectedCharacter.Avatar.Location.X - _movementCoords[0].X);
             var y = 0 - (_selectedCharacter.Avatar.Location.Y - _movementCoords[0].Y);
 
+            // set X/Y speeds
             if (x < -0.1) x = -1;
             if (x > 0.1) x = 1;
             if (y < -0.1) y = -1;
             if (y > 0.1) y = 1;
-
             _selectedCharacter.Avatar.UpdateVelocity(x, y);
 
+            // move character based on speeds
             _selectedCharacter.Avatar.Location.X += x * dt * _selectedCharacter.Avatar.Speed / 50;
             _selectedCharacter.Avatar.Location.Y += y * dt * _selectedCharacter.Avatar.Speed / 50;
 
+            // if they are at their destination
             if (Math.Abs(x - 0) < 0.05 && Math.Abs(y - 0) < 0.05)
             {
+                // snap to the grid to prevent movement errors on the next move
                 _selectedCharacter.Avatar.Location.X = _movementCoords[0].X;
                 _selectedCharacter.Avatar.Location.Y = _movementCoords[0].Y;
+
+                // remove coordinate from list
                 _movementCoords.RemoveAt(0);
             }
 
+            // any more coordinates to go to, or are we at the final destination?
             if (_movementCoords.Count == 0)
             {
+                // move to the next state
                 _state = _selectedCharacter.Faction == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
+
+                // change the character to have a standing animation
                 _selectedCharacter.Avatar.UpdateVelocity(0, 0);
                 ResetState();
             }
@@ -253,6 +286,7 @@ namespace SRPG.Scene.Battle
 
         private void UpdateBattleStateAimingAbility(Input input, float dt)
         {
+            // refresh grid status
             ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
             ((BattleGridLayer) Layers["battlegrid"]).HighlightGrid(
                 new Point((int)_selectedCharacter.Avatar.Location.X, (int)_selectedCharacter.Avatar.Location.Y), 
@@ -272,14 +306,20 @@ namespace SRPG.Scene.Battle
             var checkX = (int) (cursor.X - _selectedCharacter.Avatar.Location.X + Math.Floor(_aimGrid.Size.Width/2.0));
             var checkY = (int) (cursor.Y - _selectedCharacter.Avatar.Location.Y + Math.Floor(_aimGrid.Size.Height/2.0));
 
+            // if they are hovering over a valid square on the aim grid
             if (checkX >= 0 && checkX < _aimGrid.Size.Width && checkY >= 0 && checkY < _aimGrid.Size.Height &&
                 _aimGrid.Weight[checkX, checkY] > 0)
             {
+                // highlight that spot
                 ((BattleGridLayer) Layers["battlegrid"]).HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
+
+                // did they click?
                 if (input.LeftButton == ButtonState.Pressed)
                 {
+                    // execute callback
                     if (_aimAbility(cursor.X, cursor.Y))
                     {
+                        // if callback returns true, the click was valid
                         ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
                     }
                 }
@@ -288,6 +328,7 @@ namespace SRPG.Scene.Battle
 
         private void UpdateBattleStateCharacterSelected(Input input, float dt)
         {
+            // remove radial menu if the cursor strays too far from the character
             var cursorDistance = Math.Sqrt(
                 Math.Pow((input.Cursor.X + (0 - _x)) - (_selectedCharacter.Avatar.Sprite.X + _selectedCharacter.Avatar.Sprite.Width/2.0), 2) + 
                 Math.Pow((input.Cursor.Y + (0 - _y)) - (_selectedCharacter.Avatar.Sprite.Y + _selectedCharacter.Avatar.Sprite.Height/2.0), 2)
@@ -301,13 +342,12 @@ namespace SRPG.Scene.Battle
 
         private void CheckCharacterDeath()
         {
-            var dead = (from c in BattleBoard.Characters where c.CurrentHealth <= 0 select c);
+            // kill off any character with 0 or less health
+            var deadCombatants = (from c in BattleBoard.Characters where c.CurrentHealth <= 0 select c).ToArray();
 
-            IEnumerable<Combatant> combatants = dead as Combatant[] ?? dead.ToArray();
+            if (deadCombatants.Length == 0) return;
 
-            if (!combatants.Any()) return;
-
-            foreach(var character in combatants.ToArray())
+            foreach(var character in deadCombatants)
             {
                 character.Die();
                 BattleBoard.Characters.Remove(character);
@@ -322,6 +362,7 @@ namespace SRPG.Scene.Battle
         {
             var layers = new List<string> {"battlegrid", "battleboardlayer", "radial menu", "hitlayer"};
 
+            // update all layers that are locked to the camera
             foreach (var layer in layers)
             {
                 if (Layers.ContainsKey(layer))
@@ -331,6 +372,7 @@ namespace SRPG.Scene.Battle
                 }
             }
 
+            // check if the cursor is over a character
             foreach (var character in BattleBoard.Characters)
             {
                 if (character.Avatar.Sprite.Rectangle.Contains((int)(input.Cursor.X - _x), (int)(input.Cursor.Y - _y)))
@@ -345,15 +387,19 @@ namespace SRPG.Scene.Battle
             }
         }
 
+        /// <summary>
+        /// Initialize a battle sequence by name. This call happens at the start of a battle and is required
+        /// for this scene to not die a horrible death.
+        /// </summary>
+        /// <param name="battleName">Name of the battle to be initialized</param>
         public void SetBattle(string battleName)
         {
+            // set up defaults
+            
             BattleBoard = new BattleBoard();
-
             RoundNumber = 0;
             FactionTurn = 0;
-
             _state = BattleState.PlayerTurn;
-
             var partyGrid = new List<Point>();
 
             switch(battleName)
@@ -377,7 +423,7 @@ namespace SRPG.Scene.Battle
                     throw new Exception("unknown battle " + battleName);
             }
 
-
+            // add party to the party grid for this battle, in order
             for(var i = 0; i < ((SRPGGame)Game).Party.Count; i++)
             {
                 var character = ((SRPGGame) Game).Party[i];
@@ -388,6 +434,7 @@ namespace SRPG.Scene.Battle
 
             Layers.Add("battleboardlayer", new BattleBoardLayer(this, BattleBoard));
 
+            // center camera on partyGrid[0]
             _x = 0 - partyGrid[0].X*50 + Game.GetInstance().GraphicsDevice.Viewport.Width / 2;
             _y = 0 - partyGrid[0].Y*50 + Game.GetInstance().GraphicsDevice.Viewport.Height / 2;
 
@@ -402,10 +449,13 @@ namespace SRPG.Scene.Battle
         {
             _state = faction == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
             FactionTurn = faction;
+            // increment round number on player's turn
             if (faction == 0) RoundNumber++;
 
+            // clear out any commands left un-executed at the end of the turn
             QueuedCommands.Clear();
 
+            // process begin/end round events on characters
             foreach(var character in BattleBoard.Characters)
             {
                 if (character.Faction == faction)
@@ -442,8 +492,11 @@ namespace SRPG.Scene.Battle
                     {
                         // special case for movement
                         var grid = BattleBoard.GetAccessibleGrid(command.Character.Faction);
+
+                        // run an A* pathfinding algorithm to get a route
                         var coords = grid.Pathfind(new Point((int)command.Character.Avatar.Location.X, (int)command.Character.Avatar.Location.Y), command.Target);
 
+                        // remove any points on the path that don't require a direction change
                         for (var i = coords.Count - 2; i > 0; i--)
                         {
                             if(coords[i - 1].X == coords[i + 1].X || coords[i - 1].Y == coords[i + 1].Y)
@@ -458,6 +511,7 @@ namespace SRPG.Scene.Battle
 
                         command.Character.CanMove = false;
 
+                        // if this character has any queued commands, cancel them upon moving
                         var queuedCommands = (from c in QueuedCommands where c.Character == command.Character select c).ToArray();
 
                         if(queuedCommands.Length > 0)
@@ -470,6 +524,7 @@ namespace SRPG.Scene.Battle
                 default:
                     var hits = command.Ability.GenerateHits(BattleBoard, command.Target);
 
+                    // remove any hits on characters that no longer exist
                     for (var i = hits.Count - 1; i >= 0; i--)
                     {
                         if(BattleBoard.GetCharacterAt(hits[i].Target) == null)
@@ -478,6 +533,7 @@ namespace SRPG.Scene.Battle
                         }
                     }
 
+                    // if this ability still has hits left, process them normally
                     if (hits.Count > 0)
                     {
                         command.Character.CanAct = false;
@@ -534,15 +590,18 @@ namespace SRPG.Scene.Battle
         /// <param name="character">The character whose options are to be displayed.</param>
         public void SelectCharacter(Combatant character)
         {
+            // if they clicked on the character already being shown, assume they want to close the menu
             if (character == _selectedCharacter)
             {
                 DeselectCharacter();
                 return;
             }
 
+            // you can only click on your characters, during your turn
             if (_state != BattleState.PlayerTurn) return;
             if (character.Faction != 0) return;
 
+            // if another menu is up, get rid of it
             if (Layers.ContainsKey("radial menu"))
             {
                 Layers.Remove("radial menu");
@@ -555,6 +614,7 @@ namespace SRPG.Scene.Battle
                     ZIndex = 5000
                 };
 
+            // move icon, plus event handlers
             var icon = new SpriteObject("Battle/Menu/move");
             SetCharacterMenuAnimations(icon);
             if (character.CanMove)
@@ -573,6 +633,7 @@ namespace SRPG.Scene.Battle
             }
             else
             {
+                // if they can't move, this icon does nothing
                 icon.MouseOver = (sender, args) => { };
                 icon.MouseOut = (sender, args) => { };
                 icon.MouseClick = (sender, args) => { };
@@ -581,6 +642,7 @@ namespace SRPG.Scene.Battle
 
             menu.AddOption("move", icon);
 
+            // attack icon, plus handlers
             icon = new SpriteObject("Battle/Menu/attack");
             SetCharacterMenuAnimations(icon);
             if (character.CanAct)
@@ -601,6 +663,7 @@ namespace SRPG.Scene.Battle
             }
             else
             {
+                // if they can't act, this icon does nothing
                 icon.MouseOver = (sender, args) => { };
                 icon.MouseOut = (sender, args) => { };
                 icon.MouseClick = (sender, args) => { };
@@ -609,6 +672,7 @@ namespace SRPG.Scene.Battle
 
             menu.AddOption("attack", icon);
 
+            // special abilities icon, plus event handlers
             icon = new SpriteObject("Battle/Menu/special");
             SetCharacterMenuAnimations(icon);
             if (character.CanAct)
@@ -617,6 +681,7 @@ namespace SRPG.Scene.Battle
             }
             else
             {
+                // if they can't act, this icon does nothing
                 icon.MouseOver = (sender, args) => { };
                 icon.MouseOut = (sender, args) => { };
                 icon.MouseClick = (sender, args) => { };
@@ -651,8 +716,14 @@ namespace SRPG.Scene.Battle
             _state = BattleState.PlayerTurn;
         }
 
+        /// <summary>
+        /// Take an icon and set the default behaviors for the radial menu.
+        /// this is a very specialized function and shouldn't be used for most things.
+        /// </summary>
+        /// <param name="icon">The icon being configured.</param>
         private static void SetCharacterMenuAnimations(SpriteObject icon)
         {
+           
             icon.AddAnimation(
                 "normal",
                 new SpriteAnimation {FrameCount = 1, Size = new Rectangle(0, 0, 50, 50), FrameRate = 1, StartRow = 1}
@@ -689,6 +760,7 @@ namespace SRPG.Scene.Battle
                     _aimGrid = character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction));
                     _aimAbility = (x, y) =>
                         {
+                            // only able to move to empty squares
                             if (BattleBoard.IsOccupied(new Point(x, y)) != -1) return false;
 
                             var command = new Command
@@ -698,7 +770,6 @@ namespace SRPG.Scene.Battle
                                     Ability = Ability.Factory("move")
                                 };
                             ExecuteCommand(command);
-                            
 
                             return true;
                         };
@@ -721,9 +792,12 @@ namespace SRPG.Scene.Battle
                 _aimGrid = ability.GenerateTargetGrid();
                 _aimAbility = (x, y) =>
                     {
+                        // only target enemies with angry spells and allies with friendly spells
                         if (BattleBoard.IsOccupied(new Point(x, y)) == -1 || BattleBoard.IsOccupied(new Point(x, y)) != ((ability.AbilityTarget == AbilityTarget.Enemy && character.Faction == 0) ? 1 : 0))
                             return false;
 
+                        // make sure the ability knows who is casting it. this probably shouldn't
+                        // be done here, but there are issues doing it elsewhere.
                         ability.Character = character;
 
                         var command = new Command
@@ -743,18 +817,27 @@ namespace SRPG.Scene.Battle
             };
         }
 
+        /// <summary>
+        /// Show a list of special abilities that a character may use
+        /// </summary>
+        /// <param name="character">The character being selected for special abilities</param>
+        /// <returns>An event handler to execute to show the abilities.</returns>
         private EventHandler<MouseEventArgs> SelectSpecialAbility(Combatant character)
         {
             return (sender, args) =>
                 {
                     var radialMenu = ((RadialMenu) Layers["radial menu"]);
 
+                    // delete the current radial menu options, which should be move/attack/special/item for the character.
+                    // should.
                     radialMenu.ClearOptions();
 
+                    // go through each ability the character can currently use
                     foreach (var ability in character.GetAbilities().Where(character.CanUseAbility).Where(a => a.AbilityType == AbilityType.Active))
                     {
                         var tempAbility = ability;
 
+                        // only bind event handlers onto abilities that are cheap enough to use
                         if (ability.ManaCost <= character.CurrentMana)
                         {
                             ability.Icon.MouseOver = (o, eventArgs) => PreviewAbility(tempAbility);
@@ -776,6 +859,10 @@ namespace SRPG.Scene.Battle
                 };
         }
 
+        /// <summary>
+        /// Show a stats panel indicating the name, mana and description of an ability
+        /// </summary>
+        /// <param name="ability"></param>
         private void PreviewAbility(Ability ability)
         {
             ((AbilityStatLayer) Layers["abilitystat"]).SetAbility(ability);
@@ -809,6 +896,10 @@ namespace SRPG.Scene.Battle
             }
         }
 
+        /// <summary>
+        /// General purpose function during PlayerTurn state to undo various options and settings
+        /// and hide panels.
+        /// </summary>
         private void ResetState()
         {
             ((BattleGridLayer) Layers["battlegrid"]).ResetGrid();
@@ -819,17 +910,28 @@ namespace SRPG.Scene.Battle
             Layers["abilitystat"].Visible = false;
         }
 
+        /// <summary>
+        /// Change state to execute commands
+        /// </summary>
         public void ExecuteQueuedCommands()
         {
             _state = BattleState.ExecutingCommand;
         }
 
+        /// <summary>
+        /// Receive a list of hits and change state to display those hits on screen, as well
+        /// as process the damage.
+        /// </summary>
+        /// <param name="hits"></param>
         public void DisplayHits(List<Hit> hits)
         {
             _hits = hits;
             _state = BattleState.DisplayingHits;
         }
 
+        /// <summary>
+        /// End the player turn, proceeding to the enemy turn.
+        /// </summary>
         public void EndPlayerTurn()
         {
             if (_state != BattleState.PlayerTurn) return;
