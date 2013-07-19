@@ -734,6 +734,8 @@ namespace SRPG.Scene.Battle
 
                         _state = BattleState.PlayerTurn;
 
+                        ResetState();
+
                         return true;
                     };
             };
