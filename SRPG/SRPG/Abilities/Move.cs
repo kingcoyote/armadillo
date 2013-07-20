@@ -11,6 +11,7 @@ namespace SRPG.Abilities
         public Move()
         {
             Name = "Move";
+            AbilityTarget = AbilityTarget.Unoccupied;
         }
     }
 }

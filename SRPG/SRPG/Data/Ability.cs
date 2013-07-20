@@ -132,5 +132,17 @@ namespace SRPG.Data
                                   });
             Icon.SetAnimation(Name);
         }
+
+        public bool CanTarget(int faction)
+        {
+            switch(AbilityTarget)
+            {
+                case AbilityTarget.Friendly: return faction == Character.Faction;
+                case AbilityTarget.Enemy: return faction != Character.Faction && faction != -1;
+                case AbilityTarget.Unoccupied: return faction == -1;
+            }
+
+            throw new Exception("unknown ability target");
+        }
     }
 }

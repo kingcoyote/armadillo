@@ -532,7 +532,7 @@ namespace SRPG.Scene.Battle
                             );
                     };
                 icon.MouseOut += (sender, args) => ((BattleBoardLayer) Layers["battleboard"]).ResetGrid();
-                icon.MouseRelease += SelectMovementTarget(character);
+                icon.MouseRelease += SelectAbilityTarget(character, Ability.Factory("move"));
             }
             else
             {
@@ -649,41 +649,6 @@ namespace SRPG.Scene.Battle
         }
 
         /// <summary>
-        /// Create a callback function to process if the player chooses to move a character. This callback will display the movement grid
-        /// and bind _aimAbility to a function that moves the character.
-        /// </summary>
-        /// <param name="character">The character whose movement is being chosen.</param>
-        /// <returns></returns>
-        private EventHandler<MouseEventArgs> SelectMovementTarget(Combatant character)
-        {
-            return (sender, args) =>
-                {
-                    _state = BattleState.AimingAbility;
-                    Layers.Remove("radial menu");
-                    ((BattleBoardLayer)Layers["battleboard"]).SetAimGrid(
-                        TorchHelper.Vector2ToPoint(character.Avatar.Location),
-                        character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction))
-                    );
-                    ((BattleBoardLayer) Layers["battleboard"]).AllowAim = true;
-                    _aimAbility = (x, y) =>
-                        {
-                            // only able to move to empty squares
-                            if (BattleBoard.IsOccupied(new Point(x, y)) != -1) return false;
-
-                            var command = new Command
-                                {
-                                    Character = character, 
-                                    Target = new Point(x, y), 
-                                    Ability = Ability.Factory("move")
-                                };
-                            ExecuteCommand(command);
-
-                            return true;
-                        };
-                };
-        }
-
-        /// <summary>
         /// Create a callback function to process if the player chooses to have a character attack. This callback will display the targetting grid
         /// and bind _aimAbility to a function that queues an attack command from the character onto the target.
         /// </summary>
@@ -696,12 +661,19 @@ namespace SRPG.Scene.Battle
             {
                 _state = BattleState.AimingAbility;
                 Layers.Remove("radial menu");
-                ((BattleBoardLayer)Layers["battleboard"]).SetAimGrid(TorchHelper.Vector2ToPoint(character.Avatar.Location), ability.GenerateTargetGrid());
+
+                ((BattleBoardLayer)Layers["battleboard"]).SetAimGrid(
+                    TorchHelper.Vector2ToPoint(character.Avatar.Location),
+                    ability.Name == "Move" ? 
+                        character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)) : 
+                        ability.GenerateTargetGrid()
+                );
+                
                 ((BattleBoardLayer)Layers["battleboard"]).AllowAim = true;
                 _aimAbility = (x, y) =>
                     {
                         // only target enemies with angry spells and allies with friendly spells
-                        if (BattleBoard.IsOccupied(new Point(x, y)) == -1 || BattleBoard.IsOccupied(new Point(x, y)) != ((ability.AbilityTarget == AbilityTarget.Enemy && character.Faction == 0) ? 1 : 0))
+                        if (!ability.CanTarget(BattleBoard.IsOccupied(new Point(x, y))))
                             return false;
 
                         // make sure the ability knows who is casting it. this probably shouldn't
@@ -714,10 +686,15 @@ namespace SRPG.Scene.Battle
                                 Target = new Point(x, y), 
                                 Ability = ability
                             };
+
+                        if(ability.Name == "Move")
+                        {
+                            ExecuteCommand(command);
+                            return true;
+                        }
+
                         QueuedCommands.Add(command);
-
                         _state = BattleState.PlayerTurn;
-
                         ResetState();
 
                         return true;

@@ -53,7 +53,8 @@ namespace SRPG.Data
     public enum AbilityTarget
     {
         Friendly,
-        Enemy
+        Enemy,
+        Unoccupied
     }
 
     public enum StatusAilmentType
