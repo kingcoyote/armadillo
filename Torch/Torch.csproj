@@ -62,6 +62,7 @@
     <Compile Include="Layer.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="TextureObject.cs" />
+    <Compile Include="TorchHelper.cs" />
     <Compile Include="Velocity.cs" />
     <Compile Include="Object.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
