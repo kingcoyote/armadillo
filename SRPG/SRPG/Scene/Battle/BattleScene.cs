@@ -112,14 +112,8 @@ namespace SRPG.Scene.Battle
         {
             switch(_state)
             {
-                case BattleState.CharacterSelected:
-                    UpdateBattleStateCharacterSelected(dt);
-                    break;
-                case BattleState.AimingAbility:
-                    UpdateBattleStateAimingAbility(dt);
-                    break;
                 case BattleState.ExecutingCommand:
-                    UpdateBattleStateExecutingCommand(dt);
+                    UpdateBattleStateExecutingCommand();
                     break;
                 case BattleState.DisplayingHits:
                     UpdateBattleStateDisplayingHits(dt);
@@ -176,7 +170,7 @@ namespace SRPG.Scene.Battle
             }
         }
 
-        private void UpdateBattleStateExecutingCommand(float dt)
+        private void UpdateBattleStateExecutingCommand()
         {
             if (QueuedCommands.Count > 0)
             {
@@ -229,25 +223,6 @@ namespace SRPG.Scene.Battle
                 _selectedCharacter.Avatar.UpdateVelocity(0, 0);
                 ResetState();
             }
-        }
-
-        private void UpdateBattleStateAimingAbility(float dt)
-        {
-            
-        }
-
-        private void UpdateBattleStateCharacterSelected(float dt)
-        {
-            // remove radial menu if the cursor strays too far from the character
-            /*var cursorDistance = Math.Sqrt(
-                Math.Pow((input.Cursor.X + (0 - Layers["battleboard"].X)) - (_selectedCharacter.Avatar.Sprite.X + _selectedCharacter.Avatar.Sprite.Width/2.0), 2) + 
-                Math.Pow((input.Cursor.Y + (0 - Layers["battleboard"].Y)) - (_selectedCharacter.Avatar.Sprite.Y + _selectedCharacter.Avatar.Sprite.Height/2.0), 2)
-            );
-
-            if (cursorDistance > 125)
-            {
-                DeselectCharacter();
-            }*/
         }
 
         private void CheckCharacterDeath()
@@ -514,7 +489,8 @@ namespace SRPG.Scene.Battle
                 {
                     CenterX = character.Avatar.Sprite.X + character.Avatar.Sprite.Width/2,
                     CenterY = character.Avatar.Sprite.Y + character.Avatar.Sprite.Height/2,
-                    ZIndex = 5000
+                    ZIndex = 5000,
+                    OnExit = DeselectCharacter
                 };
 
             // move icon, plus event handlers

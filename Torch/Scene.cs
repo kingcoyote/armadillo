@@ -68,7 +68,7 @@ namespace Torch
         // update
         public virtual void Update(GameTime gameTime, Input input)
         {
-            foreach(var layer in Layers.Values)
+            foreach(var layer in Layers.Values.ToArray())
             {
                 layer.Update(gameTime, input);
             }

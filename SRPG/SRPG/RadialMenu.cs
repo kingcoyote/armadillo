@@ -10,9 +10,11 @@ namespace SRPG
     class RadialMenu : Layer
     {
         public int Distance = 75;
-
         public int CenterX = 0;
         public int CenterY = 0;
+        public int ExitDistance = 125;
+
+        public Action OnExit;
 
         public RadialMenu(Torch.Scene scene) : base(scene) { }
 
@@ -38,6 +40,19 @@ namespace SRPG
         public void ClearOptions()
         {
             Objects.Clear();
+        }
+
+        public override void Update(GameTime gameTime, Input input)
+        {
+            base.Update(gameTime, input);
+
+            var xDistance = input.Cursor.X - (CenterX);
+            var yDistance = input.Cursor.Y - (CenterY);
+
+            if(Math.Sqrt(Math.Pow(xDistance, 2) + Math.Pow(yDistance, 2)) > ExitDistance)
+            {
+                OnExit.Invoke();
+            }
         }
     }
 }
