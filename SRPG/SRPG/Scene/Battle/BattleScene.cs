@@ -646,11 +646,15 @@ namespace SRPG.Scene.Battle
                 );
                 
                 ((BattleBoardLayer)Layers["battleboard"]).AllowAim = true;
+
                 _aimAbility = (x, y) =>
                     {
                         // only target enemies with angry spells and allies with friendly spells
                         if (!ability.CanTarget(BattleBoard.IsOccupied(new Point(x, y))))
                             return false;
+
+                        character.Avatar.UpdateVelocity(x - character.Avatar.Location.X, y - character.Avatar.Location.Y);
+                        character.Avatar.UpdateVelocity(0, 0);
 
                         // make sure the ability knows who is casting it. this probably shouldn't
                         // be done here, but there are issues doing it elsewhere.
