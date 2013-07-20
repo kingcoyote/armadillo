@@ -16,6 +16,8 @@ namespace SRPG.Scene.Battle
         public int Width;
         public int Height;
 
+        public bool AllowAim;
+
         /// <summary>
         /// Default camera movement speed, in pixels per second
         /// </summary>
@@ -36,6 +38,11 @@ namespace SRPG.Scene.Battle
         {
             _grid = Grid.FromBitmap(gridName);
             UpdateGrid();
+        }
+
+        public void SetAimGrid(Point center, Grid grid)
+        {
+            HighlightGrid(center, grid, GridHighlight.Selectable);
         }
 
         public void SetBoard(BattleBoard board)
@@ -112,6 +119,47 @@ namespace SRPG.Scene.Battle
                 
                 scene.HideCharacterStats();
             }
+
+            if (AllowAim == false) return;
+
+            // compensate for the camera not being at 0,0
+            // as well as do a 50:1 scaling to convert from the screen to the grid
+            var cursor = new Point(
+                (int)Math.Floor((input.Cursor.X - X) / 50.0),
+                (int)Math.Floor((input.Cursor.Y - Y) / 50.0)
+            );
+
+            // if they are hovering over a valid square on the aim grid
+            if (_grid.Weight[cursor.X, cursor.Y] == 0) return;
+
+            switch (CellType(cursor.X, cursor.Y))
+            {
+                case GridHighlight.Selectable:
+                    HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
+                    break;
+                case GridHighlight.Targetted:
+                    var cell = (SpriteObject)Objects[String.Format("grid/{0}-{1}", cursor.X, cursor.Y)];
+                    cell.MouseOut = (sender, args) =>
+                        {
+                            cell.SetAnimation("Selectable");
+                            cell.MouseRelease = (s, a) => { };
+                        };
+                    cell.MouseRelease = (sender, args) => scene.ExecuteAimAbility(cursor.X, cursor.Y);
+                    break;
+            }
+        }
+
+        public GridHighlight CellType(int x, int y)
+        {
+            switch(((SpriteObject)Objects[String.Format("grid/{0}-{1}", x, y)]).GetAnimation())
+            {
+                case "Normal": return GridHighlight.Normal;
+                case "Selectable": return GridHighlight.Selectable;
+                case "Targetted": return GridHighlight.Targetted;
+                case "Splashed": return GridHighlight.Splashed;
+                default:
+                    throw new Exception(String.Format("location {0},{1} is not on the grid", x, y));
+            }
         }
 
         public void RemoveCharacter(Combatant character)
@@ -187,7 +235,12 @@ namespace SRPG.Scene.Battle
             foreach(SpriteObject grid in (from o in Objects.Keys where o.Length > 4 && o.Substring(0,4) == "grid" select Objects[o]))
             {
                 grid.SetAnimation("Normal");
+                grid.MouseOver = (s, a) => { };
+                grid.MouseOut = (s, a) => { };
+                grid.MouseClick = (s, a) => { };
+                grid.MouseRelease = (s, a) => { };
             }
+            AllowAim = false;
         }
     }
 

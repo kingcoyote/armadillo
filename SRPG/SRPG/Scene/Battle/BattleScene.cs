@@ -40,11 +40,6 @@ namespace SRPG.Scene.Battle
         /// </summary>
         private Func<int, int, bool> _aimAbility = (x, y) => true; 
         /// <summary>
-        /// A grid associated with the aimed ability, showing what tiles can be aimed at. For instance - a movement grid for aiming a move
-        /// or a targeting grid for aiming an attack.
-        /// </summary>
-        private Grid _aimGrid;
-        /// <summary>
         /// A queued list of commands awaiting execution. This list is added to when telling a character to attack, use an ability or use an item.
         /// </summary>
         public List<Command> QueuedCommands { get; private set; }
@@ -105,38 +100,37 @@ namespace SRPG.Scene.Battle
             Layers["queuedcommands"].Visible = _state != BattleState.EnemyTurn && QueuedCommands.Count > 0;
 
             // misc update logic for the current state
-            UpdateBattleState(input, dt);
+            UpdateBattleState(dt);
         }
 
         /// <summary>
         /// Depending on the current state, this will simply redirect to another function
         /// allowing for custom logic for that state to update itself.
         /// </summary>
-        /// <param name="input">Keyboard/Mouse status for the current frame.</param>
         /// <param name="dt">The number of seconds since the last frame, typically 0.016 @ 60fps.</param>
-        private void UpdateBattleState(Input input, float dt)
+        private void UpdateBattleState(float dt)
         {
             switch(_state)
             {
                 case BattleState.CharacterSelected:
-                    UpdateBattleStateCharacterSelected(input, dt);
+                    UpdateBattleStateCharacterSelected(dt);
                     break;
                 case BattleState.AimingAbility:
-                    UpdateBattleStateAimingAbility(input, dt);
+                    UpdateBattleStateAimingAbility(dt);
                     break;
                 case BattleState.ExecutingCommand:
-                    UpdateBattleStateExecutingCommand(input, dt);
+                    UpdateBattleStateExecutingCommand(dt);
                     break;
                 case BattleState.DisplayingHits:
-                    UpdateBattleStateDisplayingHits(input, dt);
+                    UpdateBattleStateDisplayingHits(dt);
                     break;
                 case BattleState.MovingCharacter:
-                    UpdateBattleStateMovingCharacter(input, dt);
+                    UpdateBattleStateMovingCharacter(dt);
                     break;
             }
         }
 
-        private void UpdateBattleStateDisplayingHits(Input input, float dt)
+        private void UpdateBattleStateDisplayingHits(float dt)
         {
             // newhits stores hits that will remain in queue
             var newHits = new List<Hit>();
@@ -182,7 +176,7 @@ namespace SRPG.Scene.Battle
             }
         }
 
-        private void UpdateBattleStateExecutingCommand(Input input, float dt)
+        private void UpdateBattleStateExecutingCommand(float dt)
         {
             if (QueuedCommands.Count > 0)
             {
@@ -197,7 +191,7 @@ namespace SRPG.Scene.Battle
             }
         }
 
-        private void UpdateBattleStateMovingCharacter(Input input, float dt)
+        private void UpdateBattleStateMovingCharacter(float dt)
         {
             // calculate distance to target
             var x = 0 - (_selectedCharacter.Avatar.Location.X - _movementCoords[0].X);
@@ -237,52 +231,15 @@ namespace SRPG.Scene.Battle
             }
         }
 
-        private void UpdateBattleStateAimingAbility(Input input, float dt)
+        private void UpdateBattleStateAimingAbility(float dt)
         {
-            // refresh grid status
-            ((BattleBoardLayer) Layers["battleboard"]).ResetGrid();
-            ((BattleBoardLayer) Layers["battleboard"]).HighlightGrid(
-                new Point((int)_selectedCharacter.Avatar.Location.X, (int)_selectedCharacter.Avatar.Location.Y), 
-                _aimGrid, 
-                GridHighlight.Selectable
-            );
-
-            // compensate for the camera not being at 0,0
-            // as well as do a 50:1 scaling to convert from the screen to the grid
-            var cursor = new Point(
-                (int) Math.Floor((input.Cursor.X - Layers["battleboard"].X)/50.0),
-                (int) Math.Floor((input.Cursor.Y - Layers["battleboard"].Y)/50.0)
-                );
-
-            // compensate for the character's position, since they likely aren't at 0, 0
-            // also adjust for them being centered in the aim grid
-            var checkX = (int) (cursor.X - _selectedCharacter.Avatar.Location.X + Math.Floor(_aimGrid.Size.Width/2.0));
-            var checkY = (int) (cursor.Y - _selectedCharacter.Avatar.Location.Y + Math.Floor(_aimGrid.Size.Height/2.0));
-
-            // if they are hovering over a valid square on the aim grid
-            if (checkX >= 0 && checkX < _aimGrid.Size.Width && checkY >= 0 && checkY < _aimGrid.Size.Height &&
-                _aimGrid.Weight[checkX, checkY] > 0)
-            {
-                // highlight that spot
-                ((BattleBoardLayer) Layers["battleboard"]).HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
-
-                // did they click?
-                if (input.LeftButton == ButtonState.Pressed)
-                {
-                    // execute callback
-                    if (_aimAbility(cursor.X, cursor.Y))
-                    {
-                        // if callback returns true, the click was valid
-                        ((BattleBoardLayer) Layers["battleboard"]).ResetGrid();
-                    }
-                }
-            }
+            
         }
 
-        private void UpdateBattleStateCharacterSelected(Input input, float dt)
+        private void UpdateBattleStateCharacterSelected(float dt)
         {
             // remove radial menu if the cursor strays too far from the character
-            var cursorDistance = Math.Sqrt(
+            /*var cursorDistance = Math.Sqrt(
                 Math.Pow((input.Cursor.X + (0 - Layers["battleboard"].X)) - (_selectedCharacter.Avatar.Sprite.X + _selectedCharacter.Avatar.Sprite.Width/2.0), 2) + 
                 Math.Pow((input.Cursor.Y + (0 - Layers["battleboard"].Y)) - (_selectedCharacter.Avatar.Sprite.Y + _selectedCharacter.Avatar.Sprite.Height/2.0), 2)
             );
@@ -290,7 +247,7 @@ namespace SRPG.Scene.Battle
             if (cursorDistance > 125)
             {
                 DeselectCharacter();
-            }
+            }*/
         }
 
         private void CheckCharacterDeath()
@@ -703,7 +660,11 @@ namespace SRPG.Scene.Battle
                 {
                     _state = BattleState.AimingAbility;
                     Layers.Remove("radial menu");
-                    _aimGrid = character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction));
+                    ((BattleBoardLayer)Layers["battleboard"]).SetAimGrid(
+                        TorchHelper.Vector2ToPoint(character.Avatar.Location),
+                        character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction))
+                    );
+                    ((BattleBoardLayer) Layers["battleboard"]).AllowAim = true;
                     _aimAbility = (x, y) =>
                         {
                             // only able to move to empty squares
@@ -735,7 +696,8 @@ namespace SRPG.Scene.Battle
             {
                 _state = BattleState.AimingAbility;
                 Layers.Remove("radial menu");
-                _aimGrid = ability.GenerateTargetGrid();
+                ((BattleBoardLayer)Layers["battleboard"]).SetAimGrid(TorchHelper.Vector2ToPoint(character.Avatar.Location), ability.GenerateTargetGrid());
+                ((BattleBoardLayer)Layers["battleboard"]).AllowAim = true;
                 _aimAbility = (x, y) =>
                     {
                         // only target enemies with angry spells and allies with friendly spells
@@ -797,7 +759,7 @@ namespace SRPG.Scene.Battle
                         }
                         else
                         {
-                            ability.Icon.MouseRelease =  (o, eventArgs) => { };;
+                            ability.Icon.MouseRelease =  (o, eventArgs) => { };
                         }
 
                         radialMenu.AddOption(ability.Name, ability.Icon);
@@ -849,7 +811,6 @@ namespace SRPG.Scene.Battle
         private void ResetState()
         {
             ((BattleBoardLayer) Layers["battleboard"]).ResetGrid();
-            _aimGrid = new Grid(1, 1);
             _aimAbility = null;
             _selectedCharacter = null;
             HideCharacterStats();
@@ -883,6 +844,14 @@ namespace SRPG.Scene.Battle
             if (_state != BattleState.PlayerTurn) return;
 
             ChangeFaction(1);
+        }
+
+        public void ExecuteAimAbility(int x, int y)
+        {
+            if(_aimAbility(x, y))
+            {
+                ((BattleBoardLayer)Layers["battleboard"]).ResetGrid();
+            }
         }
     }
 
