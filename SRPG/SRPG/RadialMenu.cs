@@ -46,8 +46,8 @@ namespace SRPG
         {
             base.Update(gameTime, input);
 
-            var xDistance = input.Cursor.X - (CenterX);
-            var yDistance = input.Cursor.Y - (CenterY);
+            var xDistance = input.Cursor.X - (CenterX + X);
+            var yDistance = input.Cursor.Y - (CenterY + Y);
 
             if(Math.Sqrt(Math.Pow(xDistance, 2) + Math.Pow(yDistance, 2)) > ExitDistance)
             {
