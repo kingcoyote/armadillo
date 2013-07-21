@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 using SRPG.Data;
 
 namespace SRPG.Abilities
@@ -15,6 +16,26 @@ namespace SRPG.Abilities
             AbilityTarget = AbilityTarget.Enemy;
             ItemType = ItemType.Sword;
             SetIcon("swordicons", 1);
+            ManaCost = 10;
+        }
+
+        public override List<Hit> GenerateHits(BattleBoard board, Point target)
+        {
+            return new List<Hit>
+                {
+                    new Hit
+                        {
+                            Critical = 50,
+                            Damage = 10,
+                            Delay = 500,
+                            Target = target
+                        }
+                };
+        }
+
+        public override Grid GenerateTargetGrid()
+        {
+            return Grid.FromBitmap("Items/target_melee_small");
         }
     }
 }
