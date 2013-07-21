@@ -89,7 +89,7 @@ namespace SRPG.Scene.Battle
             // get the amount of time, in seconds, since the last frame. this should be 0.016 at 60fps.
             float dt = gameTime.ElapsedGameTime.Milliseconds/1000F;
             
-            if (input.IsKeyDown(Keys.Enter))
+            if (_state == BattleState.EnemyTurn && input.IsKeyDown(Keys.Enter))
             {
                 // placeholder for switching back to the player's turn.
                 // this will eventually be the AI control logic
