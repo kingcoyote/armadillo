@@ -99,7 +99,7 @@
   },
   
   
-  raistlin : {
+  sheena : {
     class : "Wizard",
     avatar : "wizard",
     health : 20,

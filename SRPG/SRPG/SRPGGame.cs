@@ -141,8 +141,8 @@ namespace SRPG
             character.Name = "Aeris";
             Party.Add(character);
 
-            character = Combatant.FromTemplate("party/raistlin");
-            character.Name = "Raistlin";
+            character = Combatant.FromTemplate("party/sheena");
+            character.Name = "Sheena";
             Party.Add(character);
         }
 
