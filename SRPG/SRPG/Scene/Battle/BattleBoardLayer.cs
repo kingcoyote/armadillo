@@ -130,7 +130,7 @@ namespace SRPG.Scene.Battle
             );
 
             // if they are hovering over a valid square on the aim grid
-            if (_grid.Weight[cursor.X, cursor.Y] == 0) return;
+            if (!ValidCell(cursor.X, cursor.Y)) return;
 
             switch (CellType(cursor.X, cursor.Y))
             {
@@ -147,6 +147,14 @@ namespace SRPG.Scene.Battle
                     cell.MouseRelease = (sender, args) => scene.ExecuteAimAbility(cursor.X, cursor.Y);
                     break;
             }
+        }
+
+        private bool ValidCell(int x, int y)
+        {
+            if (x < 0 || x > _grid.Size.Width) return false;
+            if (y < 0 || y > _grid.Size.Height) return false;
+
+            return _grid.Weight[x, y] > 0;
         }
 
         public GridHighlight CellType(int x, int y)
