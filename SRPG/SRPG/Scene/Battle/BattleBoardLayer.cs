@@ -17,6 +17,9 @@ namespace SRPG.Scene.Battle
         public int Height;
 
         public bool AllowAim;
+        private Point _targettingCenter;
+        private Grid _targettingGrid;
+        private Grid _impactGrid;
 
         /// <summary>
         /// Default camera movement speed, in pixels per second
@@ -40,9 +43,11 @@ namespace SRPG.Scene.Battle
             UpdateGrid();
         }
 
-        public void SetAimGrid(Point center, Grid grid)
+        public void SetTargettingGrid(Point center, Grid targetGrid, Grid impactGrid)
         {
-            HighlightGrid(center, grid, GridHighlight.Selectable);
+            _targettingCenter = center;
+            _targettingGrid = targetGrid;
+            _impactGrid = impactGrid;
         }
 
         public void SetBoard(BattleBoard board)
@@ -120,6 +125,10 @@ namespace SRPG.Scene.Battle
                 scene.HideCharacterStats();
             }
 
+            DefaultGrid();
+            
+            HighlightGrid(_targettingCenter, _targettingGrid, GridHighlight.Selectable);
+
             if (AllowAim == false) return;
 
             // compensate for the camera not being at 0,0
@@ -128,25 +137,14 @@ namespace SRPG.Scene.Battle
                 (int)Math.Floor((input.Cursor.X - X) / 50.0),
                 (int)Math.Floor((input.Cursor.Y - Y) / 50.0)
             );
-
-            // if they are hovering over a valid square on the aim grid
-            if (!ValidCell(cursor.X, cursor.Y)) return;
-
-            switch (CellType(cursor.X, cursor.Y))
+            
+            // todo i know this statement doesnt work, since _targettingGrid is offset relative to _grid
+            if (ValidCell(cursor.X, cursor.Y) && _targettingGrid.Weight[cursor.X - _targettingCenter.X + _targettingGrid.Size.Width / 2, cursor.Y - _targettingCenter.Y + _targettingGrid.Size.Height / 2] > 0)
             {
-                case GridHighlight.Selectable:
-                    HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
-                    break;
-                case GridHighlight.Targetted:
-                    var cell = (SpriteObject)Objects[String.Format("grid/{0}-{1}", cursor.X, cursor.Y)];
-                    cell.MouseOut = (sender, args) =>
-                        {
-                            cell.SetAnimation("Selectable");
-                            cell.MouseRelease = (s, a) => { };
-                        };
-                    cell.MouseRelease = (sender, args) => scene.ExecuteAimAbility(cursor.X, cursor.Y);
-                    break;
+                HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
+                Objects[string.Format("grid/{0}-{1}", cursor.X, cursor.Y)].MouseClick = (s, a) => scene.ExecuteAimAbility(cursor.X, cursor.Y);
             }
+            
         }
 
         private bool ValidCell(int x, int y)
@@ -212,7 +210,7 @@ namespace SRPG.Scene.Battle
             }
         }
 
-        public void HighlightCell(int x, int y, GridHighlight type)
+        private void HighlightCell(int x, int y, GridHighlight type)
         {
             if(Objects.ContainsKey(string.Format("grid/{0}-{1}", x, y)))
             {
@@ -220,7 +218,7 @@ namespace SRPG.Scene.Battle
             }
         }
 
-        public void HighlightGrid(Point center, Grid grid, GridHighlight highlightType)
+        private void HighlightGrid(Point center, Grid grid, GridHighlight highlightType)
         {
             for (var i = 0; i < grid.Size.Width; i++)
             {
@@ -240,7 +238,18 @@ namespace SRPG.Scene.Battle
 
         public void ResetGrid()
         {
-            foreach(SpriteObject grid in (from o in Objects.Keys where o.Length > 4 && o.Substring(0,4) == "grid" select Objects[o]))
+            DefaultGrid();
+            _targettingGrid = new Grid(0, 0);
+            _impactGrid = new Grid(0, 0);
+            _targettingCenter = new Point(0, 0);
+            AllowAim = false;
+        }
+
+        private void DefaultGrid()
+        {
+            foreach (
+                SpriteObject grid in
+                    (from o in Objects.Keys where o.Length > 4 && o.Substring(0, 4) == "grid" select Objects[o]))
             {
                 grid.SetAnimation("Normal");
                 grid.MouseOver = (s, a) => { };
@@ -248,7 +257,6 @@ namespace SRPG.Scene.Battle
                 grid.MouseClick = (s, a) => { };
                 grid.MouseRelease = (s, a) => { };
             }
-            AllowAim = false;
         }
     }
 

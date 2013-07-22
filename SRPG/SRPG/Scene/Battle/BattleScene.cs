@@ -501,10 +501,10 @@ namespace SRPG.Scene.Battle
                 icon.MouseOver += (sender, args) =>
                     {
                         if (!character.CanMove) return;
-                        ((BattleBoardLayer) Layers["battleboard"]).HighlightGrid(
+                        ((BattleBoardLayer) Layers["battleboard"]).SetTargettingGrid(
                             new Point((int) character.Avatar.Location.X, (int) character.Avatar.Location.Y),
                             character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)),
-                            GridHighlight.Selectable
+                            new Grid(1, 1)
                             );
                     };
                 icon.MouseOut += (sender, args) => ((BattleBoardLayer) Layers["battleboard"]).ResetGrid();
@@ -529,10 +529,10 @@ namespace SRPG.Scene.Battle
                 icon.MouseOver += (sender, args) =>
                     {
                         if (!character.CanAct) return;
-                        ((BattleBoardLayer) Layers["battleboard"]).HighlightGrid(
+                        ((BattleBoardLayer) Layers["battleboard"]).SetTargettingGrid(
                             new Point((int) character.Avatar.Location.X, (int) character.Avatar.Location.Y),
                             character.GetEquippedWeapon().TargetGrid,
-                            GridHighlight.Selectable
+                            new Grid(1, 1)
                             );
                     };
                 icon.MouseOut += (sender, args) => ((BattleBoardLayer)Layers["battleboard"]).ResetGrid();
@@ -638,11 +638,12 @@ namespace SRPG.Scene.Battle
                 _state = BattleState.AimingAbility;
                 Layers.Remove("radial menu");
 
-                ((BattleBoardLayer)Layers["battleboard"]).SetAimGrid(
+                ((BattleBoardLayer)Layers["battleboard"]).SetTargettingGrid(
                     TorchHelper.Vector2ToPoint(character.Avatar.Location),
                     ability.Name == "Move" ? 
                         character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)) : 
-                        ability.GenerateTargetGrid()
+                        ability.GenerateTargetGrid(),
+                    ability.GenerateImpactGrid()
                 );
                 
                 ((BattleBoardLayer)Layers["battleboard"]).AllowAim = true;
@@ -732,10 +733,10 @@ namespace SRPG.Scene.Battle
         {
             ((AbilityStatLayer) Layers["abilitystat"]).SetAbility(ability);
             Layers["abilitystat"].Visible = true;
-            ((BattleBoardLayer)Layers["battleboard"]).HighlightGrid(
+            ((BattleBoardLayer)Layers["battleboard"]).SetTargettingGrid(
                 new Point((int)ability.Character.Avatar.Location.X, (int)ability.Character.Avatar.Location.Y), 
                 ability.GenerateTargetGrid(), 
-                GridHighlight.Selectable
+                new Grid(1, 1)
             );
         }
 

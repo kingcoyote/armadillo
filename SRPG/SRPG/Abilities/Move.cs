@@ -13,5 +13,10 @@ namespace SRPG.Abilities
             Name = "Move";
             AbilityTarget = AbilityTarget.Unoccupied;
         }
+
+        public override Grid GenerateImpactGrid()
+        {
+            return new Grid(1, 1, 1);
+        }
     }
 }
