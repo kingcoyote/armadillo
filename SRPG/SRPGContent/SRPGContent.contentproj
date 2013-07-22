@@ -141,11 +141,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Characters\TempCleric.png">
-      <Name>TempCleric</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Characters\TempEnemy.png">
       <Name>TempEnemy</Name>
       <Importer>TextureImporter</Importer>
@@ -339,6 +334,11 @@
     </Compile>
     <Compile Include="Characters\guard.png">
       <Name>guard</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Characters\cleric.png">
+      <Name>cleric</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
