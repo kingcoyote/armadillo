@@ -173,7 +173,6 @@ namespace SRPG.Scene.Battle
             }
             else
             {
-                // todo : 1 sec delay between commands
                 // all hits are done displaying - did anyone die?
                 CheckCharacterDeath();
 
@@ -696,11 +695,8 @@ namespace SRPG.Scene.Battle
                             ExecuteCommand(command);
                             return true;
                         }
-                        else
-                        {
-                            character.CanAct = false;
-                        }
 
+                        character.CanAct = false;
                         QueuedCommands.Add(command);
                         _state = BattleState.Delay;
                         _delayState = BattleState.PlayerTurn;

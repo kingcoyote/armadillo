@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SRPG.Data;
@@ -54,8 +52,8 @@ namespace SRPG.Scene.Battle
 
             foreach (var character in _board.Characters)
             {
-                character.Avatar.Sprite.X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width / 2);
-                character.Avatar.Sprite.Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2);
+                character.Avatar.Sprite.X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width / 2.0);
+                character.Avatar.Sprite.Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0);
                 character.Avatar.Sprite.Z = character.Avatar.Sprite.Y;
                 Objects.Add("character/" + character.Name, character.Avatar.Sprite);
                 Objects["character/" + character.Name].MouseClick = MouseClickCharacter(character);
@@ -70,8 +68,8 @@ namespace SRPG.Scene.Battle
 
             foreach(var character in _board.Characters)
             {
-                Objects["character/" + character.Name].X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width/2);
-                Objects["character/" + character.Name].Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2);
+                Objects["character/" + character.Name].X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width/2.0);
+                Objects["character/" + character.Name].Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0);
                 Objects["character/" + character.Name].Z = character.Avatar.Sprite.Y;
             }
 
