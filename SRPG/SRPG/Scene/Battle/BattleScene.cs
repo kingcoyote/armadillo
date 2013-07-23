@@ -702,7 +702,9 @@ namespace SRPG.Scene.Battle
                         }
 
                         QueuedCommands.Add(command);
-                        _state = BattleState.PlayerTurn;
+                        _state = BattleState.Delay;
+                        _delayState = BattleState.PlayerTurn;
+                        _delayTimer = 0.05F;
                         ResetState();
 
                         return true;
