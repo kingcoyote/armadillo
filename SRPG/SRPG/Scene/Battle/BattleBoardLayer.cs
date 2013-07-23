@@ -141,10 +141,7 @@ namespace SRPG.Scene.Battle
             // todo i know this statement doesnt work, since _targettingGrid is offset relative to _grid
             if (ValidCell(cursor.X, cursor.Y) && _targettingGrid.Weight[cursor.X - _targettingCenter.X + _targettingGrid.Size.Width / 2, cursor.Y - _targettingCenter.Y + _targettingGrid.Size.Height / 2] > 0)
             {
-                HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
-                Objects[string.Format("grid/{0}-{1}", cursor.X, cursor.Y)].MouseClick = (s, a) => scene.ExecuteAimAbility(cursor.X, cursor.Y);
-
-                for (var x = 0; x < _impactGrid.Size.Width; x++)
+               for (var x = 0; x < _impactGrid.Size.Width; x++)
                 {
                     for (var y = 0; y < _impactGrid.Size.Height; y++)
                     {
@@ -157,6 +154,9 @@ namespace SRPG.Scene.Battle
                         );
                     }
                 }
+
+               HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
+               Objects[string.Format("grid/{0}-{1}", cursor.X, cursor.Y)].MouseClick = (s, a) => scene.ExecuteAimAbility(cursor.X, cursor.Y);
             }
         }
 

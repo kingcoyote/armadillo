@@ -115,7 +115,7 @@
       hit : 15
     },
     abilities : [
-      
+      { name: "quake", experience: 115 }
     ],
     inventory : [
       "staff/firewand",
