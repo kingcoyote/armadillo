@@ -137,6 +137,7 @@ namespace SRPG.Data
         {
             switch(AbilityTarget)
             {
+                case AbilityTarget.Any: return true;
                 case AbilityTarget.Friendly: return faction == Character.Faction;
                 case AbilityTarget.Enemy: return faction != Character.Faction && faction != -1;
                 case AbilityTarget.Unoccupied: return faction == -1;

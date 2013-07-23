@@ -54,7 +54,8 @@ namespace SRPG.Data
     {
         Friendly,
         Enemy,
-        Unoccupied
+        Unoccupied,
+        Any
     }
 
     public enum StatusAilmentType
