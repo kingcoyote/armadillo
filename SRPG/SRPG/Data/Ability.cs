@@ -60,7 +60,7 @@ namespace SRPG.Data
         /// <returns>A grid indicating the impact zone of an ability.</returns>
         public virtual Grid GenerateImpactGrid()
         {
-            throw new NotImplementedException();
+            return new Grid(1, 1, 1);
         }
 
         public static Ability Factory(string name)

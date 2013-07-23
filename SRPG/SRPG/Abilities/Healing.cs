@@ -26,7 +26,7 @@ namespace SRPG.Abilities
                     new Hit
                         {
                             Critical = 50,
-                            Damage = 10,
+                            Damage = -7,
                             Delay = 500,
                             Target = target
                         }

@@ -143,7 +143,11 @@ namespace SRPG.Scene.Battle
                     // display it
                     var character = BattleBoard.GetCharacterAt(hit.Target);
                     var damage = character.ProcessHit(hit);
-                    ((HitLayer) Layers["hitlayer"]).DisplayHit(damage, Color.White, hit.Target);
+                    ((HitLayer) Layers["hitlayer"]).DisplayHit(
+                        Math.Abs(damage), 
+                        hit.Damage > 0 ? Color.White : Color.LightGreen, 
+                        hit.Target
+                    );
                 }
                 else
                 {
@@ -673,6 +677,10 @@ namespace SRPG.Scene.Battle
                         {
                             ExecuteCommand(command);
                             return true;
+                        }
+                        else
+                        {
+                            character.CanAct = false;
                         }
 
                         QueuedCommands.Add(command);
