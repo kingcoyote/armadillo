@@ -52,6 +52,9 @@ namespace SRPG.Scene.Battle
         /// </summary>
         private List<Hit> _hits = new List<Hit>();
 
+        private BattleState _delayState;
+        private float _delayTimer;
+
         public BattleScene(Game game) : base(game) { }
 
         /// <summary>
@@ -121,6 +124,13 @@ namespace SRPG.Scene.Battle
                 case BattleState.MovingCharacter:
                     UpdateBattleStateMovingCharacter(dt);
                     break;
+                case BattleState.Delay:
+                    _delayTimer -= dt;
+                    if(_delayTimer <= 0)
+                    {
+                        _state = _delayState;
+                    }
+                    break;
             }
         }
 
@@ -168,7 +178,9 @@ namespace SRPG.Scene.Battle
                 CheckCharacterDeath();
 
                 // move on to the next command
-                _state = BattleState.ExecutingCommand;
+                _state = BattleState.Delay;
+                _delayTimer = 1.0F;
+                _delayState = BattleState.ExecutingCommand;
 
                 ResetState();
             }
@@ -860,6 +872,7 @@ namespace SRPG.Scene.Battle
         ExecutingAbility,
         ExecutingCommand,
         DisplayingHits,
-        MovingCharacter
+        MovingCharacter,
+        Delay
     }
 }
