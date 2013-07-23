@@ -143,8 +143,21 @@ namespace SRPG.Scene.Battle
             {
                 HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
                 Objects[string.Format("grid/{0}-{1}", cursor.X, cursor.Y)].MouseClick = (s, a) => scene.ExecuteAimAbility(cursor.X, cursor.Y);
+
+                for (var x = 0; x < _impactGrid.Size.Width; x++)
+                {
+                    for (var y = 0; y < _impactGrid.Size.Height; y++)
+                    {
+                        if (_impactGrid.Weight[x, y] < 1) continue;
+
+                        HighlightCell(
+                            cursor.X - (_impactGrid.Size.Width / 2) + x,
+                            cursor.Y - (_impactGrid.Size.Height / 2) + y,
+                            GridHighlight.Splashed
+                        );
+                    }
+                }
             }
-            
         }
 
         private bool ValidCell(int x, int y)

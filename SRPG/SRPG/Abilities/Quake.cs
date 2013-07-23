@@ -37,5 +37,10 @@ namespace SRPG.Abilities
         {
             return Grid.FromBitmap("Items/target_melee_large");
         }
+
+        public override Grid GenerateImpactGrid()
+        {
+            return Grid.FromBitmap("Items/target_melee_small");
+        }
     }
 }
