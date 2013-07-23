@@ -24,7 +24,7 @@ namespace SRPG.Scene.Battle
                 new Random().Next()
             );
 
-            Objects.Add(key, new TextObject{ Font = FontManager.Get("Menu"), Color = color, Value = amount.ToString(), X = target.X * 50 + 25, Y = target.Y * 50 - 25, Z = 1000, Alignment = TextObject.AlignTypes.Center});
+            Objects.Add(key, new TextObject{ Font = FontManager.Get("Menu"), Color = color, Value = amount.ToString(), X = target.X * 50 + 25, Y = target.Y * 50, Z = 1000, Alignment = TextObject.AlignTypes.Center});
             _hitLocations.Add(key, target.Y * 50);
             _displayedHits.Add(key, 0);
         }
