@@ -17,7 +17,6 @@ namespace SRPG.Scene.Battle
         public int Height;
 
         public bool AllowAim;
-        private Point _targettingCenter;
         private Grid _targettingGrid;
         private Grid _impactGrid;
 
@@ -43,9 +42,8 @@ namespace SRPG.Scene.Battle
             UpdateGrid();
         }
 
-        public void SetTargettingGrid(Point center, Grid targetGrid, Grid impactGrid)
+        public void SetTargettingGrid(Grid targetGrid, Grid impactGrid)
         {
-            _targettingCenter = center;
             _targettingGrid = targetGrid;
             _impactGrid = impactGrid;
         }
@@ -127,7 +125,7 @@ namespace SRPG.Scene.Battle
 
             DefaultGrid();
             
-            HighlightGrid(_targettingCenter, _targettingGrid, GridHighlight.Selectable);
+            HighlightGrid(_targettingGrid, GridHighlight.Selectable);
 
             if (AllowAim == false) return;
 
@@ -138,8 +136,7 @@ namespace SRPG.Scene.Battle
                 (int)Math.Floor((input.Cursor.Y - Y) / 50.0)
             );
             
-            // todo i know this statement doesnt work, since _targettingGrid is offset relative to _grid
-            if (ValidCell(cursor.X, cursor.Y) && _targettingGrid.Weight[cursor.X - _targettingCenter.X + _targettingGrid.Size.Width / 2, cursor.Y - _targettingCenter.Y + _targettingGrid.Size.Height / 2] > 0)
+            if (ValidCell(cursor.X, cursor.Y) && _targettingGrid.Weight[cursor.X, cursor.Y] > 0)
             {
                for (var x = 0; x < _impactGrid.Size.Width; x++)
                 {
@@ -231,7 +228,7 @@ namespace SRPG.Scene.Battle
             }
         }
 
-        private void HighlightGrid(Point center, Grid grid, GridHighlight highlightType)
+        private void HighlightGrid(Grid grid, GridHighlight highlightType)
         {
             for (var i = 0; i < grid.Size.Width; i++)
             {
@@ -239,11 +236,7 @@ namespace SRPG.Scene.Battle
                 {
                     if (grid.Weight[i, j] > 0)
                     {
-                        HighlightCell(
-                            center.X + i - (int)(Math.Floor(grid.Size.Width / 2.0)),
-                            center.Y + j - (int)(Math.Floor(grid.Size.Height / 2.0)),
-                            highlightType
-                        );
+                        HighlightCell(i, j, highlightType);
                     }
                 }
             }
@@ -254,7 +247,6 @@ namespace SRPG.Scene.Battle
             DefaultGrid();
             _targettingGrid = new Grid(0, 0);
             _impactGrid = new Grid(0, 0);
-            _targettingCenter = new Point(0, 0);
             AllowAim = false;
         }
 
