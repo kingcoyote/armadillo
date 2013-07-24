@@ -181,15 +181,10 @@ namespace SRPG.Scene.Battle
                         y + (int) currChar.Avatar.Location.Y - grid.Size.Height/2
                     );
 
-                    var c = BattleBoard.GetCharacterAt(currCell);
-
-                    if (c != null) continue;
+                    if (BattleBoard.GetCharacterAt(currCell) != null) continue;
 
                     var score = CalculateCellWeight(currChar, currCell.X, currCell.Y);
-
-                    // for each enemy that can attack the character from here, subtract 1
-                    // for each character that can be splashed in a single attack, add 1
-
+                    
                     if (score <= best) continue;
 
                     best = score;
@@ -203,33 +198,46 @@ namespace SRPG.Scene.Battle
             return destination;
         }
 
-        private int CalculateCellWeight(Combatant currChar, int x, int y)
+        private int CalculateCellWeight(Combatant character, int cellX, int cellY)
         {
             var score = 0;
 
             // for each enemy the character can attack from here, add 3
-            var attackGrid = currChar.GetEquippedWeapon().TargetGrid;
+            score += 3 * CalculateAttackableEnemies(character, cellX, cellY);
 
-            for (var x1 = 0; x1 < attackGrid.Size.Width; x1++)
+            // for each enemy that can attack the character from here, subtract 1
+
+
+            // for each character that can be splashed in a single attack, add 1
+
+            return score;
+        }
+
+        private int CalculateAttackableEnemies(Combatant character, int cellX, int cellY)
+        {
+            var score = 0;
+
+            var attackGrid = character.GetEquippedWeapon().TargetGrid;
+
+            for (var x = 0; x < attackGrid.Size.Width; x++)
             {
-                for (var y1 = 0; y1 < attackGrid.Size.Height; y1++)
+                for (var y = 0; y < attackGrid.Size.Height; y++)
                 {
-                    if (attackGrid.Weight[x1, y1] < 1) continue;
+                    if (attackGrid.Weight[x, y] < 1) continue;
 
                     var c = BattleBoard.GetCharacterAt(
                         new Point(
-                            x - attackGrid.Size.Width/2 + x1,
-                            y - attackGrid.Size.Height/2 + y1
+                            cellX - attackGrid.Size.Width/2 + x,
+                            cellY - attackGrid.Size.Height/2 + y
                             )
                         );
 
                     if (c != null && c.Faction == 0)
                     {
-                        score += 3;
+                        score += 1;
                     }
                 }
             }
-
             return score;
         }
 
