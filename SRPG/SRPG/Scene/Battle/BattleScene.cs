@@ -139,6 +139,8 @@ namespace SRPG.Scene.Battle
                 // find first character that can move
                 var currChar = combatants[0];
 
+                _selectedCharacter = currChar;
+
                 // find the optimal location
                 Point destination = CalculateDestination(currChar);
                 
@@ -150,8 +152,8 @@ namespace SRPG.Scene.Battle
                         Target = destination
                     };
 
-                Command actCommand = CalculateAction(currChar, destination);
-                QueuedCommands.Add(actCommand);
+                //Command actCommand = CalculateAction(currChar, destination);
+                //QueuedCommands.Add(actCommand);
                 ExecuteCommand(moveCommand);
 
                 return;
@@ -163,7 +165,65 @@ namespace SRPG.Scene.Battle
 
         private Point CalculateDestination(Combatant currChar)
         {
-            throw new NotImplementedException();
+            var grid = currChar.GetMovementGrid(BattleBoard.GetAccessibleGrid(currChar.Faction));
+
+            var destination = TorchHelper.Vector2ToPoint(currChar.Avatar.Location);
+            var best = 0;
+
+            for(var x = 0; x < grid.Size.Width; x++)
+            {
+                for(var y = 0; y < grid.Size.Height; y++)
+                {
+                    if (grid.Weight[x, y] < 1) continue;
+                    var c = BattleBoard.GetCharacterAt(
+                        new Point(
+                            x + (int)currChar.Avatar.Location.X - grid.Size.Width / 2,
+                            y + (int)currChar.Avatar.Location.Y - grid.Size.Height / 2
+                        )
+                    );
+
+                    if (c != null) continue;
+
+                    var score = 0;
+
+                    // for each enemy the character can attack from here, add 3
+                    var attackGrid = currChar.GetEquippedWeapon().TargetGrid;
+
+                    for (var x1 = 0; x1 < attackGrid.Size.Width; x1++)
+                    {
+                        for(var y1 = 0; y1 < attackGrid.Size.Height; y1++)
+                        {
+                            if (attackGrid.Weight[x1, y1] < 1) continue;
+
+                            c = BattleBoard.GetCharacterAt(
+                                new Point(
+                                    x - attackGrid.Size.Width/2 + x1 + (int)currChar.Avatar.Location.X - grid.Size.Width/2, 
+                                    y - attackGrid.Size.Height/2 + y1 + (int)currChar.Avatar.Location.Y - grid.Size.Height/2
+                                )
+                            );
+
+                            if(c != null && c.Faction == 0)
+                            {
+                                score += 3;
+                            }
+                        }
+                    }
+
+
+                    // for each enemy that can attack the character from here, subtract 1
+                    // for each character that can be splashed in a single attack, add 1
+
+                    if (score <= best) continue;
+
+                    best = score;
+                    destination = new Point(
+                        x + (int)currChar.Avatar.Location.X - grid.Size.Width / 2, 
+                        y + (int)currChar.Avatar.Location.Y - grid.Size.Height / 2
+                    );
+                }
+            }
+
+            return destination;
         }
 
         private Command CalculateAction(Combatant currChar, Point destination)
