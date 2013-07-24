@@ -91,13 +91,6 @@ namespace SRPG.Scene.Battle
 
             // get the amount of time, in seconds, since the last frame. this should be 0.016 at 60fps.
             float dt = gameTime.ElapsedGameTime.Milliseconds/1000F;
-            
-            if (_state == BattleState.EnemyTurn && input.IsKeyDown(Keys.Enter))
-            {
-                // placeholder for switching back to the player's turn.
-                // this will eventually be the AI control logic
-                ChangeFaction(0);
-            }
 
             // during player turn, show queued commands if possible
             Layers["queuedcommands"].Visible = _state != BattleState.EnemyTurn && QueuedCommands.Count > 0;
@@ -115,6 +108,9 @@ namespace SRPG.Scene.Battle
         {
             switch(_state)
             {
+                case BattleState.EnemyTurn:
+                    UpdateBattleStateEnemyTurn();
+                    break;
                 case BattleState.ExecutingCommand:
                     UpdateBattleStateExecutingCommand();
                     break;
@@ -132,6 +128,47 @@ namespace SRPG.Scene.Battle
                     }
                     break;
             }
+        }
+
+        private void UpdateBattleStateEnemyTurn()
+        {
+            var combatants = (from c in BattleBoard.Characters where c.Faction == 1 && c.CanMove select c).ToArray();
+
+            if (combatants.Any())
+            {
+                // find first character that can move
+                var currChar = combatants[0];
+
+                // find the optimal location
+                Point destination = CalculateDestination(currChar);
+                
+                // create move command to that location
+                var moveCommand = new Command()
+                    {
+                        Ability = Ability.Factory("move"),
+                        Character = currChar,
+                        Target = destination
+                    };
+
+                Command actCommand = CalculateAction(currChar, destination);
+                QueuedCommands.Add(actCommand);
+                ExecuteCommand(moveCommand);
+
+                return;
+            }
+
+            // all enemy players have moved / attacked
+            ChangeFaction(0);
+        }
+
+        private Point CalculateDestination(Combatant currChar)
+        {
+            throw new NotImplementedException();
+        }
+
+        private Command CalculateAction(Combatant currChar, Point destination)
+        {
+            throw new NotImplementedException();
         }
 
         private void UpdateBattleStateDisplayingHits(float dt)
