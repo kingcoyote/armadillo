@@ -206,7 +206,7 @@ namespace SRPG.Scene.Battle
             score += 3 * CalculateAttackableEnemies(character, cellX, cellY).Count;
 
             // for each enemy that can attack the character from here, subtract 1
-            
+            score += (CalculatePossibleDamage(character, cellX, cellY) / character.CurrentHealth) * 3;
 
             // for each character that can be splashed in a single attack, add 1
 
@@ -240,6 +240,31 @@ namespace SRPG.Scene.Battle
             }
 
             return enemies;
+        }
+
+        private int CalculatePossibleDamage(Combatant character, int cellX, int cellY)
+        {
+            return (from t in BattleBoard.Characters where t.Faction == 0 select t)
+                .Aggregate(0, (current, c) => current + CalculateMaxDamage(c, cellX, cellY));
+        }
+
+        private int CalculateMaxDamage(Combatant character, int targetX, int targetY)
+        {
+            var best = 0;
+            
+            var attackAbility = Ability.Factory("attack");
+            attackAbility.Character = character;
+
+            var hits = attackAbility.GenerateHits(
+                BattleBoard, new Point(targetX, targetY)
+            ).Where(h => h.Target.X == targetX && h.Target.Y == targetY).ToArray();
+
+            if(hits.Any())
+            {
+                best += hits.Sum(hit => hit.Damage);
+            }
+
+            return best;
         }
 
         private Command CalculateAction(Combatant currChar, Point destination)
