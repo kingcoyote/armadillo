@@ -342,25 +342,14 @@ namespace SRPG.Scene.Battle
         public void ChangeFaction(int faction)
         {
             _state = faction == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
+            
             FactionTurn = faction;
-            // increment round number on player's turn
-            if (faction == 0) RoundNumber++;
 
             // clear out any commands left un-executed at the end of the turn
             QueuedCommands.Clear();
 
-            // process begin/end round events on characters
-            foreach(var character in BattleBoard.Characters)
-            {
-                if (character.Faction == faction)
-                {
-                    character.BeginRound();
-                }
-                else
-                {
-                    character.EndRound();
-                }
-            }
+            // increment round number on player's turn
+            if (faction == 0) ChangeRound();
         }
 
         /// <summary>
@@ -368,7 +357,13 @@ namespace SRPG.Scene.Battle
         /// </summary>
         public void ChangeRound()
         {
-            throw new NotImplementedException();
+            RoundNumber++;
+
+            // process begin/end round events on characters
+            foreach (var character in BattleBoard.Characters)
+            {
+                character.BeginRound();
+            }
         }
 
         /// <summary>
