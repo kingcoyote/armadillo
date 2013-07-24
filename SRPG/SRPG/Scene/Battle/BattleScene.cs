@@ -203,19 +203,19 @@ namespace SRPG.Scene.Battle
             var score = 0;
 
             // for each enemy the character can attack from here, add 3
-            score += 3 * CalculateAttackableEnemies(character, cellX, cellY);
+            score += 3 * CalculateAttackableEnemies(character, cellX, cellY).Count;
 
             // for each enemy that can attack the character from here, subtract 1
-
+            
 
             // for each character that can be splashed in a single attack, add 1
 
             return score;
         }
 
-        private int CalculateAttackableEnemies(Combatant character, int cellX, int cellY)
+        private List<Combatant> CalculateAttackableEnemies(Combatant character, int cellX, int cellY)
         {
-            var score = 0;
+            var enemies = new List<Combatant>();
 
             var attackGrid = character.GetEquippedWeapon().TargetGrid;
 
@@ -229,16 +229,17 @@ namespace SRPG.Scene.Battle
                         new Point(
                             cellX - attackGrid.Size.Width/2 + x,
                             cellY - attackGrid.Size.Height/2 + y
-                            )
-                        );
+                        )
+                    );
 
                     if (c != null && c.Faction == 0)
                     {
-                        score += 1;
+                        enemies.Add(c);
                     }
                 }
             }
-            return score;
+
+            return enemies;
         }
 
         private Command CalculateAction(Combatant currChar, Point destination)
