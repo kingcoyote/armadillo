@@ -145,5 +145,12 @@ namespace SRPG.Data
 
             throw new Exception("unknown ability target");
         }
+
+        protected bool CanHit(Grid grid, Point target)
+        {
+            var newGrid = grid.OverlayGridFromCenter(GenerateTargetGrid(), TorchHelper.Vector2ToPoint(Character.Avatar.Location));
+
+            return newGrid.Weight[target.X, target.Y] > 0;
+        }
     }
 }

@@ -17,6 +17,8 @@ namespace SRPG.Abilities
 
         public override List<Hit> GenerateHits(BattleBoard board, Point target)
         {
+            if (!CanHit(board.Sandbag, target)) return new List<Hit>();
+
             return new List<Hit>
                 {
                     new Hit

@@ -178,7 +178,7 @@ namespace SRPG.Data
 
         public Grid OverlayGridFromCenter(Grid overlay, Point center)
         {
-            var grid = this;
+            var grid = Clone();
             
             for(var x = 0; x < overlay.Size.Width - 1; x++)
             {
@@ -190,6 +190,21 @@ namespace SRPG.Data
                     if (currX < 0 || currX >= grid.Size.Width || currY < 0 || currY >= grid.Size.Height) continue;
 
                     grid.Weight[currX, currY] = overlay.Weight[x, y];
+                }
+            }
+
+            return grid;
+        }
+
+        public Grid Clone()
+        {
+            var grid = new Grid(Size.Width, Size.Height);
+
+            for(var x = 0; x < Size.Width - 1; x++)
+            {
+                for(var y = 0; y < Size.Height - 1; y++)
+                {
+                    grid.Weight[x, y] = Weight[x, y];
                 }
             }
 
