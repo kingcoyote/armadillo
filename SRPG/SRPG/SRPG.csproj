@@ -135,6 +135,7 @@
     <Compile Include="Abilities\Untouchable.cs" />
     <Compile Include="Abilities\Vengeance.cs" />
     <Compile Include="Abilities\WhipKick.cs" />
+    <Compile Include="AI\BattleCommander.cs" />
     <Compile Include="Data\Avatar.cs" />
     <Compile Include="Data\Combatant.cs" />
     <Compile Include="Data\Command.cs" />
