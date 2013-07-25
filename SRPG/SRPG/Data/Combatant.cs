@@ -352,12 +352,10 @@ namespace SRPG.Data
 
         public Grid GetMovementGrid(Grid battleboard)
         {
-            var grid = new Grid(25, 25);
-
-            grid.Weight[12, 12] = 1;
+            var grid = new Grid(battleboard.Size.Width, battleboard.Size.Height);
 
             var neighbors = new List<int[]> { new[] { 0, -1 }, new[] { 1, 0 }, new[] { 0, 1 }, new[] { -1, 0 } };
-            var lastRound = new List<int[]> { new[] { 12, 12 } };
+            var lastRound = new List<int[]> { new[] { (int)Avatar.Location.X, (int)Avatar.Location.Y } };
 
             for (var i = 0; i < Stats[Stat.Speed] / 3; i++)
             {
@@ -371,9 +369,12 @@ namespace SRPG.Data
                         if (grid.Weight[square[0] + neighbor[0], square[1] + neighbor[1]] == 1) continue;
 
                         var checkPoint = new Point(
-                            (int)(Avatar.Location.X + square[0] + neighbor[0]) - 12,
-                            (int)(Avatar.Location.Y + square[1] + neighbor[1]) - 12
+                            square[0] + neighbor[0],
+                            square[1] + neighbor[1]
                         );
+
+                        if (checkPoint.X < 0 || checkPoint.X > battleboard.Size.Width || checkPoint.Y < 0 || checkPoint.Y > battleboard.Size.Height)
+                            continue;
 
                         if (battleboard.Weight[checkPoint.X, checkPoint.Y] > 0)
                         {

@@ -47,6 +47,32 @@ namespace SRPG.Data
         /// indicates that this square can be targetted, 0 indicates it cannot be.
         /// </summary>
         /// <returns>A grid indicating where this ability can be cast.</returns>
+        public virtual Grid GenerateTargetGrid(Grid board)
+        {
+            var targetGrid = GenerateTargetGrid();
+
+            for(var x = 0; x < board.Size.Width; x++)
+            {
+                for(var y = 0; y < board.Size.Height; y++)
+                {
+                    var checkPoint = new Point(
+                        (int)(x - Character.Avatar.Location.X + targetGrid.Size.Width/2),
+                        (int)(y - Character.Avatar.Location.Y + targetGrid.Size.Height/2)
+                    );
+
+                    if(checkPoint.X < 0 || checkPoint.X > targetGrid.Size.Width - 1 || checkPoint.Y < 0 || checkPoint.Y > targetGrid.Size.Height - 1)
+                    {
+                        board.Weight[x, y] = 0;
+                        continue;
+                    }
+
+                    board.Weight[x, y] = (byte)(board.Weight[x, y] > 0 && targetGrid.Weight[checkPoint.X, checkPoint.Y] > 0 ? 255 : 0);
+                }
+            }
+
+            return board;
+        }
+
         public virtual Grid GenerateTargetGrid()
         {
             throw new NotImplementedException();

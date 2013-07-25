@@ -546,10 +546,7 @@ namespace SRPG.Scene.Battle
                         if (!character.CanMove) return;
 
                         ((BattleBoardLayer) Layers["battleboard"]).SetTargettingGrid(
-                            BattleBoard.Sandbag.OverlayGridFromCenter(
-                                character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)),
-                                TorchHelper.Vector2ToPoint(character.Avatar.Location)
-                            ),
+                            character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)),
                             new Grid(1, 1)
                             );
                     };
@@ -572,20 +569,20 @@ namespace SRPG.Scene.Battle
             SetCharacterMenuAnimations(icon);
             if (character.CanAct)
             {
+                var ability = Ability.Factory("attack");
+                ability.Character = character;
+
                 icon.MouseOver += (sender, args) =>
                     {
                         if (!character.CanAct) return;
+
                         ((BattleBoardLayer) Layers["battleboard"]).SetTargettingGrid(
-                            BattleBoard.Sandbag.OverlayGridFromCenter(
-                                character.GetEquippedWeapon().TargetGrid, 
-                                TorchHelper.Vector2ToPoint(character.Avatar.Location)
-                            ),
+                            ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
                             new Grid(1, 1)
                             );
                     };
                 icon.MouseOut += (sender, args) => ((BattleBoardLayer)Layers["battleboard"]).ResetGrid();
-                var ability = Ability.Factory("attack");
-                ability.Character = character;
+                
                 icon.MouseRelease += SelectAbilityTarget(character, ability);
             }
             else
@@ -687,11 +684,9 @@ namespace SRPG.Scene.Battle
                 Layers.Remove("radial menu");
 
                 ((BattleBoardLayer)Layers["battleboard"]).SetTargettingGrid(
-                    BattleBoard.Sandbag.OverlayGridFromCenter(ability.Name == "Move" ? 
+                    ability.Name == "Move" ? 
                         character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)) : 
-                        ability.GenerateTargetGrid(),
-                        TorchHelper.Vector2ToPoint(character.Avatar.Location)
-                    ),
+                        ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
                     ability.GenerateImpactGrid()
                 );
                 
@@ -786,10 +781,7 @@ namespace SRPG.Scene.Battle
             ((AbilityStatLayer) Layers["abilitystat"]).SetAbility(ability);
             Layers["abilitystat"].Visible = true;
             ((BattleBoardLayer)Layers["battleboard"]).SetTargettingGrid(
-                BattleBoard.Sandbag.OverlayGridFromCenter(
-                    ability.GenerateTargetGrid(),
-                    new Point((int)ability.Character.Avatar.Location.X, (int)ability.Character.Avatar.Location.Y)
-                ),
+                ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
                 new Grid(1, 1)
             );
         }
