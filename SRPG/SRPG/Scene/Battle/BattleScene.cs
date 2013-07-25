@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using SRPG.AI;
 using SRPG.Data;
 using Torch;
@@ -55,7 +54,7 @@ namespace SRPG.Scene.Battle
 
         private BattleState _delayState;
         private float _delayTimer;
-        private BattleCommander _commander = new BattleCommander();
+        private readonly BattleCommander _commander = new BattleCommander();
 
         public BattleScene(Game game) : base(game) { }
 
@@ -90,7 +89,7 @@ namespace SRPG.Scene.Battle
         public override void Update(GameTime gameTime, Input input)
         {
             base.Update(gameTime, input);
-
+    
             // get the amount of time, in seconds, since the last frame. this should be 0.016 at 60fps.
             float dt = gameTime.ElapsedGameTime.Milliseconds/1000F;
 
@@ -141,18 +140,16 @@ namespace SRPG.Scene.Battle
                 _commander.BattleBoard = BattleBoard;
 
                 // find first character that can move
-                var currChar = combatants[0];
-
-                _selectedCharacter = currChar;
+                _selectedCharacter = combatants[0];
 
                 // find the optimal location
-                Point destination = _commander.CalculateDestination(currChar);
+                Point destination = _commander.CalculateDestination(_selectedCharacter);
                 
                 // create move command to that location
-                var moveCommand = new Command()
+                var moveCommand = new Command
                     {
                         Ability = Ability.Factory("move"),
-                        Character = currChar,
+                        Character = _selectedCharacter,
                         Target = destination
                     };
 

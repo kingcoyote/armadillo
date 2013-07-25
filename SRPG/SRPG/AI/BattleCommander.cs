@@ -11,12 +11,12 @@ namespace SRPG.AI
     {
         public BattleBoard BattleBoard;
 
-        public Point CalculateDestination(Combatant currChar)
+        public Point CalculateDestination(Combatant character)
         {
-            var grid = currChar.GetMovementGrid(BattleBoard.GetAccessibleGrid(currChar.Faction));
+            var grid = character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction));
 
-            var destination = TorchHelper.Vector2ToPoint(currChar.Avatar.Location);
-            var best = CalculateCellWeight(currChar, (int)currChar.Avatar.Location.X, (int)currChar.Avatar.Location.Y);
+            var destination = TorchHelper.Vector2ToPoint(character.Avatar.Location);
+            var best = CalculateCellWeight(character, (int)character.Avatar.Location.X, (int)character.Avatar.Location.Y);
 
             for (var x = 0; x < grid.Size.Width; x++)
             {
@@ -25,25 +25,30 @@ namespace SRPG.AI
                     if (grid.Weight[x, y] < 1) continue;
 
                     var currCell = new Point(
-                        x + (int)currChar.Avatar.Location.X - grid.Size.Width / 2,
-                        y + (int)currChar.Avatar.Location.Y - grid.Size.Height / 2
+                        x + (int)character.Avatar.Location.X - grid.Size.Width / 2,
+                        y + (int)character.Avatar.Location.Y - grid.Size.Height / 2
                     );
 
                     if (BattleBoard.GetCharacterAt(currCell) != null) continue;
 
-                    var score = CalculateCellWeight(currChar, currCell.X, currCell.Y);
+                    var score = CalculateCellWeight(character, currCell.X, currCell.Y);
 
                     if (score <= best) continue;
 
                     best = score;
                     destination = new Point(
-                        x + (int)currChar.Avatar.Location.X - grid.Size.Width / 2,
-                        y + (int)currChar.Avatar.Location.Y - grid.Size.Height / 2
+                        x + (int)character.Avatar.Location.X - grid.Size.Width / 2,
+                        y + (int)character.Avatar.Location.Y - grid.Size.Height / 2
                     );
                 }
             }
 
             return destination;
+        }
+
+        public Command CalculateAction(Combatant currChar, Point destination)
+        {
+            throw new NotImplementedException();
         }
 
         private int CalculateCellWeight(Combatant character, int cellX, int cellY)
@@ -53,10 +58,11 @@ namespace SRPG.AI
             // for each enemy the character can attack from here, add 3
             score += 3 * CalculateAttackableEnemies(character, cellX, cellY).Count;
 
-            // for each enemy that can attack the character from here, subtract 1
-            score += (CalculatePossibleDamage(cellX, cellY) / character.CurrentHealth) * 3;
+            // calculate max damage that could be received
+            score += (CalculateMaxDamageReceived(cellX, cellY) / character.CurrentHealth) * 3;
 
-            // for each character that can be splashed in a single attack, add 1
+            // calculate the max damage possible in a single move
+            score += (CalculateMaxDamageInflicted(character, cellX, cellY))/(character.MaxHealth/6);
 
             return score;
         }
@@ -90,10 +96,15 @@ namespace SRPG.AI
             return enemies;
         }
 
-        private int CalculatePossibleDamage(int cellX, int cellY)
+        private int CalculateMaxDamageReceived(int cellX, int cellY)
         {
             return (from t in BattleBoard.Characters where t.Faction == 0 select t)
                 .Aggregate(0, (current, c) => current + CalculateMaxDamage(c, cellX, cellY));
+        }
+
+        private int CalculateMaxDamageInflicted(Combatant character, int cellX, int cellY)
+        {
+            return 0;
         }
 
         private int CalculateMaxDamage(Combatant character, int targetX, int targetY)
@@ -112,12 +123,9 @@ namespace SRPG.AI
                 best += hits.Sum(hit => hit.Damage);
             }
 
-            return best;
-        }
 
-        public Command CalculateAction(Combatant currChar, Point destination)
-        {
-            throw new NotImplementedException();
+
+            return best;
         }
     }
 }
