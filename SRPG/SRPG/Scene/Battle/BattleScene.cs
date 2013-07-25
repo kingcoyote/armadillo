@@ -182,7 +182,9 @@ namespace SRPG.Scene.Battle
                 {
                     // display it
                     var character = BattleBoard.GetCharacterAt(hit.Target);
-                    var damage = character.ProcessHit(hit);
+                    hit = character.ProcessHit(hit);
+                    character.ReceiveHit(hit);
+                    var damage = hit.Damage;
                     ((HitLayer) Layers["hitlayer"]).DisplayHit(
                         Math.Abs(damage), 
                         hit.Damage > 0 ? Color.White : Color.LightGreen, 
