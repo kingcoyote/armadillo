@@ -210,5 +210,10 @@ namespace SRPG.Data
 
             return grid;
         }
+
+        public bool Contains(int x, int y)
+        {
+            return x > 0 && x < Size.Width && y > 0 && y < Size.Height;
+        }
     }
 }

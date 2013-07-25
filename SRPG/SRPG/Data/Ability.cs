@@ -174,6 +174,8 @@ namespace SRPG.Data
 
         protected bool CanHit(Grid grid, Point target)
         {
+            if (!grid.Contains(target.X, target.Y)) return false;
+
             var newGrid = grid.OverlayGridFromCenter(GenerateTargetGrid(), TorchHelper.Vector2ToPoint(Character.Avatar.Location));
 
             return newGrid.Weight[target.X, target.Y] > 0;
