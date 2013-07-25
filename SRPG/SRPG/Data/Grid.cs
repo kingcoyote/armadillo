@@ -175,5 +175,25 @@ namespace SRPG.Data
             path.Add(current);
             return path;
         }
+
+        public Grid OverlayGridFromCenter(Grid overlay, Point center)
+        {
+            var grid = this;
+            
+            for(var x = 0; x < overlay.Size.Width - 1; x++)
+            {
+                for(var y = 0; y < overlay.Size.Height - 1; y++)
+                {
+                    var currX = x + center.X - overlay.Size.Width/2;
+                    var currY = y + center.Y - overlay.Size.Height/2;
+
+                    if (currX < 0 || currX >= grid.Size.Width || currY < 0 || currY >= grid.Size.Height) continue;
+
+                    grid.Weight[currX, currY] = overlay.Weight[x, y];
+                }
+            }
+
+            return grid;
+        }
     }
 }

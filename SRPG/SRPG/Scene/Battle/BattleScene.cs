@@ -547,7 +547,7 @@ namespace SRPG.Scene.Battle
                         if (!character.CanMove) return;
 
                         ((BattleBoardLayer) Layers["battleboard"]).SetTargettingGrid(
-                            OverlayGridFromCenter(
+                            BattleBoard.Sandbag.OverlayGridFromCenter(
                                 character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)),
                                 TorchHelper.Vector2ToPoint(character.Avatar.Location)
                             ),
@@ -577,7 +577,7 @@ namespace SRPG.Scene.Battle
                     {
                         if (!character.CanAct) return;
                         ((BattleBoardLayer) Layers["battleboard"]).SetTargettingGrid(
-                            OverlayGridFromCenter(
+                            BattleBoard.Sandbag.OverlayGridFromCenter(
                                 character.GetEquippedWeapon().TargetGrid, 
                                 TorchHelper.Vector2ToPoint(character.Avatar.Location)
                             ),
@@ -688,7 +688,7 @@ namespace SRPG.Scene.Battle
                 Layers.Remove("radial menu");
 
                 ((BattleBoardLayer)Layers["battleboard"]).SetTargettingGrid(
-                    OverlayGridFromCenter(ability.Name == "Move" ? 
+                    BattleBoard.Sandbag.OverlayGridFromCenter(ability.Name == "Move" ? 
                         character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)) : 
                         ability.GenerateTargetGrid(),
                         TorchHelper.Vector2ToPoint(character.Avatar.Location)
@@ -787,32 +787,12 @@ namespace SRPG.Scene.Battle
             ((AbilityStatLayer) Layers["abilitystat"]).SetAbility(ability);
             Layers["abilitystat"].Visible = true;
             ((BattleBoardLayer)Layers["battleboard"]).SetTargettingGrid(
-                OverlayGridFromCenter(
+                BattleBoard.Sandbag.OverlayGridFromCenter(
                     ability.GenerateTargetGrid(),
                     new Point((int)ability.Character.Avatar.Location.X, (int)ability.Character.Avatar.Location.Y)
                 ),
                 new Grid(1, 1)
             );
-        }
-
-        private Grid OverlayGridFromCenter(Grid overlay, Point center)
-        {
-            var grid = new Grid(BattleBoard.Sandbag.Size.Width, BattleBoard.Sandbag.Size.Height);
-            
-            for(var x = 0; x < overlay.Size.Width - 1; x++)
-            {
-                for(var y = 0; y < overlay.Size.Height - 1; y++)
-                {
-                    var currX = x + center.X - overlay.Size.Width/2;
-                    var currY = y + center.Y - overlay.Size.Height/2;
-
-                    if (currX < 0 || currX >= grid.Size.Width || currY < 0 || currY >= grid.Size.Height) continue;
-
-                    grid.Weight[currX, currY] = overlay.Weight[x, y];
-                }
-            }
-
-            return grid;
         }
 
         /// <summary>
