@@ -24,10 +24,7 @@ namespace SRPG.AI
                 {
                     if (grid.Weight[x, y] < 1) continue;
 
-                    var currCell = new Point(
-                        x + (int)character.Avatar.Location.X - grid.Size.Width / 2,
-                        y + (int)character.Avatar.Location.Y - grid.Size.Height / 2
-                    );
+                    var currCell = new Point(x, y);
 
                     if (BattleBoard.GetCharacterAt(currCell) != null) continue;
 
@@ -36,10 +33,7 @@ namespace SRPG.AI
                     if (score <= best) continue;
 
                     best = score;
-                    destination = new Point(
-                        x + (int)character.Avatar.Location.X - grid.Size.Width / 2,
-                        y + (int)character.Avatar.Location.Y - grid.Size.Height / 2
-                    );
+                    destination = new Point(x, y);
                 }
             }
 
