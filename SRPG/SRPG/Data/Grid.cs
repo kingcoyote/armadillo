@@ -215,5 +215,20 @@ namespace SRPG.Data
         {
             return x > 0 && x < Size.Width && y > 0 && y < Size.Height;
         }
+
+        public List<Point> GetPointList()
+        {
+            var points = new List<Point>();
+            
+            for(var x = 0; x < Size.Width; x++)
+            {
+                for(var y = 0; y < Size.Height; y++)
+                {
+                    points.Add(new Point(x, y));
+                }
+            }
+
+            return points;
+        }
     }
 }

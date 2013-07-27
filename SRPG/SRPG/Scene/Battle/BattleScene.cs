@@ -336,9 +336,9 @@ namespace SRPG.Scene.Battle
                     partyGrid.Add(new Point(15,36));
                     partyGrid.Add(new Point(13,36));
 
-                    BattleBoard.Characters.Add(GenerateCombatant("Guard 1", "coliseum/guard", new Vector2(13, 33)));
-                    BattleBoard.Characters.Add(GenerateCombatant("Guard 2", "coliseum/guard", new Vector2(15, 33)));
-                    BattleBoard.Characters.Add(GenerateCombatant("Guard Captain", "coliseum/guard", new Vector2(14, 33)));
+                    BattleBoard.Characters.Add(GenerateCombatant("Guard 1", "coliseum/guard", new Vector2(13, 31)));
+                    BattleBoard.Characters.Add(GenerateCombatant("Guard 2", "coliseum/guard", new Vector2(15, 31)));
+                    BattleBoard.Characters.Add(GenerateCombatant("Guard Captain", "coliseum/guard", new Vector2(14, 31)));
 
                     
 

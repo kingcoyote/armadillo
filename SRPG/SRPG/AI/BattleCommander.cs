@@ -13,29 +13,31 @@ namespace SRPG.AI
 
         public Point CalculateDestination(Combatant character)
         {
+            var origLocation = character.Avatar.Location;
+            
             var grid = character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction));
 
             var destination = TorchHelper.Vector2ToPoint(character.Avatar.Location);
             var best = CalculateCellWeight(character, (int)character.Avatar.Location.X, (int)character.Avatar.Location.Y);
 
-            for (var x = 0; x < grid.Size.Width; x++)
+            foreach(var currCell in grid.GetPointList())
             {
-                for (var y = 0; y < grid.Size.Height; y++)
-                {
-                    if (grid.Weight[x, y] < 1) continue;
+                if (grid.Weight[currCell.X, currCell.Y] < 1) continue;
 
-                    var currCell = new Point(x, y);
+                if (BattleBoard.GetCharacterAt(currCell) != null) continue;
 
-                    if (BattleBoard.GetCharacterAt(currCell) != null) continue;
+                character.Avatar.Location.X = currCell.X;
+                character.Avatar.Location.Y = currCell.Y;
 
-                    var score = CalculateCellWeight(character, currCell.X, currCell.Y);
+                var score = CalculateCellWeight(character, currCell.X, currCell.Y);
 
-                    if (score <= best) continue;
+                if (score <= best) continue;
 
-                    best = score;
-                    destination = new Point(x, y);
-                }
+                best = score;
+                destination = currCell;
             }
+
+            character.Avatar.Location = origLocation;
 
             return destination;
         }
@@ -47,47 +49,19 @@ namespace SRPG.AI
 
         private int CalculateCellWeight(Combatant character, int cellX, int cellY)
         {
-            var score = 0;
+            // movement algorithm:
+            // d = maximum damage that can be inflicted in a single move
+            // r = maximum damage received in a single round
+            // h = current health
+            // m = max health
+            // 3e + 3d/h - r/6m
 
-            // for each enemy the character can attack from here, add 3
-            score += 3 * CalculateAttackableEnemies(character, cellX, cellY).Count;
+            var d = CalculateMaxDamageInflicted(character, cellX, cellY);
+            //var r = CalculateMaxDamageReceived(cellX, cellY);
+            //var h = character.CurrentHealth;
+            //var m = character.MaxHealth;
 
-            // calculate max damage that could be received
-            score += (CalculateMaxDamageReceived(cellX, cellY) / character.CurrentHealth) * 3;
-
-            // calculate the max damage possible in a single move
-            score += (CalculateMaxDamageInflicted(character, cellX, cellY))/(character.MaxHealth/6);
-
-            return score;
-        }
-
-        private List<Combatant> CalculateAttackableEnemies(Combatant character, int cellX, int cellY)
-        {
-            var enemies = new List<Combatant>();
-
-            var attackGrid = character.GetEquippedWeapon().TargetGrid;
-
-            for (var x = 0; x < attackGrid.Size.Width; x++)
-            {
-                for (var y = 0; y < attackGrid.Size.Height; y++)
-                {
-                    if (attackGrid.Weight[x, y] < 1) continue;
-
-                    var c = BattleBoard.GetCharacterAt(
-                        new Point(
-                            cellX - attackGrid.Size.Width / 2 + x,
-                            cellY - attackGrid.Size.Height / 2 + y
-                        )
-                    );
-
-                    if (c != null && c.Faction == 0)
-                    {
-                        enemies.Add(c);
-                    }
-                }
-            }
-
-            return enemies;
+            return d;
         }
 
         private int CalculateMaxDamageReceived(int cellX, int cellY)
@@ -98,7 +72,48 @@ namespace SRPG.AI
 
         private int CalculateMaxDamageInflicted(Combatant character, int cellX, int cellY)
         {
-            return 0;
+            var best = 0;
+            
+            var validAbilities = new List<Ability>();
+
+            validAbilities.Add(Ability.Factory("attack"));
+            validAbilities[0].Character = character;
+
+            //validAbilities.AddRange(character.GetAbilities().Where(character.CanUseAbility).Where(a => a.AbilityType == AbilityType.Active));
+
+            // foreach ability
+            foreach(var ability in validAbilities)
+            {
+                // foreach valid target for that ability
+                var targetGrid = ability.GenerateTargetGrid();
+
+                foreach(var point in targetGrid.GetPointList())
+                {
+                    if (targetGrid.Weight[point.X, point.Y] < 1) continue;
+
+                    var hits = ability.GenerateHits(BattleBoard, new Point(cellX + point.X - 12, cellY + point.Y - 12));
+                    var score = 0;
+
+                    foreach(var hit in hits)
+                    {
+                        var targetCharacter = BattleBoard.GetCharacterAt(hit.Target);
+
+                        if (targetCharacter == null) continue;
+
+                        score += targetCharacter.ProcessHit(hit).Damage;
+                    }
+
+                    // if hits is greater than best
+                    if (score > best)
+                    {
+                        best = score;
+                    }
+                }
+            }
+
+            // return best
+
+            return best;
         }
 
         private int CalculateMaxDamage(Combatant character, int targetX, int targetY)
@@ -117,7 +132,24 @@ namespace SRPG.AI
                 best += hits.Sum(hit => hit.Damage);
             }
 
+            foreach (var specialAbility in character.GetAbilities().Where(character.CanUseAbility).Where(a => a.AbilityType == AbilityType.Active))
+            {
+                var score = 0;
 
+                hits = specialAbility.GenerateHits(
+                    BattleBoard, new Point(targetX, targetY)
+                ).Where(h => h.Target.X == targetX && h.Target.Y == targetY).ToArray();
+
+                if (hits.Any())
+                {
+                    score += hits.Sum(hit => hit.Damage);
+                }
+
+                if(score > best)
+                {
+                    best = score;
+                }
+            }
 
             return best;
         }
