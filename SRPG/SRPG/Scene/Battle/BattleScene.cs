@@ -143,21 +143,25 @@ namespace SRPG.Scene.Battle
                 _selectedCharacter = combatants[0];
 
                 // find the optimal location
-                Point destination = _commander.CalculateDestination(_selectedCharacter);
+                var decision = _commander.CalculateAction(_selectedCharacter);
                 
                 // create move command to that location
                 var moveCommand = new Command
                     {
                         Ability = Ability.Factory("move"),
                         Character = _selectedCharacter,
-                        Target = destination
+                        Target = decision.Destination
                     };
 
-                //Command actCommand = _commander.CalculateAction(currChar, destination);
-                //QueuedCommands.Add(actCommand);
+                QueuedCommands.Add(decision.Command);
+                
                 ExecuteCommand(moveCommand);
 
                 return;
+            }
+            else
+            {
+                ExecuteQueuedCommands();
             }
 
             // all enemy players have moved / attacked

@@ -11,14 +11,15 @@ namespace SRPG.AI
     {
         public BattleBoard BattleBoard;
 
-        public Point CalculateDestination(Combatant character)
+        public BattleDecision CalculateAction(Combatant character)
         {
             throw new NotImplementedException();
         }
+    }
 
-        public Command CalculateAction(Combatant currChar, Point destination)
-        {
-            throw new NotImplementedException();
-        }
+    struct BattleDecision
+    {
+        public Point Destination;
+        public Command Command;
     }
 }
