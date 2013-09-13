@@ -36,7 +36,7 @@ namespace SRPG.Scene.Overworld
             }
             else if (args.WhichKey == _controls["config menu"])
             {
-                Game.GetInstance().ChangeScenes("options");
+                ((SRPGGame)Game).ChangeScenes("options");
             }
             else if (args.WhichKey == _controls["interact"])
             {

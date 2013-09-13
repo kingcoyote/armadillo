@@ -11,29 +11,34 @@ namespace SRPG.Scene.Shop
     class ShopScene : Torch.Scene
     {
         private List<Item> _inventory = new List<Item>();
-        
+
+        private ShopInventory _shopInventory;
+        private PlayerInventory _playerInventory;
+
         public ShopScene(Game game) : base(game)
         {
         }
 
         public override void Initialize()
         {
-            Layers.Clear();
+            Components.Clear();
 
             var keyboard = new KeyboardInputLayer(this);
             keyboard.AddKeyDownBinding(Keys.Escape, () => Game.ChangeScenes("overworld"));
-            Layers.Add("keyboard", keyboard);
+            Components.Add(keyboard);
 
-            Layers.Add("background", new Background(this));
+            Components.Add(new Background(this));
 
             // store inventory layer
-            Layers.Add("player inventory", new PlayerInventory(this, ((SRPGGame)Game).Inventory) { X = Game.GetInstance().GraphicsDevice.Viewport.Width - 400, Y = 50 });
+            _playerInventory = new PlayerInventory(this, ((SRPGGame)Game).Inventory) { X = Game.GetInstance().GraphicsDevice.Viewport.Width - 400, Y = 50 };
+            Components.Add(_playerInventory);
 
             // player inventory layer
-            Layers.Add("shop inventory", new ShopInventory(this, _inventory) { X = 50, Y = 50 });
+            _shopInventory = new ShopInventory(this, _inventory) { X = 50, Y = 50 };
+            Components.Add(_shopInventory);
 
-            Layers.Add("options", new Options(this));
-            Layers.Add("player stats", new PlayerStats(this));
+            Components.Add(new Options(this));
+            Components.Add(new PlayerStats(this));
 
             // buy selected
             // sell selected
@@ -64,7 +69,7 @@ namespace SRPG.Scene.Shop
 
         public void SellSelectedItems()
         {
-            var items = ((Inventory) Layers["player inventory"]).GetSelectedInventory();
+            var items = _playerInventory.GetSelectedInventory();
 
             foreach (var item in items)
             {
@@ -76,7 +81,7 @@ namespace SRPG.Scene.Shop
 
         public void BuySelectedItems()
         {
-            var items = ((Inventory) Layers["shop inventory"]).GetSelectedInventory();
+            var items = _shopInventory.GetSelectedInventory();
             var cost = (from item in items select item.Cost).Sum();
 
             if (cost > ((SRPGGame)Game.GetInstance()).Money) return;

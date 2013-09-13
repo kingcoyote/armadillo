@@ -14,8 +14,8 @@ namespace SRPG.Scene.MainMenu
         {
             base.Initialize();
 
-            Layers.Add("bg", new BackgroundLayer(this, "MainMenu/bg"));
-            Layers.Add("menuoptions", new MenuOptions(this));
+            Components.Add(new BackgroundLayer(this, "MainMenu/bg"));
+            Components.Add(new MenuOptions(this));
         }
 
         public override void Start()

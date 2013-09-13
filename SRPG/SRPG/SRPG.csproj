@@ -93,6 +93,12 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>dll\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Nuclex.Game">
+      <HintPath>..\..\Torch\nuclex\Nuclex.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="Nuclex.Input">
+      <HintPath>..\..\Torch\nuclex\Nuclex.Input.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Private>False</Private>
     </Reference>

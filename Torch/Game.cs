@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Nuclex.Input;
 
 namespace Torch
 {
     abstract public class Game : Microsoft.Xna.Framework.Game
     {
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
-        private Input _input;
 
         protected Dictionary<string, Scene> Scenes = new Dictionary<string, Scene>();
         protected string CurrentScene;
@@ -55,9 +55,9 @@ namespace Torch
             // load settings file
             LoadSettings();
 
-            _input = new Input();
-
             InitializeGraphics();
+
+            Services.AddService(typeof(ContentManager), Content);
 
             base.Initialize();
         }
@@ -86,9 +86,6 @@ namespace Torch
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-
             // initialize current scene
             Scenes[CurrentScene].Initialize();
 
@@ -110,15 +107,8 @@ namespace Torch
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // update input
-            _input.Update(gameTime);
-
-            if(_input.Events.Count > 0)
-            {
-                Scenes[CurrentScene].UpdateEvents(_input.Events);
-            }
             // update current scene
-            Scenes[CurrentScene].Update(gameTime, _input);
+            Scenes[CurrentScene].Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -127,14 +117,14 @@ namespace Torch
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
+        protected override void Draw(GameTime gametime)
         {
             GraphicsDevice.Clear(Color.Black);
 
             // draw current scene
-            Scenes[CurrentScene].Draw();
+            Scenes[CurrentScene].Draw(gametime);
 
-            base.Draw(gameTime);
+            base.Draw(gametime);
         }
 
         public void ChangeScenes(string scene)

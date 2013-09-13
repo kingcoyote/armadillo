@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nuclex.Game.ContentCompressor</name>
+    </assembly>
+    <members>
+        <member name="T:Nuclex.Game.ContentCompressor.LzmaContentCompressor">
+            <summary>Compressed content files with the LZMA algorithm</summary>
+        </member>
+        <member name="M:Nuclex.Game.ContentCompressor.LzmaContentCompressor.CompressContentFile(System.String)">
+            <summary>Compresses an individual content file</summary>
+            <param name="path">Path of the content file that will be compressed</param>
+        </member>
+        <member name="T:Nuclex.Game.ContentCompressor.LzmaPackageBuilder">
+            <summary>Constructs compressed LZMA packages</summary>
+        </member>
+        <member name="M:Nuclex.Game.ContentCompressor.LzmaPackageBuilder.Build(System.String,Nuclex.Game.ContentCompressor.LzmaPackageBuilder.PackageFile[])">
+            <summary>Adds one or more files to the list of files to be packed</summary>
+            <param name="packagePath">Path to the package that assets are read from</param>
+            <param name="packageFiles">Enumerable list with the paths of the files to add</param>
+        </member>
+        <member name="M:Nuclex.Game.ContentCompressor.LzmaPackageBuilder.Build(System.String,System.Collections.Generic.IEnumerable{Nuclex.Game.ContentCompressor.LzmaPackageBuilder.PackageFile})">
+            <summary>Adds one or more files to the list of files to be packed</summary>
+            <param name="packagePath">Path to the package that assets are read from</param>
+            <param name="packageFiles">Enumerable list with the paths of the files to add</param>
+        </member>
+        <member name="M:Nuclex.Game.ContentCompressor.LzmaPackageBuilder.compress(System.IO.Stream,System.IO.Stream)">
+            <summary>
+              Compresses data in a stream and writes the compressed data into another stream
+            </summary>
+            <param name="destination">Destination stream the data is written to</param>
+            <param name="source">Stream from which the data to be compressed is taken</param>
+            <returns>The number of bytes that were written into the destination stream</returns>
+        </member>
+        <member name="M:Nuclex.Game.ContentCompressor.LzmaPackageBuilder.setupPackageFileHeaders(System.Collections.Generic.IEnumerable{Nuclex.Game.ContentCompressor.LzmaPackageBuilder.PackageFile})">
+            <summary>
+              Sets up a list of package file headers for the provided file names.
+            </summary>
+            <param name="packageFiles">File name to set up the package file headers for</param>
+            <returns>A list of package file headers for the provided file names</returns>
+        </member>
+        <member name="T:Nuclex.Game.ContentCompressor.LzmaPackageBuilder.PackageFile">
+            <summary>Stores informations about a file that is to be packaged</summary>
+        </member>
+        <member name="M:Nuclex.Game.ContentCompressor.LzmaPackageBuilder.PackageFile.#ctor(System.String,System.String)">
+            <summary>Initializes a new package file</summary>
+            <param name="path">Absolute path of the file to be packaged</param>
+            <param name="name">Name to assign to the file inside the package</param>
+        </member>
+        <member name="F:Nuclex.Game.ContentCompressor.LzmaPackageBuilder.PackageFile.Path">
+            <summary>The absolute path of the file to package</summary>
+        </member>
+        <member name="F:Nuclex.Game.ContentCompressor.LzmaPackageBuilder.PackageFile.Name">
+            <summary>Name the file will have inside the package</summary>
+        </member>
+        <member name="T:Nuclex.Game.ContentCompressor.LzmaPackageBuilder.PackageFileHeader">
+            <summary>Stores informations about a file that is to be packaged</summary>
+        </member>
+        <member name="F:Nuclex.Game.ContentCompressor.LzmaPackageBuilder.PackageFileHeader.Name">
+            <summary>Name of the asset</summary>
+        </member>
+        <member name="F:Nuclex.Game.ContentCompressor.LzmaPackageBuilder.PackageFileHeader.DataOffset">
+            <summary>Where in the LZMA package the file's data is stored</summary>
+        </member>
+        <member name="F:Nuclex.Game.ContentCompressor.LzmaPackageBuilder.PackageFileHeader.UncompressedLength">
+            <summary>Length the data has in uncompressed form</summary>
+        </member>
+        <member name="F:Nuclex.Game.ContentCompressor.LzmaPackageBuilder.PackageFileHeader.CompressedLength">
+            <summary>Length of the compressed data</summary>
+        </member>
+        <member name="M:Nuclex.Game.ContentCompressor.LzmaPackageBuilder.PackageFileHeader.Write(System.IO.BinaryWriter)">
+            <summary>Writes the header of a package file into a binary writer</summary>
+            <param name="writer">Binary writer the package file header is written to</param>
+        </member>
+        <member name="T:Nuclex.Game.ContentCompressor.Program">
+            <summary>
+              Contains the main program code for the nuclex game content compression utility
+            </summary>
+            <remarks>
+              <para>
+                Valid command lines
+                - Nuclex.Game.ContentCompressor Content\*.*
+                - Nuclex.Game.ContentCompressor -package:Content.lzma Content\*.*
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.ContentCompressor.Program.Main(System.String[])">
+            <summary>Program entry point</summary>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Game.ContentCompressor.Program.displayHelp">
+            <summary>Displays syntax help for the application</summary>
+        </member>
+        <member name="M:Nuclex.Game.ContentCompressor.Program.determineFilesToCompress(Nuclex.Support.Parsing.CommandLine)">
+            <summary>Builds a list of the files that should be compressed</summary>
+            <param name="commandLine">
+              Command line from which to take the paths and masks that will be compressed
+            </param>
+            <returns>A list of all files to compress with the absolute paths</returns>
+        </member>
+        <member name="M:Nuclex.Game.ContentCompressor.Program.allLinesInFile(System.String)">
+            <summary>Enumerates over all lines in a text file</summary>
+            <param name="path">Path to a text file whose lines will be enumerated</param>
+            <returns>An enumerable list of strings for the lines in the file</returns>
+        </member>
+        <member name="M:Nuclex.Game.ContentCompressor.Program.getCommandLineOption(Nuclex.Support.Parsing.CommandLine,System.String)">
+            <summary>Retrieves the value of an option on the command line</summary>
+            <param name="commandLine">Command line the option will be retrieved from</param>
+            <param name="optionName">Name of the option that will be retrieved</param>
+            <returns>The value assigned to the specified option</returns>
+        </member>
+        <member name="M:Nuclex.Game.ContentCompressor.Program.transformToPackageFile(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>Transforms a list of absolute paths into a list of package files</summary>
+            <param name="basePath">
+              Base path to which the packaged files' names will be relative
+            </param>
+            <param name="files">List of absolute paths to be transformed</param>
+            <returns>An enumerable list of package files</returns>
+        </member>
+        <member name="M:Nuclex.Game.ContentCompressor.Program.allFiles(System.String,System.String)">
+            <summary>
+              Returns an enumerator that iterates over all files that match the specified mask
+              in a given directory and its subdirectories.
+            </summary>
+            <param name="directory">Directory to begin the enumeration in</param>
+            <param name="mask">Mask of files to search for</param>
+            <returns>An enumerator that iterates of all files matching the mask</returns>
+        </member>
+    </members>
+</doc>

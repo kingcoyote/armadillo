@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Nuclex.Input;
 using SRPG.Data;
 using Torch;
 using Game = Torch.Game;
@@ -60,11 +61,14 @@ namespace SRPG.Scene.Battle
             }
         }
 
-        public override void Update(GameTime gameTime, Input input)
+        public override void Update(GameTime gametime)
         {
-            base.Update(gameTime, input);
+            base.Update(gametime);
 
             var scene = ((BattleScene) Scene);
+
+            var mouse = ((IInputService) Game.Services.GetService(typeof (IInputService))).GetMouse().GetState();
+            var keyboard = ((IInputService)Game.Services.GetService(typeof(IInputService))).GetKeyboard().GetState();
 
             foreach(var character in _board.Characters)
             {
@@ -79,29 +83,29 @@ namespace SRPG.Scene.Battle
                 float x = 0;
                 float y = 0;
 
-                if (input.IsKeyDown(Keys.A) && !input.IsKeyDown(Keys.D))
+                if (keyboard.IsKeyDown(Keys.A) && !keyboard.IsKeyDown(Keys.D))
                 {
                     x = 1;
                 }
-                else if (input.IsKeyDown(Keys.D) && !input.IsKeyDown(Keys.A))
+                else if (keyboard.IsKeyDown(Keys.D) && !keyboard.IsKeyDown(Keys.A))
                 {
                     x = -1;
                 }
 
-                if (input.IsKeyDown(Keys.S) && !input.IsKeyDown(Keys.W))
+                if (keyboard.IsKeyDown(Keys.S) && !keyboard.IsKeyDown(Keys.W))
                 {
                     y = -1;
                 }
-                else if (input.IsKeyDown(Keys.W) && !input.IsKeyDown(Keys.S))
+                else if (keyboard.IsKeyDown(Keys.W) && !keyboard.IsKeyDown(Keys.S))
                 {
                     y = 1;
                 }
 
-                X += x * gameTime.ElapsedGameTime.Milliseconds / 1000F * CamScrollSpeed;
-                Y += y * gameTime.ElapsedGameTime.Milliseconds / 1000F * CamScrollSpeed;
+                X += x * gametime.ElapsedGameTime.Milliseconds / 1000F * CamScrollSpeed;
+                Y += y * gametime.ElapsedGameTime.Milliseconds / 1000F * CamScrollSpeed;
             }
 
-            var viewport = Game.GetInstance().GraphicsDevice.Viewport;
+            var viewport = Game.GraphicsDevice.Viewport;
 
             // lock the camera to within the bounds of the map
             X = MathHelper.Clamp(X, 0 - Width + viewport.Width, 0);
@@ -112,7 +116,7 @@ namespace SRPG.Scene.Battle
             // check if the cursor is over a character
             foreach (var character in _board.Characters)
             {
-                if (character.Avatar.Sprite.Rectangle.Contains((int)(input.Cursor.X - X), (int)(input.Cursor.Y - Y)))
+                if (character.Avatar.Sprite.Rectangle.Contains((int)(mouse.X - X), (int)(mouse.Y - Y)))
                 {
                     scene.ShowCharacterStats(character);
                     break;
@@ -130,8 +134,8 @@ namespace SRPG.Scene.Battle
             // compensate for the camera not being at 0,0
             // as well as do a 50:1 scaling to convert from the screen to the grid
             var cursor = new Point(
-                (int)Math.Floor((input.Cursor.X - X) / 50.0),
-                (int)Math.Floor((input.Cursor.Y - Y) / 50.0)
+                (int)Math.Floor((mouse.X - X) / 50.0),
+                (int)Math.Floor((mouse.Y - Y) / 50.0)
             );
             
             if (ValidCell(cursor.X, cursor.Y) && _targettingGrid.Weight[cursor.X, cursor.Y] > 0)

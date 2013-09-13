@@ -25,10 +25,10 @@ namespace SRPG.Data.Layers
                 {
                     Color = Color.Blue, 
                     Z = 100000, 
-                    X = (int)(Game.GetInstance().Window.ClientBounds.Width * 0.05),
-                    Y = (int)(Game.GetInstance().Window.ClientBounds.Height* 0.75),
-                    Width = (int)(Game.GetInstance().Window.ClientBounds.Width * 0.9),
-                    Height = (int)(Game.GetInstance().Window.ClientBounds.Height * 0.2)
+                    X = (int)(Game.Window.ClientBounds.Width * 0.05),
+                    Y = (int)(Game.Window.ClientBounds.Height* 0.75),
+                    Width = (int)(Game.Window.ClientBounds.Width * 0.9),
+                    Height = (int)(Game.Window.ClientBounds.Height * 0.2)
                 });
             Objects.Add("dialog text", new TextObject()
                 {

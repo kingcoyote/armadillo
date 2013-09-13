@@ -28,7 +28,7 @@ namespace SRPG.Scene.MainMenu
 
 
             Objects.Add("Exit", new TextObject { Font = font, Color = Color.White, Value = "Exit", X = 50, Y = 250 });
-            Objects["Exit"].MouseClick = (sender, args) => Game.GetInstance().Exit();
+            Objects["Exit"].MouseClick = (sender, args) => Game.Exit();
         }
     }
 }

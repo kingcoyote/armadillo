@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Nuclex.Input;
 using Torch;
 using Game = Torch.Game;
 
@@ -15,12 +16,12 @@ namespace SRPG.Scene.PartyMenu
 
         public Menu(Torch.Scene scene) : base(scene)
         {
-            ContentManager cm = Game.GetInstance().Content;
+            var cm = (ContentManager)Game.Services.GetService(typeof(ContentManager));
 
             var font = FontManager.Get("Menu");
             Objects.Add("cursor", new ImageObject("PartyMenu/cursor"));
 
-            var screenWidth = Game.GetInstance().GraphicsDevice.Viewport.Width;
+            var screenWidth = Game.GraphicsDevice.Viewport.Width;
 
             Objects.Add("status", new TextObject { Color = Color.White, Font = font, Value = "Status", X = screenWidth / 5, Y = 50, Alignment = TextObject.AlignTypes.Center });
             Objects.Add("inventory", new TextObject { Color = Color.White, Font = font, Value = "Inventory", X = screenWidth / 2, Y = 50, Alignment = TextObject.AlignTypes.Center });
@@ -30,17 +31,19 @@ namespace SRPG.Scene.PartyMenu
             Objects["inventory"].MouseClick += ChangeMenu("inventory menu");
             Objects["settings"].MouseClick += ChangeMenu("settings menu");
 
-            Objects.Add("background", new TextureObject { Color = Color.Blue, Z = -1, Width = Game.GetInstance().GraphicsDevice.Viewport.Width, Height = Game.GetInstance().GraphicsDevice.Viewport.Height });
+            Objects.Add("background", new TextureObject { Color = Color.Blue, Z = -1, Width = Game.GraphicsDevice.Viewport.Width, Height = Game.GraphicsDevice.Viewport.Height });
         }
 
-        public override void Update(GameTime gameTime, Input input)
+        public override void Update(GameTime gametime)
         {
-            base.Update(gameTime, input);
+            base.Update(gametime);
 
-            if (MouseInWindow(input))
+            var cursor = ((IInputService) Game.Services.GetService(typeof (IInputService))).GetMouse().GetState();
+
+            if (MouseInWindow(cursor.X, cursor.Y))
             {
-                Objects["cursor"].X = input.Cursor.X;
-                Objects["cursor"].Y = input.Cursor.Y;
+                Objects["cursor"].X = cursor.X;
+                Objects["cursor"].Y = cursor.Y;
             }
             else
             {
@@ -49,12 +52,12 @@ namespace SRPG.Scene.PartyMenu
             }
         }
 
-        private static bool MouseInWindow(Input input)
+        private bool MouseInWindow(int x, int y)
         {
-            return input.Cursor.X > 0 && 
-                input.Cursor.X < Game.GetInstance().Window.ClientBounds.Width && 
-                input.Cursor.Y > 0 && 
-                input.Cursor.Y < Game.GetInstance().Window.ClientBounds.Height;
+            return x > 0 && 
+                x < Game.Window.ClientBounds.Width && 
+                y > 0 && 
+                y < Game.Window.ClientBounds.Height;
         }
 
         private EventHandler<MouseEventArgs> ChangeMenu(string menu)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Nuclex.Input;
 using SRPG.Data;
 using SRPG.Data.Layers;
 using Torch;
@@ -21,6 +22,9 @@ namespace SRPG.Scene.Overworld
 
         private string _startDoor = "";
 
+        private Environment _environment;
+        private DialogLayer _dialog;
+
         public OverworldScene(Game game) : base(game) { }
 
         public override void Initialize()
@@ -29,47 +33,50 @@ namespace SRPG.Scene.Overworld
 
             Avatar = Avatar.GenerateAvatar("fighter");
 
-            Layers.Add("keyboardinput", new KeyboardInput(this));
-            Layers.Add("environment", new Environment(this));
-            Layers.Add("hud", new HUD(this));
+            Components.Add(new KeyboardInput(this));
+            _environment = new Environment(this);
+            Components.Add(new HUD(this));
         }
 
-        public override void Update(GameTime gameTime, Input input)
+        public override void Update(GameTime gametime)
         {
-            base.Update(gameTime, input);
+            base.Update(gametime);
 
-            var dt = (((float)gameTime.ElapsedGameTime.Milliseconds / 1000));
+            var dt = (((float)gametime.ElapsedGameTime.Milliseconds / 1000));
+
+            var mouse = ((IInputService)Game.Services.GetService(typeof(IInputService))).GetMouse().GetState();
+            var keyboard = ((IInputService)Game.Services.GetService(typeof(IInputService))).GetKeyboard().GetState();
 
             // update the player's avatar
-            UpdateAvatarMovement(dt, input);
+            UpdateAvatarMovement(dt, keyboard, mouse);
             CheckAvatarDoor();
 
             // update all characters in the zone
             UpdateCharacterMovements(dt);
         }
 
-        private void UpdateAvatarMovement(float dt, Input input)
+        private void UpdateAvatarMovement(float dt, KeyboardState keyboard, MouseState mouse)
         {
             float newX = 0;
             float newY = 0;
 
-            if (input.IsKeyDown(Keys.A) && !input.IsKeyDown(Keys.D))
+            if (keyboard.IsKeyDown(Keys.A) && !keyboard.IsKeyDown(Keys.D))
             {
                 newX = -1;
                 Avatar.Direction = Direction.Left;
             }
-            else if (input.IsKeyDown(Keys.D) && !input.IsKeyDown(Keys.A))
+            else if (keyboard.IsKeyDown(Keys.D) && !keyboard.IsKeyDown(Keys.A))
             {
                 newX = 1;
                 Avatar.Direction = Direction.Right;
             }
 
-            if (input.IsKeyDown(Keys.W) && !input.IsKeyDown(Keys.S))
+            if (keyboard.IsKeyDown(Keys.W) && !keyboard.IsKeyDown(Keys.S))
             {
                 newY = -1;
                 Avatar.Direction = Direction.Up;
             }
-            else if (input.IsKeyDown(Keys.S) && !input.IsKeyDown(Keys.W))
+            else if (keyboard.IsKeyDown(Keys.S) && !keyboard.IsKeyDown(Keys.W))
             {
                 newY = 1;
                 Avatar.Direction = Direction.Down;
@@ -170,7 +177,7 @@ namespace SRPG.Scene.Overworld
         public void SetZone(Zone zone, string doorName)
         {
             Zone = zone;
-            ((Environment)Layers["environment"]).SetZone(zone);
+            _environment.SetZone(zone);
 
             var door = (from d in zone.Doors where d.Name == doorName select d).First();
             Avatar.Sprite.SetAnimation(string.Format("standing {0}", door.Orientation.ToString().ToLower()));
@@ -247,7 +254,8 @@ namespace SRPG.Scene.Overworld
 
             _isPaused = true;
             dialog.OnExit += EndDialogEvent;
-            Layers.Add("dialog", new DialogLayer(this, dialog));
+            _dialog = new DialogLayer(this, dialog);
+            Components.Add(_dialog);
         }
 
         private void StopCharacter()
@@ -257,7 +265,8 @@ namespace SRPG.Scene.Overworld
 
         public void EndDialog()
         {
-            Layers.Remove("dialog");
+            Components.Remove(_dialog);
+            _dialog = null;
             _isPaused = false;
         }
 

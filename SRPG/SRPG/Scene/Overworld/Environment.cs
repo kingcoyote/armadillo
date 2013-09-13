@@ -51,18 +51,18 @@ namespace SRPG.Scene.Overworld
             _height = zone.Sandbag.Size.Height * 6;
         }
 
-        public override void Update(GameTime gameTime, Input input)
+        public override void Update(GameTime gametime)
         {
-            base.Update(gameTime, input);
+            base.Update(gametime);
 
             Objects["avatar"].X = (int)((OverworldScene) Scene).Avatar.Location.X;
             Objects["avatar"].Y = (int)((OverworldScene)Scene).Avatar.Location.Y;
 
             const float deadzone = 0.2F;
-            int screenWidth = Game.GetInstance().Window.ClientBounds.Width;
+            int screenWidth = Game.Window.ClientBounds.Width;
             var deadzoneWidth = (int)(screenWidth*(1 - deadzone)/2);
 
-            int screenHeight = Game.GetInstance().Window.ClientBounds.Height;
+            int screenHeight = Game.Window.ClientBounds.Height;
             var deadzoneHeight = (int)(screenHeight * (1 - deadzone) / 2);
 
             // if the screen can go to the left and if the avatar is left of the deadzone

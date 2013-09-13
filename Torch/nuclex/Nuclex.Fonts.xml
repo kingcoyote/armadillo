@@ -1,0 +1,802 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nuclex.Fonts</name>
+    </assembly>
+    <members>
+        <member name="T:Nuclex.Fonts.Resources.TextBatchResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Fonts.Resources.TextBatchResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Fonts.Resources.TextBatchResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Nuclex.Fonts.Resources.TextBatchResourcesTest">
+            <summary>Unit tests for the text batch resources class</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.Resources.TextBatchResourcesTest.TestResourceClassCreation">
+            <summary>Verifies that an instance of the resource class can be created</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.Resources.TextBatchResourcesTest.TestAssignCulture">
+            <summary>Tests the 'Culture' property of the resource class</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.Resources.TextBatchResourcesTest.TestDefaultTextEffect">
+            <summary>Verifies that the default text effect can be accessed</summary>
+        </member>
+        <member name="T:Nuclex.Fonts.Resources.UnitTestResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Fonts.Resources.UnitTestResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Fonts.Resources.UnitTestResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Nuclex.Fonts.Resources.UnitTestResourcesTest">
+            <summary>Unit tests for the unit test resources class</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.Resources.UnitTestResourcesTest.TestResourceClassCreation">
+            <summary>Verifies that an instance of the resource class can be created</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.Resources.UnitTestResourcesTest.TestAssignCulture">
+            <summary>Tests the 'Culture' property of the resource class</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.Resources.UnitTestResourcesTest.TestUnitTestVectorFont">
+            <summary>Verifies that the unit test vector font can be accessed</summary>
+        </member>
+        <member name="T:Nuclex.Fonts.Content.VectorFontCharacterReader">
+            <summary>XNA framework content reader for VectorFont characters</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.Content.VectorFontCharacterReader.Read(Microsoft.Xna.Framework.Content.ContentReader,Nuclex.Fonts.VectorFontCharacter)">
+            <summary>Load a vector font character from a stored XNA asset</summary>
+            <param name="input">Reader from which the asset can be read</param>
+            <param name="existingInstance">Optional existing instance we are reloading</param>
+            <returns>The loaded VectorFont character</returns>
+        </member>
+        <member name="T:Nuclex.Fonts.Content.VectorFontCharacterReaderTest">
+            <summary>Unit tests for the vector font character reader</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.Content.VectorFontCharacterReaderTest.TestConstructor">
+            <summary>
+              Tests whether the constructor if the vector font reader is working
+            </summary>
+        </member>
+        <member name="T:Nuclex.Fonts.Content.VectorFontReader">
+            <summary>XNA framework content reader for VectorFonts</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.Content.VectorFontReader.Read(Microsoft.Xna.Framework.Content.ContentReader,Nuclex.Fonts.VectorFont)">
+            <summary>Load a vector font from a stored XNA asset</summary>
+            <param name="input">Reader from which the asset can be read</param>
+            <param name="existingInstance">Optional existing instance we are reloading</param>
+            <returns>The loaded VectorFont instance</returns>
+        </member>
+        <member name="T:Nuclex.Fonts.Content.VectorFontReaderTest">
+            <summary>Unit tests for the vector font reader</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.Content.VectorFontReaderTest.TestConstructor">
+            <summary>
+              Tests whether the constructor if the vector font reader is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Fonts.Content.VectorFontReaderTest.TestVectorFontReading">
+            <summary>Verifies that the vector font reader can load a vector font</summary>
+        </member>
+        <member name="T:Nuclex.Fonts.Content.VectorFontReaderTest.MemoryContentManager">
+            <summary>Content manager for loading content from arrays</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.Content.VectorFontReaderTest.MemoryContentManager.#ctor(Microsoft.Xna.Framework.Graphics.IGraphicsDeviceService)">
+            <summary>
+              Initializes a new embedded content manager using a directly specified
+              graphics device service for the resources.
+            </summary>
+            <param name="graphicsDeviceService">
+              Graphics device service to load the content asset in
+            </param>
+        </member>
+        <member name="M:Nuclex.Fonts.Content.VectorFontReaderTest.MemoryContentManager.#ctor(System.IServiceProvider)">
+            <summary>
+              Initializes a new embedded content manager using the provided game services
+              container for providing services for the loaded asset.
+            </summary>
+            <param name="services">
+              Service container containing the services the asset may access
+            </param>
+        </member>
+        <member name="M:Nuclex.Fonts.Content.VectorFontReaderTest.MemoryContentManager.Load``1(System.Byte[])">
+            <summary>Loads the asset the embedded content manager was created for</summary>
+            <typeparam name="AssetType">Type of the asset to load</typeparam>
+            <param name="content">Content that will be loaded as an asset</param>
+            <returns>The loaded asset</returns>
+        </member>
+        <member name="M:Nuclex.Fonts.Content.VectorFontReaderTest.MemoryContentManager.OpenStream(System.String)">
+            <summary>Opens a stream for reading the specified asset</summary>
+            <param name="assetName">The name of the asset to be read</param>
+            <returns>The opened stream for the asset</returns>
+        </member>
+        <member name="M:Nuclex.Fonts.Content.VectorFontReaderTest.MemoryContentManager.makePrivateServiceContainer(Microsoft.Xna.Framework.Graphics.IGraphicsDeviceService)">
+            <summary>
+              Creates a new game service container containing the specified graphics device
+              service only.
+            </summary>
+            <param name="graphicsDeviceService">Service to add to the service container</param>
+            <returns>A service container with the specified graphics device service</returns>
+        </member>
+        <member name="F:Nuclex.Fonts.Content.VectorFontReaderTest.MemoryContentManager.memoryStream">
+            <summary>Content that will be loaded by the embedded content manager</summary>
+        </member>
+        <member name="T:Nuclex.Fonts.ExtrudedText">
+            <summary>Stores the vertices for an extruded string mesh</summary>
+            <remarks>
+              The extruded mesh will always be extruded by 1.0 units centered about the
+              middle of the extrusion. This allows you to scale the text's extrusion
+              level at rendering time for free using the transformation matrix of the
+              rendered text.
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Fonts.Text">
+            <summary>Base class for vector font texts</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.Text.vertices">
+            <summary>Vertices containing the text's outline or face coordinates</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.Text.indices">
+            <summary>
+              Indices describing which vertices to connect by lines or triangles
+            </summary>
+        </member>
+        <member name="F:Nuclex.Fonts.Text.primitiveType">
+            <summary>Type of primitives to draw</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.Text.width">
+            <summary>Total width of the string in world units</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.Text.height">
+            <summary>Total height of the string in world units</summary>
+        </member>
+        <member name="P:Nuclex.Fonts.Text.Vertices">
+            <summary>Vertices containing the text's outline or face coordinates</summary>
+        </member>
+        <member name="P:Nuclex.Fonts.Text.Indices">
+            <summary>
+              Indices describing which vertices to connect by lines or triangles
+            </summary>
+        </member>
+        <member name="P:Nuclex.Fonts.Text.PrimitiveType">
+            <summary>Type of primitives to draw</summary>
+        </member>
+        <member name="P:Nuclex.Fonts.Text.Width">
+            <summary>Total width of the string in world units</summary>
+        </member>
+        <member name="P:Nuclex.Fonts.Text.Height">
+            <summary>Total height of the string in world units</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.ExtrudedText.#ctor(Nuclex.Fonts.VectorFont,System.String)">
+            <summary>Initializes a new extruded string mesh</summary>
+            <param name="font">Font from which the vertices will be taken</param>
+            <param name="text">String of which to build a mesh</param>
+        </member>
+        <member name="M:Nuclex.Fonts.ExtrudedText.buildStringMesh(Nuclex.Fonts.VectorFont,System.String)">
+            <summary>Builds the combined mesh for the letters in this string</summary>
+            <param name="font">Vector font to take the vertex data from</param>
+            <param name="text">String of which a mesh is to be built</param>
+        </member>
+        <member name="M:Nuclex.Fonts.ExtrudedText.resizeVertexAndIndexArrays(Nuclex.Fonts.VectorFont,System.String)">
+            <summary>Reserves the required space in the vertex and index arrays</summary>
+            <param name="font">Font the vertices for the letters will be taken from</param>
+            <param name="text">String of which a mesh will be built</param>
+        </member>
+        <member name="T:Nuclex.Fonts.FilledText">
+            <summary>Stores the vertices for a string as filled 3D text</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.FilledText.#ctor(Nuclex.Fonts.VectorFont,System.String)">
+            <summary>Initializes a new filled string mesh</summary>
+            <param name="font">Font from which the vertices will be taken</param>
+            <param name="text">String of which to build a mesh</param>
+        </member>
+        <member name="M:Nuclex.Fonts.FilledText.buildStringMesh(Nuclex.Fonts.VectorFont,System.String)">
+            <summary>Builds the combined mesh for the letters in this string</summary>
+            <param name="font">Vector font to take the vertex data from</param>
+            <param name="text">String of which a mesh is to be built</param>
+        </member>
+        <member name="M:Nuclex.Fonts.FilledText.resizeVertexAndIndexArrays(Nuclex.Fonts.VectorFont,System.String)">
+            <summary>Reserves the required space in the vertex and index arrays</summary>
+            <param name="font">Font the vertices for the letters will be taken from</param>
+            <param name="text">String of which a mesh will be built</param>
+        </member>
+        <member name="T:Nuclex.Fonts.OutlinedText">
+            <summary>Stores the vertices for an outlined string</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.OutlinedText.#ctor(Nuclex.Fonts.VectorFont,System.String)">
+            <summary>Initializes a new outlined string</summary>
+            <param name="font">Font from which the vertices will be taken</param>
+            <param name="text">String of which to build a mesh</param>
+        </member>
+        <member name="M:Nuclex.Fonts.OutlinedText.buildStringOutline(Nuclex.Fonts.VectorFont,System.String)">
+            <summary>Builds the combined outline for the letters in this string</summary>
+            <param name="font">Vector font to take the vertex data from</param>
+            <param name="text">String of which a mesh is to be built</param>
+        </member>
+        <member name="M:Nuclex.Fonts.OutlinedText.resizeVertexAndIndexArrays(Nuclex.Fonts.VectorFont,System.String)">
+            <summary>Reserves the required space in the vertex and index arrays</summary>
+            <param name="font">Font the vertices for the letters will be taken from</param>
+            <param name="text">String of which a mesh will be built</param>
+        </member>
+        <member name="T:Nuclex.Fonts.TextTest">
+            <summary>Unit tests for the text class</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextTest.TestVerticesProperty">
+            <summary>Tests whether the Vertices property works correctly</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextTest.TestIndicesProperty">
+            <summary>Tests whether the Indices property works correctly</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextTest.TestPrimitiveTypeProperty">
+            <summary>Tests whether the PrimitiveType property works correctly</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextTest.TestWidthProperty">
+            <summary>Tests whether the Width property works correctly</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextTest.TestHeightProperty">
+            <summary>Tests whether the Height property works correctly</summary>
+        </member>
+        <member name="T:Nuclex.Fonts.TextTest.TestText">
+            <summary>Test implemented of a text mesh for the unit test</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextTest.TestText.#ctor">
+            <summary>Initializes a new test text mesh</summary>
+        </member>
+        <member name="T:Nuclex.Fonts.TextBatch">
+            <summary>Batches text drawing commands</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatch.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>Initializes a new text batch for rendering</summary>
+            <param name="graphicsDevice">Graphics device to render to</param>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatch.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatch.DrawText(Nuclex.Fonts.Text,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a line of text to the screen</summary>
+            <param name="text">Pregenerated text mesh to draw to the screen</param>
+            <param name="color">Color and opacity with which to draw the text</param>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatch.DrawText(Nuclex.Fonts.Text,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a line of text to the screen</summary>
+            <param name="text">Pregenerated text mesh to draw to the screen</param>
+            <param name="color">Color and opacity with which to draw the text</param>
+            <param name="transform">Transformation matrix to apply to the text</param>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatch.DrawText(Nuclex.Fonts.Text,Microsoft.Xna.Framework.Graphics.Effect)">
+            <summary>Draws a line of text to the screen</summary>
+            <param name="text">Pregenerated text mesh to draw to the screen</param>
+            <param name="effect">Custom effect with which to draw the text</param>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatch.Begin">
+            <summary>Begins a new text rendering batch</summary>
+            <remarks>
+              Call this before drawing text with the DrawText() method. For optimal
+              performance, try to put all your text drawing commands inside as few
+              Begin()..End() pairs as you can manage.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatch.End">
+            <summary>Ends the current text rendering batch</summary>
+            <remarks>
+              This method needs to be called each time you call the Begin() method
+              after all text drawing commands have taken place.
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Fonts.TextBatch.dummyService">
+            <summary>Dummy graphics device service used for the content manager</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.TextBatch.contentManager">
+            <summary>Content manager used to load the text batch's effect file</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.TextBatch.primitiveBatch">
+            <summary>Primitive batch used to batch text vertices together</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.TextBatch.solidColorEffect">
+            <summary>Effect used for rendering text in solid color</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.TextBatch.viewProjection">
+            <summary>Current view * projection matrix to apply to the text</summary>
+        </member>
+        <member name="P:Nuclex.Fonts.TextBatch.ViewProjection">
+            <summary>Current concatenated view * projection matrix of the scene</summary>
+        </member>
+        <member name="T:Nuclex.Fonts.TextBatchTest">
+            <summary>Unit tests for the text batcher</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatchTest.Setup">
+            <summary>Initializes a test</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatchTest.Teardown">
+            <summary>Finalizes the resources used during the test</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatchTest.TestConstructor">
+            <summary>Verifies that instances of the effect can be created</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatchTest.TestViewProjectionMatrix">
+            <summary>
+              Verifies that the view/projection matrix is saved by the text batcher
+            </summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatchTest.TestBeginEnd">
+            <summary>
+              Tests whether the Begin() and End() methods can be called without any
+              drawing commands inbetween
+            </summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatchTest.TestDrawTextWithDefaultTransform">
+            <summary>
+              Tests the text drawing method using the default transformation matrix
+            </summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatchTest.TestDrawTextWithCustomTransform">
+            <summary>
+              Tests the text drawing method using a custom transformation matrix
+            </summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatchTest.TestDrawTextWithCustomEffect">
+            <summary>
+              Tests the text drawing method using a custom effect
+            </summary>
+        </member>
+        <member name="F:Nuclex.Fonts.TextBatchTest.mockedGraphicsDeviceService">
+            <summary>Graphics device service used for the test</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.TextBatchTest.textBatch">
+            <summary>Textbatch being tested</summary>
+        </member>
+        <member name="T:Nuclex.Fonts.TextBatchTest.TestText">
+            <summary>Test implemented of a text mesh for the unit test</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextBatchTest.TestText.#ctor">
+            <summary>Initializes a new test text mesh</summary>
+        </member>
+        <member name="T:Nuclex.Fonts.TextDrawContext">
+            <summary>Drawing context for drawing text with vector fonts</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextDrawContext.#ctor(Microsoft.Xna.Framework.Graphics.Effect,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Color)">
+            <summary>Initializes a new text draw context</summary>
+            <param name="effect">Effect that will be used to render the text</param>
+            <param name="transform">Transformation matrix for the text</param>
+            <param name="textColor">Drawing color of the text</param>
+        </member>
+        <member name="M:Nuclex.Fonts.TextDrawContext.Apply(System.Int32)">
+            <summary>Prepares the graphics device for drawing</summary>
+            <param name="pass">Index of the pass to begin rendering</param>
+        </member>
+        <member name="M:Nuclex.Fonts.TextDrawContext.Equals(Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Tests whether another draw context is identical to this one</summary>
+            <param name="otherContext">Other context to check for equality</param>
+            <returns>True if the other context is identical to this one</returns>
+        </member>
+        <member name="F:Nuclex.Fonts.TextDrawContext.effect">
+            <summary>The draw context's effect used for rendering</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.TextDrawContext.transform">
+            <summary>Transformation matrix controlling the text's placement</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.TextDrawContext.textColor">
+            <summary>Drawing color of the text</summary>
+        </member>
+        <member name="P:Nuclex.Fonts.TextDrawContext.Passes">
+            <summary>Number of passes this draw context requires for rendering</summary>
+        </member>
+        <member name="T:Nuclex.Fonts.TextDrawContextTest">
+            <summary>Unit tests for the text drawing context</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextDrawContextTest.TestIdenticalEffectParameters">
+            <summary>
+              Verifies that two text contexts which should produce the exact same result
+              compare as equal
+            </summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextDrawContextTest.TestDifferentMatrices">
+            <summary>
+              Verifies that two text contexts with different matrices compare as inequal
+            </summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextDrawContextTest.TestDifferentColors">
+            <summary>
+              Verifies that two text contexts with different color compare as inequal
+            </summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextDrawContextTest.TestDifferentEffects">
+            <summary>
+              Verifies that the text context can be compared against another context of
+              a different type
+            </summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextDrawContextTest.TestDifferentContexts">
+            <summary>
+              Verifies that the text context can be compared against another context of
+              a different type
+            </summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextDrawContextTest.TestBeginEnd">
+            <summary>
+              Tests the Begin() and End() methods of the draw context without any rendering
+              taking place inbetween them
+            </summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextDrawContextTest.Setup">
+            <summary>Initializes a test</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.TextDrawContextTest.Teardown">
+            <summary>Finalizes the resources used during the test</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.TextDrawContextTest.mockedGraphicsDeviceService">
+            <summary>Mocked graphics device service used by the test</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.TextDrawContextTest.contentManager">
+            <summary>ContentManager used to load text effect</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.TextDrawContextTest.effect">
+            <summary>Effect used for testing the context</summary>
+        </member>
+        <member name="T:Nuclex.Fonts.VectorFont">
+            <summary>Vector-based font for creating three-dimensional text</summary>
+            <remarks>
+              <para>
+                Whereas bitmap based fonts copy pre-rendered image of the characters onto
+                the screen, vector based fonts store the vertices that make up a fonts 'hull'
+                and render the text with actual polygons at runtime.
+              </para>
+              <para>
+                For normal usage, after loading a VectorFont instance through the
+                Content Manager, use one of the three mesh generation methods:
+                <list type="bullet">
+                  <item>
+                    <term>Outline()</term>
+                    <description>
+                      This method outlines the given string and returns a text mesh that
+                      contains the side faces of the entire string in a single vertex list.
+                    </description>
+                  </item>
+                  <item>
+                    <term>Fill()</term>
+                    <description>
+                      Probably the most-used variant, this will build a flat mesh from the
+                      string you provide. The mesh only contains front-facing polygons and
+                      is ideal for normal text display, with the advantage that text won't
+                      become distorted or blurry when it is zoomed / rotated.
+                    </description>
+                  </item>
+                  <item>
+                    <term>Extrude()</term>
+                    <description>
+                      This method builds a complete sealed 3D mesh from the string you
+                      specify. The length of extrusion is always 1.0 units, centered
+                      about the middle of that range, giving you the ability to scale the
+                      extrusion level at will using the text's transformation matrix.
+                    </description>
+                  </item>
+                </list>
+              </para>
+              <para>
+                The vector font class also gives you full access to the underlying data of
+                a font, enabling you to use it for other purposes such as collision detection
+                or volume-based particle emitters that will make your credits or intro text
+                look more dynamic. This data is contained in the character instances you can
+                access through this class. To find the character index for a specific unicode
+                letter, use the CharacterMap which enlists any letter that the font can provide.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFont.#ctor(System.Single,System.Collections.Generic.List{Nuclex.Fonts.VectorFontCharacter},System.Collections.Generic.Dictionary{System.Char,System.Int32},System.Collections.Generic.Dictionary{Nuclex.Fonts.VectorFont.KerningPair,Microsoft.Xna.Framework.Vector2})">
+            <summary>Constructs a new vector font</summary>
+            <param name="lineHeight">
+              Height of a single line of text in this font
+            </param>
+            <param name="characters">List of Characters contained in the font</param>
+            <param name="characterMap">
+              Map used to associate unicode characters with character indices
+            </param>
+            <param name="kerningTable">
+              Kerning data for adjusting the space between specific characters
+            </param>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFont.Outline(System.String)">
+            <summary>Constructs the outline of the specified string</summary>
+            <param name="text">String to construct an outline of</param>
+            <returns>The outline of the specified string</returns>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFont.Fill(System.String)">
+            <summary>Constructs a mesh of the strings face plane</summary>
+            <param name="text">Text to construct a flat polygon mesh of</param>
+            <returns>The filled string mesh</returns>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFont.Extrude(System.String)">
+            <summary>Constructs an extruded polygon mesh of the string</summary>
+            <param name="text">String from which to construct a polygon mesh</param>
+            <returns>The extruded string mesh</returns>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFont.lineHeight">
+            <summary>Height of a single line of text in this font</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFont.characters">
+            <summary>Characters contained in the font</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFont.characterMap">
+            <summary>Look-up map for indices by unicode character</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFont.kerningTable">
+            <summary>
+              Kerning table for adjusting the positions of specific character combinations
+            </summary>
+        </member>
+        <member name="P:Nuclex.Fonts.VectorFont.LineHeight">
+            <summary>Height of a single line of text in this font</summary>
+        </member>
+        <member name="P:Nuclex.Fonts.VectorFont.Characters">
+            <summary>List of the characters contained in this font</summary>
+        </member>
+        <member name="P:Nuclex.Fonts.VectorFont.CharacterMap">
+            <summary>Maps unicode character to indices into the character list</summary>
+        </member>
+        <member name="P:Nuclex.Fonts.VectorFont.KerningTable">
+            <summary>
+              Kerning table for adjusting the positions of specific character combinations
+            </summary>
+            <remarks>
+              Certain character combination, such as the two consecutive characters 'AV'
+              have diagonal shapes that would cause the characters to visually appear
+              is if they were further apart from each other. Kerning adjusts the distances
+              between such characters to keep the perceived character distance at the
+              same level for all character combinations.
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Fonts.VectorFont.KerningPair">
+            <summary>Pair of characters for kerning informations</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFont.KerningPair.#ctor(System.Char,System.Char)">
+            <summary>Initializes a new kerning pair</summary>
+            <param name="left">Left character of the kerning pair</param>
+            <param name="right">Right character of the kerning pair</param>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFont.KerningPair.Left">
+            <summary>The left character in the kerning pair</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFont.KerningPair.Right">
+            <summary>The right character in the kerning pair</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFont.KerningPair.GetHashCode">
+            <summary>Returns a hash code for the kerning pair</summary>
+            <returns>A hash code for the kerning pair</returns>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFont.KerningPair.Equals(System.Object)">
+            <summary>Compares this object to another object</summary>
+            <param name="other">Object to compare to</param>
+            <returns>True if both objects are identical</returns>
+        </member>
+        <member name="T:Nuclex.Fonts.VectorFontTest">
+            <summary>Unit tests for the vector font class</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontTest.TestGetLineHeight">
+            <summary>Tests whether the line height of a vector font can be obtained</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontTest.TestCharacters">
+            <summary>
+              Verifies that the characters of the vector font can be accessed
+            </summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontTest.TestCharacterMap">
+            <summary>Tests whether the character map points to valid characters</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontTest.TestKerningTable">
+            <summary>Tests whether kerning table lists valid characters</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontTest.TestOutlining">
+            <summary>Tests whether outlined text can be constructed by the font</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontTest.TestFilling">
+            <summary>Tests whether filled text can be constructed by the font</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontTest.TestExtrusion">
+            <summary>Tests whether extruded text can be constructed by the font</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontTest.Setup">
+            <summary>Called before each test is run</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontTest.Teardown">
+            <summary>Called after each test has run</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontTest.getFirstVisibleCharacter">
+            <summary>Retrieves the first visible character in the font</summary>
+            <returns>The first visible character in the font</returns>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontTest.mockedGraphicsDeviceService">
+            <summary>Mocked graphics device service used for unit testing</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontTest.contentManager">
+            <summary>Content manager used to load the vector font</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontTest.vectorFont">
+            <summary>Vector font being tested</summary>
+        </member>
+        <member name="T:Nuclex.Fonts.VectorFontTest.KerningPairTest">
+            <summary>Unit tests for the vector font's kerning pair structure</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontTest.KerningPairTest.TestConstructor">
+            <summary>
+              Validates that the constructor of the kerning pair structure is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontTest.KerningPairTest.TestGetHashCode">
+            <summary>
+              Validates that the constructor of the kerning pair structure is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontTest.KerningPairTest.TestEqualityCheck">
+            <summary>Verifies that the Equals() method is implemented correctly</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontTest.KerningPairTest.TestEqualityCheckAgainstIncompatibleType">
+            <summary>
+              Tests whether the Equals() method can cope with an incompatible object
+            </summary>
+        </member>
+        <member name="T:Nuclex.Fonts.VectorFontCharacter">
+            <summary>Stores the data of a character in a vector font</summary>
+            <remarks>
+              <para>
+                Each character in a vector font has an array of vertices that store the
+                outline points for the font and in some cases contains additional
+                supporting vertices required to draw filled text with triangles.
+              </para>
+              <para>
+                You can either access this data any make use of it for your own purposes,
+                or use one of the vector font's provided methods for constructing an
+                outline font, a flat font or an extruded font.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontCharacter.#ctor(Microsoft.Xna.Framework.Vector2,System.Collections.Generic.List{Microsoft.Xna.Framework.Vector2},System.Collections.Generic.List{Nuclex.Fonts.VectorFontCharacter.Outline},System.Collections.Generic.List{Nuclex.Fonts.VectorFontCharacter.Face})">
+            <summary>Initializes new vector font character</summary>
+            <param name="advancement">
+              By what to advance the pen after the character was drawn
+            </param>
+            <param name="vertices">Vertices used by this character</param>
+            <param name="outlines">Vertex indices for drawing the character's outline</param>
+            <param name="faces">Vertex indices for filling the character</param>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontCharacter.advancement">
+            <summary>How far to advance the cursor after this character is rendered</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontCharacter.vertices">
+            <summary>Vertices used by this character</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontCharacter.outlines">
+            <summary>Vertex index ranges to use for drawing the character's outlines</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontCharacter.faces">
+            <summary>Vertex indices to use for filling the character with triangles</summary>
+        </member>
+        <member name="P:Nuclex.Fonts.VectorFontCharacter.Advancement">
+            <summary>By how much to advance the cursor after drawing this character</summary>
+        </member>
+        <member name="P:Nuclex.Fonts.VectorFontCharacter.Vertices">
+            <summary>Vertices for this character</summary>
+            <remarks>
+              This contains the vertices required to draw the outline of the character
+              as well as supporting vertices required to draw the character's face as
+              a series of triangles. If you're only interested in a character's outlines,
+              you can ignore any vertices with an index above the EndVertex of
+              the lastmost outline contained in the Outlines list.
+            </remarks>
+        </member>
+        <member name="P:Nuclex.Fonts.VectorFontCharacter.Outlines">
+            <summary>
+              Specifies which vertices have to be connected to draw the outlines
+              of the character.
+            </summary>
+            <remarks>
+              <para>
+                A character can have more than one outline. For example, the equals sign ('=')
+                has two unconnected shapes that require two outlines to be drawn. In this
+                case, you'd find two outlines, the first one specifying the starting and ending
+                vertex for the first stroke and the second one specifying the starting and
+                ending vertex for the second stroke.
+              </para>
+              <para>
+                The vertex range specified by each outline should be handled as a single
+                line strip (draw a line from the first to the second vertex, then from the
+                second to the third, and so on). The final vertex needs to be connected
+                to the first vertex again to close the outline.
+              </para>
+            </remarks>
+        </member>
+        <member name="P:Nuclex.Fonts.VectorFontCharacter.Faces">
+            <summary>
+              Specifies between which vertices triangles have to be drawn to draw a
+              polygon-filled character.
+            </summary>
+        </member>
+        <member name="T:Nuclex.Fonts.VectorFontCharacter.Outline">
+            <summary>Stores the starting index and the vertex count of a character outline</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontCharacter.Outline.#ctor(System.Int32,System.Int32)">
+            <summary>Initializes a new character outline</summary>
+            <param name="startVertexIndex">Index of the vertex with which the outline starts</param>
+            <param name="vertexCount">Number of vertices in this outline</param>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontCharacter.Outline.StartVertexIndex">
+            <summary>Index of the vertex with which the outline begins</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontCharacter.Outline.VertexCount">
+            <summary>Total number of vertices the outline consists of</summary>
+        </member>
+        <member name="T:Nuclex.Fonts.VectorFontCharacter.Face">
+            <summary>Stores three vertex indices forming a triangle</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontCharacter.Face.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>Initializes a new character face triangle</summary>
+            <param name="firstVertexIndex">Index of the triangle's first vertex</param>
+            <param name="secondVertexIndex">Index of the triangle's second vertex</param>
+            <param name="thirdVertexIndex">Index of the triangle's third vertex</param>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontCharacter.Face.FirstVertexIndex">
+            <summary>Index of the first vertex of the triangle</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontCharacter.Face.SecondVertexIndex">
+            <summary>Index of the second vertex of the triangle</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontCharacter.Face.ThirdVertexIndex">
+            <summary>Index of the third vertex of the triangle</summary>
+        </member>
+        <member name="T:Nuclex.Fonts.VectorFontCharacterTest">
+            <summary>Unit tests for the vector font character class</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontCharacterTest.TestAdvancement">
+            <summary>Verifies that the tested character has a valid advancement</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontCharacterTest.TestFaces">
+            <summary>Verifies that the tested character has a face list</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontCharacterTest.TestOutlines">
+            <summary>Verifies that the tested character has an outline list</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontCharacterTest.TestVertices">
+            <summary>Verifies that the tested character has vertices</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontCharacterTest.Setup">
+            <summary>Called before each test is run</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontCharacterTest.Teardown">
+            <summary>Called after each test has run</summary>
+        </member>
+        <member name="M:Nuclex.Fonts.VectorFontCharacterTest.getFirstVisibleCharacter">
+            <summary>Retrieves the first visible character in the font</summary>
+            <returns>The first visible character in the font</returns>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontCharacterTest.mockedGraphicsDeviceService">
+            <summary>Mocked graphics device service used for unit testing</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontCharacterTest.contentManager">
+            <summary>Content manager used to load the vector font</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontCharacterTest.vectorFont">
+            <summary>Vector font the tested character is taken from</summary>
+        </member>
+        <member name="F:Nuclex.Fonts.VectorFontCharacterTest.vectorCharacter">
+            <summary>Vector font character being tested</summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,3210 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nuclex.Graphics</name>
+    </assembly>
+    <members>
+        <member name="T:Nuclex.Graphics.Resources.DebugDrawerResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Resources.DebugDrawerResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Resources.DebugDrawerResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Resources.DebugDrawerResourcesTest">
+            <summary>Unit tests for the debug drawer resources</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Resources.DebugDrawerResourcesTest.TestResourceClassCreation">
+            <summary>Verifies that an instance of the resource class can be created</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Resources.DebugDrawerResourcesTest.TestAssignCulture">
+            <summary>Tests the 'Culture' property of the resource class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Resources.DebugDrawerResourcesTest.TestLucidaSpriteFont">
+            <summary>Verifies that the lucida sprite font can be accessed</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Resources.DebugDrawerResourcesTest.TestSolidColorEffect">
+            <summary>Verifies that the solid color effect can be accessed</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.BasicEffectDrawContext">
+            <summary>
+              Sets up a BasicEffect instance for primitives drawn by the PrimitiveBatch class
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.EffectDrawContext">
+            <summary>
+              Uses a custom XNA effect for the primitives drawn by the PrimitiveBatch class
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.DrawContext">
+            <summary>
+              Controls the graphics device settings during the rendering process
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContext.Apply(System.Int32)">
+            <summary>Prepares the graphics device for drawing</summary>
+            <param name="pass">Index of the pass to begin rendering</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContext.Equals(Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Tests whether another draw context is identical to this one</summary>
+            <param name="otherContext">Other context to check for equality</param>
+            <returns>True if the other context is identical to this one</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContext.Equals(System.Object)">
+            <summary>
+              Tests whether another object is a draw context with identical settings
+            </summary>
+            <param name="other">Object to check for equality</param>
+            <returns>
+              True if the other context is a draw context identical to this one
+            </returns>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContext.GetHashCode">
+            <summary>
+              Returns a hashcode that is not guaranteed to be unique but will be equal for
+              all instances of the class that are in an identical state
+            </summary>
+            <returns>The hashcode of the object</returns>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.DrawContext.Passes">
+            <summary>Number of passes this draw context requires for rendering</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.EffectDrawContext.#ctor(Microsoft.Xna.Framework.Graphics.Effect)">
+            <summary>Initializes a new effect draw context</summary>
+            <param name="effect">
+              Effect that will be used for the primitives rendered with this context
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.EffectDrawContext.Apply(System.Int32)">
+            <summary>Prepares the graphics device for drawing</summary>
+            <param name="pass">Index of the pass to begin rendering</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.EffectDrawContext.Equals(Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Tests whether another draw context is identical to this one</summary>
+            <param name="otherContext">Other context to check for equality</param>
+            <returns>True if the other context is identical to this one</returns>
+            <remarks>
+              Classes deriving from the EffectDrawContext should override this method
+              and do their own comparison - for example, two drawing contexts might
+              use the same effect instance, but apply different effect parameters before
+              rendering - in that case, an additional comparison of the draw context's
+              own settings needs to be performed here.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.EffectDrawContext.CompareEffectParameters(Microsoft.Xna.Framework.Graphics.Effect)">
+            <summary>Compares the effect parameters member by member</summary>
+            <param name="otherEffect">
+              Other effect that will be compared against the context's own effect
+            </param>
+            <returns>True of all parameters of the other effect are equal</returns>
+            <remarks>
+              Override this to perform a comparison on the relevant parameters of
+              your custom effect. By default, this will return false, causing only
+              effect drawing contexts with the same effect object to be considered
+              for batching.
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.EffectDrawContext.effect">
+            <summary>The draw context's effect used for rendering</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.EffectDrawContext.Passes">
+            <summary>Number of passes this draw context requires for rendering</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.EffectDrawContext.Effect">
+            <summary>The basic effect being managed by the draw context</summary>
+            <remarks>
+              Warning: If you change the settings of this effect after you've already
+              queued other primitives to be drawn, those primitives might be affected
+              nontheless if they haven't been rendered yet. The recommended usage is to
+              initialize an effect once for each set of settings you need and then keep
+              using those instances without modifying them.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.BasicEffectDrawContext.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>Initializes a new BasicEffect draw context</summary>
+            <param name="graphicsDevice">GraphicsDevice the effect will use</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.BasicEffectDrawContext.Dispose">
+            <summary>Immediately releases all resources owned by the primitive batch</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.BasicEffectDrawContext.CompareEffectParameters(Microsoft.Xna.Framework.Graphics.Effect)">
+            <summary>Compares the effect parameters member by member</summary>
+            <param name="otherEffect">
+              Other effect that will be compared against the context's own effect
+            </param>
+            <returns>True of all parameters of the other effect are equal</returns>
+            <remarks>
+              Override this to perform a comparison on the relevant parameters of
+              your custom effect. By default, this will return false, causing only
+              effect drawing contexts with the same effect object to be considered
+              for batching.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.BasicEffectDrawContext.areEqual(Microsoft.Xna.Framework.Graphics.DirectionalLight,Microsoft.Xna.Framework.Graphics.DirectionalLight)">
+            <summary>Compares two directional lights against each other</summary>
+            <param name="left">Left directional light that will be compared</param>
+            <param name="right">Reft directional light that will be compared</param>
+            <returns>True if both directional lights have identical properties</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.BasicEffectDrawContext.createEffect(Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>Creates the effect used by the draw context</summary>
+            <param name="graphicsDevice">GraphicsDevice the effect will use</param>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.BasicEffectDrawContext.basicEffect">
+            <summary>The draw context's BasicEffect instance used for rendering</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.BasicEffectDrawContext.BasicEffect">
+            <summary>The basic effect being managed by the draw context</summary>
+            <remarks>
+              Warning: If you change the settings of this effect after you've already
+              queued other primitives to be drawn, those primitives might be affected
+              nontheless if they haven't been rendered yet. The recommended usage is to
+              initialize an effect once for each set of settings you need and then keep
+              using those instances without modifying them.
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.BasicEffectDrawContextTest">
+            <summary>Unit tests for the BasicEffect drawing context</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.BasicEffectDrawContextTest.TestConstructor">
+            <summary>Verifies that the constructor of the drawing context is working</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.BasicEffectDrawContextTest.TestEqualsWithDifferentObject">
+            <summary>
+              Verifies that testing the drawing context against a different instance
+              results the comparison reporting inequality
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.BasicEffectDrawContextTest.TestEqualsWithIncompatibleEffect">
+            <summary>
+              Verifies that testing the drawing context against another drawing context with
+              an incompatible effect type results in the comparison reporting inequality
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.BasicEffectDrawContextTest.TestEffectRetrieval">
+            <summary>
+              Verifies that the used effect can be obtained using the 'BasicEffect' property
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.BasicEffectDrawContextTest.TestEffectDrawContext">
+            <summary>Drawing context used for the unit test</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.BasicEffectDrawContextTest.TestEffectDrawContext.#ctor(Microsoft.Xna.Framework.Graphics.Effect)">
+            <summary>Initializes a new test effect drawing context</summary>
+            <param name="effect">Effect that will be used for testing</param>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.DeferredQueuer`1">
+            <summary>Queues vertices until the end of the drawing cycle</summary>
+            <remarks>
+              This queuer respects the order in which drawing commands were given and
+              tries to merge any consecutively issued primitives of the same type into
+              a single DrawPrimitive() call. This is ideal if you have a large number
+              of small objects that are rendered with the same settings (eg. a particle
+              system or letters in a bitmap/vector font system).
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.Queuer`1">
+            <summary>Controls the queuing of primitives for the primitive batcher</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.Queuer`1.#ctor(Nuclex.Graphics.Batching.IBatchDrawer{`0})">
+            <summary>Initializes a new primitive queuer</summary>
+            <param name="batchDrawer">
+              Batch drawer that will be used to render completed vertex batches
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.Queuer`1.Dispose">
+            <summary>Immediately releases all resources owned by the queuer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.Queuer`1.Begin">
+            <summary>Informs the queuer that a new drawing cycle is about to start</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.Queuer`1.End">
+            <summary>Informs the queuer that the current drawing cycle has ended</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.Queuer`1.Queue(`0[],System.Int32,System.Int32,System.Int16[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Queues a series of indexed primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">
+              Index in the vertex array of the first vertex. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="startIndex">Index of the vertex index to begin drawing with</param>
+            <param name="indexCount">Number of vertex indices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.Queuer`1.Queue(`0[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Queues a series of primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">Index of vertex to begin drawing with</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.Queuer`1.BatchDrawer">
+            <summary>Vertex batch drawer used to send vertex batches to the GPU</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuer`1.#ctor(Nuclex.Graphics.Batching.IBatchDrawer{`0})">
+            <summary>Initializes a new deferred primitive queuer</summary>
+            <param name="batchDrawer">
+              Batch drawer that will be used to render completed vertex batches
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuer`1.Begin">
+            <summary>Informs the queuer that a new drawing cycle is about to start</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuer`1.End">
+            <summary>Informs the queuer that the current drawing cycle has ended</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuer`1.Queue(`0[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Queues a series of primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">Index of vertex to begin drawing with</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuer`1.Queue(`0[],System.Int32,System.Int32,System.Int16[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Queues a series of indexed primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">
+              Index in the vertex array of the first vertex. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="startIndex">Index of the vertex index to begin drawing with</param>
+            <param name="indexCount">Number of vertex indices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuer`1.queueVerticesNoOverflow(`0[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>
+              Queues the provided vertices for deferred rendering when there is enough
+              space left in the current batch to hold all vertices
+            </summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">
+              Index in the vertex array of the first vertex. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+            <remarks>
+              This is a special optimized method for adding vertices when the amount of
+              vertices to render does not exceed available batch space, which should be
+              the default usage of a vertex batcher.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuer`1.queueIndexedVerticesNoOverflow(`0[],System.Int32,System.Int32,System.Int16[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Queues the provided indexed vertices for deferred rendering</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">
+              Index in the vertex array of the first vertex. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="startIndex">Index of the vertex index to begin drawing with</param>
+            <param name="indexCount">Number of vertex indices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+            <remarks>
+              This is a special optimized method for adding vertices when the amount of
+              vertices to render does not exceed available batch space, which should be
+              the default usage of a vertex batcher.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuer`1.flush">
+            <summary>Flushes the queued vertices to the graphics card</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuer`1.reset">
+            <summary>Resets the internal buffers to the empty state</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuer`1.createNewOperationIfNecessary(Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>
+              Creates a new rendering operation if the drawing context or primitive type
+              have changed since the last call
+            </summary>
+            <param name="type">Primitive type of the upcoming vertices</param>
+            <param name="context">Drawing context used by the upcoming vertices</param>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuer`1.operations">
+            <summary>All vertex batches enqueued for rendering so far</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuer`1.currentOperation">
+            <summary>Cached reference to the current RenderOperation</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuer`1.vertices">
+            <summary>Queued vertices</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuer`1.usedVertexCount">
+            <summary>Number of used vertices in the vertex array</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuer`1.indices">
+            <summary>Queued indices</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuer`1.usedIndexCount">
+            <summary>Number of used indices in the index array</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuer`1.queueVerticesBufferSplit(`0[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext,System.Int32)">
+            <summary>
+              Queues the provided vertices for deferred rendering, doing one or more
+              intermediate flushes when the vertex batch is full
+            </summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">
+              Index in the vertex array of the first vertex. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+            <param name="spaceLeft">Amount of space left in the current batch</param>
+            <remarks>
+              This is a special optimized method for adding vertices when the amount of
+              vertices to render does not exceed available batch space, which should be
+              the default usage of a vertex batcher.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuer`1.queueIndexedVerticesBufferSplit(`0[],System.Int32,System.Int32,System.Int16[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext,System.Int32)">
+            <summary>
+              Queues the provided vertices for deferred rendering, doing one or more
+              intermediate flushes when the vertex batch is full
+            </summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">
+              Index in the vertex array of the first vertex. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="startIndex">Index of the vertex index to begin drawing with</param>
+            <param name="indexCount">Number of vertex indices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+            <param name="spaceLeft">Amount of space left in the current batch</param>
+            <remarks>
+              This is a special optimized method for adding vertices when the amount of
+              vertices to render does not exceed available batch space, which should be
+              the default usage of a vertex batcher.
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.DeferredQueuer`1.RenderOperation">
+            <summary>Set of primitives that can be drawn in a single run</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuer`1.RenderOperation.#ctor(System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Initializes a new render operation</summary>
+            <param name="startIndex">Starting index of the RenderOperation</param>
+            <param name="primitiveType">What kind of primitives to draw</param>
+            <param name="drawContext">Controls the graphics device settings</param>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuer`1.RenderOperation.StartIndex">
+            <summary>First index to draw</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuer`1.RenderOperation.EndIndex">
+            <summary>Index after the last index to draw</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuer`1.RenderOperation.PrimitiveType">
+            <summary>Type of primitives to draw</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuer`1.RenderOperation.DrawContext">
+            <summary>Draw context controlling the graphics device settings</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuer`1.RenderOperation.BaseVertexIndex">
+            <summary>Base vertex index for the vertex buffer in this operation</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuer`1.RenderOperation.VertexCount">
+            <summary>Number of vertices used in the operation</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.DeferredQueuerTest">
+            <summary>Unit tests for the deferred queuer</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.QueuerTest">
+            <summary>Unit tests for the queuer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.QueuerTest.#cctor">
+            <summary>Static constructor that initializes the test vertex array</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.QueuerTest.TestVertices">
+            <summary>Array of vertices being used for testing</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.QueuerTest.TestIndices">
+            <summary>Array of indices being used for testing, ordered in reverse</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.QueuerTest.DummyDrawContext">
+            <summary>Drawing context used for the unit test</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.QueuerTest.DummyDrawContext.Apply(System.Int32)">
+            <summary>Prepares the graphics device for drawing</summary>
+            <param name="pass">Index of the pass to begin rendering</param>
+            <remarks>
+              Should only be called between the normal Begin() and End() methods.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.QueuerTest.DummyDrawContext.Equals(Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Tests whether another draw context is identical to this one</summary>
+            <param name="otherContext">Other context to check for equality</param>
+            <returns>True if the other context is identical to this one</returns>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.QueuerTest.DummyDrawContext.Passes">
+            <summary>Number of passes this draw context requires for rendering</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.QueuerTest.DummyBatchDrawer">
+            <summary>Dummy drawer for vertex batches</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.IBatchDrawer`1">
+            <summary>
+              Draws batches of primitives using the most efficient method available
+              on the platform the game is running on
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.IBatchDrawer`1.Select(`0[],System.Int32,System.Int16[],System.Int32)">
+            <summary>Selects the vertices that will be used for drawing</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="indexCount">Number of vertex indices to draw</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.IBatchDrawer`1.Select(`0[],System.Int32)">
+            <summary>Selects the vertices that will be used for drawing</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.IBatchDrawer`1.Draw(System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Draws a batch of indexed primitives</summary>
+            <param name="startVertex">
+              Index of the first vertex in the vertex array. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices used in the call</param>
+            <param name="startIndex">
+              Position at which to begin processing the index array
+            </param>
+            <param name="indexCount">Number of indices that will be processed</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.IBatchDrawer`1.Draw(System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Draws a batch of primitives</summary>
+            <param name="startVertex">Index of vertex to begin drawing with</param>
+            <param name="vertexCount">Number of vertices used</param>
+            <param name="type">Type of primitives that will be drawn</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.IBatchDrawer`1.MaximumBatchSize">
+            <summary>
+              Maximum number of vertices or indices a single batch is allowed to have
+            </summary>
+            <remarks>
+              This value must not change once the batch drawer is passed to a queuer
+              since the queuers will size the vertex arrays according to this number.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.QueuerTest.DummyBatchDrawer.#ctor">
+            <summary>Initializes as new instance of the vertex drawer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.QueuerTest.DummyBatchDrawer.Select(Microsoft.Xna.Framework.Graphics.VertexPositionColor[],System.Int32,System.Int16[],System.Int32)">
+            <summary>Selects the vertices that will be used for drawing</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="indexCount">Number of vertex indices to draw</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.QueuerTest.DummyBatchDrawer.Select(Microsoft.Xna.Framework.Graphics.VertexPositionColor[],System.Int32)">
+            <summary>Selects the vertices that will be used for drawing</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.QueuerTest.DummyBatchDrawer.Draw(System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Draws a batch of indexed primitives</summary>
+            <param name="startVertex">
+              Index of the first vertex in the vertex array. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices used in the call</param>
+            <param name="startIndex">
+              Position at which to begin processing the index array
+            </param>
+            <param name="indexCount">Number of indices that will be processed</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.QueuerTest.DummyBatchDrawer.Draw(System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Draws a batch of primitives</summary>
+            <param name="startVertex">Index of vertex to begin drawing with</param>
+            <param name="vertexCount">Number of vertices used</param>
+            <param name="type">Type of primitives that will be drawn</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.QueuerTest.DummyBatchDrawer.vertices">
+            <summary>Vertices currently selected for drawing</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.QueuerTest.DummyBatchDrawer.indices">
+            <summary>Indices currently selected for drawing</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.QueuerTest.DummyBatchDrawer.drawnBatches">
+            <summary>Records the batches that would have been drawn so far</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.QueuerTest.DummyBatchDrawer.MaximumBatchSize">
+            <summary>
+              Maximum number of vertices or indices a single batch is allowed to have
+            </summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.QueuerTest.DummyBatchDrawer.DrawnBatches">
+            <summary>Batchs that would have been drawn so far</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.QueuerTest.DummyQueuer">
+            <summary>Dummy implementation for testing the Queuer class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.QueuerTest.DummyQueuer.#ctor">
+            <summary>Initializes a new dummy queuer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.QueuerTest.DummyQueuer.Queue(Microsoft.Xna.Framework.Graphics.VertexPositionColor[],System.Int32,System.Int32,System.Int16[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Queues a series of indexed primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">
+              Index in the vertex array of the first vertex. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="startIndex">Index of the vertex index to begin drawing with</param>
+            <param name="indexCount">Number of vertex indices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.QueuerTest.DummyQueuer.Queue(Microsoft.Xna.Framework.Graphics.VertexPositionColor[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Queues a series of primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">Index of vertex to begin drawing with</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.TestConstructor">
+            <summary>
+              Verifies that new instances of the deferred queuer can be created
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.TestLineStripBatchOverflow">
+            <summary>
+              Tests a line strip drawing call which overflows the vertex batch size
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.TestLineStripBatchOverflowSkip">
+            <summary>
+              Tests a line strip drawing call which overflows the vertex batch size
+              and where no vertices can be placed in the first batch.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.TestLineListBatchOverflow">
+            <summary>
+              Tests a line list drawing call which overflows the vertex batch size
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.TestTriangleStripBatchOverflow">
+            <summary>
+              Tests a triangle strip drawing call which overflows the vertex batch size
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.TestTriangleStripBatchOverflowSkip">
+            <summary>
+              Tests a triangle strip drawing call which overflows the vertex batch size
+              with the first batch too full to hold the beginning of the strip
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.TestTriangleListBatchOverflow">
+            <summary>
+              Tests a triangle list drawing call which overflows the vertex batch size
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.TestIndexedLineStripBatchOverflow">
+            <summary>
+              Tests an indexed line strip drawing call which overflows the vertex batch size
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.TestIndexedLineStripBatchOverflowSkip">
+            <summary>
+              Tests an indexed line strip drawing call which overflows the vertex batch size
+              and where no vertices can be placed in the first batch.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.TestIndexedLineListBatchOverflow">
+            <summary>
+              Tests a indexed line list drawing call which overflows the vertex batch size
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.TestIndexedTriangleStripBatchOverflow">
+            <summary>
+              Tests an indexed triangle strip drawing call which overflows
+              the vertex batch size
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.TestIndexedTriangleStripBatchOverflowSkip">
+            <summary>
+              Tests an indexed triangle strip drawing call which overflows the vertex batch
+              size with the first batch too full to hold the beginning of the strip
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.TestIndexedTriangleListBatchOverflow">
+            <summary>
+              Tests an indexed triangle list drawing call which overflows
+              the vertex batch size
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.subArray``1(``0[],System.Int32)">
+            <summary>Returns a subsection of an array as a new array</summary>
+            <typeparam name="ElementType">
+              Type of the elements being stored in the array
+            </typeparam>
+            <param name="array">Array from which a subsection will be extracted</param>
+            <param name="start">Start index in the array at which extration will begin</param>
+            <returns>
+              An array containing only the elements within the specified range of
+              the original array
+            </returns>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.subArray``1(``0[],System.Int32,System.Int32)">
+            <summary>Returns a subsection of an array as a new array</summary>
+            <typeparam name="ElementType">
+              Type of the elements being stored in the array
+            </typeparam>
+            <param name="array">Array from which a subsection will be extracted</param>
+            <param name="start">Start index in the array at which extration will begin</param>
+            <param name="count">Number of elements that will be extracted</param>
+            <returns>
+              An array containing only the elements within the specified range of
+              the original array
+            </returns>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.DeferredQueuerTest.Creator">
+            <summary>Sets up a test environment for the deferred queuer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.Creator.#ctor">
+            <summary>Initializes a new test environment</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.Creator.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.Creator.Queue(Microsoft.Xna.Framework.Graphics.VertexPositionColor[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType)">
+            <summary>Queues a series of primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">Index of vertex to begin drawing with</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.Creator.Queue(Microsoft.Xna.Framework.Graphics.VertexPositionColor[],System.Int32,System.Int32,System.Int16[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType)">
+            <summary>Queues a series of indexed primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">
+              Index in the vertex array of the first vertex. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="startIndex">Index of the vertex index to begin drawing with</param>
+            <param name="indexCount">Number of vertex indices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.Creator.Begin">
+            <summary>Informs the queuer that a new drawing cycle is about to start</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DeferredQueuerTest.Creator.End">
+            <summary>Informs the queuer that the current drawing cycle has ended</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuerTest.Creator.queuer">
+            <summary>Deferred queuer being tested</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuerTest.Creator.batchDrawer">
+            <summary>Dummy batch drawer that records drawn vertices</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DeferredQueuerTest.Creator.drawContext">
+            <summary>Dummy draw context that doesn't do a thing</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.DeferredQueuerTest.Creator.DrawnBatches">
+            <summary>Batches that have been drawn so far</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.DrawContextTest">
+            <summary>Unit tests for the drawing context</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContextTest.TestEqualsWithIncompatibleObject">
+            <summary>
+              Compares the test drawing context against an incompatible object
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContextTest.TestEqualsWithSameObject">
+            <summary>
+              Verifies that testing the drawing context against itself results in 
+              the comparison reporting equality
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContextTest.TestEqualsWithDifferentObject">
+            <summary>
+              Verifies that testing the drawing context against a different instance
+              results the comparison reporting inequality
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContextTest.TestGetHashcode">
+            <summary>
+              Tests the hash code calculation method of the drawing context
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.DrawContextTest.TestDrawContext">
+            <summary>Drawing context used for the unit test</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContextTest.TestDrawContext.Apply(System.Int32)">
+            <summary>Prepares the graphics device for drawing</summary>
+            <param name="pass">Index of the pass to begin rendering</param>
+            <remarks>
+              Should only be called between the normal Begin() and End() methods.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContextTest.TestDrawContext.Equals(Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Tests whether another draw context is identical to this one</summary>
+            <param name="otherContext">Other context to check for equality</param>
+            <returns>True if the other context is identical to this one</returns>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.DrawContextTest.TestDrawContext.Passes">
+            <summary>Number of passes this draw context requires for rendering</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.DrawContextQueuer`1">
+            <summary>
+              Queues vertices until the end of the drawing cycle and sorts them
+              by their drawing context.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContextQueuer`1.#ctor(Nuclex.Graphics.Batching.IBatchDrawer{`0})">
+            <summary>Initializes a new draw context primitive queuer</summary>
+            <param name="batchDrawer">
+              Batch drawer that will be used to render completed vertex batches
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContextQueuer`1.Begin">
+            <summary>Informs the queuer that a new drawing cycle is about to start</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContextQueuer`1.End">
+            <summary>Informs the queuer that the current drawing cycle has ended</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContextQueuer`1.Queue(`0[],System.Int32,System.Int32,System.Int16[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Queues a series of indexed primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">
+              Index in the vertex array of the first vertex. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="startIndex">Index of the vertex index to begin drawing with</param>
+            <param name="indexCount">Number of vertex indices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContextQueuer`1.Queue(`0[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Queues a series of primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">Index of vertex to begin drawing with</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DrawContextQueuer`1.contexts">
+            <summary>Encountered drawing contexts and their associated vertices</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.DrawContextQueuerTest">
+            <summary>Unit tests for the draw context queuer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DrawContextQueuerTest.TestConstructor">
+            <summary>
+              Verifies that new instances of the draw context queuer can be created
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1">
+            <summary>Draws batched vertices using a dynamic vertex buffer</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.Divisions">
+            <summary>Number of regions the vertex buffer is divided into</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.DiscardIfPossible">
+            <summary>
+              Equivalent to SetDataOptions.Discard if supported by the target platform
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>Initializes a new dynamic vertex buffer based batch drawer</summary>
+            <param name="graphicsDevice">
+              Graphics device that will be used for rendering
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.Select(`0[],System.Int32,System.Int16[],System.Int32)">
+            <summary>Selects the vertices that will be used for drawing</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="indexCount">Number of vertex indices to draw</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.Select(`0[],System.Int32)">
+            <summary>Selects the vertices that will be used for drawing</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.Draw(System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Draws a batch of indexed primitives</summary>
+            <param name="startVertex">
+              Index of the first vertex in the vertex array. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices used in the call</param>
+            <param name="startIndex">
+              Position at which to begin processing the index array
+            </param>
+            <param name="indexCount">Number of indices that will be processed</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.Draw(System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Draws a batch of primitives</summary>
+            <param name="startVertex">Index of vertex to begin drawing with</param>
+            <param name="vertexCount">Number of vertices used</param>
+            <param name="type">Type of primitives that will be drawn</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.unselectBuffers">
+            <summary>Deselects the index and vertex buffers</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.selectBuffers(System.Int32)">
+            <summary>Selects the index and vertex buffers</summary>
+            <param name="divisionIndex">Index of the division to select</param>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.graphicsDevice">
+            <summary>Graphics device being used for rendering</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.vertexBuffer">
+            <summary>Dynamic VertexBuffer used to render batches</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.indexBuffer">
+            <summary>Dynamic IndexBuffer used to render batches</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.currentDivisionIndex">
+            <summary>Division that will be filled next</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.stride">
+            <summary>Size, in bytes, of a single vertex</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.DynamicBufferBatchDrawer`1.MaximumBatchSize">
+            <summary>
+              Maximum number of vertices or indices a single batch is allowed to have
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest">
+            <summary>Unit tests for the dynamic buffer based batch drawer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the user primitive batch drawer works
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.TestMaximumBatchSize">
+            <summary>
+              Tests whethe the MaximumBatchSize property of the batcher can be accessed
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.TestSelectWithoutIndices">
+            <summary>
+              Tests whether the Select() method without vertex indices is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.TestSelectMultipleWithoutIndices">
+            <summary>
+              Tests whether the Select() method without vertex indices is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.TestSelectWithIndices">
+            <summary>
+              Tests whether the Select() method with vertex indices is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.TestSelectMultipleWithIndices">
+            <summary>
+              Tests whether the Select() method with vertex indices is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.TestDrawWithoutIndices">
+            <summary>
+              Tests whether the Draw() method without vertex indices is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.TestDrawWithIndices">
+            <summary>
+              Tests whether the Draw() method with vertex indices is working
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.Creator">
+            <summary>Manages the lifetime of a batch drawer instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.Creator.#ctor">
+            <summary>Initializes a new batch drawer creator</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.Creator.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.Creator.mockedService">
+            <summary>Mocked graphics device service the drawer operates on</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.Creator.graphicsDeviceKeeper">
+            <summary>Keeps the graphics device alive</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.Creator.vertexDeclaration">
+            <summary>Vertex declaration for the vertices we use for testing</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.Creator.batchDrawer">
+            <summary>Batch drawer being tested</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.Creator.GraphicsDevice">
+            <summary>Graphics device the batch drawer is using</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.DynamicBufferBatchDrawerTest.Creator.BatchDrawer">
+            <summary>The batch drawer being tested</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.EffectDrawContextTest">
+            <summary>Unit tests for the Effect drawing context</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.EffectDrawContextTest.TestConstructor">
+            <summary>Verifies that the constructor of the drawing context is working</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.EffectDrawContextTest.TestBeginEnd">
+            <summary>
+              Verifies that the Begin() and End() methods of the drawing context are working
+              as expected
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.EffectDrawContextTest.TestEffectRetrieval">
+            <summary>
+              Verifies that the used effect can be obtained using the 'Effect' property
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.EffectDrawContextTest.TestEqualsWithSameObject">
+            <summary>
+              Verifies that testing the drawing context against itself results in 
+              the comparison reporting equality
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.EffectDrawContextTest.TestEqualsWithDifferentObject">
+            <summary>
+              Verifies that testing the drawing context against a different instance
+              results the comparison reporting inequality
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.EffectDrawContextTest.TestEqualsWithIncpmpatibleDrawContext">
+            <summary>
+              Verifies that testing the drawing context against an instance of a different
+              drawing context is reported as inequality
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.EffectDrawContextTest.TestDrawContext">
+            <summary>Drawing context used for the unit test</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.EffectDrawContextTest.TestDrawContext.Apply(System.Int32)">
+            <summary>Prepares the graphics device for drawing</summary>
+            <param name="pass">Index of the pass to begin rendering</param>
+            <remarks>
+              Should only be called between the normal Begin() and End() methods.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.EffectDrawContextTest.TestDrawContext.Equals(Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Tests whether another draw context is identical to this one</summary>
+            <param name="otherContext">Other context to check for equality</param>
+            <returns>True if the other context is identical to this one</returns>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.EffectDrawContextTest.TestDrawContext.Passes">
+            <summary>Number of passes this draw context requires for rendering</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.EffectDrawContextTest.TestEffectDrawContext">
+            <summary>Drawing context used for the unit test</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.EffectDrawContextTest.TestEffectDrawContext.#ctor(Microsoft.Xna.Framework.Graphics.Effect)">
+            <summary>Initializes a new test effect drawing context</summary>
+            <param name="effect">Effect that will be used for testing</param>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.ImmediateQueuer`1">
+            <summary>Draws any vertices sent to it immediately</summary>
+            <remarks>
+              This is the simplest possible queuer. It will draw any vertices handed to
+              it immediately. This causes a large number of DrawPrimitive() calls, which
+              will have a drastic impact on performance (DirectX 9.0 level games are expected
+              to have only a few hundred DrawPrimitive calls per frame). It is advisable to
+              use this queuer only if you have a very few primitive batches to draw.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.ImmediateQueuer`1.#ctor(Nuclex.Graphics.Batching.IBatchDrawer{`0})">
+            <summary>Initializes a new immediate primitive queuer</summary>
+            <param name="batchDrawer">
+              Batch drawer that will be used to render completed vertex batches
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.ImmediateQueuer`1.Queue(`0[],System.Int32,System.Int32,System.Int16[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Queues a series of indexed primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">
+              Index in the vertex array of the first vertex. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="startIndex">Index of the vertex index to begin drawing with</param>
+            <param name="indexCount">Number of vertex indices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.ImmediateQueuer`1.Queue(`0[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Queues a series of primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">Index of vertex to begin drawing with</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.ImmediateQueuerTest">
+            <summary>Unit tests for the immediate queuer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.ImmediateQueuerTest.TestConstructor">
+            <summary>
+              Verifies that new instances of the immediate queuer can be created
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.PrimitiveBatch`1">
+            <summary>Collects vertices into batches to improve rendering performance</summary>
+            <typeparam name="VertexType">Type of vertices to be batched</typeparam>
+            <remarks>
+              This class is very similar to the SpriteBatch class, but instead of being
+              specialized for sprite rendering, it handles all kinds of primitives.
+              It is ideal for dynamic, CPU-calculated geometry such as particle systems,
+              fluid visualization or marching cube/tetrahedron-based geometry.
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.PrimitiveBatch`1.BatchSize">
+            <summary>Maximum number of vertices or indices in a single batch</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatch`1.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>Initializes a new primitive batcher</summary>
+            <param name="graphicsDevice">
+              Graphics device the primitive batcher will use
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatch`1.#ctor(Nuclex.Graphics.Batching.IBatchDrawer{`0})">
+            <summary>Initializes a new primitive batcher</summary>
+            <param name="batchDrawer">
+              Vertex batch drawer that will be used by the primitive batcher
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatch`1.Dispose">
+            <summary>
+              Immediately releases all resources owned by the primitive batch
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatch`1.Begin(Nuclex.Graphics.Batching.QueueingStrategy)">
+            <summary>Begins the drawing process</summary>
+            <param name="queueingStrategy">
+              By what criteria to queue primitives and when to draw them
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatch`1.End">
+            <summary>Ends the drawing process</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatch`1.Draw(`0[],Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Draws a series of triangles</summary>
+            <param name="vertices">Triangle vertices</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatch`1.Draw(`0[],Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Draws a series of primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatch`1.Draw(`0[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Draws a series of primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">Index of vertex to begin drawing with</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatch`1.Draw(`0[],System.Int16[],Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Draws a series of indexed triangles</summary>
+            <param name="vertices">Triangle vertices</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatch`1.Draw(`0[],System.Int16[],Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Draws a series of indexed primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatch`1.Draw(`0[],System.Int32,System.Int32,System.Int16[],System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Draws a series of indexed primitives</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="startVertex">
+              Index in the vertex array of the first vertex. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="startIndex">Index of the vertex index to begin drawing with</param>
+            <param name="indexCount">Number of vertex indices to draw</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatch`1.GetDefaultBatchDrawer(Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>Returns the default batch drawer for the target platform</summary>
+            <param name="graphicsDevice">Graphics device that batch drawer will use</param>
+            <returns>
+              A new instance of the default batch drawer for the target platform
+            </returns>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.PrimitiveBatch`1.batchDrawer">
+            <summary>Sends batches of vertices to the GPU for drawing</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.PrimitiveBatch`1.queueingStrategy">
+            <summary>Controls how primitives are queued (selects queuer)</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.PrimitiveBatch`1.primitiveQueuer">
+            <summary>Queues vertices and initiates rendering when needed</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.PrimitiveBatchTest">
+            <summary>Unit tests for the primitive batcher</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatchTest.TestConstructor">
+            <summary>
+              Tests whether the constructor of the primitve batcher is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatchTest.TestStrategySwitching">
+            <summary>
+              Tests whether the different queueing strategies can be selected
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatchTest.TestInvalidStrategy">
+            <summary>
+              Verifies that an exception is thrown if an invalid queueing strategy
+              is chosen
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatchTest.TestDrawPrimitives">
+            <summary>
+              Verifies that the primitive batcher can draw all kinds of primitives
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatchTest.TestDrawIndexedPrimitives">
+            <summary>
+              Verifies that the primitive batcher can draw all kinds of primitives
+              using an index array
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatchTest.TestDrawTriangles">
+            <summary>
+              Tests whether the primitive batch is able to draw a list of triangles
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatchTest.TestDrawIndexedTriangles">
+            <summary>
+              Tests whether the primitive batch is able to draw a list of triangles
+              indexed by an index array
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatchTest.TestGraphicsDeviceReset">
+            <summary>
+              Verifies that the primitive batcher can survive a graphics device reset
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatchTest.createIndices(System.Int32)">
+            <summary>Creates a list of sequential indices</summary>
+            <param name="count">Number of indices to generate</param>
+            <returns>An array containing the generated indices</returns>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.PrimitiveBatchTest.DummyDrawContext">
+            <summary>Drawing context used for the unit test</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatchTest.DummyDrawContext.Apply(System.Int32)">
+            <summary>Prepares the graphics device for drawing</summary>
+            <param name="pass">Index of the pass to begin rendering</param>
+            <remarks>
+              Should only be called between the normal Begin() and End() methods.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatchTest.DummyDrawContext.Equals(Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Tests whether another draw context is identical to this one</summary>
+            <param name="otherContext">Other context to check for equality</param>
+            <returns>True if the other context is identical to this one</returns>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.PrimitiveBatchTest.DummyDrawContext.Passes">
+            <summary>Number of passes this draw context requires for rendering</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.PrimitiveBatchTest.PrimitiveBatchCreator">
+            <summary>Helper class that automates primitive batcher creation</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatchTest.PrimitiveBatchCreator.#ctor">
+            <summary>Initializes a new primitive batch creator</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.PrimitiveBatchTest.PrimitiveBatchCreator.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.PrimitiveBatchTest.PrimitiveBatchCreator.mockedGraphicsDeviceService">
+            <summary>
+              The mocked graphics device sevice providing the graphics device for testing
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.PrimitiveBatchTest.PrimitiveBatchCreator.graphicsDeviceKeeper">
+            <summary>Keeps the graphics device alive until disposed</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.PrimitiveBatchTest.PrimitiveBatchCreator.vertexDeclaration">
+            <summary>Declaration for the vertex structure we're using in the tests</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.PrimitiveBatchTest.PrimitiveBatchCreator.primitiveBatch">
+            <summary>Primitive batcher being tested</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.PrimitiveBatchTest.PrimitiveBatchCreator.MockedGraphicsDeviceService">
+            <summary>Mocked graphics device service used for rendering</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.PrimitiveBatchTest.PrimitiveBatchCreator.PrimitiveBatch">
+            <summary>Primitive batch the primitive batch creator has created</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.QueueingStrategy">
+            <summary>
+              Strategies by which the primitive batcher can consolidate vertices
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.QueueingStrategy.Immediate">
+            <summary>Immediately draws any primitives sent to the batcher.</summary>
+            <remarks>
+              This results in rather poor performance but keeps the drawing order
+              unchanged even when multiple primitve batchers are used to draw at
+              the same time.
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.QueueingStrategy.Deferred">
+            <summary>
+              The vertex batcher caches any drawing commands until a batch is full
+              or the End() method is called.
+            </summary>
+            <remarks>
+              This will greatly improve rendering performance compared to immediate
+              drawing. However, using multiple primitve batchers at the same time
+              will result in an undefined drawing order (if there are no overlaps or
+              the depth buffer is enabled, this won't matter)
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.QueueingStrategy.Context">
+            <summary>
+              Caches all drawing commands and sorts the primitives queued for drawing
+              by the context they use.
+            </summary>
+            <remarks>
+              This is the fastest mode for many small objects. However, drawing order
+              will be undefined, requiring either a zero overlap guarantee for any
+              vertices drawn or the depth buffer to be enabled.
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawer`1">
+            <summary>Draws batched vertices using DrawUserPrimitive() calls</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawer`1.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>Initializes a new DrawUserPrimitive()-based batch drawer</summary>
+            <param name="graphicsDevice">
+              Graphics device that will be used for rendering
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawer`1.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawer`1.Select(`0[],System.Int32,System.Int16[],System.Int32)">
+            <summary>Selects the vertices that will be used for drawing</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+            <param name="indices">Indices of the vertices to draw</param>
+            <param name="indexCount">Number of vertex indices to draw</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawer`1.Select(`0[],System.Int32)">
+            <summary>Selects the vertices that will be used for drawing</summary>
+            <param name="vertices">Primitive vertices</param>
+            <param name="vertexCount">Number of vertices to draw</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawer`1.Draw(System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Draws a batch of indexed primitives</summary>
+            <param name="startVertex">
+              Index of the first vertex in the vertex array. This vertex will become
+              the new index 0 for the index buffer.
+            </param>
+            <param name="vertexCount">Number of vertices used in the call</param>
+            <param name="startIndex">
+              Position at which to begin processing the index array
+            </param>
+            <param name="indexCount">Number of indices that will be processed</param>
+            <param name="type">Type of primitives to draw</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawer`1.Draw(System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType,Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Draws a batch of primitives</summary>
+            <param name="startVertex">Index of vertex to begin drawing with</param>
+            <param name="vertexCount">Number of vertices used</param>
+            <param name="type">Type of primitives that will be drawn</param>
+            <param name="context">Desired graphics device settings for the primitives</param>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawer`1.graphicsDevice">
+            <summary>Graphics device being used for rendering</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawer`1.vertices">
+            <summary>Vertices being used for drawing</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawer`1.indices">
+            <summary>Indices being used for drawing</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawer`1.MaximumBatchSize">
+            <summary>
+              Maximum number of vertices or indices a single batch is allowed to have
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest">
+            <summary>Unit tests for the DrawUserPrimitive()-based batch drawer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the user primitive batch drawer works
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.TestMaximumBatchSize">
+            <summary>
+              Tests whethe the MaximumBatchSize property of the batcher can be accessed
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.TestSelectWithoutIndices">
+            <summary>
+              Tests whether the Select() method without vertex indices is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.TestSelectWithIndices">
+            <summary>
+              Tests whether the Select() method with vertex indices is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.TestDrawWithoutIndices">
+            <summary>
+              Tests whether the Draw() method without vertex indices is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.TestDrawWithIndices">
+            <summary>
+              Tests whether the Draw() method with vertex indices is working
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.Creator">
+            <summary>Manages the lifetime of a batch drawer instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.Creator.#ctor">
+            <summary>Initializes a new batch drawer creator</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.Creator.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.Creator.mockedService">
+            <summary>Mocked graphics device service the drawer operates on</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.Creator.graphicsDeviceKeeper">
+            <summary>Keeps the graphics device alive</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.Creator.vertexDeclaration">
+            <summary>Vertex declaration for the vertices we use for testing</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.Creator.batchDrawer">
+            <summary>Batch drawer being tested</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.Creator.GraphicsDevice">
+            <summary>Graphics device the batch drawer is using</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Batching.UserPrimitiveBatchDrawerTest.Creator.BatchDrawer">
+            <summary>The batch drawer being tested</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Camera">
+            <summary>Stores the location and orientation of a camera in a 3D scene</summary>
+            <remarks>
+              <para>
+                The view matrix contains the camera's inverted location and orientation.
+                Whereas a normal matrix stores the position and orientation of an object
+                and converts coordinates in the object's coordinate frame into world
+                coordinates, the camera's view matrix is inverted and thus converts
+                world coordinates into coordinates of the camera's local coordinate frame.
+              </para>
+              <para>
+                The projection matrix converts coordinates in the camera's coordinate
+                frame (calculated by transforming world coordiantes through the camera's
+                view matrix) into screen coordinates. Thus, it 'projects' 3D coordinates
+                onto a flat plane, usually the screen.
+              </para>
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.Camera.MovementSpeed">
+            <summary>Speed at which the camera moves through the scene</summary>
+            <remarks>
+              This value is in world units per second and depends on the scale of
+              the scene - but since games universally adopt world units to whatever
+              unit is most fitting to the game, this default should provide adequate
+              movement speed in all cases.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Camera.#ctor(Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Matrix)">
+            <summary>Initializes a new camera with the provided matrices</summary>
+            <param name="view">View matrix defining the position of the camera</param>
+            <param name="projection">
+              Projection matrix controlling the type of projection that is
+              performed to convert the scene to 2D coordinates.
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Camera.LookAt(Microsoft.Xna.Framework.Vector3)">
+            <summary>Turns the camera so it is facing the point provided</summary>
+            <param name="lookAtPosition">Position the camera should be pointing to</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Camera.MoveTo(Microsoft.Xna.Framework.Vector3)">
+            <summary>Moves the camera to the specified location</summary>
+            <param name="position">Location the camera will be moved to</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Camera.HandleControls(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+              Debugging aid that allows the camera to be moved around by the keyboard
+              or the game pad
+            </summary>
+            <param name="gameTime">Game time to use for scaling the movements</param>
+            <remarks>
+              <para>
+                This is only intended as a debugging aid and should not be used for the actual
+                player controls. As long as you don't rebuild the camera matrix each frame
+                (which is not a good idea in most cases anyway) this will allow you to control
+                the camera in the style of the old "Descent" game series.
+              </para>
+              <para>
+                To enable the camera controls, simply call this method from your main loop!
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Camera.HandleControls(Microsoft.Xna.Framework.GameTime,Microsoft.Xna.Framework.Input.KeyboardState,Microsoft.Xna.Framework.Input.GamePadState)">
+            <summary>
+              Debugging aid that allows the camera to be moved around by the keyboard
+              or the game pad
+            </summary>
+            <param name="gameTime">Game time to use for scaling the movements</param>
+            <param name="keyboardState">Current state of the keyboard</param>
+            <param name="gamepadState">Current state of the gamepad</param>
+            <remarks>
+              <para>
+                This is only intended as a debugging aid and should not be used for the actual
+                player controls. As long as you don't rebuild the camera matrix each frame
+                (which is not a good idea anyway) this will allow you to control the camera
+                in the style of the old "Descent" game series.
+              </para>
+              <para>
+                To enable the camera controls, simply call this method from your main loop!
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Camera.handleKeyboardControls(Microsoft.Xna.Framework.Input.KeyboardState,System.Single)">
+            <summary>Processes any keyboard input for the debugging aid</summary>
+            <param name="keyboardState">Current state of the keyboard</param>
+            <param name="delta">
+              Scales the strength of input, should be based on the time passed since
+              the last frame was drawn
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Camera.handleGamePadControls(Microsoft.Xna.Framework.Input.GamePadState,System.Single)">
+            <summary>Processes any gamepad input for the debugging aid</summary>
+            <param name="gamepadState">Current state of the gamepad</param>
+            <param name="delta">
+              Scales the strength of input, should be based on the time passed since
+              the last frame was drawn
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Camera.CreateDefaultOrthographic">
+            <summary>Returns a default orthographic camera</summary>
+            <remarks>
+              Mainly intended as an aid in unit testing and for some quick verifications
+              of algorithms requiring a camera
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.Camera.View">
+            <summary>View matrix defining the camera's position within the scene</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Camera.Projection">
+            <summary>
+              Controls the projection of 3D coordinates to the render target surface
+            </summary>
+            <remarks>
+              The term 'projection' comes from the fact that this matrix is projecting
+              3D coordinates onto a flat surface, normally either the screen or some
+              render target texture. Typical projection matrices perform either an
+              orthogonal projection (CAD-like) or perspective projections (things get
+              smaller the farther away they are).
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.Camera.up">
+            <summary>
+              Default world up vector for the camera, copied to a variable here because the
+              Matrix.CreateLookAt() method needs a reference to a Vector3.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Camera.Position">
+            <summary>The camera's current position</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Camera.Forward">
+            <summary>The camera's forward vector</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Camera.Right">
+            <summary>The camera's right vector</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Camera.Up">
+            <summary>The camera's up vector</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.CameraTest">
+            <summary>Unit tests for the camera class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestConstructor">
+            <summary>Verifies that the constructor of the camera class is working</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestLookAtFromWorldCenter">
+            <summary>
+              Tests the LookAt() method of the camera class from the world's center
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestLookAtFromArbitraryPosition">
+            <summary>
+              Tests the LookAt() method of the camera class from an arbitrary position
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestDefaultOrthographic">
+            <summary>
+              Verifies that the default orthographic camera is constructed as expected
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestHandleControls">
+            <summary>
+              Verifies that the HandleControls() method of the camera is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestKeyboardForwardMovement">
+            <summary>
+              Tests whether the camera can be moved forward using the keyboard
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestKeyboardBackwardMovement">
+            <summary>
+              Tests whether the camera can be moved backward using the keyboard
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestKeyboardLeftMovement">
+            <summary>
+              Tests whether the camera can be moved to the left using the keyboard
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestKeyboardRightMovement">
+            <summary>
+              Tests whether the camera can be moved to the right using the keyboard
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestKeyboardUpMovement">
+            <summary>
+              Tests whether the camera can be moved up using the keyboard
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestKeyboardDownMovement">
+            <summary>
+              Tests whether the camera can be moved up using the keyboard
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestKeyboardUpRotation">
+            <summary>
+              Tests whether the camera can be rotated upwards using the keyboard
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestKeyboardDownRotation">
+            <summary>
+              Tests whether the camera can be rotated downwards using the keyboard
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestKeyboardLeftRotation">
+            <summary>
+              Tests whether the camera can be rotated to the left using the keyboard
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestKeyboardRightRotation">
+            <summary>
+              Tests whether the camera can be rotated to the right using the keyboard
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestKeyboardClockwiseRotation">
+            <summary>
+              Tests whether the camera can be rotated clockwise using the keyboard
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestKeyboardCounterClockwiseRotation">
+            <summary>
+              Tests whether the camera can be rotated counter-clockwise using the keyboard
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestGamePadUpRotation">
+            <summary>
+              Tests whether the camera can be rotated upwards using the game pad
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestGamePadDownRotation">
+            <summary>
+              Tests whether the camera can be rotated downwards using the game pad
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestGamePadLeftRotation">
+            <summary>
+              Tests whether the camera can be rotated to the left using the game pad
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestGamePadRightRotation">
+            <summary>
+              Tests whether the camera can be rotated to the left using the game pad
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestGamePadClockwiseRotation">
+            <summary>
+              Tests whether the camera can be rotated clockwise using the game pad
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.TestGamePadCounterClockwiseRotation">
+            <summary>
+              Tests whether the camera can be rotated counter-clockwise using the game pad
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.handleControlsOnDefaultCamera(Microsoft.Xna.Framework.Input.Keys[])">
+            <summary>
+              Creates a default orthographic camera and lets it respond as if
+              the specified keys were pressed
+            </summary>
+            <param name="keys">Keys that will be reported to the camera as pressed</param>
+            <returns>The camera after it has responded to the provided controls</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.handleControlsOnDefaultCamera(Microsoft.Xna.Framework.Input.GamePadDPad)">
+            <summary>
+              Creates a default orthographic camera and lets it respond as if
+              the game pad's directional pad was in the specified state
+            </summary>
+            <param name="directionalPad">State of the game pad's directional pad</param>
+            <returns>The camera after it has responded to the provided controls</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.handleControlsOnDefaultCamera(Microsoft.Xna.Framework.Input.GamePadButtons)">
+            <summary>
+              Creates a default orthographic camera and lets it respond as if
+              the game pad's buttons were in the specified state
+            </summary>
+            <param name="buttons">State of the game pad's buttons</param>
+            <returns>The camera after it has responded to the provided controls</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.CameraTest.handleControlsOnDefaultCamera(Microsoft.Xna.Framework.Input.KeyboardState,Microsoft.Xna.Framework.Input.GamePadState)">
+            <summary>
+              Creates a default orthographic camera and lets it respond to the provided
+              controls once with a 1 second update.
+            </summary>
+            <param name="keyboardState">
+              Keyboard state that will be reported to the camera
+            </param>
+            <param name="gamePadState">
+              GamePad state that will be reported to the camera
+            </param>
+            <returns>The camera after it has responded to the provided controls</returns>
+        </member>
+        <member name="P:Nuclex.Graphics.CameraTest.OneSecondGameTime">
+            <summary>A GameTime instance in which one second has passed</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.DebugDrawer">
+            <summary>Game component for overlaying debugging informations on the scene</summary>
+            <remarks>
+              <para>
+                This game component is mainly intended to debugging purposes. It will
+                accept all kinds of geometry drawing commands whilst a frame is being drawn
+                and will overlay this debugging geometry on everything else within the scene
+                just at the end of the drawing queue.
+              </para>
+              <para>
+                The DebugDrawer uses the GameComponent's DrawingOrder property to let itself
+                be drawn last. If you cannot call base.Draw() in your Game class last
+                (that's the line that invokes the Draw() methods of all
+                DrawableGameComponents), you can also create a DebugDrawer without adding
+                it to the GameComponents collection and invoke its Draw() method yourself
+                at the very end of your rendering process.
+              </para>
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Graphics.Drawable">
+            <summary>Drawable object that monitors the GraphicsDeviceService</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Drawable.#ctor(Microsoft.Xna.Framework.Graphics.IGraphicsDeviceService)">
+            <summary>Initializes a new drawable object.</summary>
+            <param name="graphicsDeviceService">
+              Graphics device this drawable object will be bound to
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Drawable.Dispose">
+            <summary>Immediately releases all resources owned by this instance</summary>
+            <remarks>
+              This method is not suitable for being called during a GC run, it is intended
+              for manual usage when you actually want to get rid of the Drawable object.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Drawable.Draw(Microsoft.Xna.Framework.GameTime)">
+            <summary>Called when the Drawable should draw itself.</summary>
+            <param name="gameTime">Provides a snapshot of the game's timing values</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Drawable.GetGraphicsDeviceService(System.IServiceProvider)">
+            <summary>Retrieves the graphics device service from a service provider.</summary>
+            <param name="serviceProvider">Service provider to look in</param>
+            <returns>The graphics device service, if it was available</returns>
+            <remarks>
+              This method is included in the Drawable class to allow deriving classes
+              to expect an IServerProvider as their constructor argument and still
+              initialize Drawable, their base class, with a graphics device service.
+              <example>
+                <code>
+                  public class MyDrawable : Drawable {
+            
+                    public MyDrawable(IServiceProvider serviceProvider) :
+                      base(GetGraphicsDeviceService(serviceProvider)) { }
+                 
+                  }
+                </code>
+              </example>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Drawable.LoadGraphicsContent(System.Boolean)">
+            <summary>
+              Called when the object needs to set up graphics resources. Override to
+              set up any object specific graphics resources.
+            </summary>
+            <param name="createAllContent">
+              True if all graphics resources need to be set up; false if only
+              manual resources need to be set up.
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Drawable.LoadContent">
+            <summary>
+              Called when graphics resources need to be loaded. Override this method to load
+              any game-specific graphics resources.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Drawable.UnloadGraphicsContent(System.Boolean)">
+            <summary>
+              Called when graphics resources should be released. Override to
+              handle component specific graphics resources.
+            </summary>
+            <param name="destroyAllContent">
+              True if all graphics resources should be released; false if only
+              manual resources should be released.
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Drawable.UnloadContent">
+            <summary>
+              Called when graphics resources need to be unloaded. Override this method to unload
+              any game-specific graphics resources.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Drawable.subscribeToGraphicsDeviceService">
+            <summary>
+              Subscribes this component to the events of the graphics device service.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Drawable.unsubscribeFromGraphicsDeviceService">
+            <summary>
+              Unsubscribes this component from the events of the graphics device service.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Drawable.deviceCreated(System.Object,System.EventArgs)">
+            <summary>Called when the graphics device is created</summary>
+            <param name="sender">Graphics device service that created a new device</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Drawable.deviceResetting(System.Object,System.EventArgs)">
+            <summary>Called before the graphics device is being reset</summary>
+            <param name="sender">Graphics device service that is resetting its device</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Drawable.deviceReset(System.Object,System.EventArgs)">
+            <summary>Called after the graphics device has been reset</summary>
+            <param name="sender">Graphics device service that has just reset its device</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Drawable.deviceDisposing(System.Object,System.EventArgs)">
+            <summary>Called before the graphics device is being disposed</summary>
+            <param name="sender">Graphics device service that's disposing the device</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="F:Nuclex.Graphics.Drawable.graphicsDeviceService">
+            <summary>Graphics device service this component is bound to.</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Drawable.deviceCreatedDelegate">
+            <summary>Delegate for the deviceCreated() method</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Drawable.deviceResettingDelegate">
+            <summary>Delegate for the deviceResetting() method</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Drawable.deviceResetDelegate">
+            <summary>Delegate for the deviceReset() method</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Drawable.deviceDisposingDelegate">
+            <summary>Delegate for the deviceDisposing() method</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Drawable.GraphicsDevice">
+            <summary>GraphicsDevice this component is bound to.</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Drawable.GraphicsDeviceService">
+            <summary>Graphics device service the drawable was constucted on</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.IDebugDrawingService">
+            <summary>Service for overlaying debugging informations on the scene</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.IDebugDrawingService.DrawLine(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a line from the starting point to the destination point</summary>
+            <param name="from">Starting point of the line</param>
+            <param name="to">Destination point the line will be drawn to</param>
+            <param name="color">Desired color of the line</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.IDebugDrawingService.DrawTriangle(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a wireframe triangle between three points</summary>
+            <param name="a">First corner point of the triangle</param>
+            <param name="b">Second corner point of the triangle</param>
+            <param name="c">Third corner point of the triangle</param>
+            <param name="color">Desired color of the line</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.IDebugDrawingService.DrawSolidTriangle(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a solid (filled) triangle between three points</summary>
+            <param name="a">First corner point of the triangle</param>
+            <param name="b">Second corner point of the triangle</param>
+            <param name="c">Third corner point of the triangle</param>
+            <param name="color">Desired color of the line</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.IDebugDrawingService.DrawBox(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a wireframe box at the specified location</summary>
+            <param name="min">Contains the coordinates of the box lesser corner</param>
+            <param name="max">Contains the coordinates of the box greater corner</param>
+            <param name="color">Color of the wireframe to draw</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.IDebugDrawingService.DrawSolidBox(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a solid (filled) box at the specified location</summary>
+            <param name="min">Contains the coordinates of the box lesser corner</param>
+            <param name="max">Contains the coordinates of the box greater corner</param>
+            <param name="color">Desired color for the box</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.IDebugDrawingService.DrawArrow(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a wireframe arrow into the scene to visualize a vector</summary>
+            <param name="origin">Location at which to draw the arrow</param>
+            <param name="direction">Direction the arrow is pointing into</param>
+            <param name="color">Color of the wireframe to draw</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.IDebugDrawingService.DrawSolidArrow(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Draws an arrow into the scene to visualize a vector</summary>
+            <param name="origin">Location from which the arrow originates</param>
+            <param name="direction">Direction into which the arrow is pointing</param>
+            <param name="color">Color of the arrow</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.IDebugDrawingService.DrawString(Microsoft.Xna.Framework.Vector2,System.String,Microsoft.Xna.Framework.Color)">
+            <summary>Draws text onto the screen at pixel coordinates</summary>
+            <param name="position">
+              Location on the screen, in pixels, where the text should be drawn.
+            </param>
+            <param name="text">String to be drawn</param>
+            <param name="color">Color the text should have</param>
+        </member>
+        <member name="P:Nuclex.Graphics.Debugging.IDebugDrawingService.ViewProjection">
+            <summary>Concatenated View and Projection matrices to use</summary>
+            <remarks>
+              Update this once per frame to have your debug overlays appear in the
+              right places. Simply set it to (View * Projection) of your camera.
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.MaximumDebugVertexCount">
+            <summary>Maximum number of vertices allowed for debugging overlays</summary>
+            <remarks>
+              Controls the size of the vertex buffer used for storing the vertices
+              of the DebugDrawer. If debugging overlays are drawn after this many
+              vertices have already been generated, the drawing operations will
+              silently fail and a short text message on the screen will show that
+              not all debugging overlays could be drawn.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.#ctor(Microsoft.Xna.Framework.Graphics.IGraphicsDeviceService)">
+            <summary>Initializes a new debug drawer component</summary>
+            <param name="graphicsDeviceService">
+              Graphics device service the debug drawer will use for rendering
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.Reset">
+            <summary>Resets the contents of the debug drawer</summary>
+            <remarks>
+              Reset() will be called automatically after a frame has been rendered.
+              Only use this method if you actually plan to discard everything
+              added to the debug drawer so far inmidst of the drawing process.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.LoadContent">
+            <summary>Loads the graphics resources of the component</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.UnloadContent">
+            <summary>Unloads the graphics resources of the component</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.DrawLine(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a line from the starting point to the destination point</summary>
+            <param name="from">Starting point of the line</param>
+            <param name="to">Destination point the line will be drawn to</param>
+            <param name="color">Desired color of the line</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.DrawTriangle(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a wireframe triangle between three points</summary>
+            <param name="a">First corner point of the triangle</param>
+            <param name="b">Second corner point of the triangle</param>
+            <param name="c">Third corner point of the triangle</param>
+            <param name="color">Desired color of the line</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.DrawSolidTriangle(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a solid (filled) triangle between three points</summary>
+            <param name="a">First corner point of the triangle</param>
+            <param name="b">Second corner point of the triangle</param>
+            <param name="c">Third corner point of the triangle</param>
+            <param name="color">Desired color of the line</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.DrawBox(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a wireframe box at the specified location</summary>
+            <param name="min">Contains the coordinates of the box lesser corner</param>
+            <param name="max">Contains the coordinates of the box greater corner</param>
+            <param name="color">Color of the wireframe to draw</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.DrawSolidBox(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a solid (filled) box at the specified location</summary>
+            <param name="min">Contains the coordinates of the box lesser corner</param>
+            <param name="max">Contains the coordinates of the box greater corner</param>
+            <param name="color">Desired color for the box</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.DrawArrow(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a wireframe arrow into the scene to visualize a vector</summary>
+            <param name="origin">
+              Location at which to draw the arrow (this will form the exact center of
+              the drawn arrow's base)
+            </param>
+            <param name="direction">
+              Direction the arrow is pointing into. The arrow's size is relative to
+              the length of this vector.
+            </param>
+            <param name="color">Color of the wireframe to draw</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.DrawSolidArrow(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Draws a solid arrow into the scene to visualize a vector</summary>
+            <param name="origin">
+              Location at which to draw the arrow (this will form the exact center of
+              the drawn arrow's base)
+            </param>
+            <param name="direction">
+              Direction the arrow is pointing into. The arrow's size is relative to
+              the length of this vector.
+            </param>
+            <param name="color">Color of the arrow</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.DrawString(Microsoft.Xna.Framework.Vector2,System.String,Microsoft.Xna.Framework.Color)">
+            <summary>Draws text onto the screen at pixel coordinates</summary>
+            <param name="position">
+              Location on the screen, in pixels, where the text should be drawn.
+            </param>
+            <param name="text">String to be drawn</param>
+            <param name="color">Color the text should have</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.Draw(Microsoft.Xna.Framework.GameTime)">
+            <summary>Draws the debug overlays queued for this frame</summary>
+            <param name="gameTime">Provides a snapshot of timing values.</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.drawGeometry">
+            <summary>Draws the geometry (lines and triangles) queued up for this frame</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.drawStrings">
+            <summary>Draws the strings queued up for this frame</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.contentManager">
+            <summary>Content manager used to load the debug drawer's effect file</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.fillEffect">
+            <summary>Effect used for drawing the debug overlays</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.drawContext">
+            <summary>Drawing context used wit hthe batch drawer</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.queuedVertices">
+            <summary>Buffer for constructing temporary vertices</summary>
+            <remarks>
+              <para>
+                This array is filled from two sides: Triangles start at index 0 and
+                are appended as normal while lines start at MaximumDebugVertexCount
+                and are appended backwards. When the two list meet at the center
+                of the array, the vertex list is full.
+              </para>
+              <para>
+                We don't need a fancy drawing operation queue because the ordering of
+                the debugging primitives does not matter. We simply draw all of the
+                triangles and proceed with the lines, letting the z-buffer take care
+                of the rest.
+              </para>
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.viewProjection">
+            <summary>The concatenated view and projection matrices</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.batchDrawer">
+            <summary>Drawer that sends the vertices to the GPU in the drawing phase</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.font">
+            <summary>Sprite font we're using for outputting strings to the screen</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.fontSpriteBatch">
+            <summary>SpriteBatch used for font rendering</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.queuedStrings">
+            <summary>Text queued to be rendered onto the scene</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.triangleIndex">
+            <summary>Index for the next triangle in the vertex array</summary>
+            <remarks>
+              Counts from 0 up to MaximumDebugVertexCount, increased in multiples of 3.
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.lineIndex">
+            <summary>Index for the next line in the vertex array</summary>
+            <remarks> 
+              Counts in reverse from MaximumDebugVertexCount to 0,
+              decreased in multiples of 2.
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.overflowed">
+            <summary>
+              Flag indicating that the user has attempted to draw more primitives
+              than our vertex array can hold.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Graphics.Debugging.DebugDrawer.ViewProjection">
+            <summary>Concatenated View and Projection matrices to use</summary>
+            <remarks>
+              Update this once per frame to have your debug overlays appear in the
+              right places. Simply set it to (View * Projection) of your camera.
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.DebugDrawer.QueuedString">
+            <summary>Stores a string that is queued for rendering</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawer.QueuedString.#ctor(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
+            <summary>Initialized a new queued string</summary>
+            <param name="text">Text to be rendered</param>
+            <param name="position">Position at which to render the text</param>
+            <param name="color">Color of the text to render</param>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.QueuedString.Text">
+            <summary>Text to be rendered</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.QueuedString.Position">
+            <summary>Position the text should be rendered at</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawer.QueuedString.Color">
+            <summary>Color of the rendered text</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.DebugDrawerTest">
+            <summary>Unit tests for the debug drawer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawerTest.TestConstructor">
+            <summary>
+              Tests whether an instance of the debug drawer can be constructed
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawerTest.TestViewProjectionMatrix">
+            <summary>
+              Verifies that the view/projection matrix is saved by the debug drawer
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawerTest.TestDrawLinesToOverflow">
+            <summary>Tests the DrawLine() method of the debug drawer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawerTest.TestDrawTrianglesToOverflow">
+            <summary>Tests the DrawTriangle() method of the debug drawer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawerTest.TestDrawSolidTrianglesToOverflow">
+            <summary>Tests the DrawSolidTriangle() method of the debug drawer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawerTest.TestDrawBoxesToOverflow">
+            <summary>Tests the DrawBox() method of the debug drawer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawerTest.TestDrawSolidBoxesToOverflow">
+            <summary>Tests the DrawSolidBox() method of the debug drawer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawerTest.TestDrawArrowsToOverflow">
+            <summary>Tests the DrawArrow() method of the debug drawer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawerTest.TestDrawSolidArrowsToOverflow">
+            <summary>Tests the DrawSolidArrow() method of the debug drawer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawerTest.TestDrawStrings">
+            <summary>Tests the DrawString() method of the debug drawer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawerTest.TestRenderGeometry">
+            <summary>Tests the Draw() method of the debug drawer</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawerTest.Setup">
+            <summary>Initializes a test</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.DebugDrawerTest.Teardown">
+            <summary>Finalizes the resources used during the test</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawerTest.mockedGraphicsDeviceService">
+            <summary>Mocked graphics device service used by the test</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.DebugDrawerTest.debugDrawer">
+            <summary>Debug drawer being tested</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.SolidArrowVertexGenerator">
+            <summary>Generates vertices for a solid (filled) arrow</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.SolidArrowVertexGenerator.VertexCount">
+            <summary>Number of vertices this generator produces</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.SolidArrowVertexGenerator.Generate(Microsoft.Xna.Framework.Graphics.VertexPositionColor[],System.Int32,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Outputs the vertices for a solid arrow into the specified array</summary>
+            <param name="vertices">Array to write the arrow vertices into</param>
+            <param name="startIndex">Index in the array to begin writing at</param>
+            <param name="origin">
+              Location at which to draw the arrow (this will form the exact center of
+              the drawn arrow's base)
+            </param>
+            <param name="direction">
+              Direction the arrow is pointing into. The arrow's size is relative to
+              the length of this vector.
+            </param>
+            <param name="color">Color for the arrow</param>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.SolidArrowVertexGenerator.rotateAroundAxis(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,System.Double)">
+            <summary>Rotates a point around an arbitrary axis defined by a vector</summary>
+            <param name="pointToRotate">Point to be rotated</param>
+            <param name="axis">Axis to rotate the point around</param>
+            <param name="angle">Angle, in radians, to rotate the point by</param>
+            <returns>The point rotated by the specified amount around the give axis</returns>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.SolidArrowVertexGeneratorTest">
+            <summary>Unit tests for the solid arrow vertex generator</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.SolidArrowVertexGeneratorTest.TestArrowGeneration">
+            <summary>Verifies that the vertex generator can create an arrow</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.SolidBoxVertexGenerator">
+            <summary>Generates vertices for a solid box</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.SolidBoxVertexGenerator.VertexCount">
+            <summary>Number of vertices this generator produces</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.SolidBoxVertexGenerator.Generate(Microsoft.Xna.Framework.Graphics.VertexPositionColor[],System.Int32,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Outputs the vertices for a solid box into the specified array</summary>
+            <param name="vertices">Array to write the box vertices into</param>
+            <param name="startIndex">Index in the array to begin writing at</param>
+            <param name="min">Contains the coordinates of the box lesser corner</param>
+            <param name="max">Contains the coordinates of the box greater corner</param>
+            <param name="color">Color for the faces of the box</param>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.SolidBoxVertexGeneratorTest">
+            <summary>Unit tests for the solid box vertex generator</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.SolidBoxVertexGeneratorTest.TestBoxGeneration">
+            <summary>Verifies that the vertex generator can create a box</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.SolidTriangleVertexGenerator">
+            <summary>Generates vertices for a solid triangle</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.SolidTriangleVertexGenerator.VertexCount">
+            <summary>Number of vertices this generator produces</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.SolidTriangleVertexGenerator.Generate(Microsoft.Xna.Framework.Graphics.VertexPositionColor[],System.Int32,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>
+              Outputs the vertices for a solid triangle into the specified array
+            </summary>
+            <param name="vertices">Array to write the triangle vertices into</param>
+            <param name="startIndex">Index in the array to begin writing at</param>
+            <param name="a">First corner point of the triangle</param>
+            <param name="b">Second corner point of the triangle</param>
+            <param name="c">Third corner point of the triangle</param>
+            <param name="color">Color for the faces of the box</param>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.SolidTriangleVertexGeneratorTest">
+            <summary>Unit tests for the solid triangle vertex generator</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.SolidTriangleVertexGeneratorTest.TestTriangleGeneration">
+            <summary>Verifies that the vertex generator can create a triangle</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.VectorHelper.GetPerpendicularVector(Microsoft.Xna.Framework.Vector3)">
+            <summary>Returns a vector that is perpendicular to the input vector</summary>
+            <param name="vector">Vector to which a perpendicular vector will be found</param>
+            <returns>A vector that is perpendicular to the input vector</returns>
+            <remarks>
+              <para>
+                This method does not care for the orientation of the resulting vector, so it
+                shouldn't be used for billboards or to orient a view matrix. On the other hand,
+                if you don't care for the orientation of the resulting vector, only that it is
+                perpendicular, this method can provide better numerical stability and
+                performance than a generic LookAt() method.
+              </para>
+              <para>
+                References:
+                http://www.gamedev.net/community/forums/topic.asp?topic_id=445164
+                http://www.gamedev.net/community/forums/topic.asp?topic_id=518142
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.VectorHelper.GetPerpendicularVector(Microsoft.Xna.Framework.Vector3@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>Returns a vector that is perpendicular to the input vector</summary>
+            <param name="vector">Vector to which a perpendicular vector will be found</param>
+            <param name="perpendicular">
+              Output parameter that receives a vector perpendicular to the provided vector
+            </param>
+            <remarks>
+              <para>
+                This method does not care for the orientation of the resulting vector, so it
+                shouldn't be used for billboards or to orient a view matrix. On the other hand,
+                if you don't care for the orientation of the resulting vector, only that it is
+                perpendicular, this method can provide better numerical stability and
+                performance than a generic LookAt() method.
+              </para>
+              <para>
+                References:
+                http://www.gamedev.net/community/forums/topic.asp?topic_id=445164
+                http://www.gamedev.net/community/forums/topic.asp?topic_id=518142
+              </para>
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.VectorHelperTest">
+            <summary>Unit Test for the vector helper class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.VectorHelperTest.TestGetPerpendicularVector">
+            <summary>
+              Verifies that the vector helper can determine an arbitrary perpendicular vector
+              to another vector
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.WireframeArrowVertexGenerator">
+            <summary>Generates vertices for a wireframe arrow</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.WireframeArrowVertexGenerator.VertexCount">
+            <summary>Number of vertices this generator produces</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.WireframeArrowVertexGenerator.Generate(Microsoft.Xna.Framework.Graphics.VertexPositionColor[],System.Int32,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Outputs the vertices for an arrow into the specified array</summary>
+            <param name="vertices">Array to write the arrow vertices into</param>
+            <param name="startIndex">Index in the array to begin writing at</param>
+            <param name="origin">
+              Location at which to draw the arrow (this will form the exact center of
+              the drawn arrow's base)
+            </param>
+            <param name="direction">
+              Direction the arrow is pointing into. The arrow's size is relative to
+              the length of this vector.
+            </param>
+            <param name="color">Color of the lines making up the arrow</param>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.WireframeArrowVertexGeneratorTest">
+            <summary>Unit tests for the wireframe arrow vertex generator</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.WireframeArrowVertexGeneratorTest.TestArrowGeneration">
+            <summary>Verifies that the vertex generator can create an arrow</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.WireframeBoxVertexGenerator">
+            <summary>Generates vertices for a wireframe box</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.WireframeBoxVertexGenerator.VertexCount">
+            <summary>Number of vertices this generator produces</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.WireframeBoxVertexGenerator.Generate(Microsoft.Xna.Framework.Graphics.VertexPositionColor[],System.Int32,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>Outputs the vertices for a wireframe box into the specified array</summary>
+            <param name="vertices">Array to write the box vertices into</param>
+            <param name="startIndex">Index in the array to begin writing at</param>
+            <param name="min">Contains the coordinates of the box lesser corner</param>
+            <param name="max">Contains the coordinates of the box greater corner</param>
+            <param name="color">Color for the faces of the box</param>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.WireframeBoxVertexGeneratorTest">
+            <summary>Unit tests for the wireframe box vertex generator</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.WireframeBoxVertexGeneratorTest.TestBoxGeneration">
+            <summary>Verifies that the vertex generator can create a box</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.WireframeTriangleVertexGenerator">
+            <summary>Generates vertices for a wireframe triangle</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.Debugging.WireframeTriangleVertexGenerator.VertexCount">
+            <summary>Number of vertices this generator produces</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.WireframeTriangleVertexGenerator.Generate(Microsoft.Xna.Framework.Graphics.VertexPositionColor[],System.Int32,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>
+              Outputs the vertices for a wireframe triangle into the specified array
+            </summary>
+            <param name="vertices">Array to write the box vertices into</param>
+            <param name="startIndex">Index in the array to begin writing at</param>
+            <param name="a">First corner point of the triangle</param>
+            <param name="b">Second corner point of the triangle</param>
+            <param name="c">Third corner point of the triangle</param>
+            <param name="color">Color for the faces of the box</param>
+        </member>
+        <member name="T:Nuclex.Graphics.Debugging.WireframeTriangleVertexGeneratorTest">
+            <summary>Unit tests for the wireframe triangle vertex generator</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.Debugging.WireframeTriangleVertexGeneratorTest.TestTriangleGeneration">
+            <summary>Verifies that the vertex generator can create a triangle</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.DrawableTest">
+            <summary>Unit tests for the 'Drawable' class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.DrawableTest.TestConstructor">
+            <summary>Verifies that the constructor is working</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.DrawableTest.TestCreateGraphicsDeviceAfterConstructor">
+            <summary>
+              Tests whether the drawable can handle the graphics device being created
+              after the drawable's constructor has already run
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.DrawableTest.TestCreateGraphicsDeviceBeforeConstructor">
+            <summary>
+              Tests whether the drawable can handle the graphics device being created
+              before the drawable's constructor has run
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.DrawableTest.TestCreateFromServiceProvider">
+            <summary>
+              Tests whether the drawable can retrieve the graphics device service
+              from a service provider
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.DrawableTest.TestThrowOnMissingGraphicsDeviceService">
+            <summary>
+              Verifies that an exception is thrown if the drawable is constructed from
+              a service provider which doesn't contain the graphics device service
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.DrawableTest.TestDraw">
+            <summary>Verifies that the Draw() method can be called</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.DrawableTest.TestGraphicsDeviceReset">
+            <summary>
+              Verifies that the Drawable class correctly responds to a graphics device reset
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.DrawableTest.TestDrawable">
+            <summary>Drawable implementation for the unit test</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.DrawableTest.TestDrawable.#ctor(Microsoft.Xna.Framework.Graphics.IGraphicsDeviceService)">
+            <summary>Initializes a new drawable</summary>
+            <param name="service">
+              Graphics device service that will be used for rendering
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.DrawableTest.TestDrawable.#ctor(System.IServiceProvider)">
+            <summary>Initializes the drawable from a service provider</summary>
+            <param name="serviceProvider">
+              Service provider containing the graphics device service
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.DrawableTest.TestDrawable.LoadGraphicsContent(System.Boolean)">
+            <summary>
+              Called when the object needs to set up graphics resources. Override to
+              set up any object specific graphics resources.
+            </summary>
+            <param name="createAllContent">
+              True if all graphics resources need to be set up; false if only
+              manual resources need to be set up.
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.DrawableTest.TestDrawable.UnloadGraphicsContent(System.Boolean)">
+            <summary>
+              Called when graphics resources should be released. Override to
+              handle component specific graphics resources.
+            </summary>
+            <param name="destroyAllContent">
+              True if all graphics resources should be released; false if only
+              manual resources should be released.
+            </param>
+        </member>
+        <member name="F:Nuclex.Graphics.DrawableTest.TestDrawable.LoadContentFalseCount">
+            <summary>
+              Number of calls to the LoadContent() method with false as parameter
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.DrawableTest.TestDrawable.UnloadContentFalseCount">
+            <summary>
+              Number of calls to the UnloadContent() method with false as parameter
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.GraphicsDeviceServiceHelper">
+            <summary>Provides supporting functions for the graphics device service</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelper.MakePrivateServiceProvider(Microsoft.Xna.Framework.Graphics.IGraphicsDeviceService)">
+            <summary>
+              Creates a service provider containing only the graphics device service
+            </summary>
+            <param name="graphicsDeviceService">
+              Graphics device service that will be provided by the service provider
+            </param>
+            <returns>
+              A new service provider that provides the graphics device service
+            </returns>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelper.MakeDummyGraphicsDeviceService(Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>
+              Creates a dummy graphics device service for the provided graphics device
+            </summary>
+            <param name="graphicsDevice">
+              Graphics device the dummy service is created around
+            </param>
+            <returns>A new dummy service for the provided graphics device</returns>
+            <remarks>
+              The dummy graphics device service is in all terms equal to the real thing,
+              except that it will trigger the service's events *after* the graphics device
+              might have already notified other subscribers.
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService">
+            <summary>Dummy graphics device service using an existing graphics device</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>Initializes a new dummy graphics device service</summary>
+            <param name="graphicsDevice">Graphics device the service will use</param>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService.Dispose">
+            <summary>Immediately releases all resouces owned by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService.graphicsDeviceResetting(System.Object,System.EventArgs)">
+            <summary>Called when the graphics device is about to reset</summary>
+            <param name="sender">Graphics device that is started a reset</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService.graphicsDeviceReset(System.Object,System.EventArgs)">
+            <summary>Called when the graphics device has completed a reset</summary>
+            <param name="sender">Graphics device that has completed its reset</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService.graphicsDeviceDisposing(System.Object,System.EventArgs)">
+            <summary>Called when the graphics device is being disposed</summary>
+            <param name="sender">Graphics device that is being disposed</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="F:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService.graphicsDevice">
+            <summary>Graphics device the dummy service is being created for</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService.graphicsDeviceResettingDelegate">
+            <summary>Delegate for the graphicsDeviceResetting() method</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService.graphicsDeviceResetDelegate">
+            <summary>Delegate for the graphicsDeviceReset() method</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService.graphicsDeviceDisposingDelegate">
+            <summary>Delegate for the graphicsDeviceDisposing() method</summary>
+        </member>
+        <member name="E:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService.DeviceCreated">
+            <summary>Triggered when the graphics device has been created</summary>
+        </member>
+        <member name="E:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService.DeviceDisposing">
+            <summary>Triggered when the graphics device is about to be disposed</summary>
+        </member>
+        <member name="E:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService.DeviceReset">
+            <summary>Triggered after the graphics device has completed a reset</summary>
+        </member>
+        <member name="E:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService.DeviceResetting">
+            <summary>Triggered when the graphcis device is about to be reset</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.GraphicsDeviceServiceHelper.DummyGraphicsDeviceService.GraphicsDevice">
+            <summary>Graphics device provided by the service</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.GraphicsDeviceServiceHelperTest">
+            <summary>Unit tests for the graphics device mock test helper</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelperTest.Setup">
+            <summary>Initialization routine executed before each test is run</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelperTest.Teardown">
+            <summary>Called after each test has run</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelperTest.TestPrivateServiceProvider">
+            <summary>
+              Verifies that a created private service provider actually contains the service
+              it has been created for
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelperTest.TestDummyGraphicsDeviceService">
+            <summary>
+              Verifies that the dummy graphics device provide provides the graphics device
+              it has been given in its constructor
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelperTest.TestDummyGraphicsDeviceServiceEvents">
+            <summary>
+              Tests whether the dummy graphics device service forwards the events being
+              issued by the wrapped graphics device
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelperTest.mockSubscriber(Microsoft.Xna.Framework.Graphics.IGraphicsDeviceService)">
+            <summary>
+              Mocks a subscriber for the events of the mocked graphics device service
+            </summary>
+            <returns>The mocked event subscriber</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelperTest.unmockSubscriber(Microsoft.Xna.Framework.Graphics.IGraphicsDeviceService,NMock.Mock{Nuclex.Graphics.GraphicsDeviceServiceHelperTest.IGraphicsDeviceServiceSubscriber})">
+            <summary>Finalizes a mocked graphics device service subscriber</summary>
+            <param name="graphicsDeviceService">
+              Graphics device service the mock in unsubscribed from
+            </param>
+            <param name="mockedSubscriber">Subscriber that will be unsubscribed</param>
+        </member>
+        <member name="F:Nuclex.Graphics.GraphicsDeviceServiceHelperTest.mockery">
+            <summary>Mock object factory</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.GraphicsDeviceServiceHelperTest.IGraphicsDeviceServiceSubscriber">
+            <summary>Subscriber for the events of the graphics device service</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelperTest.IGraphicsDeviceServiceSubscriber.DeviceCreated(System.Object,System.EventArgs)">
+            <summary>Called when a graphics device has been created</summary>
+            <param name="sender">
+              Graphics device service that created a graphics device
+            </param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelperTest.IGraphicsDeviceServiceSubscriber.DeviceDisposing(System.Object,System.EventArgs)">
+            <summary>Called when a graphics device is about to be destroyed</summary>
+            <param name="sender">
+              Graphics device service that is about to destroy its graphics device
+            </param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelperTest.IGraphicsDeviceServiceSubscriber.DeviceResetting(System.Object,System.EventArgs)">
+            <summary>Called when the graphics device is about to reset itself</summary>
+            <param name="sender">
+              Graphics device service whose graphics device is about to reset itself
+            </param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Graphics.GraphicsDeviceServiceHelperTest.IGraphicsDeviceServiceSubscriber.DeviceReset(System.Object,System.EventArgs)">
+            <summary>Called when the graphics device has completed a reset</summary>
+            <param name="sender">
+              Graphics device service whose graphics device has completed a reset
+            </param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="T:Nuclex.Graphics.TextureRegion2D">
+            <summary>Represents a limited region of a texture</summary>
+            <remarks>
+              This is similar to .NET's ArraySegment class, only that it applies to
+              a two-dimensional texture instead of a one-dimensional array.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2D.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D)">
+            <summary>Initializes a new texture region using a full texture</summary>
+            <param name="texture">Texture that will be used in full</param>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2D.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,System.Single,System.Single,System.Single,System.Single)">
+            <summary>Initializes a new texture region using part of a texture</summary>
+            <param name="texture">Texture of which a region will be used</param>
+            <param name="minX">Minimum X texture coordinate (normalized) of the region</param>
+            <param name="minY">Minimum Y texture coordinate (normalized) of the region</param>
+            <param name="maxX">Maximum X texture coordinate (normalized) of the region</param>
+            <param name="maxY">Maximum Y texture coordinate (normalized) of the region</param>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2D.#ctor(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)">
+            <summary>Initializes a new texture region using part of a texture</summary>
+            <param name="texture">Texture of which a region will be used</param>
+            <param name="min">Minimum texture coordinates (normalized) of the region</param>
+            <param name="max">Maximum texture coordinates (normalized) of the region</param>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2D.FromTexels(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)">
+            <summary>Initializes a new texture region using part of a texture</summary>
+            <param name="texture">Texture of which a region will be used</param>
+            <param name="min">Minimum texture coordinates of the region</param>
+            <param name="max">Maximum texture coordinates of the region</param>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2D.FromTexels(Microsoft.Xna.Framework.Graphics.Texture2D,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Initializes a new texture region using part of a texture</summary>
+            <param name="texture">Texture of which a region will be used</param>
+            <param name="minX">Minimum X texture coordinate of the region</param>
+            <param name="minY">Minimum Y texture coordinate of the region</param>
+            <param name="maxX">Maximum X texture coordinate of the region</param>
+            <param name="maxY">Maximum Y texture coordinate of the region</param>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2D.GetHashCode">
+            <summary>Returns the hash code for the current instance</summary>
+            <returns>A 32-bit signed integer hash code</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2D.Equals(System.Object)">
+            <summary>
+              Determines whether the specified object is equal to the current instance
+            </summary>
+            <returns>
+              True if the specified object is a <see cref="T:Nuclex.Graphics.TextureRegion2D"/> structure and is
+              equal to the current instance; otherwise, false
+            </returns>
+            <param name="other">The object to be compared with the current instance</param>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2D.Equals(Nuclex.Graphics.TextureRegion2D)">
+            <summary>
+              Determines whether the specified <see cref="T:Nuclex.Graphics.TextureRegion2D"/> structure is equal
+              to the current instance
+            </summary>
+            <returns>
+              True if the specified <see cref="T:Nuclex.Graphics.TextureRegion2D"/> structure is equal to the
+              current instance; otherwise, false
+            </returns>
+            <param name="other">
+              The <see cref="T:Nuclex.Graphics.TextureRegion2D"/> structure to be compared with
+              the current instance
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2D.op_Equality(Nuclex.Graphics.TextureRegion2D,Nuclex.Graphics.TextureRegion2D)">
+            <summary>
+              Indicates whether two <see cref="T:Nuclex.Graphics.TextureRegion2D"/> structures are equal
+            </summary>
+            <returns>True if a is equal to b; otherwise, false</returns>
+            <param name="left">
+              The <see cref="T:Nuclex.Graphics.TextureRegion2D"/> structure on the left side of the
+              equality operator
+            </param>
+            <param name="right">
+              The <see cref="T:Nuclex.Graphics.TextureRegion2D"/> structure on the right side of the
+              equality operator
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2D.op_Inequality(Nuclex.Graphics.TextureRegion2D,Nuclex.Graphics.TextureRegion2D)">
+            <summary>
+              Indicates whether two <see cref="T:Nuclex.Graphics.TextureRegion2D"/> structures are unequal
+            </summary>
+            <returns>True if a is not equal to b; otherwise, false</returns>
+            <param name="left">
+              The <see cref="T:Nuclex.Graphics.TextureRegion2D"/> structure on the left side of the
+              inequality operator
+            </param>
+            <param name="right">
+              The <see cref="T:Nuclex.Graphics.TextureRegion2D"/> structure on the right side of the
+              inequality operator
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2D.ToString">
+            <summary>Returns a string representation of the string segment</summary>
+            <returns>The string representation of the string segment</returns>
+        </member>
+        <member name="F:Nuclex.Graphics.TextureRegion2D.Texture">
+            <summary>Texture from which a region is used</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.TextureRegion2D.Min">
+            <summary>Minimum coordinates of the region on the texture</summary>
+            <remarks>
+              These coordinates are normalized: 0,0 is the lower left corner and
+              1,1 is the upper right corner.
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.TextureRegion2D.Max">
+            <summary>Maximum coordinates of the region on the texture</summary>
+            <remarks>
+              These coordinates are normalized: 0,0 is the lower left corner and
+              1,1 is the upper right corner.
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Graphics.TextureRegion2DTest">
+            <summary>Unit tests for the texture region class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.Setup">
+            <summary>Called before each test is run</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.Teardown">
+            <summary>Called after each test has run</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.TestConstructor">
+            <summary>
+              Tests whether the minimal constructor of the texture region works
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.TestFloatConstructor">
+            <summary>
+              Test whether the explicit texture coordinate constructor is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.TestFromTexelInts">
+            <summary>
+              Verifies that a texture region can be built from a texel values
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.TestFromTexelPoints">
+            <summary>
+              Verifies that a texture region can be built from a texel point structures
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.TestHashCodeOnDifferingInstances">
+            <summary>
+              Tests whether two differing instances produce different hash codes
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.TestHashCodeOnEquivalentInstances">
+            <summary>
+              Tests whether two equivalent instances produce an identical hash code
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.TestEqualsOnNull">
+            <summary>Tests the Equals() method performing a comparison against null</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.TestEqualsWithEquivalentInstances">
+            <summary>Tests the Equals() method comparing two equal instances</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.TestEqualsWithDifferingInstances">
+            <summary>Tests the Equals() method comparing two differing instances</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.TestEqualityOnDifferingInstances">
+            <summary>Tests the equality operator with differing instances</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.TestEqualityOnEquivalentInstances">
+            <summary>Tests the equality operator with equivalent instances</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.TestInequalityOnDifferingInstances">
+            <summary>Tests the inequality operator with differing instances</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.TestInequalityOnEquivalentInstances">
+            <summary>Tests the inequality operator with equivalent instances</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.TextureRegion2DTest.TestToString">
+            <summary>Tests the ToString() method of the string segment</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.TextureRegion2DTest.mockedGraphicsDeviceService">
+            <summary>Mocked graphics service used to run the unit tests</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.VertexDeclarationHelper">
+            <summary>
+              Builds vertex declarations from vertex structures
+            </summary>
+            <remarks>
+              Based on ideas from Michael Popoloski's article on gamedev.net:
+              http://www.gamedev.net/reference/programming/features/xnaVertexElement/
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelper.Combine(Microsoft.Xna.Framework.Graphics.VertexElement[],Microsoft.Xna.Framework.Graphics.VertexElement[])">
+            <summary>Combines two vertex element list into one single list</summary>
+            <param name="left">First vertex element list that will be merged</param>
+            <param name="right">Second vertex element list that will be merged</param>
+            <returns>The combined vertex element list from both inputs</returns>
+            <remarks>
+              <para>
+                No intelligence is applied to avoid duplicates or to adjust the usage index
+                of individual vertex elements. This method simply serves as a helper to merge
+                two vertex element lists from two structures that are used in seperate
+                vertex streams (but require a single vertex declaration containing the elements
+                of both streams).
+              </para>
+              <para>
+                <example>
+                  This example shows how two vertex structures, each used in a different
+                  vertex buffer, can be merged into a single vertex declaration that fetches
+                  vertices from both vertex buffers, the positions from stream 0 and
+                  the texture coordinates from stream 1
+                  <code>
+                    struct PositionVertex {
+                      [VertexElement(VertexElementUsage.Position)]
+                      public Vector3 Position;
+                    }
+                    struct TextureCoordinateVertex {
+                      [VertexElement(VertexElementUsage.TextureCoordinate)]
+                      public Vector2 TextureCoordinate;
+                    }
+                    
+                    private VertexDeclaration buildVertexDeclaration() {
+                      VertexDeclaration declaration = new VertexDeclaration(
+                        graphicsDevice,
+                        VertexDeclarationHelper.Combine(
+                          VertexDeclarationHelper.BuildElementList&lt;PositionVertex&gt;(0),
+                          VertexDeclarationHelper.BuildElementList&lt;TextureCoordinateVertex&gt;(1)
+                        )
+                      );
+                    }
+                  </code>
+                </example>
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelper.BuildElementList``1">
+            <summary>
+              Builds a vertex element list that can be used to construct a vertex declaration
+              from a vertex structure that has the vertex element attributes applied to it
+            </summary>
+            <typeparam name="VertexType">
+              Vertex structure with vertex element attributes applied to it
+            </typeparam>
+            <returns>
+              A vertex element list that can be used to create a new vertex declaration matching
+              the provided vertex structure
+            </returns>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelper.GetStride``1">
+            <summary>Obtains the stride value for a vertex</summary>
+            <typeparam name="VertexType">
+              Vertex structure the stride value will be obtained for
+            </typeparam>
+            <returns>The stride value for the specified vertex structure</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelper.getFields``1">
+            <summary>Retrieves the fields declared in a vertex structure</summary>
+            <typeparam name="VertexType">Type the fields will be retrieved from</typeparam>
+            <returns>The list of fields declared in the provided structure</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelper.buildVertexElement(System.Reflection.FieldInfo,Nuclex.Graphics.VertexElementAttribute,Microsoft.Xna.Framework.Graphics.VertexElement@)">
+            <summary>Builds a vertex element from an attributed field in a structure</summary>
+            <param name="fieldInfo">
+              Reflected data on the field for which a vertex element will be built
+            </param>
+            <param name="attribute">Vertex eelement attribute assigned to the field</param>
+            <param name="element">
+              Output parameter the newly built vertex element is stored in
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelper.getVertexElementAttribute(System.Reflection.FieldInfo)">
+            <summary>
+              Retrieves the vertex element attribute assigned to a field in a structure
+            </summary>
+            <param name="fieldInfo">
+              Informations about the vertex element field the attribute is retrieved for
+            </param>
+            <returns>The vertex element attribute of the requested field</returns>
+        </member>
+        <member name="T:Nuclex.Graphics.VertexDeclarationHelperTest">
+            <summary>Unit tests for the vertex element attribute</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelperTest.TestStrideDetermination">
+            <summary>
+              Verifies that the stride of a vertex structure can be determined
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelperTest.TestThrowOnCombineNull">
+            <summary>
+              Tests whether the vertex declaration helper fails is provieed with two
+              null references instead of two vertex element lists
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelperTest.TestCombine">
+            <summary>
+              Tests whether the vertex declaration helper is able to combine two vertex element
+              lists into a single one
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelperTest.TestThrowOnEmptyVertex">
+            <summary>
+              Tests whether the vertex declaration helper fails on empty vertices
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelperTest.TestThrowOnUnknownTypeVertex">
+            <summary>
+              Tests whether the vertex declaration helper fails when format auto-detection
+              is used on unknown data types
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelperTest.TestThrowOnUnattributedFieldVertex">
+            <summary>
+              Tests whether the vertex declaration helper fails when no field of
+              a Vertex has have the vertex element attribute assigned to it
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelperTest.TestFormatAutoDetection">
+            <summary>Tests the format auto-detection of vertex elements</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelperTest.TestGapVertexElements">
+            <summary>
+              Tests whether a vertex containing a field in its middle that isn't seen by
+              the vertex shader is processed correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexDeclarationHelperTest.EliminateCompilerWarnings">
+            <summary>
+              Only serves to satisfy the compiler. Otherwise, warning CS0414 would occur
+              since the fields of the private vertex structures are never assigned to
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.VertexDeclarationHelperTest.TestVertex">
+            <summary>
+              A vertex used to unit-test the format auto-detection of
+              the vertex declaration helper
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.TestVertex.TestVector2">
+            <summary>A vertex element of type Vector2</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.TestVertex.TestVector3">
+            <summary>A vertex element of type Vector3</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.TestVertex.TestVector4">
+            <summary>A vertex element of type Vector4</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.TestVertex.TestColor">
+            <summary>A vertex element of type Color</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.TestVertex.TestSingle">
+            <summary>A vertex element of type float</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.TestVertex.TestInt">
+            <summary>A vertex element of type int</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.TestVertex.TestShort">
+            <summary>A vertex element of type short</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.TestVertex.TestExplicitMatrix">
+            <summary>A vertex element of type short</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.VertexDeclarationHelperTest.UnknownTypeVertex">
+            <summary>
+              A vertex containing a data type not recognized by the format auto-detection of
+              the vertex declaration helper
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.UnknownTypeVertex.TestTimestamp">
+            <summary>A vertex element of type DateTime</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.VertexDeclarationHelperTest.EmptyVertex">
+            <summary>An empty vertex type used to unit-test error behavior</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.VertexDeclarationHelperTest.UnattributedFieldVertex">
+            <summary>
+              A vertex type containing a field without a vertex element attribute
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.UnattributedFieldVertex.TestVector3">
+            <summary>A vertex element of type Vector3</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.UnattributedFieldVertex.TestColor">
+            <summary>A vertex element of type Color</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.VertexDeclarationHelperTest.SecondStreamVertex">
+            <summary>
+              A vertex containing an additional data element to be used as second vertex stream
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.SecondStreamVertex.BlendWeight">
+            <summary>A vertex element of type DateTime</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.VertexDeclarationHelperTest.GapVertex">
+            <summary>
+              A vertex in which not all elements are used by the shader
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.GapVertex.Position">
+            <summary>Position of the vertex</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.GapVertex.Velocity">
+            <summary>Velocity the vertex is moving at</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexDeclarationHelperTest.GapVertex.Size">
+            <summary>Size of the vertex when rendered as a point sprite</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.VertexElementAttribute">
+            <summary>
+              Describes the usage and purpose of an element in a vertex structure
+            </summary>
+            <remarks>
+              Based on ideas from Michael Popoloski's article on gamedev.net:
+              http://www.gamedev.net/reference/programming/features/xnaVertexElement/
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexElementAttribute.#ctor(Microsoft.Xna.Framework.Graphics.VertexElementUsage)">
+            <summary>Initializes a new vertex element attribute</summary>
+            <param name="usage">What purpose the vertex element will serve</param>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexElementAttribute.#ctor(Microsoft.Xna.Framework.Graphics.VertexElementUsage,Microsoft.Xna.Framework.Graphics.VertexElementFormat)">
+            <summary>Initializes a new vertex element attribute</summary>
+            <param name="usage">What purpose the vertex element will serve</param>
+            <param name="format">Format in in which the data for this element is provided</param>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexElementAttribute.stream">
+            <summary>Index of the vertex buffer that will contain this element</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexElementAttribute.usage">
+            <summary>What purpose the vertex element is going to be used for</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexElementAttribute.format">
+            <summary>Format the vertex element's data is provided in</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexElementAttribute.usageIndex">
+            <summary>Index of the element when multiple elements share the same usage</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexElementAttribute.formatProvided">
+            <summary>Whether a format has been provided for this element</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.VertexElementAttribute.Stream">
+            <summary>Index of the vertex buffer that will contain this element</summary>
+            <remarks>
+              Data for vertices can come from multiple vertex buffers. For example, you can store
+              the positions of your vertices in one vertex buffer and then store the texture
+              coordinates in an entirely different vertex buffer, only to combine them at rendering
+              time by using the two vertex buffers simultaneously two feed your shader.
+            </remarks>
+        </member>
+        <member name="P:Nuclex.Graphics.VertexElementAttribute.Usage">
+            <summary>What purpose the vertex element is going to be used for</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.VertexElementAttribute.Format">
+            <summary>Format the vertex element's data is provided in</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.VertexElementAttribute.UsageIndex">
+            <summary>Index of the element when multiple elements share the same usage</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.VertexElementAttribute.FormatProvided">
+            <summary>True if a format has been provided for the vertex element</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.VertexElementAttributeTest">
+            <summary>Unit tests for the vertex element attribute</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexElementAttributeTest.TestUsageConstructor">
+            <summary>Tests whether the usage property is stored by the attribute</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexElementAttributeTest.TestUsageAndFormatConstructor">
+            <summary>
+              Tests whether the usage and format properties are stored by the attribute
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexElementAttributeTest.TestStreamProperty">
+            <summary>Tests whether the stream property is stored by the attribute</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexElementAttributeTest.TestUsageIndexProperty">
+            <summary>Tests whether the usage index property is stored by the attribute</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexElementAttributeTest.EliminateCompilerWarnings">
+            <summary>
+              Only serves to satisfy the compiler. Otherwise, warning CS0414 would occur
+              since the fields of the private TestVertex structure are never assigned to
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexElementAttributeTest.getVertexElementAttribute``1(System.String)">
+            <summary>
+              Retrieves the vertex element attribute assigned to a field in a structure
+            </summary>
+            <typeparam name="VertexType">
+              Structure that contains the field of which the vertex element attribute will
+              be retrieved
+            </typeparam>
+            <param name="fieldName">
+              Name of the field to retrieve the vertex element attribute for
+            </param>
+            <returns>The vertex element attribute of the requested field</returns>
+        </member>
+        <member name="T:Nuclex.Graphics.VertexElementAttributeTest.TestVertex">
+            <summary>A vertex used to test the vertex element attribute</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexElementAttributeTest.TestVertex.UsageOnly">
+            <summary>An element that has only its usage set</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexElementAttributeTest.TestVertex.UsageAndFormat">
+            <summary>An element that has its usage and format set</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexElementAttributeTest.TestVertex.Stream123">
+            <summary>An element that has its stream set to 123</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.VertexElementAttributeTest.TestVertex.SecondUsage">
+            <summary>An element that has the same usage as another one</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.VertexHelper">
+            <summary>Provides some supporting functions for working with vertices</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexHelper.GetPrimitiveCount(System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType)">
+            <summary>
+              Calculates the number of primitives given the number of vertices (or indices)
+              and the type of primitives to be drawn.
+            </summary>
+            <param name="verticesOrIndices">Number of vertices or indices</param>
+            <param name="type">Type of primitives the vertices will be processed as</param>
+            <returns>The number of primitives that can be built from the vertices</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexHelper.IsValidVertexCount(System.Int32,Microsoft.Xna.Framework.Graphics.PrimitiveType)">
+            <summary>
+              Checks whether a vertex count is valid for the specified type of primitives
+            </summary>
+            <param name="verticesOrIndices">Number of vertices or indices</param>
+            <param name="type">Type of primitives the vertices will be processed as</param>
+            <returns>
+              True if the specified number is a valid vertex count for the specified
+              type of primitives
+            </returns>
+            <remarks>
+              A zero check is expected to be done in addition to this method. Negative
+              vertex or index counts will result in undefined behavior.
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Graphics.VertexHelperTest">
+            <summary>Unit tests for the vertex helper functions</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexHelperTest.TestLineStripPrimitiveCount">
+            <summary>
+              Verifies that the primitive count for a line strip is correctly calculated
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexHelperTest.TestLineListPrimitiveCount">
+            <summary>
+              Verifies that the primitive count for a line list is correctly calculated
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexHelperTest.TestTriangleStripPrimitiveCount">
+            <summary>
+              Verifies that the primitive count for a triangle strip is correctly calculated
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexHelperTest.TestTriangleListPrimitiveCount">
+            <summary>
+              Verifies that the primitive count for a triangle strip is correctly calculated
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexHelperTest.TestInvalidTypePrimitiveCount">
+            <summary>
+              Tests whether passing an invalid primitive type to the GetPrimitiveCount()
+              method causes it to throw the right exception
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexHelperTest.TestIsValidVertexCountWithLineStrip">
+            <summary>
+              Verifies that the helper can determine whether a vertex count is valid
+              for a line strip
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexHelperTest.TestIsValidVertexCountWithLineList">
+            <summary>
+              Verifies that the helper can determine whether a vertex count is valid
+              for a line list
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexHelperTest.TestIsValidVertexCountWithTriangleStrip">
+            <summary>
+              Verifies that the helper can determine whether a vertex count is valid
+              for a triangle strip
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexHelperTest.TestIsValidVertexCountWithTriangleList">
+            <summary>
+              Verifies that the helper can determine whether a vertex count is valid
+              for a triangle list
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.VertexHelperTest.TestIsValidVertexCountWithInvalidPrimitiveType">
+            <summary>
+              Tests whether passing an invalid primitive type to the IsValidVertexCount()
+              method causes it to throw the right exception
+            </summary>
+        </member>
+    </members>
+</doc>

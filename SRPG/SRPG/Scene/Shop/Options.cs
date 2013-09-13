@@ -21,7 +21,7 @@ namespace SRPG.Scene.Shop
                     Color = Color.LightGreen,
                     Value = "Buy",
                     Y = 200,
-                    X = Game.GetInstance().GraphicsDevice.Viewport.Width / 2 - 75,
+                    X = Game.GraphicsDevice.Viewport.Width / 2 - 75,
                     Alignment = TextObject.AlignTypes.Center
                 });
 
@@ -33,7 +33,7 @@ namespace SRPG.Scene.Shop
                     Color = Color.LightGreen,
                     Value = "Sell",
                     Y = 200,
-                    X = Game.GetInstance().GraphicsDevice.Viewport.Width / 2 + 75,
+                    X = Game.GraphicsDevice.Viewport.Width / 2 + 75,
                     Alignment = TextObject.AlignTypes.Center
                 });
             Objects["sell"].MouseClick += SellItems;

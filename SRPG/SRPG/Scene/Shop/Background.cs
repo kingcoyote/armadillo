@@ -15,8 +15,8 @@ namespace SRPG.Scene.Shop
             Objects.Add("background", new TextureObject()
             {
                 Color = Color.Blue,
-                Width = Game.GetInstance().GraphicsDevice.Viewport.Width,
-                Height = Game.GetInstance().GraphicsDevice.Viewport.Height
+                Width = Game.GraphicsDevice.Viewport.Width,
+                Height = Game.GraphicsDevice.Viewport.Height
             });
         }
     }

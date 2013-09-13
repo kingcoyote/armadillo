@@ -14,12 +14,12 @@ namespace SRPG.Scene.PartyMenu
 
         public StatusMenu(Torch.Scene scene) : base(scene)
         {
-            var game = ((SRPGGame)Game.GetInstance());
+
             var font = FontManager.Get("Menu");
 
-            for (var i = 0; i < game.Party.Count; i++)
+            for (var i = 0; i < ((SRPGGame)Game).Party.Count; i++)
             {
-                var character = game.Party[i];
+                var character = ((SRPGGame)Game).Party[i];
                 Objects.Add("party/" + character.Name, new TextObject
                     {
                         Font = font,
@@ -131,19 +131,19 @@ namespace SRPG.Scene.PartyMenu
 
         private void ChangeWeapon(object sender, MouseEventArgs args)
         {
-            var weapons = (from item in ((SRPGGame) Game.GetInstance()).Inventory where item.ItemType == _character.WeaponTypes select item);
+            var weapons = (from item in ((SRPGGame) Game).Inventory where item.ItemType == _character.WeaponTypes select item);
             GenerateItemMenu(weapons.ToList());
         }
 
         private void ChangeArmor(object sender, MouseEventArgs args)
         {
-            var armors = (from item in ((SRPGGame)Game.GetInstance()).Inventory where item.ItemType == _character.ArmorTypes select item);
+            var armors = (from item in ((SRPGGame)Game).Inventory where item.ItemType == _character.ArmorTypes select item);
             GenerateItemMenu(armors.ToList());
         }
 
         private void ChangeAccessory(object sender, MouseEventArgs args)
         {
-            var accessories = (from item in ((SRPGGame)Game.GetInstance()).Inventory where item.ItemType == ItemType.Accessory select item);
+            var accessories = (from item in ((SRPGGame)Game).Inventory where item.ItemType == ItemType.Accessory select item);
             GenerateItemMenu(accessories.ToList());
         }
 
@@ -170,7 +170,7 @@ namespace SRPG.Scene.PartyMenu
                 
                 Objects["selectable item/" + i].MouseClick += (sender, args) =>
                     {
-                        ((SRPGGame) Game.GetInstance()).EquipCharacter(_character, tempItem);
+                        ((SRPGGame) Game).EquipCharacter(_character, tempItem);
                         UpdateObjects();
                         ClearByName("selectable item");
                         ClearItemPreview();

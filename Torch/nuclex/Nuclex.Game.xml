@@ -1,0 +1,2692 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nuclex.Game</name>
+    </assembly>
+    <members>
+        <member name="T:Nuclex.Game.Resources.UnitTestResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Game.Resources.UnitTestResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Game.Resources.UnitTestResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Nuclex.Game.Resources.UnitTestResourcesTest">
+            <summary>Unit tests for the unit test resources class</summary>
+        </member>
+        <member name="M:Nuclex.Game.Resources.UnitTestResourcesTest.TestResourceClassCreation">
+            <summary>Verifies that an instance of the resource class can be created</summary>
+        </member>
+        <member name="M:Nuclex.Game.Resources.UnitTestResourcesTest.TestAssignCulture">
+            <summary>Tests the 'Culture' property of the resource class</summary>
+        </member>
+        <member name="M:Nuclex.Game.Resources.UnitTestResourcesTest.TestUnitTestEffect">
+            <summary>Verifies that the unit test effect can be accessed</summary>
+        </member>
+        <member name="T:Nuclex.Game.Component">
+            <summary>
+              Variant of the XNA GameComponent that doesn't reference the Game class
+            </summary>
+            <remarks>
+              <para>
+                This is a lightweight version of GameComponent that can be used without
+                requiring a Game class to be present. Useful to get all the advantages
+                of the XNA GameServices architecture even when you have initialized and
+                manage the graphics device yourself.
+              </para>
+              <para>
+                The name of this class is the same as 'GameComponent' minus the 'Game' part
+                as the Game reference is what this class removes from its namesake.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Component.#ctor">
+            <summary>Initializes a new component</summary>
+        </member>
+        <member name="M:Nuclex.Game.Component.Initialize">
+            <summary>Gives the game component a chance to initialize itself</summary>
+        </member>
+        <member name="M:Nuclex.Game.Component.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>Called when the component needs to update its state.</summary>
+            <param name="gameTime">Provides a snapshot of the Game's timing values</param>
+        </member>
+        <member name="M:Nuclex.Game.Component.OnUpdateOrderChanged">
+            <summary>Fires the UpdateOrderChanged event</summary>
+        </member>
+        <member name="M:Nuclex.Game.Component.OnEnabledChanged">
+            <summary>Fires the EnabledChanged event</summary>
+        </member>
+        <member name="F:Nuclex.Game.Component.updateOrder">
+            <summary>
+              Used to determine the updating order of this object in relation to other
+              objects in the same list.
+            </summary>
+        </member>
+        <member name="F:Nuclex.Game.Component.enabled">
+            <summary>Whether this object is enabled (and should thus be updated)</summary>
+        </member>
+        <member name="E:Nuclex.Game.Component.EnabledChanged">
+            <summary>Triggered when the value of the enabled property is changed.</summary>
+        </member>
+        <member name="E:Nuclex.Game.Component.UpdateOrderChanged">
+            <summary>Triggered when the value of the update order property is changed.</summary>
+        </member>
+        <member name="P:Nuclex.Game.Component.UpdateOrder">
+            <summary>
+              Indicates when the updateable component should be updated in relation to
+              other updateables. Has no effect by itself.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Game.Component.Enabled">
+            <summary>
+              True when the updateable component is enabled and should be udpated.
+            </summary>
+        </member>
+        <member name="T:Nuclex.Game.ComponentTest">
+            <summary>Unit test for the component class</summary>
+        </member>
+        <member name="M:Nuclex.Game.ComponentTest.Setup">
+            <summary>Called before each test is run</summary>
+        </member>
+        <member name="M:Nuclex.Game.ComponentTest.Teardown">
+            <summary>Called after each test has run</summary>
+        </member>
+        <member name="M:Nuclex.Game.ComponentTest.TestConstructor">
+            <summary>Verifies that new component instances can be created</summary>
+        </member>
+        <member name="M:Nuclex.Game.ComponentTest.TestInitialize">
+            <summary>
+              Tests whether the Initialize() method of the Component class can be called
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.ComponentTest.TestUpdate">
+            <summary>
+              Tests whether the Update() method of the Component class can be called
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.ComponentTest.TestChangeUpdateOrder">
+            <summary>
+              Tests whether the update order of the Component class can be changed
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.ComponentTest.TestUpdateOrderChangeEvent">
+            <summary>
+              Tests whether changing the update order of the Component instance causes
+              the update order change event to be triggered
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.ComponentTest.TestEnableDisable">
+            <summary>
+              Tests whether Component can be enabled or disabled
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.ComponentTest.TestEnabledChangeEvent">
+            <summary>
+              Tests whether enabled or disabling the Component instance causes the
+              'enabled changed' event to be triggered
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.ComponentTest.mockSubscriber(Nuclex.Game.Component)">
+            <summary>Mocks a subscriber for the events of a tracker</summary>
+            <param name="component">Component to mock an event subscriber for</param>
+            <returns>The mocked event subscriber</returns>
+        </member>
+        <member name="F:Nuclex.Game.ComponentTest.mockery">
+            <summary>Mock object factory</summary>
+        </member>
+        <member name="T:Nuclex.Game.ComponentTest.IComponentSubscriber">
+            <summary>Interface for a subscriber to the Component's events</summary>
+        </member>
+        <member name="M:Nuclex.Game.ComponentTest.IComponentSubscriber.EnabledChanged(System.Object,System.EventArgs)">
+            <summary>
+              Called when the value of the Enabled property has changed
+            </summary>
+            <param name="sender">Component whose Enabled property has changed</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Game.ComponentTest.IComponentSubscriber.UpdateOrderChanged(System.Object,System.EventArgs)">
+            <summary>
+              Called when the Component's update order has changed
+            </summary>
+            <param name="sender">Component whose update order property has changed</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="T:Nuclex.Game.Content.SharedGameContentManager">
+            <summary>
+              Implements the shared content service on top of the Game class' built-in
+              content manager for dependency injection frameworks.
+            </summary>
+        </member>
+        <member name="T:Nuclex.Game.Content.ISharedContentService">
+            <summary>Interface for the shared content access service</summary>
+            <remarks>
+              The shared content access service provides game-wide access to shared assets
+              (meaning assets that appear throughout the game, such as UI graphics, weapon
+              models and fonts for example). Once integrated into your game, jsut use this
+              service whenever you need to access any of the game's global assets.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Content.ISharedContentService.Load``1(System.String)">
+            <summary>Loads or accesses shared game content</summary>
+            <typeparam name="AssetType">Type of the asset to be loaded or accessed</typeparam>
+            <param name="assetName">Path and name of the requested asset</param>
+            <returns>The requested asset from the the shared game content store</returns>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedGameContentManager.#ctor(Microsoft.Xna.Framework.Game)">
+            <summary>Initializes a new shared content manager adapter</summary>
+            <param name="game">Game the content manager will be taken from</param>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedGameContentManager.Load``1(System.String)">
+            <summary>Loads or accesses shared game content</summary>
+            <typeparam name="AssetType">Type of the asset to be loaded or accessed</typeparam>
+            <param name="assetName">Path and name of the requested asset</param>
+            <returns>The requested asset from the the shared game content store</returns>
+        </member>
+        <member name="F:Nuclex.Game.Content.SharedGameContentManager.contentManager">
+            <summary>The content manager this instance delegates to</summary>
+        </member>
+        <member name="T:Nuclex.Game.Content.GameSharedContentManagerTest">
+            <summary>Unit test for the embedded content manager class</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.GameSharedContentManagerTest.TestContentAccess">
+            <summary>
+              Verifies that the adapter indeed uses the game's content manager
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.GameSharedContentManagerTest.writeBytesToTempFile(System.Byte[])">
+            <summary>Saves a byte array into a temporary file</summary>
+            <param name="bytes">Byte array that will be written to a file</param>
+            <returns>Path to the file containing the temporary byte array</returns>
+        </member>
+        <member name="M:Nuclex.Game.Content.GameSharedContentManagerTest.writeBytesToFile(System.Byte[],System.String)">
+            <summary>Saves a bytes array into a file</summary>
+            <param name="bytes">Byte array that will be written to a file</param>
+            <param name="path">Name of the file the byte array will be written to</param>
+        </member>
+        <member name="T:Nuclex.Game.Content.LzmaContentManagerTest">
+            <summary>Unit test for the LZMA content manager class</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManagerTest.TestCompressedContentLoading">
+            <summary>
+              Verifies that the LZMA content manager can load assets out of
+              compressed files
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManagerTest.TestCompressedContentReplacement">
+            <summary>
+              Verifies that the LZMA content manager uses an uncompressed asset if
+              it is available in parallel to the compressed one
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManagerTest.TestPackagedContentLoading">
+            <summary>
+              Verifies that the LZMA content manager can load assets out of
+              compressed packages
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManagerTest.TestPackagedContentReplacement">
+            <summary>
+              Verifies that the LZMA content manager uses an uncompressed asset if
+              it is available even when though no package exists
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManagerTest.TestPackagedContentReplacementWhenNoPackageExists">
+            <summary>
+              Verifies that the LZMA content manager uses an uncompressed asset if
+              it is available even when though no package exists
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManagerTest.TestCleanupAfterException">
+            <summary>
+              Tests whether the LZMA content manager cleans up any open file handles
+              when an exception occurs while the package is opened
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManagerTest.TestThrowsOnMissingPackagedAsset">
+            <summary>
+              Verifies that the right exception is thrown if a packaged does not exist
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManagerTest.TestThrowOnMissingCompressedAsset">
+            <summary>
+              Verifies that the LZMA content manager uses an uncompressed asset if
+              it is available even when though no package exists
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManagerTest.Setup">
+            <summary>Called before each test is run</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManagerTest.TearDown">
+            <summary>Called after each test has run</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManagerTest.writeBytesToFile(System.Byte[],System.String)">
+            <summary>Saves a bytes array into a file</summary>
+            <param name="bytes">Byte array that will be written to a file</param>
+            <param name="path">Name of the file the byte array will be written to</param>
+        </member>
+        <member name="F:Nuclex.Game.Content.LzmaContentManagerTest.mockedGraphicsDeviceService">
+            <summary>Mocked graphics device service used for unit testing</summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.LzmaContentManagerTest.tempDirectory">
+            <summary>Creates a temp directory and keeps it alive until disposed</summary>
+        </member>
+        <member name="T:Nuclex.Game.Content.LzmaContentManagerTest.TempDirectoryKeeper">
+            <summary>Creates and provides a temporary directory</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManagerTest.TempDirectoryKeeper.#ctor">
+            <summary>Initializes a new temp directory keeper</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManagerTest.TempDirectoryKeeper.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.LzmaContentManagerTest.TempDirectoryKeeper.tempFile">
+            <summary>Temporary file that has been created to get a unique name</summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.LzmaContentManagerTest.TempDirectoryKeeper.tempDir">
+            <summary>Full path of the temporary directory</summary>
+        </member>
+        <member name="P:Nuclex.Game.Content.LzmaContentManagerTest.TempDirectoryKeeper.Path">
+            <summary>The full path to the temporary directory</summary>
+        </member>
+        <member name="T:Nuclex.Game.Content.MemoryContentManagerTest">
+            <summary>Unit test for the embedded content manager class</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.MemoryContentManagerTest.TestConstructor">
+            <summary>Tests the constructor of the embedded content manager</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.MemoryContentManagerTest.TestLoadAsset">
+            <summary>Verifies that assets can be loaded</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.MemoryContentManagerTest.TestLoadNamedAsset">
+            <summary>Verifies that uniquely named assets can be loaded</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.MemoryContentManagerTest.TestReadAsset">
+            <summary>Verifies that the ReadAsset() method is working</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.MemoryContentManagerTest.Setup">
+            <summary>Called before each test is run</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.MemoryContentManagerTest.Teardown">
+            <summary>Called after each test has run</summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.MemoryContentManagerTest.mockedGraphicsDeviceService">
+            <summary>Mock of the graphics device service used for unit testing</summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.MemoryContentManagerTest.memoryContentManager">
+            <summary>Content manager which loads resources from in-memory arrays</summary>
+        </member>
+        <member name="T:Nuclex.Game.Content.LzmaContentManager">
+            <summary>Content manager that can read LZMA-compressed game assets</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManager.#ctor(System.IServiceProvider)">
+            <summary>Initializes a new LZMA-decompressing content manager</summary>
+            <param name="serviceProvider">
+              Service provider to use for accessing additional services that the
+              individual content readers require for creating their resources.
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManager.#ctor(System.IServiceProvider,System.Boolean)">
+            <summary>Initializes a new LZMA-decompressing content manager</summary>
+            <param name="serviceProvider">
+              Service provider to use for accessing additional services that the
+              individual content readers require for creating their resources.
+            </param>
+            <param name="allowReplacement">
+              Is the user allowed to replace individual files by placing the .xnb files
+              in the game's folders as Visual Studio would normally do?
+            </param>
+            <remarks>
+              It is recommended to leave the allowReplacement argument set to true at least
+              during development. Otherwise you will be forced to rerun the content compression
+              utility each time you modify one of your assets. Forgetting to run the utility
+              might further lead to strange problems because the game would then be working
+              with an older version of the assets than you think it does.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManager.#ctor(System.IServiceProvider,System.String)">
+            <summary>Initializes a new LZMA-decompressing content manager</summary>
+            <param name="packagePath">
+              Path of the package to read content asset files from. This package needs to
+              be created using the Nuclex content compression utility.
+            </param>
+            <param name="serviceProvider">
+              Service provider to use for accessing additional services that the
+              individual content readers require for creating their resources.
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManager.#ctor(System.IServiceProvider,System.String,System.Boolean)">
+            <summary>Initializes a new LZMA-decompressing content manager</summary>
+            <param name="serviceProvider">
+              Service provider to use for accessing additional services that the
+              individual content readers require for creating their resources.
+            </param>
+            <param name="packagePath">
+              Path of the package to read content asset files from. This package needs to
+              be created using the Nuclex content compression utility.
+            </param>
+            <param name="allowReplacement">
+              Is the user allowed to replace individual files by placing the .xnb files
+              in the game's folders as Visual Studio would normally do?
+            </param>
+            <remarks>
+              It is recommended to leave the allowReplacement argument set to true at least
+              during development. Otherwise you will be forced to rerun the Nuclex content
+              compression utility each time you modify one of your assets. Forgetting to run
+              the utility might further lead to strange problems because the game would then
+              be working with an older version of the assets than you think it does.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManager.Dispose(System.Boolean)">
+            <summary>Immediately releases all resources used the content manager</summary>
+            <param name="calledByUser">Whether the call was initiated by user code</param>
+            <remarks>
+              If the call wasn't initiated by user code, the call comes from the .NET
+              garbage collector, meaning the content manager must not access any other
+              classes for risk of them having been reclaimed already.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManager.OpenStream(System.String)">
+            <summary>Opens a stream to the named asset</summary>
+            <param name="assetName">Asset to open a stream for</param>
+            <returns>The opened stream</returns>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManager.uncompressFromPackage(System.String)">
+            <summary>Uncompresses an LZMA-compressed file from an LZMA package</summary>
+            <param name="assetName">Name of the packaged file to decompress</param>
+            <returns>A stream by which the uncompressed data can be read</returns>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManager.uncompressIndividualFile(System.String)">
+            <summary>Uncompresses an invididually compressed LZMA file</summary>
+            <param name="assetName">Name of the asset to uncompress as an LZMA file</param>
+            <returns>A stream by which the uncompressed data can be read</returns>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManager.uncompress(System.IO.Stream,System.Int32,System.Int32)">
+            <summary>Uncompresses a stream of LZMA-compressed data into a memory stream</summary>
+            <param name="source">Source stream containing the LZMA-compressed data</param>
+            <param name="compressedLength">Length of the compressed data</param>
+            <param name="uncompressedLength">Length the uncompressed data will have</param>
+            <returns>A memory stream containing the uncompressed data</returns>
+        </member>
+        <member name="M:Nuclex.Game.Content.LzmaContentManager.openPackage(System.String)">
+            <summary>Opens the specified package for access by the LZMA content manager</summary>
+            <param name="packagePath">Path of the package that will be opened</param>
+        </member>
+        <member name="F:Nuclex.Game.Content.LzmaContentManager.replacementAllowed">
+            <summary>
+              Whether compressed files can be overridden by placing an uncompressed file
+              at the same location the compressed file is in.
+            </summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.LzmaContentManager.lzmaPackageStream">
+            <summary>File stream for the LZMA package opened by this content manager</summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.LzmaContentManager.files">
+            <summary>Starting offsets for the files contained</summary>
+        </member>
+        <member name="T:Nuclex.Game.Content.LzmaContentManager.CompressedFileInfo">
+            <summary>Stores the informations of a compressed file</summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.LzmaContentManager.CompressedFileInfo.Offset">
+            <summary>Where in the LZMA package the file is stored</summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.LzmaContentManager.CompressedFileInfo.CompressedLength">
+            <summary>Length of the compressed data</summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.LzmaContentManager.CompressedFileInfo.UncompressedLength">
+            <summary>Length the data will have when it is uncompressed</summary>
+        </member>
+        <member name="T:Nuclex.Game.DrawableComponent">
+            <summary>
+              Lightweight variant DrawableGameComponent that doesn't reference the Game class
+            </summary>
+            <remarks>
+              <para>
+                This is a lightweight version of DrawableGameComponent that can be used
+                without requiring a Game class to be present. Useful to get all the
+                advantages of the XNA GameServices architecture even when you have
+                initialized and manage the graphics device yourself.
+              </para>
+              <para>
+                The name of this class is the same as 'DrawableGameComponent' minus the
+                'Game' part as the Game reference is what this class removes from its namesake.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponent.#ctor">
+            <summary>Initializes a new drawable component.</summary>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponent.Draw(Microsoft.Xna.Framework.GameTime)">
+            <summary>Called when the drawable component needs to draw itself</summary>
+            <param name="gameTime">Provides a snapshot of the game's timing values</param>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponent.OnDrawOrderChanged">
+            <summary>Fires the DrawOrderChanged event</summary>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponent.OnVisibleChanged">
+            <summary>Fires the VisibleChanged event</summary>
+        </member>
+        <member name="F:Nuclex.Game.DrawableComponent.drawOrder">
+            <summary>
+              Used to determine the drawing order of this object in relation to other
+              objects in the same list.
+            </summary>
+        </member>
+        <member name="F:Nuclex.Game.DrawableComponent.visible">
+            <summary>Whether this object is visible (and should thus be drawn)</summary>
+        </member>
+        <member name="E:Nuclex.Game.DrawableComponent.DrawOrderChanged">
+            <summary>Triggered when the value of the draw order property is changed.</summary>
+        </member>
+        <member name="E:Nuclex.Game.DrawableComponent.VisibleChanged">
+            <summary>Triggered when the value of the visible property is changed.</summary>
+        </member>
+        <member name="P:Nuclex.Game.DrawableComponent.DrawOrder">
+            <summary>
+              Indicates when the drawable component should be drawn in relation to other
+              drawables. Has no effect by itself.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Game.DrawableComponent.Visible">
+            <summary>True when the drawable component is visible and should be drawn.</summary>
+        </member>
+        <member name="T:Nuclex.Game.Content.MemoryContentManager">
+            <summary>Content manager for loading content from in-memory arrays</summary>
+            <remarks>
+              This is not much different from the resource content manager, since resources
+              are always loaded into a process and are "in-memory" as well, but this
+              content manager allows you to load content directly out of byte arrays.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Content.MemoryContentManager.#ctor(Microsoft.Xna.Framework.Graphics.IGraphicsDeviceService)">
+            <summary>
+              Initializes a new embedded content manager using a directly specified
+              graphics device service for the resources.
+            </summary>
+            <param name="graphicsDeviceService">
+              Graphics device service to load the content asset in
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.Content.MemoryContentManager.#ctor(System.IServiceProvider)">
+            <summary>
+              Initializes a new embedded content manager using the provided game services
+              container for providing services for the loaded asset.
+            </summary>
+            <param name="services">
+              Service container containing the services the asset may access
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.Content.MemoryContentManager.Load``1(System.Byte[])">
+            <summary>Loads the asset the embedded content manager was created for</summary>
+            <typeparam name="AssetType">Type of the asset to load</typeparam>
+            <param name="content">Content that will be loaded as an asset</param>
+            <returns>The loaded asset</returns>
+            <remarks>
+              <para>
+                To mirror the behavior of the ResourceContentManager class, this method
+                calculates the SHA-1 of the provided array. Otherwise, you could request
+                the same asset two times and when you dispose one, the other requested
+                instance would still work, which does not match the behavior of
+                the ResourceContentManager.
+              </para>
+              <para>
+                It is recommended that you use the named LoadAsset method or control
+                asset lifetimes yourself by using the ReadAsset() method.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Content.MemoryContentManager.Load``1(System.Byte[],System.String)">
+            <summary>Loads the asset the embedded content manager was created for</summary>
+            <typeparam name="AssetType">Type of the asset to load</typeparam>
+            <param name="content">Content that will be loaded as an asset</param>
+            <param name="uniqueName">Unique name of the resource</param>
+            <returns>The loaded asset</returns>
+            <remarks>
+              This class avoids the SHA-1 calculation under the promise that the caller
+              will provide a name that is unique for each loaded asset.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Content.MemoryContentManager.ReadAsset``1(System.Byte[])">
+            <summary>Loads an asset from the provided byte array</summary>
+            <typeparam name="AssetType">Type of the asset to load</typeparam>
+            <param name="content">Content that will be loaded as an asset</param>
+            <returns>The loaded asset</returns>
+        </member>
+        <member name="M:Nuclex.Game.Content.MemoryContentManager.OpenStream(System.String)">
+            <summary>Opens a stream for reading the specified asset</summary>
+            <param name="assetName">The name of the asset to be read</param>
+            <returns>The opened stream for the asset</returns>
+        </member>
+        <member name="M:Nuclex.Game.Content.MemoryContentManager.getSha1(System.Byte[])">
+            <summary>Calculates the SHA-1 hash of the provided byte array</summary>
+            <param name="data">Data that will be hashed</param>
+            <returns>A string containing the SHA-1 sum of the byte array</returns>
+        </member>
+        <member name="F:Nuclex.Game.Content.MemoryContentManager.memoryStream">
+            <summary>Content that will be loaded by the embedded content manager</summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.MemoryContentManager.content">
+            <summary>Content which is currently being loaded</summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.MemoryContentManager.sha1HashProvider">
+            <summary>
+              SHA-1 hash provider used to calculate SHA-1 sums of asset data
+            </summary>
+        </member>
+        <member name="T:Nuclex.Game.Content.SharedContentManager">
+            <summary>Manages global content that is shared within a game</summary>
+            <remarks>
+              This class allows your game to create a custom type of content manager
+              (for example, the LzmaContentManager) and share is globally throughout
+              your game through the ISharedContentService.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManager.#ctor(Microsoft.Xna.Framework.GameServiceContainer)">
+            <summary>Initializes a new shared content manager</summary>
+            <param name="gameServices">
+              Game service container to use for accessing other game components
+              like the graphics device service. The shared content manager also
+              registers itself (under <see cref="T:Nuclex.Game.Content.ISharedContentService"/>) herein.
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManager.Initialize">
+            <summary>
+              Allows the game component to perform any initialization it needs to before
+              starting to run. This is where it can query for any required services and
+              load content.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManager.Dispose">
+            <summary>Immediately releases all resources and unregisters the component</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManager.Load``1(System.String)">
+            <summary>Loads or accesses shared game content</summary>
+            <typeparam name="AssetType">Type of the asset to be loaded or accessed</typeparam>
+            <param name="assetName">Path and name of the requested asset</param>
+            <returns>The requested asset from the the shared game content store</returns>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManager.CreateContentManager">
+            <summary>Creates a new content manager for the shared content provider</summary>
+            <returns>The newly created content manager</returns>
+            <remarks>
+              Override this method in a derived to call another constructor of the content
+              manager or to use a custom content manager implementation if you need to.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManager.Unload">
+            <summary>Unloads all resources from the shared content manager</summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.SharedContentManager.serviceContainer">
+            <summary>
+              Game service container the shared content manager is registered to
+            </summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.SharedContentManager.contentManager">
+            <summary>Content manager containing the shared assets of the game</summary>
+        </member>
+        <member name="T:Nuclex.Game.Content.SharedContentManagerTest">
+            <summary>Unit test for the shared content manager class</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManagerTest.TestConstructor">
+            <summary>Tests the constructor of the shared content manager</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManagerTest.TestServiceRegistration">
+            <summary>
+              Verifies that the shared content manager registers itself as a service
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManagerTest.TestInitialization">
+            <summary>
+              Verifies that the shared content manager can be initialized
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManagerTest.TestInitializationWithExistingGraphicsDevice">
+            <summary>
+              Verifies that the shared content manager can be initialized and takes over
+              an existing graphics device provided by the game
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManagerTest.TestDispose">
+            <summary>
+              Test whether the shared content manager performs the neccessary cleanup
+              work when it is disposed
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManagerTest.TestThrowOnLoadAssetBeforeInitialization">
+            <summary>
+              Ensures that the content manager throws an exception if it is asked to load
+              an asset before it has been initialized
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManagerTest.TestLoadAsset">
+            <summary>
+              Tests whether the shared content provider passes on the Load() call to its
+              internal content manager
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManagerTest.TestUnloadContent">
+            <summary>
+              Tests whether the shared content provider passes on the Load() call to its
+              internal content manager
+            </summary>
+        </member>
+        <member name="T:Nuclex.Game.Content.SharedContentManagerTest.DummyContentManager">
+            <summary>Dummy content manager used for unit testing</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManagerTest.DummyContentManager.#ctor(System.IServiceProvider)">
+            <summary>Initializes a new dummy content manager</summary>
+            <param name="gameServices">Game services the content manager will use</param>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManagerTest.DummyContentManager.Load``1(System.String)">
+            <summary>
+              Loads an asset that has been processed by the Content Pipeline. Reference
+              page contains code sample.
+            </summary>
+            <typeparam name="AssetType">Type of the asset that will be loaded</typeparam>
+            <param name="assetName">
+              Asset name, relative to the loader root directory, and not including
+              the .xnb file extension.
+            </param>
+            <returns>
+              The loaded asset. Repeated calls to load the same asset will return
+              the same object instance.
+            </returns>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManagerTest.DummyContentManager.Unload">
+            <summary>Called to unload all content</summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.SharedContentManagerTest.DummyContentManager.LastLoadedAsset">
+            <summary>The last asset this content manager tried to load</summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.SharedContentManagerTest.DummyContentManager.UnloadCallCount">
+            <summary>Number of times the Unload() method has been called</summary>
+        </member>
+        <member name="T:Nuclex.Game.Content.SharedContentManagerTest.TestSharedContentManager">
+            <summary>Shared content manager for testing</summary>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManagerTest.TestSharedContentManager.#ctor(Microsoft.Xna.Framework.GameServiceContainer)">
+            <summary>Initializes a new shared content manager</summary>
+            <param name="gameServices">
+              Game services the shared content manager will use and add its own
+              shared content service to
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.Content.SharedContentManagerTest.TestSharedContentManager.CreateContentManager">
+            <summary>Creates a new content manager for the shared content provider</summary>
+            <returns>The newly created content manager</returns>
+        </member>
+        <member name="F:Nuclex.Game.Content.SharedContentManagerTest.TestSharedContentManager.dummyContentManager">
+            <summary>
+              Dummy content manager that has been created by the shared content provider
+            </summary>
+        </member>
+        <member name="F:Nuclex.Game.Content.SharedContentManagerTest.TestSharedContentManager.serviceProvider">
+            <summary>
+              Service container used by the content manager to look up that graphics device
+            </summary>
+        </member>
+        <member name="P:Nuclex.Game.Content.SharedContentManagerTest.TestSharedContentManager.LastLoadedAsset">
+            <summary>The last asset the shared content provider tried to load</summary>
+        </member>
+        <member name="P:Nuclex.Game.Content.SharedContentManagerTest.TestSharedContentManager.UnloadCallCount">
+            <summary>Number of times the Unload() method has been called</summary>
+        </member>
+        <member name="T:Nuclex.Game.DrawableComponentTest">
+            <summary>Unit test for the drawable component class</summary>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponentTest.Setup">
+            <summary>Called before each test is run</summary>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponentTest.Teardown">
+            <summary>Called after each test has run</summary>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponentTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the drawable component is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponentTest.TestInitialize">
+            <summary>Tests whether the Initialize() method is working</summary>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponentTest.TestDraw">
+            <summary>
+              Tests whether the drawable component can draw itself
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponentTest.TestDrawOrder">
+            <summary>Verifies that the DrawOrder property is working correctly</summary>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponentTest.TestDrawOrderChangedEvent">
+            <summary>
+              Verifies that the DrawOrder change event is triggered when the drawing order
+              of the component is changed
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponentTest.TestVisible">
+            <summary>Verifies that the Visible property is working correctly</summary>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponentTest.TestVisibleChangedEvent">
+            <summary>
+              Verifies that the visible change event is triggered when the visibility
+              of the component is changed
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponentTest.mockSubscriber(Nuclex.Game.DrawableComponent)">
+            <summary>Mocks a subscriber for the events of a tracker</summary>
+            <param name="drawableComponent">Component to mock an event subscriber for</param>
+            <returns>The mocked event subscriber</returns>
+        </member>
+        <member name="F:Nuclex.Game.DrawableComponentTest.mockery">
+            <summary>Mock object factory</summary>
+        </member>
+        <member name="F:Nuclex.Game.DrawableComponentTest.testComponent">
+            <summary>Component being tested</summary>
+        </member>
+        <member name="T:Nuclex.Game.DrawableComponentTest.IDrawableComponentSubscriber">
+            <summary>Interface for a subscriber to the DrawableComponent's events</summary>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponentTest.IDrawableComponentSubscriber.DrawOrderChanged(System.Object,System.EventArgs)">
+            <summary>
+              Called when the component's drawing order has changed
+            </summary>
+            <param name="sender">Component whose drawing order property has changed</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Game.DrawableComponentTest.IDrawableComponentSubscriber.VisibleChanged(System.Object,System.EventArgs)">
+            <summary>
+              Called when the Component's visible property has changed
+            </summary>
+            <param name="sender">Component whose visible property has changed</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="T:Nuclex.Game.GraphicsDeviceDrawableComponent">
+            <summary>
+              Lightweight variant DrawableGameComponent that doesn't reference the Game class
+            </summary>
+            <remarks>
+              <para>
+                This variant of the DrawableComponent class stores a graphics device and
+                calls the LoadContent() method at the appropriate time. It is useful
+                if the deriving class actually makes direct use of the graphics device.
+              </para>
+              <para>
+                To work, this class requires to things: A GameServices collection and
+                an entry for the IGraphicsDeviceService. You can easily implement this
+                interface yourself for any custom graphics device manager.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceDrawableComponent.#ctor(System.IServiceProvider)">
+            <summary>Initializes a new drawable component.</summary>
+            <param name="serviceProvider">
+              Service provider from which the graphics device service will be taken
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceDrawableComponent.#ctor(Microsoft.Xna.Framework.Graphics.IGraphicsDeviceService)">
+            <summary>Initializes a new drawable component</summary>
+            <param name="graphicsDeviceService">
+              Graphics device service the component will use
+            </param>
+            <remarks>
+              This constructor is mainly relevant for users of IoC containers which
+              can wire up components to each other automatically. For the XNA
+              game services model, the service provider-based constructor should
+              be used instead because it uses a two-stage initialization process
+              where components wire up to each other in <see cref="M:Nuclex.Game.GraphicsDeviceDrawableComponent.Initialize"/>.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceDrawableComponent.Dispose">
+            <summary>Immediately releases all resources owned by this instance</summary>
+            <remarks>
+              This method is not suitable for being called during a GC run, it is intended
+              for manual usage when you actually want to get rid of the drawable component.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceDrawableComponent.Initialize">
+            <summary>Gives the game component a chance to initialize itself</summary>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceDrawableComponent.LoadGraphicsContent(System.Boolean)">
+            <summary>
+              Called when the object needs to set up graphics resources. Override to
+              set up any object specific graphics resources.
+            </summary>
+            <param name="createAllContent">
+              True if all graphics resources need to be set up; false if only
+              manual resources need to be set up.
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceDrawableComponent.LoadContent">
+            <summary>
+              Called when graphics resources need to be loaded. Override this method to load
+              any game-specific graphics resources.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceDrawableComponent.UnloadGraphicsContent(System.Boolean)">
+            <summary>
+              Called when graphics resources should be released. Override to
+              handle component specific graphics resources.
+            </summary>
+            <param name="destroyAllContent">
+              True if all graphics resources should be released; false if only
+              manual resources should be released.
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceDrawableComponent.UnloadContent">
+            <summary>
+              Called when graphics resources need to be unloaded. Override this method to unload
+              any game-specific graphics resources.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceDrawableComponent.subscribeToGraphicsDeviceService">
+            <summary>
+              Subscribes this component to the events of the graphics device service.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceDrawableComponent.unsubscribeFromGraphicsDeviceService">
+            <summary>
+              Unsubscribes this component from the events of the graphics device service.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceDrawableComponent.deviceCreated(System.Object,System.EventArgs)">
+            <summary>Called when the graphics device is created</summary>
+            <param name="sender">Graphics device service that created a new device</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceDrawableComponent.deviceResetting(System.Object,System.EventArgs)">
+            <summary>Called before the graphics device is being reset</summary>
+            <param name="sender">Graphics device service that is resetting its device</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceDrawableComponent.deviceReset(System.Object,System.EventArgs)">
+            <summary>Called after the graphics device has been reset</summary>
+            <param name="sender">Graphics device service that has just reset its device</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceDrawableComponent.deviceDisposing(System.Object,System.EventArgs)">
+            <summary>Called before the graphics device is being disposed</summary>
+            <param name="sender">Graphics device service that's disposing the device</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="F:Nuclex.Game.GraphicsDeviceDrawableComponent.serviceProvider">
+            <summary>XNA game service provider (can be null)</summary>
+            <remarks>
+              This is only set when the component is initialized using the IServiceProvider
+              constructor, where it needs to remember the service provider until the
+              Initialize() method has been called.
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Game.GraphicsDeviceDrawableComponent.graphicsDeviceService">
+            <summary>Graphics device service this component is bound to.</summary>
+        </member>
+        <member name="P:Nuclex.Game.GraphicsDeviceDrawableComponent.GraphicsDevice">
+            <summary>GraphicsDevice this component is bound to. Can be null.</summary>
+        </member>
+        <member name="T:Nuclex.Game.GraphicsDeviceGraphicsDeviceDrawableComponentTest">
+            <summary>Unit test for the drawable component class</summary>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceGraphicsDeviceDrawableComponentTest.Setup">
+            <summary>Called before each test is run</summary>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceGraphicsDeviceDrawableComponentTest.Teardown">
+            <summary>Called after each test has run</summary>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceGraphicsDeviceDrawableComponentTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the drawable component is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceGraphicsDeviceDrawableComponentTest.TestThrowOnInitializeWithoutGraphicsDeviceService">
+            <summary>
+              Tests whether the Initialize() method throws an exception if the drawable
+              component is initialized without a graphics device service present.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceGraphicsDeviceDrawableComponentTest.TestInitializeBeforeGraphicsDeviceCreation">
+            <summary>
+              Tests whether the Initialize() method is working when it is called before
+              the graphics device has been created
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceGraphicsDeviceDrawableComponentTest.TestInitializeAfterGraphicsDeviceCreation">
+            <summary>
+              Tests whether the Initialize() method is working when it is called after
+              the graphics device has been created
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.GraphicsDeviceGraphicsDeviceDrawableComponentTest.TestGraphicsDeviceReset">
+            <summary>
+              Tests whether the drawable component survives a graphics device reset
+            </summary>
+        </member>
+        <member name="F:Nuclex.Game.GraphicsDeviceGraphicsDeviceDrawableComponentTest.testComponent">
+            <summary>Component being tested</summary>
+        </member>
+        <member name="F:Nuclex.Game.GraphicsDeviceGraphicsDeviceDrawableComponentTest.mockedGraphicsDeviceService">
+            <summary>Mock of the graphics device service</summary>
+        </member>
+        <member name="T:Nuclex.Game.Packing.ArevaloRectanglePacker">
+            <summary>Rectangle packer using an algorithm by Javier Arevalo</summary>
+            <remarks>
+              <para>
+                Original code by Javier Arevalo (jare at iguanademos dot com). Rewritten
+                to C# / .NET by Markus Ewald (cygon at nuclex dot org). The following comments
+                were written by the original author when he published his algorithm.
+              </para>
+              <para>
+                You have a bunch of rectangular pieces. You need to arrange them in a
+                rectangular surface so that they don't overlap, keeping the total area of the
+                rectangle as small as possible. This is fairly common when arranging characters
+                in a bitmapped font, lightmaps for a 3D engine, and I guess other situations as
+                well.
+              </para>
+              <para>
+                The idea of this algorithm is that, as we add rectangles, we can pre-select
+                "interesting" places where we can try to add the next rectangles. For optimal
+                results, the rectangles should be added in order. I initially tried using area
+                as a sorting criteria, but it didn't work well with very tall or very flat
+                rectangles. I then tried using the longest dimension as a selector, and it
+                worked much better. So much for intuition...
+              </para>
+              <para>
+                These "interesting" places are just to the right and just below the currently
+                added rectangle. The first rectangle, obviously, goes at the top left, the next
+                one would go either to the right or below this one, and so on. It is a weird way
+                to do it, but it seems to work very nicely.
+              </para>
+              <para>
+                The way we search here is fairly brute-force, the fact being that for most
+                offline purposes the performance seems more than adequate. I have generated a
+                japanese font with around 8500 characters and all the time was spent generating
+                the bitmaps.
+              </para>
+              <para>
+                Also, for all we care, we could grow the parent rectangle in a different way
+                than power of two. It just happens that power of 2 is very convenient for
+                graphics hardware textures.
+              </para>
+              <para>
+                I'd be interested in hearing of other approaches to this problem. Make sure
+                to post them on http://www.flipcode.com
+              </para>
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Game.Packing.RectanglePacker">
+            <summary>Base class for rectangle packing algorithms</summary>
+            <remarks>
+              <para>
+                By uniting all rectangle packers under this common base class, you can
+                easily switch between different algorithms to find the most efficient or
+                performant one for a given job.
+              </para>
+              <para>
+                An almost exhaustive list of packing algorithms can be found here:
+                http://www.csc.liv.ac.uk/~epa/surveyhtml.html
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Packing.RectanglePacker.#ctor(System.Int32,System.Int32)">
+            <summary>Initializes a new rectangle packer</summary>
+            <param name="packingAreaWidth">Width of the packing area</param>
+            <param name="packingAreaHeight">Height of the packing area</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.RectanglePacker.Pack(System.Int32,System.Int32)">
+            <summary>Allocates space for a rectangle in the packing area</summary>
+            <param name="rectangleWidth">Width of the rectangle to allocate</param>
+            <param name="rectangleHeight">Height of the rectangle to allocate</param>
+            <returns>The location at which the rectangle has been placed</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.RectanglePacker.TryPack(System.Int32,System.Int32,Microsoft.Xna.Framework.Point@)">
+            <summary>Tries to allocate space for a rectangle in the packing area</summary>
+            <param name="rectangleWidth">Width of the rectangle to allocate</param>
+            <param name="rectangleHeight">Height of the rectangle to allocate</param>
+            <param name="placement">Output parameter receiving the rectangle's placement</param>
+            <returns>True if space for the rectangle could be allocated</returns>
+        </member>
+        <member name="F:Nuclex.Game.Packing.RectanglePacker.packingAreaWidth">
+            <summary>Maximum allowed width of the packing area</summary>
+        </member>
+        <member name="F:Nuclex.Game.Packing.RectanglePacker.packingAreaHeight">
+            <summary>Maximum allowed height of the packing area</summary>
+        </member>
+        <member name="P:Nuclex.Game.Packing.RectanglePacker.PackingAreaWidth">
+            <summary>Maximum width the packing area is allowed to have</summary>
+        </member>
+        <member name="P:Nuclex.Game.Packing.RectanglePacker.PackingAreaHeight">
+            <summary>Maximum height the packing area is allowed to have</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.ArevaloRectanglePacker.#ctor(System.Int32,System.Int32)">
+            <summary>Initializes a new rectangle packer</summary>
+            <param name="packingAreaWidth">Maximum width of the packing area</param>
+            <param name="packingAreaHeight">Maximum height of the packing area</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.ArevaloRectanglePacker.TryPack(System.Int32,System.Int32,Microsoft.Xna.Framework.Point@)">
+            <summary>Tries to allocate space for a rectangle in the packing area</summary>
+            <param name="rectangleWidth">Width of the rectangle to allocate</param>
+            <param name="rectangleHeight">Height of the rectangle to allocate</param>
+            <param name="placement">Output parameter receiving the rectangle's placement</param>
+            <returns>True if space for the rectangle could be allocated</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.ArevaloRectanglePacker.optimizePlacement(Microsoft.Xna.Framework.Point@,System.Int32,System.Int32)">
+            <summary>
+              Optimizes the rectangle's placement by moving it either left or up to fill
+              any gaps resulting from rectangles blocking the anchors of the most optimal
+              placements.
+            </summary>
+            <param name="placement">Placement to be optimized</param>
+            <param name="rectangleWidth">Width of the rectangle to be optimized</param>
+            <param name="rectangleHeight">Height of the rectangle to be optimized</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.ArevaloRectanglePacker.selectAnchorRecursive(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+              Searches for a free anchor and recursively enlarges the packing area
+              if none can be found.
+            </summary>
+            <param name="rectangleWidth">Width of the rectangle to be placed</param>
+            <param name="rectangleHeight">Height of the rectangle to be placed</param>
+            <param name="testedPackingAreaWidth">Width of the tested packing area</param>
+            <param name="testedPackingAreaHeight">Height of the tested packing area</param>
+            <returns>
+              Index of the anchor the rectangle is to be placed at or -1 if the rectangle
+              does not fit in the packing area anymore.
+            </returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.ArevaloRectanglePacker.findFirstFreeAnchor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Locates the first free anchor at which the rectangle fits</summary>
+            <param name="rectangleWidth">Width of the rectangle to be placed</param>
+            <param name="rectangleHeight">Height of the rectangle to be placed</param>
+            <param name="testedPackingAreaWidth">Total width of the packing area</param>
+            <param name="testedPackingAreaHeight">Total height of the packing area</param>
+            <returns>The index of the first free anchor or -1 if none is found</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.ArevaloRectanglePacker.isFree(Microsoft.Xna.Framework.Rectangle@,System.Int32,System.Int32)">
+            <summary>
+              Determines whether the rectangle can be placed in the packing area
+              at its current location.
+            </summary>
+            <param name="rectangle">Rectangle whose position to check</param>
+            <param name="testedPackingAreaWidth">Total width of the packing area</param>
+            <param name="testedPackingAreaHeight">Total height of the packing area</param>
+            <returns>True if the rectangle can be placed at its current position</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.ArevaloRectanglePacker.insertAnchor(Microsoft.Xna.Framework.Point)">
+            <summary>Inserts a new anchor point into the anchor list</summary>
+            <param name="anchor">Anchor point that will be inserted</param>
+            <remarks>
+              This method tries to keep the anchor list ordered by ranking the anchors
+              depending on the distance from the top left corner in the packing area.
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Game.Packing.ArevaloRectanglePacker.actualPackingAreaWidth">
+            <summary>Current width of the packing area</summary>
+        </member>
+        <member name="F:Nuclex.Game.Packing.ArevaloRectanglePacker.actualPackingAreaHeight">
+            <summary>Current height of the packing area</summary>
+        </member>
+        <member name="F:Nuclex.Game.Packing.ArevaloRectanglePacker.packedRectangles">
+            <summary>Rectangles contained in the packing area</summary>
+        </member>
+        <member name="F:Nuclex.Game.Packing.ArevaloRectanglePacker.anchors">
+            <summary>Anchoring points where new rectangles can potentially be placed</summary>
+        </member>
+        <member name="T:Nuclex.Game.Packing.ArevaloRectanglePacker.AnchorRankComparer">
+            <summary>Compares the 'rank' of anchoring points</summary>
+            <remarks>
+              Anchoring points are potential locations for the placement of new rectangles.
+              Each time a rectangle is inserted, an anchor point is generated on its upper
+              right end and another one at its lower left end. The anchor points are kept
+              in a list that is ordered by their closeness to the upper left corner of the
+              packing area (their 'rank') so the packer favors positions that are closer to
+              the upper left for new rectangles.
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Game.Packing.ArevaloRectanglePacker.AnchorRankComparer.Default">
+            <summary>Provides a default instance for the anchor rank comparer</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.ArevaloRectanglePacker.AnchorRankComparer.Compare(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)">
+            <summary>Compares the rank of two anchors against each other</summary>
+            <param name="left">Left anchor point that will be compared</param>
+            <param name="right">Right anchor point that will be compared</param>
+            <returns>The relation of the two anchor point's ranks to each other</returns>
+        </member>
+        <member name="T:Nuclex.Game.Packing.ArevaloRectanglePackerTest">
+            <summary>Unit test for the arevalo rectangle packer class</summary>
+        </member>
+        <member name="T:Nuclex.Game.Packing.RectanglePackerTest">
+            <summary>Base class for unit testing the rectangle packers</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.RectanglePackerTest.CalculateEfficiency(Nuclex.Game.Packing.RectanglePacker)">
+            <summary>Determines the efficiency of a packer with a packing area of 70x70</summary>
+            <param name="packer">Packer with a packing area of 70x70 units</param>
+            <returns>The efficiency factor of the packer</returns>
+            <remarks>
+              A perfect packer would achieve an efficiency rating of 1.0. This is
+              impossible however since the 24 squares cannot all be packed into
+              the 70x70 square with no overlap (Bitner &amp; Reingold 1975). The closer
+              the efficiency rating is to 1.0, the better, with 0.99 being the
+              mathematically best rating achievable.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Packing.RectanglePackerTest.Benchmark(Nuclex.Game.Packing.RectanglePackerTest.RectanglePackerBuilder)">
+            <summary>Benchmarks the provided rectangle packer using random data</summary>
+            <param name="buildPacker">
+              Rectangle packer build method returning new rectangle packers
+              with an area of 1024 x 1024
+            </param>
+            <returns>The achieved benchmark score</returns>
+        </member>
+        <member name="T:Nuclex.Game.Packing.RectanglePackerTest.RectanglePackerBuilder">
+            <summary>Delegate for a Rectangle Packer factory method</summary>
+            <returns>A new rectangle packer</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.ArevaloRectanglePackerTest.TestSpaceEfficiency">
+            <summary>Tests the packer's efficiency using a deterministic benchmark</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.ArevaloRectanglePackerTest.TestTooLargeRectangle">
+            <summary>Verifies that the packer rejects a rectangle that is too large</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.ArevaloRectanglePackerTest.TestThrowOnTooLargeRectangle">
+            <summary>
+              Tests whether the packer throws the appropriate exception if a rectangle
+              is too large to fit in the packing area
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.ArevaloRectanglePackerTest.TestBarelyFittingRectangle">
+            <summary>
+              Verifies that the packer can pack a rectangle that barely fits in the packing area
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.ArevaloRectanglePackerTest.TestStability">
+            <summary>Tests the packer's stability by running a complete benchmark</summary>
+        </member>
+        <member name="T:Nuclex.Game.Packing.CygonRectanglePacker">
+            <summary>Packer using a custom algorithm by Markus 'Cygon' Ewald</summary>
+            <remarks>
+              <para>
+                Algorithm conceived by Markus Ewald (cygon at nuclex dot org), though
+                I'm quite sure I'm not the first one to come up with it :)
+              </para>
+              <para>
+                The algorithm always places rectangles as low as possible in the packing
+                area. So, for any new rectangle that is to be added, the packer has to
+                determine the X coordinate at which the rectangle can have the lowest
+                overall height without intersecting any other rectangles.
+              </para>
+              <para>
+                To quickly discover these locations, the packer uses a sophisticated
+                data structure that stores the upper silhouette of the packing area. When
+                a new rectangle needs to be added, only the silouette edges need to be
+                analyzed to find the position where the rectangle would achieve the lowest
+                placement possible in the packing area.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.#ctor(System.Int32,System.Int32)">
+            <summary>Initializes a new rectangle packer</summary>
+            <param name="packingAreaWidth">Maximum width of the packing area</param>
+            <param name="packingAreaHeight">Maximum height of the packing area</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.TryPack(System.Int32,System.Int32,Microsoft.Xna.Framework.Point@)">
+            <summary>Tries to allocate space for a rectangle in the packing area</summary>
+            <param name="rectangleWidth">Width of the rectangle to allocate</param>
+            <param name="rectangleHeight">Height of the rectangle to allocate</param>
+            <param name="placement">Output parameter receiving the rectangle's placement</param>
+            <returns>True if space for the rectangle could be allocated</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.tryFindBestPlacement(System.Int32,System.Int32,Microsoft.Xna.Framework.Point@)">
+            <summary>Finds the best position for a rectangle of the given dimensions</summary>
+            <param name="rectangleWidth">Width of the rectangle to find a position for</param>
+            <param name="rectangleHeight">Height of the rectangle to find a position for</param>
+            <param name="placement">Receives the best placement found for the rectangle</param>
+            <returns>True if a valid placement for the rectangle could be found</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.integrateRectangle(System.Int32,System.Int32,System.Int32)">
+            <summary>Integrates a new rectangle into the height slice table</summary>
+            <param name="left">Position of the rectangle's left side</param>
+            <param name="width">Width of the rectangle</param>
+            <param name="bottom">Position of the rectangle's lower side</param>
+        </member>
+        <member name="F:Nuclex.Game.Packing.CygonRectanglePacker.heightSlices">
+            <summary>Stores the height silhouette of the rectangles</summary>
+        </member>
+        <member name="T:Nuclex.Game.Packing.CygonRectanglePacker.SliceStartComparer">
+            <summary>Compares the starting position of height slices</summary>
+        </member>
+        <member name="F:Nuclex.Game.Packing.CygonRectanglePacker.SliceStartComparer.Default">
+            <summary>Provides a default instance for the anchor rank comparer</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.SliceStartComparer.Compare(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Point)">
+            <summary>Compares the starting position of two height slices</summary>
+            <param name="left">Left slice start that will be compared</param>
+            <param name="right">Right slice start that will be compared</param>
+            <returns>The relation of the two slice starts ranks to each other</returns>
+        </member>
+        <member name="T:Nuclex.Game.Packing.CygonRectanglePackerTest">
+            <summary>Unit test for the cygon rectangle packer class</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePackerTest.TestSpaceEfficiency">
+            <summary>Tests the packer's efficiency using a deterministic benchmark</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePackerTest.TestTooLargeRectangle">
+            <summary>Verifies that the packer rejects a rectangle that is too large</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePackerTest.TestThrowOnTooLargeRectangle">
+            <summary>
+              Tests whether the packer throws the appropriate exception if a rectangle
+              is too large to fit in the packing area
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePackerTest.TestBarelyFittingRectangle">
+            <summary>
+              Verifies that the packer can pack a rectangle that barely fits in the packing area
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePackerTest.TestStability">
+            <summary>Tests the packer's stability by running a complete benchmark</summary>
+        </member>
+        <member name="T:Nuclex.Game.Packing.OutOfSpaceException">
+            <summary>Insufficient space left in packing area to contain a given object</summary>
+            <remarks>
+              An exception being sent to you from deep space. Erm, no, wait, it's an exception
+              that occurs when a packing algorithm runs out of space and is unable to fit
+              the object you tried to pack into the remaining packing area.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor">
+            <summary>Initializes the exception</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor(System.String)">
+            <summary>Initializes the exception with an error message</summary>
+            <param name="message">Error message describing the cause of the exception</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor(System.String,System.Exception)">
+            <summary>Initializes the exception as a followup exception</summary>
+            <param name="message">Error message describing the cause of the exception</param>
+            <param name="inner">Preceding exception that has caused this exception</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes the exception from its serialized state</summary>
+            <param name="info">Contains the serialized fields of the exception</param>
+            <param name="context">Additional environmental informations</param>
+        </member>
+        <member name="T:Nuclex.Game.Packing.OutOfSpaceExceptionTest">
+            <summary>Unit Test for the OutOfSpaceException class</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceExceptionTest.TestDefaultConstructor">
+            <summary>
+              Verifies that the exception's default constructor is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceExceptionTest.TestInnerException">
+            <summary>
+              Checks whether the exception correctly stores its inner exception
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceExceptionTest.TestSerialization">
+            <summary>
+              Test whether the exception can be serialized
+            </summary>
+        </member>
+        <member name="T:Nuclex.Game.Packing.SimpleRectanglePacker">
+            <summary>Simplified packer for rectangles which don't vary greatly in size</summary>
+            <remarks>
+              This is a highly performant packer that sacrifices space efficiency for
+              low memory usage and runtime performance. It achieves good results with
+              near-uniform sized rectangles but will waste lots of space with rectangles
+              of varying dimensions.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Packing.SimpleRectanglePacker.#ctor(System.Int32,System.Int32)">
+            <summary>Initializes a new rectangle packer</summary>
+            <param name="packingAreaWidth">Maximum width of the packing area</param>
+            <param name="packingAreaHeight">Maximum height of the packing area</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.SimpleRectanglePacker.TryPack(System.Int32,System.Int32,Microsoft.Xna.Framework.Point@)">
+            <summary>Tries to allocate space for a rectangle in the packing area</summary>
+            <param name="rectangleWidth">Width of the rectangle to allocate</param>
+            <param name="rectangleHeight">Height of the rectangle to allocate</param>
+            <param name="placement">Output parameter receiving the rectangle's placement</param>
+            <returns>True if space for the rectangle could be allocated</returns>
+        </member>
+        <member name="F:Nuclex.Game.Packing.SimpleRectanglePacker.currentLine">
+            <summary>Current packing line</summary>
+        </member>
+        <member name="F:Nuclex.Game.Packing.SimpleRectanglePacker.lineHeight">
+            <summary>Height of the current packing line</summary>
+        </member>
+        <member name="F:Nuclex.Game.Packing.SimpleRectanglePacker.column">
+            <summary>Current column in the current packing line</summary>
+        </member>
+        <member name="T:Nuclex.Game.Packing.SimpleRectanglePackerTest">
+            <summary>Unit test for the simple rectangle packer class</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.SimpleRectanglePackerTest.TestSpaceEfficiency">
+            <summary>Tests the packer's efficiency using a deterministic benchmark</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.SimpleRectanglePackerTest.TestTooLargeRectangle">
+            <summary>Verifies that the packer rejects a rectangle that is too large</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.SimpleRectanglePackerTest.TestThrowOnTooLargeRectangle">
+            <summary>
+              Tests whether the packer throws the appropriate exception if a rectangle
+              is too large to fit in the packing area
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.SimpleRectanglePackerTest.TestBarelyFittingRectangle">
+            <summary>
+              Verifies that the packer can pack a rectangle that barely fits in the packing area
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.SimpleRectanglePackerTest.TestStability">
+            <summary>Tests the packer's stability by running a complete benchmark</summary>
+        </member>
+        <member name="T:Nuclex.Game.Serialization.BinarySerializer">
+            <summary>Utility class for serializating objects into binary data</summary>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializer.Load``1(System.IO.BinaryReader,System.Collections.Generic.ICollection{``0})">
+            <summary>Loads a collection from its serialized representation</summary>
+            <param name="reader">Reader to use for reading the collection</param>
+            <param name="collection">Collection to be deserialized into</param>
+            <remarks>
+              This method loads right into the collection and is not transactional.
+              If an error occurs during loading, the collection is left in
+              an intermediate state and no assumptions should be made as to its
+              contents. If you need transactional safety, create a temporary collection,
+              load into the temporary collection and then replace your actual
+              collection with it.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializer.Save``1(System.IO.BinaryWriter,System.Collections.Generic.ICollection{``0})">
+            <summary>Serializes a collection of binary serializable objects</summary>
+            <param name="writer">BinaryWriter to serialize the collection into</param>
+            <param name="collection">Collection to be serialized</param>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializer.Load(System.IO.BinaryReader,Microsoft.Xna.Framework.Matrix@)">
+            <summary>Loads a matrix from its serialized representation</summary>
+            <param name="reader">Reader to use for reading the matrix</param>
+            <param name="matrix">Matrix to be deserialized</param>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializer.Save(System.IO.BinaryWriter,Microsoft.Xna.Framework.Matrix@)">
+            <summary>Serializes a matrix into a binary data stream</summary>
+            <param name="writer">BinaryWriter to serialize the matrix into</param>
+            <param name="matrix">Matrix to be serialized</param>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializer.Load(System.IO.BinaryReader,Microsoft.Xna.Framework.Vector2@)">
+            <summary>Loads a vector from its serialized representation</summary>
+            <param name="reader">Reader to use for reading the vector</param>
+            <param name="vector">Vector to be deserialized</param>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializer.Save(System.IO.BinaryWriter,Microsoft.Xna.Framework.Vector2@)">
+            <summary>Serializes a vector into a binary data stream</summary>
+            <param name="writer">BinaryWriter to serialize the vector into</param>
+            <param name="vector">Vector to be serialized</param>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializer.Load(System.IO.BinaryReader,Microsoft.Xna.Framework.Vector3@)">
+            <summary>Loads a vector from its serialized representation</summary>
+            <param name="reader">Reader to use for reading the vector</param>
+            <param name="vector">Vector to be deserialized</param>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializer.Save(System.IO.BinaryWriter,Microsoft.Xna.Framework.Vector3@)">
+            <summary>Serializes a vector into a binary data stream</summary>
+            <param name="writer">BinaryWriter to serialize the vector into</param>
+            <param name="vector">Vector to be serialized</param>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializer.Load(System.IO.BinaryReader,Microsoft.Xna.Framework.Vector4@)">
+            <summary>Loads a vector from its serialized representation</summary>
+            <param name="reader">Reader to use for reading the vector</param>
+            <param name="vector">Vector to be deserialized</param>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializer.Save(System.IO.BinaryWriter,Microsoft.Xna.Framework.Vector4@)">
+            <summary>Serializes a vector into a binary data stream</summary>
+            <param name="writer">BinaryWriter to serialize the vector into</param>
+            <param name="vector">Vector to be serialized</param>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializer.Load(System.IO.BinaryReader,Microsoft.Xna.Framework.Quaternion@)">
+            <summary>Loads a quaternion from its serialized representation</summary>
+            <param name="reader">Reader to use for reading the quaternion</param>
+            <param name="quaternion">Quaternion to be deserialized</param>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializer.Save(System.IO.BinaryWriter,Microsoft.Xna.Framework.Quaternion@)">
+            <summary>Serializes a quaternion into a binary data stream</summary>
+            <param name="writer">BinaryWriter to serialize the quaternion into</param>
+            <param name="quaternion">Quaternion to be serialized</param>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializer.Load(System.IO.BinaryReader,Microsoft.Xna.Framework.Curve)">
+            <summary>Loads a curve from its serialized representation</summary>
+            <param name="reader">Reader to use for reading the curve</param>
+            <param name="curve">Curve to be deserialized</param>
+            <remarks>
+              This method loads right into the curve and is not transactional.
+              If an error occurs during loading, the curve is left in
+              an intermediate state and no assumptions should be made as to its
+              contents. If you need transactional safety, create a temporary curve,
+              load into the temporary curve and then replace your actual
+              curve with it.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializer.Save(System.IO.BinaryWriter,Microsoft.Xna.Framework.Curve)">
+            <summary>Serializes a curve into a binary data stream</summary>
+            <param name="writer">BinaryWriter to serialize the curve into</param>
+            <param name="curve">Curve to be serialized</param>
+        </member>
+        <member name="T:Nuclex.Game.Serialization.BinarySerializerTest">
+            <summary>Ensures that the binary serializer is working correctly</summary>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializerTest.TestSimpleCollection">
+            <summary>
+              Tests wether a simple collection can be successfully saved and loaded again
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializerTest.TestMatrixSerialization">
+            <summary>
+              Verifies that matrices can be serialized and restored again
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializerTest.TestVector2Serialization">
+            <summary>
+              Verifies that a Vector2 can be serialized and restored again
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializerTest.TestVector3Serialization">
+            <summary>
+              Verifies that a Vector3 can be serialized and restored again
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializerTest.TestVector4Serialization">
+            <summary>
+              Verifies that a Vector4 can be serialized and restored again
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializerTest.TestQuaternionSerialization">
+            <summary>
+              Verifies that a quaternion can be serialized and restored again
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializerTest.TestCurveSerialization">
+            <summary>
+              Verifies that a curve can be serialized and restored again
+            </summary>
+        </member>
+        <member name="T:Nuclex.Game.Serialization.BinarySerializerTest.TestSerializable">
+            <summary>Serializable class used to test the serialization code</summary>
+        </member>
+        <member name="T:Nuclex.Game.Serialization.IBinarySerializable">
+            <summary>Interface for objects able to serialize themselfes into a binary format</summary>
+            <remarks>
+              Sometimes, the limitations of XML serialization are too strict, especially
+              in the context of a game where you might need to serialize larger chunks of
+              binary data or in cases where you do not wish to expose a default constructor
+              in your classes. This interface defines two simple methods that can be
+              used to load and save an object's state in a simple manner.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.IBinarySerializable.Load(System.IO.BinaryReader)">
+            <summary>Loads the object's state from its serialized representation</summary>
+            <param name="reader">Reader to use for reading the object's state</param>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.IBinarySerializable.Save(System.IO.BinaryWriter)">
+            <summary>Saves the object's state into a serialized representation</summary>
+            <param name="writer">Writer to use for writing the object's state</param>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializerTest.TestSerializable.Load(System.IO.BinaryReader)">
+            <summary>Loads the state of the object from binary data</summary>
+            <param name="reader">Reader containing the binary state of the object</param>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializerTest.TestSerializable.Save(System.IO.BinaryWriter)">
+            <summary>Saves the state of the object as binary data</summary>
+            <param name="writer">
+              Writer into which the binary state of the object will be written
+            </param>
+        </member>
+        <member name="F:Nuclex.Game.Serialization.BinarySerializerTest.TestSerializable.Dummy">
+            <summary>Serialized value representing the state of this object</summary>
+        </member>
+        <member name="T:Nuclex.Game.Serialization.BinarySerializerTest.CurveComparer">
+            <summary>Compares two curves against each other</summary>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializerTest.CurveComparer.#ctor">
+            <summary>Initializes a new curve comparer</summary>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializerTest.CurveComparer.Compare(Microsoft.Xna.Framework.Curve,Microsoft.Xna.Framework.Curve)">
+            <summary>Compares two curves against each other</summary>
+            <param name="left">Compared curve in the left side</param>
+            <param name="right">Compared curve on the right side</param>
+            <returns>The relation of the provided curves to each other</returns>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializerTest.CurveComparer.Compare(System.Object,System.Object)">
+            <summary>Compares two curves against each other</summary>
+            <param name="left">Compared curve in the left side</param>
+            <param name="right">Compared curve on the right side</param>
+            <returns>The relation of the provided curves to each other</returns>
+        </member>
+        <member name="M:Nuclex.Game.Serialization.BinarySerializerTest.CurveComparer.compareKeys(Microsoft.Xna.Framework.CurveKeyCollection,Microsoft.Xna.Framework.CurveKeyCollection)">
+            <summary>Compares the key collections of two curves against each other</summary>
+            <param name="leftKeys">Keys in the key collection to the left side</param>
+            <param name="rightKeys">Keys in the key collection to the right side</param>
+            <returns>The rleation of the two provided key collections to each other</returns>
+        </member>
+        <member name="F:Nuclex.Game.Serialization.BinarySerializerTest.CurveComparer.instance">
+            <summary>The one and only instance of the curve comparer</summary>
+        </member>
+        <member name="P:Nuclex.Game.Serialization.BinarySerializerTest.CurveComparer.Instance">
+            <summary>The one and only instance of the curve comparer</summary>
+        </member>
+        <member name="T:Nuclex.Game.Space.BoundingRectangle">
+            <summary>Two-dimensional bounding rectangle</summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>Initializes a new two-dimensional bounding rectangle</summary>
+            <param name="minX">X coordinate of the rectangle's left border</param>
+            <param name="minY">Y coordinate of the rectangle's upper border</param>
+            <param name="maxX">X coordinate of the rectangle's right border</param>
+            <param name="maxY">Y coordinate of the rectangle's lower border</param>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.#ctor(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)">
+            <summary>Initializes a new two-dimensional bounding rectangle</summary>
+            <param name="min">Lesser coordinates of the bounding rectangle</param>
+            <param name="max">Greater coordinates of the bounding rectangle</param>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.Contains(Microsoft.Xna.Framework.Vector2@,Microsoft.Xna.Framework.ContainmentType@)">
+            <summary>
+              Determines the containment type of a point to the bounding rectangle
+            </summary>
+            <param name="point">Point that will be checked for containment</param>
+            <param name="result">The containment type of the point in the rectangle</param>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.Contains(Microsoft.Xna.Framework.Vector2)">
+            <summary>Determines whether the bounding rectangle contains a point</summary>
+            <param name="point">Point that will be checked for containment</param>
+            <returns>True if the bounding rectangle contains the point</returns>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.Contains(Nuclex.Game.Space.BoundingRectangle@,Microsoft.Xna.Framework.ContainmentType@)">
+            <summary>
+              Determines the containment type of another rectangle to the bounding rectangle
+            </summary>
+            <param name="rectangle">Rectangle that will be checked for containment</param>
+            <param name="result">
+              The containment type of the other rectangle in the rectangle
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.Contains(Nuclex.Game.Space.BoundingRectangle)">
+            <summary>
+              Determines whether the bounding rectangle contains another rectangle
+            </summary>
+            <param name="rectangle">Rectangle that will be checked for containment</param>
+            <returns>True if the other rectangle is contained in the rectangle</returns>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.CreateMerged(Nuclex.Game.Space.BoundingRectangle,Nuclex.Game.Space.BoundingRectangle)">
+            <summary>
+              Builds the smallest bounding rectangle that contains the two
+              specified bounding rectangle.
+            </summary>
+            <param name="original">One of the bounding rectangles to contain</param>
+            <param name="additional">One of the bounding rectangles to contain</param>
+            <returns>The resulting merged bounding rectangle</returns>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.CreateMerged(Nuclex.Game.Space.BoundingRectangle@,Nuclex.Game.Space.BoundingRectangle@,Nuclex.Game.Space.BoundingRectangle@)">
+            <summary>
+              Builds the smallest bounding rectangle that contains the two
+              specified bounding rectangles.
+            </summary>
+            <param name="original">One of the bounding rectangles to contain</param>
+            <param name="additional">One of the bounding rectangles to contain</param>
+            <param name="result">The resulting merged bounding rectangle</param>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.Intersects(Nuclex.Game.Space.BoundingRectangle)">
+            <summary>
+              Determines whether the rectangle intersects with another rectangle
+            </summary>
+            <param name="other">
+              Other rectangle that will be checked for intersection
+            </param>
+            <returns>True if the rectangles intersect</returns>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.Intersects(Nuclex.Game.Space.BoundingRectangle@,System.Boolean@)">
+            <summary>
+              Determines whether the rectangle intersects with another rectangle
+            </summary>
+            <param name="other">
+              Other rectangle that will be checked for intersection
+            </param>
+            <param name="result">
+              Will be set to true if the rectangles intersects, otherwise false
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.Equals(System.Object)">
+            <summary>Determines whether another object is an identical bounding rectangle</summary>
+            <param name="otherObject">Other object that will be compared</param>
+            <returns>True if the other object is identical to the bounding rectangle</returns>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.Equals(Nuclex.Game.Space.BoundingRectangle)">
+            <summary>Determines whether another object is an identical bounding rectangle</summary>
+            <param name="other">Other rectangle that will be compared</param>
+            <returns>True if the other rectangle is identical to the bounding rectangle</returns>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.op_Inequality(Nuclex.Game.Space.BoundingRectangle,Nuclex.Game.Space.BoundingRectangle)">
+            <summary>Checks two bounding rectangles for inequality</summary>
+            <param name="first">First bounding rectangle that will be compared</param>
+            <param name="second">Second bounding rectangle that will be compared</param>
+            <returns>True if the rectangles are different</returns>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.op_Equality(Nuclex.Game.Space.BoundingRectangle,Nuclex.Game.Space.BoundingRectangle)">
+            <summary>Checks two bounding rectangles for equality</summary>
+            <param name="first">First bounding rectangle that will be compared</param>
+            <param name="second">Second bounding rectangle that will be compared</param>
+            <returns>True if both rectangles are equal</returns>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.GetHashCode">
+            <summary>Gets a hash code for the bounding rectangle</summary>
+            <returns>The hash code of the bounding rectangle</returns>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.ToString">
+            <summary>Converts the bounding rectangle into a human-readable string</summary>
+            <returns>A human readable string describing the bounding rectangle</returns>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.containsPoint(Microsoft.Xna.Framework.Vector2@)">
+            <summary>Whether the bounding rectangle contains the specified point</summary>
+            <param name="point">Point that is checked for containment</param>
+            <returns>True if the point is contained in the bounding rectangle</returns>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangle.intersectsRectangle(Nuclex.Game.Space.BoundingRectangle@)">
+            <summary>Whether the bounding rectangle intersects with another rectangle</summary>
+            <param name="rectangle">
+              Other rectangle that will be checked for intersection
+            </param>
+            <returns>True if the rectangles intersect each other</returns>
+        </member>
+        <member name="F:Nuclex.Game.Space.BoundingRectangle.Min">
+            <summary>Coordinates of the lesser side of the bounding rectangle</summary>
+        </member>
+        <member name="F:Nuclex.Game.Space.BoundingRectangle.Max">
+            <summary>Coordinates of the greater side of the bounding rectangle</summary>
+        </member>
+        <member name="T:Nuclex.Game.Space.BoundingRectangleTest">
+            <summary>Unit tests for the bounding rectangle class</summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestDefaultConstructor">
+            <summary>
+              Verifies that the bounding rectangle's default constructor is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestVectorConstructor">
+            <summary>
+              Verifies that the bounding rectangle's constructor from two vectors is working
+            </summary>
+            
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestCoordinateConstructor">
+            <summary>
+              Verifies that the bounding rectangle's constructor from individual
+              coordinates is working
+            </summary>
+            
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestHashCode">
+            <summary>
+              Verifies that the hash code generation of the bounding rectangle works
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestEquals">
+            <summary>Tests whether rectangles can be compared for equality</summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestEqualsObject">
+            <summary>
+              Tests whether the equality comparison of boxed instances is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestEqualsNull">
+            <summary>
+              Tests whether the equality comparison against null is handled correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestEqualsWithIncompatibleObject">
+            <summary>
+              Tests whether the equality comparison against null is handled correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestEqualityOperator">
+            <summary>Tests whether the bounding rectangle's equality operator works</summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestInequalityOperator">
+            <summary>Tests whether the bounding rectangle's equality operator works</summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestCreateMerged">
+            <summary>Tests whether the bounding rectangle's equality operator works</summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestContainsPoint">
+            <summary>Verifies that containment of points can be tested for</summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestContainsPointByReference">
+            <summary>Verifies that containment of points can be tested for</summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestContainsRectangle">
+            <summary>Verifies that containment of rectangles can be tested for</summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestContainsRectangleByReference">
+            <summary>Verifies that containment of rectangles can be tested for</summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestIntersectsRectangle">
+            <summary>
+              Verifies that the intersection check with other rectangles is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestIntersectsRectangleByReference">
+            <summary>
+              Verifies that the intersection check with other rectangles is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.BoundingRectangleTest.TestToString">
+            <summary>Tests the ToString() method</summary>
+        </member>
+        <member name="T:Nuclex.Game.Space.IBoundingRectangleProvider">
+            <summary>
+              Interface for geometrical objects providing a bounding rectangle
+            </summary>
+        </member>
+        <member name="P:Nuclex.Game.Space.IBoundingRectangleProvider.BoundingRectangle">
+            <summary>Bounding rectangle of the geometrical object</summary>
+        </member>
+        <member name="T:Nuclex.Game.Space.PoolFactory`1">
+            <summary>Factory that allows created instance to be reused</summary>
+            <typeparam name="ProductType">Type of objects the factory produces</typeparam>
+            <remarks>
+              <para>
+                Object pooling in the traditional sense doesn't make much sense in the .NET
+                environment because memory allocation is instantaneous (return address and
+                increment pointer) and memory fragmentation will be fixed automatically.
+              </para>
+              <para>
+                This object pool tries to avoid 
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Space.PoolFactory`1.#ctor">
+            <summary>Initializes a new pool factory</summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.PoolFactory`1.#ctor(System.Int32)">
+            <summary>
+              Initializes a new pool factory with an explicit unused object limit
+            </summary>
+            <param name="maximumUnusedObjectCount">
+              Maximum number of unused objects that will be kept in the pool
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.Space.PoolFactory`1.Take">
+            <summary>Takes an instance from the pool</summary>
+            <returns>A new or reused instance of the pool factory's product type</returns>
+        </member>
+        <member name="M:Nuclex.Game.Space.PoolFactory`1.Redeem(`0)">
+            <summary>Returns a node to the factory for reuse</summary>
+            <param name="item">Item that will be returned to the factory</param>
+            <remarks>
+              The caller promises that the item is no longer being used and that no
+              other references to it exist anywhere else in the code. Any cleanup
+              should be done before returning the unused item to the pool factory.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Space.PoolFactory`1.Nuclex#Support#Plugins#IAbstractFactory{ProductType}#CreateInstance">
+            <summary>
+              Creates a new instance of the type to which the factory is specialized
+            </summary>
+            <returns>The newly created instance</returns>
+        </member>
+        <member name="M:Nuclex.Game.Space.PoolFactory`1.Nuclex#Support#Plugins#IAbstractFactory#CreateInstance">
+            <summary>
+              Creates a new instance of the type to which the factory is specialized
+            </summary>
+            <returns>The newly created instance</returns>
+        </member>
+        <member name="F:Nuclex.Game.Space.PoolFactory`1.unusedItems">
+            <summary>Unused items available for resuse by the pool factory</summary>
+        </member>
+        <member name="F:Nuclex.Game.Space.PoolFactory`1.maximumUnusedObjectCount">
+            <summary>Maximum number of unused objects that will be kept in the pool</summary>
+        </member>
+        <member name="T:Nuclex.Game.Space.PoolFactoryTest">
+            <summary>Unit tests for the pool factory</summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.PoolFactoryTest.TestDefaultConstructor">
+            <summary>
+              Verifies that the pool factory's default constructor is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.PoolFactoryTest.TestExplicitConstructor">
+            <summary>
+              Verifies that the pool factory's explicit constructor is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.PoolFactoryTest.TestPooling">
+            <summary>
+              Tests whether the pool factory actually pools objects
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.PoolFactoryTest.TestViaGenericFactoryInterface">
+            <summary>
+              Verifies that the pool factory implements the IAbstractFactory&lt;&gt; interface
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.PoolFactoryTest.TestViaObjectFactoryInterface">
+            <summary>
+              Verifies that the pool factory implements the IAbstractFactory interface
+            </summary>
+        </member>
+        <member name="T:Nuclex.Game.Space.SpatialIndex2`1">
+            <summary>Two-dimensional spatial index</summary>
+            <typeparam name="ItemType">Type of the items being indexed</typeparam>
+            <remarks>
+              <para>
+                This class serves as the base class for spatial indexes that allow for
+                efficient searches in large sets of two-dimensional objects.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Space.SpatialIndex2`1.Query(Nuclex.Game.Space.BoundingRectangle)">
+            <summary>Queries the spatial database for all items in a region</summary>
+            <param name="region">Region of which the items will be returned</param>
+            <returns>An enumerator for all items in the queried region</returns>
+        </member>
+        <member name="M:Nuclex.Game.Space.SpatialIndex2`1.Query(Nuclex.Game.Space.BoundingRectangle,System.Collections.Generic.ICollection{`0})">
+            <summary>Queries the spatial database for all objects in a region</summary>
+            <param name="region">Region of which the items will be returned</param>
+            <param name="items">
+              Collection that will receive all items in the query region
+            </param>
+            <remarks>
+              Use this method to avoid generating garbage by reusing the collection
+              the queried items are stored in.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Space.SpatialIndex2`1.Insert(`0)">
+            <summary>Inserts an item into the spatial database</summary>
+            <param name="itemToAdd">Item that will be inserted</param>
+        </member>
+        <member name="M:Nuclex.Game.Space.SpatialIndex2`1.Remove(`0)">
+            <summary>Removes an item from the spatial database</summary>
+            <param name="itemToRemove">Item that will be removed</param>
+        </member>
+        <member name="T:Nuclex.Game.Space.SpatialIndex2Test">
+            <summary>Unit tests for the 2D spatial index base class</summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.SpatialIndex2Test.TestDefaultEnumerator">
+            <summary>Verifies that the default enumerator is working</summary>
+        </member>
+        <member name="T:Nuclex.Game.Space.SpatialIndex2Test.DummySpatialIndex2">
+            <summary>Dummy implementation of a 2D spatial index for the unit test</summary>
+        </member>
+        <member name="M:Nuclex.Game.Space.SpatialIndex2Test.DummySpatialIndex2.Query(Nuclex.Game.Space.BoundingRectangle,System.Collections.Generic.ICollection{System.Int32})">
+            <summary>Queries the spatial database for all objects in a region</summary>
+            <param name="region">Region of which the items will be returned</param>
+            <param name="items">
+              Collection that will receive all items in the query region
+            </param>
+            <remarks>
+              Use this method to avoid generating garbage by reusing the collection
+              the queried items are stored in.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Space.SpatialIndex2Test.DummySpatialIndex2.Insert(System.Int32)">
+            <summary>Inserts an item into the spatial database</summary>
+            <param name="itemToAdd">Item that will be inserted</param>
+        </member>
+        <member name="M:Nuclex.Game.Space.SpatialIndex2Test.DummySpatialIndex2.Remove(System.Int32)">
+            <summary>Removes an item from the spatial database</summary>
+            <param name="itemToRemove">Item that will be removed</param>
+        </member>
+        <member name="T:Nuclex.Game.States.DrawableGameState">
+            <summary>Base class for updateable and drawable game states</summary>
+        </member>
+        <member name="T:Nuclex.Game.States.GameState">
+            <summary>Base class for updateable game states</summary>
+        </member>
+        <member name="T:Nuclex.Game.States.IGameState">
+            <summary>State the game can be in</summary>
+            <remarks>
+              <para>
+                To obtain Draw() and Update() notifications, implement the IDrawable
+                and IUpdateable interfaces.
+              </para>
+              <para>
+                This class follows the usual game state concept: Instead of using
+                hard to maintain if/else trees for deciding whether to render the main menu,
+                game scene or credits scroller, each of the game's phases is put in its own
+                game state class. This improves modularity and helps keeping parts of code
+                separated that have nothing to with each other. The game state manager
+                allows multiple states to be active at the same time and manages these
+                active states in a stack, which is useful for realizing ingame menus
+                and nested scenes.
+              </para>
+              <para>
+                Game states can be either active or inactive and will be notified when this
+                state changes by the OnEntered() and OnLeaving() methods. Any game state
+                starts out as being inactive. Game states should only load and keep their
+                resources during their active period and free them again when they
+                become inactive.
+              </para>
+              <para>
+                In addition to being active and inactive, game states also have a pause mode.
+                This mode can only be entered by active game states and is used to put
+                the game state in the back when another game state serves as a means to halt
+                the time in the game state. If multiple game states are active, only
+                the topmost state will be in unpaused mode.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.States.IGameState.Enter">
+            <summary>Called when the game state has been entered</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.IGameState.Leave">
+            <summary>Called when the game state is being left again</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.IGameState.Pause">
+            <summary>Called when the game state is being paused</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.IGameState.Resume">
+            <summary>Called when the game state is being resumed from pause mode</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameState.Pause">
+            <summary>Initializes a new game state</summary>
+            <summary>Called when the game state is being paused</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameState.Resume">
+            <summary>Called when the game state is being resumed from pause mode</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameState.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>Called when the component needs to update its state.</summary>
+            <param name="gameTime">Provides a snapshot of the Game's timing values</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameState.OnEntered">
+            <summary>Called when the game state has been entered</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameState.OnLeaving">
+            <summary>Called when the game state is being left again</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameState.OnPause">
+            <summary>Called when the game state should enter pause mode</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameState.OnResume">
+            <summary>Called when the game state should resume from pause mode</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameState.Nuclex#Game#States#IGameState#Enter">
+            <summary>Called when the game state has been entered</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameState.Nuclex#Game#States#IGameState#Leave">
+            <summary>Called when the game state is being left again</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameState.paused">
+            <summary>Used to avoid pausing the game state multiple times</summary>
+        </member>
+        <member name="E:Nuclex.Game.States.GameState.Microsoft#Xna#Framework#IUpdateable#EnabledChanged">
+            <summary>Never called because the Enabled property cannot change</summary>
+        </member>
+        <member name="E:Nuclex.Game.States.GameState.Microsoft#Xna#Framework#IUpdateable#UpdateOrderChanged">
+            <summary>Never called because the UpdateOrder property cannot change</summary>
+        </member>
+        <member name="P:Nuclex.Game.States.GameState.Paused">
+            <summary>Whether the game state is currently paused</summary>
+        </member>
+        <member name="P:Nuclex.Game.States.GameState.Microsoft#Xna#Framework#IUpdateable#Enabled">
+            <summary>
+              Always true to indicate the game state is enabled and should be updated
+            </summary>
+        </member>
+        <member name="P:Nuclex.Game.States.GameState.Microsoft#Xna#Framework#IUpdateable#UpdateOrder">
+            <summary>
+              Always 0 because game states have no ordering relative to each other
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.DrawableGameState.Draw(Microsoft.Xna.Framework.GameTime)">
+            <summary>Called when the drawable component needs to draw itself</summary>
+            <param name="gameTime">Provides a snapshot of the game's timing values</param>
+        </member>
+        <member name="E:Nuclex.Game.States.DrawableGameState.Microsoft#Xna#Framework#IDrawable#VisibleChanged">
+            <summary>Never called because the Visible property cannot change</summary>
+        </member>
+        <member name="E:Nuclex.Game.States.DrawableGameState.Microsoft#Xna#Framework#IDrawable#DrawOrderChanged">
+            <summary>Never called because the DrawOrder property cannot change</summary>
+        </member>
+        <member name="P:Nuclex.Game.States.DrawableGameState.Microsoft#Xna#Framework#IDrawable#DrawOrder">
+            <summary>
+              Always 0 because game states have no ordering relative to each other
+            </summary>
+        </member>
+        <member name="P:Nuclex.Game.States.DrawableGameState.Microsoft#Xna#Framework#IDrawable#Visible">
+            <summary>
+              Always true to indicate the game state is visible and should be drawn
+            </summary>
+        </member>
+        <member name="T:Nuclex.Game.States.DrawableGameStateTest">
+            <summary>Unit test for the game state class</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.DrawableGameStateTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the drawable game state is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.DrawableGameStateTest.TestDraw">
+            <summary>
+              Verifies that the Draw() call can be used on the game state
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.DrawableGameStateTest.TestVisibleProperty">
+            <summary>
+              Tests whether the Visible property provided via the IDrawable
+              interface is returned correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.DrawableGameStateTest.TestDrawOrderProperty">
+            <summary>
+              Tests whether the DrawOrder property provided via the IDrawable
+              interface is returned correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.DrawableGameStateTest.TestDrawOrderChangedEvent">
+            <summary>
+              Tests whether the DrawOrderChanged event can be used
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.DrawableGameStateTest.TestVisibleChangedEvent">
+            <summary>
+              Tests whether the VisibleChanged event can be used
+            </summary>
+        </member>
+        <member name="T:Nuclex.Game.States.DrawableGameStateTest.TestGameState">
+            <summary>Game state used for unit testing</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.DrawableGameStateTest.TestGameState.#ctor">
+            <summary>Initializes a new test game state</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.DrawableGameStateTest.TestGameState.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+              Allows the game state to run logic such as updating the world,
+              checking for collisions, gathering input and playing audio.
+            </summary>
+            <param name="gameTime">Provides a snapshot of timing values</param>
+        </member>
+        <member name="M:Nuclex.Game.States.DrawableGameStateTest.TestGameState.Draw(Microsoft.Xna.Framework.GameTime)">
+            <summary>This is called when the game state should draw itself</summary>
+            <param name="gameTime">Provides a snapshot of timing values</param>
+        </member>
+        <member name="F:Nuclex.Game.States.DrawableGameStateTest.TestGameState.DrawCallCount">
+            <summary>Number of calls to the DraW() method</summary>
+        </member>
+        <member name="T:Nuclex.Game.States.GameStateTest">
+            <summary>Unit test for the game state class</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the game state class is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestUpdate">
+            <summary>
+              Verifies that the Update() call can be used on the game state
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestEnterLeave">
+            <summary>
+              Tests whether the Enter() and Leave() notifications of a game state are
+              invoked at the appropriate times
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestPauseResume">
+            <summary>
+              Tests whether the Pause() and Resume() notifications of a game state are
+              invoked at the appropriate times
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestRedundantPauseIsIgnored">
+            <summary>
+              Verifies that redundant calls to the Pause() method will not cause
+              multiple calls of the OnPaused() notification
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestRedundantResumeIsIgnored">
+            <summary>
+              Verifies that redundant calls to the Resume() method will not cause
+              multiple calls of the OnResume() notification
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestEnabledProperty">
+            <summary>
+              Tests whether the Enabled property provided via the IUpdateable
+              interface is returned correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestUpdateOrderProperty">
+            <summary>
+              Tests whether the UpdateOrder property provided via the IUpdateable
+              interface is returned correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestUpdateOrderChangedEvent">
+            <summary>
+              Tests whether the UpdateOrderChanged event can be used
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestEnabledChangedEvent">
+            <summary>
+              Tests whether the EnabledChanged event can be used
+            </summary>
+        </member>
+        <member name="T:Nuclex.Game.States.GameStateTest.TestGameState">
+            <summary>Game state used for unit testing</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestGameState.#ctor">
+            <summary>Initializes a new test game state</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestGameState.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+              Allows the game state to run logic such as updating the world,
+              checking for collisions, gathering input and playing audio.
+            </summary>
+            <param name="gameTime">Provides a snapshot of timing values</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestGameState.OnEntered">
+            <summary>Called when the game state has been entered</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestGameState.OnLeaving">
+            <summary>Called when the game state is being left again</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestGameState.OnPause">
+            <summary>Called when the game state should enter pause mode</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateTest.TestGameState.OnResume">
+            <summary>Called when the game state should resume from pause mode</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateTest.TestGameState.UpdateCallCount">
+            <summary>Number of calls to the Update() method</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateTest.TestGameState.OnEnteredCallCount">
+            <summary>Number of calls to the OnEntered() method</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateTest.TestGameState.OnLeavingCallCount">
+            <summary>Number of calls to the OnLeaving() method</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateTest.TestGameState.OnPauseCallCount">
+            <summary>Number of calls to the OnPause() method</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateTest.TestGameState.OnResumeCallCount">
+            <summary>Number of calls to the OnResume() method</summary>
+        </member>
+        <member name="T:Nuclex.Game.States.GameStateManager">
+            <summary>Manages the game states and updates the active game state</summary>
+        </member>
+        <member name="T:Nuclex.Game.States.IGameStateService">
+            <summary>Allows management and switching of game states</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.IGameStateService.Pause">
+            <summary>Pauses the currently active state</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.IGameStateService.Resume">
+            <summary>Resumes the currently active state</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.IGameStateService.Push(Nuclex.Game.States.IGameState)">
+            <summary>Pushes the specified state onto the state stack</summary>
+            <param name="state">State that will be pushed onto the stack</param>
+        </member>
+        <member name="M:Nuclex.Game.States.IGameStateService.Push(Nuclex.Game.States.IGameState,Nuclex.Game.States.GameStateModality)">
+            <summary>Pushes the specified state onto the state stack</summary>
+            <param name="state">State that will be pushed onto the stack</param>
+            <param name="modality">
+              Behavior of the game state in relation to the state(s) below it on the stack
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.States.IGameStateService.Pop">
+            <summary>Takes the currently active game state from the stack</summary>
+            <returns>The game state that has been popped from the stack</returns>
+        </member>
+        <member name="M:Nuclex.Game.States.IGameStateService.Switch(Nuclex.Game.States.IGameState)">
+            <summary>Switches the game to the specified state</summary>
+            <param name="state">State the game will be switched to</param>
+            <returns>The game state that was replaced on the stack</returns>
+            <remarks>
+              This replaces the running game state in the stack with the specified state.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.States.IGameStateService.Switch(Nuclex.Game.States.IGameState,Nuclex.Game.States.GameStateModality)">
+            <summary>Switches the game to the specified state</summary>
+            <param name="state">State the game will be switched to</param>
+            <param name="modality">
+              Behavior of the game state in relation to the state(s) below it on the stack
+            </param>
+            <returns>The game state that was replaced on the stack</returns>
+            <remarks>
+              This replaces the running game state in the stack with the specified state.
+            </remarks>
+        </member>
+        <member name="P:Nuclex.Game.States.IGameStateService.ActiveState">
+            <summary>The currently active game state. Can be null.</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.#ctor">
+            <summary>Initializes a new game state manager</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.#ctor(Microsoft.Xna.Framework.GameServiceContainer)">
+            <summary>Initializes a new game state manager</summary>
+            <param name="gameServices">
+              Services container the game state manager will add itself to
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.Dispose">
+            <summary>Immediately releases all resources used by the component</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.Pause">
+            <summary>Pauses the currently active state</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.Resume">
+            <summary>Resumes the currently active state</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.Push(Nuclex.Game.States.IGameState)">
+            <summary>Pushes the specified state onto the state stack</summary>
+            <param name="state">State that will be pushed onto the stack</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.Push(Nuclex.Game.States.IGameState,Nuclex.Game.States.GameStateModality)">
+            <summary>Pushes the specified state onto the state stack</summary>
+            <param name="state">State that will be pushed onto the stack</param>
+            <param name="modality">
+              Behavior of the game state in relation to the state(s) below it on the stack
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.Pop">
+            <summary>Takes the currently active game state from the stack</summary>
+            <returns>The game state that has been popped from the stack</returns>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.Switch(Nuclex.Game.States.IGameState)">
+            <summary>Switches the game to the specified state</summary>
+            <param name="state">State the game will be switched to</param>
+            <returns>The game state that was replaced on the stack</returns>
+            <remarks>
+              This replaces the running game state on the stack with the specified state.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.Switch(Nuclex.Game.States.IGameState,Nuclex.Game.States.GameStateModality)">
+            <summary>Switches the game to the specified state</summary>
+            <param name="state">State the game will be switched to</param>
+            <param name="modality">
+              Behavior of the game state in relation to the state(s) below it on the stack
+            </param>
+            <returns>The game state that was replaced on the stack</returns>
+            <remarks>
+              This replaces the running game state on the stack with the specified state.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>Updates the active game state</summary>
+            <param name="gameTime">Snapshot of the game's timing values</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.Draw(Microsoft.Xna.Framework.GameTime)">
+            <summary>Draws the active game state</summary>
+            <param name="gameTime">Snapshot of the game's timing values</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.disposeIfSupportedAndDesired(Nuclex.Game.States.IGameState)">
+            <summary>
+              Disposes the specified state if disposal is enabled and the state implements
+              the IDisposable interface
+            </summary>
+            <param name="state">State that will be disposed if desired and supported</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.rebuildUpdateableAndDrawableListRecursively(System.Int32)">
+            <summary>
+              Rebuilds the updateable and drawable lists by recursively going up
+              the stacked game states until the top or an exclusive game state
+              is reached
+            </summary>
+            <param name="index">Index of the game state to start at</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.removeFromUpdateableAndDrawableList(Nuclex.Game.States.IGameState)">
+            <summary>
+              Removes the specified state from the update and draw lists if it is on
+              the top of those lists
+            </summary>
+            <param name="state">
+              State that will be removed from the update and draw lists
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.leaveAllActiveStates">
+            <summary>Leaves all currently active game states</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManager.appendToUpdateableAndDrawableList(Nuclex.Game.States.IGameState)">
+            <summary>Appends the specified state to the update and draw lists</summary>
+            <param name="state">State that will be appended to the lists</param>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateManager.gameServices">
+            <summary>
+              Game service container the game state manager has registered itself in
+            </summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateManager.disposeDroppedStates">
+            <summary>Whether the game state manager should dispose dropped states</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateManager.gameStates">
+            <summary>Currently active game states</summary>
+            <remarks>
+              The game state manager supports multiple active game states. For example,
+              a menu might appear on top of the running game. Only the topmost active
+              state receives input through the game 
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateManager.updateableStates">
+            <summary>Currently active game states implementing IUpdateable</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateManager.drawableStates">
+            <summary>Currently active game states implementing IDrawable</summary>
+        </member>
+        <member name="P:Nuclex.Game.States.GameStateManager.DisposeDroppedStates">
+            <summary>
+              Whether the game state manager should automatically dispose game states
+              that are dropped from its stack
+            </summary>
+        </member>
+        <member name="P:Nuclex.Game.States.GameStateManager.ActiveState">
+            <summary>The currently active game state. Can be null.</summary>
+        </member>
+        <member name="T:Nuclex.Game.States.GameStateManagerTest">
+            <summary>Unit test for the game state manager</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestDefaultConstructor">
+            <summary>
+              Verifies that the constructor of the game state manager is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestGameServiceConstructor">
+            <summary>
+              Verifies that the constructor of the game state manager accepting
+              a reference to the GameServiceCollection is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestLeaveOnDisposal">
+            <summary>
+              Tests whether disposing the game state manager causes it to leave
+              the active game state
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestDisposeActiveStatesOnDisposal(System.Boolean)">
+            <summary>
+              Tests whether disposing the game state manager disposes the currently
+              active game states when it is disposed itself.
+            </summary>
+            <param name="disposalEnabled">Whether to run the test with enabled disposal</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestPauseAndResume">
+            <summary>
+              Verifies that the Pause() and Resume() methods are propagated to
+              the topmost game state on the stack
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestPushModality(Nuclex.Game.States.GameStateModality)">
+            <summary>
+              Verifies that the Push() method respects the modality parameter
+            </summary>
+            <param name="modality">Modality that will be tested</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestPushUnenterableState">
+            <summary>
+              Verifies that an exception whilst pushing a state on the stack leaves the
+              game state manager unchanged
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestReeantrantPush">
+            <summary>
+              Tests whether the game state manager correctly handles a reentrant call
+              to Push() from a pushed game state
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestDisposalInPop(System.Boolean)">
+            <summary>Verifies that the disposal of dropped states in Pop() works</summary>
+            <param name="disposalEnabled">Whether to run the test with enabled disposal</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestUpdateAndDrawListRollbackInPop">
+            <summary>
+              Verifies that the game state manager correctly rolls back its update
+              and draw lists when an exclusive state is popped from the stack
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestUpdateAndDrawListRollbackInSwitch">
+            <summary>
+              Verifies that the game state manager correctly rolls back its update
+              and draw lists when an exclusive state is popped from the stack
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestDisposalInSwitch(System.Boolean)">
+            <summary>Verifies that the disposal of switched out states in Switch() works</summary>
+            <param name="disposalEnabled">Whether to run the test with enabled disposal</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestSwitchOnlyChangesActiveState">
+            <summary>
+              Verifies that switch only replaces the active game state,
+              not the whole stack
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestActiveState">
+            <summary>
+              Verifies that the active game state can be queried
+            </summary>
+        </member>
+        <member name="T:Nuclex.Game.States.GameStateManagerTest.TestGameState">
+            <summary>Game state used for unit testing</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestGameState.#ctor">
+            <summary>Initializes a new test game state</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestGameState.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+              Allows the game state to run logic such as updating the world,
+              checking for collisions, gathering input and playing audio.
+            </summary>
+            <param name="gameTime">Provides a snapshot of timing values</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestGameState.Draw(Microsoft.Xna.Framework.GameTime)">
+            <summary>This is called when the game state should draw itself</summary>
+            <param name="gameTime">Provides a snapshot of timing values</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestGameState.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestGameState.OnEntered">
+            <summary>Called when the game state has been entered</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestGameState.OnLeaving">
+            <summary>Called when the game state is being left again</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestGameState.OnPause">
+            <summary>Called when the game state should enter pause mode</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.TestGameState.OnResume">
+            <summary>Called when the game state should resume from pause mode</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateManagerTest.TestGameState.DisposeCallCount">
+            <summary>Number of calls to the Dispose() method</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateManagerTest.TestGameState.UpdateCallCount">
+            <summary>Number of calls to the Update() method</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateManagerTest.TestGameState.DrawCallCount">
+            <summary>Number of calls to the DraW() method</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateManagerTest.TestGameState.OnEnteredCallCount">
+            <summary>Number of calls to the OnEntered() method</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateManagerTest.TestGameState.OnLeavingCallCount">
+            <summary>Number of calls to the OnLeaving() method</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateManagerTest.TestGameState.OnPauseCallCount">
+            <summary>Number of calls to the OnPause() method</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateManagerTest.TestGameState.OnResumeCallCount">
+            <summary>Number of calls to the OnResume() method</summary>
+        </member>
+        <member name="T:Nuclex.Game.States.GameStateManagerTest.UnenterableGameState">
+            <summary>Game state the canont be entered</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.UnenterableGameState.#ctor">
+            <summary>Initializes a new unenterable game state</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.UnenterableGameState.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+              Allows the game state to run logic such as updating the world,
+              checking for collisions, gathering input and playing audio.
+            </summary>
+            <param name="gameTime">Provides a snapshot of timing values</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.UnenterableGameState.OnEntered">
+            <summary>Called when the game state has been entered</summary>
+        </member>
+        <member name="T:Nuclex.Game.States.GameStateManagerTest.ReentrantGameState">
+            <summary>Game state that nests another game state upon being entered</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.ReentrantGameState.#ctor(Nuclex.Game.States.IGameStateService)">
+            <summary>Initializes a new unresumable game state</summary>
+            <param name="gameStateService">
+              Game state manager the unresumable game state belongs to
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.ReentrantGameState.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+              Allows the game state to run logic such as updating the world,
+              checking for collisions, gathering input and playing audio.
+            </summary>
+            <param name="gameTime">Provides a snapshot of timing values</param>
+        </member>
+        <member name="M:Nuclex.Game.States.GameStateManagerTest.ReentrantGameState.OnEntered">
+            <summary>Called when the game state has been entered</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateManagerTest.ReentrantGameState.gameStateService">
+            <summary>Game state service the reentrant state will use</summary>
+        </member>
+        <member name="T:Nuclex.Game.States.GameStateModality">
+            <summary>
+              Possible behaviors of a game state in respect to the states its stacked on
+            </summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateModality.Exclusive">
+            <summary>
+              The game state takes exclusive of the screen does not require the state
+              below it in the stack to be updated as long as it's active.
+            </summary>
+        </member>
+        <member name="F:Nuclex.Game.States.GameStateModality.Popup">
+            <summary>
+              The game state sits on top of the state below it in the stack, but does
+              not completely obscure it or requires it to continue being updated.
+            </summary>
+        </member>
+        <member name="T:Nuclex.Game.States.ILoadableGameState">
+            <summary>
+              Implemented by game states to make them loadable via the loading screen state
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.ILoadableGameState.BeginLoad(System.AsyncCallback,System.Object)">
+            <summary>Begins loading the game state</summary>
+            <param name="callback">
+              Callback to be called when the game state has been loaded
+            </param>
+            <param name="state">User defined object to pass on to the callback</param>
+            <returns>A result handle that can be used to wait for the loading process</returns>
+        </member>
+        <member name="M:Nuclex.Game.States.ILoadableGameState.EndLoad(System.IAsyncResult)">
+            <summary>Waits for the loading operation to finish</summary>
+            <param name="asyncResult">Pending operation to wait for</param>
+        </member>
+        <member name="E:Nuclex.Game.States.ILoadableGameState.ProgressChanged">
+            <summary>Can be fired when the loading progress has changed</summary>
+        </member>
+        <member name="T:Nuclex.Game.States.LoadingScreenState`1">
+            <summary>
+              Game state that displays a loading screen while another state loads
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.LoadingScreenState`1.#ctor(Nuclex.Game.States.IGameStateService,`0)">
+            <summary>Initializes a new loading screen game state</summary>
+            <param name="gameStateService">
+              Game state manager the loading screen state belongs to
+            </param>
+            <param name="gameStateToLoad">
+              Game state that will be loaded by the loading screen
+            </param>
+        </member>
+        <member name="M:Nuclex.Game.States.LoadingScreenState`1.Dispose">
+            <summary>Immediately releases all resources used by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.LoadingScreenState`1.StartLoading">
+            <summary>
+              Begins loading the loadable game state associated with the loading screen
+            </summary>
+        </member>
+        <member name="M:Nuclex.Game.States.LoadingScreenState`1.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+              Allows the game state to run logic such as updating the world,
+              checking for collisions, gathering input and playing audio.
+            </summary>
+            <param name="gameTime">Provides a snapshot of timing values.</param>
+        </member>
+        <member name="M:Nuclex.Game.States.LoadingScreenState`1.OnLoadProgressChanged(System.Single)">
+            <summary>Called when the load progress has changed</summary>
+            <param name="progress">New load progress</param>
+        </member>
+        <member name="M:Nuclex.Game.States.LoadingScreenState`1.endLoading">
+            <summary>Ends the asynchronous loading operation</summary>
+            <remarks>
+              Should only be called when the game state has notified us that loading is
+              complete, otherwise, the caller will be blocked until loading actually completes.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.States.LoadingScreenState`1.loadingCompleted(System.IAsyncResult)">
+            <summary>Called when the associated game state has finished loading</summary>
+            <param name="asyncResult">Handle of the asynchronous loading operation</param>
+        </member>
+        <member name="M:Nuclex.Game.States.LoadingScreenState`1.progressChanged(System.Object,Nuclex.Game.States.LoadProgressEventArgs)">
+            <summary>Called when the loading progress has changed</summary>
+            <param name="sender">Game state whose loading progress has changed</param>
+            <param name="arguments">Contains the new loading progress</param>
+        </member>
+        <member name="F:Nuclex.Game.States.LoadingScreenState`1.progressChangedDelegate">
+            <summary>Delegate we suscribe to the progress change notification</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.LoadingScreenState`1.gameStateToLoad">
+            <summary>Game state being loaded by the loading screen</summary>
+        </member>
+        <member name="F:Nuclex.Game.States.LoadingScreenState`1.gameStateService">
+            <summary></summary>
+        </member>
+        <member name="F:Nuclex.Game.States.LoadingScreenState`1.gameStateLoaded">
+            <summary>
+              Whether the game state associated with the loading screen has been loaded already
+            </summary>
+        </member>
+        <member name="F:Nuclex.Game.States.LoadingScreenState`1.asyncResult">
+            <summary>Result handle for the asynchronous loading operation</summary>
+        </member>
+        <member name="P:Nuclex.Game.States.LoadingScreenState`1.GameStateToLoad">
+            <summary>Game state being loaded by the loading screen</summary>
+        </member>
+        <member name="T:Nuclex.Game.States.LoadProgressEventArgs">
+            <summary>Event argument container for a loading progress notification</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.LoadProgressEventArgs.#ctor(System.Single)">
+            <summary>Initializes a new load progress event argument container</summary>
+            <param name="progress">
+              Progress that will be reported to the event subscribers
+            </param>
+        </member>
+        <member name="F:Nuclex.Game.States.LoadProgressEventArgs.progress">
+            <summary>Loading progress achieved so far</summary>
+        </member>
+        <member name="P:Nuclex.Game.States.LoadProgressEventArgs.Progress">
+            <summary>Loading progress achieved so far</summary>
+        </member>
+        <member name="T:Nuclex.Game.States.LoadProgressEventArgsTest">
+            <summary>Unit test for the load progress event argument container</summary>
+        </member>
+        <member name="M:Nuclex.Game.States.LoadProgressEventArgsTest.TestIntegerArgument">
+            <summary>
+              Tests whether an integer argument can be stored in the argument container
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -19,7 +19,7 @@ namespace SRPG.Scene.Shop
         {
             _inventory = inventory;
 
-            Objects.Add("background", new TextureObject() { Color = Color.Black, Width = 350, Z = -1, Height = Game.GetInstance().GraphicsDevice.Viewport.Height - 100});
+            Objects.Add("background", new TextureObject() { Color = Color.Black, Width = 350, Z = -1, Height = Game.GraphicsDevice.Viewport.Height - 100});
 
             RefreshItems();
 

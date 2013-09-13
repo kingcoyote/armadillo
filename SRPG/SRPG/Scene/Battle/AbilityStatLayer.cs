@@ -34,9 +34,9 @@ namespace SRPG.Scene.Battle
             UpdateText();
         }
 
-        public override void Update(GameTime gameTime, Input input)
+        public override void Update(GameTime gametime)
         {
-            base.Update(gameTime, input);
+            base.Update(gametime);
 
             if (Ability == null) return;
 

@@ -20,9 +20,9 @@ namespace SRPG.Scene.Shop
                     Font = font,
                     Color = Color.White,
                     Y = 75,
-                    X = Game.GetInstance().GraphicsDevice.Viewport.Width - 425,
+                    X = Game.GraphicsDevice.Viewport.Width - 425,
                     Alignment = TextObject.AlignTypes.Right,
-                    Value = string.Format("{0}g", ((SRPGGame)Game.GetInstance()).Money)
+                    Value = string.Format("{0}g", ((SRPGGame)Game).Money)
                 });
         }
     }

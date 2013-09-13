@@ -17,8 +17,8 @@ namespace SRPG.Scene.Options
             var keyboard = new KeyboardInputLayer(this);
             keyboard.AddKeyDownBinding(Keys.Escape, () => Game.GetInstance().ChangeScenes("overworld"));
 
-            Layers.Add("keyboard", keyboard);
-            Layers.Add("menu", new Menu(this));
+            Components.Add(keyboard);
+            Components.Add(new Menu(this));
         }
 
         public override void Start()

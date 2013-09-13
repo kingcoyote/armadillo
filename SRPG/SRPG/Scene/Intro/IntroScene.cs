@@ -10,10 +10,7 @@ namespace SRPG.Scene.Intro
         private const int SlideDuration = 3000;
         private int _slideTimer = SlideDuration;
         private int _currentSlide;
-        private readonly List<string> _slides = new List<string>
-            {
-                "credit slide",
-            };
+        private readonly List<Layer> _slides = new List<Layer>();
 
         public override void Initialize()
         {
@@ -24,19 +21,22 @@ namespace SRPG.Scene.Intro
             keyboardLayer.AddKeyDownBinding(Keys.Escape, Skip);
             keyboardLayer.AddKeyDownBinding(Keys.Space, NextSlide);
 
-            Layers.Add("keyboard input", keyboardLayer);
+            Components.Add(keyboardLayer);
 
-            Layers.Add("credit slide", new CreditSlide(this) { X = -50000 });
-            Layers.Add("xna slide", new XnaSlide(this) { X = -50000 });
+            _slides.Add(new CreditSlide(this) { X = -50000 });
+            Components.Add(_slides[0]);
 
-            Layers[_slides[_currentSlide]].X = 0;
+            _slides.Add(new XnaSlide(this) { X = -50000 });
+            _slides.Add(_slides[1]);
+
+            _slides[_currentSlide].X = 0;
         }
 
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime, Input input)
+        public override void Update(Microsoft.Xna.Framework.GameTime gametime)
         {
-            base.Update(gameTime, input);
+            base.Update(gametime);
 
-            _slideTimer -= gameTime.ElapsedGameTime.Milliseconds;
+            _slideTimer -= gametime.ElapsedGameTime.Milliseconds;
 
             if (_slideTimer <= 0)
             {
@@ -58,8 +58,8 @@ namespace SRPG.Scene.Intro
             }
             
             _slideTimer = SlideDuration;
-            Layers[_slides[_currentSlide - 1]].X = -50000;
-            Layers[_slides[_currentSlide]].X = 0;
+            _slides[_currentSlide - 1].X = -50000;
+            _slides[_currentSlide].X = 0;
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace SRPG.Scene.Intro
         /// </summary>
         public void Skip()
         {
-            ((SRPGGame)Game).ChangeScenes("main menu");
+            Game.ChangeScenes("main menu");
         }
     }
 }

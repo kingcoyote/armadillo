@@ -6,10 +6,11 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Nuclex.Input;
 
 namespace Torch
 {
-    public abstract class Layer
+    public abstract class Layer : DrawableGameComponent
     {
         public int ZIndex;
         public float X;
@@ -27,7 +28,7 @@ namespace Torch
         public event EventHandler<KeyboardEventArgs> KeyDown = (sender, args) => { };
         public event EventHandler<KeyboardEventArgs> KeyUp = (sender, args) => { };
 
-        protected Layer(Scene scene)
+        protected Layer(Scene scene) : base(scene.Game)
         {
             Scene = scene;
 
@@ -36,18 +37,23 @@ namespace Torch
         }
 
         // draw
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(GameTime gametime)
         {
-
+            var spriteBatch = new SpriteBatch((GraphicsDevice)Scene.Game.Services.GetService(typeof(IGraphicsDeviceService)));
+            spriteBatch.Begin();
             foreach(var obj in (from obj in Objects.Values orderby obj.Z ascending select obj))
             {
                 obj.Draw(spriteBatch);
             }
+            spriteBatch.End();
         }
 
         // update
-        public virtual void Update(GameTime gameTime, Input input)
+        public override void Update(GameTime gameTime)
         {
+            var mouse = ((IInputService)Game.Services.GetService(typeof (IInputService))).GetMouse().GetState();
+            var cursor = new Rectangle(mouse.X, mouse.Y, 1, 1);
+
             foreach (var obj in Objects.Values.ToList())
             {
                 obj.Update(gameTime);
@@ -57,20 +63,20 @@ namespace Torch
                 rect.Y += (int)Y;
 
                 // check for mouse over
-                if (rect.Contains(input.Cursor) && !rect.Contains(_oldMouseX, _oldMouseY))
+                if (rect.Contains(cursor) && !rect.Contains(_oldMouseX, _oldMouseY))
                 {
-                    obj.MouseOver.Invoke(obj, new MouseEventArgs { X = input.Cursor.X, Y = input.Cursor.Y, Target = obj });
+                    obj.MouseOver.Invoke(obj, new MouseEventArgs { X = cursor.X, Y = cursor.Y, Target = obj });
                 }
 
                 // check for mouseout
-                if (!rect.Contains(input.Cursor) && rect.Contains(_oldMouseX, _oldMouseY))
+                if (!rect.Contains(cursor) && rect.Contains(_oldMouseX, _oldMouseY))
                 {
-                    obj.MouseOut.Invoke(obj, new MouseEventArgs { X = input.Cursor.X, Y = input.Cursor.Y, Target = obj });
+                    obj.MouseOut.Invoke(obj, new MouseEventArgs { X = cursor.X, Y = cursor.Y, Target = obj });
                 }
             }
 
-            _oldMouseX = input.Cursor.X;
-            _oldMouseY = input.Cursor.Y;
+            _oldMouseX = cursor.X;
+            _oldMouseY = cursor.Y;
         }
 
         public void InvokeMouseClick(Scene scene, MouseEventArgs mouseEventArgs)

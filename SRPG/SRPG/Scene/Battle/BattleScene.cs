@@ -56,6 +56,14 @@ namespace SRPG.Scene.Battle
         private float _delayTimer;
         private readonly BattleCommander _commander = new BattleCommander();
 
+        private CharacterStats _characterStats;
+        private HUD _hud;
+        private QueuedCommands _queuedCommands;
+        private HitLayer _hitLayer;
+        private AbilityStatLayer _abilityStatLayer;
+        private BattleBoardLayer _battleBoard;
+        private RadialMenu _radialMenu;
+
         public BattleScene(Game game) : base(game) { }
 
         /// <summary>
@@ -67,11 +75,17 @@ namespace SRPG.Scene.Battle
 
             QueuedCommands = new List<Command>();
 
-            Layers.Add("character stats", new CharacterStats(this) { ZIndex = 5000, Visible = false});
-            Layers.Add("hud", new HUD(this) { ZIndex = 5000 });
-            Layers.Add("queuedcommands", new QueuedCommands(this) { ZIndex = 5000, Visible = false });
-            Layers.Add("hitlayer", new HitLayer(this) { ZIndex = 5000 });
-            Layers.Add("abilitystat", new AbilityStatLayer(this) { ZIndex = 5000, Visible = false });
+            _characterStats = new CharacterStats(this) { ZIndex = 5000, Visible = false};
+            _hud = new HUD(this) { ZIndex = 5000 };
+            _queuedCommands = new QueuedCommands(this) { ZIndex = 5000, Visible = false };
+            _hitLayer = new HitLayer(this) { ZIndex = 5000 };
+            _abilityStatLayer = new AbilityStatLayer(this) { ZIndex = 5000, Visible = false };
+
+            Components.Add(_characterStats);
+            Components.Add(_hud);
+            Components.Add(_queuedCommands);
+            Components.Add(_hitLayer);
+            Components.Add(_abilityStatLayer);
         }
 
         public override void Start()
@@ -86,15 +100,15 @@ namespace SRPG.Scene.Battle
             Game.GetInstance().IsMouseVisible = false;
         }
 
-        public override void Update(GameTime gameTime, Input input)
+        public override void Update(GameTime gametime)
         {
-            base.Update(gameTime, input);
+            base.Update(gametime);
     
             // get the amount of time, in seconds, since the last frame. this should be 0.016 at 60fps.
-            float dt = gameTime.ElapsedGameTime.Milliseconds/1000F;
+            float dt = gametime.ElapsedGameTime.Milliseconds/1000F;
 
             // during player turn, show queued commands if possible
-            Layers["queuedcommands"].Visible = _state != BattleState.EnemyTurn && QueuedCommands.Count > 0;
+            _queuedCommands.Visible = _state != BattleState.EnemyTurn && QueuedCommands.Count > 0;
 
             // misc update logic for the current state
             UpdateBattleState(dt);
@@ -189,7 +203,7 @@ namespace SRPG.Scene.Battle
                     hit = character.ProcessHit(hit);
                     character.ReceiveHit(hit);
                     var damage = hit.Damage;
-                    ((HitLayer) Layers["hitlayer"]).DisplayHit(
+                    _hitLayer.DisplayHit(
                         Math.Abs(damage), 
                         hit.Damage > 0 ? Color.White : Color.LightGreen, 
                         hit.Target
@@ -287,7 +301,7 @@ namespace SRPG.Scene.Battle
             {
                 character.Die();
                 BattleBoard.Characters.Remove(character);
-                ((BattleBoardLayer)Layers["battleboard"]).RemoveCharacter(character);
+                _battleBoard.RemoveCharacter(character);
             }
         }
 
@@ -296,15 +310,15 @@ namespace SRPG.Scene.Battle
         /// </summary>
         public void UpdateCamera(float x, float y)
         {
-            var layers = new List<string> {"battleboard", "radial menu", "hitlayer"};
+            var layers = new List<Layer> {_battleBoard, _radialMenu, _hitLayer};
 
             // update all layers that are locked to the camera
             foreach (var layer in layers)
             {
-                if (Layers.ContainsKey(layer))
+                if (layer != null && layer.Visible)
                 {
-                    Layers[layer].X = x;
-                    Layers[layer].Y = y;
+                    layer.X = x;
+                    layer.Y = y;
                 }
             }
         }
@@ -324,13 +338,13 @@ namespace SRPG.Scene.Battle
             _state = BattleState.PlayerTurn;
             var partyGrid = new List<Point>();
 
-            Layers.Add("battleboard", new BattleBoardLayer(this));
+            _battleBoard = new BattleBoardLayer(this);
 
             switch(battleName)
             {
                 case "coliseum/halls":
-                    ((BattleBoardLayer)Layers["battleboard"]).SetBackground("Zones/Coliseum/Halls/halls");
-                    ((BattleBoardLayer)Layers["battleboard"]).SetGrid("Zones/Coliseum/Halls/battle");
+                    _battleBoard.SetBackground("Zones/Coliseum/Halls/halls");
+                    _battleBoard.SetGrid("Zones/Coliseum/Halls/battle");
                     BattleBoard.Sandbag = Grid.FromBitmap("Zones/Coliseum/Halls/battle");
 
                     partyGrid.Add(new Point(14,35));
@@ -360,7 +374,7 @@ namespace SRPG.Scene.Battle
                 BattleBoard.Characters.Add(character);
             }
 
-            ((BattleBoardLayer)Layers["battleboard"]).SetBoard(BattleBoard);
+            _battleBoard.SetBoard(BattleBoard);
 
             // center camera on partyGrid[0]
             UpdateCamera(
@@ -478,8 +492,8 @@ namespace SRPG.Scene.Battle
         {
             if (_state != BattleState.PlayerTurn) return;
 
-            ((CharacterStats) Layers["character stats"]).SetCharacter(character);
-            Layers["character stats"].Visible = true;
+            _characterStats.SetCharacter(character);
+            _characterStats.Visible = true;
         }
 
         /// <summary>
@@ -489,7 +503,7 @@ namespace SRPG.Scene.Battle
         {
             if (_state != BattleState.PlayerTurn) return;
 
-            Layers["character stats"].Visible = false;
+            _characterStats.Visible = false;
         }
 
         /// <summary>
@@ -526,11 +540,12 @@ namespace SRPG.Scene.Battle
             if (_state != BattleState.PlayerTurn) return;
             if (character.Faction != 0) return;
 
-            // if another menu is up, get rid of it
-            if (Layers.ContainsKey("radial menu"))
+            if (_radialMenu != null)
             {
-                Layers.Remove("radial menu");
+                Components.Remove(_radialMenu);
+                _radialMenu = null;
             }
+
 
             var menu = new RadialMenu(this)
                 {
@@ -549,12 +564,12 @@ namespace SRPG.Scene.Battle
                     {
                         if (!character.CanMove) return;
 
-                        ((BattleBoardLayer) Layers["battleboard"]).SetTargettingGrid(
+                        _battleBoard.SetTargettingGrid(
                             character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)),
                             new Grid(1, 1)
                             );
                     };
-                icon.MouseOut += (sender, args) => ((BattleBoardLayer) Layers["battleboard"]).ResetGrid();
+                icon.MouseOut += (sender, args) => _battleBoard.ResetGrid();
                 icon.MouseRelease += SelectAbilityTarget(character, Ability.Factory("move"));
             }
             else
@@ -580,12 +595,12 @@ namespace SRPG.Scene.Battle
                     {
                         if (!character.CanAct) return;
 
-                        ((BattleBoardLayer) Layers["battleboard"]).SetTargettingGrid(
+                        _battleBoard.SetTargettingGrid(
                             ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
                             new Grid(1, 1)
                             );
                     };
-                icon.MouseOut += (sender, args) => ((BattleBoardLayer)Layers["battleboard"]).ResetGrid();
+                icon.MouseOut += (sender, args) => _battleBoard.ResetGrid();
                 
                 icon.MouseRelease += SelectAbilityTarget(character, ability);
             }
@@ -621,7 +636,8 @@ namespace SRPG.Scene.Battle
             SetCharacterMenuAnimations(icon);
             menu.AddOption("item", icon);
 
-            Layers.Add("radial menu", menu);
+            _radialMenu = menu;
+            Components.Add(_radialMenu);
 
             _selectedCharacter = character;
             _state = BattleState.CharacterSelected;
@@ -634,9 +650,10 @@ namespace SRPG.Scene.Battle
         {
             if (_state != BattleState.CharacterSelected) return;
 
-            if(Layers.ContainsKey("radial menu"))
+            if(Components.Contains(_radialMenu))
             {
-                Layers.Remove("radial menu");
+                Components.Remove(_radialMenu);
+                _radialMenu = null;
             }
 
             ResetState();
@@ -685,16 +702,17 @@ namespace SRPG.Scene.Battle
             return (sender, args) =>
             {
                 _state = BattleState.AimingAbility;
-                Layers.Remove("radial menu");
+                Components.Remove(_radialMenu);
 
-                ((BattleBoardLayer)Layers["battleboard"]).SetTargettingGrid(
+
+                _battleBoard.SetTargettingGrid(
                     ability.Name == "Move" ? 
                         character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)) : 
                         ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
                     ability.GenerateImpactGrid()
                 );
                 
-                ((BattleBoardLayer)Layers["battleboard"]).AllowAim = true;
+                _battleBoard.AllowAim = true;
 
                 _aimAbility = (x, y) =>
                     {
@@ -743,11 +761,9 @@ namespace SRPG.Scene.Battle
         {
             return (sender, args) =>
                 {
-                    var radialMenu = ((RadialMenu) Layers["radial menu"]);
-
                     // delete the current radial menu options, which should be move/attack/special/item for the character.
                     // should.
-                    radialMenu.ClearOptions();
+                    _radialMenu.ClearOptions();
 
                     // go through each ability the character can currently use
                     foreach (var ability in character.GetAbilities().Where(character.CanUseAbility).Where(a => a.AbilityType == AbilityType.Active))
@@ -760,8 +776,8 @@ namespace SRPG.Scene.Battle
                             ability.Icon.MouseOver = (o, eventArgs) => PreviewAbility(tempAbility);
                             ability.Icon.MouseOut = (o, eventArgs) =>
                                 {
-                                    Layers["abilitystat"].Visible = false;
-                                    ((BattleBoardLayer) Layers["battleboard"]).ResetGrid();
+                                    _abilityStatLayer.Visible = false;
+                                    _battleBoard.ResetGrid();
                                 };
                             ability.Icon.MouseClick = (o, eventArgs) => { };
                             ability.Icon.MouseRelease = SelectAbilityTarget(character, tempAbility);
@@ -771,7 +787,7 @@ namespace SRPG.Scene.Battle
                             ability.Icon.MouseRelease =  (o, eventArgs) => { };
                         }
 
-                        radialMenu.AddOption(ability.Name, ability.Icon);
+                        _radialMenu.AddOption(ability.Name, ability.Icon);
                     }
                 };
         }
@@ -782,9 +798,9 @@ namespace SRPG.Scene.Battle
         /// <param name="ability"></param>
         private void PreviewAbility(Ability ability)
         {
-            ((AbilityStatLayer) Layers["abilitystat"]).SetAbility(ability);
-            Layers["abilitystat"].Visible = true;
-            ((BattleBoardLayer)Layers["battleboard"]).SetTargettingGrid(
+            _abilityStatLayer.SetAbility(ability);
+            _abilityStatLayer.Visible = true;
+            _battleBoard.SetTargettingGrid(
                 ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
                 new Grid(1, 1)
             );
@@ -818,11 +834,11 @@ namespace SRPG.Scene.Battle
         /// </summary>
         private void ResetState()
         {
-            ((BattleBoardLayer) Layers["battleboard"]).ResetGrid();
+            _battleBoard.ResetGrid();
             _aimAbility = null;
             _selectedCharacter = null;
             HideCharacterStats();
-            Layers["abilitystat"].Visible = false;
+            _abilityStatLayer.Visible = false;
         }
 
         /// <summary>
@@ -858,7 +874,7 @@ namespace SRPG.Scene.Battle
         {
             if(_aimAbility(x, y))
             {
-                ((BattleBoardLayer)Layers["battleboard"]).ResetGrid();
+                _battleBoard.ResetGrid();
             }
         }
     }

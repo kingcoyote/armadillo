@@ -16,13 +16,13 @@ namespace SRPG.Scene.Battle
             Objects.Add("box", new TextureObject { Color = Color.Blue, X = 25, Y = 0, Width = 250, Height = 0 });
         }
 
-        public override void Update(GameTime gameTime, Input input)
+        public override void Update(GameTime gametime)
         {
-            base.Update(gameTime, input);
+            base.Update(gametime);
 
             var commands = ((BattleScene)Scene).QueuedCommands;
             var font = FontManager.Get("Menu");
-            var viewport = Game.GetInstance().GraphicsDevice.Viewport;
+            var viewport = Game.GraphicsDevice.Viewport;
 
             Objects["box"].Height = (int)((commands.Count + 1)*font.LineSpacing*1.5);
             Objects["box"].Y = viewport.Height - 25 - Objects["box"].Height;

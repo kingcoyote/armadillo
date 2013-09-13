@@ -2,14 +2,19 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Nuclex.Game.States;
+using Nuclex.Input;
+using Nuclex.UserInterface;
+using Nuclex.UserInterface.Visuals.Flat;
 
 // the scene needs access to the game
 
 namespace Torch
 {
-    public abstract class Scene
+    public abstract class Scene : DrawableGameState
     {
-        protected readonly Dictionary<string, Layer> Layers = new Dictionary<string, Layer>();
+        protected readonly GameComponentCollection Components = new GameComponentCollection();
+        protected GuiManager Gui;
         public Game Game { get; private set; }
 
         public bool IsInitialized { get; private set; }
@@ -21,12 +26,30 @@ namespace Torch
             Game = game;
             IsInitialized = false;
             IsRunning = true;
+
+            Gui = new GuiManager(
+                (GraphicsDeviceManager)Game.Services.GetService(typeof(IGraphicsDeviceManager)), 
+                (IInputService)Game.Services.GetService(typeof(IInputService)))
+            {
+                Screen = new Screen(game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height)
+            };
+
+            Gui.Screen.Desktop.Bounds = new UniRectangle(
+              new UniScalar(0.0F, 0.0F), new UniScalar(0.0F, 0.0F),
+              new UniScalar(1.0F, 0.0F), new UniScalar(1.0F, 0.0F)
+            );
+
+            Gui.UpdateOrder = 1000;
+
+            Components.Add(Gui);
         }
         
         // initialize
         public virtual void Initialize()
         {
             IsInitialized = true;
+
+            Gui.Initialize();
         }
         // shutdown
         public virtual void ShutDown()
@@ -46,67 +69,19 @@ namespace Torch
         }
 
         // draw
-        public void Draw()
+        public override void Draw(GameTime gametime)
         {
-            var spriteBatch = new SpriteBatch(Game.GraphicsDevice);
-
-            foreach(var layer in from layer in Layers.Values where layer.Visible orderby layer.ZIndex select layer)
+            foreach (var component in (from IUpdateable c in Components orderby c.UpdateOrder select c).ToArray())
             {
-                spriteBatch.Begin(
-                    SpriteSortMode.Immediate, 
-                    BlendState.AlphaBlend, 
-                    SamplerState.PointWrap, 
-                    DepthStencilState.Default, 
-                    RasterizerState.CullNone, 
-                    null,
-                    Matrix.CreateTranslation(layer.X, layer.Y, 0)
-                );
-                layer.Draw(spriteBatch);
-                spriteBatch.End();
+                component.Update(gametime);
             }
         }
         // update
-        public virtual void Update(GameTime gameTime, Input input)
+        public override void Update(GameTime gametime)
         {
-            foreach(var layer in Layers.Values.ToArray())
+            foreach (var component in (from IDrawable c in Components orderby c.DrawOrder select c).ToArray())
             {
-                layer.Update(gameTime, input);
-            }
-        }
-
-        public void UpdateEvents(List<InputEventArgs> events)
-        {
-            foreach(InputEventArgs e in events)
-            {
-                e.Handled = false;
-
-                foreach(var layer in from layer in Layers.Values.ToList() where layer.Visible select layer)
-                {
-                    if (e.Handled) continue;
-
-                    if (e is MouseEventArgs)
-                    {
-                        if (((MouseEventArgs)e).Press)
-                        {
-                            layer.InvokeMouseClick(this, (MouseEventArgs) e);
-                        }
-                        else
-                        {
-                            layer.InvokeMouseRelease(this, (MouseEventArgs)e);
-                        }
-                    }
-                    else if (e is KeyboardEventArgs)
-                    {
-                        if(((KeyboardEventArgs)e).Press)
-                        {
-                            layer.InvokeKeyDown(this, (KeyboardEventArgs) e);
-                        }
-                        else
-                        {
-                            layer.InvokeKeyUp(this, (KeyboardEventArgs) e);
-                        }
-                    }
-                }
+                component.Draw(gametime);
             }
         }
     }

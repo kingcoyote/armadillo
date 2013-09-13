@@ -21,8 +21,8 @@ namespace SRPG.Scene.Intro
                 Color = Color.White,
                 Value = "Steve Phillips",
                 Alignment = TextObject.AlignTypes.Center,
-                X = Game.GetInstance().GraphicsDevice.Viewport.Width / 2,
-                Y = Game.GetInstance().GraphicsDevice.Viewport.Height / 2 - 25
+                X = Game.GraphicsDevice.Viewport.Width / 2,
+                Y = Game.GraphicsDevice.Viewport.Height / 2 - 25
             });
             
             Objects.Add("george", new TextObject
@@ -31,8 +31,8 @@ namespace SRPG.Scene.Intro
                     Color = Color.White, 
                     Value = "George Emond", 
                     Alignment = TextObject.AlignTypes.Center, 
-                    X = Game.GetInstance().GraphicsDevice.Viewport.Width / 2, 
-                    Y = Game.GetInstance().GraphicsDevice.Viewport.Height / 2 + 25
+                    X = Game.GraphicsDevice.Viewport.Width / 2, 
+                    Y = Game.GraphicsDevice.Viewport.Height / 2 + 25
                 });
         }
     }

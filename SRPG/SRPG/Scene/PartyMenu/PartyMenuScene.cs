@@ -10,26 +10,36 @@ namespace SRPG.Scene.PartyMenu
 
         private string _currentMenu = "";
 
+        private Menu _menu;
+        private StatusMenu _statusMenu;
+        private InventoryMenu _inventoryMenu;
+        private SettingsMenu _settingsMenu;
+
         public override void Initialize()
         {
             base.Initialize();
 
             var keyboard = new KeyboardInputLayer(this);
             keyboard.AddKeyDownBinding(Keys.Escape, () => Game.ChangeScenes("overworld"));
-            Layers.Add("keyboard input", keyboard);
-            Layers.Add("main menu", new Menu(this));
-            Layers.Add("status menu", new StatusMenu(this));
-            Layers.Add("inventory menu", new InventoryMenu(this));
-            Layers.Add("settings menu", new SettingsMenu(this));
+            Components.Add(keyboard);
+            _menu = new Menu(this);
+            _statusMenu = new StatusMenu(this);
+            _inventoryMenu = new InventoryMenu(this);
+            _settingsMenu = new SettingsMenu(this);
+
+            Components.Add(_menu);
+            Components.Add(_statusMenu);
+            Components.Add(_inventoryMenu);
+            Components.Add(_settingsMenu);
         }
 
         public override void Start()
         {
             base.Start();
 
-            Layers["status menu"].Visible = false;
-            Layers["inventory menu"].Visible = false;
-            Layers["settings menu"].Visible = false;
+            _statusMenu.Visible = false;
+            _inventoryMenu.Visible = false;
+            _settingsMenu.Visible = false;
         }
 
         public void ReturnToGame()
@@ -39,15 +49,32 @@ namespace SRPG.Scene.PartyMenu
 
         public void ChangeMenu(string menu)
         {
-            if(Layers.ContainsKey(_currentMenu)) Layers[_currentMenu].Visible = false;
+            _statusMenu.Visible = false;
+            _inventoryMenu.Visible = false;
+            _settingsMenu.Visible = false;
+
             _currentMenu = menu;
-            Layers[_currentMenu].Visible = true;
-            ((SubmenuLayer)Layers[_currentMenu]).Reset();
+
+            switch(_currentMenu)
+            {
+                case "status":
+                    _statusMenu.Visible = true;
+                    _statusMenu.Reset();
+                    break;
+                case "inventory":
+                    _inventoryMenu.Visible = true;
+                    _inventoryMenu.Reset();
+                    break;
+                case "settings":
+                    _settingsMenu.Visible = true;
+                    _settingsMenu.Reset();
+                    break;
+            }
         }
 
         public void SetCharacter(Combatant character)
         {
-            ((StatusMenu)Layers["status menu"]).SetCharacter(character);
+            _statusMenu.SetCharacter(character);
         }
     }
 }

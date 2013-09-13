@@ -1,0 +1,2901 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nuclex.Graphics.SpecialEffects</name>
+    </assembly>
+    <members>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Resources.ScreenMaskResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Resources.ScreenMaskResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Resources.ScreenMaskResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Resources.ScreenMaskResourcesTest">
+            <summary>Unit tests for the debug drawer resources</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Resources.ScreenMaskResourcesTest.TestResourceClassCreation">
+            <summary>Verifies that an instance of the resource class can be created</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Resources.ScreenMaskResourcesTest.TestAssignCulture">
+            <summary>Tests the 'Culture' property of the resource class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Resources.ScreenMaskResourcesTest.TestScreenMaskEffect">
+            <summary>Verifies that the screen mask effect can be accessed</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Resources.UnitTestResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Resources.UnitTestResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Resources.UnitTestResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Resources.UnitTestResourcesTest">
+            <summary>Unit tests for the debug drawer resources</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Resources.UnitTestResourcesTest.TestResourceClassCreation">
+            <summary>Verifies that an instance of the resource class can be created</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Resources.UnitTestResourcesTest.TestAssignCulture">
+            <summary>Tests the 'Culture' property of the resource class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Resources.UnitTestResourcesTest.TestWaterSurfaceEffect">
+            <summary>Verifies that the water surface effect can be accessed</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.IndexedStaticMesh`1">
+            <summary>Manages the graphics resources for an indexed static mesh</summary>
+            <typeparam name="VertexType">Type of the vertices used in the mesh</typeparam>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.StaticMesh`1">
+            <summary>Base class for objects requiring static geometry</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.StaticMesh`1.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.Int32)">
+            <summary>Initializes a new graphics resource keeper for a static mesh</summary>
+            <param name="graphicsDevice">Graphics device the mesh lives on</param>
+            <param name="vertexCount">Number of vertices that will be required</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.StaticMesh`1.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.StaticMesh`1.Select">
+            <summary>Selects the static meshes' vertices for drawing</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.StaticMesh`1.GraphicsDevice">
+            <summary>Graphics device the mesh is being rendered on</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.StaticMesh`1.VertexBuffer">
+            <summary>Vertex buffer containing the vertices for the static mesh</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.IndexedStaticMesh`1.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.Int32,System.Int32)">
+            <summary>Initializes a new graphics resource keeper for indexed meshes</summary>
+            <param name="graphicsDevice">Graphics device the mesh will be rendered on</param>
+            <param name="vertexCount">Number of vertices used by the mesh</param>
+            <param name="indexCount">Number of indices in the mesh</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.IndexedStaticMesh`1.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.IndexedStaticMesh`1.Select">
+            <summary>Selects the indexed meshes' vertices and indices for drawing</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.IndexedStaticMesh`1.IndexBuffer">
+            <summary>Index buffer containing the indices of the static mesh</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.IndexedStaticMeshTest">
+            <summary>Unit test for the indexed mesh graphics resource keeper</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.IndexedStaticMeshTest.TestSimpleConstructor">
+            <summary>
+              Verifies that the simple constructor of the static mesh class is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.IndexedStaticMeshTest.TestThrowInSimpleConstructorRollback">
+            <summary>
+              Verifies that the simple constructor rolls back when an exception occurs in it
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.IndexedStaticMeshTest.TestSelect">
+            <summary>
+              Tests whether the static meshes' Select() method is implemented correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.IndexedStaticMeshTest.AvoidCompilerWarnings">
+            <summary>
+              Only exists to prevent the compiler from complaining about unused fields
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.IndexedStaticMeshTest.TestVertex">
+            <summary>
+              Vertex used to unit-test the static mesh graphics resource keepr
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.IndexedStaticMeshTest.TestVertex.Position">
+            <summary>A vertex element of type Vector2</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.IndexedStaticMeshTest.TestVertex.Color">
+            <summary>A vertex element of type Color</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.IndexedStaticMeshTest.TestVertex.VertexDeclaration">
+            <summary>Vertex declaration for this vertex structure</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.IndexedStaticMeshTest.TestVertex.Microsoft#Xna#Framework#Graphics#IVertexType#VertexDeclaration">
+            <summary>Provides a declaration for this vertex type</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.IndexedStaticMeshTest.TestIndexedStaticMesh">
+            <summary>Dummy static mesh class used for unit testing</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.IndexedStaticMeshTest.TestIndexedStaticMesh.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.Int32,System.Int32)">
+            <summary>
+              Initializes a new static mesh that automatically determines its vertex format
+            </summary>
+            <param name="graphicsDevice">Graphics device the static mesh lives on</param>
+            <param name="vertexCount">Number of vertices used by the static mesh</param>
+            <param name="indexCount">Number of indices in the static mesh</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.IndexedStaticMeshTest.TestIndexedStaticMesh.Select">
+            <summary>Selects the static meshes' vertex buffer</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.IndexedStaticMeshTest.TestIndexedStaticMesh.IndexBuffer">
+            <summary>Index buffer containing the test meshes' indices</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMaskTest">
+            <summary>Unit tests for the solid color screen mask class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMaskTest.Setup">
+            <summary>Executed before each test is run</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMaskTest.Teardown">
+            <summary>Executed after each test has completed</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMaskTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the solid color screen mask class is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMaskTest.TestColorProperty">
+            <summary>
+              Tests whether the color property can be assigned and read from
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMaskTest.TestThrowInConstructor">
+            <summary>
+              Tests whether a rollback is performed if an exception occurs in
+              the solid color screen mask's constructor
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMaskTest.createFail(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Content.ContentManager,Microsoft.Xna.Framework.Graphics.Effect)">
+            <summary>Creates a new instance of the solid color screen mask class</summary>
+            <param name="graphicsDevice">
+              Graphics device the screen mask is rendered with
+            </param>
+            <param name="contentManager">
+              Content manager the effect was loaded from
+            </param>
+            <param name="effect">Effect that will be used to render the screen mask </param>
+            <returns>A new instance of the solid color screen mask</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMaskTest.TestDraw">
+            <summary>
+              Tests whether the solid color screen mask is able to draw itself
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMaskTest.mockedGraphicsDeviceService">
+            <summary>Mocked graphics device service used to run the test</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMaskTest.serviceProvider">
+            <summary>Service provider containing the mocked graphics device service</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Masks.PositionVertex">
+            <summary>A vertex storing only its position</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.PositionVertex.#ctor(Microsoft.Xna.Framework.Vector2)">
+            <summary>Initializs a new position vertex</summary>
+            <param name="position">Position of the vertex in screen space</param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Masks.PositionVertex.Position">
+            <summary>Coordinates of the vertex</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Masks.PositionVertex.VertexDeclaration">
+            <summary>Vertex declaration for this vertex structure</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Masks.PositionVertex.Microsoft#Xna#Framework#Graphics#IVertexType#VertexDeclaration">
+            <summary>Provides a declaration for this vertex type</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Masks.PositionVertexTest">
+            <summary>Unit tests for the position vertex class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.PositionVertexTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the position vertex class is working
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Masks.ScreenMask`1">
+            <summary>Mask that draws over the entire screen</summary>
+            <typeparam name="VertexType">Type of vertices used in the mask</typeparam>
+            <remarks>
+              A 'screen mask' draws over the entire screen with a polygon. This can be used
+              to provide damage feedback to the player (screen flashes red or, like in some
+              FPS games, the screen borders become red when the player's health is low) or
+              to generate post-processing effects.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ScreenMask`1.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Graphics.Effect,`0[])">
+            <summary>Initializes as new skybox cube</summary>
+            <param name="graphicsDevice">Graphics device the skybox cube lives on</param>
+            <param name="effect">Effect by which the screen mask will be rendered</param>
+            <param name="vertices">Vertices that make up the screen mask</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ScreenMask`1.Draw">
+            <summary>Draws the screen mask</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Masks.ScreenMask`1.Effect">
+            <summary>Effect being used to render the screen mask</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Masks.ScreenMask`1.Vertices">
+            <summary>Vertices used to render the screen mask</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMask">
+            <summary>Screen mask that fills the screen with a solid color</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMask.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Content.ContentManager,Microsoft.Xna.Framework.Graphics.Effect)">
+            <summary>Initializes as new solid color screen mask</summary>
+            <param name="graphicsDevice">Graphics device the skybox cube lives on</param>
+            <param name="contentManager">Content manager the effect belongs to</param>
+            <param name="effect">Effect that will be used to draw the screen mask</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMask.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMask.Create(Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>Creates a new solid color screen mask</summary>
+            <param name="graphicsDevice">
+              Graphics device the screen mask will be draw with
+            </param>
+            <returns>The newly created solid color screen mask</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMask.Create(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMask.CreateDelegate)">
+            <summary>Creates a new solid color screen mask</summary>
+            <param name="graphicsDevice">
+              Graphics device the screen mask will be draw with
+            </param>
+            <param name="createDelegate">
+              Factory method that will be used to instantiate the mask
+            </param>
+            <returns>The newly created solid color screen mask</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMask.CreateDefault(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Content.ContentManager,Microsoft.Xna.Framework.Graphics.Effect)">
+            <summary>Creates a new instance of the solid color screen mask class</summary>
+            <param name="graphicsDevice">
+              Graphics device the screen mask is rendered with
+            </param>
+            <param name="contentManager">
+              Content manager the effect was loaded from
+            </param>
+            <param name="effect">Effect that will be used to render the screen mask </param>
+            <returns>A new instance of the solid color screen mask</returns>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMask.vertices">
+            <summary>Vertices used to draw the screen mask</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMask.contentManager">
+            <summary>Content manager the solid color fill effect was loaded from</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMask.Color">
+            <summary>Color the mask fills the screen with</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Masks.ColorScreenMask.CreateDelegate">
+            <summary>Delegate for a factory method that creates this screen mask</summary>
+            <param name="graphicsDevice">
+              Graphics device the screen mask is rendered with
+            </param>
+            <param name="contentManager">
+              Content manager the effect was loaded from
+            </param>
+            <param name="effect">Effect that will be used to render the screen mask </param>
+            <returns>A new instance of the solid color screen mask</returns>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Masks.ScreenMaskTest">
+            <summary>Unit tests for the screen mask class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ScreenMaskTest.Setup">
+            <summary>Executed before each test is run</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ScreenMaskTest.Teardown">
+            <summary>Executed after each test has completed</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ScreenMaskTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the screen mask class is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Masks.ScreenMaskTest.TestDraw">
+            <summary>Tests whether the screen mask is able to draw itself</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Masks.ScreenMaskTest.mockedGraphicsDeviceService">
+            <summary>Mocked graphics device service used to run the test</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Masks.ScreenMaskTest.serviceProvider">
+            <summary>Service provider containing the mocked graphics device service</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Masks.ScreenMaskTest.contentManager">
+            <summary>Content manager used to load the assets used during testing</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1">
+            <summary>Manages a collection of particle affectors</summary>
+            <typeparam name="ParticleType">Data type of the particles</typeparam>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.#ctor">
+            <summary>Initializes a new collection of affectors</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Add(Nuclex.Graphics.SpecialEffects.Particles.IParticleAffector{`0})">
+            <summary>Adds an affector to the collection</summary>
+            <param name="affector">Affector that will be added to the collection</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Clear">
+            <summary>Removes all affectors from the collection</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Contains(Nuclex.Graphics.SpecialEffects.Particles.IParticleAffector{`0})">
+            <summary>
+              Determines whether the collection contains the specified affector
+            </summary>
+            <param name="affector">Affector that will be looked up in the collection</param>
+            <returns>True if the collection contains the specified affector</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.CopyTo(Nuclex.Graphics.SpecialEffects.Particles.IParticleAffector{`0}[],System.Int32)">
+            <summary>Copies the contents of the collection into an array</summary>
+            <param name="array">Array the collection's contents will be copied to</param>
+            <param name="start">Index at which writing to the array will begin</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Remove(Nuclex.Graphics.SpecialEffects.Particles.IParticleAffector{`0})">
+            <summary>Removes an affector from the collection</summary>
+            <param name="affector">Affector that will be removed from the collection</param>
+            <returns>True if the affector was found and removed</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.GetEnumerator">
+            <summary>Creates an enumerator for the affectors in the collection</summary>
+            <returns>
+              A new enumerator that will iterate over all affectors in the collection
+            </returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+            <summary>Copies the contents of the collection into an array</summary>
+            <param name="array">Array the collection's contents will be copied to</param>
+            <param name="start">Index at which writing to the array will begin</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>Creates an enumerator for the affectors in the collection</summary>
+            <returns>
+              A new enumerator that will iterate over all affectors in the collection
+            </returns>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.coalescableAffectors">
+            <summary>Coalescable affectors registered to the particle system</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.noncoalescableAffectors">
+            <summary>Non-coalescable affectors registered to the particle system</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Count">
+            <summary>Number of affectors currently contained in the collection</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.IsReadOnly">
+            <summary>Whether the collection is read-only</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.System#Collections#ICollection#IsSynchronized">
+            <summary>Whether the collection is synchronized</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.System#Collections#ICollection#SyncRoot">
+            <summary>The synchronization root for this collection</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.CoalescableAffectors">
+            <summary>All coalescable affectors registered in the collection</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.NoncoalescableAffectors">
+            <summary>All non-coalescable affectors registered in the collection</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Enumerator">
+            <summary>Enumerates over all affectors in the collection</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Enumerator.#ctor(System.Collections.Generic.List{Nuclex.Graphics.SpecialEffects.Particles.IParticleAffector{`0}},System.Collections.Generic.List{Nuclex.Graphics.SpecialEffects.Particles.IParticleAffector{`0}})">
+            <summary>Initializes a new affector collection enumerator</summary>
+            <param name="coalescableAffectors">
+              Coalescable affectors that will be enumerated
+            </param>
+            <param name="noncoalescableAffectors">
+              Non-coalescable affectors that will be enumerated
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Enumerator.MoveNext">
+            <summary>Advances the enumerator to the next item</summary>
+            <returns>
+              True if the next item has been selected, false if the end of
+              the enumeration has been reached
+            </returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Enumerator.Reset">
+            <summary>Resets the enumerator to its initial position</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Enumerator.Dispose">
+            <summary>Immediately releases all resources owned by the enumerator</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Enumerator.coalescableAffectors">
+            <summary>Coalescable affectors being enumerated</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Enumerator.nonCoalescableAffectors">
+            <summary>Non-coalescable affectors being enumerated</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Enumerator.currentList">
+            <summary>List being currently enumerated</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Enumerator.index">
+            <summary>Current enumeration index</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Enumerator.Current">
+            <summary>Returns the item at the enumerator's current position</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollection`1.Enumerator.System#Collections#IEnumerator#Current">
+            <summary>Returns the item at the enumerator's current position</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest">
+            <summary>Unit tests for the affector collection</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the affector collection is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.TestAdd">
+            <summary>
+              Verifies that the Add() method splits affectors in coalescable and
+              non-coalescable affectors
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.TestRemove">
+            <summary>
+              Tests whether the Remove() method correctly removes affectors from
+              the internal lists of coalescable and non-coalescable affectors.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.TestIsReadOnly">
+            <summary>Verifies that the affector collection is not read-only</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.TestContains">
+            <summary>
+              Tests whether the Contains() method of the affector collection is
+              working correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.TestCopyTo">
+            <summary>
+              Verifies that the typesafe CopyTo() method is working correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.TestThrowOnCopyTo">
+            <summary>
+              Verifies that the typesafe CopyTo() method is working correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.TestCopyToAsObject">
+            <summary>
+              Verifies that the non-typesafe CopyTo() method is working correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.TestThrowOnCopyToAsObject">
+            <summary>
+              Verifies that the typesafe CopyTo() method is working correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.TestClear">
+            <summary>whether the collection can clear its contents</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.TestSyncRoot">
+            <summary>
+              Tests whether the SyncRoot property returns a lockable object
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.TestIsSynchronized">
+            <summary>
+              Tests whether the IsSynchronized property returns the right result
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.TestGetEnumerator">
+            <summary>
+              Tests whether a typesafe enumerator can be obtained for the collection
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.TestGetEnumeratorForObject">
+            <summary>
+              Tests whether a non-typesafe enumerator can be obtained for the collection
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.CoalescableAffector">
+            <summary>A dummy particle affector that can be coalesced</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.IParticleAffector`1">
+            <summary>Influences particles to simulate environmental effects</summary>
+            <typeparam name="ParticleType">Data type of the particles</typeparam>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.IParticleAffector`1.Affect(`0[],System.Int32,System.Int32,System.Int32)">
+            <summary>Applies the affector's effect to a series of particles</summary>
+            <param name="particles">Particles the affector will be applied to</param>
+            <param name="start">Index of the first particle that will be affected</param>
+            <param name="count">Number of particles that will be affected</param>
+            <param name="updates">Number of updates to perform in the affector</param>
+            <remarks>
+              Contrary to general-purpose particle systems like we might find in expensive
+              animation packages, we don't update particles based on time but instead
+              use the simplified approach of updating particles in simulation steps.
+              This simplifies the implementation and matches a game's architecture where
+              the simulation is updated in steps as well to have a predictable outcome.
+            </remarks>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.IParticleAffector`1.IsCoalescable">
+            <summary>
+              Whether the affector can do multiple updates in a single step without
+              changing the outcome of the simulation
+            </summary>
+            <remarks>
+              <para>
+                Generally, this should be true when the affector only modifies properties
+                that no other affector accesses or that do not change the simulation's
+                outcome.
+              </para>
+              <para>
+                For example, a color affector that changes a particle's color solely
+                based on its age is coalescable. If the particle system needs to do
+                10 update steps at once, it can instruct the color affector to do 10 updates
+                in a row without calling any other registered affectors inbetween.
+              </para>
+              <para>
+                However, a weight affector and a gravity affector are not coalescable
+                because running the gravity affector 10 times and then running the
+                weight affector 10 times will not yield an equivalent result to running
+                both affectors in succession 10 times.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.CoalescableAffector.Affect(System.Int32[],System.Int32,System.Int32,System.Int32)">
+            <summary>Applies the affector's effect to a series of particles</summary>
+            <param name="particles">Particles the affector will be applied to</param>
+            <param name="start">Index of the first particle that will be affected</param>
+            <param name="count">Number of particles that will be affected</param>
+            <param name="updates">Number of updates to perform in the affector</param>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.CoalescableAffector.IsCoalescable">
+            <summary>
+              Whether the affector can do multiple updates in a single step without
+              changing the outcome of the simulation
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.NoncoalescableAffector">
+            <summary>A dummy particle affector that can not be coalesced</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.NoncoalescableAffector.Affect(System.Int32[],System.Int32,System.Int32,System.Int32)">
+            <summary>Applies the affector's effect to a series of particles</summary>
+            <param name="particles">Particles the affector will be applied to</param>
+            <param name="start">Index of the first particle that will be affected</param>
+            <param name="count">Number of particles that will be affected</param>
+            <param name="updates">Number of updates to perform in the affector</param>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.NoncoalescableAffector.IsCoalescable">
+            <summary>
+              Whether the affector can do multiple updates in a single step without
+              changing the outcome of the simulation
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.EnumeratorTest">
+            <summary>Unit test for the affector collection's enumerator</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.EnumeratorTest.TestThrowOnCurrentFromInvalidPosition">
+            <summary>
+              Tests whether an exception is thrown if the 'Current' property is called
+              with the enumerator at an invalid location
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.EnumeratorTest.TestAdvanceEnumeratorPastEnd">
+            <summary>
+              Verifies that the enumerator behaves correctly if it is advanced
+              past its end
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.EnumeratorTest.TestCurrent">
+            <summary>
+              Verifies that the affectors can be retrieved through the enumerator
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.EnumeratorTest.TestCurrentAsObject">
+            <summary>
+              Verifies that the affectors can be retrieved through the enumerator
+              through a non-typesafe IEnumerator interface
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.AffectorCollectionTest.EnumeratorTest.TestReset">
+            <summary>
+              Verifies that the affectors can be retrieved through the enumerator
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.GravityAffector`1">
+            <summary>Simulates the effects of gravity on particles</summary>
+            <typeparam name="ParticleType">Data type of the particles</typeparam>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.GravityAffector`1.StandardEarthGravity">
+            <summary>Average gravity on earth in meters per squared second</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.GravityAffector`1.#ctor(Nuclex.Graphics.SpecialEffects.Particles.IParticleModifier{`0})">
+            <summary>Initializes a new gravity affector</summary>
+            <param name="modifier">
+              Modifier through which the particles' properties will be changed
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.GravityAffector`1.#ctor(Nuclex.Graphics.SpecialEffects.Particles.IParticleModifier{`0},System.Single)">
+            <summary>
+              Initializes a new gravity affector with a custom gravity constant
+            </summary>
+            <param name="modifier">
+              Modifier through which the particles' properties will be changed
+            </param>
+            <param name="gravity">
+              Gravity constant that will be applied to the particles
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.GravityAffector`1.#ctor(Nuclex.Graphics.SpecialEffects.Particles.IParticleModifier{`0},Microsoft.Xna.Framework.Vector3)">
+            <summary>
+              Initializes a new gravity affector with a custom gravity vector
+            </summary>
+            <param name="modifier">
+              Modifier through which the particles' properties will be changed
+            </param>
+            <param name="gravity">Gravity vector that will be applied to the particles</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.GravityAffector`1.Affect(`0[],System.Int32,System.Int32,System.Int32)">
+            <summary>Applies the affector's effect to a series of particles</summary>
+            <param name="particles">Particles the affector will be applied to</param>
+            <param name="start">Index of the first particle that will be affected</param>
+            <param name="count">Number of particles that will be affected</param>
+            <param name="updates">Number of updates to perform in the affector</param>
+            <remarks>
+              Contrary to general-purpose particle systems like we might find in expensive
+              animation packages, we don't update particles based on time but instead
+              use the simplified approach of updating particles in simulation steps.
+              This simplifies the implementation and matches a game's architecture where
+              the simulation is updated in steps as well to have a predictable outcome.
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.GravityAffector`1.UpdatesPerSecond">
+            <summary>XNA's standard update frequency</summary>
+            <remarks>
+              Can be adjusted if your simulation runs at a different speed to ensure that
+              the gravity constant is still expressed in m/s^2
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.GravityAffector`1.Gravity">
+            <summary>Gravity in m/s^2 that will be applied to the particles</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.GravityAffector`1.modifier">
+            <summary>Particle modifier used to apply gravity to the particles</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.GravityAffector`1.IsCoalescable">
+            <summary>
+              Whether the affector can do multiple updates in a single step without
+              changing the outcome of the simulation
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.GravityAffectorTest">
+            <summary>Unit tests for the gravity affector</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.GravityAffectorTest.TestConstructor">
+            <summary>Tests whether the gravity affector's constructor is working</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.GravityAffectorTest.TestCoalescability">
+            <summary>
+              Verifies that the gravity affector reports the right status about
+              its coalescability
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.GravityAffectorTest.TestGravity">
+            <summary>
+              Tests whether the gravity affector imparts a momentum to particles
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.IEmitter`1">
+            <summary>Interface for an source that can emit particles</summary>
+            <typeparam name="ParticleType">Type of particles being emitted</typeparam>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.IEmitter`1.Emit">
+            <summary>Emits a new particle</summary>
+            <returns>The new particle</returns>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.IEmissionController">
+            <summary>Controls the number of particles generated per update cycle</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.IEmissionController.ParticlesToEmit">
+            <summary>
+              Number of particles that should be emitted in the update cycle
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.IParticleSystemService">
+            <summary>Provides services for rendering and updating particle systems</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.IParticleSystemService.AddParticleSystem``2(Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem{``0},Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem{``0}.PrunePredicate,Nuclex.Graphics.SpecialEffects.Particles.HighLevel.IParticleRenderer{``0,``1})">
+            <summary>Adds a particle system to be processed by the manager</summary>
+            <typeparam name="ParticleType">
+              Type of particles being stored in the particle system
+            </typeparam>
+            <typeparam name="VertexType">
+              Type of vertices that will be generated from the particles
+            </typeparam>
+            <param name="particleSystem">
+              Particle system that will be added to the manager
+            </param>
+            <param name="pruneDelegate">Method used to detect dead particles</param>
+            <param name="renderer">
+              Particle renderer that will turn the particles into vertices and send
+              them to a primitive batch for rendering
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.IParticleSystemService.RemoveParticleSystem``1(Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem{``0})">
+            <summary>Removes a particle system from the manager</summary>
+            <typeparam name="ParticleType">
+              Type of particles being stored in the particle system
+            </typeparam>
+            <param name="particleSystem">
+              Particle system that will be removed from the manager
+            </param>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager">
+            <summary>Manages multiple particles systems and renders them</summary>
+            <remarks>
+              <para>
+                The particle system manager allows you to offload pruning, updating and
+                rendering of your particle systems to a central place. You still have to
+                keep a reference to your particle systems to add particles or modify
+                affectors, but you no longer have to worry about manually updating,
+                pruning and drawing them yourself.
+              </para>
+              <para>
+                As an added benefit, multiple particle systems using the same vertex type
+                will be rendered in combined batches, allowing for efficient rendering
+                even when your particle systems are only sparsely populated.
+              </para>
+              <para>
+                The recommended usage is to create a particle system management service
+                for your game where particle systems can be registered to this component
+                (if you want to construct and destroy particle systems on the fly).
+                Another option would be to let the service provide a fixed set of
+                particle systems via properties so that particles can easily be added to
+                them from your game entities, depending on your design approach.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.#ctor(Microsoft.Xna.Framework.Graphics.IGraphicsDeviceService)">
+            <summary>Initializes a new particle system manager</summary>
+            <param name="graphicsDeviceService">
+              Graphics device service being used to render the particle systems
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.Dispose">
+            <summary>Immediately releases all resources used by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.Draw(Microsoft.Xna.Framework.GameTime)">
+            <summary>Draws the particle systems</summary>
+            <param name="gameTime">Snapshot of the game's timing values</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.Prune">
+            <summary>Prunes dead particles from all particle systems</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.Update(System.Int32)">
+            <summary>Updates the particle systems</summary>
+            <param name="updates">Number of updates that will be performed</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.BeginUpdate(System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+            <summary>Begins an asynchronous update on the particle system</summary>
+            <param name="updates">Number of updates that will be performed</param>
+            <param name="threads">Number of threads that will be used</param>
+            <param name="callback">
+              Callback that will be invoked after the update has finished
+            </param>
+            <param name="state">User-defined state</param>
+            <returns>
+              An asynchronous result handle that can be used to wait for the operation
+            </returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.EndUpdate(System.IAsyncResult)">
+            <summary>Ends the asynchronous update</summary>
+            <param name="asyncResult">
+              Asynchronous result handle obtained from the BeginUpdate() method
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.BeginPrune(System.AsyncCallback,System.Object)">
+            <summary>Begins asynchronously pruning dead particles from the system</summary>
+            <param name="callback">
+              Callback that will be invoked after pruning has finished
+            </param>
+            <param name="state">User-defined state</param>
+            <returns>
+              An asynchronous result handle that can be used to wait for the operation
+            </returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.EndPrune(System.IAsyncResult)">
+            <summary>Ends asynchronous pruning</summary>
+            <param name="asyncResult">
+              Asynchronous result handle obtained from the BeginPrune() method
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.updateHolderArraysIfNeeded">
+            <summary>
+              Updates the particle system and primitive batch holder arrays if needed
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.holderArraysDirty">
+            <summary>
+              Whether the arrays for the primitive batch and particle system holders
+              need to be updated
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.primitiveBatchHolders">
+            <summary>Stores the primitive batch holders from the dictionary</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.particleSystemHolders">
+            <summary>Stores the particle system holders from the dictionary</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.pruneAsyncResult">
+            <summary>Used to asynchronously prune the particle systems</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.updateAsyncResult">
+            <summary>Used to asynchronously update the particle systems</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.AddParticleSystem``2(Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem{``0},Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem{``0}.PrunePredicate,Nuclex.Graphics.SpecialEffects.Particles.HighLevel.IParticleRenderer{``0,``1})">
+            <summary>Adds a particle system to be processed by the manager</summary>
+            <typeparam name="ParticleType">
+              Type of particles being stored in the particle system
+            </typeparam>
+            <typeparam name="VertexType">
+              Type of vertices that will be generated from the particles
+            </typeparam>
+            <param name="particleSystem">
+              Particle system that will be added to the manager
+            </param>
+            <param name="pruneDelegate">Method used to detect dead particles</param>
+            <param name="renderer">
+              Particle renderer that will turn the particles into vertices and send
+              them to a primitive batch for rendering
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.RemoveParticleSystem``1(Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem{``0})">
+            <summary>Removes a particle system from the manager</summary>
+            <typeparam name="ParticleType">
+              Type of particles being stored in the particle system
+            </typeparam>
+            <param name="particleSystem">
+              Particle system that will be removed from the manager
+            </param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.particleSystems">
+            <summary>Particle systems that are being managed by this instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.getOrCreatePrimitiveBatch``1">
+            <summary>
+              Retrieves or creates the primitive batch for the specified vertex type
+            </summary>
+            <typeparam name="VertexType">
+              Vertex type a primitive batch will be returned for
+            </typeparam>
+            <returns>A primitive batch that renders the specified vertex type</returns>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.InducePrimitiveBatchErrorDelegate">
+            <summary>
+              Can be used to induce a construction error in the primitive batch holder
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.primitiveBatches">
+            <summary>Primitive batches for the vertex types of all particle systems</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult">
+            <summary>Asynchronous result handle for the pruning process</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.#ctor(Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager)">
+            <summary>
+              Initializes a new asynchronous result for particle system prunes
+            </summary>
+            <param name="manager">Particle system manager being pruned</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.Start(System.AsyncCallback,System.Object)">
+            <summary>Initializes a new result for asynchronous pruning</summary>
+            <param name="callback">
+              Callback that will be invoked when pruning has finished
+            </param>
+            <param name="state">
+              User-defined state that will be passed to the callback
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.stepCompleted(System.IAsyncResult)">
+            <summary>Called when a single particle system has finished updating</summary>
+            <param name="asyncResult">
+              Asynchronous result handle of the pruning process
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.reportCompletion">
+            <summary>Reports the completion of the pruning process to the caller</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.currentParticleSystem">
+            <summary>Index of the particle system being currently pruned</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.particleSystemCount">
+            <summary>Number of particles systems that will be pruned</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.stepAsyncResult">
+            <summary>Asynchronous result of the currently pruning particle sytem</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.stepCompletedDelegate">
+            <summary>Delegate for the stepCompleted() method</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.manager">
+            <summary>Particle system manager the async result belongs to</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.callback">
+            <summary>Callback that will be invoked after pruning has finished</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.state">
+            <summary>User-defined state that will be passed to the callback</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.doneEvent">
+            <summary>Wait handle that can be used to wait for pruning to finish</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.completed">
+            <summary>Whether pruning has already finished</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.exception">
+            <summary>Exception that occured during asynchronous processing</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.AsyncState">
+            <summary>User-defined state provided in the BeginPrune() method</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.AsyncException">
+            <summary>Exception that occured during asynchronous processing</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.AsyncWaitHandle">
+            <summary>WaitHandle that can be used to wait for pruning to finish</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.CompletedSynchronously">
+            <summary>Whether the pruning process has completed synchronously</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PruneAsyncResult.IsCompleted">
+            <summary>Whether the pruning process has already finished</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult">
+            <summary>Asynchronous result handle for the update process</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.#ctor(Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager)">
+            <summary>
+              Initializes a new asynchronous result for particle system updates
+            </summary>
+            <param name="manager">Particle system manager being updated</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.Dispose">
+            <summary>Immediateyl releases all resources owned by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.Start(System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+            <summary>Initializes a new result for an asynchronous update</summary>
+            <param name="updates">
+              Number of updates that will be performed on the particle systems
+            </param>
+            <param name="threads">Number of threads that will be used</param>
+            <param name="callback">
+              Callback that will be invoked when updating has finished
+            </param>
+            <param name="state">
+              User-defined state that will be passed to the callback
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.stepCompleted(System.IAsyncResult)">
+            <summary>Called when a single particle system has finished updating</summary>
+            <param name="asyncResult">
+              Asynchronous result handle of the update process
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.reportCompletion">
+            <summary>Reports the completion of the update to the caller</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.currentParticleSystem">
+            <summary>Index of the particle system being currently updated</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.particleSystemCount">
+            <summary>Number of particles systems that will be updated</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.updates">
+            <summary>Number of updates to perform on the particle systems</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.threads">
+            <summary>Number of threads to use for the updates</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.stepAsyncResult">
+            <summary>Asynchronous result of the currently updating particle sytem</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.stepCompletedDelegate">
+            <summary>Delegate for the stepCompleted() method</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.manager">
+            <summary>Particle system manager the async result belongs to</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.callback">
+            <summary>Callback that will be invoked after updating has finished</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.state">
+            <summary>User-defined state that will be passed to the callback</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.doneEvent">
+            <summary>Wait handle that can be used to wait for pruning to finish</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.completed">
+            <summary>Whether the update has already completed</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.exception">
+            <summary>Exception that occured during asynchronous processing</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.AsyncState">
+            <summary>User-defined state provided in the BeginUpdate() method</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.AsyncException">
+            <summary>Exception that occured during asynchronous processing</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.AsyncWaitHandle">
+            <summary>WaitHandle that can be used to wait for updating to finish</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.CompletedSynchronously">
+            <summary>Whether the updating process has completed synchronously</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.UpdateAsyncResult.IsCompleted">
+            <summary>Whether the updating process has already finished</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.IParticleSystemHolder">
+            <summary>Interface for objects managing a single particle system</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.IParticleSystemHolder.Render">
+            <summary>Renders the particle system into its primitive batch</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.IParticleSystemHolder.Dispose">
+            <summary>Disposes the contained particle system</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.IParticleSystemHolder.ReleasePrimitiveBatch">
+            <summary>Releases or destroys the referenced primitive batch</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.IParticleSystemHolder.Update(System.Int32)">
+            <summary>Updates the particles in the particle system</summary>
+            <param name="updates">Number of updates that will be performed</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.IParticleSystemHolder.BeginUpdate(System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+            <summary>Begins an asynchronous update on the particle system</summary>
+            <param name="updates">Number of updates that will be performed</param>
+            <param name="threads">Number of threads that will be used</param>
+            <param name="callback">
+              Callback that will be invoked after the update has finished
+            </param>
+            <param name="state">User-defined state</param>
+            <returns>
+              An asynchronous result handle that can be used to wait for the operation
+            </returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.IParticleSystemHolder.EndUpdate(System.IAsyncResult)">
+            <summary>Ends the asynchronous update</summary>
+            <param name="asyncResult">
+              Asynchronous result handle obtained from the BeginUpdate() method
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.IParticleSystemHolder.Prune">
+            <summary>Prunes dead particles from the system</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.IParticleSystemHolder.BeginPrune(System.AsyncCallback,System.Object)">
+            <summary>Begins asynchronously pruning dead particles from the system</summary>
+            <param name="callback">
+              Callback that will be invoked after pruning has finished
+            </param>
+            <param name="state">User-defined state</param>
+            <returns>
+              An asynchronous result handle that can be used to wait for the operation
+            </returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.IParticleSystemHolder.EndPrune(System.IAsyncResult)">
+            <summary>Ends asynchronous pruning</summary>
+            <param name="asyncResult">
+              Asynchronous result handle obtained from the BeginPrune() method
+            </param>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2">
+            <summary>Manages a particle system and its associated resources</summary>
+            <typeparam name="ParticleType">
+              Type of particles being simulated in the particle system
+            </typeparam>
+            <typeparam name="VertexType">
+              Type of vertices the particle system generates
+            </typeparam>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2.#ctor(Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem{`0},Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem{`0}.PrunePredicate,Nuclex.Graphics.SpecialEffects.Particles.HighLevel.IParticleRenderer{`0,`1},Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PrimitiveBatchHolder{`1})">
+            <summary>Initializes a new particle system holder</summary>
+            <param name="particleSystem">Particle system the holder will manage</param>
+            <param name="renderer">
+              Renderer through which the particles are sent to the primitive batch
+            </param>
+            <param name="pruneDelegate">
+              Method which will be used to detect dead particles
+            </param>
+            <param name="primitiveBatchHolder">
+              Primitive batch holder that manages the primitive batch used to
+              render the vertices generated by this particle system
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2.Render">
+            <summary>Renders the particle system into its primitive batch</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2.Dispose">
+            <summary>Disposes the contained particle system</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2.ReleasePrimitiveBatch">
+            <summary>Releases or destroys the referenced primitive batch</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2.Update(System.Int32)">
+            <summary>Updates the particles in the particle system</summary>
+            <param name="updates">Number of updates that will be performed</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2.BeginUpdate(System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+            <summary>Begins an asynchronous update on the particle system</summary>
+            <param name="updates">Number of updates that will be performed</param>
+            <param name="threads">Number of threads that will be used</param>
+            <param name="callback">
+              Callback that will be invoked after the update has finished
+            </param>
+            <param name="state">User-defined state</param>
+            <returns>
+              An asynchronous result handle that can be used to wait for the operation
+            </returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2.EndUpdate(System.IAsyncResult)">
+            <summary>Ends the asynchronous update</summary>
+            <param name="asyncResult">
+              Asynchronous result handle obtained from the BeginUpdate() method
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2.Prune">
+            <summary>Prunes dead particles from the system</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2.BeginPrune(System.AsyncCallback,System.Object)">
+            <summary>Begins asynchronously pruning dead particles from the system</summary>
+            <param name="callback">
+              Callback that will be invoked after pruning has finished
+            </param>
+            <param name="state">User-defined state</param>
+            <returns>
+              An asynchronous result handle that can be used to wait for the operation
+            </returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2.EndPrune(System.IAsyncResult)">
+            <summary>Ends asynchronous pruning</summary>
+            <param name="asyncResult">
+              Asynchronous result handle obtained from the BeginPrune() method
+            </param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2.particleSystem">
+            <summary>Particle system being managed by the holder</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2.renderer">
+            <summary>Particle renderer used to generate vertices from particles</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2.primitiveBatchHolder">
+            <summary>Manages the primitive batch used to draw particles</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.ParticleSystemHolder`2.pruneDelegate">
+            <summary>Delegate for the method used to recognize dead particles</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PrimitiveBatchHolder">
+            <summary>Holds a primitive batch used to render particles</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PrimitiveBatchHolder.#ctor(Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager)">
+            <summary>Initializes a new primitive batch holder</summary>
+            <param name="manager">Particle system manager the holder belongs to</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PrimitiveBatchHolder.Begin">
+            <summary>Begins drawing with the contained primitive batch</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PrimitiveBatchHolder.End">
+            <summary>Ends drawing with the contained primitve batch</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PrimitiveBatchHolder.Release">
+            <summary>Releases or destroys the referenced primitive batch</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PrimitiveBatchHolder.Manager">
+            <summary>Particle system manager this holder belongs to</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PrimitiveBatchHolder.ReferenceCount">
+            <summary>Number of active references to the primitive batch holder</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PrimitiveBatchHolder`1">
+            <summary>Holds a type-safe primitive batch used to render particles</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PrimitiveBatchHolder`1.#ctor(Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager,Nuclex.Graphics.Batching.PrimitiveBatch{`0})">
+            <summary>Initializes a new primitive batch holder</summary>
+            <param name="manager">
+              Particle system manager the primitive batch belongs to
+            </param>
+            <param name="primitiveBatch">Primitive batch being held</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PrimitiveBatchHolder`1.Begin">
+            <summary>Begins drawing with the contained primitive batch</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PrimitiveBatchHolder`1.End">
+            <summary>Ends drawing with the contained primitive batch</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PrimitiveBatchHolder`1.Release">
+            <summary>Releases or destroys the referenced primitive batch</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.PrimitiveBatchHolder`1.PrimitiveBatch">
+            <summary>Primitive batch for the holder's vertex type</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManager.InduceErrorDelegate">
+            <summary>Delegate for creating a new primitive batch holder</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest">
+            <summary>Unit tests for the particle system manager</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.Setup">
+            <summary>Called before each test is run</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.Teardown">
+            <summary>Called after each test has run</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestConstructor">
+            <summary>
+              Verifies that the particle system manager's constructor is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestAddParticleSystem">
+            <summary>
+              Tests whether particle systems can be added and removed from the manager
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestThrowDuringPrimitiveBatchCreation">
+            <summary>
+              Verifies that an exception during primitive batch creation is handled
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestThrowOnRemoveNotAddedParticleSystem">
+            <summary>
+              Verifies that an exception is thrown that a particle system is removed from
+              the manager that has not been added
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestThrowOnAddParticleSystemWithNullRenderer">
+            <summary>
+              Verifies that an exception is thrown if a particle system is added to
+              the manager with null specified for the renderer
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestUpdate">
+            <summary>
+              Verifies that the particle system manager can update its particle systems
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestAsynchronousUpdate">
+            <summary>
+              Verifies that the particle system manager can update its particle systems
+              asynchronously
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestThrowOnWrongAsyncResultInEndUpdate">
+            <summary>
+              Verifies that an exception is thrown if a wrong async result is specified
+              when calling the EndUpdate() method
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestAsynchronousUpdateCallback">
+            <summary>
+              Verifies that the user-defined callback is invoked when an asynchronous
+              update completes
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestThrowDuringAsynchronousUpdate">
+            <summary>
+              Tests whether exceptions during asynchronous updating are handles
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestPrune">
+            <summary>
+              Verifies that the particle system manager can prune its particle systems
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestAsynchronousPrune">
+            <summary>
+              Verifies that the particle system manager can prune its particle systems
+              asynchronously
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestThrowOnWrongAsyncResultInEndPrune">
+            <summary>
+              Verifies that an exception is thrown if a wrong async result is specified
+              when calling the EndPrune() method
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestAsynchronousPruneCallback">
+            <summary>
+              Verifies that the user-defined callback is invoked when an asynchronous
+              pruning process completes
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestThrowDuringAsynchronousPrune">
+            <summary>
+              Tests whether exceptions during asynchronous updating are handles
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestDraw">
+            <summary>
+              Tests whether the particle manager can draw its particle systems
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.TestManyVertexTypes">
+            <summary>
+              Tests whether the particle manager can handle a large number of vertex types
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.dontPrune``1(``0@)">
+            <summary>Prune method that always returns false</summary>
+            <typeparam name="ParticleType">Type of particles to process</typeparam>
+            <param name="particle">Not used</param>
+            <returns>False. Always.</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.slowPrune``1(``0@)">
+            <summary>Prune method that is very slow</summary>
+            <typeparam name="ParticleType">Type of particles to process</typeparam>
+            <param name="particle">Not used</param>
+            <returns>False. Always.</returns>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.mockedGraphicsDeviceService">
+            <summary>Mocked graphics device service used to run the unit tests</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.contentManager">
+            <summary>
+              Content manager used to load the effect by which the particles are drawn
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.effect">
+            <summary>Effect used to draw the particles</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.DummyDrawContext">
+            <summary>Dummy drawing context that does nothing</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.DummyDrawContext.Apply(System.Int32)">
+            <summary>Prepares the graphics device for drawing</summary>
+            <param name="pass">Index of the pass to begin rendering</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.DummyDrawContext.Equals(Nuclex.Graphics.Batching.DrawContext)">
+            <summary>Tests whether another draw context is identical to this one</summary>
+            <param name="otherContext">Other context to check for equality</param>
+            <returns>True if the other context is identical to this one</returns>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.DummyDrawContext.Passes">
+            <summary>Number of passes this draw context requires for rendering</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.CallbackReceiver">
+            <summary>Helper class used to test callbacks</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.CallbackReceiver.Callback(System.IAsyncResult)">
+            <summary>Callback method that records the state</summary>
+            <param name="asyncResult">Asynchronous result handle of the operation</param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.CallbackReceiver.State">
+            <summary>State that has been passed to the callback method</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.ExceptionThrowingAffector">
+            <summary>Particle affector which throws an exception</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.ExceptionThrowingAffector.Affect(Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle[],System.Int32,System.Int32,System.Int32)">
+            <summary>Applies the affector's effect to a series of particles</summary>
+            <param name="particles">Particles the affector will be applied to</param>
+            <param name="start">Index of the first particle that will be affected</param>
+            <param name="count">Number of particles that will be affected</param>
+            <param name="updates">Number of updates to perform in the affector</param>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.ExceptionThrowingAffector.IsCoalescable">
+            <summary>
+              Whether the affector can do multiple updates in a single step without
+              changing the outcome of the simulation
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.SlowAffector">
+            <summary>Particle affector which takes a long time</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.SlowAffector.Affect(Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle[],System.Int32,System.Int32,System.Int32)">
+            <summary>Applies the affector's effect to a series of particles</summary>
+            <param name="particles">Particles the affector will be applied to</param>
+            <param name="start">Index of the first particle that will be affected</param>
+            <param name="count">Number of particles that will be affected</param>
+            <param name="updates">Number of updates to perform in the affector</param>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.SlowAffector.IsCoalescable">
+            <summary>
+              Whether the affector can do multiple updates in a single step without
+              changing the outcome of the simulation
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.DummyRenderer`1">
+            <summary>Dummy particle renderer for the unit test</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.IParticleRenderer`1">
+            <summary>Renders the particles in a particle system</summary>
+            <typeparam name="ParticleType">Data type of the particles</typeparam>
+            <remarks>
+              This is just a simplification you can use if your particle structure and
+              vertex structure are one and the same.
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.IParticleRenderer`2">
+            <summary>Renders particles into a primitive batch</summary>
+            <typeparam name="ParticleType">Data type of the particles</typeparam>
+            <typeparam name="VertexType">
+              Type of vertices being generated by the renderer
+            </typeparam>
+            <remarks>
+              <para>
+                This interface is used by the particle system manager to send the particles
+                contained in a particle system to a primitive batch for rendering.
+              </para>
+              <para>
+                In the simplest case, where your particle structure and vertex structure
+                are the same, the renderer can simply add the particles given to it into
+                the primitive batch.
+              </para>
+              <para>
+                If, on the other hand, your particle structure is different from your vertex
+                structure (maybe your particles need additional processing, like a billboard
+                that needs to know of the camera location), the renderer can do virtually
+                anything to procure the vertices a particle translates into.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.IParticleRenderer`2.Render(System.ArraySegment{`0},Nuclex.Graphics.Batching.PrimitiveBatch{`1})">
+            <summary>Renders a series of particles</summary>
+            <param name="particles">Particles that will be rendered</param>
+            <param name="primitiveBatch">
+              Primitive batch that will receive the vertices generated by the particles
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.HighLevel.ParticleSystemManagerTest.DummyRenderer`1.Render(System.ArraySegment{`0},Nuclex.Graphics.Batching.PrimitiveBatch{`0})">
+            <summary>Renders a series of particles</summary>
+            <param name="particles">Particles that will be rendered</param>
+            <param name="primitiveBatch">
+              Primitive batch that will receive the vertices generated by the particles
+            </param>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.IParticleAccessor`1">
+            <summary>Used to access particles in a generic manner</summary>
+            <typeparam name="ParticleType">Data type of the particles</typeparam>
+            <remarks>
+              This interface allows generic particle affectors to modify custom particles
+              without knowing about their specific implementation details. This way,
+              generic particle affectors can be written that allow gravity, wind and
+              other effects to be reused on different particle types.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.IParticleAccessor`1.GetPosition(`0@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>Obtains the position of an individual particle</summary>
+            <param name="particle">Particle whose position will be returned</param>
+            <param name="position">
+              Output parameter that will receive the particle's position
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.IParticleAccessor`1.SetPosition(`0@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>Changes the position of an individual particle</summary>
+            <param name="particle">Particle whose position will be changed</param>
+            <param name="position">Position the particle will be moved to</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.IParticleAccessor`1.GetVelocity(`0@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>Obtains the velocity of an individual particle</summary>
+            <param name="particle">Particle whose velocity will be returned</param>
+            <param name="velocity">
+              Output parameter that will receive the particle's velocity
+            </param>
+            <remarks>
+              If the particle doesn't have a velocity, it's safe to set the velocity
+              to Vector3.Zero.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.IParticleAccessor`1.SetVelocity(`0@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>Changes the velocity of an individual particle</summary>
+            <param name="particle">Particle whose velocity will be changed</param>
+            <param name="velocity">Velocity that will be assigned to the particle</param>
+            <remarks>
+              If particles don't have a velocity, it's safe to do nothing in this method.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.IParticleAccessor`1.GetWeight(`0@)">
+            <summary>Obtains the weight of a particle</summary>
+            <param name="particle">Particle whose weight will be returned</param>
+            <returns>The weight of the provided particle</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.IParticleAccessor`1.SetWeight(`0@,System.Single)">
+            <summary>Changes the weight of a particle</summary>
+            <param name="particle">Particle whose weight will be set</param>
+            <param name="weight">Weight that will be assigned to the particle</param>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.IParticleAccessor`1.HasVelocity">
+            <summary>Whether the particle type has a velocity</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.IParticleAccessor`1.HasWeight">
+            <summary>Whether the particle type has a weight</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.IParticleModifier`1">
+            <summary>Mass-modifies properties of particles</summary>
+            <typeparam name="ParticleType">Data type of the particles</typeparam>
+            <remarks>
+              <para>
+                This interface provides some common operations typically applied to large
+                numbers of particles at once. Therefore, most methods in this interface
+                operate on batches to increase efficiency and avoid thousands of needless
+                virtual method calls.
+              </para>
+              <para>
+                If the exact operation you need isn't in here, either do it using
+                the lower granularity IParticleAccessor for the price of losing some
+                performance or write a specialized affector for you particle type.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.IParticleModifier`1.AddVelocityToPosition(`0[],System.Int32,System.Int32)">
+            <summary>Adds each particle's velocity to its current position</summary>
+            <param name="particles">Particles that will be modified</param>
+            <param name="start">Index of the first particle that will be modified</param>
+            <param name="count">Number of particles that will be modified</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.IParticleModifier`1.AddScaledVelocityToPosition(`0[],System.Int32,System.Int32,System.Single)">
+            <summary>Adds each particle's velocity to its current position scaled</summary>
+            <param name="particles">Particles that will be modified</param>
+            <param name="start">Index of the first particle that will be modified</param>
+            <param name="count">Number of particles that will be modified</param>
+            <param name="scale">Scale by which to multiply the particle velocity</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.IParticleModifier`1.AddToVelocity(`0[],System.Int32,System.Int32,Microsoft.Xna.Framework.Vector3@)">
+            <summary>Adds a fixed amount to each particle's velocity</summary>
+            <param name="particles">Particles that will be modified</param>
+            <param name="start">Index of the first particle that will be modified</param>
+            <param name="count">Number of particles that will be modified</param>
+            <param name="velocityAdjustment">
+              Velocity adjustment that will be added to each particle's velocity
+            </param>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.MovementAffectorTest">
+            <summary>Unit tests for the movement affector</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.MovementAffectorTest.TestConstructor">
+            <summary>Tests whether the movement affector's constructor is working</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.MovementAffectorTest.TestCoalescability">
+            <summary>
+              Verifies that the gravity affector reports the right status about
+              its coalescability
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.MovementAffectorTest.TestMovement">
+            <summary>
+              Tests whether the gravity affector imparts a momentum to particles
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1">
+            <summary>Manages a series of simulated particles</summary>
+            <typeparam name="ParticleType">Type of the particles being simulated</typeparam>
+            <remarks>
+              <para>
+                A particle system comprises of the particles being simulated and their
+                affectors, which influence the behavior of the particles. Affectors can
+                simulate gravity, wind, decay and just about any physical behavior your
+                particles my display.
+              </para>
+              <para>
+                The design is optimized for a multi-threading scenario: affactors only
+                update particles and never delete or add particles, so multiple affectors
+                can be run in parallel or one affector can be run from multiple threads
+                on different segments of the particle array
+              </para>
+              <para>
+                Pruning (the process of removing dead particles) can be performed
+                post-update in a single, controlled step which could run in the background
+                while the game engine is doing other things.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.#ctor(System.Int32)">
+            <summary>Initializes a new particle system</summary>
+            <param name="maximumParticles">
+              Maximum number of particles the system can support
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.Dispose">
+            <summary>
+              Immediately releases all resources owned by the particle system
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AddParticle(`0)">
+            <summary>Adds a new particle to the particle system</summary>
+            <param name="particle">Particle that will be added to the system</param>
+            <remarks>
+              If the particle system is full, the added particle will be silently discarded.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.RemoveParticle(System.Int32)">
+            <summary>Removes a particle from the particle system</summary>
+            <param name="index">Index of the particle that will be removed</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.Update(System.Int32)">
+            <summary>Runs the specified number of updates on the particle system</summary>
+            <param name="updates">Number of updates that will be run</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.BeginUpdate(System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+            <summary>Begins a multi-threaded update of the particles</summary>
+            <param name="updates">
+              Number of updates to perform. A single update will take full advantage
+              of multiple threads as well.
+            </param>
+            <param name="threads">Number of threads to perform the updates in</param>
+            <param name="callback">
+              Callback that will be invoked when the update has finished
+            </param>
+            <param name="state">
+              User defined parameter that will be passed to the callback
+            </param>
+            <returns>An asynchronous result handle for the background operation</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.EndUpdate(System.IAsyncResult)">
+            <summary>Ends a multi-threaded particle system update</summary>
+            <param name="asyncResult">
+              Asynchronous result handle returned by the BeginUpdate() method
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.Prune(Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem{`0}.PrunePredicate)">
+            <summary>Prunes dead particles from the system</summary>
+            <param name="pruneDelegate">
+              Delegate deciding which particles will be pruned
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.BeginPrune(Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem{`0}.PrunePredicate,System.AsyncCallback,System.Object)">
+            <summary>Begins a threaded prune of the particles</summary>
+            <param name="pruneDelegate">
+              Method that evaluates whether a particle should be pruned from the system
+            </param>
+            <param name="callback">
+              Callback that will be invoked when the update has finished
+            </param>
+            <param name="state">
+              User defined parameter that will be passed to the callback
+            </param>
+            <returns>An asynchronous result handle for the background operation</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.EndPrune(System.IAsyncResult)">
+            <summary>Ends a multi-threaded prune of the particle system</summary>
+            <param name="asyncResult">
+              Asynchronous result handle returned by the BeginPrune() method
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.update(System.Int32,System.Int32,System.Int32)">
+            <summary>Runs the specified number of updates on the particle system</summary>
+            <param name="updates">Number of updates that will be run</param>
+            <param name="start">Particle index at which updating will begin</param>
+            <param name="count">Number of particles that will be updated</param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.particles">
+            <summary>Stores the particles simulated by the system</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.particleCount">
+            <summary>Number of particles currently stored in the particle array</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.affectors">
+            <summary>Affectors registered to the particle system</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.coalescableAffectors">
+            <summary>Affectors that are coalescable into a single update</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.noncoalescableAffectors">
+            <summary>Affectors that are not coalescable into a single update</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.asyncPrune">
+            <summary>Manages the asynchronous pruning process</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.asyncUpdate">
+            <summary>Manages the asynchronous updating process</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.Particles">
+            <summary>Particles being simulated by the particle system</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.Capacity">
+            <summary>Number of particles the particle system can manage</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.Affectors">
+            <summary>Affectors that are influencing the particles in this system</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune">
+            <summary>Prunes dead particles in the particle system asynchronously</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.#ctor(Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem{`0})">
+            <summary>Initializes a new asynchronous prune process</summary>
+            <param name="particleSystem">Particle system that will be pruned</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.Start(Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem{`0}.PrunePredicate,System.AsyncCallback,System.Object)">
+            <summary>
+              Resets the asynchronous prune process for another use
+            </summary>
+            <param name="pruneDelegate">Method deciding which particles to prune</param>
+            <param name="callback">
+              Callback that will be invoked when pruning has finished
+            </param>
+            <param name="state">User-defined state from the BeginPrune() method</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.run(System.Object)">
+            <summary>Executes the asynchronous pruning</summary>
+            <param name="state">Not used</param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.particleSystem">
+            <summary>Particle system being pruned</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.pruneDelegate">
+            <summary>Delegate for a method that decides which particles are pruned</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.callback">
+            <summary>Callback that will be invoked when pruning has finished</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.state">
+            <summary>Used-defined state from the BeginPrune() method</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.runDelegate">
+            <summary>Delegate to the run() method which performs the pruning</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.doneEvent">
+            <summary>Wait handle that can be used to wait for pruning to finish</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.completed">
+            <summary>Whether the pruning process is finished</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.running">
+            <summary>Whether the pruning process is running</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.exception">
+            <summary>Exception that occured during asynchronous processing</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.AsyncState">
+            <summary>User defined state from the BeginPrune() method</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.AsyncException">
+            <summary>Exception that occured during asynchronous processing</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.AsyncWaitHandle">
+            <summary>
+              Wait handle that can be used to wait until pruning is finished
+            </summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.CompletedSynchronously">
+            <summary>Whether the pruning process has finished synchronously</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.IsCompleted">
+            <summary>True if pruning has finished</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncPrune.IsRunning">
+            <summary>Whether the pruning process is currently running</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate">
+            <summary>Updates the particle system asynchronously</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.#ctor(Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem{`0})">
+            <summary>Initializes a new asynchronous update process</summary>
+            <param name="particleSystem">Particle system that will be updated</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.Dispose">
+            <summary>Immediately releases all resources owned by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.Start(System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+            <summary>
+              Resets the asynchronous update process for another use
+            </summary>
+            <param name="updates">Number of updates that will be performed</param>
+            <param name="threads">Number of threads to use for the updates</param>
+            <param name="callback">
+              Callback that will be invoked when pruning has finished
+            </param>
+            <param name="state">User-defined state from the BeginUpdate() method</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.run(System.Object)">
+            <summary>Executes the asynchronous pruning</summary>
+            <param name="state">Not used</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.runThreaded(System.Threading.WaitCallback,System.Object)">
+            <summary>Runs the provided wait callback in a separate thread</summary>
+            <param name="waitCallback">Wait callback that will be run in a thread</param>
+            <param name="state">
+              User defined state that will be passed on to the wait callback
+            </param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.particleSystem">
+            <summary>Particle system being pruned</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.completedUpdates">
+            <summary>Number of updates that have been completed</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.updates">
+            <summary>Number of updates that will be performed</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.threads">
+            <summary>Number of threads being used to perform the update</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.callback">
+            <summary>Callback that will be invoked when pruning has finished</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.state">
+            <summary>Used-defined state from the BeginPrune() method</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.runDelegate">
+            <summary>Delegate to the run() method which performs the pruning</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.doneEvent">
+            <summary>Wait handle that can be used to wait for pruning to finish</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.completed">
+            <summary>Whether the pruning process is finished</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.running">
+            <summary>Whether the pruning process is running</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.threadStartInfos">
+            <summary>Start information holders for the threads</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.exception">
+            <summary>Exception that occured during asynchronous processing</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.AsyncState">
+            <summary>User defined state from the BeginUpdate() method</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.AsyncException">
+            <summary>Exception that occured during asynchronous processing</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.AsyncWaitHandle">
+            <summary>
+              Wait handle that can be used to wait until updating is finished
+            </summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.CompletedSynchronously">
+            <summary>Whether the update process has finished synchronously</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.IsCompleted">
+            <summary>True if updating has finished</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.IsRunning">
+            <summary>Whether the update process is currently running</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.ThreadStartInfo">
+            <summary>Start informations for an update thread</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.ThreadStartInfo.Start">
+            <summary>Index of the first particle that will be updated</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.AsyncUpdate.ThreadStartInfo.Count">
+            <summary>Number of particles that will be updated</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystem`1.PrunePredicate">
+            <summary>Delegate used for detecting dead particles to prune</summary>
+            <param name="particle">Particle that should be checked</param>
+            <returns>True if the particle should be kept in the list</returns>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest">
+            <summary>Unit tests for the particle system</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestConstructor">
+            <summary>Verifies that the particle system's constructor is working</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestAddParticles">
+            <summary>Verifies that the AddParticles() method is working</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestUpdateWithMultipleAffectors">
+            <summary>
+              Validates that the Update() method can run a simulation with multiple affectors
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestAddAndRemove">
+            <summary>
+              Verifies that the particle system's Add() and Remove() methods are working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestPrune">
+            <summary>
+              Verifies that the particle system can prune dead particles
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestCoalesceSingleNoncoalescableUpdate">
+            <summary>
+              Verifies that the particle system coalesces even a non-coalescable update if
+              there is only one non-coalescable update.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestAsynchronousPrune">
+            <summary>
+              Verifies that the particle system can prune dead particles asynchronously
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestThrowOnExceptionDuringAsynchronousPrune">
+            <summary>
+              Tests whether an exception happening during the asynchronous prune process is
+              caught and delivered to the caller of the EndPrune() method
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestThrowOnEndPruneWithWrongAsyncResult">
+            <summary>
+              Tests whether an exception is thrown when EndPrune() is called with
+              an async result that was not returned by BeginPrune()
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestMultipleAsynchronousPrunes">
+            <summary>
+              Verifies that the particle system can handle multiple asynchronous prunes
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestAsynchronousUpdate">
+            <summary>
+              Verifies that the particle system can update its particle asynchronously
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestThrowOnExceptionDuringAsynchronousUpdate">
+            <summary>
+              Tests whether an exception happening during the asynchronous prune process is
+              caught and delivered to the caller of the EndPrune() method
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestThrowOnEndUpdateWithWrongAsyncResult">
+            <summary>
+              Tests whether an exception is thrown when EndPrune() is called with
+              an async result that was not returned by BeginPrune()
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestMultipleAsynchronousUpdates">
+            <summary>
+              Verifies that the particle system can handle multiple asynchronous prunes
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.subArray``1(``0[],System.Int32,System.Int32)">
+            <summary>Returns a subsection of an array as its own array</summary>
+            <typeparam name="ItemType">Type of the items stored in the array</typeparam>
+            <param name="array">Array from which to create a subsection</param>
+            <param name="start">Start of the subsection in the array</param>
+            <param name="count">Number of items that will be copied</param>
+            <returns>A subsection of the provided array</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.toArray``1(System.ArraySegment{``0})">
+            <summary>Turns an array segment into a new array</summary>
+            <typeparam name="ItemType">Type of the items stored in the array</typeparam>
+            <param name="segment">Array segment from which a new array will be created</param>
+            <returns>A new array with all the items from the array segment</returns>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.ThrowingAffector">
+            <summary>Dummy particle affector that throws an exception</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.ThrowingAffector.Affect(Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle[],System.Int32,System.Int32,System.Int32)">
+            <summary>Applies the affector's effect to a series of particles</summary>
+            <param name="particles">Particles the affector will be applied to</param>
+            <param name="start">Index of the first particle that will be affected</param>
+            <param name="count">Number of particles that will be affected</param>
+            <param name="updates">Number of updates to perform in the affector</param>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.ThrowingAffector.IsCoalescable">
+            <summary>
+              Whether the affector can do multiple updates in a single step without
+              changing the outcome of the simulation
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestAffector">
+            <summary>Dummy particle affector for unit testing</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestAffector.#ctor(System.Boolean)">
+            <summary>Initializes a new test affector</summary>
+            <param name="coalescable">Whether the test affector is coalescable</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestAffector.Affect(Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle[],System.Int32,System.Int32,System.Int32)">
+            <summary>Applies the affector's effect to a series of particles</summary>
+            <param name="particles">Particles the affector will be applied to</param>
+            <param name="start">Index of the first particle that will be affected</param>
+            <param name="count">Number of particles that will be affected</param>
+            <param name="updates">Number of updates to perform in the affector</param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestAffector.LastUpdateCount">
+            <summary>Number of updates the last Affect() call requested</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestAffector.coalescable">
+            <summary>Whether this affector is coalescable</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.TestAffector.IsCoalescable">
+            <summary>
+              Whether the affector can do multiple updates in a single step without
+              changing the outcome of the simulation
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.WaitAffector">
+            <summary>Dummy particle affector for unit testing that holds execution</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.WaitAffector.#ctor">
+            <summary>Initializes a new wait affector</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.WaitAffector.Dispose">
+            <summary>Immediately releases all resources used by the instance</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.WaitAffector.Affect(Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle[],System.Int32,System.Int32,System.Int32)">
+            <summary>Applies the affector's effect to a series of particles</summary>
+            <param name="particles">Particles the affector will be applied to</param>
+            <param name="start">Index of the first particle that will be affected</param>
+            <param name="count">Number of particles that will be affected</param>
+            <param name="updates">Number of updates to perform in the affector</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.WaitAffector.Halt">
+            <summary>Lets the wait affector stop execution</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.WaitAffector.Continue">
+            <summary>Lets the wait affector continue execution</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.WaitAffector.waitEvent">
+            <summary>Event the wait affector will wait for</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.WaitAffector.IsCoalescable">
+            <summary>
+              Whether the affector can do multiple updates in a single step without
+              changing the outcome of the simulation
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.DummyAsyncResult">
+            <summary>Dummy asynchronous result</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.DummyAsyncResult.AsyncState">
+            <summary>User defined state from the Begin() method</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.DummyAsyncResult.AsyncWaitHandle">
+            <summary>Wait handle that can be used to wait for the process</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.DummyAsyncResult.CompletedSynchronously">
+            <summary>Whether the process has finished synchronously</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.DummyAsyncResult.IsCompleted">
+            <summary>True if the process has finished</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.DummyCallbackReceiver">
+            <summary>Dummy receiver that count the number of callbacks</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.DummyCallbackReceiver.#ctor">
+            <summary>Initializes a new dummy callback receiver</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.DummyCallbackReceiver.Callback(System.Object)">
+            <summary>Callback which counts its number of invocations</summary>
+            <param name="state">User defined state from the Begin() method</param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.DummyCallbackReceiver.callbackCallCount">
+            <summary>Number of calls to the Callback() method</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.DummyCallbackReceiver.callbackEvent">
+            <summary>Event that will be triggered when the callback executes</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.DummyCallbackReceiver.CallbackCallCount">
+            <summary>Number of calls to the Callback() method</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.ParticleSystemTest.DummyCallbackReceiver.CallbackEvent">
+            <summary>Event that will be triggered when the callback executes</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle">
+            <summary>Simple particle for reference and testing</summary>
+            <remarks>
+              <para>
+                We're fusing the vertex structure with the particle structure here. This
+                allows the particle renderer to directly copy the particles into
+                the vertex buffer with the drawback that any particle fields not used
+                by the GPU will also be sent over the bus and stored in GPU memory.
+              </para>
+              <para>
+                Another option is to use different particle and vertex structures
+                and make your particle renderer convert one into the other. If your
+                particle structure has many fields not relevant to rendering, this may
+                be the faster route.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle.#ctor(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3)">
+            <summary>Initializes a new simple particle</summary>
+            <param name="position">Initial position of the particle</param>
+            <param name="velocity">Velocity the particle is moving at</param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle.Position">
+            <summary>Current position of the particle in space</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle.Velocity">
+            <summary>Velocity the particle is moving at</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle.VertexDeclaration">
+            <summary>Vertex declaration for this vertex structure</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle.Microsoft#Xna#Framework#Graphics#IVertexType#VertexDeclaration">
+            <summary>Provides a declaration for this vertex type</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.MovementAffector`1">
+            <summary>Moves particles by their current velocity</summary>
+            <typeparam name="ParticleType">Data type of the particles</typeparam>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.MovementAffector`1.#ctor(Nuclex.Graphics.SpecialEffects.Particles.IParticleModifier{`0})">
+            <summary>Initializes a new particle movement affector</summary>
+            <param name="modifier">Used to modify the particles</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.MovementAffector`1.Affect(`0[],System.Int32,System.Int32,System.Int32)">
+            <summary>Applies the affector's effect to a series of particles</summary>
+            <param name="particles">Particles the affector will be applied to</param>
+            <param name="start">Index of the first particle that will be affected</param>
+            <param name="count">Number of particles that will be affected</param>
+            <param name="updates">Number of updates to perform in the affector</param>
+            <remarks>
+              Contrary to general-purpose particle systems like we might find in expensive
+              animation packages, we don't update particles based on time but instead
+              use the simplified approach of updating particles in simulation steps.
+              This simplifies the implementation and matches a game's architecture where
+              the simulation is updated in steps as well to have a predictable outcome.
+            </remarks>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.MovementAffector`1.modifier">
+            <summary>Particle modifier used to apply gravity to the particles</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.MovementAffector`1.IsCoalescable">
+            <summary>
+              Whether the affector can do multiple updates in a single step without
+              changing the outcome of the simulation
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleTest">
+            <summary>Unit tests for the simple particle class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the simple particle class is working
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifier">
+            <summary>Modifies fields in the simple particle structure</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifier.Default">
+            <summary>The default instance of this modifier</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifier.AddVelocityToPosition(Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle[],System.Int32,System.Int32)">
+            <summary>Adds each particle's velocity to its current position</summary>
+            <param name="particles">Particles that will be modified</param>
+            <param name="start">Index of the first particle that will be modified</param>
+            <param name="count">Number of particles that will be modified</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifier.AddScaledVelocityToPosition(Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle[],System.Int32,System.Int32,System.Single)">
+            <summary>Adds each particle's velocity to its current position scaled</summary>
+            <param name="particles">Particles that will be modified</param>
+            <param name="start">Index of the first particle that will be modified</param>
+            <param name="count">Number of particles that will be modified</param>
+            <param name="scale">Scale by which to multiply the particle velocity</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifier.AddToVelocity(Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle[],System.Int32,System.Int32,Microsoft.Xna.Framework.Vector3@)">
+            <summary>Adds a fixed amount to each particle's velocity</summary>
+            <param name="particles">Particles that will be modified</param>
+            <param name="start">Index of the first particle that will be modified</param>
+            <param name="count">Number of particles that will be modified</param>
+            <param name="velocityAdjustment">
+              Velocity adjustment that will be added to each particle's velocity
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifier.GetPosition(Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>Obtains the position of an individual particle</summary>
+            <param name="particle">Particle whose position will be returned</param>
+            <param name="position">
+              Output parameter that will receive the particle's position
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifier.SetPosition(Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>Changes the position of an individual particle</summary>
+            <param name="particle">Particle whose position will be changed</param>
+            <param name="position">Position the particle will be moved to</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifier.GetVelocity(Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>Obtains the velocity of an individual particle</summary>
+            <param name="particle">Particle whose velocity will be returned</param>
+            <param name="velocity">
+              Output parameter that will receive the particle's velocity
+            </param>
+            <remarks>
+              If the particle doesn't have a velocity, it's safe to set the velocity
+              to Vector3.Zero.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifier.SetVelocity(Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle@,Microsoft.Xna.Framework.Vector3@)">
+            <summary>Changes the velocity of an individual particle</summary>
+            <param name="particle">Particle whose velocity will be changed</param>
+            <param name="velocity">Velocity that will be assigned to the particle</param>
+            <remarks>
+              If particles don't have a velocity, it's safe to do nothing in this method.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifier.GetWeight(Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle@)">
+            <summary>Obtains the weight of a particle</summary>
+            <param name="particle">Particle whose weight will be returned</param>
+            <returns>The weight of the provided particle</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifier.SetWeight(Nuclex.Graphics.SpecialEffects.Particles.SimpleParticle@,System.Single)">
+            <summary>Changes the weight of a particle</summary>
+            <param name="particle">Particle whose weight will be set</param>
+            <param name="weight">Weight that will be assigned to the particle</param>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifier.HasVelocity">
+            <summary>Whether the particle type has a velocity</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifier.HasWeight">
+            <summary>Whether the particle type has a weight</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifierTest">
+            <summary>Unit tests for the simple particle modifier</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifierTest.TestHasWeight">
+            <summary>
+              Verifies that the simple particle modifier returns the right
+              result when queried whether the particles support weight
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifierTest.TestGetWeight">
+            <summary>Verifies that the GetWeight() method can be used</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifierTest.TestSetWeight">
+            <summary>Verifies that the SetWeight() method can be used</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifierTest.TestHasVelocity">
+            <summary>
+              Verifies that the simple particle modifier returns the right
+              result when queried whether the particles support velocity
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifierTest.TestGetVelocity">
+            <summary>Verifies that the GetVelocity() method can be used</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifierTest.TestSetVelocity">
+            <summary>Verifies that the SetVelocity() method can be used</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifierTest.TestGetPosition">
+            <summary>Verifies that the GetPosition() method can be used</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifierTest.TestSetPosition">
+            <summary>Verifies that the SetVelocity() method can be used</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifierTest.TestAddToVelocity">
+            <summary>Verifies that the AddToVelocity() method can be used</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifierTest.TestAddVelocityToPosition">
+            <summary>Verifies that the AddVelocityToPosition() method can be used</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Particles.SimpleParticleModifierTest.TestAddScaledVelocityToPosition">
+            <summary>
+              Verifies that the AddScaledVelocityToPosition() method can be used
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCube">
+            <summary>Renders a skybox consisting of 6 separate faces</summary>
+            <remarks>
+              <para>
+                This class doesn't make any assumptions about the effect and texture you're
+                using to render the sky box, it simply takes care of the vertex buffer setup
+                and allows you to conveniently render a skybox using your own textures,
+                effects and graphics device settings.
+              </para>
+              <para>
+                The skybox vertices do not provide any texture coordinates because the
+                texture 
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCube.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>Initializes as new skybox cube</summary>
+            <param name="graphicsDevice">Graphics device the skybox cube lives on</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCube.Dispose">
+            <summary>
+              Immediately releases all resources owned by the instance
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCube.AssignVertexBuffer">
+            <summary>
+              Prepares the skybox for drawing by selecting its vertex buffer and adjusting
+              the state of the graphics device as neccessary
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCube.DrawNorthernFace">
+            <summary>Draws the northern face of the skybox</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCube.DrawEasternFace">
+            <summary>Draws the eastern face of the skybox</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCube.DrawSouthernFace">
+            <summary>Draws the southern face of the skybox</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCube.DrawWesternFace">
+            <summary>Draws the western face of the skybox</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCube.DrawUpperFace">
+            <summary>Draws the upper face of the skybox</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCube.DrawLowerFace">
+            <summary>Draws the lower face of the skybox</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCube.vertices">
+            <summary>Vertices used to construct a skybox</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCube.graphicsDevice">
+            <summary>GraphicsDevice the skybox is rendered with</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCube.vertexBuffer">
+            <summary>Vertex buffer storing the vertices of the skybox</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCubeTest">
+            <summary>Unit tests for the skybox cube class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCubeTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the skybox cube class is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Sky.SkyboxCubeTest.TestRenderSkybox">
+            <summary>
+              Verifies that the skybox cube can render a skybox
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Sky.SkyboxVertex">
+            <summary>Contains the definitions for a skybox vertex</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Sky.SkyboxVertex.#ctor(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector2)">
+            <summary>Initializs a new skybox vertex</summary>
+            <param name="position">Position of the vertex in space</param>
+            <param name="textureCoordinate">Texture coordinates at this vertex</param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Sky.SkyboxVertex.Position">
+            <summary>Coordinates of the vertex</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Sky.SkyboxVertex.TextureCoordinate">
+            <summary>Texture coordinates for all texture layers</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Sky.SkyboxVertex.VertexDeclaration">
+            <summary>Vertex declaration for this vertex structure</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Sky.SkyboxVertex.Microsoft#Xna#Framework#Graphics#IVertexType#VertexDeclaration">
+            <summary>Provides a declaration for this vertex type</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Sky.SkyboxVertexTest">
+            <summary>Unit tests for the skybox vertex class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Sky.SkyboxVertexTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the skybox vertex class is working
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.StaticMeshTest">
+            <summary>Unit test for the static mesh graphics resource keeper</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.StaticMeshTest.TestSimpleConstructor">
+            <summary>
+              Verifies that the simple constructor of the static mesh class is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.StaticMeshTest.TestThrowInConstructorRollback">
+            <summary>
+              Verifies that the constructor rolls back when an exception occurs in it
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.StaticMeshTest.TestSelect">
+            <summary>
+              Tests whether the static meshes' Select() method is implemented correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.StaticMeshTest.AvoidCompilerWarnings">
+            <summary>
+              Only exists to prevent the compiler from complaining about unused fields
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.StaticMeshTest.TestVertex">
+            <summary>
+              Vertex used to unit-test the static mesh graphics resource keepr
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.StaticMeshTest.TestVertex.Position">
+            <summary>A vertex element of type Vector2</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.StaticMeshTest.TestVertex.Color">
+            <summary>A vertex element of type Color</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.StaticMeshTest.TestVertex.VertexDeclaration">
+            <summary>Vertex declaration for this vertex structure</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.StaticMeshTest.TestVertex.Microsoft#Xna#Framework#Graphics#IVertexType#VertexDeclaration">
+            <summary>Provides a declaration for this vertex type</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.StaticMeshTest.TestStaticMesh">
+            <summary>Dummy static mesh class used for unit testing</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.StaticMeshTest.TestStaticMesh.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.Int32)">
+            <summary>
+              Initializes a new static mesh that automatically determines its vertex format
+            </summary>
+            <param name="graphicsDevice">Graphics device the static mesh lives on</param>
+            <param name="vertexCount">Number of vertices in the static mesh</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.StaticMeshTest.TestStaticMesh.Select">
+            <summary>Selects the static meshes' vertex buffer</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.StaticMeshTest.TestStaticMesh.VertexBuffer">
+            <summary>Vertex buffer containing the test meshes' vertices</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Trails.ITrailAccessor`2">
+            <summary>Used to access the queue of a trail</summary>
+            <typeparam name="TrailType">Data type storing the trail sections</typeparam>
+            <typeparam name="ParticleType">Data type of the particles</typeparam>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Trails.ITrailAccessor`2.GetQueue(`0@,System.Collections.Generic.Queue{`1}@)">
+            <summary>Retrieves the queue storing a trail's sections</summary>
+            <param name="trail">Trail whose sections will be returned</param>
+            <param name="queue">
+              Will recieve the queue containing the sections that make up the trail
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Trails.ITrailAccessor`2.SetQueue(`0@,System.Collections.Generic.Queue{`1}@)">
+            <summary>Assigns the queue storing a trail's sections</summary>
+            <param name="trail">Trail whose sections will be assigned</param>
+            <param name="queue">
+              Queue containing the sections that will be assigned to the trail
+            </param>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Trails.TrailParticle">
+            <summary>Trail particle for reference and testing</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Trails.TrailParticle.#ctor(System.Int32)">
+            <summary>Initializes a new trail particle</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Trails.TrailParticle.Trail">
+            <summary>Supporting points the trail passes through</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Trails.TrailParticleTest">
+            <summary>Unit tests for the trail particle structure</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Trails.TrailParticleTest.TestConstructor">
+            <summary>Verifies that the trail particle's constructor is working</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Trails.TrailFactory">
+            <summary>Creates trail particles, reusing their trail queues</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Trails.TrailFactory.#ctor(System.Int32)">
+            <summary>Initializes a new trail particle</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Trails.TrailFactory.maximumTrailLength">
+            <summary>Maximum number of particles </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Trails.TrailVertex">
+            <summary>Contains the definitions for a trail vertex</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Trails.TrailVertex.#ctor(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector2)">
+            <summary>Initializs a new trail vertex</summary>
+            <param name="position">Position of the vertex in space</param>
+            <param name="textureCoordinate">Texture coordinates at this vertex</param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Trails.TrailVertex.Position">
+            <summary>Coordinates of the vertex</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Trails.TrailVertex.TextureCoordinate">
+            <summary>Texture coordinates for all texture layers</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Trails.TrailVertex.VertexDeclaration">
+            <summary>Vertex declaration for this vertex structure</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Trails.TrailVertex.Microsoft#Xna#Framework#Graphics#IVertexType#VertexDeclaration">
+            <summary>Provides a declaration for this vertex type</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Trails.TrailVertexTest">
+            <summary>Unit tests for the trail vertex structure</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Trails.TrailVertexTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the trail vertex class is working
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Water.WaterGrid">
+            <summary>Creates and manages a segmented grid of vertices</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)">
+            <summary>Initializes a new grid drawn as a single quad</summary>
+            <param name="graphicsDevice">Graphics device the grid will be created on</param>
+            <param name="min">
+              Lesser coordinates of the world region that will be covered by the grid
+            </param>
+            <param name="max">
+              Greater coordinates of the world region that will be covered by the grid
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32)">
+            <summary>Initializes a new grid consisting of one or more quads</summary>
+            <param name="graphicsDevice">Graphics device the grid will be created on</param>
+            <param name="min">
+              Lesser coordinates of the world region that will be covered by the grid
+            </param>
+            <param name="max">
+              Greater coordinates of the world region that will be covered by the grid
+            </param>
+            <param name="segmentsX">
+              Number of segments the grid will have on the X axis
+            </param>
+            <param name="segmentsZ">
+              Number of segments the grid will have on the Z axis
+            </param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.Dispose">
+            <summary>
+              Immediately releases all resources owned by the instance
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.buildVertexArray(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32)">
+            <summary>
+              Creates a flat plane of vertices optimized for triangle strip drawing
+            </summary>
+            <param name="min">X and Y coordinates for the upper left side of the plane</param>
+            <param name="max">X and Y coordinates for the lower right side of the plane</param>
+            <param name="segmentsX">Number of horizontal subdivisions in the plane</param>
+            <param name="segmentsZ">Number of vertical subdivisions in the plane</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.getIndexCount(System.Int32,System.Int32)">
+            <summary>
+              Calculates the number of indices required for the water surface
+            </summary>
+            <param name="segmentsX">Number of segments in X direction</param>
+            <param name="segmentsZ">Number of segments in Z direction</param>
+            <returns>The number of indices required</returns>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.vertexCount">
+            <summary>Number of vertices in the grid</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.indexCount">
+            <summary>Number of indices required to draw the grid</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.vertexDeclaration">
+            <summary>Vertex declaration for the vertices in the grid</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.vertexBuffer">
+            <summary>Vertex buffer containing the grid vertices</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.indexBuffer">
+            <summary>Index buffer containing the indices to the vertex buffer</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.graphicsDevice">
+            <summary>Graphics device the grid will be rendered with</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.VertexCount">
+            <summary>Number of vertices in the grid</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.IndexCount">
+            <summary>Number of indices required to draw the grid</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.PrimitiveCount">
+            <summary>Number of primitives that need to be drawn for the grid</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.PrimitiveType">
+            <summary>The type of primitive used to render the grid</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.VertexBuffer">
+            <summary>Vertex buffer containing the vertices making up the plane</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Water.WaterGrid.IndexBuffer">
+            <summary>Index buffer used to build polygons from the vertices</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Water.WaterGridTest">
+            <summary>Unit tests for the grid class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterGridTest.TestSimpleConstructor">
+            <summary>
+              Verifies that the simple constructor of the Grid class is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterGridTest.TestFullConstructor">
+            <summary>
+              Verifies that the full constructor of the Grid class is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterGridTest.TestThrowOnInvalidSegmentCountX">
+            <summary>
+              Verifies that an exception is thrown if an invalid segment count for
+              the X axis is specified
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterGridTest.TestThrowOnInvalidSegmentCountY">
+            <summary>
+              Verifies that an exception is thrown if an invalid segment count for
+              the Y axis is specified
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterGridTest.TestRenderingProperties">
+            <summary>
+              Verifies that the properties required for rendering the grid are working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterGridTest.TestStatisticalProperties">
+            <summary>
+              Verifies that the statistical properties of the grid work as expected
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.TriangleStripIndexBuilder">
+            <summary>Builds index lists for drawing vertex grids as triangle strips</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.TriangleStripIndexBuilder.CountAlternatingStripIndices(System.Int32,System.Int32)">
+            <summary>
+              Calculates the number of vertex indices required to draw an alternating
+              triangle strip of the requested size
+            </summary>
+            <param name="segmentsX">
+              Number of segments the strip should have on the X axis
+            </param>
+            <param name="segmentsZ">
+              Number of segments the strip should have on the Y axis
+            </param>
+            <returns>The number of indices required for the strip</returns>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.TriangleStripIndexBuilder.BuildAlternatingStrip(System.Int32,System.Int32)">
+            <summary>
+              Builds the index buffer for a grid of vertices drawn as a triangle strip
+            </summary>
+            <param name="segmentsX">Number of horizontal subdivisions in the plane</param>
+            <param name="segmentsZ">Number of vertical subdivisions in the plane</param>
+            <remarks>
+              <para>
+                This method builds indices to draw a grid of vertices with alternating
+                split diagonals for each line of quads.
+              </para>
+              <code>
+                k-l-m-n-o
+                |/|/|/|/|
+                f-g-h-i-j
+                |\|\|\|\|
+                a-b-c-d-e
+                |/|/|/|/|
+                5-6-7-8-9
+                |\|\|\|\|
+                0-1-2-3-4
+              </code>
+              <para>
+                Rows are drawn alternating diretion between left to right and 
+                right to left. Only a single, small degenerate triangle is required
+                between two rows to move into the next row, resulting in (segmentsZ - 1)
+                degenerate triangles for the whole grid.
+              </para>
+              <para>
+                This method is ideal for graphics cards with a limited vertex cache
+                because it only requires space for (segmentsX + 1) vertices in
+                the vertex cache to reach optimum caching performance.
+              </para>
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.TriangleStripIndexBuilderTest">
+            <summary>Unit tests for the triangle stip index builder class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.TriangleStripIndexBuilderTest.TestAlternatingStripVertexCount">
+            <summary>
+              Verifies that the number of indices required to draw a triangle strip of
+              a fixed size is calculated correctly
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.TriangleStripIndexBuilderTest.TestBigAlternatingStripGeneration">
+            <summary>
+              Tests whether an alternating strip of triangle indices can be generated
+              for a grid of non-trivial size
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.TriangleStripIndexBuilderTest.TestSmallAlternatingStripGeneration">
+            <summary>
+              Tests whether an alternating strip of triangle indices can be generated
+              for a small grid (9 vertices)
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.TriangleStripIndexBuilderTest.TestSingleQuadAlternatingStripGeneration">
+            <summary>
+              Tests whether an alternating strip of triangle indices can be generated
+              for a single quad (4 vertices)
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.TriangleStripIndexBuilderTest.TestThrowOnInvalidSegmentsX">
+            <summary>
+              Verifies that an exception is thrown when a invalid segment count is
+              passed for the X axis
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.TriangleStripIndexBuilderTest.TestThrowOnInvalidSegmentsZ">
+            <summary>
+              Verifies that an exception is thrown when a invalid segment count is
+              passed for the Z axis
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Water.WaterSurface">
+            <summary>Simple water surface</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)">
+            <summary>Initializes a new water surface</summary>
+            <param name="graphicsDevice">Graphics device to use for rendering</param>
+            <param name="min">Lesser coordinates of the region covered by water</param>
+            <param name="max">Greater coordinates of the region covered by water</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32)">
+            <summary>Initializes a new water surface</summary>
+            <param name="graphicsDevice">Graphics device to use for rendering</param>
+            <param name="min">Lesser coordinates of the region covered by water</param>
+            <param name="max">Greater coordinates of the region covered by water</param>
+            <param name="segmentsX">Number segments (and texture repeats) on the X axis</param>
+            <param name="segmentsZ">Number segments (and texture repeats) on the Y axis</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.Dispose">
+            <summary>
+              Called when graphics resources should be released. Override to
+              handle component specific graphics resources
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.SelectVertexAndIndexBuffer">
+            <summary>Selects the vertex and index buffer for the water surface</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.DrawWaterPlane(Microsoft.Xna.Framework.GameTime,Nuclex.Graphics.Camera)">
+            <summary>Draws the plane making up the water surface</summary>
+            <param name="gameTime">Snapshot of the game's timing values</param>
+            <param name="camera">Camera through which the scene is being viewed</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.UpdateReflection(Microsoft.Xna.Framework.GameTime,Nuclex.Graphics.Camera,Nuclex.Graphics.SpecialEffects.Water.WaterSurface.SceneDrawDelegate)">
+            <summary>Updates the reflected image on the water surface</summary>
+            <param name="gameTime">Snapshot of the game's timing values</param>
+            <param name="camera">Camera through which the scene is being viewed</param>
+            <param name="reflectedSceneDrawer">
+              Delegate that will be called to draw the scene in its reflected state
+            </param>
+            <remarks>
+              <para>
+                When the delegate is called, the scene should be drawn normally using
+                the provided game time and camera. The view matrix of the provided camera
+                will have been adjusted to draw the scene upside-down and the graphics device
+                will be configured to clip off anything that's below the water surface.
+              </para>
+              <para>
+                Some adjustments can be made, like rendering the reflection with reduced
+                detail, cheaper effects or even leaving our parts of the scene to improve
+                performance since the reflection will not be clearly displayed anyway.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.createRenderTarget">
+            <summary>Sets up the render target for the water surface reflection</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.graphicsDeviceReset(System.Object,System.EventArgs)">
+            <summary>Called when the graphics device has completed a reset</summary>
+            <param name="sender">Graphics device that has completed a reset</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.graphicsDeviceResetting(System.Object,System.EventArgs)">
+            <summary>Called when the graphics device is about to perform a reset</summary>
+            <param name="sender">Graphics device that is about to perform a reset</param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.reflectionCamera">
+            <summary>Camera used to draw the water reflection</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.graphicsDevice">
+            <summary>GraphicsDevice the water surface is rendered with</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.grid">
+            <summary>Grid containing the vertices of the water surface</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.reflectionRenderTarget">
+            <summary>Render target used for the refraction and reflection textures</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.ReflectionTexture">
+            <summary>Texture containing the water reflection</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.ReflectionCamera">
+            <summary>Camera which views the scene turned upside-down</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Water.WaterSurface.SceneDrawDelegate">
+            <summary>Delegate for a method used to draw the scene</summary>
+            <param name="gameTime">Snapshot of the game's timing values</param>
+            <param name="camera">Camera through which the scene is being viewed</param>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Water.WaterSurfaceTest">
+            <summary>Unit tests for the grid class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurfaceTest.Setup">
+            <summary>Executed before each test is run</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurfaceTest.Teardown">
+            <summary>Executed after each test has run</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurfaceTest.TestSimpleConstructor">
+            <summary>
+              Verifies that the simple constructor of the Grid class is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurfaceTest.TestFullConstructor">
+            <summary>
+              Verifies that the complete constructor of the Grid class is working
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurfaceTest.TestSelectIndexAndVertexBuffer">
+            <summary>
+              Tests whether the water surface can select its index and vertex buffers
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurfaceTest.TestDrawWaterPlane">
+            <summary>
+              Tests whether the water surface can draw its water plane
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurfaceTest.TestUpdateReflection">
+            <summary>
+              Tests whether the water surface can update its reflection texture
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurfaceTest.TestGraphicsDeviceReset">
+            <summary>
+              Verifies that the water surface can survive a graphics device reset
+            </summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterSurfaceTest.drawReflection(Microsoft.Xna.Framework.GameTime,Nuclex.Graphics.Camera)">
+            <summary>Dummy that's supposed to draw the water's reflection</summary>
+            <param name="gameTime">Snapshot of the game's timing values</param>
+            <param name="camera">Camera containing the viewer's position</param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterSurfaceTest.mockedGraphicsDeviceService">
+            <summary>
+              Mocked graphics device service used for rendering in the unit test
+            </summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterSurfaceTest.contentManager">
+            <summary>
+              Content manager used to load the content for the unit test
+            </summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Water.WaterVertex">
+            <summary>Contains the definitions for a water vertex</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.WaterVertex.#ctor(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector2)">
+            <summary>Initializs a new water vertex</summary>
+            <param name="position">Position of the vertex in space</param>
+            <param name="textureCoordinate">Texture coordinates at this vertex</param>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterVertex.Position">
+            <summary>Coordinates of the vertex</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterVertex.TextureCoordinate">
+            <summary>Texture coordinates for all texture layers</summary>
+        </member>
+        <member name="F:Nuclex.Graphics.SpecialEffects.Water.WaterVertex.VertexDeclaration">
+            <summary>Vertex declaration for this vertex structure</summary>
+        </member>
+        <member name="P:Nuclex.Graphics.SpecialEffects.Water.WaterVertex.Microsoft#Xna#Framework#Graphics#IVertexType#VertexDeclaration">
+            <summary>Provides a declaration for this vertex type</summary>
+        </member>
+        <member name="T:Nuclex.Graphics.SpecialEffects.Water.SkyboxVertexTest">
+            <summary>Unit tests for the water vertex class</summary>
+        </member>
+        <member name="M:Nuclex.Graphics.SpecialEffects.Water.SkyboxVertexTest.TestConstructor">
+            <summary>
+              Verifies that the constructor of the water vertex class is working
+            </summary>
+        </member>
+    </members>
+</doc>

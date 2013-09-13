@@ -29,13 +29,13 @@ namespace SRPG.Scene.Battle
             _displayedHits.Add(key, 0);
         }
 
-        public override void Update(GameTime gameTime, Input input)
+        public override void Update(GameTime gametime)
         {
             for (var i = _displayedHits.Count; i > 0; i--)
             {
                 var key = _displayedHits.Keys.ElementAt(i - 1);
 
-                _displayedHits[key] += gameTime.ElapsedGameTime.Milliseconds;
+                _displayedHits[key] += gametime.ElapsedGameTime.Milliseconds;
                 if (_displayedHits[key] > 1200)
                 {
                     Objects.Remove(key);
@@ -44,7 +44,7 @@ namespace SRPG.Scene.Battle
                 else
                 {
                    
-                    _hitLocations[key] -= 75F*gameTime.ElapsedGameTime.Milliseconds/1000F;
+                    _hitLocations[key] -= 75F*gametime.ElapsedGameTime.Milliseconds/1000F;
                     Objects[key].Y = (int)_hitLocations[key];
                 }
             }

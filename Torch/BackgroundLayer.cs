@@ -16,6 +16,6 @@ namespace Torch
             Objects.Add("bg", new ImageObject(image));
         }
 
-        public override void Update(GameTime gameTime, Input input) { }
+        public override void Update(GameTime gametime) { }
     }
 }

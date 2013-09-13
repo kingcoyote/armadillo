@@ -32,9 +32,9 @@ namespace SRPG.Scene.Battle
             ((BattleScene) Scene).EndPlayerTurn();
         }
 
-        public override void Update(GameTime gameTime, Input input)
+        public override void Update(GameTime gametime)
         {
-            base.Update(gameTime, input);
+            base.Update(gametime);
 
             ((TextObject)Objects["round number"]).Value = ((BattleScene) Scene).RoundNumber.ToString();
             ((TextObject)Objects["faction label"]).Value = ((BattleScene) Scene).FactionTurn == 0 ? "Player" : "Enemy Turn";

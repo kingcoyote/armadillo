@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Nuclex.Input;
 using Torch;
 
 namespace SRPG
@@ -42,12 +43,18 @@ namespace SRPG
             Objects.Clear();
         }
 
-        public override void Update(GameTime gameTime, Input input)
+        public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime, input);
+            base.Update(gameTime);
 
-            var xDistance = input.Cursor.X - (CenterX + X);
-            var yDistance = input.Cursor.Y - (CenterY + Y);
+            var cursor = new Rectangle
+                {
+                    X = ((IInputService) Game.Services.GetService(typeof (IInputService))).GetMouse().GetState().X,
+                    Y = ((IInputService) Game.Services.GetService(typeof (IInputService))).GetMouse().GetState().Y
+                };
+
+            var xDistance = cursor.X - (CenterX + X);
+            var yDistance = cursor.Y - (CenterY + Y);
 
             if(Math.Sqrt(Math.Pow(xDistance, 2) + Math.Pow(yDistance, 2)) > ExitDistance)
             {

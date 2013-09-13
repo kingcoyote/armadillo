@@ -31,14 +31,6 @@ namespace SRPG
             ScreenWidth = 1280;
             ScreenHeight = 1024;
 
-            Scenes.Add("intro", new IntroScene(this));
-            Scenes.Add("party menu", new PartyMenuScene(this));
-            Scenes.Add("overworld", new OverworldScene(this));
-            Scenes.Add("battle", new BattleScene(this));
-            Scenes.Add("shop", new ShopScene(this));
-            Scenes.Add("options", new OptionsScene(this));
-            Scenes.Add("main menu", new MainMenu(this));
-
             CurrentScene = "intro";
         }
 
@@ -51,6 +43,14 @@ namespace SRPG
 
             FontManager.Add("Dialog", FontSize.Normal, Content.Load<SpriteFont>("Fonts/DialogNormal"));
             FontManager.Add("Dialog", FontSize.Small, Content.Load<SpriteFont>("Fonts/DialogSmall"));
+
+            Scenes.Add("intro", new IntroScene(this));
+            Scenes.Add("party menu", new PartyMenuScene(this));
+            Scenes.Add("overworld", new OverworldScene(this));
+            Scenes.Add("battle", new BattleScene(this));
+            Scenes.Add("shop", new ShopScene(this));
+            Scenes.Add("options", new OptionsScene(this));
+            Scenes.Add("main menu", new MainMenu(this));
 
             base.Initialize();
         }

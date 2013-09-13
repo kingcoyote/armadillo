@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nuclex.Testing.Xna</name>
+    </assembly>
+    <members>
+        <member name="T:Nuclex.Testing.Xna.DeviceType">
+            <summary>Specifies the type of device driver.</summary>
+        </member>
+        <member name="F:Nuclex.Testing.Xna.DeviceType.Hardware">
+            <summary>
+              A hardware device. Using the flag to get direct access to the video hardware.
+            </summary>
+        </member>
+        <member name="F:Nuclex.Testing.Xna.DeviceType.NullReference">
+            <summary>
+              A null device. This is a reference device that can do everything except render a scene.
+            </summary>
+        </member>
+        <member name="F:Nuclex.Testing.Xna.DeviceType.Reference">
+            <summary>
+              A reference device. Use this flag to create a software emulated device.
+            </summary>
+        </member>
+        <member name="T:Nuclex.Testing.Xna.MockedGraphicsDeviceService">
+            <summary>Helper for unit tests requiring a mocked graphics device</summary>
+            <remarks>
+              This doesn't actually mock the graphics device, but creates a real graphics
+              device on an invisible window. Tests have shown this method to be fast
+              enough for usage in a unit test.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceService.#ctor">
+            <summary>Initializs a new mocked graphics device service</summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceService.#ctor(Nuclex.Testing.Xna.DeviceType)">
+            <summary>Initializs a new mocked graphics device service</summary>
+            <param name="deviceType">Type of graphics device that will be created</param>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceService.#ctor(Nuclex.Testing.Xna.DeviceType,Microsoft.Xna.Framework.Graphics.GraphicsProfile)">
+            <summary>Initializs a new mocked graphics device service</summary>
+            <param name="deviceType">Type of graphics device that will be created</param>
+            <param name="graphicsProfile">Profile the graphics device will be initialized for</param>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceService.CreateDevice">
+            <summary>Creates a new graphics device</summary>
+            <returns>
+              An object implementing IDisposable that will destroy the graphics device
+              again as soon as its Dispose() method is called.
+            </returns>
+            <remarks>
+              <para>
+                Make sure to call DestroyGraphicsDevice() either manually,
+                or by disposing the returned object. A typical usage of this method is
+                shown in the following code.
+              </para>
+              <example>
+                <code>
+                  using(IDisposable keeper = CreateDevice()) {
+                    GraphicsDevice.DoSomethingThatCouldFail();
+                  }
+                </code>
+              </example>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceService.DestroyDevice">
+            <summary>Destroys the created graphics device again</summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceService.ResetDevice">
+            <summary>Performs a graphics device reset</summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceService.disposeEverything">
+            <summary>
+              Shuts down and disposes all resources used by the mocked graphics device service
+            </summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceService.OnDeviceCreated">
+            <summary>Fires the DeviceCreated event</summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceService.OnDeviceDisposing">
+            <summary>Fires the DeviceDisposing event</summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceService.OnDeviceResetting">
+            <summary>Fires the DeviceResetting event</summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceService.OnDeviceReset">
+            <summary>Fires the DeviceReset event</summary>
+        </member>
+        <member name="F:Nuclex.Testing.Xna.MockedGraphicsDeviceService.dummyGraphicsDevice">
+            <summary>A dummy graphics device used to run the unit tests</summary>
+        </member>
+        <member name="F:Nuclex.Testing.Xna.MockedGraphicsDeviceService.emptyPresentationParameters">
+            <summary>
+              Empty presentation parameters used to initialize the dummy graphics device
+            </summary>
+        </member>
+        <member name="F:Nuclex.Testing.Xna.MockedGraphicsDeviceService.invisibleRenderWindow">
+            <summary>Invisible render window the dummy graphics device renders into</summary>
+        </member>
+        <member name="F:Nuclex.Testing.Xna.MockedGraphicsDeviceService.serviceContainer">
+            <summary>A service container providing this service</summary>
+        </member>
+        <member name="F:Nuclex.Testing.Xna.MockedGraphicsDeviceService.deviceType">
+            <summary>Type of device that will be created</summary>
+        </member>
+        <member name="F:Nuclex.Testing.Xna.MockedGraphicsDeviceService.graphicsProfile">
+            <summary>Graphics profile the device will be created for</summary>
+        </member>
+        <member name="E:Nuclex.Testing.Xna.MockedGraphicsDeviceService.DeviceCreated">
+            <summary>Will be triggered when the graphics device has been created</summary>
+        </member>
+        <member name="E:Nuclex.Testing.Xna.MockedGraphicsDeviceService.DeviceDisposing">
+            <summary>
+              Will be triggered when the graphics device is about to be destroyed
+            </summary>
+        </member>
+        <member name="E:Nuclex.Testing.Xna.MockedGraphicsDeviceService.DeviceReset">
+            <summary>
+              Will be triggered when the graphics device has completed a reset
+            </summary>
+        </member>
+        <member name="E:Nuclex.Testing.Xna.MockedGraphicsDeviceService.DeviceResetting">
+            <summary>
+              Will be triggered when the graphics device is about to reset itself
+            </summary>
+        </member>
+        <member name="P:Nuclex.Testing.Xna.MockedGraphicsDeviceService.GraphicsDevice">
+            <summary>Graphics device provided by the graphics device service</summary>
+        </member>
+        <member name="P:Nuclex.Testing.Xna.MockedGraphicsDeviceService.ServiceProvider">
+            <summary>
+              A service provider containing the mocked graphics device service
+            </summary>
+        </member>
+        <member name="T:Nuclex.Testing.Xna.MockedGraphicsDeviceService.GraphicsDeviceKeeper">
+            <summary>Keeps a graphics device alive for RAII-like usage</summary>
+            <remarks>
+              RAII means "Resource Acquisition Is Initialization" and is a very widespread
+              pattern in languages with deterministic finalization (read: not .NET).
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceService.GraphicsDeviceKeeper.#ctor(Nuclex.Testing.Xna.MockedGraphicsDeviceService)">
+            <summary>Initializes a new graphics device keeper</summary>
+            <param name="dummyService">
+              Dummy graphics device service for whose graphics device the keeper
+              will be responsible
+            </param>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceService.GraphicsDeviceKeeper.Dispose">
+            <summary>Immediately releases all resources owned by the instancer</summary>
+        </member>
+        <member name="F:Nuclex.Testing.Xna.MockedGraphicsDeviceService.GraphicsDeviceKeeper.dummyService">
+            <summary>
+              Dummy graphics device service in which the graphics device needs to be
+              destroyed when the keeper is disposed
+            </summary>
+        </member>
+        <member name="T:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest">
+            <summary>Unit tests for the graphics device mock test helper</summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.Setup">
+            <summary>Initialization routine executed before each test is run</summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.TestServiceProvider">
+            <summary>Tests whether the mock's service provider is set up correctly</summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.TestGraphicsDeviceCreation">
+            <summary>Tests whether a graphics device can be created</summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.TestAutomaticGraphicsDeviceDestruction">
+            <summary>
+              Verifies that the graphics device is destroyed when the keeper returned
+              by the CreateDevice() method gets disposed explicitely.
+            </summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.TestGraphicsDeviceServiceEvents">
+            <summary>
+              Verifies that the mocked graphics device service fires its events
+            </summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.TestRedundantDestroyInvocation">
+            <summary>
+              Tests whether the graphics device can be destroyed manually even
+              though it the RAII helper is used without causing an exception
+            </summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.TestExceptionDuringDeviceCreation">
+            <summary>
+              Verifies that the mocked graphics device service cleans up the graphics
+              device and all of its resources again when an exception occurs during
+              its creation
+            </summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.TestNotSupportedExceptionForReferenceRasterizer">
+            <summary>
+              Verifies that the mocked graphics device service can cope with
+              a NotSupportedException when the reference rasterizer is selected
+            </summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.mockSubscriber(Microsoft.Xna.Framework.Graphics.IGraphicsDeviceService)">
+            <summary>
+              Mocks a subscriber for the events of the mocked graphics device service
+            </summary>
+            <returns>The mocked event subscriber</returns>
+        </member>
+        <member name="F:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.mockery">
+            <summary>Mock object factory</summary>
+        </member>
+        <member name="T:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.IGraphicsDeviceServiceSubscriber">
+            <summary>Subscriber for the event of the graphics device service</summary>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.IGraphicsDeviceServiceSubscriber.DeviceCreated(System.Object,System.EventArgs)">
+            <summary>Called when a graphics device has been created</summary>
+            <param name="sender">
+              Graphics device service that created a graphics device
+            </param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.IGraphicsDeviceServiceSubscriber.DeviceDisposing(System.Object,System.EventArgs)">
+            <summary>Called when a graphics device is about to be destroyed</summary>
+            <param name="sender">
+              Graphics device service that is about to destroy its graphics device
+            </param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.IGraphicsDeviceServiceSubscriber.DeviceResetting(System.Object,System.EventArgs)">
+            <summary>Called when the graphics device is about to reset itself</summary>
+            <param name="sender">
+              Graphics device service whose graphics device is about to reset itself
+            </param>
+            <param name="arguments">Not used</param>
+        </member>
+        <member name="M:Nuclex.Testing.Xna.MockedGraphicsDeviceServiceTest.IGraphicsDeviceServiceSubscriber.DeviceReset(System.Object,System.EventArgs)">
+            <summary>Called when the graphics device has completed a reset</summary>
+            <param name="sender">
+              Graphics device service whose graphics device has completed a reset
+            </param>
+            <param name="arguments">Not used</param>
+        </member>
+    </members>
+</doc>
