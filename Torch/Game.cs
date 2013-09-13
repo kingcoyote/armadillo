@@ -23,6 +23,8 @@ namespace Torch
 
         protected static Game _instance;
 
+        protected InputManager Input;
+
         protected Game()
         {
             
@@ -57,7 +59,7 @@ namespace Torch
 
             InitializeGraphics();
 
-            new InputManager(Services);
+            Input = new InputManager(Services);
             Services.AddService(typeof(ContentManager), Content);
 
             base.Initialize();
@@ -107,6 +109,8 @@ namespace Torch
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            Input.Update();
+
             // update current scene
             Scenes[CurrentScene].Update(gameTime);
 

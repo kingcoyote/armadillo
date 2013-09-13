@@ -23,11 +23,11 @@ namespace SRPG.Scene.Intro
 
             Components.Add(keyboardLayer);
 
-            _slides.Add(new CreditSlide(this) { X = -50000 });
+            _slides.Add(new CreditSlide(this) { Visible = false });
             Components.Add(_slides[0]);
 
-            _slides.Add(new XnaSlide(this) { X = -50000 });
-            _slides.Add(_slides[1]);
+            _slides.Add(new XnaSlide(this) { Visible = false });
+            Components.Add(_slides[1]);
 
             _slides[_currentSlide].X = 0;
         }
@@ -58,8 +58,8 @@ namespace SRPG.Scene.Intro
             }
             
             _slideTimer = SlideDuration;
-            _slides[_currentSlide - 1].X = -50000;
-            _slides[_currentSlide].X = 0;
+            _slides[_currentSlide - 1].Visible = false;
+            _slides[_currentSlide].Visible = true;
         }
 
         /// <summary>

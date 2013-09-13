@@ -174,6 +174,15 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
+    <Compile Include="Gui\menu_font.spritefont">
+      <Name>menu_font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <None Include="Gui\skin.xsd">
+      <Name>skin</Name>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Items\Accessory.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Name>Accessory</Name>
@@ -420,6 +429,17 @@
     </Compile>
     <Compile Include="Items\target_sniper.png">
       <Name>target_sniper</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <None Include="Gui\main_menu.xml">
+      <Name>main_menu</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Compile Include="Gui\menu_skin.png">
+      <Name>menu_skin</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
