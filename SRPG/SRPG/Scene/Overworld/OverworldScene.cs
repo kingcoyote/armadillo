@@ -36,6 +36,7 @@ namespace SRPG.Scene.Overworld
             Components.Add(new KeyboardInput(this));
             _environment = new Environment(this);
             Components.Add(new HUD(this));
+            Components.Add(_environment);
         }
 
         public override void Update(GameTime gametime)
