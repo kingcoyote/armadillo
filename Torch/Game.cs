@@ -57,6 +57,7 @@ namespace Torch
 
             InitializeGraphics();
 
+            new InputManager(Services);
             Services.AddService(typeof(ContentManager), Content);
 
             base.Initialize();
@@ -87,7 +88,6 @@ namespace Torch
         protected override void LoadContent()
         {
             // initialize current scene
-            Scenes[CurrentScene].Initialize();
 
         }
 

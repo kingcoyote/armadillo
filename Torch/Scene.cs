@@ -69,7 +69,7 @@ namespace Torch
         }
 
         // draw
-        public override void Draw(GameTime gametime)
+        public override void Update(GameTime gametime)
         {
             foreach (var component in (from IUpdateable c in Components orderby c.UpdateOrder select c).ToArray())
             {
@@ -77,7 +77,7 @@ namespace Torch
             }
         }
         // update
-        public override void Update(GameTime gametime)
+        public override void Draw(GameTime gametime)
         {
             foreach (var component in (from IDrawable c in Components orderby c.DrawOrder select c).ToArray())
             {

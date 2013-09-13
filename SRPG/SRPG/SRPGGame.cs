@@ -44,6 +44,8 @@ namespace SRPG
             FontManager.Add("Dialog", FontSize.Normal, Content.Load<SpriteFont>("Fonts/DialogNormal"));
             FontManager.Add("Dialog", FontSize.Small, Content.Load<SpriteFont>("Fonts/DialogSmall"));
 
+            base.Initialize();
+
             Scenes.Add("intro", new IntroScene(this));
             Scenes.Add("party menu", new PartyMenuScene(this));
             Scenes.Add("overworld", new OverworldScene(this));
@@ -52,7 +54,7 @@ namespace SRPG
             Scenes.Add("options", new OptionsScene(this));
             Scenes.Add("main menu", new MainMenu(this));
 
-            base.Initialize();
+            ChangeScenes(CurrentScene);
         }
 
         public void StartGame()

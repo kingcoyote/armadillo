@@ -39,7 +39,7 @@ namespace Torch
         // draw
         public override void Draw(GameTime gametime)
         {
-            var spriteBatch = new SpriteBatch((GraphicsDevice)Scene.Game.Services.GetService(typeof(IGraphicsDeviceService)));
+            var spriteBatch = new SpriteBatch(((GraphicsDeviceManager)Scene.Game.Services.GetService(typeof(IGraphicsDeviceService))).GraphicsDevice);
             spriteBatch.Begin();
             foreach(var obj in (from obj in Objects.Values orderby obj.Z ascending select obj))
             {
