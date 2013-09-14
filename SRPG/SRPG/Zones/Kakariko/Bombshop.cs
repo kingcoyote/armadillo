@@ -15,7 +15,7 @@ namespace SRPG.Zones.Kakariko
             Sandbag = Grid.FromBitmap(Game.Services, "Zones/Kakariko/Bombshop/sandbag");
             ImageLayers = new List<ImageObject>
                 {
-                    new ImageObject(Game, "Zones/Kakariko/Bombshop/bombshop") {Z = -1},
+                    new ImageObject(Game, "Zones/Kakariko/Bombshop/bombshop") {DrawOrder = -1},
                 };
 
             Objects = new List<InteractiveObject>();

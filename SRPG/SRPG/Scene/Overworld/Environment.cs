@@ -17,6 +17,7 @@ namespace SRPG.Scene.Overworld
         private Zone _zone;
 
         private Avatar _avatar;
+        private readonly Dictionary<string, Avatar> _characters = new Dictionary<string, Avatar>();
 
         public Environment(Torch.Scene scene) : base(scene) { }
 
@@ -25,7 +26,7 @@ namespace SRPG.Scene.Overworld
             _zone = zone;
 
             _avatar = ((OverworldScene) Scene).Avatar;
-            Components.Add(_avatar);
+            Components.Add(_avatar.Sprite);
 
             var i = 0;
             foreach (var image in zone.ImageLayers)
@@ -36,15 +37,8 @@ namespace SRPG.Scene.Overworld
 
             foreach(var character in zone.Characters.Keys)
             {
-                Components.Add(zone.Characters[character]);
-            }
-
-            // test code to show interactive objects. this should not make it into release.
-            i = 0;
-            foreach (var obj in zone.Objects)
-            {
-                //Objects.Add("interact" + i, new TextureObject { Color = Color.Red, X = obj.Location.X, Y = obj.Location.Y, Width = obj.Location.Width, Height = obj.Location.Height, Z = 9999 });
-                i++;
+                _characters.Add(character, zone.Characters[character]);
+                Components.Add(zone.Characters[character].Sprite);
             }
 
             // sandbags are down scaled 1:6
@@ -113,9 +107,9 @@ namespace SRPG.Scene.Overworld
 
             foreach(var character in _zone.Characters.Keys)
             {
-                //Objects["character/" + character].X = (int)_zone.Characters[character].Location.X;
-                //Objects["character/" + character].Y = (int)_zone.Characters[character].Location.Y;
-                //Objects["character/" + character].Z = Objects["character/" + character].Y + ((SpriteObject)(Objects["character/" + character])).Height;
+                _characters[character].Sprite.X = (int)_zone.Characters[character].Location.X;
+                _characters[character].Sprite.Y = (int)_zone.Characters[character].Location.Y;
+                _characters[character].Sprite.DrawOrder = _characters[character].Sprite.Y - ((_characters[character])).Sprite.Height;
             }
         }
     }

@@ -103,7 +103,7 @@ namespace SRPG.Scene.Overworld
                 newY = 0;
             }
 
-            Avatar.Sprite.Z = Avatar.Sprite.Y + Avatar.Sprite.Height;
+            Avatar.Sprite.DrawOrder = Avatar.Sprite.Y + Avatar.Sprite.Height;
 
             Avatar.UpdateVelocity(newX, newY);
         }

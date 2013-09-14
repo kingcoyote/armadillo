@@ -31,7 +31,7 @@ namespace SRPG.Scene.PartyMenu
             //Objects["inventory"].MouseClick += ChangeMenu("inventory menu");
             //Objects["settings"].MouseClick += ChangeMenu("settings menu");
 
-            Components.Add(new TextureObject(Game) { Color = Color.Blue, Z = -1, Width = Game.GraphicsDevice.Viewport.Width, Height = Game.GraphicsDevice.Viewport.Height });
+            Components.Add(new TextureObject(Game) { Color = Color.Blue, DrawOrder = -1, Width = Game.GraphicsDevice.Viewport.Width, Height = Game.GraphicsDevice.Viewport.Height });
         }
 
         public override void Update(GameTime gametime)

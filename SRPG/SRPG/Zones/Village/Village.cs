@@ -19,10 +19,10 @@ namespace SRPG.Zones.Village
             
             ImageLayers.Add(new ImageObject(Game, "Zones/Village/Village/village"));
 
-            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Village/inn") { X = 840, Y = 1372, Z = 1752 });
-            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Village/warehouse") { X = 155, Y = 1300, Z = 1918 });
-            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Village/well") { X = 1400, Y = 863, Z = 977 });
-            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Village/Posts1") { X = 70, Y = 1940, Z = 2100 });
+            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Village/inn") { X = 840, Y = 1372, DrawOrder = 1752 });
+            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Village/warehouse") { X = 155, Y = 1300, DrawOrder = 1918 });
+            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Village/well") { X = 1400, Y = 863, DrawOrder = 977 });
+            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Village/Posts1") { X = 70, Y = 1940, DrawOrder = 2100 });
 
             Doors.Add(new Door { Location = new Rectangle(1442, 2057, 171, 37), Name = "coliseum", Orientation = Direction.Up, Zone = "coliseum/halls", ZoneDoor = "village" });
             
