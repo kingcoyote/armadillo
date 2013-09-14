@@ -30,7 +30,7 @@ namespace SRPG.Scene.Shop
             Components.Add(new Background(this));
 
             // store inventory layer
-            _playerInventory = new PlayerInventory(this, ((SRPGGame)Game).Inventory) { X = Game.GetInstance().GraphicsDevice.Viewport.Width - 400, Y = 50 };
+            _playerInventory = new PlayerInventory(this, ((SRPGGame)Game).Inventory) { X = Game.GraphicsDevice.Viewport.Width - 400, Y = 50 };
             Components.Add(_playerInventory);
 
             // player inventory layer
@@ -84,7 +84,7 @@ namespace SRPG.Scene.Shop
             var items = _shopInventory.GetSelectedInventory();
             var cost = (from item in items select item.Cost).Sum();
 
-            if (cost > ((SRPGGame)Game.GetInstance()).Money) return;
+            if (cost > ((SRPGGame)Game).Money) return;
 
             foreach(var item in items)
             {

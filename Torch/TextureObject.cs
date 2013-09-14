@@ -11,15 +11,18 @@ namespace Torch
 
         private readonly Texture2D _texture;
 
-        public TextureObject()
+        public TextureObject(Microsoft.Xna.Framework.Game game) : base(game)
         {
-            _texture = new Texture2D(Game.GetInstance().GraphicsDevice, 1, 1);
+            _texture = new Texture2D(GraphicsDevice, 1, 1);
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(GameTime gametime)
         {
             _texture.SetData(new [] {Color});
+            var spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch.Begin();
             spriteBatch.Draw(_texture, Rectangle, Alpha);
+            spriteBatch.End();
         }
     }
 }

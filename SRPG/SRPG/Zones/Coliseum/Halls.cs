@@ -6,17 +6,17 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SRPG.Data;
 using Torch;
-using Game = Torch.Game;
+using Game = Microsoft.Xna.Framework.Game;
 
 namespace SRPG.Zones.Coliseum
 {
     class Halls : Zone
     {
-        public Halls()
+        public Halls(Game game) : base(game)
         {
             Name = "Coliseum Halls";
-            Sandbag = Grid.FromBitmap("Zones/Coliseum/Halls/sandbag");
-            ImageLayers.Add(new ImageObject("Zones/Coliseum/Halls/halls"));
+            Sandbag = Grid.FromBitmap(Game.Services, "Zones/Coliseum/Halls/sandbag");
+            ImageLayers.Add(new ImageObject(Game, "Zones/Coliseum/Halls/halls"));
 
             Doors.Add(new Door {Location = new Rectangle(691, 1847, 67, 43), Name = "cell", Orientation = Direction.Up });
             Doors.Add(new Door { Location = new Rectangle(446, 108, 57, 31), Name = "village", Orientation = Direction.Down });

@@ -5,10 +5,11 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using SRPG.Abilities;
 using Torch;
+using Game = Microsoft.Xna.Framework.Game;
 
 namespace SRPG.Data
 {
-    abstract public class Ability
+    abstract public class Ability : GameComponent
     {
         public string Name;
         public int ManaCost;
@@ -31,6 +32,8 @@ namespace SRPG.Data
         public AbilityTarget AbilityTarget;
 
         public SpriteObject Icon;
+
+        protected Ability(Game game) : base(game) { }
 
         /// <summary>
         /// Generate one or more hits to be used to damage the targets.
@@ -89,48 +92,48 @@ namespace SRPG.Data
             return new Grid(1, 1, 1);
         }
 
-        public static Ability Factory(string name)
+        public static Ability Factory(Microsoft.Xna.Framework.Game game, string name)
         {
             // todo : there has to be a less tedious way to do this...
 
             switch(name)
             {
-                case "lunge": return new Lunge();
-                case "cleave": return new Cleave();
+                case "lunge": return new Lunge(game);
+                case "cleave": return new Cleave(game);
                 // todo : 3rd sword ability
 
-                case "headshot": return new Headshot();
-                case "drill": return new Drill();
+                case "headshot": return new Headshot(game);
+                case "drill": return new Drill(game);
                 // todo : 3rd gun ability
 
-                case "healing": return new Healing();
-                case "protect": return new Protect();
-                case "revive": return new Revive();
+                case "healing": return new Healing(game);
+                case "protect": return new Protect(game);
+                case "revive": return new Revive(game);
 
-                case "fire": return new Fire();
-                case "lightning": return new Lightning();
-                case "quake": return new Quake();
+                case "fire": return new Fire(game);
+                case "lightning": return new Lightning(game);
+                case "quake": return new Quake(game);
 
-                case "cobra punch": return new CobraPunch();
-                case "flying knee": return new FlyingKnee();
-                case "whip kick": return new WhipKick();
+                case "cobra punch": return new CobraPunch(game);
+                case "flying knee": return new FlyingKnee(game);
+                case "whip kick": return new WhipKick(game);
 
-                case "target": return new Target();
-                case "focus": return new Focus();
-                case "serenity": return new Serenity();
+                case "target": return new Target(game);
+                case "focus": return new Focus(game);
+                case "serenity": return new Serenity(game);
 
-                case "sprint": return new Sprint();
-                case "untouchable": return new Untouchable();
-                case "blur": return new Blur();
+                case "sprint": return new Sprint(game);
+                case "untouchable": return new Untouchable(game);
+                case "blur": return new Blur(game);
 
-                case "awareness": return new Awareness();
-                case "vengeance": return new Vengeance();
+                case "awareness": return new Awareness(game);
+                case "vengeance": return new Vengeance(game);
 
-                case "deflection": return new Deflection();
-                case "steel wall": return new SteelWall();
+                case "deflection": return new Deflection(game);
+                case "steel wall": return new SteelWall(game);
 
-                case "move": return new Move();
-                case "attack": return new Attack();
+                case "move": return new Move(game);
+                case "attack": return new Attack(game);
 
                 default: throw new Exception(string.Format("Unknown ability {0}", name));
 
@@ -146,7 +149,7 @@ namespace SRPG.Data
 
         protected void SetIcon(string iconName, int i)
         {
-            Icon = new SpriteObject("Abilities/" + iconName) {Height = 50, Width = 50};
+            Icon = new SpriteObject(Game, "Abilities/" + iconName) {Height = 50, Width = 50};
             Icon.AddAnimation(Name,
                               new SpriteAnimation
                                   {

@@ -12,13 +12,13 @@ namespace SRPG.Scene.PartyMenu
     {
         public SettingsMenu(Torch.Scene scene) : base(scene)
         {
-            Objects.Add("settings", new TextObject()
-                {
-                    Color = Color.White, 
-                    X = 50, 
-                    Y = 125, 
-                    Font = FontManager.Get("Menu"), Value="Settings"
-                });
+            //Objects.Add("settings", new TextObject(Game)
+            //    {
+            //        Color = Color.White, 
+            //        X = 50, 
+            //        Y = 125, 
+            //        Font = FontManager.Get("Menu"), Value="Settings"
+            //    });
         }
     }
 }

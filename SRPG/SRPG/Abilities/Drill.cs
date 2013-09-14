@@ -9,7 +9,8 @@ namespace SRPG.Abilities
 {
     class Drill : Ability
     {
-        public Drill()
+        public Drill(Game game)
+            : base(game)
         {
             Name = "Drill";
             AbilityType = AbilityType.Active;
@@ -35,7 +36,7 @@ namespace SRPG.Abilities
 
         public override Grid GenerateTargetGrid()
         {
-            return Grid.FromBitmap("Items/target_sniper");
+            return Grid.FromBitmap(Game.Services, "Items/target_sniper");
         }
     }
 }

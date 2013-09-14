@@ -10,7 +10,8 @@ namespace SRPG.Abilities
     class FlyingKnee : Ability
     {
 
-        public FlyingKnee()
+        public FlyingKnee(Game game)
+            : base(game)
         {
             Name = "Flying Knee";
             AbilityType = AbilityType.Active;
@@ -36,7 +37,7 @@ namespace SRPG.Abilities
 
         public override Grid GenerateTargetGrid()
         {
-            return Grid.FromBitmap("Items/target_melee_small");
+            return Grid.FromBitmap(Game.Services, "Items/target_melee_small");
         }
     }
 }

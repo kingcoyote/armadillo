@@ -20,7 +20,7 @@ namespace SRPG.Scene.PartyMenu
             for (var i = 0; i < ((SRPGGame)Game).Party.Count; i++)
             {
                 var character = ((SRPGGame)Game).Party[i];
-                Objects.Add("party/" + character.Name, new TextObject
+                /*Objects.Add("party/" + character.Name, new TextObject
                     {
                         Font = font,
                         Value = character.Name,
@@ -28,6 +28,7 @@ namespace SRPG.Scene.PartyMenu
                         Y = 125 + (int)(font.LineSpacing * 1.5 * i),
                         Color = Color.White
                     });
+                 */
                 //Objects["party/" + character.Name].MouseClick += (sender, args) => ((PartyMenuScene) Scene).SetCharacter(character);
             }
         }
@@ -40,14 +41,12 @@ namespace SRPG.Scene.PartyMenu
 
         public override void Reset()
         {
-            ClearByName("stat");
-            ClearByName("selectable item");
+
         }
 
         private void UpdateObjects()
         {
-            ClearByName("stat");
-            ClearByName("selectable item");
+            /*
 
             var font = FontManager.Get("Menu");
 
@@ -126,7 +125,7 @@ namespace SRPG.Scene.PartyMenu
                     x = 0;
                     y++;
                 }
-            }
+            }*/
         }
 
         private void ChangeWeapon()
@@ -149,8 +148,6 @@ namespace SRPG.Scene.PartyMenu
 
         private void GenerateItemMenu(IEnumerable<Item> items)
         {
-            ClearByName("selectable item");
-
             var i = 0;
 
             var font = FontManager.Get("Menu");
@@ -159,20 +156,19 @@ namespace SRPG.Scene.PartyMenu
             {
                 var tempItem = item;
                 
-                Objects.Add("selectable item/" + i, new TextObject()
+                /*Objects.Add("selectable item/" + i, new TextObject()
                     {
                         Font = font,
                         Value = item.Name,
                         X = 725,
                         Y = 125 + (int)(font.LineSpacing * (i) * 1.5),
                         Color = Color.White
-                    });
+                    });*/
                 
                 //Objects["selectable item/" + i].MouseClick += (sender, args) =>
                     {
                         ((SRPGGame) Game).EquipCharacter(_character, tempItem);
                         UpdateObjects();
-                        ClearByName("selectable item");
                         ClearItemPreview();
                     };
 
@@ -203,7 +199,7 @@ namespace SRPG.Scene.PartyMenu
                 newStats[stat] -= oldStats[stat];
             }
 
-            if(newStats[Stat.Defense] != 0 ) Objects.Add("preview/defense", new TextObject()
+            /*if(newStats[Stat.Defense] != 0 ) Objects.Add("preview/defense", new TextObject()
             {
                 Y = (int)(125 + font.LineSpacing * 4.5),
                 X = 387 + 30,
@@ -255,12 +251,12 @@ namespace SRPG.Scene.PartyMenu
                 Color = newStats[Stat.Hit] < 0 ? Color.Red : Color.LightGreen,
                 Value = newStats[Stat.Hit].ToString(),
                 Font = font
-            });
+            });*/
         }
 
         public void ClearItemPreview()
         {
-            ClearByName("preview");
+            
         }
     }
 }

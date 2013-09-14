@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace SRPG.Data
 {
-    public class Item
+    public class Item : GameComponent
     {
         /// <summary>
         /// Human readable name of this item.
@@ -55,6 +56,8 @@ namespace SRPG.Data
         /// </summary>
         public Grid TargetGrid;
 
+        public Item(Game game) : base(game) { }
+
         public ItemEquipType GetEquipType()
         {
             switch(ItemType)
@@ -82,11 +85,11 @@ namespace SRPG.Data
 
         private readonly static Dictionary<string, Item> _itemList = new Dictionary<string, Item>();
 
-        public static Item Factory(string name)
+        public static Item Factory(Microsoft.Xna.Framework.Game game, string name)
         {
             if (_itemList.ContainsKey(name)) return _itemList[name];
 
-            var item = new Item();
+            var item = new Item(game);
 
             var itemType = name.Split('/')[0];
             var itemName = name.Split('/')[1];
@@ -99,7 +102,7 @@ namespace SRPG.Data
             item.ItemType = StringToItemType(nodeList[itemName]["itemType"][0].ToString());
             item.Cost = (int)(nodeList[itemName]["cost"]);
 
-            item.TargetGrid = nodeList[itemName].SelectToken("targetGrid") != null ? Grid.FromBitmap("Items/" + nodeList[itemName]["targetGrid"].ToString()) : new Grid(25, 25);
+            item.TargetGrid = nodeList[itemName].SelectToken("targetGrid") != null ? Grid.FromBitmap(game.Services, "Items/" + nodeList[itemName]["targetGrid"].ToString()) : new Grid(25, 25);
 
             if (nodeList[itemName].SelectToken("statBoosts") != null) foreach (var node in nodeList[itemName]["statBoosts"])
             {
@@ -108,7 +111,7 @@ namespace SRPG.Data
 
             if(nodeList[itemName].SelectToken("ability") != null)
             {
-                item.Ability = Ability.Factory(nodeList[itemName].SelectToken("ability").ToString());
+                item.Ability = Ability.Factory(game, nodeList[itemName].SelectToken("ability").ToString());
             }
 
             _itemList.Add(name, item);

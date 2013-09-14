@@ -10,7 +10,8 @@ namespace SRPG.Abilities
     class CobraPunch : Ability
     {
 
-        public CobraPunch()
+        public CobraPunch(Game game)
+            : base(game)
         {
             Name = "Cobra Punch";
             AbilityType = AbilityType.Active;
@@ -36,7 +37,7 @@ namespace SRPG.Abilities
 
         public override Grid GenerateTargetGrid()
         {
-            return Grid.FromBitmap("Items/target_melee_small");
+            return Grid.FromBitmap(Game.Services, "Items/target_melee_small");
         }
     }
 }

@@ -32,7 +32,7 @@ namespace SRPG.Scene.Overworld
         {
             base.Initialize();
 
-            Avatar = Avatar.GenerateAvatar("fighter");
+            Avatar = Avatar.GenerateAvatar(Game, "fighter");
 
             Components.Add(new KeyboardInput(this));
             _environment = new Environment(this) { DrawOrder = 1 };
@@ -114,7 +114,7 @@ namespace SRPG.Scene.Overworld
                 (from d in Zone.Doors where d.Location.Intersects(Avatar.GetFeet()) && !String.IsNullOrEmpty(d.Zone) select d);
             if (door.Any() && door.First().Name != _startDoor)
             {
-                SetZone(Zone.Factory(door.First().Zone), door.First().ZoneDoor);
+                SetZone(Zone.Factory(Game, door.First().Zone), door.First().ZoneDoor);
             }
             else if (!door.Any())
             {

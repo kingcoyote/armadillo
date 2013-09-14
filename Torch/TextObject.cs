@@ -19,6 +19,9 @@ namespace Torch
         }
 
         private int _width = -1;
+
+        public TextObject(Microsoft.Xna.Framework.Game game) : base(game) { } 
+
         public override int Width
         {
             get { return _width == -1 ? (int) (Font.MeasureString(Value).X) : _width; }
@@ -40,14 +43,19 @@ namespace Torch
             }
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime)
         {
             var printedLines = GetPrintedLines();
+
+            var spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch.Begin();
 
             for(var i = 0; i < printedLines.Count; i++)
             {
                 PrintString(spriteBatch, printedLines[i], Alignment, X, Y + Font.LineSpacing * i);
             }
+
+            spriteBatch.End();
         }
 
         private List<string> GetPrintedLines()

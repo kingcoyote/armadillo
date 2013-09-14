@@ -15,7 +15,7 @@ namespace SRPG.Scene.Shop
         {
             var font = FontManager.Get("Menu");
 
-            Objects.Add("money", new TextObject()
+            /*Objects.Add("money", new TextObject()
                 {
                     Font = font,
                     Color = Color.White,
@@ -24,6 +24,7 @@ namespace SRPG.Scene.Shop
                     Alignment = TextObject.AlignTypes.Right,
                     Value = string.Format("{0}g", ((SRPGGame)Game).Money)
                 });
+             */
         }
     }
 }

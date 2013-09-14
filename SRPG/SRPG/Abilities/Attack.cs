@@ -9,7 +9,8 @@ namespace SRPG.Abilities
 {
     class Attack : Ability
     {
-        public Attack()
+        public Attack(Game game)
+            : base(game)
         {
             Name = "Attack";
             AbilityTarget = AbilityTarget.Enemy;

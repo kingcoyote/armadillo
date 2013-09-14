@@ -14,8 +14,8 @@ namespace SRPG.Scene.Intro
         public CreditSlide(Torch.Scene scene) : base(scene)
         {
             var font = FontManager.Get("Menu");
-            
-            Objects.Add("steve", new TextObject
+
+            Components.Add(new TextObject(Game)
             {
                 Font = font,
                 Color = Color.White,
@@ -24,8 +24,8 @@ namespace SRPG.Scene.Intro
                 X = Game.GraphicsDevice.Viewport.Width / 2,
                 Y = Game.GraphicsDevice.Viewport.Height / 2 - 25
             });
-            
-            Objects.Add("george", new TextObject
+
+            Components.Add(new TextObject(Game)
                 {
                     Font = font, 
                     Color = Color.White, 

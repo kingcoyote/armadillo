@@ -15,7 +15,7 @@ namespace SRPG.Scene.Options
             base.Initialize();
 
             var keyboard = new KeyboardInputLayer(this);
-            keyboard.AddKeyDownBinding(Keys.Escape, () => Game.GetInstance().ChangeScenes("overworld"));
+            keyboard.AddKeyDownBinding(Keys.Escape, () => Game.ChangeScenes("overworld"));
 
             Components.Add(keyboard);
             Components.Add(new Menu(this));
@@ -23,12 +23,12 @@ namespace SRPG.Scene.Options
 
         public override void Start()
         {
-            Game.GetInstance().IsMouseVisible = true;
+            Game.IsMouseVisible = true;
         }
 
         public override void Stop()
         {
-            Game.GetInstance().IsMouseVisible = false;
+            Game.IsMouseVisible = false;
         }
     }
 }

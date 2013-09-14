@@ -19,19 +19,19 @@ namespace SRPG.Scene.PartyMenu
             var cm = (ContentManager)Game.Services.GetService(typeof(ContentManager));
 
             var font = FontManager.Get("Menu");
-            Objects.Add("cursor", new ImageObject("PartyMenu/cursor"));
+            Components.Add(new ImageObject(Game, "PartyMenu/cursor"));
 
             var screenWidth = Game.GraphicsDevice.Viewport.Width;
 
-            Objects.Add("status", new TextObject { Color = Color.White, Font = font, Value = "Status", X = screenWidth / 5, Y = 50, Alignment = TextObject.AlignTypes.Center });
-            Objects.Add("inventory", new TextObject { Color = Color.White, Font = font, Value = "Inventory", X = screenWidth / 2, Y = 50, Alignment = TextObject.AlignTypes.Center });
-            Objects.Add("settings", new TextObject { Color = Color.White, Font = font, Value = "Settings", X = screenWidth / 5 * 4, Y = 50, Alignment = TextObject.AlignTypes.Center });
+            Components.Add(new TextObject(Game) { Color = Color.White, Font = font, Value = "Status", X = screenWidth / 5, Y = 50, Alignment = TextObject.AlignTypes.Center });
+            Components.Add(new TextObject(Game) { Color = Color.White, Font = font, Value = "Inventory", X = screenWidth / 2, Y = 50, Alignment = TextObject.AlignTypes.Center });
+            Components.Add(new TextObject(Game) { Color = Color.White, Font = font, Value = "Settings", X = screenWidth / 5 * 4, Y = 50, Alignment = TextObject.AlignTypes.Center });
 
             //Objects["status"].MouseClick += ChangeMenu("status menu");
             //Objects["inventory"].MouseClick += ChangeMenu("inventory menu");
             //Objects["settings"].MouseClick += ChangeMenu("settings menu");
 
-            Objects.Add("background", new TextureObject { Color = Color.Blue, Z = -1, Width = Game.GraphicsDevice.Viewport.Width, Height = Game.GraphicsDevice.Viewport.Height });
+            Components.Add(new TextureObject(Game) { Color = Color.Blue, Z = -1, Width = Game.GraphicsDevice.Viewport.Width, Height = Game.GraphicsDevice.Viewport.Height });
         }
 
         public override void Update(GameTime gametime)
@@ -39,17 +39,6 @@ namespace SRPG.Scene.PartyMenu
             base.Update(gametime);
 
             var cursor = ((IInputService) Game.Services.GetService(typeof (IInputService))).GetMouse().GetState();
-
-            if (MouseInWindow(cursor.X, cursor.Y))
-            {
-                Objects["cursor"].X = cursor.X;
-                Objects["cursor"].Y = cursor.Y;
-            }
-            else
-            {
-                Objects["cursor"].X = -100;
-                Objects["cursor"].Y = -100;
-            }
         }
 
         private bool MouseInWindow(int x, int y)

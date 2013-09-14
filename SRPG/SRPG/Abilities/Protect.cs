@@ -9,7 +9,8 @@ namespace SRPG.Abilities
 {
     class Protect : Ability
     {
-        public Protect()
+        public Protect(Game game)
+            : base(game)
         {
             Name = "Protect";
             AbilityType = AbilityType.Active;
@@ -35,7 +36,7 @@ namespace SRPG.Abilities
 
         public override Grid GenerateTargetGrid()
         {
-            return Grid.FromBitmap("Items/target_melee_large");
+            return Grid.FromBitmap(Game.Services, "Items/target_melee_large");
         }
     }
 }

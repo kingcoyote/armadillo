@@ -6,17 +6,17 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SRPG.Data;
 using Torch;
-using Game = Torch.Game;
+using Game = Microsoft.Xna.Framework.Game;
 
 namespace SRPG.Zones.Village
 {
     class Inn : Zone
     {
-        public Inn()
+        public Inn(Game game) : base(game)
         {
             Name = "Village Inn";
-            Sandbag = Grid.FromBitmap("Zones/Village/Inn/sandbag");
-            ImageLayers.Add(new ImageObject("Zones/Village/Inn/inn"));
+            Sandbag = Grid.FromBitmap(Game.Services, "Zones/Village/Inn/sandbag");
+            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Inn/inn"));
             Doors.Add(new Door { Location = new Rectangle(53*6, 95*6, 13*6, 2), Zone = "village/village", ZoneDoor = "inn exit", Name = "entrance", Orientation = Direction.Up });
         }
     }

@@ -61,7 +61,7 @@ namespace SRPG
         {
             ChangeScenes("overworld");
 
-            ((OverworldScene) Scenes["overworld"]).SetZone(Zone.Factory("coliseum/cell"), "bed");
+            ((OverworldScene) Scenes["overworld"]).SetZone(Zone.Factory(this, "coliseum/cell"), "bed");
 
             BeginNewGame();
         }
@@ -123,7 +123,7 @@ namespace SRPG
 
             var nodeList = Newtonsoft.Json.Linq.JObject.Parse(settingString);
 
-            return nodeList[merchantname]["inventory"].Select(node => Item.Factory(node.ToString())).ToList();
+            return nodeList[merchantname]["inventory"].Select(node => Item.Factory(this, node.ToString())).ToList();
         }
 
         private void BeginNewGame()
@@ -131,19 +131,19 @@ namespace SRPG
             Party = new List<Combatant>();
             Inventory = new List<Item>();
 
-            var character = Combatant.FromTemplate("party/jaha");
+            var character = Combatant.FromTemplate(this, "party/jaha");
             character.Name = "Jaha";
             Party.Add(character);
 
-            character = Combatant.FromTemplate("party/meera");
+            character = Combatant.FromTemplate(this, "party/meera");
             character.Name = "Meera";
             Party.Add(character);
 
-            character = Combatant.FromTemplate("party/aeris");
+            character = Combatant.FromTemplate(this, "party/aeris");
             character.Name = "Aeris";
             Party.Add(character);
 
-            character = Combatant.FromTemplate("party/sheena");
+            character = Combatant.FromTemplate(this, "party/sheena");
             character.Name = "Sheena";
             Party.Add(character);
         }

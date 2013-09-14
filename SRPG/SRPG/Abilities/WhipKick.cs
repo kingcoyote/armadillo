@@ -9,7 +9,8 @@ namespace SRPG.Abilities
 {
     class WhipKick : Ability
     {
-        public WhipKick()
+        public WhipKick(Game game)
+            : base(game)
         {
             Name = "Whip Kick";
             AbilityType = AbilityType.Active;
@@ -35,7 +36,7 @@ namespace SRPG.Abilities
 
         public override Grid GenerateTargetGrid()
         {
-            return Grid.FromBitmap("Items/target_melee_small");
+            return Grid.FromBitmap(Game.Services, "Items/target_melee_small");
         }
     }
 }

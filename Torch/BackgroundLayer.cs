@@ -13,7 +13,7 @@ namespace Torch
 
         public BackgroundLayer(Scene scene, string image) : base(scene)
         {
-            Objects.Add("bg", new ImageObject(image));
+            Components.Add(new ImageObject(Game, image));
         }
 
         public override void Update(GameTime gametime) { }

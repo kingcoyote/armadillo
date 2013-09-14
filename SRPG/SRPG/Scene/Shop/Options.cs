@@ -15,7 +15,7 @@ namespace SRPG.Scene.Shop
         {
             var font = FontManager.Get("Menu");
 
-            Objects.Add("buy", new TextObject()
+            /*Objects.Add("buy", new TextObject(Game)
                 {
                     Font = font,
                     Color = Color.LightGreen,
@@ -37,6 +37,7 @@ namespace SRPG.Scene.Shop
                     Alignment = TextObject.AlignTypes.Center
                 });
             //Objects["sell"].MouseClick += SellItems;
+             */
         }
 
         private void BuyItems()

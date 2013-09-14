@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using SRPG.Scene.Overworld;
 using Torch;
-using SRPG.Zones;
+using Game = Microsoft.Xna.Framework.Game;
 
 namespace SRPG.Data
 {
-    public class Zone
+    public class Zone : GameComponent
     {
         /// <summary>
         /// Machine readable zone name.
@@ -35,28 +33,30 @@ namespace SRPG.Data
 
         private List<string> _clearedChests = new List<string>();
 
-        public static Zone Factory(string name)
+        public Zone(Game game) : base(game) { }
+
+        public static Zone Factory(Game game, string name)
         {
             switch(name)
             {
                 case "kakariko/village":
-                    return new Zones.Kakariko.Village();
+                    return new Zones.Kakariko.Village(game);
                 case "kakariko/bombshop":
-                    return new Zones.Kakariko.Bombshop();
+                    return new Zones.Kakariko.Bombshop(game);
                 case "kakariko/inn":
-                    return new Zones.Kakariko.Inn();
+                    return new Zones.Kakariko.Inn(game);
 
                 case "village/village":
-                    return new Zones.Village.Village();
+                    return new Zones.Village.Village(game);
                 case "village/warehouse":
-                    return new Zones.Village.Warehouse();
+                    return new Zones.Village.Warehouse(game);
                 case "village/inn":
-                    return new Zones.Village.Inn();
+                    return new Zones.Village.Inn(game);
 
                 case "coliseum/cell":
-                    return new Zones.Coliseum.Cell();
+                    return new Zones.Coliseum.Cell(game);
                 case "coliseum/halls":
-                    return new Zones.Coliseum.Halls();
+                    return new Zones.Coliseum.Halls(game);
 
                 default:
                     throw new ZoneException(String.Format("Unable to generate unknown zone '{0}'.", name));
@@ -77,7 +77,7 @@ namespace SRPG.Data
 
         public EventHandler<InteractEventArgs> SimpleDoor(string zone, string zonedoor)
         {
-            return (sender, args) => ((OverworldScene) sender).SetZone(Factory(zone), zonedoor);
+            return (sender, args) => ((OverworldScene) sender).SetZone(Factory(Game, zone), zonedoor);
         }
 
         public EventHandler<InteractEventArgs> SimpleMerchant(string filename, string merchantname)
@@ -86,7 +86,7 @@ namespace SRPG.Data
                 {
                     var scene = ((OverworldScene) sender);
                     var dialog = Dialog.Fetch(filename, merchantname);
-                    dialog.OnExit = (s, a) => ((SRPGGame)Game.GetInstance()).LaunchShop(filename, merchantname);
+                    dialog.OnExit = (s, a) => ((SRPGGame)Game).LaunchShop(filename, merchantname);
                     scene.StartDialog(dialog);
                 };
         }
@@ -117,10 +117,7 @@ namespace SRPG.Data
 
         public EventHandler<InteractEventArgs> TestBattle(string battleName)
         {
-            return (sender, args) =>
-                {
-                    ((SRPGGame) Game.GetInstance()).StartBattle(battleName);
-                };
+            return (sender, args) => ((SRPGGame) Game).StartBattle(battleName);
         }
     }
 

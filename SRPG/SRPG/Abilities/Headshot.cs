@@ -9,7 +9,8 @@ namespace SRPG.Abilities
 {
     class Headshot : Ability
     {
-        public Headshot()
+        public Headshot(Game game)
+            : base(game)
         {
             Name = "Headshot";
             AbilityType = AbilityType.Active;
@@ -35,7 +36,7 @@ namespace SRPG.Abilities
 
         public override Grid GenerateTargetGrid()
         {
-            return Grid.FromBitmap("Items/target_sniper");
+            return Grid.FromBitmap(Game.Services, "Items/target_sniper");
         }
     }
 }

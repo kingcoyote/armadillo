@@ -19,7 +19,7 @@ namespace SRPG.Scene.Shop
         {
             _inventory = inventory;
 
-            Objects.Add("background", new TextureObject() { Color = Color.Black, Width = 350, Z = -1, Height = Game.GraphicsDevice.Viewport.Height - 100});
+            //Objects.Add("background", new TextureObject() { Color = Color.Black, Width = 350, Z = -1, Height = Game.GraphicsDevice.Viewport.Height - 100});
 
             RefreshItems();
 
@@ -33,7 +33,7 @@ namespace SRPG.Scene.Shop
 
         private void RefreshItems()
         {
-            ClearByName("inventory");
+            //ClearByName("inventory");
 
             var font = FontManager.Get("Menu");
 
@@ -41,14 +41,14 @@ namespace SRPG.Scene.Shop
             {
                 var item = _inventory[i];
 
-                Objects.Add("inventory/" + i, new TextObject
-                    {
-                        Font = font,
-                        Color = _selectedItems.Contains(i) ? Color.Yellow : Color.White,
-                        Value = item.Name,
-                        Y = 25 + i*40,
-                        X = 25
-                    });
+                //Objects.Add("inventory/" + i, new TextObject
+                //    {
+                //        Font = font,
+                //        Color = _selectedItems.Contains(i) ? Color.Yellow : Color.White,
+                //        Value = item.Name,
+                //        Y = 25 + i*40,
+                //        X = 25
+                //    });
             }
         }
 

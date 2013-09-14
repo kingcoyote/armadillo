@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Torch
@@ -13,6 +14,8 @@ namespace Torch
         private int _width = -1;
         private int _height = -1;
 
+        protected ContentManager Content;
+
         public override int Width 
         {
             get { return _width == -1 ? _image.Width : _width; }
@@ -25,15 +28,19 @@ namespace Torch
             set { _height = value; }
         }
 
-        public ImageObject(string imageName)
+        public ImageObject(Microsoft.Xna.Framework.Game game, string imageName) : base(game)
         {
-            _image = Game.GetInstance().Content.Load<Texture2D>(imageName);
+            Content = (ContentManager)(Game.Services.GetService(typeof (ContentManager)));
+            _image = Content.Load<Texture2D>(imageName);
             SourceRectangle = new Rectangle(0, 0, _image.Width, _image.Height);
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime)
         {
+            var spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch.Begin();
             spriteBatch.Draw(_image, new Rectangle(X, Y, Width, Height), SourceRectangle, Color.White);
+            spriteBatch.End();
         }
     }
 }

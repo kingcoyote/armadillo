@@ -91,13 +91,13 @@ namespace SRPG.Scene.Battle
         public override void Start()
         {
             base.Start();
-            Game.GetInstance().IsMouseVisible = true;
+            Game.IsMouseVisible = true;
         }
 
         public override void Stop()
         {
             base.Stop();
-            Game.GetInstance().IsMouseVisible = false;
+            Game.IsMouseVisible = false;
         }
 
         public override void Update(GameTime gametime)
@@ -162,7 +162,7 @@ namespace SRPG.Scene.Battle
                 // create move command to that location
                 var moveCommand = new Command
                     {
-                        Ability = Ability.Factory("move"),
+                        Ability = Ability.Factory(Game, "move"),
                         Character = _selectedCharacter,
                         Target = decision.Destination
                     };
@@ -347,7 +347,7 @@ namespace SRPG.Scene.Battle
                 case "coliseum/halls":
                     _battleBoard.SetBackground("Zones/Coliseum/Halls/halls");
                     _battleBoard.SetGrid("Zones/Coliseum/Halls/battle");
-                    BattleBoard.Sandbag = Grid.FromBitmap("Zones/Coliseum/Halls/battle");
+                    BattleBoard.Sandbag = Grid.FromBitmap(Game.Services, "Zones/Coliseum/Halls/battle");
 
                     partyGrid.Add(new Point(14,35));
                     partyGrid.Add(new Point(15,35));
@@ -380,8 +380,8 @@ namespace SRPG.Scene.Battle
 
             // center camera on partyGrid[0]
             UpdateCamera(
-                0 - partyGrid[0].X*50 + Game.GetInstance().GraphicsDevice.Viewport.Width/2,
-                0 - partyGrid[0].Y*50 + Game.GetInstance().GraphicsDevice.Viewport.Height/2
+                0 - partyGrid[0].X*50 + Game.GraphicsDevice.Viewport.Width/2,
+                0 - partyGrid[0].Y*50 + Game.GraphicsDevice.Viewport.Height/2
             );
 
             ChangeFaction(0);
@@ -517,7 +517,7 @@ namespace SRPG.Scene.Battle
         /// <returns>The generated combatant.</returns>
         public Combatant GenerateCombatant(string name, string template, Vector2 location)
         {
-            var combatant = Combatant.FromTemplate(template);
+            var combatant = Combatant.FromTemplate(Game, template);
             combatant.Name = name;
             combatant.Avatar.Location = location;
             combatant.Faction = 1;
@@ -558,7 +558,7 @@ namespace SRPG.Scene.Battle
                 };
 
             // move icon, plus event handlers
-            var icon = new SpriteObject("Battle/Menu/move");
+            var icon = new SpriteObject(Game, "Battle/Menu/move");
             SetCharacterMenuAnimations(icon);
             if (character.CanMove)
             {
@@ -586,11 +586,11 @@ namespace SRPG.Scene.Battle
             menu.AddOption("move", icon);
 
             // attack icon, plus handlers
-            icon = new SpriteObject("Battle/Menu/attack");
+            icon = new SpriteObject(Game, "Battle/Menu/attack");
             SetCharacterMenuAnimations(icon);
             if (character.CanAct)
             {
-                var ability = Ability.Factory("attack");
+                var ability = Ability.Factory(Game, "attack");
                 ability.Character = character;
 
                 //icon.MouseOver += (sender, args) =>
@@ -618,7 +618,7 @@ namespace SRPG.Scene.Battle
             menu.AddOption("attack", icon);
 
             // special abilities icon, plus event handlers
-            icon = new SpriteObject("Battle/Menu/special");
+            icon = new SpriteObject(Game, "Battle/Menu/special");
             SetCharacterMenuAnimations(icon);
             if (character.CanAct)
             {
@@ -634,7 +634,7 @@ namespace SRPG.Scene.Battle
             }
             menu.AddOption("special", icon);
 
-            icon = new SpriteObject("Battle/Menu/item");
+            icon = new SpriteObject(Game, "Battle/Menu/item");
             SetCharacterMenuAnimations(icon);
             menu.AddOption("item", icon);
 

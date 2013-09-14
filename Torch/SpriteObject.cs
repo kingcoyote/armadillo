@@ -7,7 +7,7 @@ namespace Torch
 {
     public class SpriteObject : ImageObject
     {
-        public SpriteObject(string image) : base(image) { }
+        public SpriteObject(Microsoft.Xna.Framework.Game game, string image) : base(game, image) { }
         private readonly Dictionary<string, SpriteAnimation> _animations = new Dictionary<string, SpriteAnimation>();
         private string _currentAnimation;
         private int _currentFrame;
@@ -57,15 +57,18 @@ namespace Torch
         }
 
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(GameTime gametime)
         {
             var a = _animations[_currentAnimation];
+            var spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch.Begin();
             spriteBatch.Draw(
                 _image, 
                 new Vector2(X, Y),
                 new Rectangle(a.StartCol + _currentFrame*a.Size.Width, a.StartRow , a.Size.Width, a.Size.Height),
                 Color.White
             );
+            spriteBatch.End();
         }
 
         private void ChangeFrame()

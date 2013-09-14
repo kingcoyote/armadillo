@@ -13,7 +13,7 @@ namespace SRPG.Scene.Battle
         public QueuedCommands(Torch.Scene scene) : base(scene)
         {
             
-            Objects.Add("box", new TextureObject { Color = Color.Blue, X = 25, Y = 0, Width = 250, Height = 0 });
+            //Objects.Add("box", new TextureObject { Color = Color.Blue, X = 25, Y = 0, Width = 250, Height = 0 });
         }
 
         public override void Update(GameTime gametime)
@@ -24,10 +24,10 @@ namespace SRPG.Scene.Battle
             var font = FontManager.Get("Menu");
             var viewport = Game.GraphicsDevice.Viewport;
 
-            Objects["box"].Height = (int)((commands.Count + 1)*font.LineSpacing*1.5);
-            Objects["box"].Y = viewport.Height - 25 - Objects["box"].Height;
+           // Objects["box"].Height = (int)((commands.Count + 1)*font.LineSpacing*1.5);
+            //Objects["box"].Y = viewport.Height - 25 - Objects["box"].Height;
 
-            ClearByName("command");
+            //ClearByName("command");
 
             var i = 0;
 
@@ -37,7 +37,7 @@ namespace SRPG.Scene.Battle
                 //Objects["command/" + i + "/portrait"].X = 35;
                 //Objects["command/" + i + "/portrait"].Y = Objects["box"].Y + 10 + (int) (i*font.LineSpacing*1.5);
 
-                Objects.Add("command/" + i + "/name", new TextObject
+                /*Objects.Add("command/" + i + "/name", new TextObject
                     {
                         Font = font, 
                         Color = Color.White, 
@@ -45,11 +45,11 @@ namespace SRPG.Scene.Battle
                         Y = Objects["box"].Y + 10 + (int)(i * font.LineSpacing * 1.5), 
                         Value = command.Ability.Name
                     });
-
+                */
                 i++;
             }
 
-            Objects.Add("command/execute", new TextObject
+            /*Objects.Add("command/execute", new TextObject
             {
                 Font = font,
                 Color = Color.Yellow,
@@ -58,7 +58,7 @@ namespace SRPG.Scene.Battle
                 Alignment = TextObject.AlignTypes.Center,
                 Value = "Execute!",
                 //MouseRelease = (sender, args) => ((BattleScene)Scene).ExecuteQueuedCommands()
-            });
+            });*/
         }
     }
 }

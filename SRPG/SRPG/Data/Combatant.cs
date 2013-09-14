@@ -8,10 +8,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Torch;
+using Game = Microsoft.Xna.Framework.Game;
 
 namespace SRPG.Data
 {
-    public class Combatant
+    public class Combatant : GameComponent
     {
         public string Name;
         /// <summary>
@@ -90,6 +91,8 @@ namespace SRPG.Data
 
         public Dictionary<Stat, int> StatExperienceLevels;
         public Dictionary<Ability, int> AbilityExperienceLevels = new Dictionary<Ability, int>();
+
+        public Combatant(Game game) : base(game) { }
 
         /// <summary>
         /// Process any status ailments that would impact a character at the start of the round,
@@ -258,7 +261,7 @@ namespace SRPG.Data
 
         public Item EquipItem(Item item)
         {
-            var oldItem = new Item();
+            var oldItem = new Item(Game);
 
             switch (item.GetEquipType())
             {
@@ -308,9 +311,9 @@ namespace SRPG.Data
         /// <param name="template">Template to be used to generate a combatant</param>
         /// <param name="level">Experience level to be applied to this combatant's skills</param>
         /// <returns>A combatant generated from the template, modified to be at the specified level.</returns>
-        public static Combatant FromTemplate(string template)
+        public static Combatant FromTemplate(Microsoft.Xna.Framework.Game game, string template)
         {
-            var combatant = new Combatant();
+            var combatant = new Combatant(game);
 
             var templateType = template.Split('/')[0];
             var templateName = template.Split('/')[1];
@@ -320,7 +323,7 @@ namespace SRPG.Data
             var nodeList = JObject.Parse(settingString);
 
             combatant.Class = nodeList[templateName]["class"].ToString();
-            combatant.Avatar = Avatar.GenerateAvatar(nodeList[templateName]["avatar"].ToString());
+            combatant.Avatar = Avatar.GenerateAvatar(game, nodeList[templateName]["avatar"].ToString());
 
             combatant.CurrentHealth = (int)(nodeList[templateName]["health"]);
             combatant.MaxHealth = (int)(nodeList[templateName]["health"]);
@@ -330,7 +333,7 @@ namespace SRPG.Data
             combatant.ArmorTypes = Item.StringToItemType(nodeList[templateName]["armortype"].ToString());
             combatant.WeaponTypes = Item.StringToItemType(nodeList[templateName]["weapontype"].ToString());
 
-            combatant.Inventory = nodeList[templateName]["inventory"].Select(item => Item.Factory(item.ToString())).ToList();
+            combatant.Inventory = nodeList[templateName]["inventory"].Select(item => Item.Factory(game, item.ToString())).ToList();
 
             combatant.Stats = new Dictionary<Stat, int>
                 {
@@ -343,7 +346,7 @@ namespace SRPG.Data
                 };
 
             combatant.AbilityExperienceLevels = nodeList[templateName]["abilities"].ToDictionary(
-                ability => Ability.Factory(ability["name"].ToString()), 
+                ability => Ability.Factory(game, ability["name"].ToString()), 
                 ability => (int) ability["experience"]
             );
 

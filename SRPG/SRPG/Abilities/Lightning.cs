@@ -9,7 +9,8 @@ namespace SRPG.Abilities
 {
     class Lightning : Ability
     {
-        public Lightning()
+        public Lightning(Game game)
+            : base(game)
         {
             Name = "Lightning";
             AbilityType = AbilityType.Active;
@@ -35,7 +36,7 @@ namespace SRPG.Abilities
 
         public override Grid GenerateTargetGrid()
         {
-            return Grid.FromBitmap("Items/target_melee_large");
+            return Grid.FromBitmap(Game.Services, "Items/target_melee_large");
         }
     }
 }

@@ -21,26 +21,26 @@ namespace SRPG
 
         public void AddOption(string name, SpriteObject icon)
         {
-            Objects.Add(name, icon);
+            //Objects.Add(name, icon);
             UpdatePositions();
         }
 
         private void UpdatePositions()
         {
-            var degs = Math.PI * 2 /Objects.Count;
+            //var degs = Math.PI * 2 /Objects.Count;
 
-            for(var i = 0; i < Objects.Count; i++)
-            {
-                var key = Objects.Keys.ElementAt(i);
+            //for(var i = 0; i < Objects.Count; i++)
+            //{
+            //    var key = Objects.Keys.ElementAt(i);
 
-                Objects[key].X = (int)(CenterX + Math.Sin(degs * (i)) * Distance) - Objects[key].Width / 2;
-                Objects[key].Y = (int)(CenterY - Math.Cos(degs * (i)) * Distance) - Objects[key].Height / 2;
-            }
+            //    Objects[key].X = (int)(CenterX + Math.Sin(degs * (i)) * Distance) - Objects[key].Width / 2;
+            //    Objects[key].Y = (int)(CenterY - Math.Cos(degs * (i)) * Distance) - Objects[key].Height / 2;
+            //}
         }
 
         public void ClearOptions()
         {
-            Objects.Clear();
+            // Objects.Clear();
         }
 
         public override void Update(GameTime gameTime)

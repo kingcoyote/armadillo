@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace SRPG.Data
@@ -33,9 +34,9 @@ namespace SRPG.Data
             }
         }
 
-        public static Grid FromBitmap(string bitmapName)
+        public static Grid FromBitmap(GameServiceContainer services, string bitmapName)
         {
-            var texture = Torch.Game.GetInstance().Content.Load<Texture2D>(bitmapName);
+            var texture = ((ContentManager)services.GetService(typeof(ContentManager))).Load<Texture2D>(bitmapName);
             var grid = new Grid(texture.Width, texture.Height);
 
             for (var i = 0; i < grid.Size.Width; i++)

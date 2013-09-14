@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SRPG.Data;
 using SRPG.Scene.Overworld;
 using Torch;
-using Game = Torch.Game;
+using Game = Microsoft.Xna.Framework.Game;
 
 namespace SRPG.Zones.Coliseum
 {
@@ -15,11 +15,11 @@ namespace SRPG.Zones.Coliseum
     {
         private bool _guardMoved;
 
-        public Cell()
+        public Cell(Game game) : base(game)
         {
             Name = "Coliseum Slave Cells";
-            Sandbag = Grid.FromBitmap("Zones/Coliseum/Cell/sandbag");
-            ImageLayers.Add(new ImageObject("Zones/Coliseum/Cell/cell"));
+            Sandbag = Grid.FromBitmap(Game.Services, "Zones/Coliseum/Cell/sandbag");
+            ImageLayers.Add(new ImageObject(Game, "Zones/Coliseum/Cell/cell"));
             Doors.Add(new Door { Location = new Rectangle(36*6, 126*6, 7*6, 8*6), Name = "bed", Orientation = Direction.Right });
             Doors.Add(new Door { Location = new Rectangle(1851, 162, 48, 9), Name = "halls", Orientation = Direction.Down });
 
@@ -27,7 +27,7 @@ namespace SRPG.Zones.Coliseum
             Objects.Add(new InteractiveObject
                 {Interact = TestBattle("coliseum/halls"), Location = new Rectangle(818, 159, 32, 32)});
 
-            Characters.Add("guard", Avatar.GenerateAvatar("enemy"));
+            Characters.Add("guard", Avatar.GenerateAvatar(game, "enemy"));
             Characters["guard"].Location.X = 315;
             Characters["guard"].Location.Y = 515;
 

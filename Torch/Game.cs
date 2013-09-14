@@ -21,8 +21,6 @@ namespace Torch
 
         public AppSettings Settings;
 
-        protected static Game _instance;
-
         protected InputManager Input;
 
         protected Game()
@@ -31,8 +29,6 @@ namespace Torch
             Content.RootDirectory = "Content";
 
             _graphics = new GraphicsDeviceManager(this);
-
-            _instance = this;
         }
 
         protected void InitializeGraphics()
@@ -156,11 +152,6 @@ namespace Torch
         {
             IsFullScreen = enabled;
             InitializeGraphics();
-        }
-
-        public static Game GetInstance()
-        {
-            return _instance;
         }
     }
 }

@@ -14,14 +14,14 @@ namespace SRPG.Scene.Battle
 
         public AbilityStatLayer(Torch.Scene scene) : base(scene)
         {
-            var x = Torch.Game.GetInstance().GraphicsDevice.Viewport.Width - 425;
-            var y = Torch.Game.GetInstance().GraphicsDevice.Viewport.Height - 225;
+            var x = GraphicsDevice.Viewport.Width - 425;
+            var y = GraphicsDevice.Viewport.Height - 225;
 
             var font = FontManager.Get("Menu");
 
-            Objects.Add("box", new TextureObject { Color = Color.Blue, X = x, Y = y, Width = 400, Height = 200 });
-            Objects.Add("name", new TextObject { Font = font, Color = Color.White, Value = "", X = x + 10, Y = y + 10 });
-            Objects.Add("mana", new TextObject { Font = font, Color = Color.White, Value = "", X = x + 400 - 10, Y = y + 10, Alignment = TextObject.AlignTypes.Right });
+            //Objects.Add("box", new TextureObject { Color = Color.Blue, X = x, Y = y, Width = 400, Height = 200 });
+            //Objects.Add("name", new TextObject { Font = font, Color = Color.White, Value = "", X = x + 10, Y = y + 10 });
+            //Objects.Add("mana", new TextObject { Font = font, Color = Color.White, Value = "", X = x + 400 - 10, Y = y + 10, Alignment = TextObject.AlignTypes.Right });
 
             // ability name
             // mana cost
@@ -45,8 +45,8 @@ namespace SRPG.Scene.Battle
 
         private void UpdateText()
         {
-            ((TextObject) Objects["name"]).Value = Ability.Name;
-            ((TextObject) Objects["mana"]).Value = Ability.ManaCost.ToString();
+            //((TextObject) Objects["name"]).Value = Ability.Name;
+            //((TextObject) Objects["mana"]).Value = Ability.ManaCost.ToString();
         }
     }
 }

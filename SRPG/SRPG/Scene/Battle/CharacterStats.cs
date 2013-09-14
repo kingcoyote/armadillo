@@ -21,7 +21,7 @@ namespace SRPG.Scene.Battle
             var x = Game.GraphicsDevice.Viewport.Width - 425;
             var y = 25;
 
-            Objects.Add("box", new TextureObject { Color = Color.Blue, X = x, Y = y, Width = 400, Height = 200, Z = -1 });
+            /*Objects.Add("box", new TextureObject { Color = Color.Blue, X = x, Y = y, Width = 400, Height = 200, Z = -1 });
             
             Objects.Add("name", new TextObject { Font = font, X = x + 25, Y = y + 25, Color = Color.White, Value = "" });
             Objects.Add("class", new TextObject { Font = font, X = x + 375, Y = y + 25, Color = Color.White, Value = "", Alignment = TextObject.AlignTypes.Right });
@@ -34,20 +34,21 @@ namespace SRPG.Scene.Battle
 
             Objects.Add("health num", new TextObject() { Color = Color.White, Font = font, Value = "", X = x + 375, Alignment = TextObject.AlignTypes.Right, Y = y + 68 });
             Objects.Add("mana num", new TextObject() { Color = Color.White, Font = font, Value = "", X = x + 375, Alignment = TextObject.AlignTypes.Right, Y = y + 118 });
+             */
         }
 
         public void SetCharacter(Combatant character)
         {
             Character = character;
 
-            ((TextObject)Objects["name"]).Value = Character.Name;
-            ((TextObject)Objects["class"]).Value = Character.Class;
+            //((TextObject)Objects["name"]).Value = Character.Name;
+            //((TextObject)Objects["class"]).Value = Character.Class;
 
-            ((TextObject)Objects["health num"]).Value = Character.CurrentHealth.ToString();
-            ((TextObject)Objects["mana num"]).Value = Character.CurrentMana.ToString();
+            //((TextObject)Objects["health num"]).Value = Character.CurrentHealth.ToString();
+            //((TextObject)Objects["mana num"]).Value = Character.CurrentMana.ToString();
 
-            Objects["health bar"].Width = (int)((Character.CurrentHealth/(float)Character.MaxHealth)*300);
-            Objects["mana bar"].Width = (int)((Character.CurrentMana / (float)Character.MaxMana) * 300);
+            //Objects["health bar"].Width = (int)((Character.CurrentHealth/(float)Character.MaxHealth)*300);
+            //Objects["mana bar"].Width = (int)((Character.CurrentMana / (float)Character.MaxMana) * 300);
 
         }
     }

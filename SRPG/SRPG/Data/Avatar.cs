@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Torch;
+using Game = Microsoft.Xna.Framework.Game;
 
 namespace SRPG.Data
 {
-    public class Avatar
+    public class Avatar : DrawableGameComponent
     {
         /// <summary>
         /// Printable name for the character.
@@ -43,6 +44,8 @@ namespace SRPG.Data
 
         public int Speed = 150;
 
+
+        public Avatar(Game game) : base(game) { }
 
         public Rectangle GetFeet()
         {
@@ -121,7 +124,7 @@ namespace SRPG.Data
             }
         }
 
-        public static Avatar GenerateAvatar(string className)
+        public static Avatar GenerateAvatar(Microsoft.Xna.Framework.Game game, string className)
         {
             Avatar character;
 
@@ -133,9 +136,9 @@ namespace SRPG.Data
                 case "fighter":
                     spriteWidth = 50;
                     spriteHeight = 100;
-                    character = new Avatar
+                    character = new Avatar(game)
                     {
-                        Sprite = new SpriteObject("Characters/fighter"),
+                        Sprite = new SpriteObject(game, "Characters/fighter"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -152,9 +155,9 @@ namespace SRPG.Data
                 case "ranger":
                     spriteWidth = 65;
                     spriteHeight = 75;
-                    character = new Avatar
+                    character = new Avatar(game)
                     {
-                        Sprite = new SpriteObject("Characters/TempRanger"),
+                        Sprite = new SpriteObject(game, "Characters/TempRanger"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -171,9 +174,9 @@ namespace SRPG.Data
                 case "cleric":
                     spriteWidth = 50;
                     spriteHeight = 100;
-                    character = new Avatar
+                    character = new Avatar(game)
                     {
-                        Sprite = new SpriteObject("Characters/cleric"),
+                        Sprite = new SpriteObject(game, "Characters/cleric"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -190,9 +193,9 @@ namespace SRPG.Data
                 case "wizard":
                     spriteWidth = 50;
                     spriteHeight = 100;
-                    character = new Avatar
+                    character = new Avatar(game)
                     {
-                        Sprite = new SpriteObject("Characters/wizard"),
+                        Sprite = new SpriteObject(game, "Characters/wizard"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -209,9 +212,9 @@ namespace SRPG.Data
                 case "monk":
                     spriteWidth = 65;
                     spriteHeight = 75;
-                    character = new Avatar
+                    character = new Avatar(game)
                     {
-                        Sprite = new SpriteObject("Characters/TempMonk"),
+                        Sprite = new SpriteObject(game, "Characters/TempMonk"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -228,9 +231,9 @@ namespace SRPG.Data
                 case "enemy":
                     spriteWidth = 50;
                     spriteHeight = 100;
-                    character = new Avatar
+                    character = new Avatar(game)
                     {
-                        Sprite = new SpriteObject("Characters/guard"),
+                        Sprite = new SpriteObject(game, "Characters/guard"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };

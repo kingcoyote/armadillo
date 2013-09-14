@@ -9,13 +9,13 @@ namespace SRPG.Zones.Kakariko
 {
     class Bombshop : Zone
     {
-        public Bombshop()
+        public Bombshop(Microsoft.Xna.Framework.Game game) : base(game)
         {
             Name = "Kakariko Shop";
-            Sandbag = Grid.FromBitmap("Zones/Kakariko/Bombshop/sandbag");
+            Sandbag = Grid.FromBitmap(Game.Services, "Zones/Kakariko/Bombshop/sandbag");
             ImageLayers = new List<ImageObject>
                 {
-                    new ImageObject("Zones/Kakariko/Bombshop/bombshop") {Z = -1},
+                    new ImageObject(Game, "Zones/Kakariko/Bombshop/bombshop") {Z = -1},
                 };
 
             Objects = new List<InteractiveObject>();

@@ -16,26 +16,27 @@ namespace SRPG.Scene.Overworld
 
         private Zone _zone;
 
+        private Avatar _avatar;
+
         public Environment(Torch.Scene scene) : base(scene) { }
 
         public void SetZone(Zone zone)
         {
             _zone = zone;
 
-            Objects.Clear();
-
-            Objects.Add("avatar", ((OverworldScene)Scene).Avatar.Sprite);
+            _avatar = ((OverworldScene) Scene).Avatar;
+            Components.Add(_avatar);
 
             var i = 0;
             foreach (var image in zone.ImageLayers)
             {
-                Objects.Add("zone" + i, image);
+                Components.Add(image);
                 i++;
             }
 
             foreach(var character in zone.Characters.Keys)
             {
-                Objects.Add("character/" + character, zone.Characters[character].Sprite);
+                Components.Add(zone.Characters[character]);
             }
 
             // test code to show interactive objects. this should not make it into release.
@@ -55,8 +56,8 @@ namespace SRPG.Scene.Overworld
         {
             base.Update(gametime);
 
-            Objects["avatar"].X = (int)((OverworldScene) Scene).Avatar.Location.X;
-            Objects["avatar"].Y = (int)((OverworldScene)Scene).Avatar.Location.Y;
+            _avatar.Sprite.X = (int)((OverworldScene) Scene).Avatar.Location.X;
+            _avatar.Sprite.Y = (int)((OverworldScene)Scene).Avatar.Location.Y;
 
             const float deadzone = 0.2F;
             int screenWidth = Game.Window.ClientBounds.Width;
@@ -66,27 +67,27 @@ namespace SRPG.Scene.Overworld
             var deadzoneHeight = (int)(screenHeight * (1 - deadzone) / 2);
 
             // if the screen can go to the left and if the avatar is left of the deadzone
-            if(X < 0 && Objects["avatar"].X < 0 - X + deadzoneWidth)
+            if(X < 0 && _avatar.Sprite.X < 0 - X + deadzoneWidth)
             {
                 // slide the screen to the left
-                X -= Objects["avatar"].X - (0 - X + deadzoneWidth);
+                X -= _avatar.Sprite.X - (0 - X + deadzoneWidth);
             }
             // same thing for the right side
-            else if (0 - X < _width - screenWidth && Objects["avatar"].X > 0 - X + screenWidth - deadzoneWidth)
+            else if (0 - X < _width - screenWidth && _avatar.Sprite.X > 0 - X + screenWidth - deadzoneWidth)
             {
-                X -= Objects["avatar"].X - (0 - X + screenWidth - deadzoneWidth);
+                X -= _avatar.Sprite.X - (0 - X + screenWidth - deadzoneWidth);
             }
 
             // bottom
-            if (Y < 0 && Objects["avatar"].Y < 0 - Y + deadzoneHeight)
+            if (Y < 0 && _avatar.Sprite.Y < 0 - Y + deadzoneHeight)
             {
                 // slide the screen to the left
-                Y -= Objects["avatar"].Y - (0 - Y + deadzoneHeight);
+                Y -= _avatar.Sprite.Y - (0 - Y + deadzoneHeight);
             }
             // top
-            else if (0 - Y < _height - screenHeight && Objects["avatar"].Y > 0 - Y + screenHeight - deadzoneHeight)
+            else if (0 - Y < _height - screenHeight && _avatar.Sprite.Y > 0 - Y + screenHeight - deadzoneHeight)
             {
-                Y -= Objects["avatar"].Y - (0 - Y + screenHeight - deadzoneHeight);
+                Y -= _avatar.Sprite.Y - (0 - Y + screenHeight - deadzoneHeight);
             }
 
             // ensure that there is no black area at the edge of the screen. 
@@ -112,9 +113,9 @@ namespace SRPG.Scene.Overworld
 
             foreach(var character in _zone.Characters.Keys)
             {
-                Objects["character/" + character].X = (int)_zone.Characters[character].Location.X;
-                Objects["character/" + character].Y = (int)_zone.Characters[character].Location.Y;
-                Objects["character/" + character].Z = Objects["character/" + character].Y + ((SpriteObject)(Objects["character/" + character])).Height;
+                //Objects["character/" + character].X = (int)_zone.Characters[character].Location.X;
+                //Objects["character/" + character].Y = (int)_zone.Characters[character].Location.Y;
+                //Objects["character/" + character].Z = Objects["character/" + character].Y + ((SpriteObject)(Objects["character/" + character])).Height;
             }
         }
     }

@@ -3,19 +3,19 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SRPG.Data;
 using Torch;
-using Game = Torch.Game;
+using Game = Microsoft.Xna.Framework.Game;
 
 namespace SRPG.Zones.Kakariko
 {
     class Inn : Zone
     {
-        public Inn()
+        public Inn(Game game) : base(game)
         {
             Name = "Kakariko Inn";
-            Sandbag = Grid.FromBitmap("Zones/Kakariko/Inn/sandbag");
+            Sandbag = Grid.FromBitmap(Game.Services, "Zones/Kakariko/Inn/sandbag");
             ImageLayers = new List<ImageObject>
                 {
-                    new ImageObject("Zones/Kakariko/Inn/inn") {Z = -1},
+                    new ImageObject(Game, "Zones/Kakariko/Inn/inn") {Z = -1},
                 };
 
             Objects = new List<InteractiveObject>();

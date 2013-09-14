@@ -9,7 +9,8 @@ namespace SRPG.Abilities
 {
     class Fire : Ability
     {
-        public Fire()
+        public Fire(Game game)
+            : base(game)
         {
             Name = "Fire";
             AbilityType = AbilityType.Active;
@@ -35,7 +36,7 @@ namespace SRPG.Abilities
 
         public override Grid GenerateTargetGrid()
         {
-            return Grid.FromBitmap("Items/target_melee_medium");
+            return Grid.FromBitmap(Game.Services, "Items/target_melee_medium");
         }
     }
 }
