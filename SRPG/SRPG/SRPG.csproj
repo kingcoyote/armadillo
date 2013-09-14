@@ -150,6 +150,9 @@
     <Compile Include="Data\InteractEventArgs.cs" />
     <Compile Include="Data\InteractiveObject.cs" />
     <Compile Include="Data\Layers\DialogLayer.cs" />
+    <Compile Include="Data\Layers\DialogLayer.designer.cs">
+      <DependentUpon>DialogLayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="FontManager.cs" />
     <Compile Include="RadialMenu.cs" />
     <Compile Include="Scene\Battle\AbilityStatLayer.cs" />

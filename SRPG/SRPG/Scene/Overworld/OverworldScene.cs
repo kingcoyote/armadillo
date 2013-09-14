@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nuclex.Input;
+using Nuclex.UserInterface.Visuals.Flat;
 using SRPG.Data;
 using SRPG.Data.Layers;
 using Torch;
@@ -34,9 +35,12 @@ namespace SRPG.Scene.Overworld
             Avatar = Avatar.GenerateAvatar("fighter");
 
             Components.Add(new KeyboardInput(this));
-            _environment = new Environment(this);
-            Components.Add(new HUD(this));
+            _environment = new Environment(this) { DrawOrder = 1 };
+            Components.Add(new HUD(this) { DrawOrder = 5 });
             Components.Add(_environment);
+
+            Gui.DrawOrder = 1000;
+            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_menu.xml");
         }
 
         public override void Update(GameTime gametime)
@@ -256,7 +260,7 @@ namespace SRPG.Scene.Overworld
             _isPaused = true;
             dialog.OnExit += EndDialogEvent;
             _dialog = new DialogLayer(this, dialog);
-            Components.Add(_dialog);
+            Gui.Screen.Desktop.Children.Add(_dialog);
         }
 
         private void StopCharacter()
@@ -266,7 +270,7 @@ namespace SRPG.Scene.Overworld
 
         public void EndDialog()
         {
-            Components.Remove(_dialog);
+            Gui.Screen.Desktop.Children.Remove(_dialog);
             _dialog = null;
             _isPaused = false;
         }

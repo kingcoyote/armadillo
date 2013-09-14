@@ -11,46 +11,18 @@ using Game = Torch.Game;
 
 namespace SRPG.Data.Layers
 {
-    class DialogLayer : Layer
+    public partial class DialogLayer
     {
         private readonly Dialog _dialog;
         private int _currentOption;
         private int _charCount;
         private bool _optionsDisplayed;
 
-        public DialogLayer(Torch.Scene scene, Dialog dialog) : base(scene)
+        public DialogLayer(Torch.Scene scene, Dialog dialog)
         {
-            _dialog = dialog;
+            InitializeComponent();
 
-            Objects.Add("dialog window", new TextureObject()
-                {
-                    Color = Color.Blue, 
-                    Z = 100000, 
-                    X = (int)(Game.Window.ClientBounds.Width * 0.05),
-                    Y = (int)(Game.Window.ClientBounds.Height* 0.75),
-                    Width = (int)(Game.Window.ClientBounds.Width * 0.9),
-                    Height = (int)(Game.Window.ClientBounds.Height * 0.2)
-                });
-            Objects.Add("dialog text", new TextObject()
-                {
-                    Color = Color.White, 
-                    Z = 100002, 
-                    Value = "", 
-                    Font = FontManager.Get("Dialog"),
-                    X = Objects["dialog window"].X + 20,
-                    Y = Objects["dialog window"].Y + 10,
-                    Width = Objects["dialog window"].Width - 40,
-                    Height = Objects["dialog window"].Height - 20
-                });
-            Objects.Add("dialog highlight", new TextureObject()
-                {
-                    Color = Color.Black, 
-                    Z = 100001, 
-                    Y = -9999, 
-                    Width = Objects["dialog window"].Width - 20,
-                    Height = ((TextObject)Objects["dialog text"]).Font.LineSpacing,
-                    X = Objects["dialog window"].X + 10
-                });
+            _dialog = dialog;
 
             var keyboard = ((InputManager)scene.Game.Services.GetService(typeof(IInputService))).GetKeyboard();
             keyboard.KeyPressed += OnKeyPress;
@@ -100,11 +72,11 @@ namespace SRPG.Data.Layers
         {
             if (_currentOption == -1)
             {
-                Objects["dialog highlight"].Y = -1000;
+                //Objects["dialog highlight"].Y = -1000;
             }
             else
             {
-                Objects["dialog highlight"].Y = Objects["dialog text"].Y + Objects["dialog text"].Height*_currentOption;
+                //Objects["dialog highlight"].Y = Objects["dialog text"].Y + Objects["dialog text"].Height*_currentOption;
             }
         }
 
@@ -115,14 +87,12 @@ namespace SRPG.Data.Layers
 
         private void UpdateText(string text)
         {
-            var dialogText = ((TextObject)Objects["dialog text"]);
-            var dialogWindow = ((TextureObject)Objects["dialog window"]);
-            
-            dialogText.Value = text.Trim();
+       
+            _dialogText.Text = text.Trim();
 
             _charCount += text.Length;
 
-            while (dialogText.Height > dialogWindow.Height - 20)
+            /*while (dialogText.Height > dialogWindow.Height - 20)
             {
                 // find the last space
                 // trim everything after it
@@ -130,7 +100,7 @@ namespace SRPG.Data.Layers
 
                 dialogText.Value = dialogText.Value.Substring(0, dialogText.Value.Length - 1);
                 _charCount--;
-            }
+            }*/
         }
 
         private bool UpdateDialog()
@@ -156,7 +126,7 @@ namespace SRPG.Data.Layers
             // if there is more than 1 option to choose from
             if (_dialog.CurrentNode.Options.Count > 1 && _optionsDisplayed == false)
             {
-                ((TextObject)Objects["dialog text"]).Value = String.Join(" \n", _dialog.CurrentNode.Options.Keys);
+                _dialogText.Text = String.Join(" \n", _dialog.CurrentNode.Options.Keys);
                 _currentOption = 0;
                 UpdateOptionHighlight();
                 _dialog.SetOption(_currentOption);
@@ -192,7 +162,6 @@ namespace SRPG.Data.Layers
 
         private void ExitDialog()
         {
-            Objects.Clear();
             _dialog.OnExit.Invoke(this, new EventArgs());
         }
     }
