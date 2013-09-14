@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Nuclex.Input;
+using Nuclex.Input.Devices;
 using Torch;
 using Game = Torch.Game;
 
@@ -17,6 +18,8 @@ namespace SRPG.Data.Layers
         private int _currentOption;
         private int _charCount;
         private bool _optionsDisplayed;
+        private IKeyboard _keyboard;
+
 
         public DialogLayer(Torch.Scene scene, Dialog dialog)
         {
@@ -24,8 +27,8 @@ namespace SRPG.Data.Layers
 
             _dialog = dialog;
 
-            var keyboard = ((InputManager)scene.Game.Services.GetService(typeof(IInputService))).GetKeyboard();
-            keyboard.KeyPressed += OnKeyPress;
+            _keyboard = ((InputManager)scene.Game.Services.GetService(typeof(IInputService))).GetKeyboard();
+            _keyboard.KeyPressed += OnKeyPress;
 
             InitializeDialog();
         }
@@ -163,6 +166,7 @@ namespace SRPG.Data.Layers
         private void ExitDialog()
         {
             _dialog.OnExit.Invoke(this, new EventArgs());
+            _keyboard.KeyPressed -= OnKeyPress;
         }
     }
 }
