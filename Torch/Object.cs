@@ -6,7 +6,10 @@ namespace Torch
 {
     public abstract class Object : DrawableGameComponent
     {
-        protected Object(Microsoft.Xna.Framework.Game game) : base(game) { }
+        protected Object(Microsoft.Xna.Framework.Game game) : base(game)
+        {
+            Initialize();
+        }
 
         public virtual int X { get; set; }
         public virtual int Y { get; set; }
