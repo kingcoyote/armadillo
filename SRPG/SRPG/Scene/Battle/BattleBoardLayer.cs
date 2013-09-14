@@ -57,7 +57,7 @@ namespace SRPG.Scene.Battle
                 character.Avatar.Sprite.Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0);
                 character.Avatar.Sprite.Z = character.Avatar.Sprite.Y;
                 Objects.Add("character/" + character.Name, character.Avatar.Sprite);
-                Objects["character/" + character.Name].MouseClick = MouseClickCharacter(character);
+                //Objects["character/" + character.Name].MouseClick = MouseClickCharacter(character);
             }
         }
 
@@ -155,7 +155,7 @@ namespace SRPG.Scene.Battle
                 }
 
                HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
-               Objects[string.Format("grid/{0}-{1}", cursor.X, cursor.Y)].MouseClick = (s, a) => scene.ExecuteAimAbility(cursor.X, cursor.Y);
+               //Objects[string.Format("grid/{0}-{1}", cursor.X, cursor.Y)].MouseClick = (s, a) => scene.ExecuteAimAbility(cursor.X, cursor.Y);
             }
         }
 
@@ -185,16 +185,16 @@ namespace SRPG.Scene.Battle
             Objects.Remove("character/" + character.Name);
         }
 
-        public EventHandler<MouseEventArgs> MouseClickCharacter(Combatant character)
-        {
-            return (sender, args) =>
-                {
-                    if (((BattleScene)Scene).FactionTurn != 0) return;
+        //public EventHandler<MouseEventArgs> MouseClickCharacter(Combatant character)
+        //{
+        //    return (sender, args) =>
+        //        {
+        //            if (((BattleScene)Scene).FactionTurn != 0) return;
 
-                    ((BattleScene) Scene).SelectCharacter(character);
+        //            ((BattleScene) Scene).SelectCharacter(character);
 
-                };
-        }
+        //        };
+        //}
 
         private void UpdateGrid()
         {
@@ -259,10 +259,7 @@ namespace SRPG.Scene.Battle
                     (from o in Objects.Keys where o.Length > 4 && o.Substring(0, 4) == "grid" select Objects[o]))
             {
                 grid.SetAnimation("Normal");
-                grid.MouseOver = (s, a) => { };
-                grid.MouseOut = (s, a) => { };
-                grid.MouseClick = (s, a) => { };
-                grid.MouseRelease = (s, a) => { };
+                
             }
         }
     }

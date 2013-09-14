@@ -25,7 +25,7 @@ namespace SRPG.Scene.Shop
                     Alignment = TextObject.AlignTypes.Center
                 });
 
-            Objects["buy"].MouseClick += BuyItems;
+            //Objects["buy"].MouseClick += BuyItems;
 
             Objects.Add("sell", new TextObject()
                 {
@@ -36,15 +36,15 @@ namespace SRPG.Scene.Shop
                     X = Game.GraphicsDevice.Viewport.Width / 2 + 75,
                     Alignment = TextObject.AlignTypes.Center
                 });
-            Objects["sell"].MouseClick += SellItems;
+            //Objects["sell"].MouseClick += SellItems;
         }
 
-        private void BuyItems(object sender, MouseEventArgs args)
+        private void BuyItems()
         {
             ((ShopScene)Scene).BuySelectedItems();
         }
 
-        private void SellItems(object sender, MouseEventArgs args)
+        private void SellItems()
         {
             ((ShopScene) Scene).SellSelectedItems();
         }

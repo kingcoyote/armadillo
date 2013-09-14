@@ -23,7 +23,7 @@ namespace SRPG.Scene.Shop
 
             RefreshItems();
 
-            MouseClick += SelectItems;
+            //MouseClick += SelectItems;
         }
 
         public List<Item> GetSelectedInventory()
@@ -52,9 +52,9 @@ namespace SRPG.Scene.Shop
             }
         }
 
-        private void SelectItems(object sender, MouseEventArgs args)
+        private void SelectItems()
         {
-            for(var i = 0; i < _inventory.Count; i++)
+            /*for(var i = 0; i < _inventory.Count; i++)
             {
                 if(Objects["inventory/" + i].Rectangle.Contains(new Point((int)(args.X - X), (int)(args.Y - Y))))
                 {
@@ -67,7 +67,7 @@ namespace SRPG.Scene.Shop
                         _selectedItems.Add(i);
                     }
                 }
-            }
+            }*/
 
             RefreshItems();
         }

@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Nuclex.Input;
 using Torch;
 using Game = Torch.Game;
 
@@ -51,16 +52,17 @@ namespace SRPG.Data.Layers
                     X = Objects["dialog window"].X + 10
                 });
 
-            KeyDown += OnKeyPress;
+            var keyboard = ((InputManager)scene.Game.Services.GetService(typeof(IInputService))).GetKeyboard();
+            keyboard.KeyPressed += OnKeyPress;
 
             InitializeDialog();
         }
 
-        public void OnKeyPress(object sender, KeyboardEventArgs args)
+        public void OnKeyPress(Keys key)
         {
             var dialogContinues = true;
 
-            switch (args.WhichKey)
+            switch (key)
             {
                 case (Keys.Escape):
                     ExitDialog();

@@ -560,25 +560,25 @@ namespace SRPG.Scene.Battle
             SetCharacterMenuAnimations(icon);
             if (character.CanMove)
             {
-                icon.MouseOver += (sender, args) =>
-                    {
-                        if (!character.CanMove) return;
+                //icon.MouseOver += (sender, args) =>
+                //    {
+                //        if (!character.CanMove) return;
 
-                        _battleBoard.SetTargettingGrid(
-                            character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)),
-                            new Grid(1, 1)
-                            );
-                    };
-                icon.MouseOut += (sender, args) => _battleBoard.ResetGrid();
-                icon.MouseRelease += SelectAbilityTarget(character, Ability.Factory("move"));
+                //        _battleBoard.SetTargettingGrid(
+                //            character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)),
+                //            new Grid(1, 1)
+                //            );
+                //    };
+                //icon.MouseOut += (sender, args) => _battleBoard.ResetGrid();
+                //icon.MouseRelease += SelectAbilityTarget(character, Ability.Factory("move"));
             }
             else
             {
                 // if they can't move, this icon does nothing
-                icon.MouseOver = (sender, args) => { };
-                icon.MouseOut = (sender, args) => { };
-                icon.MouseClick = (sender, args) => { };
-                icon.MouseRelease = (sender, args) => { };
+                //icon.MouseOver = (sender, args) => { };
+                //icon.MouseOut = (sender, args) => { };
+                //icon.MouseClick = (sender, args) => { };
+                //icon.MouseRelease = (sender, args) => { };
             }
 
             menu.AddOption("move", icon);
@@ -591,26 +591,26 @@ namespace SRPG.Scene.Battle
                 var ability = Ability.Factory("attack");
                 ability.Character = character;
 
-                icon.MouseOver += (sender, args) =>
-                    {
-                        if (!character.CanAct) return;
+                //icon.MouseOver += (sender, args) =>
+                //    {
+                //        if (!character.CanAct) return;
 
-                        _battleBoard.SetTargettingGrid(
-                            ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
-                            new Grid(1, 1)
-                            );
-                    };
-                icon.MouseOut += (sender, args) => _battleBoard.ResetGrid();
+                //        _battleBoard.SetTargettingGrid(
+                //            ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
+                //            new Grid(1, 1)
+                //            );
+                //    };
+                //icon.MouseOut += (sender, args) => _battleBoard.ResetGrid();
                 
-                icon.MouseRelease += SelectAbilityTarget(character, ability);
+                //icon.MouseRelease += SelectAbilityTarget(character, ability);
             }
             else
             {
                 // if they can't act, this icon does nothing
-                icon.MouseOver = (sender, args) => { };
-                icon.MouseOut = (sender, args) => { };
-                icon.MouseClick = (sender, args) => { };
-                icon.MouseRelease = (sender, args) => { };
+                //icon.MouseOver = (sender, args) => { };
+                //icon.MouseOut = (sender, args) => { };
+                //icon.MouseClick = (sender, args) => { };
+                //icon.MouseRelease = (sender, args) => { };
             }
 
             menu.AddOption("attack", icon);
@@ -620,15 +620,15 @@ namespace SRPG.Scene.Battle
             SetCharacterMenuAnimations(icon);
             if (character.CanAct)
             {
-                icon.MouseRelease += SelectSpecialAbility(character);
+                //icon.MouseRelease += SelectSpecialAbility(character);
             }
             else
             {
                 // if they can't act, this icon does nothing
-                icon.MouseOver = (sender, args) => { };
-                icon.MouseOut = (sender, args) => { };
-                icon.MouseClick = (sender, args) => { };
-                icon.MouseRelease = (sender, args) => { };
+                //icon.MouseOver = (sender, args) => { };
+                //icon.MouseOut = (sender, args) => { };
+                //icon.MouseClick = (sender, args) => { };
+                //icon.MouseRelease = (sender, args) => { };
             }
             menu.AddOption("special", icon);
 
@@ -684,10 +684,10 @@ namespace SRPG.Scene.Battle
 
             icon.SetAnimation("normal");
 
-            icon.MouseOver += (sender, args) => ((SpriteObject)args.Target).SetAnimation("hover"); 
-            icon.MouseOut += (sender, args) => ((SpriteObject)args.Target).SetAnimation("normal");
-            icon.MouseClick += (sender, args) => ((SpriteObject) args.Target).SetAnimation("click");
-            icon.MouseRelease += (sender, args) => ((SpriteObject) args.Target).SetAnimation("normal");
+            //icon.MouseOver += (sender, args) => ((SpriteObject)args.Target).SetAnimation("hover"); 
+            //icon.MouseOut += (sender, args) => ((SpriteObject)args.Target).SetAnimation("normal");
+            //icon.MouseClick += (sender, args) => ((SpriteObject) args.Target).SetAnimation("click");
+            //icon.MouseRelease += (sender, args) => ((SpriteObject) args.Target).SetAnimation("normal");
         }
 
         /// <summary>
@@ -697,7 +697,7 @@ namespace SRPG.Scene.Battle
         /// <param name="character">The character whose attack is being chosen.</param>
         /// <param name="ability">The ability currently being aimed.</param>
         /// <returns></returns>
-        private EventHandler<MouseEventArgs> SelectAbilityTarget(Combatant character, Ability ability)
+        private EventHandler SelectAbilityTarget(Combatant character, Ability ability)
         {
             return (sender, args) =>
             {
@@ -757,7 +757,7 @@ namespace SRPG.Scene.Battle
         /// </summary>
         /// <param name="character">The character being selected for special abilities</param>
         /// <returns>An event handler to execute to show the abilities.</returns>
-        private EventHandler<MouseEventArgs> SelectSpecialAbility(Combatant character)
+        private EventHandler SelectSpecialAbility(Combatant character)
         {
             return (sender, args) =>
                 {
@@ -773,18 +773,18 @@ namespace SRPG.Scene.Battle
                         // only bind event handlers onto abilities that are cheap enough to use
                         if (ability.ManaCost <= character.CurrentMana)
                         {
-                            ability.Icon.MouseOver = (o, eventArgs) => PreviewAbility(tempAbility);
-                            ability.Icon.MouseOut = (o, eventArgs) =>
-                                {
-                                    _abilityStatLayer.Visible = false;
-                                    _battleBoard.ResetGrid();
-                                };
-                            ability.Icon.MouseClick = (o, eventArgs) => { };
-                            ability.Icon.MouseRelease = SelectAbilityTarget(character, tempAbility);
+                            //ability.Icon.MouseOver = (o, eventArgs) => PreviewAbility(tempAbility);
+                            //ability.Icon.MouseOut = (o, eventArgs) =>
+                            //    {
+                            //        _abilityStatLayer.Visible = false;
+                            //        _battleBoard.ResetGrid();
+                            //    };
+                            //ability.Icon.MouseClick = (o, eventArgs) => { };
+                            //ability.Icon.MouseRelease = SelectAbilityTarget(character, tempAbility);
                         }
                         else
                         {
-                            ability.Icon.MouseRelease =  (o, eventArgs) => { };
+                            //ability.Icon.MouseRelease =  (o, eventArgs) => { };
                         }
 
                         _radialMenu.AddOption(ability.Name, ability.Icon);

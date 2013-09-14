@@ -70,7 +70,6 @@
     <Compile Include="BackgroundLayer.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="ImageObject.cs" />
-    <Compile Include="Input.cs" />
     <Compile Include="KeyboardInputLayer.cs" />
     <Compile Include="SpriteObject.cs" />
     <Compile Include="TextObject.cs" />

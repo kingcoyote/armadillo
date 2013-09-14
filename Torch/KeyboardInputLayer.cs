@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework.Input;
+using Nuclex.Input;
 
 namespace Torch
 {
@@ -12,8 +13,9 @@ namespace Torch
         
         public KeyboardInputLayer(Scene scene) : base(scene)
         {
-            KeyDown += HandleKeyDown;
-            KeyUp += HandleKeyUp;
+            var keyboard = ((InputManager) scene.Game.Services.GetService(typeof (IInputService))).GetKeyboard();
+            keyboard.KeyPressed += HandleKeyDown;
+            keyboard.KeyReleased += HandleKeyUp;
         }
 
         public void AddKeyDownBinding(Keys key, Action callback)
@@ -36,18 +38,18 @@ namespace Torch
             _keyUpBindings[key].Add(callback);
         }
 
-        private void HandleKeyDown(object sender, KeyboardEventArgs args)
+        private void HandleKeyDown(Keys key)
         {
-            if(!_keyDownBindings.Keys.Contains(args.WhichKey)) return;
+            if(!_keyDownBindings.Keys.Contains(key)) return;
 
-            _keyDownBindings[args.WhichKey].ForEach(e => e.Invoke());
+            _keyDownBindings[key].ForEach(e => e.Invoke());
         }
 
-        private void HandleKeyUp(object sender, KeyboardEventArgs args)
+        private void HandleKeyUp(Keys key)
         {
-            if (!_keyUpBindings.Keys.Contains(args.WhichKey)) return;
+            if (!_keyUpBindings.Keys.Contains(key)) return;
 
-            _keyUpBindings[args.WhichKey].ForEach(e => e.Invoke());
+            _keyUpBindings[key].ForEach(e => e.Invoke());
         }
     }
 }

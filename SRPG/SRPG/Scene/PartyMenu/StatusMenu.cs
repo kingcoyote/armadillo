@@ -28,7 +28,7 @@ namespace SRPG.Scene.PartyMenu
                         Y = 125 + (int)(font.LineSpacing * 1.5 * i),
                         Color = Color.White
                     });
-                Objects["party/" + character.Name].MouseClick += (sender, args) => ((PartyMenuScene) Scene).SetCharacter(character);
+                //Objects["party/" + character.Name].MouseClick += (sender, args) => ((PartyMenuScene) Scene).SetCharacter(character);
             }
         }
 
@@ -101,9 +101,9 @@ namespace SRPG.Scene.PartyMenu
             Objects.Add("stat/accessory", new TextObject { Font = font, Y = (int)(125 + font.LineSpacing * 13.5), X = 500, Value = accessoryName, Color = Color.Yellow });
 
             // when you click on one of the equipped items, display a list of items that can be used in that slot...
-            Objects["stat/weapon"].MouseClick += ChangeWeapon;
-            Objects["stat/armor"].MouseClick += ChangeArmor;
-            Objects["stat/accessory"].MouseClick += ChangeAccessory;
+            //Objects["stat/weapon"].MouseClick += ChangeWeapon;
+            //Objects["stat/armor"].MouseClick += ChangeArmor;
+            //Objects["stat/accessory"].MouseClick += ChangeAccessory;
 
             var abilities = _character.GetAbilities();
             var x = 0;
@@ -129,19 +129,19 @@ namespace SRPG.Scene.PartyMenu
             }
         }
 
-        private void ChangeWeapon(object sender, MouseEventArgs args)
+        private void ChangeWeapon()
         {
             var weapons = (from item in ((SRPGGame) Game).Inventory where item.ItemType == _character.WeaponTypes select item);
             GenerateItemMenu(weapons.ToList());
         }
 
-        private void ChangeArmor(object sender, MouseEventArgs args)
+        private void ChangeArmor()
         {
             var armors = (from item in ((SRPGGame)Game).Inventory where item.ItemType == _character.ArmorTypes select item);
             GenerateItemMenu(armors.ToList());
         }
 
-        private void ChangeAccessory(object sender, MouseEventArgs args)
+        private void ChangeAccessory()
         {
             var accessories = (from item in ((SRPGGame)Game).Inventory where item.ItemType == ItemType.Accessory select item);
             GenerateItemMenu(accessories.ToList());
@@ -168,7 +168,7 @@ namespace SRPG.Scene.PartyMenu
                         Color = Color.White
                     });
                 
-                Objects["selectable item/" + i].MouseClick += (sender, args) =>
+                //Objects["selectable item/" + i].MouseClick += (sender, args) =>
                     {
                         ((SRPGGame) Game).EquipCharacter(_character, tempItem);
                         UpdateObjects();
@@ -176,8 +176,8 @@ namespace SRPG.Scene.PartyMenu
                         ClearItemPreview();
                     };
 
-                Objects["selectable item/" + i].MouseOver += (sender, args) => SetItemPreview(tempItem);
-                Objects["selectable item/" + i].MouseOut += (sender, args) => ClearItemPreview();
+                //Objects["selectable item/" + i].MouseOver += (sender, args) => SetItemPreview(tempItem);
+                //Objects["selectable item/" + i].MouseOut += (sender, args) => ClearItemPreview();
 
                 i++;
             }

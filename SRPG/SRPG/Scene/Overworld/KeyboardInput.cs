@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
+using Nuclex.Input;
 using SRPG.Data;
 using Torch;
 
@@ -14,8 +15,8 @@ namespace SRPG.Scene.Overworld
 
         public KeyboardInput(Torch.Scene scene) : base(scene)
         {
-            KeyDown += HandleKeyDown;
-            KeyUp += HandleKeyUp;
+            var keyboard = ((InputManager) scene.Game.Services.GetService(typeof (IInputService))).GetKeyboard();
+            keyboard.KeyPressed += HandleKeyDown;
 
             _controls.Add("left", Keys.A);
             _controls.Add("right", Keys.D);
@@ -26,28 +27,23 @@ namespace SRPG.Scene.Overworld
             _controls.Add("interact", Keys.E);
         }
 
-        public void HandleKeyDown(object sender, KeyboardEventArgs args)
+        public void HandleKeyDown(Keys key)
         {
             var scene = ((OverworldScene) Scene);
 
-            if (args.WhichKey == _controls["party menu"])
+            if (key == _controls["party menu"])
             {
                 scene.OpenPartyMenu();
             }
-            else if (args.WhichKey == _controls["config menu"])
+            else if (key == _controls["config menu"])
             {
                 ((SRPGGame)Game).ChangeScenes("options");
             }
-            else if (args.WhichKey == _controls["interact"])
+            else if (key == _controls["interact"])
             {
                 ((OverworldScene) Scene).Interact();
             }
 
-        }
-
-        public void HandleKeyUp(object sender, KeyboardEventArgs args)
-        {
-            
         }
     }
 }

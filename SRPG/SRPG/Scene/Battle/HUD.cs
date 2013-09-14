@@ -22,12 +22,12 @@ namespace SRPG.Scene.Battle
 
             Objects.Add("end turn", new TextObject { Font = font, X = 315, Y = (int)(35 + font.LineSpacing * 1.5), Alignment = TextObject.AlignTypes.Right, Color = Color.White, Value = "End" });
 
-            Objects["end turn"].MouseRelease += EndPlayerTurn;
+            //Objects["end turn"].MouseRelease += EndPlayerTurn;
 
-            KeyDown += CheckCancel;
+            //KeyDown += CheckCancel;
         }
 
-        private void EndPlayerTurn(object sender, MouseEventArgs e)
+        private void EndPlayerTurn()
         {
             ((BattleScene) Scene).EndPlayerTurn();
         }
@@ -42,11 +42,9 @@ namespace SRPG.Scene.Battle
             ((TextObject)Objects["end turn"]).Value = ((BattleScene)Scene).FactionTurn == 0 ? "End Turn" : "";
         }
 
-        private void CheckCancel(object sender, KeyboardEventArgs args)
+        private void CheckCancel()
         {
-            if (args.WhichKey != Keys.Escape) return;
 
-            ((BattleScene) sender).Cancel();
         }
     }
 }

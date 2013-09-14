@@ -57,7 +57,7 @@ namespace SRPG.Scene.Battle
                 Y = Objects["box"].Y + 10 + (int)(i * font.LineSpacing * 1.5),
                 Alignment = TextObject.AlignTypes.Center,
                 Value = "Execute!",
-                MouseRelease = (sender, args) => ((BattleScene)Scene).ExecuteQueuedCommands()
+                //MouseRelease = (sender, args) => ((BattleScene)Scene).ExecuteQueuedCommands()
             });
         }
     }
