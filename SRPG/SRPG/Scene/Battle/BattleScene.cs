@@ -75,11 +75,11 @@ namespace SRPG.Scene.Battle
 
             QueuedCommands = new List<Command>();
 
-            _characterStats = new CharacterStats(this) { ZIndex = 5000, Visible = false};
-            _hud = new HUD(this) { ZIndex = 5000 };
-            _queuedCommands = new QueuedCommands(this) { ZIndex = 5000, Visible = false };
-            _hitLayer = new HitLayer(this) { ZIndex = 5000 };
-            _abilityStatLayer = new AbilityStatLayer(this) { ZIndex = 5000, Visible = false };
+            _characterStats = new CharacterStats(this) { DrawOrder = 5000, Visible = false};
+            _hud = new HUD(this) { DrawOrder = 5000 };
+            _queuedCommands = new QueuedCommands(this) { DrawOrder = 5000, Visible = false };
+            _hitLayer = new HitLayer(this) { DrawOrder = 5000 };
+            _abilityStatLayer = new AbilityStatLayer(this) { DrawOrder = 5000, Visible = false };
 
             Components.Add(_characterStats);
             Components.Add(_hud);
@@ -339,6 +339,8 @@ namespace SRPG.Scene.Battle
             var partyGrid = new List<Point>();
 
             _battleBoard = new BattleBoardLayer(this);
+
+            Components.Add(_battleBoard);
 
             switch(battleName)
             {
