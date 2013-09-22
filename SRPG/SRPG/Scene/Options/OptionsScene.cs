@@ -14,11 +14,11 @@ namespace SRPG.Scene.Options
         {
             base.Initialize();
 
-            var keyboard = new KeyboardInputLayer(this);
+            var keyboard = new KeyboardInputLayer(this, null);
             keyboard.AddKeyDownBinding(Keys.Escape, () => Game.ChangeScenes("overworld"));
 
             Components.Add(keyboard);
-            Components.Add(new Menu(this));
+            Components.Add(new Menu(this, null));
         }
 
         public override void Start()

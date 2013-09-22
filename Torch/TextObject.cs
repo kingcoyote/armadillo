@@ -52,7 +52,7 @@ namespace Torch
 
             for(var i = 0; i < printedLines.Count; i++)
             {
-                PrintString(spriteBatch, printedLines[i], Alignment, X, Y + Font.LineSpacing * i);
+                PrintString(spriteBatch, printedLines[i], Alignment, (int)X, (int)Y + Font.LineSpacing * i);
             }
 
             spriteBatch.End();

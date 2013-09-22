@@ -8,7 +8,7 @@ namespace SRPG.Scene.Shop
 {
     class ShopInventory : Inventory
     {
-        public ShopInventory(Torch.Scene scene, List<Item> inventory) : base(scene, inventory)
+        public ShopInventory(Torch.Scene scene, Torch.Object parent, List<Item> inventory) : base(scene, parent, inventory)
         {
         }
     }

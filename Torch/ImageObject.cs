@@ -40,7 +40,7 @@ namespace Torch
             var spriteBatch = new SpriteBatch(GraphicsDevice);
             
             spriteBatch.Begin();
-            spriteBatch.Draw(_image, new Rectangle(X, Y, Width, Height), SourceRectangle, Color.White);
+            spriteBatch.Draw(_image, new Rectangle((int)X, (int)Y, Width, Height), SourceRectangle, Color.White);
             spriteBatch.End();
         }
     }

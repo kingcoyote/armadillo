@@ -10,7 +10,7 @@ namespace SRPG.Scene.PartyMenu
 {
     class SettingsMenu : SubmenuLayer
     {
-        public SettingsMenu(Torch.Scene scene) : base(scene)
+        public SettingsMenu(Torch.Scene scene, Torch.Object parent) : base(scene, parent)
         {
             //Objects.Add("settings", new TextObject(Game)
             //    {

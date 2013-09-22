@@ -14,7 +14,7 @@ namespace SRPG.Scene.Battle
     {
         public Combatant Character { get; private set; }
         
-        public CharacterStats(Torch.Scene scene) : base(scene)
+        public CharacterStats(Torch.Scene scene, Torch.Object parent) : base(scene, parent)
         {
             var font = FontManager.Get("Menu");
 

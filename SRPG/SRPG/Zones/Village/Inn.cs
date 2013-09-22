@@ -12,11 +12,11 @@ namespace SRPG.Zones.Village
 {
     class Inn : Zone
     {
-        public Inn(Game game) : base(game)
+        public Inn(Game game, Torch.Object parent) : base(game)
         {
             Name = "Village Inn";
             Sandbag = Grid.FromBitmap(Game.Services, "Zones/Village/Inn/sandbag");
-            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Inn/inn"));
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Village/Inn/inn"));
             Doors.Add(new Door { Location = new Rectangle(53*6, 95*6, 13*6, 2), Zone = "village/village", ZoneDoor = "inn exit", Name = "entrance", Orientation = Direction.Up });
         }
     }

@@ -16,7 +16,7 @@ namespace SRPG.Scene.MainMenu
         {
             base.Initialize();
 
-            Components.Add(new BackgroundLayer(this, "MainMenu/bg") { DrawOrder = -10000 });
+            Components.Add(new BackgroundLayer(this, null, "MainMenu/bg") { DrawOrder = -10000 });
             _menuOptionsDialog = new MenuOptionsDialog();
 
             _menuOptionsDialog.OnExitPressed += (s, a) => Game.Exit();

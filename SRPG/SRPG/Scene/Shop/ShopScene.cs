@@ -23,22 +23,22 @@ namespace SRPG.Scene.Shop
         {
             Components.Clear();
 
-            var keyboard = new KeyboardInputLayer(this);
+            var keyboard = new KeyboardInputLayer(this, null);
             keyboard.AddKeyDownBinding(Keys.Escape, () => Game.ChangeScenes("overworld"));
             Components.Add(keyboard);
 
-            Components.Add(new Background(this));
+            Components.Add(new Background(this, null));
 
             // store inventory layer
-            _playerInventory = new PlayerInventory(this, ((SRPGGame)Game).Inventory) { X = Game.GraphicsDevice.Viewport.Width - 400, Y = 50 };
+            _playerInventory = new PlayerInventory(this, null, ((SRPGGame)Game).Inventory) { X = Game.GraphicsDevice.Viewport.Width - 400, Y = 50 };
             Components.Add(_playerInventory);
 
             // player inventory layer
-            _shopInventory = new ShopInventory(this, _inventory) { X = 50, Y = 50 };
+            _shopInventory = new ShopInventory(this, null, _inventory) { X = 50, Y = 50 };
             Components.Add(_shopInventory);
 
-            Components.Add(new Options(this));
-            Components.Add(new PlayerStats(this));
+            Components.Add(new Options(this, null));
+            Components.Add(new PlayerStats(this, null));
 
             // buy selected
             // sell selected

@@ -124,7 +124,7 @@ namespace SRPG.Data
             }
         }
 
-        public static Avatar GenerateAvatar(Microsoft.Xna.Framework.Game game, string className)
+        public static Avatar GenerateAvatar(Microsoft.Xna.Framework.Game game, Torch.Object parent, string className)
         {
             Avatar character;
 
@@ -138,7 +138,7 @@ namespace SRPG.Data
                     spriteHeight = 100;
                     character = new Avatar(game)
                     {
-                        Sprite = new SpriteObject(game, "Characters/fighter"),
+                        Sprite = new SpriteObject(game, parent, "Characters/fighter"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -157,7 +157,7 @@ namespace SRPG.Data
                     spriteHeight = 75;
                     character = new Avatar(game)
                     {
-                        Sprite = new SpriteObject(game, "Characters/TempRanger"),
+                        Sprite = new SpriteObject(game, parent, "Characters/TempRanger"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -176,7 +176,7 @@ namespace SRPG.Data
                     spriteHeight = 100;
                     character = new Avatar(game)
                     {
-                        Sprite = new SpriteObject(game, "Characters/cleric"),
+                        Sprite = new SpriteObject(game, parent, "Characters/cleric"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -195,7 +195,7 @@ namespace SRPG.Data
                     spriteHeight = 100;
                     character = new Avatar(game)
                     {
-                        Sprite = new SpriteObject(game, "Characters/wizard"),
+                        Sprite = new SpriteObject(game, parent, "Characters/wizard"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -214,7 +214,7 @@ namespace SRPG.Data
                     spriteHeight = 75;
                     character = new Avatar(game)
                     {
-                        Sprite = new SpriteObject(game, "Characters/TempMonk"),
+                        Sprite = new SpriteObject(game, parent, "Characters/TempMonk"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };
@@ -233,7 +233,7 @@ namespace SRPG.Data
                     spriteHeight = 100;
                     character = new Avatar(game)
                     {
-                        Sprite = new SpriteObject(game, "Characters/guard"),
+                        Sprite = new SpriteObject(game, parent, "Characters/guard"),
                         FeetWidth = 40,
                         FeetHeight = 25
                     };

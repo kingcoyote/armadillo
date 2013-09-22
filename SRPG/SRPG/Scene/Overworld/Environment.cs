@@ -19,7 +19,7 @@ namespace SRPG.Scene.Overworld
         private Avatar _avatar;
         private readonly Dictionary<string, Avatar> _characters = new Dictionary<string, Avatar>();
 
-        public Environment(Torch.Scene scene) : base(scene) { }
+        public Environment(Torch.Scene scene, Torch.Object parent) : base(scene, parent) { }
 
         public void SetZone(Zone zone)
         {
@@ -109,7 +109,7 @@ namespace SRPG.Scene.Overworld
             {
                 _characters[character].Sprite.X = (int)_zone.Characters[character].Location.X;
                 _characters[character].Sprite.Y = (int)_zone.Characters[character].Location.Y;
-                _characters[character].Sprite.DrawOrder = _characters[character].Sprite.Y - ((_characters[character])).Sprite.Height;
+                _characters[character].Sprite.DrawOrder = (int)_characters[character].Sprite.Y - ((_characters[character])).Sprite.Height;
             }
         }
     }

@@ -12,7 +12,7 @@ namespace SRPG.Scene.PartyMenu
     {
         private Combatant _character;
 
-        public StatusMenu(Torch.Scene scene) : base(scene)
+        public StatusMenu(Torch.Scene scene, Torch.Object parent) : base(scene, parent)
         {
 
             var font = FontManager.Get("Menu");

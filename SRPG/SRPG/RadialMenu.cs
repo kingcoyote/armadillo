@@ -17,7 +17,7 @@ namespace SRPG
 
         public Action OnExit;
 
-        public RadialMenu(Torch.Scene scene) : base(scene) { }
+        public RadialMenu(Torch.Scene scene, Torch.Object parent) : base(scene, parent) { }
 
         public void AddOption(string name, SpriteObject icon)
         {

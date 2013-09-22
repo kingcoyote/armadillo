@@ -11,7 +11,7 @@ namespace SRPG.Scene.PartyMenu
 {
     class InventoryMenu : SubmenuLayer
     {
-        public InventoryMenu(Torch.Scene scene) : base(scene) { }
+        public InventoryMenu(Torch.Scene scene, Torch.Object parent) : base(scene, parent) { }
 
         public override void Reset()
         {

@@ -10,7 +10,7 @@ namespace SRPG.Scene.Battle
 {
     class QueuedCommands : Layer
     {
-        public QueuedCommands(Torch.Scene scene) : base(scene)
+        public QueuedCommands(Torch.Scene scene, Torch.Object parent) : base(scene, parent)
         {
             
             //Objects.Add("box", new TextureObject { Color = Color.Blue, X = 25, Y = 0, Width = 250, Height = 0 });

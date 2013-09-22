@@ -19,13 +19,13 @@ namespace SRPG.Scene.PartyMenu
         {
             base.Initialize();
 
-            var keyboard = new KeyboardInputLayer(this);
+            var keyboard = new KeyboardInputLayer(this, null);
             keyboard.AddKeyDownBinding(Keys.Escape, () => Game.ChangeScenes("overworld"));
             Components.Add(keyboard);
-            _menu = new Menu(this);
-            _statusMenu = new StatusMenu(this);
-            _inventoryMenu = new InventoryMenu(this);
-            _settingsMenu = new SettingsMenu(this);
+            _menu = new Menu(this, null);
+            _statusMenu = new StatusMenu(this, null);
+            _inventoryMenu = new InventoryMenu(this, null);
+            _settingsMenu = new SettingsMenu(this, null);
 
             Components.Add(_menu);
             Components.Add(_statusMenu);

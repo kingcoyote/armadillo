@@ -12,17 +12,17 @@ namespace SRPG.Zones.Village
 {
     public class Village : Zone
     {
-        public Village(Game game) : base(game)
+        public Village(Game game, Torch.Object parent) : base(game)
         {
             Name = "Desert Village";
             Sandbag = Grid.FromBitmap(Game.Services, "Zones/Village/Village/sandbag");
             
-            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Village/village"));
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Village/Village/village"));
 
-            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Village/inn") { X = 840, Y = 1372, DrawOrder = 1752 });
-            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Village/warehouse") { X = 155, Y = 1300, DrawOrder = 1918 });
-            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Village/well") { X = 1400, Y = 863, DrawOrder = 977 });
-            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Village/Posts1") { X = 70, Y = 1940, DrawOrder = 2100 });
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Village/Village/inn") { X = 840, Y = 1372, DrawOrder = 1752 });
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Village/Village/warehouse") { X = 155, Y = 1300, DrawOrder = 1918 });
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Village/Village/well") { X = 1400, Y = 863, DrawOrder = 977 });
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Village/Village/Posts1") { X = 70, Y = 1940, DrawOrder = 2100 });
 
             Doors.Add(new Door { Location = new Rectangle(1442, 2057, 171, 37), Name = "coliseum", Orientation = Direction.Up, Zone = "coliseum/halls", ZoneDoor = "village" });
             

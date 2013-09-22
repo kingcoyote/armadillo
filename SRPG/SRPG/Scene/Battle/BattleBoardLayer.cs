@@ -28,11 +28,11 @@ namespace SRPG.Scene.Battle
 
         private BattleBoard _board;
 
-        public BattleBoardLayer(Torch.Scene scene) : base(scene) { }
+        public BattleBoardLayer(Torch.Scene scene, Torch.Object parent) : base(scene, parent) { }
 
         public void SetBackground(string imageName)
         {
-            _bg = new ImageObject(Game, imageName) { DrawOrder = -1 };
+            _bg = new ImageObject(Game, this, imageName) { DrawOrder = -1 };
             Components.Add(_bg);
             Width = _bg.Width;
             Height = _bg.Height;
@@ -58,7 +58,7 @@ namespace SRPG.Scene.Battle
             {
                 character.Avatar.Sprite.X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width / 2.0);
                 character.Avatar.Sprite.Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0);
-                character.Avatar.Sprite.DrawOrder = character.Avatar.Sprite.Y;
+                character.Avatar.Sprite.DrawOrder = (int)character.Avatar.Sprite.Y;
                 // todo : Objects.Add("character/" + character.Name, character.Avatar.Sprite);
                 // todo : Objects["character/" + character.Name].MouseClick = MouseClickCharacter(character);
             }
@@ -210,7 +210,7 @@ namespace SRPG.Scene.Battle
                 {
                     if (_grid.Weight[i, j] > 128)
                     {
-                        var gridCell = new SpriteObject(Game, "Battle/gridhighlight") { X = i*50, Y = j*50, DrawOrder = 10 };
+                        var gridCell = new SpriteObject(Game, this, "Battle/gridhighlight") { X = i*50, Y = j*50, DrawOrder = 10 };
                         gridCell.AddAnimation("Normal", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 0 });
                         gridCell.AddAnimation("Selectable", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 50 });
                         gridCell.AddAnimation("Targetted", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 100 });

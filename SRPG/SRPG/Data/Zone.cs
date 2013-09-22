@@ -35,28 +35,28 @@ namespace SRPG.Data
 
         public Zone(Game game) : base(game) { }
 
-        public static Zone Factory(Game game, string name)
+        public static Zone Factory(Game game, Torch.Object parent, string name)
         {
             switch(name)
             {
                 case "kakariko/village":
-                    return new Zones.Kakariko.Village(game);
+                    return new Zones.Kakariko.Village(game, parent);
                 case "kakariko/bombshop":
-                    return new Zones.Kakariko.Bombshop(game);
+                    return new Zones.Kakariko.Bombshop(game, parent);
                 case "kakariko/inn":
-                    return new Zones.Kakariko.Inn(game);
+                    return new Zones.Kakariko.Inn(game, parent);
 
                 case "village/village":
-                    return new Zones.Village.Village(game);
+                    return new Zones.Village.Village(game, parent);
                 case "village/warehouse":
-                    return new Zones.Village.Warehouse(game);
+                    return new Zones.Village.Warehouse(game, parent);
                 case "village/inn":
-                    return new Zones.Village.Inn(game);
+                    return new Zones.Village.Inn(game, parent);
 
                 case "coliseum/cell":
-                    return new Zones.Coliseum.Cell(game);
+                    return new Zones.Coliseum.Cell(game, parent);
                 case "coliseum/halls":
-                    return new Zones.Coliseum.Halls(game);
+                    return new Zones.Coliseum.Halls(game, parent);
 
                 default:
                     throw new ZoneException(String.Format("Unable to generate unknown zone '{0}'.", name));
@@ -77,7 +77,7 @@ namespace SRPG.Data
 
         public EventHandler<InteractEventArgs> SimpleDoor(string zone, string zonedoor)
         {
-            return (sender, args) => ((OverworldScene) sender).SetZone(Factory(Game, zone), zonedoor);
+            return (sender, args) => ((OverworldScene) sender).SetZone(Factory(Game, null, zone), zonedoor);
         }
 
         public EventHandler<InteractEventArgs> SimpleMerchant(string filename, string merchantname)

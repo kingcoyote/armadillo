@@ -16,17 +16,17 @@ namespace SRPG.Scene.Intro
         {
             base.Initialize();
 
-            var keyboardLayer = new KeyboardInputLayer(this);
+            var keyboardLayer = new KeyboardInputLayer(this, null);
 
             keyboardLayer.AddKeyDownBinding(Keys.Escape, Skip);
             keyboardLayer.AddKeyDownBinding(Keys.Space, NextSlide);
 
             Components.Add(keyboardLayer);
 
-            _slides.Add(new CreditSlide(this) { Visible = false });
+            _slides.Add(new CreditSlide(this, null) { Visible = false });
             Components.Add(_slides[0]);
 
-            _slides.Add(new XnaSlide(this) { Visible = false });
+            _slides.Add(new XnaSlide(this, null) { Visible = false });
             Components.Add(_slides[1]);
 
             _slides[_currentSlide].X = 0;

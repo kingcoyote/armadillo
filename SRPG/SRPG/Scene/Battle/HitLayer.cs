@@ -11,7 +11,7 @@ namespace SRPG.Scene.Battle
         private readonly Dictionary<string, int> _displayedHits = new Dictionary<string, int>();
         private readonly Dictionary<string, float> _hitLocations = new Dictionary<string, float>();
         
-        public HitLayer(Torch.Scene scene) : base(scene) { }
+        public HitLayer(Torch.Scene scene, Torch.Object parent) : base(scene, parent) { }
 
         public void DisplayHit(int amount, Color color, Point target)
         {

@@ -13,7 +13,7 @@ namespace SRPG.Scene.Overworld
     {
         private readonly Dictionary<string, Keys> _controls = new Dictionary<string, Keys>(); 
 
-        public KeyboardInput(Torch.Scene scene) : base(scene)
+        public KeyboardInput(Torch.Scene scene, Torch.Object parent) : base(scene, parent)
         {
             var keyboard = ((InputManager) scene.Game.Services.GetService(typeof (IInputService))).GetKeyboard();
             keyboard.KeyPressed += HandleKeyDown;

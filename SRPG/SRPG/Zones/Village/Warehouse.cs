@@ -11,12 +11,12 @@ namespace SRPG.Zones.Village
 {
     class Warehouse : Zone
     {
-        public Warehouse(Microsoft.Xna.Framework.Game game) : base(game)
+        public Warehouse(Microsoft.Xna.Framework.Game game, Torch.Object parent) : base(game)
         {
             Name = "Village Warehouse";
             Sandbag = Grid.FromBitmap(Game.Services, "Zones/Village/Warehouse/sandbag");
 
-            ImageLayers.Add(new ImageObject(Game, "Zones/Village/Warehouse/warehouse"));
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Village/Warehouse/warehouse"));
 
             Doors.Add(new Door { Location = new Rectangle(56*6, 130*6, 10*6, 1), Name = "entrance", Orientation = Direction.Up, Zone = "village/village", ZoneDoor = "warehouse exit"});
         }

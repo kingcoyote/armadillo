@@ -9,13 +9,13 @@ namespace SRPG.Zones.Kakariko
 {
     class Inn : Zone
     {
-        public Inn(Game game) : base(game)
+        public Inn(Game game, Torch.Object parent) : base(game)
         {
             Name = "Kakariko Inn";
             Sandbag = Grid.FromBitmap(Game.Services, "Zones/Kakariko/Inn/sandbag");
             ImageLayers = new List<ImageObject>
                 {
-                    new ImageObject(Game, "Zones/Kakariko/Inn/inn") { DrawOrder = -1},
+                    new ImageObject(Game, parent, "Zones/Kakariko/Inn/inn") { DrawOrder = -1},
                 };
 
             Objects = new List<InteractiveObject>();

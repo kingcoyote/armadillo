@@ -61,7 +61,7 @@ namespace SRPG
         {
             ChangeScenes("overworld");
 
-            ((OverworldScene) Scenes["overworld"]).SetZone(Zone.Factory(this, "coliseum/cell"), "bed");
+            ((OverworldScene) Scenes["overworld"]).SetZone(Zone.Factory(this, null, "coliseum/cell"), "bed");
 
             BeginNewGame();
         }

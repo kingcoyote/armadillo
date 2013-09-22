@@ -7,19 +7,19 @@ namespace SRPG.Zones.Kakariko
 {
     class Village : Zone
     {
-        public Village(Microsoft.Xna.Framework.Game game) : base(game)
+        public Village(Microsoft.Xna.Framework.Game game, Torch.Object parent) : base(game)
         {
 
             Name = "Kakariko Village";
             Sandbag = Grid.FromBitmap(Game.Services, "Zones/Kakariko/village/sandbag");
             ImageLayers = new List<ImageObject>
                 {
-                    new ImageObject(Game, "Zones/Kakariko/Village/village") {DrawOrder = -1}, 
-                    new ImageObject(Game, "Zones/Kakariko/Village/arch") {X = 2568, Y = 2784, DrawOrder = 2925}, 
-                    new ImageObject(Game, "Zones/Kakariko/Village/house_1") {X = 1728, Y = 336, DrawOrder = 587},
-                    new ImageObject(Game, "Zones/Kakariko/Village/mailbox") {X = 483, Y = 1152, DrawOrder = 1224},
-                    new ImageObject(Game, "Zones/Kakariko/Village/cave") {X = 534, Y = 565, DrawOrder = 660},
-                    new ImageObject(Game, "Zones/Kakariko/Village/bombshop") {X = 240, Y = 2544, DrawOrder = 2750},
+                    new ImageObject(Game, parent, "Zones/Kakariko/Village/village") {DrawOrder = -1}, 
+                    new ImageObject(Game, parent, "Zones/Kakariko/Village/arch") {X = 2568, Y = 2784, DrawOrder = 2925}, 
+                    new ImageObject(Game, parent, "Zones/Kakariko/Village/house_1") {X = 1728, Y = 336, DrawOrder = 587},
+                    new ImageObject(Game, parent, "Zones/Kakariko/Village/mailbox") {X = 483, Y = 1152, DrawOrder = 1224},
+                    new ImageObject(Game, parent, "Zones/Kakariko/Village/cave") {X = 534, Y = 565, DrawOrder = 660},
+                    new ImageObject(Game, parent, "Zones/Kakariko/Village/bombshop") {X = 240, Y = 2544, DrawOrder = 2750},
                 };
 
             Objects = new List<InteractiveObject>();

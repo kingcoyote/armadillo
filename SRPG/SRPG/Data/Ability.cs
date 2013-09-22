@@ -149,7 +149,7 @@ namespace SRPG.Data
 
         protected void SetIcon(string iconName, int i)
         {
-            Icon = new SpriteObject(Game, "Abilities/" + iconName) {Height = 50, Width = 50};
+            Icon = new SpriteObject(Game, null, "Abilities/" + iconName) {Height = 50, Width = 50};
             Icon.AddAnimation(Name,
                               new SpriteAnimation
                                   {

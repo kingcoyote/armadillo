@@ -10,9 +10,9 @@ namespace SRPG.Scene.Shop
 {
     class Background : Layer
     {
-        public Background(Torch.Scene scene) : base(scene)
+        public Background(Torch.Scene scene, Torch.Object parent) : base(scene, parent)
         {
-            Components.Add(new TextureObject(Game)
+            Components.Add(new TextureObject(Game, this)
             {
                 Color = Color.Blue,
                 Width = Game.GraphicsDevice.Viewport.Width,

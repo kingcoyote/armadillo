@@ -8,7 +8,7 @@ namespace SRPG.Scene.PartyMenu
 {
     abstract class SubmenuLayer : Layer
     {
-        protected SubmenuLayer(Torch.Scene scene) : base(scene) { }
+        protected SubmenuLayer(Torch.Scene scene, Torch.Object parent) : base(scene, parent) { }
 
         public virtual void Reset()
         {

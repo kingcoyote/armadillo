@@ -11,7 +11,7 @@ namespace SRPG.Scene.Options
 {
     class Menu : Layer
     {
-        public Menu(Torch.Scene scene) : base(scene)
+        public Menu(Torch.Scene scene, Torch.Object parent) : base(scene, parent)
         {
 
             var font = FontManager.Get("Menu");

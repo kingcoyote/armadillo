@@ -323,7 +323,7 @@ namespace SRPG.Data
             var nodeList = JObject.Parse(settingString);
 
             combatant.Class = nodeList[templateName]["class"].ToString();
-            combatant.Avatar = Avatar.GenerateAvatar(game, nodeList[templateName]["avatar"].ToString());
+            combatant.Avatar = Avatar.GenerateAvatar(game, null, nodeList[templateName]["avatar"].ToString());
 
             combatant.CurrentHealth = (int)(nodeList[templateName]["health"]);
             combatant.MaxHealth = (int)(nodeList[templateName]["health"]);

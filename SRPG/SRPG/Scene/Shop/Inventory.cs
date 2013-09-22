@@ -15,7 +15,7 @@ namespace SRPG.Scene.Shop
         private List<Item> _inventory;
         private List<int> _selectedItems = new List<int>();
 
-        public Inventory(Torch.Scene scene, List<Item> inventory) : base(scene)
+        public Inventory(Torch.Scene scene, Torch.Object parent, List<Item> inventory) : base(scene, parent)
         {
             _inventory = inventory;
 

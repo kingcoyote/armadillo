@@ -11,7 +11,7 @@ namespace SRPG.Scene.Shop
 {
     class PlayerStats : Layer
     {
-        public PlayerStats(Torch.Scene scene) : base(scene)
+        public PlayerStats(Torch.Scene scene, Torch.Object parent) : base(scene, parent)
         {
             var font = FontManager.Get("Menu");
 

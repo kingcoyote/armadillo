@@ -14,24 +14,24 @@ namespace SRPG.Scene.PartyMenu
     class Menu : Layer
     {
 
-        public Menu(Torch.Scene scene) : base(scene)
+        public Menu(Torch.Scene scene, Torch.Object parent) : base(scene, parent)
         {
             var cm = (ContentManager)Game.Services.GetService(typeof(ContentManager));
 
             var font = FontManager.Get("Menu");
-            Components.Add(new ImageObject(Game, "PartyMenu/cursor"));
+            Components.Add(new ImageObject(Game, this, "PartyMenu/cursor"));
 
             var screenWidth = Game.GraphicsDevice.Viewport.Width;
 
-            Components.Add(new TextObject(Game) { Color = Color.White, Font = font, Value = "Status", X = screenWidth / 5, Y = 50, Alignment = TextObject.AlignTypes.Center });
-            Components.Add(new TextObject(Game) { Color = Color.White, Font = font, Value = "Inventory", X = screenWidth / 2, Y = 50, Alignment = TextObject.AlignTypes.Center });
-            Components.Add(new TextObject(Game) { Color = Color.White, Font = font, Value = "Settings", X = screenWidth / 5 * 4, Y = 50, Alignment = TextObject.AlignTypes.Center });
+            Components.Add(new TextObject(Game, this) { Color = Color.White, Font = font, Value = "Status", X = screenWidth / 5, Y = 50, Alignment = TextObject.AlignTypes.Center });
+            Components.Add(new TextObject(Game, this) { Color = Color.White, Font = font, Value = "Inventory", X = screenWidth / 2, Y = 50, Alignment = TextObject.AlignTypes.Center });
+            Components.Add(new TextObject(Game, this) { Color = Color.White, Font = font, Value = "Settings", X = screenWidth / 5 * 4, Y = 50, Alignment = TextObject.AlignTypes.Center });
 
             //Objects["status"].MouseClick += ChangeMenu("status menu");
             //Objects["inventory"].MouseClick += ChangeMenu("inventory menu");
             //Objects["settings"].MouseClick += ChangeMenu("settings menu");
 
-            Components.Add(new TextureObject(Game) { Color = Color.Blue, DrawOrder = -1, Width = Game.GraphicsDevice.Viewport.Width, Height = Game.GraphicsDevice.Viewport.Height });
+            Components.Add(new TextureObject(Game, this) { Color = Color.Blue, DrawOrder = -1, Width = Game.GraphicsDevice.Viewport.Width, Height = Game.GraphicsDevice.Viewport.Height });
         }
 
         public override void Update(GameTime gametime)

@@ -12,7 +12,7 @@ namespace SRPG.Scene.Battle
     {
         public Ability Ability;
 
-        public AbilityStatLayer(Torch.Scene scene) : base(scene)
+        public AbilityStatLayer(Torch.Scene scene, Torch.Object parent) : base(scene, parent)
         {
             var x = GraphicsDevice.Viewport.Width - 425;
             var y = GraphicsDevice.Viewport.Height - 225;

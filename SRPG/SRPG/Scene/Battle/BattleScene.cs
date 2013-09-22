@@ -75,11 +75,11 @@ namespace SRPG.Scene.Battle
 
             QueuedCommands = new List<Command>();
 
-            _characterStats = new CharacterStats(this) { DrawOrder = 5000, Visible = false};
-            _hud = new HUD(this) { DrawOrder = 5000 };
-            _queuedCommands = new QueuedCommands(this) { DrawOrder = 5000, Visible = false };
-            _hitLayer = new HitLayer(this) { DrawOrder = 5000 };
-            _abilityStatLayer = new AbilityStatLayer(this) { DrawOrder = 5000, Visible = false };
+            _characterStats = new CharacterStats(this, null) { DrawOrder = 5000, Visible = false};
+            _hud = new HUD(this, null) { DrawOrder = 5000 };
+            _queuedCommands = new QueuedCommands(this, null) { DrawOrder = 5000, Visible = false };
+            _hitLayer = new HitLayer(this, null) { DrawOrder = 5000 };
+            _abilityStatLayer = new AbilityStatLayer(this, null) { DrawOrder = 5000, Visible = false };
 
             Components.Add(_characterStats);
             Components.Add(_hud);
@@ -338,7 +338,7 @@ namespace SRPG.Scene.Battle
             _state = BattleState.PlayerTurn;
             var partyGrid = new List<Point>();
 
-            _battleBoard = new BattleBoardLayer(this);
+            _battleBoard = new BattleBoardLayer(this, null);
 
             Components.Add(_battleBoard);
 
@@ -549,16 +549,16 @@ namespace SRPG.Scene.Battle
             }
 
 
-            var menu = new RadialMenu(this)
+            var menu = new RadialMenu(this, null)
                 {
-                    CenterX = character.Avatar.Sprite.X + character.Avatar.Sprite.Width/2,
-                    CenterY = character.Avatar.Sprite.Y + character.Avatar.Sprite.Height/2,
+                    CenterX = (int)character.Avatar.Sprite.X + character.Avatar.Sprite.Width/2,
+                    CenterY = (int)character.Avatar.Sprite.Y + character.Avatar.Sprite.Height/2,
                     ZIndex = 5000,
                     OnExit = DeselectCharacter
                 };
 
             // move icon, plus event handlers
-            var icon = new SpriteObject(Game, "Battle/Menu/move");
+            var icon = new SpriteObject(Game, menu, "Battle/Menu/move");
             SetCharacterMenuAnimations(icon);
             if (character.CanMove)
             {
@@ -586,7 +586,7 @@ namespace SRPG.Scene.Battle
             menu.AddOption("move", icon);
 
             // attack icon, plus handlers
-            icon = new SpriteObject(Game, "Battle/Menu/attack");
+            icon = new SpriteObject(Game, menu, "Battle/Menu/attack");
             SetCharacterMenuAnimations(icon);
             if (character.CanAct)
             {
@@ -618,7 +618,7 @@ namespace SRPG.Scene.Battle
             menu.AddOption("attack", icon);
 
             // special abilities icon, plus event handlers
-            icon = new SpriteObject(Game, "Battle/Menu/special");
+            icon = new SpriteObject(Game, menu, "Battle/Menu/special");
             SetCharacterMenuAnimations(icon);
             if (character.CanAct)
             {
@@ -634,7 +634,7 @@ namespace SRPG.Scene.Battle
             }
             menu.AddOption("special", icon);
 
-            icon = new SpriteObject(Game, "Battle/Menu/item");
+            icon = new SpriteObject(Game, menu, "Battle/Menu/item");
             SetCharacterMenuAnimations(icon);
             menu.AddOption("item", icon);
 

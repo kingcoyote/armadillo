@@ -8,6 +8,6 @@ namespace SRPG.Scene.Intro
 {
     class XnaSlide : Layer
     {
-        public XnaSlide(Torch.Scene scene) : base(scene) { }
+        public XnaSlide(Torch.Scene scene, Torch.Object parent) : base(scene, parent) { }
     }
 }
