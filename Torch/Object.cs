@@ -30,7 +30,7 @@ namespace Torch
         public virtual float Y { get; set; }
         public virtual int Width { get; set; }
         public virtual int Height { get; set; }
-        public virtual Object Parent { get; private set; }
+        public Object Parent { get; set; }
 
         public virtual Rectangle Rectangle { get { return new Rectangle((int)X, (int)Y, Width, Height); }}
     }

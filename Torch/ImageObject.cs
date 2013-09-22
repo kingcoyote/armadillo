@@ -48,17 +48,8 @@ namespace Torch
                 offsety = Parent.OffsetY();
             }
 
-            var transform = Matrix.CreateTranslation(offsetx, offsety, 0);
-            spriteBatch.Begin(
-                SpriteSortMode.Immediate,
-                BlendState.AlphaBlend,
-                SamplerState.LinearClamp,
-                DepthStencilState.Default,
-                RasterizerState.CullNone,
-                null,
-                transform
-            );
-            spriteBatch.Draw(_image, new Rectangle((int)X, (int)Y, Width, Height), SourceRectangle, Color.White);
+            spriteBatch.Begin();
+            spriteBatch.Draw(_image, new Rectangle((int)X - (int)offsetx, (int)Y - (int)offsety, Width, Height), SourceRectangle, Color.White);
             spriteBatch.End();
         }
     }

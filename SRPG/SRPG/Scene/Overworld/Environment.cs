@@ -31,12 +31,14 @@ namespace SRPG.Scene.Overworld
             var i = 0;
             foreach (var image in zone.ImageLayers)
             {
+                image.Parent = this;
                 Components.Add(image);
                 i++;
             }
 
             foreach(var character in zone.Characters.Keys)
             {
+                zone.Characters[character].Sprite.Parent = this;
                 _characters.Add(character, zone.Characters[character]);
                 Components.Add(zone.Characters[character].Sprite);
             }
@@ -61,27 +63,27 @@ namespace SRPG.Scene.Overworld
             var deadzoneHeight = (int)(screenHeight * (1 - deadzone) / 2);
 
             // if the screen can go to the left and if the avatar is left of the deadzone
-            if(X < 0 && _avatar.Sprite.X < 0 - X + deadzoneWidth)
+            if(X < 0 && _avatar.Location.X < 0 - X + deadzoneWidth)
             {
                 // slide the screen to the left
-                X -= _avatar.Sprite.X - (0 - X + deadzoneWidth);
+                X -= _avatar.Location.X - (0 - X + deadzoneWidth);
             }
             // same thing for the right side
-            else if (0 - X < _width - screenWidth && _avatar.Sprite.X > 0 - X + screenWidth - deadzoneWidth)
+            else if (0 - X < _width - screenWidth && _avatar.Location.X > 0 - X + screenWidth - deadzoneWidth)
             {
-                X -= _avatar.Sprite.X - (0 - X + screenWidth - deadzoneWidth);
+                X -= _avatar.Location.X - (0 - X + screenWidth - deadzoneWidth);
             }
 
             // bottom
-            if (Y < 0 && _avatar.Sprite.Y < 0 - Y + deadzoneHeight)
+            if (Y < 0 && _avatar.Location.Y < 0 - Y + deadzoneHeight)
             {
                 // slide the screen to the left
-                Y -= _avatar.Sprite.Y - (0 - Y + deadzoneHeight);
+                Y -= _avatar.Location.Y - (0 - Y + deadzoneHeight);
             }
             // top
-            else if (0 - Y < _height - screenHeight && _avatar.Sprite.Y > 0 - Y + screenHeight - deadzoneHeight)
+            else if (0 - Y < _height - screenHeight && _avatar.Location.Y > 0 - Y + screenHeight - deadzoneHeight)
             {
-                Y -= _avatar.Sprite.Y - (0 - Y + screenHeight - deadzoneHeight);
+                Y -= _avatar.Location.Y - (0 - Y + screenHeight - deadzoneHeight);
             }
 
             // ensure that there is no black area at the edge of the screen. 

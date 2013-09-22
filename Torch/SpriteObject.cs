@@ -71,19 +71,10 @@ namespace Torch
                 offsety = Parent.OffsetY();
             }
 
-            var transform = Matrix.CreateTranslation(offsetx, offsety, 0);
-            spriteBatch.Begin(
-                SpriteSortMode.Immediate,
-                BlendState.AlphaBlend, 
-                SamplerState.LinearClamp, 
-                DepthStencilState.Default, 
-                RasterizerState.CullNone, 
-                null,
-                transform
-            );
+            spriteBatch.Begin();
             spriteBatch.Draw(
                 _image, 
-                new Vector2(X, Y),
+                new Vector2(X - offsetx, Y - offsety),
                 new Rectangle(a.StartCol + _currentFrame*a.Size.Width, a.StartRow , a.Size.Width, a.Size.Height),
                 Color.White
             );
