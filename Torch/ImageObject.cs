@@ -38,8 +38,26 @@ namespace Torch
         public override void Draw(GameTime gameTime)
         {
             var spriteBatch = new SpriteBatch(GraphicsDevice);
-            
-            spriteBatch.Begin();
+
+            float offsetx = 0;
+            float offsety = 0;
+
+            if (Parent != null)
+            {
+                offsetx = Parent.OffsetX();
+                offsety = Parent.OffsetY();
+            }
+
+            var transform = Matrix.CreateTranslation(offsetx, offsety, 0);
+            spriteBatch.Begin(
+                SpriteSortMode.Immediate,
+                BlendState.AlphaBlend,
+                SamplerState.LinearClamp,
+                DepthStencilState.Default,
+                RasterizerState.CullNone,
+                null,
+                transform
+            );
             spriteBatch.Draw(_image, new Rectangle((int)X, (int)Y, Width, Height), SourceRectangle, Color.White);
             spriteBatch.End();
         }

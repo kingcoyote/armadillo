@@ -16,7 +16,7 @@ namespace Torch
         {
             if (Parent == null) return X;
 
-            return Y + Parent.OffsetY();
+            return X + Parent.OffsetX();
         }
 
         public float OffsetY()

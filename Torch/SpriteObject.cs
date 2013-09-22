@@ -61,7 +61,26 @@ namespace Torch
         {
             var a = _animations[_currentAnimation];
             var spriteBatch = new SpriteBatch(GraphicsDevice);
-            spriteBatch.Begin();
+
+            float offsetx = 0;
+            float offsety = 0;
+
+            if (Parent != null)
+            {
+                offsetx = Parent.OffsetX();
+                offsety = Parent.OffsetY();
+            }
+
+            var transform = Matrix.CreateTranslation(offsetx, offsety, 0);
+            spriteBatch.Begin(
+                SpriteSortMode.Immediate,
+                BlendState.AlphaBlend, 
+                SamplerState.LinearClamp, 
+                DepthStencilState.Default, 
+                RasterizerState.CullNone, 
+                null,
+                transform
+            );
             spriteBatch.Draw(
                 _image, 
                 new Vector2(X, Y),
