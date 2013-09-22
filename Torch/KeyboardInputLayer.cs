@@ -11,7 +11,7 @@ namespace Torch
         private readonly Dictionary<Keys, List<Action>> _keyDownBindings = new Dictionary<Keys, List<Action>>();
         private readonly Dictionary<Keys, List<Action>> _keyUpBindings = new Dictionary<Keys, List<Action>>();
         
-        public KeyboardInputLayer(Scene scene) : base(scene)
+        public KeyboardInputLayer(Scene scene, Torch.Object parent) : base(scene, parent)
         {
             var keyboard = ((InputManager) scene.Game.Services.GetService(typeof (IInputService))).GetKeyboard();
             keyboard.KeyPressed += HandleKeyDown;

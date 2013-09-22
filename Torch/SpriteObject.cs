@@ -7,7 +7,7 @@ namespace Torch
 {
     public class SpriteObject : ImageObject
     {
-        public SpriteObject(Microsoft.Xna.Framework.Game game, string image) : base(game, image) { }
+        public SpriteObject(Microsoft.Xna.Framework.Game game, Torch.Object parent, string image) : base(game, parent, image) { }
         private readonly Dictionary<string, SpriteAnimation> _animations = new Dictionary<string, SpriteAnimation>();
         private string _currentAnimation;
         private int _currentFrame;

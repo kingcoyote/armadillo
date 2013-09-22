@@ -3,16 +3,13 @@ using Microsoft.Xna.Framework;
 
 namespace Torch
 {
-    public abstract class Layer : DrawableGameComponent
+    public abstract class Layer : Object
     {
         public int ZIndex;
-        public float X;
-        public float Y;
         public Scene Scene { get; private set; }
-        public new bool Visible = true;
         public readonly GameComponentCollection Components;
 
-        protected Layer(Scene scene) : base(scene.Game)
+        protected Layer(Scene scene, Object parent) : base(scene.Game, parent)
         {
             Scene = scene;
             Components = new GameComponentCollection();

@@ -20,7 +20,7 @@ namespace Torch
 
         private int _width = -1;
 
-        public TextObject(Microsoft.Xna.Framework.Game game) : base(game) { } 
+        public TextObject(Microsoft.Xna.Framework.Game game, Torch.Object parent) : base(game, parent) { } 
 
         public override int Width
         {

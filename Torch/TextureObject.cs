@@ -11,7 +11,7 @@ namespace Torch
 
         private readonly Texture2D _texture;
 
-        public TextureObject(Microsoft.Xna.Framework.Game game) : base(game)
+        public TextureObject(Microsoft.Xna.Framework.Game game, Torch.Object parent) : base(game, parent)
         {
             _texture = new Texture2D(GraphicsDevice, 1, 1);
         }

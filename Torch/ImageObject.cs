@@ -28,7 +28,7 @@ namespace Torch
             set { _height = value; }
         }
 
-        public ImageObject(Microsoft.Xna.Framework.Game game, string imageName) : base(game)
+        public ImageObject(Microsoft.Xna.Framework.Game game, Torch.Object parent, string imageName) : base(game, parent)
         {
             Content = (ContentManager)(Game.Services.GetService(typeof (ContentManager)));
             _image = Content.Load<Texture2D>(imageName);
@@ -38,6 +38,7 @@ namespace Torch
         public override void Draw(GameTime gameTime)
         {
             var spriteBatch = new SpriteBatch(GraphicsDevice);
+            
             spriteBatch.Begin();
             spriteBatch.Draw(_image, new Rectangle(X, Y, Width, Height), SourceRectangle, Color.White);
             spriteBatch.End();

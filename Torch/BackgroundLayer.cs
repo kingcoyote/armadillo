@@ -11,9 +11,9 @@ namespace Torch
     {
         private readonly Texture2D _backgroundImage;
 
-        public BackgroundLayer(Scene scene, string image) : base(scene)
+        public BackgroundLayer(Scene scene, Torch.Object parent, string image) : base(scene, parent)
         {
-            Components.Add(new ImageObject(Game, image));
+            Components.Add(new ImageObject(Game, this, image));
         }
 
         public override void Update(GameTime gametime) { }
