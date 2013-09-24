@@ -35,8 +35,8 @@ namespace Torch
             };
 
             Gui.Screen.Desktop.Bounds = new UniRectangle(
-              new UniScalar(0.0F, 0.0F), new UniScalar(0.0F, 0.0F),
-              new UniScalar(1.0F, 0.0F), new UniScalar(1.0F, 0.0F)
+              new UniScalar(0.01F, 0.0F), new UniScalar(0.01F, 0.0F),
+              new UniScalar(0.98F, 0.0F), new UniScalar(0.98F, 0.0F)
             );
 
             Gui.UpdateOrder = 1000;
