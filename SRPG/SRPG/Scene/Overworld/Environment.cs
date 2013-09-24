@@ -104,6 +104,7 @@ namespace SRPG.Scene.Overworld
             if (_height > screenHeight)
             {
                 if (Y < 0 - _height + screenHeight) Y = 0 - _height + screenHeight;
+                if (Y > 0) Y = 0;
             }
             else
             {
