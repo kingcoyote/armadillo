@@ -114,10 +114,10 @@ namespace SRPG.Scene.Overworld
             {
                 _characters[character].Sprite.X = (int)_zone.Characters[character].Location.X;
                 _characters[character].Sprite.Y = (int)_zone.Characters[character].Location.Y;
-                _characters[character].Sprite.DrawOrder = (int)_characters[character].Location.Y - ((_characters[character])).Sprite.Height;
+                _characters[character].Sprite.DrawOrder = (int)_characters[character].Location.Y + ((_characters[character])).Sprite.Height;
             }
 
-            _avatar.Sprite.DrawOrder = (int) _avatar.Location.Y - _avatar.Sprite.Height;
+            _avatar.Sprite.DrawOrder = (int) _avatar.Location.Y + _avatar.Sprite.Height;
         }
     }
 }
