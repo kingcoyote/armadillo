@@ -23,6 +23,9 @@ namespace SRPG.Scene.Overworld
 
         public void SetZone(Zone zone)
         {
+            Components.Clear();
+            _characters.Clear();
+
             _zone = zone;
 
             _avatar = ((OverworldScene) Scene).Avatar;
