@@ -49,7 +49,7 @@ namespace Torch
             }
 
             spriteBatch.Begin();
-            spriteBatch.Draw(_image, new Rectangle((int)X - (int)offsetx, (int)Y - (int)offsety, Width, Height), SourceRectangle, Color.White);
+            spriteBatch.Draw(_image, new Rectangle((int)X + (int)offsetx, (int)Y + (int)offsety, Width, Height), SourceRectangle, Color.White);
             spriteBatch.End();
         }
     }

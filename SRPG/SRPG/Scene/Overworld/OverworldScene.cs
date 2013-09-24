@@ -32,12 +32,12 @@ namespace SRPG.Scene.Overworld
         {
             base.Initialize();
 
-            Avatar = Avatar.GenerateAvatar(Game, null, "fighter");
-
             Components.Add(new KeyboardInput(this, null));
             _environment = new Environment(this, null) { DrawOrder = 1 };
             Components.Add(new HUD(this, null) { DrawOrder = 5 });
             Components.Add(_environment);
+
+            Avatar = Avatar.GenerateAvatar(Game, _environment, "fighter");
 
             Gui.DrawOrder = 1000;
             Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_menu.xml");
