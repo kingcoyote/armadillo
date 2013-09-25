@@ -170,6 +170,9 @@
     <Compile Include="Scene\PartyMenu\MenuDialog.Designer.cs">
       <DependentUpon>MenuDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scene\PartyMenu\StatusMenuDialog.Designer.cs">
+      <DependentUpon>StatusMenuDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\Shop\Background.cs" />
     <Compile Include="Scene\Shop\Inventory.cs" />
     <Compile Include="Scene\Shop\Options.cs" />
@@ -208,7 +211,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Scene\PartyMenu\SettingsMenu.cs" />
-    <Compile Include="Scene\PartyMenu\StatusMenu.cs" />
+    <Compile Include="Scene\PartyMenu\StatusMenuDialog.cs" />
     <Compile Include="Scene\PartyMenu\SubmenuLayer.cs" />
     <Compile Include="Scene\Shop\ShopScene.cs" />
     <Compile Include="SRPGGame.cs" />

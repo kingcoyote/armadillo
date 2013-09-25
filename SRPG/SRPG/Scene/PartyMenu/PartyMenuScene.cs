@@ -12,7 +12,7 @@ namespace SRPG.Scene.PartyMenu
         private string _currentMenu = "";
 
         private MenuDialog _menu;
-        private StatusMenu _statusMenu;
+        private StatusMenuDialog _statusMenuDialog;
         private InventoryMenu _inventoryMenu;
         private SettingsMenu _settingsMenu;
 
@@ -24,12 +24,12 @@ namespace SRPG.Scene.PartyMenu
             keyboard.AddKeyDownBinding(Keys.Escape, () => Game.ChangeScenes("overworld"));
             Components.Add(keyboard);
             _menu = new MenuDialog();
-            _statusMenu = new StatusMenu(this, null);
+            _statusMenuDialog = new StatusMenuDialog(((SRPGGame)Game).Party);
             _inventoryMenu = new InventoryMenu(this, null);
             _settingsMenu = new SettingsMenu(this, null);
 
             Gui.Screen.Desktop.Children.Add(_menu);
-            Components.Add(_statusMenu);
+            Gui.Screen.Desktop.Children.Add(_statusMenuDialog);
             Components.Add(_inventoryMenu);
             Components.Add(_settingsMenu);
 
@@ -39,15 +39,6 @@ namespace SRPG.Scene.PartyMenu
             Game.IsMouseVisible = true;
         }
 
-        public override void Start()
-        {
-            base.Start();
-
-            _statusMenu.Visible = false;
-            _inventoryMenu.Visible = false;
-            _settingsMenu.Visible = false;
-        }
-
         public void ReturnToGame()
         {
             Game.ChangeScenes("overworld");
@@ -55,32 +46,12 @@ namespace SRPG.Scene.PartyMenu
 
         public void ChangeMenu(string menu)
         {
-            _statusMenu.Visible = false;
-            _inventoryMenu.Visible = false;
-            _settingsMenu.Visible = false;
 
-            _currentMenu = menu;
-
-            switch(_currentMenu)
-            {
-                case "status":
-                    _statusMenu.Visible = true;
-                    _statusMenu.Reset();
-                    break;
-                case "inventory":
-                    _inventoryMenu.Visible = true;
-                    _inventoryMenu.Reset();
-                    break;
-                case "settings":
-                    _settingsMenu.Visible = true;
-                    _settingsMenu.Reset();
-                    break;
-            }
         }
 
         public void SetCharacter(Combatant character)
         {
-            _statusMenu.SetCharacter(character);
+           
         }
     }
 }
