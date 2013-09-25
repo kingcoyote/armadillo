@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Input;
+using Nuclex.UserInterface.Visuals.Flat;
 using SRPG.Data;
 using Torch;
 
@@ -10,7 +11,7 @@ namespace SRPG.Scene.PartyMenu
 
         private string _currentMenu = "";
 
-        private Menu _menu;
+        private MenuDialog _menu;
         private StatusMenu _statusMenu;
         private InventoryMenu _inventoryMenu;
         private SettingsMenu _settingsMenu;
@@ -22,15 +23,20 @@ namespace SRPG.Scene.PartyMenu
             var keyboard = new KeyboardInputLayer(this, null);
             keyboard.AddKeyDownBinding(Keys.Escape, () => Game.ChangeScenes("overworld"));
             Components.Add(keyboard);
-            _menu = new Menu(this, null);
+            _menu = new MenuDialog();
             _statusMenu = new StatusMenu(this, null);
             _inventoryMenu = new InventoryMenu(this, null);
             _settingsMenu = new SettingsMenu(this, null);
 
-            Components.Add(_menu);
+            Gui.Screen.Desktop.Children.Add(_menu);
             Components.Add(_statusMenu);
             Components.Add(_inventoryMenu);
             Components.Add(_settingsMenu);
+
+            Gui.DrawOrder = 1000;
+            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_menu.xml");
+
+            Game.IsMouseVisible = true;
         }
 
         public override void Start()

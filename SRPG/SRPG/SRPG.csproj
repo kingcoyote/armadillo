@@ -167,6 +167,9 @@
       <DependentUpon>MenuOptionsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Scene\Options\Menu.cs" />
+    <Compile Include="Scene\PartyMenu\MenuDialog.Designer.cs">
+      <DependentUpon>MenuDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\Shop\Background.cs" />
     <Compile Include="Scene\Shop\Inventory.cs" />
     <Compile Include="Scene\Shop\Options.cs" />
@@ -195,7 +198,7 @@
     <Compile Include="Scene\Intro\IntroScene.cs" />
     <Compile Include="Scene\Intro\XnaSlide.cs" />
     <Compile Include="Scene\PartyMenu\InventoryMenu.cs" />
-    <Compile Include="Scene\PartyMenu\Menu.cs" />
+    <Compile Include="Scene\PartyMenu\MenuDialog.cs" />
     <Compile Include="Scene\PartyMenu\PartyMenuScene.cs" />
     <Compile Include="Scene\Options\OptionsScene.cs" />
     <Compile Include="Scene\Overworld\Environment.cs" />
