@@ -12,7 +12,7 @@ namespace SRPG.Scene.PartyMenu
         private string _currentMenu = "";
 
         private MenuDialog _menu;
-        private StatusMenuDialog _statusMenuDialog;
+        private PartyMenuDialog _partyMenuDialog;
         private InventoryMenu _inventoryMenu;
         private SettingsMenu _settingsMenu;
 
@@ -24,12 +24,12 @@ namespace SRPG.Scene.PartyMenu
             keyboard.AddKeyDownBinding(Keys.Escape, () => Game.ChangeScenes("overworld"));
             Components.Add(keyboard);
             _menu = new MenuDialog();
-            _statusMenuDialog = new StatusMenuDialog(((SRPGGame)Game).Party);
+            _partyMenuDialog = new PartyMenuDialog(((SRPGGame)Game).Party);
             _inventoryMenu = new InventoryMenu(this, null);
             _settingsMenu = new SettingsMenu(this, null);
 
             Gui.Screen.Desktop.Children.Add(_menu);
-            Gui.Screen.Desktop.Children.Add(_statusMenuDialog);
+            Gui.Screen.Desktop.Children.Add(_partyMenuDialog);
             Components.Add(_inventoryMenu);
             Components.Add(_settingsMenu);
 

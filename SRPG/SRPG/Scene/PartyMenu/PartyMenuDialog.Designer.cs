@@ -8,7 +8,7 @@ using SRPG.Data;
 
 namespace SRPG.Scene.PartyMenu
 {
-    partial class StatusMenuDialog
+    partial class PartyMenuDialog
     {
         private Dictionary<Combatant, ButtonControl> _partyButtons = new Dictionary<Combatant, ButtonControl>();
 
@@ -16,7 +16,7 @@ namespace SRPG.Scene.PartyMenu
         {
             Bounds = new UniRectangle(
                 new UniScalar(0.0f, 0.0f), new UniScalar(0.0f, 105.0f),
-                new UniScalar(1.0f, 0.0f), new UniScalar(1.0f, -105.0f)
+                new UniScalar(0.2f, 0.0f), new UniScalar(1.0f, -105.0f)
             );
             EnableDragging = false;
 
@@ -27,7 +27,7 @@ namespace SRPG.Scene.PartyMenu
                 partyButton.Text = combatant.Name;
                 partyButton.Bounds = new UniRectangle(
                     new UniScalar(0.0f, 15.0f), new UniScalar(0.0f, (75.0f * i) + 15.0f),
-                    new UniScalar(0.0f, 200.0f), new UniScalar(0.0f, 65.0f)
+                    new UniScalar(1.0f, -30.0f), new UniScalar(0.0f, 65.0f)
                 );
                 Children.Add(partyButton);
             }

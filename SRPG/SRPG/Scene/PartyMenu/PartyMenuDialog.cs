@@ -5,11 +5,11 @@ using SRPG.Data;
 
 namespace SRPG.Scene.PartyMenu
 {
-    partial class StatusMenuDialog : WindowControl
+    partial class PartyMenuDialog : WindowControl
     {
         private List<Combatant> _party;
 
-        public StatusMenuDialog(List<Combatant> party) : base()
+        public PartyMenuDialog(List<Combatant> party) : base()
         {
             _party = party;
 

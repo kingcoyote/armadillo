@@ -25,24 +25,24 @@ namespace SRPG.Scene.PartyMenu
             _statusButton = new ButtonControl();
             _statusButton.Text = "Status";
             _statusButton.Bounds = new UniRectangle(
-                new UniScalar(0.25f, -100.0f), new UniScalar(0.0f, 15.0f),
-                new UniScalar(0.0f, 200.0f), new UniScalar(0.0f, 65.0f)
+                new UniScalar(0.025f, 0.0f), new UniScalar(0.0f, 15.0f),
+                new UniScalar(0.30f, 0.0f), new UniScalar(0.0f, 65.0f)
             );
             Children.Add(_statusButton);
 
             _inventoryButton = new ButtonControl();
             _inventoryButton.Text = "Inventory";
             _inventoryButton.Bounds = new UniRectangle(
-                new UniScalar(0.5f, -100.0f), new UniScalar(0.0f, 15.0f),
-                new UniScalar(0.0f, 200.0f), new UniScalar(0.0f, 65.0f)
+                new UniScalar(0.35f, 0.0f), new UniScalar(0.0f, 15.0f),
+                new UniScalar(0.30f, 0.0f), new UniScalar(0.0f, 65.0f)
             );
             Children.Add(_inventoryButton);
 
             _settingsButton = new ButtonControl();
             _settingsButton.Text = "Settings";
             _settingsButton.Bounds = new UniRectangle(
-                new UniScalar(0.75f, -100.0f), new UniScalar(0.0f, 15.0f),
-                new UniScalar(0.0f, 200.0f), new UniScalar(0.0f, 65.0f)
+                new UniScalar(0.675f, 0.0f), new UniScalar(0.0f, 15.0f),
+                new UniScalar(0.30f, 0.0f), new UniScalar(0.0f, 65.0f)
             );
             Children.Add(_settingsButton);
         }
