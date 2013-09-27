@@ -29,11 +29,11 @@ namespace SRPG.Scene.PartyMenu
                     new UniScalar(0.0f, 15.0f), new UniScalar(0.0f, (75.0f * i) + 15.0f),
                     new UniScalar(1.0f, -30.0f), new UniScalar(0.0f, 65.0f)
                 );
+                partyButton.Pressed += (s, a) => ChangeCharacter(combatant);
                 Children.Add(partyButton);
             }
             // foreach member of the party
             //    create a button for that party member
-
         }
     }
 }

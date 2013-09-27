@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Nuclex.UserInterface.Controls.Desktop;
 using SRPG.Data;
@@ -9,11 +10,19 @@ namespace SRPG.Scene.PartyMenu
     {
         private List<Combatant> _party;
 
-        public PartyMenuDialog(List<Combatant> party) : base()
+        public delegate void PartyMenuDelegate(Combatant combatant);
+        public event PartyMenuDelegate OnCharacterChange;
+
+        public PartyMenuDialog(List<Combatant> party)
         {
             _party = party;
 
             InitializeComponent();
+        }
+
+        private void ChangeCharacter(Combatant combatant)
+        {
+            OnCharacterChange.Invoke(combatant);
         }
     }
 }
