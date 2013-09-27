@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Nuclex.Input;
 using SRPG.Data;
+using SRPG.Scene.Options;
 using Torch;
 
 namespace SRPG.Scene.Overworld
@@ -37,7 +38,7 @@ namespace SRPG.Scene.Overworld
             }
             else if (key == _controls["config menu"])
             {
-                ((SRPGGame)Game).ChangeScenes("options");
+                ((SRPGGame)Game).PushScene(new OptionsScene(((SRPGGame)Game)));
             }
             else if (key == _controls["interact"])
             {

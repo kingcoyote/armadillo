@@ -7,8 +7,6 @@ namespace SRPG.Scene.PartyMenu
 {
     class PartyMenuScene : Torch.Scene
     {
-        public PartyMenuScene(Game game) : base(game) { }
-
         private string _currentMenu = "";
 
         private MenuDialog _menu;
@@ -18,14 +16,12 @@ namespace SRPG.Scene.PartyMenu
         private InventoryMenu _inventoryMenu;
         private SettingsMenu _settingsMenu;
 
-        public override void Initialize()
+        public PartyMenuScene(Game game) : base(game)
         {
-            base.Initialize();
-
             var keyboard = new KeyboardInputLayer(this, null);
-            keyboard.AddKeyDownBinding(Keys.Escape, () => Game.ChangeScenes("overworld"));
+            keyboard.AddKeyDownBinding(Keys.Escape, () => Game.PopScene());
             Components.Add(keyboard);
-            
+
             _menu = new MenuDialog();
             Gui.Screen.Desktop.Children.Add(_menu);
 
@@ -43,13 +39,25 @@ namespace SRPG.Scene.PartyMenu
 
             Gui.DrawOrder = 1000;
             Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_menu.xml");
+        }
+
+        protected override void OnEntered()
+        {
+            base.OnEntered();
 
             Game.IsMouseVisible = true;
         }
 
+        protected override void OnLeaving()
+        {
+            base.OnLeaving();
+
+            Game.IsMouseVisible = false;
+        }
+
         public void ReturnToGame()
         {
-            Game.ChangeScenes("overworld");
+            Game.PopScene();
         }
 
         public void ChangeMenu(string menu)

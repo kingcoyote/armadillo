@@ -69,9 +69,9 @@ namespace SRPG.Scene.Battle
         /// <summary>
         /// Pre-battle initialization sequence to load characters, the battleboard and the image layers.
         /// </summary>
-        public override void Initialize()
+        protected override void OnEntered()
         {
-            base.Initialize();
+            base.OnEntered();
 
             QueuedCommands = new List<Command>();
 
@@ -88,15 +88,15 @@ namespace SRPG.Scene.Battle
             Components.Add(_abilityStatLayer);
         }
 
-        public override void Start()
+        protected override void OnResume()
         {
-            base.Start();
+            base.OnResume();
             Game.IsMouseVisible = true;
         }
 
-        public override void Stop()
+        protected override void OnPause()
         {
-            base.Stop();
+            base.OnPause();
             Game.IsMouseVisible = false;
         }
 

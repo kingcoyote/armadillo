@@ -10,23 +10,23 @@ namespace SRPG.Scene.Options
             
         }
 
-        public override void Initialize()
+        protected override void OnEntered()
         {
-            base.Initialize();
+            base.OnEntered();
 
             var keyboard = new KeyboardInputLayer(this, null);
-            keyboard.AddKeyDownBinding(Keys.Escape, () => Game.ChangeScenes("overworld"));
+            keyboard.AddKeyDownBinding(Keys.Escape, () => Game.PopScene());
 
             Components.Add(keyboard);
             Components.Add(new Menu(this, null));
         }
 
-        public override void Start()
+        protected override void OnResume()
         {
             Game.IsMouseVisible = true;
         }
 
-        public override void Stop()
+        protected override void OnPause()
         {
             Game.IsMouseVisible = false;
         }

@@ -8,21 +8,22 @@ namespace SRPG.Scene.MainMenu
 {
     public partial class MenuOptionsDialog
     {
-        public EventHandler OnNewGamePressed;
-        public EventHandler OnContinuePressed;
-        public EventHandler OnLoadGamePressed;
-        public EventHandler OnOptionsPressed;
-        public EventHandler OnExitPressed;
+        public delegate void MenuOptionDelegate();
+        public event MenuOptionDelegate OnNewGamePressed;
+        public event MenuOptionDelegate OnContinuePressed;
+        public event MenuOptionDelegate OnLoadGamePressed;
+        public event MenuOptionDelegate OnOptionsPressed;
+        public event MenuOptionDelegate OnExitPressed;
 
         public MenuOptionsDialog()
         {
             InitializeComponent();
 
-            _newGame.Pressed += (s, a) => OnNewGamePressed.Invoke(s, a);
-            _continue.Pressed += (s, a) => OnContinuePressed.Invoke(s, a);
-            _loadGame.Pressed += (s, a) => OnLoadGamePressed.Invoke(s, a);
-            _options.Pressed += (s, a) => OnOptionsPressed.Invoke(s, a);
-            _exit.Pressed += (s, a) => OnExitPressed.Invoke(s, a);
+            _newGame.Pressed += (s, a) => OnNewGamePressed.Invoke();
+            _continue.Pressed += (s, a) => OnContinuePressed.Invoke();
+            _loadGame.Pressed += (s, a) => OnLoadGamePressed.Invoke();
+            _options.Pressed += (s, a) => OnOptionsPressed.Invoke();
+            _exit.Pressed += (s, a) => OnExitPressed.Invoke();
         }
     }
 }

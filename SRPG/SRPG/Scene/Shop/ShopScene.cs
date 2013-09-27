@@ -19,12 +19,12 @@ namespace SRPG.Scene.Shop
         {
         }
 
-        public override void Initialize()
+        protected override void OnEntered()
         {
             Components.Clear();
 
             var keyboard = new KeyboardInputLayer(this, null);
-            keyboard.AddKeyDownBinding(Keys.Escape, () => Game.ChangeScenes("overworld"));
+            keyboard.AddKeyDownBinding(Keys.Escape, () => Game.PopScene());
             Components.Add(keyboard);
 
             Components.Add(new Background(this, null));
@@ -52,12 +52,12 @@ namespace SRPG.Scene.Shop
             
         }
 
-        public override void Start()
+        protected override void OnResume()
         {
             Game.IsMouseVisible = true;
         }
 
-        public override void Stop()
+        protected override void OnPause()
         {
             Game.IsMouseVisible = false;
         }
@@ -75,8 +75,6 @@ namespace SRPG.Scene.Shop
             {
                 ((SRPGGame) Game).SellItem(item);
             }
-
-            Initialize();
         }
 
         public void BuySelectedItems()
@@ -90,8 +88,6 @@ namespace SRPG.Scene.Shop
             {
                 ((SRPGGame) Game).BuyItem(item);
             }
-
-            Initialize();
         }
     }
 }

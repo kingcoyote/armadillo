@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Nuclex.Game.States;
 using Nuclex.Input;
 
 namespace Torch
@@ -11,7 +12,7 @@ namespace Torch
     {
         private GraphicsDeviceManager _graphics;
 
-        protected Dictionary<string, Scene> Scenes = new Dictionary<string, Scene>();
+        protected GameStateManager GameStates;
         protected string CurrentScene;
         protected string SettingsFile;
 
@@ -55,8 +56,11 @@ namespace Torch
 
             InitializeGraphics();
 
+            GameStates = new GameStateManager(Services);
             Input = new InputManager(Services);
             Services.AddService(typeof(ContentManager), Content);
+
+            GameStates.Initialize();
 
             base.Initialize();
         }
@@ -108,7 +112,7 @@ namespace Torch
             Input.Update();
 
             // update current scene
-            Scenes[CurrentScene].Update(gameTime);
+            GameStates.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -122,23 +126,19 @@ namespace Torch
             GraphicsDevice.Clear(Color.Black);
 
             // draw current scene
-            Scenes[CurrentScene].Draw(gametime);
+            GameStates.Draw(gametime);
 
             base.Draw(gametime);
         }
 
-        public void ChangeScenes(string scene)
+        public void PushScene(Scene scene)
         {
-            Scenes[CurrentScene].Stop();
+            GameStates.Push(scene);
+        }
 
-            if(Scenes[scene].IsInitialized == false)
-            {
-                Scenes[scene].Initialize();
-            }
-
-            Scenes[scene].Start();
-
-            CurrentScene = scene;
+        public void PopScene()
+        {
+            GameStates.Pop();
         }
 
         public virtual void ChangeResolution(int width, int height)

@@ -1,13 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Nuclex.Game.States;
 using Nuclex.Input;
 using Nuclex.UserInterface;
-using Nuclex.UserInterface.Visuals.Flat;
-
-// the scene needs access to the game
 
 namespace Torch
 {
@@ -45,25 +40,26 @@ namespace Torch
         }
         
         // initialize
-        public virtual void Initialize()
+        protected override void OnEntered()
         {
             IsInitialized = true;
 
             Gui.Initialize();
         }
         // shutdown
-        public virtual void ShutDown()
+        protected override void OnLeaving()
         {
             IsInitialized = false;
         }
         
         // pause
-        public virtual void Start()
+        protected override void OnPause()
         {
             IsRunning = true;
         }
+
         // unpause
-        public virtual void Stop()
+        protected override void OnResume()
         {
             IsRunning = false;
         }

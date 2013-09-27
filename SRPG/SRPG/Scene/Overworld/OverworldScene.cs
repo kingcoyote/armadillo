@@ -7,6 +7,7 @@ using Nuclex.Input;
 using Nuclex.UserInterface.Visuals.Flat;
 using SRPG.Data;
 using SRPG.Data.Layers;
+using SRPG.Scene.PartyMenu;
 using Torch;
 using Game = Torch.Game;
 
@@ -26,14 +27,12 @@ namespace SRPG.Scene.Overworld
         private Environment _environment;
         private DialogLayer _dialog;
 
-        public OverworldScene(Game game) : base(game) { }
-
-        public override void Initialize()
+        public OverworldScene(Game game) : base(game)
         {
-            base.Initialize();
+            _environment = new Environment(this, null) { DrawOrder = 1 };
 
             Components.Add(new KeyboardInput(this, null));
-            _environment = new Environment(this, null) { DrawOrder = 1 };
+
             Components.Add(new HUD(this, null) { DrawOrder = 5 });
             Components.Add(_environment);
 
@@ -283,7 +282,7 @@ namespace SRPG.Scene.Overworld
             if (_isPaused) return;
             StopCharacter();
 
-            Game.ChangeScenes("party menu");
+            Game.PushScene(new PartyMenuScene(Game));
         }
     }
 }

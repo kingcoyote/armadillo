@@ -12,9 +12,9 @@ namespace SRPG.Scene.Intro
         private int _currentSlide;
         private readonly List<Layer> _slides = new List<Layer>();
 
-        public override void Initialize()
+        protected override void OnEntered()
         {
-            base.Initialize();
+            base.OnEntered();
 
             var keyboardLayer = new KeyboardInputLayer(this, null);
 
@@ -32,7 +32,7 @@ namespace SRPG.Scene.Intro
             _slides[_currentSlide].X = 0;
         }
 
-        public override void Update(Microsoft.Xna.Framework.GameTime gametime)
+        public new void Update(Microsoft.Xna.Framework.GameTime gametime)
         {
             base.Update(gametime);
 
@@ -67,7 +67,7 @@ namespace SRPG.Scene.Intro
         /// </summary>
         public void Skip()
         {
-            Game.ChangeScenes("main menu");
+            Game.PopScene();
         }
     }
 }

@@ -46,22 +46,15 @@ namespace SRPG
 
             base.Initialize();
 
-            Scenes.Add("intro", new IntroScene(this));
-            Scenes.Add("party menu", new PartyMenuScene(this));
-            Scenes.Add("overworld", new OverworldScene(this));
-            Scenes.Add("battle", new BattleScene(this));
-            Scenes.Add("shop", new ShopScene(this));
-            Scenes.Add("options", new OptionsScene(this));
-            Scenes.Add("main menu", new MainMenu(this));
-
-            ChangeScenes(CurrentScene);
+            PushScene(new MainMenu(this));
+            //PushScene(new IntroScene(this));
         }
 
         public void StartGame()
         {
-            ChangeScenes("overworld");
-
-            ((OverworldScene) Scenes["overworld"]).SetZone(Zone.Factory(this, null, "coliseum/cell"), "bed");
+            var overworldScene = new OverworldScene(this);
+            overworldScene.SetZone(Zone.Factory(this, null, "coliseum/cell"), "bed");
+            PushScene(overworldScene);
 
             BeginNewGame();
         }
@@ -69,14 +62,16 @@ namespace SRPG
         public void LaunchShop(string filename, string merchantname)
         {
             var inventory = GenerateShopInventory(filename, merchantname);
-            ((ShopScene) Scenes["shop"]).SetInventory(inventory);
-            ChangeScenes("shop");
+            var shopScene = new ShopScene(this);
+            shopScene.SetInventory(inventory);
+            PushScene(shopScene);
         }
 
         public void StartBattle(string battleName)
         {
-            ChangeScenes("battle");
-            ((BattleScene) Scenes["battle"]).SetBattle(battleName);
+            var battleScene = new BattleScene(this);
+            battleScene.SetBattle(battleName);
+            PushScene(battleScene);
         }
 
         public void EquipCharacter(Combatant character, Item newItem)
