@@ -13,6 +13,8 @@ namespace SRPG.Scene.PartyMenu
 
         private MenuDialog _menu;
         private PartyMenuDialog _partyMenuDialog;
+        private CharacterStatsDialog _characterStatsDialog;
+
         private InventoryMenu _inventoryMenu;
         private SettingsMenu _settingsMenu;
 
@@ -23,13 +25,19 @@ namespace SRPG.Scene.PartyMenu
             var keyboard = new KeyboardInputLayer(this, null);
             keyboard.AddKeyDownBinding(Keys.Escape, () => Game.ChangeScenes("overworld"));
             Components.Add(keyboard);
+            
             _menu = new MenuDialog();
+            Gui.Screen.Desktop.Children.Add(_menu);
+
             _partyMenuDialog = new PartyMenuDialog(((SRPGGame)Game).Party);
+            _partyMenuDialog.OnCharacterChange += SetCharacter;
+            Gui.Screen.Desktop.Children.Add(_partyMenuDialog);
+
+            _characterStatsDialog = new CharacterStatsDialog();
+            Gui.Screen.Desktop.Children.Add(_characterStatsDialog);
+
             _inventoryMenu = new InventoryMenu(this, null);
             _settingsMenu = new SettingsMenu(this, null);
-
-            Gui.Screen.Desktop.Children.Add(_menu);
-            Gui.Screen.Desktop.Children.Add(_partyMenuDialog);
             Components.Add(_inventoryMenu);
             Components.Add(_settingsMenu);
 
