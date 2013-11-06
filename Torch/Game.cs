@@ -133,12 +133,23 @@ namespace Torch
 
         public void PushScene(Scene scene)
         {
+            if (GameStates.ActiveState != null)
+            {
+                GameStates.ActiveState.Pause();
+            }
             GameStates.Push(scene);
         }
 
         public void PopScene()
         {
             GameStates.Pop();
+            if (GameStates.ActiveState != null)
+            {
+                GameStates.ActiveState.Resume();
+            } else
+            {
+                Exit();
+            }
         }
 
         public virtual void ChangeResolution(int width, int height)
