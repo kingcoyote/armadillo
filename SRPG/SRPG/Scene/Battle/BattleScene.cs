@@ -64,7 +64,10 @@ namespace SRPG.Scene.Battle
         private BattleBoardLayer _battleBoard;
         private RadialMenu _radialMenu;
 
-        public BattleScene(Game game) : base(game) { }
+        public BattleScene(Game game) : base(game)
+        {
+            QueuedCommands = new List<Command>();
+        }
 
         /// <summary>
         /// Pre-battle initialization sequence to load characters, the battleboard and the image layers.
