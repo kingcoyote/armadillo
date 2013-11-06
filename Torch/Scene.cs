@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Nuclex.Game.States;
 using Nuclex.Input;
 using Nuclex.UserInterface;
+using Nuclex.UserInterface.Input;
 
 namespace Torch
 {
@@ -14,6 +15,8 @@ namespace Torch
 
         public bool IsInitialized { get; private set; }
         public bool IsRunning { get; private set; }
+
+        private IInputCapturer _capturer;
 
         // new
         protected Scene(Game game)
@@ -56,12 +59,20 @@ namespace Torch
         protected override void OnPause()
         {
             IsRunning = true;
+
+            Gui.Visible = false;
+            _capturer = Gui.InputCapturer;
+            Gui.InputCapturer = null;
         }
 
         // unpause
         protected override void OnResume()
         {
             IsRunning = false;
+
+            Gui.Visible = true;
+            Gui.InputCapturer = _capturer;
+            _capturer = null;
         }
 
         // draw
