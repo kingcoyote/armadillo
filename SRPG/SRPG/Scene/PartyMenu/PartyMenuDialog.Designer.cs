@@ -32,8 +32,6 @@ namespace SRPG.Scene.PartyMenu
                 partyButton.Pressed += (s, a) => ChangeCharacter(combatant);
                 Children.Add(partyButton);
             }
-            // foreach member of the party
-            //    create a button for that party member
         }
     }
 }

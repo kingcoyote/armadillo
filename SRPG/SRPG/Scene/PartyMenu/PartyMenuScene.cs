@@ -67,7 +67,7 @@ namespace SRPG.Scene.PartyMenu
 
         public void SetCharacter(Combatant character)
         {
-           
+           _characterStatsDialog.SetCharacter(character);
         }
     }
 }
