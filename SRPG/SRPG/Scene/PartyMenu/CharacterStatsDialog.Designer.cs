@@ -12,10 +12,11 @@ namespace SRPG.Scene.PartyMenu
         private LabelControl _nameText;
         private LabelControl _classText;
 
-        // todo : make an ImageControl
-        // private ImageControl _portrait;
+        private LabelControl _healthLabel;
+        private LabelControl _manaLabel;
 
-
+        private LabelControl _healthText;
+        private LabelControl _manaText;
 
         private void InitializeComponent()
         {
@@ -42,10 +43,38 @@ namespace SRPG.Scene.PartyMenu
             );
             Children.Add(_classText);
 
-
-            // level
             // health
+            _healthLabel = new LabelControl();
+            _healthLabel.Bounds = new UniRectangle(
+                new UniScalar(0.0F, 20.0F), new UniScalar(0.0F, 125.0F),
+                new UniScalar(150.0F, 0.0F), new UniScalar(25.0F, 0.0F)
+            );
+            _healthLabel.Text = "Health";
+            Children.Add(_healthLabel);
+
+            _healthText = new LabelControl();
+            _healthText.Bounds = new UniRectangle(
+                new UniScalar(0.0F, 180.0F), new UniScalar(0.0F, 125.0F),
+                new UniScalar(150.0F, 0.0F), new UniScalar(25.0F, 0.0F)
+            );
+            Children.Add(_healthText);
+
             // mana
+            _manaLabel = new LabelControl();
+            _manaLabel.Bounds = new UniRectangle(
+                new UniScalar(0.0F, 20.0F), new UniScalar(0.0F, 160.0F),
+                new UniScalar(150.0F, 0.0F), new UniScalar(25.0F, 0.0F)
+            );
+            _manaLabel.Text = "Mana";
+            Children.Add(_manaLabel);
+
+            _manaText = new LabelControl();
+            _manaText.Bounds = new UniRectangle(
+                new UniScalar(0.0F, 180.0F), new UniScalar(0.0F, 160.0F),
+                new UniScalar(150.0F, 0.0F), new UniScalar(25.0F, 0.0F)
+            );
+            Children.Add(_manaText);
+
             // DAWISH
             // equipment
             // abilities

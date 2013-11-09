@@ -23,6 +23,9 @@ namespace SRPG.Scene.PartyMenu
         {
             _nameText.Text = _character.Name;
             _classText.Text = _character.Class;
+
+            _healthText.Text = _character.MaxHealth.ToString();
+            _manaText.Text = _character.MaxMana.ToString();
         }
     }
 }
