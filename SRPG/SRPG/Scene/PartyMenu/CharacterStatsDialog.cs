@@ -33,6 +33,11 @@ namespace SRPG.Scene.PartyMenu
             _intText.Text = _character.Stats[Stat.Intelligence].ToString();
             _spdText.Text = _character.Stats[Stat.Speed].ToString();
             _hitText.Text = _character.Stats[Stat.Hit].ToString();
+
+            _weaponText.Text = _character.GetEquippedWeapon().Name;
+            _armorText.Text = _character.GetEquippedArmor().Name;
+            
+
         }
     }
 }
