@@ -26,6 +26,13 @@ namespace SRPG.Scene.PartyMenu
 
             _healthText.Text = _character.MaxHealth.ToString();
             _manaText.Text = _character.MaxMana.ToString();
+
+            _defText.Text = _character.Stats[Stat.Defense].ToString();
+            _attText.Text = _character.Stats[Stat.Attack].ToString();
+            _wisText.Text = _character.Stats[Stat.Wisdom].ToString();
+            _intText.Text = _character.Stats[Stat.Intelligence].ToString();
+            _spdText.Text = _character.Stats[Stat.Speed].ToString();
+            _hitText.Text = _character.Stats[Stat.Hit].ToString();
         }
     }
 }
