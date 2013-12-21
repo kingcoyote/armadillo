@@ -91,12 +91,10 @@ namespace Torch
         // draw
         public override void Draw(GameTime gametime)
         {
-            _spriteBatch.Begin();
             foreach (var component in (from IDrawable c in Components orderby c.DrawOrder select c).ToArray())
             {
                 component.Draw(gametime);
             }
-            _spriteBatch.End();
         }
     }
 }

@@ -24,6 +24,8 @@ namespace Torch
 
         protected InputManager Input;
 
+        private SpriteBatch _spriteBatch;
+
         protected Game()
         {
             
@@ -90,7 +92,8 @@ namespace Torch
         protected override void LoadContent()
         {
             // initialize current scene
-            Services.AddService(typeof(SpriteBatch), new SpriteBatch(GraphicsDevice));
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            Services.AddService(typeof(SpriteBatch), _spriteBatch);
         }
 
         /// <summary>
@@ -125,8 +128,10 @@ namespace Torch
         {
             GraphicsDevice.Clear(Color.Black);
 
+            _spriteBatch.Begin();
             // draw current scene
             GameStates.Draw(gametime);
+            _spriteBatch.End();
 
             base.Draw(gametime);
         }
