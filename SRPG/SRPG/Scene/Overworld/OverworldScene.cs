@@ -18,20 +18,18 @@ namespace SRPG.Scene.Overworld
         public Avatar Avatar;
         public Zone Zone;
 
-        private bool _isPaused = false;
-
+        private bool _isPaused;
         private readonly Dictionary<string, Vector2[]> _characterMovements = new Dictionary<string, Vector2[]>();
-
         private string _startDoor = "";
-
-        private Environment _environment;
+        private readonly Environment _environment;
         private DialogLayer _dialog;
 
         public OverworldScene(Game game) : base(game)
         {
             _environment = new Environment(this, null) { DrawOrder = 1 };
 
-            Components.Add(new KeyboardInput(this, null));
+            var keyboardInput = new KeyboardInput(this, null);
+            Components.Add(keyboardInput);
 
             Components.Add(new HUD(this, null) { DrawOrder = 5 });
             Components.Add(_environment);

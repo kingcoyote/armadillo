@@ -80,7 +80,7 @@ namespace Torch
             _capturer = null;
         }
 
-        // draw
+        // update
         public override void Update(GameTime gametime)
         {
             foreach (var component in (from IUpdateable c in Components orderby c.UpdateOrder select c).ToArray())

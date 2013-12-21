@@ -5,7 +5,6 @@ namespace Torch
 {
     public abstract class Layer : Object
     {
-        public int ZIndex;
         public Scene Scene { get; private set; }
         public readonly GameComponentCollection Components;
 

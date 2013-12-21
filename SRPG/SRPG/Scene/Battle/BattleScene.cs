@@ -556,7 +556,7 @@ namespace SRPG.Scene.Battle
                 {
                     CenterX = (int)character.Avatar.Sprite.X + character.Avatar.Sprite.Width/2,
                     CenterY = (int)character.Avatar.Sprite.Y + character.Avatar.Sprite.Height/2,
-                    ZIndex = 5000,
+                    DrawOrder = 5000,
                     OnExit = DeselectCharacter
                 };
 

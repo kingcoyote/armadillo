@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -11,14 +12,15 @@ namespace SRPG.Scene.Battle
 {
     class BattleBoardLayer : Layer
     {
-        private Grid _grid;
-        public int Width;
-        public int Height;
-
+        public new int Width;
+        public new int Height;
         public bool AllowAim;
+
         private Grid _targettingGrid;
         private Grid _impactGrid;
-
+        private Grid _grid;
+        private Dictionary<String, SpriteObject> _characters = new Dictionary<string, SpriteObject>();
+        private SpriteObject[,] _gridCells;
         private ImageObject _bg;
 
         /// <summary>
@@ -32,7 +34,7 @@ namespace SRPG.Scene.Battle
 
         public void SetBackground(string imageName)
         {
-            _bg = new ImageObject(Game, this, imageName) { DrawOrder = -1 };
+            _bg = new ImageObject(Game, this, imageName) { DrawOrder = -1000 };
             Components.Add(_bg);
             Width = _bg.Width;
             Height = _bg.Height;
@@ -59,8 +61,8 @@ namespace SRPG.Scene.Battle
                 character.Avatar.Sprite.X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width / 2.0);
                 character.Avatar.Sprite.Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0);
                 character.Avatar.Sprite.DrawOrder = (int)character.Avatar.Sprite.Y;
-                // todo : Objects.Add("character/" + character.Name, character.Avatar.Sprite);
-                // todo : Objects["character/" + character.Name].MouseClick = MouseClickCharacter(character);
+                _characters.Add(character.Name, character.Avatar.Sprite);
+                Components.Add(character.Avatar.Sprite);
             }
         }
 
@@ -75,9 +77,9 @@ namespace SRPG.Scene.Battle
 
             foreach(var character in _board.Characters)
             {
-                // todo : Objects["character/" + character.Name].X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width/2.0);
-                // todo : Objects["character/" + character.Name].Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0);
-                // todo : Objects["character/" + character.Name].Z = character.Avatar.Sprite.Y;
+                _characters[character.Name].X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width/2.0);
+                _characters[character.Name].Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0);
+                _characters[character.Name].DrawOrder = (int)character.Avatar.Sprite.Y;
             }
 
             // if the player is in control, allow them to move the camera around
@@ -158,7 +160,7 @@ namespace SRPG.Scene.Battle
                 }
 
                HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
-               //Objects[string.Format("grid/{0}-{1}", cursor.X, cursor.Y)].MouseClick = (s, a) => scene.ExecuteAimAbility(cursor.X, cursor.Y);
+               //_gridCells[cursor.X, cursor.Y].Click = (s, a) => scene.ExecuteAimAbility(cursor.X, cursor.Y);
             }
         }
 
@@ -172,22 +174,21 @@ namespace SRPG.Scene.Battle
 
         public GridHighlight CellType(int x, int y)
         {
-            // todo
-            //switch(((SpriteObject)Objects[String.Format("grid/{0}-{1}", x, y)]).GetAnimation())
-            //{
-            //    case "Normal": return GridHighlight.Normal;
-            //    case "Selectable": return GridHighlight.Selectable;
-            //    case "Targetted": return GridHighlight.Targetted;
-            //    case "Splashed": return GridHighlight.Splashed;
-            //    default:
-            //        throw new Exception(String.Format("location {0},{1} is not on the grid", x, y));
-            //}
-            throw new Exception("method not fixed");
+            
+            switch(_gridCells[x,y].GetAnimation())
+            {
+                case "Normal":     return GridHighlight.Normal;
+                case "Selectable": return GridHighlight.Selectable;
+                case "Targetted":  return GridHighlight.Targetted;
+                case "Splashed":   return GridHighlight.Splashed;
+                default:           throw new Exception(String.Format("location {0},{1} is not on the grid", x, y));
+            }
         }
 
         public void RemoveCharacter(Combatant character)
         {
-            // todo: Objects.Remove("character/" + character.Name);
+            //Components.Remove(_characters[character.Name]);
+            //_characters.Remove(character.Name);
         }
 
         // todo 
@@ -204,24 +205,23 @@ namespace SRPG.Scene.Battle
 
         private void UpdateGrid()
         {
+            _gridCells = new SpriteObject[_grid.Size.Width,_grid.Size.Height];
+
             for(var i = 0; i < _grid.Size.Width; i++)
             {
                 for(var j = 0; j < _grid.Size.Height; j++)
                 {
                     if (_grid.Weight[i, j] > 128)
                     {
-                        var gridCell = new SpriteObject(Game, this, "Battle/gridhighlight") { X = i*50, Y = j*50, DrawOrder = 10 };
+                        var gridCell = new SpriteObject(Game, this, "Battle/gridhighlight") { X = i*50, Y = j*50, DrawOrder = -10 };
                         gridCell.AddAnimation("Normal", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 0 });
                         gridCell.AddAnimation("Selectable", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 50 });
                         gridCell.AddAnimation("Targetted", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 100 });
                         gridCell.AddAnimation("Splashed", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 150 });
                         gridCell.SetAnimation("Normal");
 
-                        // todo 
-                        //Objects.Add(
-                        //    string.Format("grid/{0}-{1}", i, j),
-                        //    gridCell
-                        //);
+                        _gridCells[i, j] = gridCell;
+                        Components.Add(gridCell);
                     }
                 }
             }
@@ -229,11 +229,9 @@ namespace SRPG.Scene.Battle
 
         private void HighlightCell(int x, int y, GridHighlight type)
         {
-            // todo
-            //if(Objects.ContainsKey(string.Format("grid/{0}-{1}", x, y)))
-            //{
-            //    ((SpriteObject)Objects[string.Format("grid/{0}-{1}", x, y)]).SetAnimation(type.ToString());
-            //}
+            if (_gridCells[x, y] == null) return;
+
+            _gridCells[x, y].SetAnimation(type.ToString());
         }
 
         private void HighlightGrid(Grid grid, GridHighlight highlightType)
@@ -260,14 +258,15 @@ namespace SRPG.Scene.Battle
 
         private void DefaultGrid()
         {
-            // todo 
-            //foreach (
-            //    SpriteObject grid in
-            //        (from o in Objects.Keys where o.Length > 4 && o.Substring(0, 4) == "grid" select Objects[o]))
-            //{
-            //    grid.SetAnimation("Normal");
-                
-            //}
+
+            for (int i = 0; i < _grid.Size.Width; i++)
+            {
+                for (int j = 0; j < _grid.Size.Height; j++)
+                {
+                    if (_gridCells[i, j] == null) continue;
+                    _gridCells[i, j].SetAnimation("Normal");
+                }
+            }
         }
     }
 
