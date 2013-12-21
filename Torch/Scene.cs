@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Nuclex.Game.States;
 using Nuclex.Input;
 using Nuclex.UserInterface;
@@ -17,11 +18,15 @@ namespace Torch
         public bool IsRunning { get; private set; }
 
         private IInputCapturer _capturer;
+        private SpriteBatch _spriteBatch;
 
         // new
         protected Scene(Game game)
         {
             Game = game;
+
+            _spriteBatch = (SpriteBatch) game.Services.GetService(typeof (SpriteBatch));
+
             IsInitialized = false;
             IsRunning = true;
 
@@ -83,13 +88,15 @@ namespace Torch
                 component.Update(gametime);
             }
         }
-        // update
+        // draw
         public override void Draw(GameTime gametime)
         {
+            _spriteBatch.Begin();
             foreach (var component in (from IDrawable c in Components orderby c.DrawOrder select c).ToArray())
             {
                 component.Draw(gametime);
             }
+            _spriteBatch.End();
         }
     }
 }

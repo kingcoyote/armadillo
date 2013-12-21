@@ -47,15 +47,10 @@ namespace Torch
         {
             var printedLines = GetPrintedLines();
 
-            var spriteBatch = new SpriteBatch(GraphicsDevice);
-            spriteBatch.Begin();
-
             for(var i = 0; i < printedLines.Count; i++)
             {
-                PrintString(spriteBatch, printedLines[i], Alignment, (int)X, (int)Y + Font.LineSpacing * i);
+                PrintString(_spriteBatch, printedLines[i], Alignment, (int)X, (int)Y + Font.LineSpacing * i);
             }
-
-            spriteBatch.End();
         }
 
         private List<string> GetPrintedLines()

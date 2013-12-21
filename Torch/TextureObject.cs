@@ -19,10 +19,7 @@ namespace Torch
         public override void Draw(GameTime gametime)
         {
             _texture.SetData(new [] {Color});
-            var spriteBatch = new SpriteBatch(GraphicsDevice);
-            spriteBatch.Begin();
-            spriteBatch.Draw(_texture, Rectangle, Alpha);
-            spriteBatch.End();
+            _spriteBatch.Draw(_texture, Rectangle, Alpha);
         }
     }
 }

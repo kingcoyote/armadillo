@@ -6,9 +6,12 @@ namespace Torch
 {
     public abstract class Object : DrawableGameComponent
     {
+        protected SpriteBatch _spriteBatch;
+
         protected Object(Microsoft.Xna.Framework.Game game, Object parent) : base(game)
         {
             Parent = parent;
+            _spriteBatch = (SpriteBatch) game.Services.GetService(typeof (SpriteBatch));
             Initialize();
         }
 

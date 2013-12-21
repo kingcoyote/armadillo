@@ -60,7 +60,6 @@ namespace Torch
         public override void Draw(GameTime gametime)
         {
             var a = _animations[_currentAnimation];
-            var spriteBatch = new SpriteBatch(GraphicsDevice);
 
             float offsetx = 0;
             float offsety = 0;
@@ -71,14 +70,12 @@ namespace Torch
                 offsety = Parent.OffsetY();
             }
 
-            spriteBatch.Begin();
-            spriteBatch.Draw(
+            _spriteBatch.Draw(
                 _image, 
                 new Vector2(X + offsetx, Y + offsety),
                 new Rectangle(a.StartCol + _currentFrame*a.Size.Width, a.StartRow , a.Size.Width, a.Size.Height),
                 Color.White
             );
-            spriteBatch.End();
         }
 
         private void ChangeFrame()

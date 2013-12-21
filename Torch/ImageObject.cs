@@ -37,8 +37,6 @@ namespace Torch
 
         public override void Draw(GameTime gameTime)
         {
-            var spriteBatch = new SpriteBatch(GraphicsDevice);
-
             float offsetx = 0;
             float offsety = 0;
 
@@ -48,9 +46,7 @@ namespace Torch
                 offsety = Parent.OffsetY();
             }
 
-            spriteBatch.Begin();
-            spriteBatch.Draw(_image, new Rectangle((int)X + (int)offsetx, (int)Y + (int)offsety, Width, Height), SourceRectangle, Color.White);
-            spriteBatch.End();
+            _spriteBatch.Draw(_image, new Rectangle((int)X + (int)offsetx, (int)Y + (int)offsety, Width, Height), SourceRectangle, Color.White);
         }
     }
 }

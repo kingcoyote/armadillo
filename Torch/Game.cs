@@ -90,7 +90,7 @@ namespace Torch
         protected override void LoadContent()
         {
             // initialize current scene
-
+            Services.AddService(typeof(SpriteBatch), new SpriteBatch(GraphicsDevice));
         }
 
         /// <summary>
