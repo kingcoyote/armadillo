@@ -18,7 +18,6 @@ namespace SRPG.Scene.Overworld
         public Avatar Avatar;
         public Zone Zone;
 
-        private bool _isPaused;
         private readonly Dictionary<string, Vector2[]> _characterMovements = new Dictionary<string, Vector2[]>();
         private string _startDoor = "";
         private readonly Environment _environment;
@@ -190,7 +189,7 @@ namespace SRPG.Scene.Overworld
 
         public void Interact()
         {
-            if (_isPaused) return;
+            if (IsRunning == false) return;
 
             var eventArgs = new InteractEventArgs() {Character = Avatar, Scene = this};
             Rectangle scanBox;
@@ -252,7 +251,6 @@ namespace SRPG.Scene.Overworld
         {
             StopCharacter();
 
-            _isPaused = true;
             dialog.OnExit += EndDialogEvent;
             _dialog = new DialogLayer(this, dialog);
             Gui.Screen.Desktop.Children.Add(_dialog);
@@ -267,7 +265,6 @@ namespace SRPG.Scene.Overworld
         {
             Gui.Screen.Desktop.Children.Remove(_dialog);
             _dialog = null;
-            _isPaused = false;
         }
 
         public void EndDialogEvent(object sender, EventArgs args)
@@ -277,7 +274,7 @@ namespace SRPG.Scene.Overworld
 
         public void OpenPartyMenu()
         {
-            if (_isPaused) return;
+            if (IsRunning == false) return;
             StopCharacter();
 
             Game.PushScene(new PartyMenuScene(Game));

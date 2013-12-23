@@ -40,6 +40,8 @@ namespace Torch
 
         private void HandleKeyDown(Keys key)
         {
+            if (Scene.IsRunning == false) return;
+
             if(!_keyDownBindings.Keys.Contains(key)) return;
 
             _keyDownBindings[key].ForEach(e => e.Invoke());
@@ -47,6 +49,8 @@ namespace Torch
 
         private void HandleKeyUp(Keys key)
         {
+            if (Scene.IsRunning == false) return;
+
             if (!_keyUpBindings.Keys.Contains(key)) return;
 
             _keyUpBindings[key].ForEach(e => e.Invoke());

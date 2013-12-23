@@ -24,11 +24,15 @@ namespace SRPG.Scene.Options
         protected override void OnResume()
         {
             Game.IsMouseVisible = true;
+
+            base.OnResume();
         }
 
         protected override void OnPause()
         {
             Game.IsMouseVisible = false;
+
+            base.OnPause();
         }
     }
 }

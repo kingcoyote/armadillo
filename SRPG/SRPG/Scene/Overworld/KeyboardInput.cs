@@ -30,6 +30,8 @@ namespace SRPG.Scene.Overworld
 
         public void HandleKeyDown(Keys key)
         {
+            if (Scene.IsRunning == false) return;
+
             var scene = ((OverworldScene) Scene);
 
             if (key == _controls["party menu"])

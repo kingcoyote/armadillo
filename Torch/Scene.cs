@@ -56,12 +56,13 @@ namespace Torch
         protected override void OnLeaving()
         {
             IsInitialized = false;
+            IsRunning = false;
         }
         
         // pause
         protected override void OnPause()
         {
-            IsRunning = true;
+            IsRunning = false;
 
             Gui.Visible = false;
             _capturer = Gui.InputCapturer;
@@ -71,7 +72,7 @@ namespace Torch
         // unpause
         protected override void OnResume()
         {
-            IsRunning = false;
+            IsRunning = true;
 
             Gui.Visible = true;
             Gui.InputCapturer = _capturer;
