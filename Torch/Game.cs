@@ -128,12 +128,8 @@ namespace Torch
         {
             GraphicsDevice.Clear(Color.Black);
 
-            _spriteBatch.Begin();
             // draw current scene
             GameStates.Draw(gametime);
-            _spriteBatch.End();
-
-            base.Draw(gametime);
         }
 
         public void PushScene(Scene scene)

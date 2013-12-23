@@ -42,9 +42,7 @@ namespace Torch
               new UniScalar(0.98F, 0.0F), new UniScalar(0.98F, 0.0F)
             );
 
-            Gui.UpdateOrder = 1000;
-
-            Components.Add(Gui);
+            Gui.DrawOrder = 100;
         }
         
         // initialize
@@ -88,13 +86,17 @@ namespace Torch
                 component.Update(gametime);
             }
         }
+
         // draw
         public override void Draw(GameTime gametime)
         {
+            _spriteBatch.Begin();
             foreach (var component in (from IDrawable c in Components orderby c.DrawOrder select c).ToArray())
             {
                 component.Draw(gametime);
             }
+            _spriteBatch.End();
+            Gui.Draw(gametime);
         }
     }
 }
