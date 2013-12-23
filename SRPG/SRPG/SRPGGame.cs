@@ -149,5 +149,14 @@ namespace SRPG
 
             FontManager.Initialize(ScreenHeight >= 1024 ? FontSize.Normal : FontSize.Small);
         }
+
+        
+        public void ReturnToMainMenu()
+        {
+            while (!(GameStates.ActiveState is MainMenu))
+            {
+                PopScene();
+            }
+        }
     }
 }

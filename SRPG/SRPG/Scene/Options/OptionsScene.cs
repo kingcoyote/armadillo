@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Input;
+using Nuclex.UserInterface.Visuals.Flat;
 using Torch;
 
 namespace SRPG.Scene.Options
@@ -7,18 +8,18 @@ namespace SRPG.Scene.Options
     {
         public OptionsScene(Game game) : base(game)
         {
-            
-        }
-
-        protected override void OnEntered()
-        {
-            base.OnEntered();
-
             var keyboard = new KeyboardInputLayer(this, null);
             keyboard.AddKeyDownBinding(Keys.Escape, () => Game.PopScene());
 
             Components.Add(keyboard);
-            Components.Add(new Menu(this, null));
+
+            var menuDialog = new MenuDialog();
+            menuDialog.OnReturnPressed += () => Game.PopScene();
+            menuDialog.OnExitPressed += () => Game.Exit();
+            menuDialog.OnMainMenuPressed += () => ((SRPGGame)Game).ReturnToMainMenu();
+
+            Gui.Screen.Desktop.Children.Add(menuDialog);
+            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_menu.xml");
         }
 
         protected override void OnResume()
