@@ -22,18 +22,18 @@ namespace SRPG.Scene.Options
             Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_menu.xml");
         }
 
+        protected override void OnEntered()
+        {
+            Game.IsMouseVisible = true;
+
+            base.OnEntered();
+        }
+
         protected override void OnResume()
         {
             Game.IsMouseVisible = true;
 
             base.OnResume();
-        }
-
-        protected override void OnPause()
-        {
-            Game.IsMouseVisible = false;
-
-            base.OnPause();
         }
     }
 }

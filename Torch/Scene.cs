@@ -57,6 +57,8 @@ namespace Torch
         {
             IsInitialized = false;
             IsRunning = false;
+
+            Gui.Dispose();
         }
         
         // pause

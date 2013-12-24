@@ -279,5 +279,19 @@ namespace SRPG.Scene.Overworld
 
             Game.PushScene(new PartyMenuScene(Game));
         }
+
+        protected override void OnEntered()
+        {
+            Game.IsMouseVisible = false;
+
+            base.OnEntered();
+        }
+
+        protected override void OnResume()
+        {
+            Game.IsMouseVisible = false;
+
+            base.OnResume();
+        }
     }
 }

@@ -28,10 +28,18 @@ namespace SRPG.Scene.MainMenu
             Game.IsMouseVisible = true;
         }
 
+        protected override void OnResume()
+        {
+            base.OnResume();
+            Game.IsMouseVisible = true;
+        }
+
         protected override void OnLeaving()
         {
             base.OnLeaving();
             Game.IsMouseVisible = false;
         }
+
+
     }
 }
