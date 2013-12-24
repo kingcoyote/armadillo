@@ -15,8 +15,8 @@ namespace Torch
         protected GuiManager Gui;
         public Game Game { get; private set; }
 
-        public bool IsInitialized { get; private set; }
-        public bool IsRunning { get; private set; }
+        public bool IsInitialized { get; protected set; }
+        public bool IsRunning { get; protected set; }
 
         private IInputCapturer _capturer;
         private readonly SpriteBatch _spriteBatch;

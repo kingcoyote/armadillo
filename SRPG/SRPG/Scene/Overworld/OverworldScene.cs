@@ -251,6 +251,8 @@ namespace SRPG.Scene.Overworld
         {
             StopCharacter();
 
+            IsRunning = false;
+
             dialog.OnExit += EndDialogEvent;
             _dialog = new DialogLayer(this, dialog);
             Gui.Screen.Desktop.Children.Add(_dialog);
@@ -263,6 +265,7 @@ namespace SRPG.Scene.Overworld
 
         public void EndDialog()
         {
+            IsRunning = true;
             Gui.Screen.Desktop.Children.Remove(_dialog);
             _dialog = null;
         }
