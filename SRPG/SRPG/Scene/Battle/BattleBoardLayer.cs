@@ -121,7 +121,7 @@ namespace SRPG.Scene.Battle
             // check if the cursor is over a character
             foreach (var character in _board.Characters)
             {
-                if (character.Avatar.Sprite.Rectangle.Contains((int)(mouse.X - X), (int)(mouse.Y - Y)))
+                if (character.Avatar.Sprite.Rectangle.Contains(mouse.X, mouse.Y))
                 {
                     scene.ShowCharacterStats(character);
                     break;
@@ -187,21 +187,21 @@ namespace SRPG.Scene.Battle
 
         public void RemoveCharacter(Combatant character)
         {
-            //Components.Remove(_characters[character.Name]);
-            //_characters.Remove(character.Name);
+            Components.Remove(_characters[character.Name]);
+            _characters.Remove(character.Name);
         }
 
-        // todo 
-        //public EventHandler<MouseEventArgs> MouseClickCharacter(Combatant character)
-        //{
-        //    return (sender, args) =>
-        //        {
-        //            if (((BattleScene)Scene).FactionTurn != 0) return;
+        // todo make sure this works
+        public EventHandler MouseClickCharacter(Combatant character)
+        {
+            return (sender, args) =>
+                {
+                    if (((BattleScene)Scene).FactionTurn != 0) return;
 
-        //            ((BattleScene) Scene).SelectCharacter(character);
+                    ((BattleScene)Scene).SelectCharacter(character);
 
-        //        };
-        //}
+                };
+        }
 
         private void UpdateGrid()
         {

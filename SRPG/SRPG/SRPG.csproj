@@ -157,7 +157,10 @@
     <Compile Include="RadialMenu.cs" />
     <Compile Include="Scene\Battle\AbilityStatLayer.cs" />
     <Compile Include="Scene\Battle\BattleBoardLayer.cs" />
-    <Compile Include="Scene\Battle\CharacterStats.cs" />
+    <Compile Include="Scene\Battle\CharacterStatsDialog.cs" />
+    <Compile Include="Scene\Battle\CharacterStatsDialog.Designer.cs">
+      <DependentUpon>CharacterStatsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\Battle\HitLayer.cs" />
     <Compile Include="Scene\Battle\HUD.cs" />
     <Compile Include="Scene\Battle\QueuedCommands.cs" />

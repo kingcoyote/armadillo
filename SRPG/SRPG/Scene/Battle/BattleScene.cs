@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Nuclex.UserInterface;
+using Nuclex.UserInterface.Visuals.Flat;
 using SRPG.AI;
 using SRPG.Data;
 using Torch;
@@ -56,7 +58,7 @@ namespace SRPG.Scene.Battle
         private float _delayTimer;
         private readonly BattleCommander _commander = new BattleCommander();
 
-        private CharacterStats _characterStats;
+        private CharacterStatsDialog _characterStats;
         private HUD _hud;
         private QueuedCommands _queuedCommands;
         private HitLayer _hitLayer;
@@ -78,7 +80,9 @@ namespace SRPG.Scene.Battle
 
             QueuedCommands = new List<Command>();
 
-            _characterStats = new CharacterStats(this, null) { DrawOrder = 5000, Visible = false};
+            _characterStats = new CharacterStatsDialog();
+            Gui.Screen.Desktop.Children.Add(_characterStats);
+
             _hud = new HUD(this, null) { DrawOrder = 5000 };
             _queuedCommands = new QueuedCommands(this, null) { DrawOrder = 5000, Visible = false };
             _hitLayer = new HitLayer(this, null) { DrawOrder = 5000 };
@@ -86,11 +90,12 @@ namespace SRPG.Scene.Battle
 
             Game.IsMouseVisible = true;
 
-            Components.Add(_characterStats);
             Components.Add(_hud);
             Components.Add(_queuedCommands);
             Components.Add(_hitLayer);
             Components.Add(_abilityStatLayer);
+
+            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_menu.xml");
         }
 
         protected override void OnResume()
@@ -494,7 +499,7 @@ namespace SRPG.Scene.Battle
             if (_state != BattleState.PlayerTurn) return;
 
             _characterStats.SetCharacter(character);
-            _characterStats.Visible = true;
+            _characterStats.SetVisibility(true);
         }
 
         /// <summary>
@@ -504,7 +509,7 @@ namespace SRPG.Scene.Battle
         {
             if (_state != BattleState.PlayerTurn) return;
 
-            _characterStats.Visible = false;
+            _characterStats.SetVisibility(false);
         }
 
         /// <summary>
