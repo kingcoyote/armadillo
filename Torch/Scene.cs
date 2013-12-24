@@ -19,7 +19,7 @@ namespace Torch
         public bool IsRunning { get; private set; }
 
         private IInputCapturer _capturer;
-        private SpriteBatch _spriteBatch;
+        private readonly SpriteBatch _spriteBatch;
 
         // new
         protected Scene(Game game)
