@@ -58,8 +58,8 @@ namespace SRPG.Scene.Battle
 
             foreach (var character in _board.Characters)
             {
-                character.Avatar.Sprite.X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width / 2.0);
-                character.Avatar.Sprite.Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0);
+                character.Avatar.Sprite.X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width / 2.0) + OffsetX();
+                character.Avatar.Sprite.Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0) + OffsetY();
                 character.Avatar.Sprite.DrawOrder = (int)character.Avatar.Sprite.Y;
                 _characters.Add(character.Name, character.Avatar.Sprite);
                 Components.Add(character.Avatar.Sprite);
@@ -77,8 +77,8 @@ namespace SRPG.Scene.Battle
 
             foreach(var character in _board.Characters)
             {
-                _characters[character.Name].X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width/2.0);
-                _characters[character.Name].Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0);
+                _characters[character.Name].X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width/2.0) + OffsetX();
+                _characters[character.Name].Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0) + OffsetY();
                 _characters[character.Name].DrawOrder = (int)character.Avatar.Sprite.Y;
             }
 

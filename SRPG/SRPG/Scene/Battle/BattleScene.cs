@@ -84,6 +84,8 @@ namespace SRPG.Scene.Battle
             _hitLayer = new HitLayer(this, null) { DrawOrder = 5000 };
             _abilityStatLayer = new AbilityStatLayer(this, null) { DrawOrder = 5000, Visible = false };
 
+            Game.IsMouseVisible = true;
+
             Components.Add(_characterStats);
             Components.Add(_hud);
             Components.Add(_queuedCommands);
@@ -95,12 +97,6 @@ namespace SRPG.Scene.Battle
         {
             base.OnResume();
             Game.IsMouseVisible = true;
-        }
-
-        protected override void OnPause()
-        {
-            base.OnPause();
-            Game.IsMouseVisible = false;
         }
 
         public override void Update(GameTime gametime)
