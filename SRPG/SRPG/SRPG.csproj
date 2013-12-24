@@ -163,6 +163,10 @@
     </Compile>
     <Compile Include="Scene\Battle\HitLayer.cs" />
     <Compile Include="Scene\Battle\HUD.cs" />
+    <Compile Include="Scene\Battle\HUDDialog.cs" />
+    <Compile Include="Scene\Battle\HUDDialog.Designer.cs">
+      <DependentUpon>HUDDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\Battle\QueuedCommands.cs" />
     <Compile Include="Scene\MainMenu\MainMenu.cs" />
     <Compile Include="Scene\MainMenu\MenuOptionsDialog.cs" />
