@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nuclex.Game.States;
@@ -8,7 +9,7 @@ using Nuclex.UserInterface.Input;
 
 namespace Torch
 {
-    public abstract class Scene : DrawableGameState
+    public abstract class Scene : DrawableGameState, IDisposable
     {
         protected readonly GameComponentCollection Components = new GameComponentCollection();
         protected GuiManager Gui;
@@ -58,7 +59,7 @@ namespace Torch
             IsInitialized = false;
             IsRunning = false;
 
-            Gui.Dispose();
+            Dispose();
         }
         
         // pause
@@ -100,6 +101,11 @@ namespace Torch
             }
             _spriteBatch.End();
             Gui.Draw(gametime);
+        }
+
+        public void Dispose()
+        {
+            Gui.Dispose();
         }
     }
 }
