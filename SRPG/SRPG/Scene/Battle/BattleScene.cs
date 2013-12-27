@@ -60,7 +60,7 @@ namespace SRPG.Scene.Battle
 
         private CharacterStatsDialog _characterStats;
         private HUDDialog _hud;
-        private QueuedCommands _queuedCommands;
+        private QueuedCommandsDialog _queuedCommands;
         private HitLayer _hitLayer;
         private AbilityStatLayer _abilityStatLayer;
         private BattleBoardLayer _battleBoard;
@@ -87,13 +87,14 @@ namespace SRPG.Scene.Battle
             _hud.EndTurnPressed += EndPlayerTurn;
             Gui.Screen.Desktop.Children.Add(_hud);
 
-            _queuedCommands = new QueuedCommands(this, null) { DrawOrder = 5000, Visible = false };
+            _queuedCommands = new QueuedCommandsDialog(QueuedCommands);
+            Gui.Screen.Desktop.Children.Add(_queuedCommands);
+
             _hitLayer = new HitLayer(this, null) { DrawOrder = 5000 };
             _abilityStatLayer = new AbilityStatLayer(this, null) { DrawOrder = 5000, Visible = false };
 
             Game.IsMouseVisible = true;
 
-            Components.Add(_queuedCommands);
             Components.Add(_hitLayer);
             Components.Add(_abilityStatLayer);
 
@@ -114,7 +115,13 @@ namespace SRPG.Scene.Battle
             float dt = gametime.ElapsedGameTime.Milliseconds/1000F;
 
             // during player turn, show queued commands if possible
-            _queuedCommands.Visible = _state != BattleState.EnemyTurn && QueuedCommands.Count > 0;
+            if(_state != BattleState.EnemyTurn && QueuedCommands.Count > 0)
+            {
+                _queuedCommands.Show();
+            } else
+            {
+                _queuedCommands.Hide();   
+            }
 
             _hud.SetStatus(RoundNumber, FactionTurn);
 
