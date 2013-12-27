@@ -16,18 +16,16 @@ namespace SRPG.Scene.Battle
         public new int Height;
         public bool AllowAim;
 
+        public delegate void CharacterDelegate(Combatant character);
+        public CharacterDelegate CharacterSelected = c => { };
+
         private Grid _targettingGrid;
         private Grid _impactGrid;
         private Grid _grid;
         private Dictionary<String, SpriteObject> _characters = new Dictionary<string, SpriteObject>();
         private SpriteObject[,] _gridCells;
         private ImageObject _bg;
-
-        /// <summary>
-        /// Default camera movement speed, in pixels per second
-        /// </summary>
         private const int CamScrollSpeed = 450;
-
         private BattleBoard _board;
 
         public BattleBoardLayer(Torch.Scene scene, Torch.Object parent) : base(scene, parent) { }
@@ -38,6 +36,22 @@ namespace SRPG.Scene.Battle
             Components.Add(_bg);
             Width = _bg.Width;
             Height = _bg.Height;
+
+            ((IInputService) Game.Services.GetService(typeof (IInputService))).GetMouse().MouseButtonPressed += OnMouseButtonPressed;
+        }
+
+        private void OnMouseButtonPressed(MouseButtons buttons)
+        {
+            var mouse = ((IInputService)Game.Services.GetService(typeof(IInputService))).GetMouse().GetState();
+
+            foreach (var character in _board.Characters)
+            {
+                if (character.Avatar.Sprite.Rectangle.Contains(mouse.X, mouse.Y))
+                {
+                    CharacterSelected.Invoke(character);
+                    break;
+                }
+            }
         }
 
         public void SetGrid(string gridName)
@@ -124,6 +138,7 @@ namespace SRPG.Scene.Battle
                 if (character.Avatar.Sprite.Rectangle.Contains(mouse.X, mouse.Y))
                 {
                     scene.ShowCharacterStats(character);
+                    
                     break;
                 }
                 
@@ -189,18 +204,6 @@ namespace SRPG.Scene.Battle
         {
             Components.Remove(_characters[character.Name]);
             _characters.Remove(character.Name);
-        }
-
-        // todo make sure this works
-        public EventHandler MouseClickCharacter(Combatant character)
-        {
-            return (sender, args) =>
-                {
-                    if (((BattleScene)Scene).FactionTurn != 0) return;
-
-                    ((BattleScene)Scene).SelectCharacter(character);
-
-                };
         }
 
         private void UpdateGrid()

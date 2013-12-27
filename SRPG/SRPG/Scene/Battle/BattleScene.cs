@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FusionC;
 using Microsoft.Xna.Framework;
+using Nuclex.Input;
 using Nuclex.UserInterface;
 using Nuclex.UserInterface.Visuals.Flat;
 using SRPG.AI;
@@ -98,7 +100,11 @@ namespace SRPG.Scene.Battle
             Components.Add(_hitLayer);
             Components.Add(_abilityStatLayer);
 
-            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_menu.xml");
+            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/battle.xml");
+
+            ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatQueuedCommandControlRenderer).Assembly);
+            ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatImageButtonControlRenderer).Assembly);
+            ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatTiledIconControlRenderer).Assembly);
         }
 
         protected override void OnResume()
@@ -325,7 +331,7 @@ namespace SRPG.Scene.Battle
         /// </summary>
         public void UpdateCamera(float x, float y)
         {
-            var layers = new List<Layer> {_battleBoard, _radialMenu, _hitLayer};
+            var layers = new List<Layer> {_battleBoard, _hitLayer};
 
             // update all layers that are locked to the camera
             foreach (var layer in layers)
@@ -348,12 +354,14 @@ namespace SRPG.Scene.Battle
             // set up defaults
             
             BattleBoard = new BattleBoard();
+            
             RoundNumber = 0;
             FactionTurn = 0;
             _state = BattleState.PlayerTurn;
             var partyGrid = new List<Point>();
 
             _battleBoard = new BattleBoardLayer(this, null);
+            _battleBoard.CharacterSelected += SelectCharacter;
 
             Components.Add(_battleBoard);
 
@@ -552,32 +560,30 @@ namespace SRPG.Scene.Battle
                 DeselectCharacter();
                 return;
             }
-
-            // you can only click on your characters, during your turn
+            
+            // you can only click on your characters during your turn
             if (_state != BattleState.PlayerTurn) return;
             if (character.Faction != 0) return;
 
             if (_radialMenu != null)
             {
-                Components.Remove(_radialMenu);
+                Gui.Screen.Desktop.Children.Remove(_radialMenu);
                 _radialMenu = null;
             }
 
 
-            var menu = new RadialMenu(this, null)
+            var menu = new RadialMenu(((IInputService)Game.Services.GetService(typeof(IInputService))).GetMouse())
                 {
                     CenterX = (int)character.Avatar.Sprite.X + character.Avatar.Sprite.Width/2,
                     CenterY = (int)character.Avatar.Sprite.Y + character.Avatar.Sprite.Height/2,
-                    DrawOrder = 5000,
                     OnExit = DeselectCharacter
                 };
 
             // move icon, plus event handlers
-            var icon = new SpriteObject(Game, menu, "Battle/Menu/move");
-            SetCharacterMenuAnimations(icon);
+            var icon = new ImageButtonControl {ImageFrame = "radial.move"};
             if (character.CanMove)
             {
-                //icon.MouseOver += (sender, args) =>
+                //icon.Pressed += (sender, args) =>
                 //    {
                 //        if (!character.CanMove) return;
 
@@ -600,61 +606,58 @@ namespace SRPG.Scene.Battle
 
             menu.AddOption("move", icon);
 
-            // attack icon, plus handlers
-            icon = new SpriteObject(Game, menu, "Battle/Menu/attack");
-            SetCharacterMenuAnimations(icon);
-            if (character.CanAct)
-            {
-                var ability = Ability.Factory(Game, "attack");
-                ability.Character = character;
+            //// attack icon, plus handlers
+            //icon = new SpriteObject(Game, menu, "Battle/Menu/attack");
+            //if (character.CanAct)
+            //{
+            //    var ability = Ability.Factory(Game, "attack");
+            //    ability.Character = character;
 
-                //icon.MouseOver += (sender, args) =>
-                //    {
-                //        if (!character.CanAct) return;
+            //    //icon.MouseOver += (sender, args) =>
+            //    //    {
+            //    //        if (!character.CanAct) return;
 
-                //        _battleBoard.SetTargettingGrid(
-                //            ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
-                //            new Grid(1, 1)
-                //            );
-                //    };
-                //icon.MouseOut += (sender, args) => _battleBoard.ResetGrid();
+            //    //        _battleBoard.SetTargettingGrid(
+            //    //            ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
+            //    //            new Grid(1, 1)
+            //    //            );
+            //    //    };
+            //    //icon.MouseOut += (sender, args) => _battleBoard.ResetGrid();
                 
-                //icon.MouseRelease += SelectAbilityTarget(character, ability);
-            }
-            else
-            {
-                // if they can't act, this icon does nothing
-                //icon.MouseOver = (sender, args) => { };
-                //icon.MouseOut = (sender, args) => { };
-                //icon.MouseClick = (sender, args) => { };
-                //icon.MouseRelease = (sender, args) => { };
-            }
+            //    //icon.MouseRelease += SelectAbilityTarget(character, ability);
+            //}
+            //else
+            //{
+            //    // if they can't act, this icon does nothing
+            //    //icon.MouseOver = (sender, args) => { };
+            //    //icon.MouseOut = (sender, args) => { };
+            //    //icon.MouseClick = (sender, args) => { };
+            //    //icon.MouseRelease = (sender, args) => { };
+            //}
 
-            menu.AddOption("attack", icon);
+            //menu.AddOption("attack", icon);
 
-            // special abilities icon, plus event handlers
-            icon = new SpriteObject(Game, menu, "Battle/Menu/special");
-            SetCharacterMenuAnimations(icon);
-            if (character.CanAct)
-            {
-                //icon.MouseRelease += SelectSpecialAbility(character);
-            }
-            else
-            {
-                // if they can't act, this icon does nothing
-                //icon.MouseOver = (sender, args) => { };
-                //icon.MouseOut = (sender, args) => { };
-                //icon.MouseClick = (sender, args) => { };
-                //icon.MouseRelease = (sender, args) => { };
-            }
-            menu.AddOption("special", icon);
+            //// special abilities icon, plus event handlers
+            //icon = new SpriteObject(Game, menu, "Battle/Menu/special");
+            //if (character.CanAct)
+            //{
+            //    //icon.MouseRelease += SelectSpecialAbility(character);
+            //}
+            //else
+            //{
+            //    // if they can't act, this icon does nothing
+            //    //icon.MouseOver = (sender, args) => { };
+            //    //icon.MouseOut = (sender, args) => { };
+            //    //icon.MouseClick = (sender, args) => { };
+            //    //icon.MouseRelease = (sender, args) => { };
+            //}
+            //menu.AddOption("special", icon);
 
-            icon = new SpriteObject(Game, menu, "Battle/Menu/item");
-            SetCharacterMenuAnimations(icon);
-            menu.AddOption("item", icon);
+            //icon = new SpriteObject(Game, menu, "Battle/Menu/item");
+            //menu.AddOption("item", icon);
 
             _radialMenu = menu;
-            Components.Add(_radialMenu);
+            Gui.Screen.Desktop.Children.Add(_radialMenu);
 
             _selectedCharacter = character;
             _state = BattleState.CharacterSelected;
@@ -667,44 +670,15 @@ namespace SRPG.Scene.Battle
         {
             if (_state != BattleState.CharacterSelected) return;
 
-            if(Components.Contains(_radialMenu))
+            if (Gui.Screen.Desktop.Children.Contains(_radialMenu))
             {
-                Components.Remove(_radialMenu);
+                Gui.Screen.Desktop.Children.Remove(_radialMenu);
                 _radialMenu = null;
             }
 
             ResetState();
 
             _state = BattleState.PlayerTurn;
-        }
-
-        /// <summary>
-        /// Take an icon and set the default behaviors for the radial menu.
-        /// this is a very specialized function and shouldn't be used for most things.
-        /// </summary>
-        /// <param name="icon">The icon being configured.</param>
-        private static void SetCharacterMenuAnimations(SpriteObject icon)
-        {
-           
-            icon.AddAnimation(
-                "normal",
-                new SpriteAnimation {FrameCount = 1, Size = new Rectangle(0, 0, 50, 50), FrameRate = 1, StartRow = 1}
-            );
-            icon.AddAnimation(
-                "hover",
-                new SpriteAnimation {FrameCount = 1, Size = new Rectangle(0, 0, 50, 50), FrameRate = 1, StartRow = 51}
-            );
-            icon.AddAnimation(
-                "click",
-                new SpriteAnimation {FrameCount = 1, Size = new Rectangle(0, 0, 50, 50), FrameRate = 1, StartRow = 101}
-            );
-
-            icon.SetAnimation("normal");
-
-            //icon.MouseOver += (sender, args) => ((SpriteObject)args.Target).SetAnimation("hover"); 
-            //icon.MouseOut += (sender, args) => ((SpriteObject)args.Target).SetAnimation("normal");
-            //icon.MouseClick += (sender, args) => ((SpriteObject) args.Target).SetAnimation("click");
-            //icon.MouseRelease += (sender, args) => ((SpriteObject) args.Target).SetAnimation("normal");
         }
 
         /// <summary>
@@ -719,7 +693,7 @@ namespace SRPG.Scene.Battle
             return (sender, args) =>
             {
                 _state = BattleState.AimingAbility;
-                Components.Remove(_radialMenu);
+                Gui.Screen.Desktop.Children.Remove(_radialMenu);
 
 
                 _battleBoard.SetTargettingGrid(
@@ -804,7 +778,7 @@ namespace SRPG.Scene.Battle
                             //ability.Icon.MouseRelease =  (o, eventArgs) => { };
                         }
 
-                        _radialMenu.AddOption(ability.Name, ability.Icon);
+                        //_radialMenu.AddOption(ability.Name, ability.Icon);
                     }
                 };
         }

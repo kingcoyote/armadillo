@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FusionC;
 using Microsoft.Xna.Framework;
 using Nuclex.Input;
+using Nuclex.Input.Devices;
+using Nuclex.UserInterface.Controls;
 using Torch;
 
 namespace SRPG
 {
-    class RadialMenu : Layer
+    class RadialMenu : Control
     {
         public int Distance = 75;
         public int CenterX = 0;
@@ -17,44 +20,46 @@ namespace SRPG
 
         public Action OnExit;
 
-        public RadialMenu(Torch.Scene scene, Torch.Object parent) : base(scene, parent) { }
+        private IMouse _mouse;
 
-        public void AddOption(string name, SpriteObject icon)
+        public RadialMenu(IMouse mouse)
         {
-            //Objects.Add(name, icon);
+            _mouse = mouse;
+        }
+
+        public void AddOption(string name, ImageButtonControl button)
+        {
+            Children.Add(button);
             UpdatePositions();
         }
 
         private void UpdatePositions()
         {
-            //var degs = Math.PI * 2 /Objects.Count;
+            var degs = Math.PI * 2 / Children.Count;
 
-            //for(var i = 0; i < Objects.Count; i++)
-            //{
-            //    var key = Objects.Keys.ElementAt(i);
-
-            //    Objects[key].X = (int)(CenterX + Math.Sin(degs * (i)) * Distance) - Objects[key].Width / 2;
-            //    Objects[key].Y = (int)(CenterY - Math.Cos(degs * (i)) * Distance) - Objects[key].Height / 2;
-            //}
+            for (var i = 0; i < Children.Count; i++)
+            {
+                Children[i].Bounds.Location.X.Offset = (int)(CenterX + Math.Sin(degs * (i)) * Distance) - Children[i].Bounds.Size.X.Offset / 2;
+                Children[i].Bounds.Location.Y.Offset = (int)(CenterY - Math.Cos(degs * (i)) * Distance) - Children[i].Bounds.Size.Y.Offset / 2;
+            }
         }
 
         public void ClearOptions()
         {
-            // Objects.Clear();
+            Children.Clear();
         }
 
-        public override void Update(GameTime gameTime)
+        public void Render(GameTime gameTime)
         {
-            base.Update(gameTime);
-
+            // if the cursor strays too far from the center, close the radial menu
             var cursor = new Rectangle
                 {
-                    X = ((IInputService) Game.Services.GetService(typeof (IInputService))).GetMouse().GetState().X,
-                    Y = ((IInputService) Game.Services.GetService(typeof (IInputService))).GetMouse().GetState().Y
+                    X = _mouse.GetState().X,
+                    Y = _mouse.GetState().Y
                 };
 
-            var xDistance = cursor.X - (CenterX + X);
-            var yDistance = cursor.Y - (CenterY + Y);
+            var xDistance = cursor.X - (CenterX);
+            var yDistance = cursor.Y - (CenterY);
 
             if(Math.Sqrt(Math.Pow(xDistance, 2) + Math.Pow(yDistance, 2)) > ExitDistance)
             {
