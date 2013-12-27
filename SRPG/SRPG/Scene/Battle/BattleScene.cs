@@ -580,7 +580,7 @@ namespace SRPG.Scene.Battle
                 };
 
             // move icon, plus event handlers
-            var icon = new ImageButtonControl {ImageFrame = "radial.move"};
+            var icon = new ImageButtonControl {ImageFrame = "radial.move", Bounds = new UniRectangle(0, 0, 55, 55)};
             if (character.CanMove)
             {
                 //icon.Pressed += (sender, args) =>
@@ -607,7 +607,7 @@ namespace SRPG.Scene.Battle
             menu.AddOption("move", icon);
 
             //// attack icon, plus handlers
-            //icon = new SpriteObject(Game, menu, "Battle/Menu/attack");
+            icon = new ImageButtonControl() { ImageFrame = "radial.attack", Bounds = new UniRectangle(0, 0, 55, 55)};
             //if (character.CanAct)
             //{
             //    var ability = Ability.Factory(Game, "attack");
@@ -635,10 +635,10 @@ namespace SRPG.Scene.Battle
             //    //icon.MouseRelease = (sender, args) => { };
             //}
 
-            //menu.AddOption("attack", icon);
+            menu.AddOption("attack", icon);
 
             //// special abilities icon, plus event handlers
-            //icon = new SpriteObject(Game, menu, "Battle/Menu/special");
+            icon = new ImageButtonControl(){ImageFrame = "radial.special", Bounds = new UniRectangle(0, 0, 55, 55)};
             //if (character.CanAct)
             //{
             //    //icon.MouseRelease += SelectSpecialAbility(character);
@@ -651,10 +651,10 @@ namespace SRPG.Scene.Battle
             //    //icon.MouseClick = (sender, args) => { };
             //    //icon.MouseRelease = (sender, args) => { };
             //}
-            //menu.AddOption("special", icon);
+            menu.AddOption("special", icon);
 
-            //icon = new SpriteObject(Game, menu, "Battle/Menu/item");
-            //menu.AddOption("item", icon);
+            icon = new ImageButtonControl() {ImageFrame = "radial.item", Bounds = new UniRectangle(0, 0, 55, 55)};
+            menu.AddOption("item", icon);
 
             _radialMenu = menu;
             Gui.Screen.Desktop.Children.Add(_radialMenu);
