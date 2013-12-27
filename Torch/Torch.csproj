@@ -68,7 +68,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackgroundLayer.cs" />
+    <Compile Include="FlatImageButtonControlRenderer.cs" />
+    <Compile Include="FlatTiledIconControlRenderer.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="ImageButtonControl.cs" />
     <Compile Include="ImageObject.cs" />
     <Compile Include="KeyboardInputLayer.cs" />
     <Compile Include="SpriteObject.cs" />
@@ -76,6 +79,7 @@
     <Compile Include="Layer.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="TextureObject.cs" />
+    <Compile Include="TiledIconControl.cs" />
     <Compile Include="TorchHelper.cs" />
     <Compile Include="Velocity.cs" />
     <Compile Include="Object.cs" />
