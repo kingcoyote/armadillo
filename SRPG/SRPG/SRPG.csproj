@@ -155,7 +155,6 @@
       <DependentUpon>DialogLayer.cs</DependentUpon>
     </Compile>
     <Compile Include="FontManager.cs" />
-    <Compile Include="RadialMenu.cs" />
     <Compile Include="Scene\Battle\AbilityStatLayer.cs" />
     <Compile Include="Scene\Battle\BattleBoardLayer.cs" />
     <Compile Include="Scene\Battle\CharacterStatsDialog.cs" />

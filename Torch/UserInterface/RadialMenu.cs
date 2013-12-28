@@ -5,7 +5,7 @@ using Nuclex.UserInterface.Controls;
 
 namespace Torch.UserInterface
 {
-    class RadialMenu : Control
+    public class RadialMenu : Control
     {
         public int Distance = 75;
         public int CenterX = 0;
