@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using FusionC;
 using Microsoft.Xna.Framework;
 using Nuclex.Input;
 using Nuclex.Input.Devices;

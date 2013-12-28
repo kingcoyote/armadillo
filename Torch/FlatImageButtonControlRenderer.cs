@@ -1,9 +1,7 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Nuclex.UserInterface;
+﻿using Nuclex.UserInterface;
 using Nuclex.UserInterface.Visuals.Flat;
-using Nuclex.UserInterface.Controls.Desktop;
 
-namespace FusionC
+namespace Torch
 {
     public class FlatImageButtonControlRenderer : IFlatControlRenderer<ImageButtonControl>
     {

@@ -1,6 +1,6 @@
 ﻿using Nuclex.UserInterface.Controls;
 
-namespace FusionC
+namespace Torch
 {
     public class ImageButtonControl : PressableControl
     {
