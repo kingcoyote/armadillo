@@ -8,6 +8,7 @@ using Nuclex.UserInterface.Visuals.Flat;
 using SRPG.AI;
 using SRPG.Data;
 using Torch;
+using Torch.UserInterface;
 using Game = Torch.Game;
 
 namespace SRPG.Scene.Battle

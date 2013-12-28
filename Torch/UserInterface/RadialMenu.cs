@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
-using Nuclex.Input;
 using Nuclex.Input.Devices;
 using Nuclex.UserInterface.Controls;
-using Torch;
-using Torch.UserInterface;
 
-namespace SRPG
+namespace Torch.UserInterface
 {
     class RadialMenu : Control
     {
@@ -20,7 +14,7 @@ namespace SRPG
 
         public Action OnExit;
 
-        private IMouse _mouse;
+        private readonly IMouse _mouse;
 
         public RadialMenu(IMouse mouse)
         {

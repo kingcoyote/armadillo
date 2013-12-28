@@ -1,6 +1,6 @@
 ﻿using Nuclex.UserInterface.Controls;
 
-namespace Torch
+namespace Torch.UserInterface
 {
     public class TiledIconControl : Control
     {

@@ -1,7 +1,7 @@
 ﻿using Nuclex.UserInterface;
 using Nuclex.UserInterface.Visuals.Flat;
 
-namespace Torch
+namespace Torch.UserInterface
 {
     public class FlatTiledIconControlRenderer : IFlatControlRenderer<TiledIconControl>
     {
