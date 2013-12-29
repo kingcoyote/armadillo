@@ -16,18 +16,16 @@ namespace SRPG.Scene.Battle
         public new int Height;
         public bool AllowAim;
 
+        public delegate void CharacterDelegate(Combatant character);
+        public CharacterDelegate CharacterSelected = c => { };
+
         private Grid _targettingGrid;
         private Grid _impactGrid;
         private Grid _grid;
         private Dictionary<String, SpriteObject> _characters = new Dictionary<string, SpriteObject>();
         private SpriteObject[,] _gridCells;
         private ImageObject _bg;
-
-        /// <summary>
-        /// Default camera movement speed, in pixels per second
-        /// </summary>
         private const int CamScrollSpeed = 450;
-
         private BattleBoard _board;
 
         public BattleBoardLayer(Torch.Scene scene, Torch.Object parent) : base(scene, parent) { }
@@ -38,6 +36,22 @@ namespace SRPG.Scene.Battle
             Components.Add(_bg);
             Width = _bg.Width;
             Height = _bg.Height;
+
+            ((IInputService) Game.Services.GetService(typeof (IInputService))).GetMouse().MouseButtonPressed += OnMouseButtonPressed;
+        }
+
+        private void OnMouseButtonPressed(MouseButtons buttons)
+        {
+            var mouse = ((IInputService)Game.Services.GetService(typeof(IInputService))).GetMouse().GetState();
+
+            foreach (var character in _board.Characters)
+            {
+                if (character.Avatar.Sprite.Rectangle.Contains(mouse.X, mouse.Y))
+                {
+                    CharacterSelected.Invoke(character);
+                    break;
+                }
+            }
         }
 
         public void SetGrid(string gridName)
@@ -58,8 +72,8 @@ namespace SRPG.Scene.Battle
 
             foreach (var character in _board.Characters)
             {
-                character.Avatar.Sprite.X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width / 2.0);
-                character.Avatar.Sprite.Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0);
+                character.Avatar.Sprite.X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width / 2.0) + OffsetX();
+                character.Avatar.Sprite.Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0) + OffsetY();
                 character.Avatar.Sprite.DrawOrder = (int)character.Avatar.Sprite.Y;
                 _characters.Add(character.Name, character.Avatar.Sprite);
                 Components.Add(character.Avatar.Sprite);
@@ -77,8 +91,8 @@ namespace SRPG.Scene.Battle
 
             foreach(var character in _board.Characters)
             {
-                _characters[character.Name].X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width/2.0);
-                _characters[character.Name].Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0);
+                _characters[character.Name].X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width/2.0) + OffsetX();
+                _characters[character.Name].Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0) + OffsetY();
                 _characters[character.Name].DrawOrder = (int)character.Avatar.Sprite.Y;
             }
 
@@ -121,9 +135,10 @@ namespace SRPG.Scene.Battle
             // check if the cursor is over a character
             foreach (var character in _board.Characters)
             {
-                if (character.Avatar.Sprite.Rectangle.Contains((int)(mouse.X - X), (int)(mouse.Y - Y)))
+                if (character.Avatar.Sprite.Rectangle.Contains(mouse.X, mouse.Y))
                 {
                     scene.ShowCharacterStats(character);
+                    
                     break;
                 }
                 
@@ -187,21 +202,9 @@ namespace SRPG.Scene.Battle
 
         public void RemoveCharacter(Combatant character)
         {
-            //Components.Remove(_characters[character.Name]);
-            //_characters.Remove(character.Name);
+            Components.Remove(_characters[character.Name]);
+            _characters.Remove(character.Name);
         }
-
-        // todo 
-        //public EventHandler<MouseEventArgs> MouseClickCharacter(Combatant character)
-        //{
-        //    return (sender, args) =>
-        //        {
-        //            if (((BattleScene)Scene).FactionTurn != 0) return;
-
-        //            ((BattleScene) Scene).SelectCharacter(character);
-
-        //        };
-        //}
 
         private void UpdateGrid()
         {

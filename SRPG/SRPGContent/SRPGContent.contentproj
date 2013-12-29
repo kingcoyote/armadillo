@@ -432,6 +432,22 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Gui\clear.png">
+      <Name>clear</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <None Include="Gui\battle.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Name>battle</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+    <Compile Include="Gui\battle_radial.png">
+      <Name>battle_radial</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <None Include="Gui\main_menu.xml">
       <Name>main_menu</Name>
       <Importer>XmlImporter</Importer>

@@ -99,6 +99,7 @@
     <Reference Include="Nuclex.Input">
       <HintPath>..\..\Torch\nuclex\Nuclex.Input.dll</HintPath>
     </Reference>
+    <Reference Include="Nuclex.Support, Version=1.0.0.0, Culture=neutral, PublicKeyToken=96bb577564343f16, processorArchitecture=MSIL" />
     <Reference Include="Nuclex.UserInterface, Version=4.0.0.0, Culture=neutral, PublicKeyToken=96bb577564343f16, processorArchitecture=x86" />
     <Reference Include="System">
       <Private>False</Private>
@@ -157,10 +158,21 @@
     <Compile Include="RadialMenu.cs" />
     <Compile Include="Scene\Battle\AbilityStatLayer.cs" />
     <Compile Include="Scene\Battle\BattleBoardLayer.cs" />
-    <Compile Include="Scene\Battle\CharacterStats.cs" />
+    <Compile Include="Scene\Battle\CharacterStatsDialog.cs" />
+    <Compile Include="Scene\Battle\CharacterStatsDialog.Designer.cs">
+      <DependentUpon>CharacterStatsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene\Battle\FlatQueuedCommandControlRenderer.cs" />
     <Compile Include="Scene\Battle\HitLayer.cs" />
-    <Compile Include="Scene\Battle\HUD.cs" />
-    <Compile Include="Scene\Battle\QueuedCommands.cs" />
+    <Compile Include="Scene\Battle\HUDDialog.cs" />
+    <Compile Include="Scene\Battle\HUDDialog.Designer.cs">
+      <DependentUpon>HUDDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene\Battle\QueuedCommandControl.cs" />
+    <Compile Include="Scene\Battle\QueuedCommandsDialog.cs" />
+    <Compile Include="Scene\Battle\QueuedCommandsDialog.designer.cs">
+      <DependentUpon>QueuedCommandsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\MainMenu\MainMenu.cs" />
     <Compile Include="Scene\MainMenu\MenuOptionsDialog.cs" />
     <Compile Include="Scene\MainMenu\MenuOptionsDialog.designer.cs">
