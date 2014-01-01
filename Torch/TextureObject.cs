@@ -18,8 +18,17 @@ namespace Torch
 
         public override void Draw(GameTime gametime)
         {
+            float offsetx = 0;
+            float offsety = 0;
+
+            if (Parent != null)
+            {
+                offsetx = Parent.OffsetX();
+                offsety = Parent.OffsetY();
+            }
+
             _texture.SetData(new [] {Color});
-            _spriteBatch.Draw(_texture, Rectangle, Alpha);
+            _spriteBatch.Draw(_texture, new Rectangle((int)X + (int)offsetx, (int)Y + (int)offsety, Width, Height), Alpha);
         }
     }
 }
