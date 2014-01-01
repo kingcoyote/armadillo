@@ -20,16 +20,20 @@ namespace SRPG.Zones.Coliseum
             Name = "Coliseum Slave Cells";
             Sandbag = Grid.FromBitmap(Game.Services, "Zones/Coliseum/Cell/sandbag");
             ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/Cell/cell"));
-            Doors.Add(new Door { Location = new Rectangle(36*6, 126*6, 7*6, 8*6), Name = "bed", Orientation = Direction.Right });
-            Doors.Add(new Door { Location = new Rectangle(1851, 162, 48, 9), Name = "halls", Orientation = Direction.Down });
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/Cell/bars") { X = 50, Y = 300, DrawOrder = 350 });
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/Cell/bars") { X = 50, Y = 500, DrawOrder = 550 });
+            Doors.Add(new Door { Location = new Rectangle(100, 650, 7*6, 8*6), Name = "bed", Orientation = Direction.Right });
+            Doors.Add(new Door { Location = new Rectangle(905, 200, 45, 25), Name = "halls", Orientation = Direction.Down });
 
-            Objects.Add(new InteractiveObject { Interact = SimpleDoor("coliseum/halls", "cell"), Location = new Rectangle(1850, 143, 49, 12) });
+            Objects.Add(new InteractiveObject { Interact = SimpleDoor("coliseum/halls-south", "cell"), Location = new Rectangle(905, 190, 45, 15) });
+#if DEBUG
             Objects.Add(new InteractiveObject
-                {Interact = TestBattle("coliseum/halls"), Location = new Rectangle(818, 159, 32, 32)});
+                {Interact = TestBattle("coliseum/halls"), Location = new Rectangle(230, 700, 10, 50)});
+#endif
 
             Characters.Add("guard", Avatar.GenerateAvatar(game, null, "enemy"));
-            Characters["guard"].Location.X = 315;
-            Characters["guard"].Location.Y = 515;
+            Characters["guard"].Location.X = 150;
+            Characters["guard"].Location.Y = 440;
 
             Characters["guard"].Interact = TalkToGuard;
         }
@@ -44,7 +48,7 @@ namespace SRPG.Zones.Coliseum
             else
             {
                 var dialog = Dialog.Fetch("coliseum/cell", "guard");
-                dialog.OnExit = (o, eventArgs) => ((OverworldScene) sender).MoveCharacter("guard", new[] {new Vector2(100, 0), new Vector2(-2, 0)});
+                dialog.OnExit = (o, eventArgs) => ((OverworldScene) sender).MoveCharacter("guard", new[] {new Vector2(-55, 0), new Vector2(2, 0)});
                 ((OverworldScene) sender).StartDialog(dialog);
                 _guardMoved = true;
             }

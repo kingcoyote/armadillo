@@ -210,7 +210,9 @@
     <Compile Include="Scene\Shop\PlayerStats.cs" />
     <Compile Include="Scene\Shop\ShopInventory.cs" />
     <Compile Include="Zones\Coliseum\Cell.cs" />
-    <Compile Include="Zones\Coliseum\Halls.cs" />
+    <Compile Include="Zones\Coliseum\HallsNorth.cs" />
+    <Compile Include="Zones\Coliseum\HallsEast.cs" />
+    <Compile Include="Zones\Coliseum\HallsSouth.cs" />
     <Compile Include="Zones\Kakariko\Inn.cs" />
     <Compile Include="Zones\Kakariko\Village.cs" />
     <Compile Include="Zones\Kakariko\Bombshop.cs" />

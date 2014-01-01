@@ -246,11 +246,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Zones\Coliseum\Halls\halls.jpg">
-      <Name>halls</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Zones\Village\Warehouse\sandbag.png">
@@ -387,11 +382,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Zones\Coliseum\Halls\sandbag.png">
-      <Name>sandbag</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Zones\Village\Village\Posts1.png">
       <Name>Posts1</Name>
       <Importer>TextureImporter</Importer>
@@ -434,6 +424,41 @@
     </Compile>
     <Compile Include="Gui\clear.png">
       <Name>clear</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Zones\Coliseum\Halls\east-sb.png">
+      <Name>east-sb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Zones\Coliseum\Halls\east.jpg">
+      <Name>east</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Zones\Coliseum\Halls\north-sb.png">
+      <Name>north-sb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Zones\Coliseum\Halls\north.jpg">
+      <Name>north</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Zones\Coliseum\Halls\south-sb.png">
+      <Name>south-sb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Zones\Coliseum\Halls\south.jpg">
+      <Name>south</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Zones\Coliseum\Cell\bars.png">
+      <Name>bars</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

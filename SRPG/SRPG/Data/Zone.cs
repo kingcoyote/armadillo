@@ -55,8 +55,12 @@ namespace SRPG.Data
 
                 case "coliseum/cell":
                     return new Zones.Coliseum.Cell(game, parent);
-                case "coliseum/halls":
-                    return new Zones.Coliseum.Halls(game, parent);
+                case "coliseum/halls-south":
+                    return new Zones.Coliseum.HallsSouth(game, parent);
+                case "coliseum/halls-north":
+                    return new Zones.Coliseum.HallsNorth(game, parent);
+                case "coliseum/halls-east":
+                    return new Zones.Coliseum.HallsEast(game, parent);
 
                 default:
                     throw new ZoneException(String.Format("Unable to generate unknown zone '{0}'.", name));
