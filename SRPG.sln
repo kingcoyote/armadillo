@@ -9,6 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torch", "Torch\Torch.csproj
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Environment|Any CPU = Debug Environment|Any CPU
+		Debug Environment|Mixed Platforms = Debug Environment|Mixed Platforms
+		Debug Environment|x86 = Debug Environment|x86
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|x86 = Debug|x86
@@ -17,6 +20,11 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4277DBFE-3D3A-4D39-BD81-88A3E6C82353}.Debug Environment|Any CPU.ActiveCfg = Debug Environment|x86
+		{4277DBFE-3D3A-4D39-BD81-88A3E6C82353}.Debug Environment|Mixed Platforms.ActiveCfg = Debug Environment|x86
+		{4277DBFE-3D3A-4D39-BD81-88A3E6C82353}.Debug Environment|Mixed Platforms.Build.0 = Debug Environment|x86
+		{4277DBFE-3D3A-4D39-BD81-88A3E6C82353}.Debug Environment|x86.ActiveCfg = Debug Environment|x86
+		{4277DBFE-3D3A-4D39-BD81-88A3E6C82353}.Debug Environment|x86.Build.0 = Debug Environment|x86
 		{4277DBFE-3D3A-4D39-BD81-88A3E6C82353}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{4277DBFE-3D3A-4D39-BD81-88A3E6C82353}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{4277DBFE-3D3A-4D39-BD81-88A3E6C82353}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -27,12 +35,20 @@ Global
 		{4277DBFE-3D3A-4D39-BD81-88A3E6C82353}.Release|Mixed Platforms.Build.0 = Release|x86
 		{4277DBFE-3D3A-4D39-BD81-88A3E6C82353}.Release|x86.ActiveCfg = Release|x86
 		{4277DBFE-3D3A-4D39-BD81-88A3E6C82353}.Release|x86.Build.0 = Release|x86
+		{6F77CD33-33DE-4509-ACC8-CF3E3C5620E1}.Debug Environment|Any CPU.ActiveCfg = Debug|x86
+		{6F77CD33-33DE-4509-ACC8-CF3E3C5620E1}.Debug Environment|Mixed Platforms.ActiveCfg = Debug|x86
+		{6F77CD33-33DE-4509-ACC8-CF3E3C5620E1}.Debug Environment|x86.ActiveCfg = Debug|x86
 		{6F77CD33-33DE-4509-ACC8-CF3E3C5620E1}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{6F77CD33-33DE-4509-ACC8-CF3E3C5620E1}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{6F77CD33-33DE-4509-ACC8-CF3E3C5620E1}.Debug|x86.ActiveCfg = Debug|x86
 		{6F77CD33-33DE-4509-ACC8-CF3E3C5620E1}.Release|Any CPU.ActiveCfg = Release|x86
 		{6F77CD33-33DE-4509-ACC8-CF3E3C5620E1}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{6F77CD33-33DE-4509-ACC8-CF3E3C5620E1}.Release|x86.ActiveCfg = Release|x86
+		{0C966DA6-5F71-4FA5-9B68-7B0DB18D86D3}.Debug Environment|Any CPU.ActiveCfg = Debug Environment|Any CPU
+		{0C966DA6-5F71-4FA5-9B68-7B0DB18D86D3}.Debug Environment|Any CPU.Build.0 = Debug Environment|Any CPU
+		{0C966DA6-5F71-4FA5-9B68-7B0DB18D86D3}.Debug Environment|Mixed Platforms.ActiveCfg = Debug Environment|Any CPU
+		{0C966DA6-5F71-4FA5-9B68-7B0DB18D86D3}.Debug Environment|Mixed Platforms.Build.0 = Debug Environment|Any CPU
+		{0C966DA6-5F71-4FA5-9B68-7B0DB18D86D3}.Debug Environment|x86.ActiveCfg = Debug Environment|Any CPU
 		{0C966DA6-5F71-4FA5-9B68-7B0DB18D86D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0C966DA6-5F71-4FA5-9B68-7B0DB18D86D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C966DA6-5F71-4FA5-9B68-7B0DB18D86D3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

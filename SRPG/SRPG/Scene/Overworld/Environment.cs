@@ -46,6 +46,34 @@ namespace SRPG.Scene.Overworld
                 Components.Add(zone.Characters[character].Sprite);
             }
 
+#if DEBUG_ENV
+            foreach (var door in zone.Doors)
+            {
+                Components.Add(new TextureObject(Game, this)
+                    {
+                        X = door.Location.X,
+                        Y = door.Location.Y,
+                        Width = door.Location.Width,
+                        Height = door.Location.Height,
+                        Color = Color.LightGreen,
+                        DrawOrder = 10000
+                    });
+            }
+
+            foreach (var obj in zone.Objects)
+            {
+                Components.Add(new TextureObject(Game, this)
+                    {
+                        X = obj.Location.X,
+                        Y = obj.Location.Y,
+                        Width = obj.Location.Width,
+                        Height = obj.Location.Height,
+                        Color = Color.Orange,
+                        DrawOrder = 10000
+                    });
+            }
+#endif
+
             // sandbags are down scaled 1:6
             _width = zone.Sandbag.Size.Width * 6;
             _height = zone.Sandbag.Size.Height * 6;
