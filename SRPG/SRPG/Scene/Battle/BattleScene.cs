@@ -333,6 +333,16 @@ namespace SRPG.Scene.Battle
         {
             var layers = new List<Layer> {_battleBoard, _hitLayer};
 
+            if (_battleBoard.Width < Game.GraphicsDevice.Viewport.Width)
+            {
+                x = Game.GraphicsDevice.Viewport.Width/2 - _battleBoard.Width/2;
+            }
+
+            if (_battleBoard.Height < Game.GraphicsDevice.Viewport.Height)
+            {
+                y = Game.GraphicsDevice.Viewport.Height / 2 - _battleBoard.Height / 2;
+            }
+
             // update all layers that are locked to the camera
             foreach (var layer in layers)
             {
