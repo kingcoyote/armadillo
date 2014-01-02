@@ -590,7 +590,7 @@ namespace SRPG.Scene.Battle
 
             var menu = new RadialMenuControl(((IInputService)Game.Services.GetService(typeof(IInputService))).GetMouse())
                 {
-                    CenterX = (int)character.Avatar.Sprite.X + character.Avatar.Sprite.Width/2,
+                    CenterX = (int)character.Avatar.Sprite.X + character.Avatar.Sprite.Width/2 - 10,
                     CenterY = (int)character.Avatar.Sprite.Y + character.Avatar.Sprite.Height/2,
                     OnExit = DeselectCharacter
                 };
