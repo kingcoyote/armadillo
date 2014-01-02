@@ -47,6 +47,7 @@ namespace SRPG.Scene.Overworld
             }
 
 #if DEBUG_ENV
+            // highlight all doors in green
             foreach (var door in zone.Doors)
             {
                 Components.Add(new TextureObject(Game, this)
@@ -60,6 +61,7 @@ namespace SRPG.Scene.Overworld
                     });
             }
 
+            // highlight all interactive objects in orange
             foreach (var obj in zone.Objects)
             {
                 Components.Add(new TextureObject(Game, this)
