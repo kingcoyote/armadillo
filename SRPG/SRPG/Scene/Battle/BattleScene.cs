@@ -66,7 +66,7 @@ namespace SRPG.Scene.Battle
         private HitLayer _hitLayer;
         private AbilityStatLayer _abilityStatLayer;
         private BattleBoardLayer _battleBoard;
-        private RadialMenu _radialMenu;
+        private RadialMenuControl _radialMenuControl;
 
         public BattleScene(Game game) : base(game)
         {
@@ -105,6 +105,7 @@ namespace SRPG.Scene.Battle
             ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatQueuedCommandControlRenderer).Assembly);
             ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatImageButtonControlRenderer).Assembly);
             ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatTiledIconControlRenderer).Assembly);
+            ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatRadialButtonControlRenderer).Assembly);
         }
 
         protected override void OnResume()
@@ -116,6 +117,11 @@ namespace SRPG.Scene.Battle
         public override void Update(GameTime gametime)
         {
             base.Update(gametime);
+
+            if (_radialMenuControl != null)
+            {
+                _radialMenuControl.Update(gametime);
+            }
     
             // get the amount of time, in seconds, since the last frame. this should be 0.016 at 60fps.
             float dt = gametime.ElapsedGameTime.Milliseconds/1000F;
@@ -575,14 +581,14 @@ namespace SRPG.Scene.Battle
             if (_state != BattleState.PlayerTurn) return;
             if (character.Faction != 0) return;
 
-            if (_radialMenu != null)
+            if (_radialMenuControl != null)
             {
-                Gui.Screen.Desktop.Children.Remove(_radialMenu);
-                _radialMenu = null;
+                Gui.Screen.Desktop.Children.Remove(_radialMenuControl);
+                _radialMenuControl = null;
             }
 
 
-            var menu = new RadialMenu(((IInputService)Game.Services.GetService(typeof(IInputService))).GetMouse())
+            var menu = new RadialMenuControl(((IInputService)Game.Services.GetService(typeof(IInputService))).GetMouse())
                 {
                     CenterX = (int)character.Avatar.Sprite.X + character.Avatar.Sprite.Width/2,
                     CenterY = (int)character.Avatar.Sprite.Y + character.Avatar.Sprite.Height/2,
@@ -590,7 +596,7 @@ namespace SRPG.Scene.Battle
                 };
 
             // move icon, plus event handlers
-            var icon = new ImageButtonControl {ImageFrame = "radial.move", Bounds = new UniRectangle(0, 0, 55, 55)};
+            var icon = new RadialButtonControl {ImageFrame = "radial.move", Bounds = new UniRectangle(0, 0, 55, 55)};
             if (character.CanMove)
             {
                 //icon.Pressed += (sender, args) =>
@@ -617,7 +623,7 @@ namespace SRPG.Scene.Battle
             menu.AddOption("move", icon);
 
             //// attack icon, plus handlers
-            icon = new ImageButtonControl() { ImageFrame = "radial.attack", Bounds = new UniRectangle(0, 0, 55, 55)};
+            icon = new RadialButtonControl() { ImageFrame = "radial.attack", Bounds = new UniRectangle(0, 0, 55, 55) };
             //if (character.CanAct)
             //{
             //    var ability = Ability.Factory(Game, "attack");
@@ -648,7 +654,7 @@ namespace SRPG.Scene.Battle
             menu.AddOption("attack", icon);
 
             //// special abilities icon, plus event handlers
-            icon = new ImageButtonControl(){ImageFrame = "radial.special", Bounds = new UniRectangle(0, 0, 55, 55)};
+            icon = new RadialButtonControl() { ImageFrame = "radial.special", Bounds = new UniRectangle(200, 200, 55, 55) };
             //if (character.CanAct)
             //{
             //    //icon.MouseRelease += SelectSpecialAbility(character);
@@ -663,11 +669,11 @@ namespace SRPG.Scene.Battle
             //}
             menu.AddOption("special", icon);
 
-            icon = new ImageButtonControl() {ImageFrame = "radial.item", Bounds = new UniRectangle(0, 0, 55, 55)};
+            icon = new RadialButtonControl() { ImageFrame = "radial.item", Bounds = new UniRectangle(0, 0, 55, 55) };
             menu.AddOption("item", icon);
 
-            _radialMenu = menu;
-            Gui.Screen.Desktop.Children.Add(_radialMenu);
+            _radialMenuControl = menu;
+            Gui.Screen.Desktop.Children.Add(_radialMenuControl);
 
             _selectedCharacter = character;
             _state = BattleState.CharacterSelected;
@@ -680,10 +686,10 @@ namespace SRPG.Scene.Battle
         {
             if (_state != BattleState.CharacterSelected) return;
 
-            if (Gui.Screen.Desktop.Children.Contains(_radialMenu))
+            if (Gui.Screen.Desktop.Children.Contains(_radialMenuControl))
             {
-                Gui.Screen.Desktop.Children.Remove(_radialMenu);
-                _radialMenu = null;
+                Gui.Screen.Desktop.Children.Remove(_radialMenuControl);
+                _radialMenuControl = null;
             }
 
             ResetState();
@@ -703,7 +709,7 @@ namespace SRPG.Scene.Battle
             return (sender, args) =>
             {
                 _state = BattleState.AimingAbility;
-                Gui.Screen.Desktop.Children.Remove(_radialMenu);
+                Gui.Screen.Desktop.Children.Remove(_radialMenuControl);
 
 
                 _battleBoard.SetTargettingGrid(
@@ -764,7 +770,7 @@ namespace SRPG.Scene.Battle
                 {
                     // delete the current radial menu options, which should be move/attack/special/item for the character.
                     // should.
-                    _radialMenu.ClearOptions();
+                    _radialMenuControl.ClearOptions();
 
                     // go through each ability the character can currently use
                     foreach (var ability in character.GetAbilities().Where(character.CanUseAbility).Where(a => a.AbilityType == AbilityType.Active))
@@ -788,7 +794,7 @@ namespace SRPG.Scene.Battle
                             //ability.Icon.MouseRelease =  (o, eventArgs) => { };
                         }
 
-                        //_radialMenu.AddOption(ability.Name, ability.Icon);
+                        //_radialMenuControl.AddOption(ability.Name, ability.Icon);
                     }
                 };
         }

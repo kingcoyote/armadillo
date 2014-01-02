@@ -89,6 +89,7 @@ namespace Torch
             {
                 component.Update(gametime);
             }
+            Gui.Update(gametime);
         }
 
         // draw

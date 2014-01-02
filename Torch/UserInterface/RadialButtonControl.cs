@@ -1,7 +1,7 @@
 ﻿
 namespace Torch.UserInterface
 {
-    class RadialButtonControl : ImageButtonControl
+    public class RadialButtonControl : ImageButtonControl
     {
     }
 }
