@@ -378,20 +378,20 @@ namespace SRPG.Scene.Battle
             switch(battleName)
             {
                 case "coliseum/halls":
-                    _battleBoard.SetBackground("Zones/Coliseum/Halls/halls");
+                    _battleBoard.SetBackground("Zones/Coliseum/Halls/north");
                     _battleBoard.SetGrid("Zones/Coliseum/Halls/battle");
                     BattleBoard.Sandbag = Grid.FromBitmap(Game.Services, "Zones/Coliseum/Halls/battle");
 
-                    partyGrid.Add(new Point(14,35));
-                    partyGrid.Add(new Point(15,35));
-                    partyGrid.Add(new Point(13,35));
-                    partyGrid.Add(new Point(14,36));
-                    partyGrid.Add(new Point(15,36));
-                    partyGrid.Add(new Point(13,36));
+                    partyGrid.Add(new Point(10,13));
+                    partyGrid.Add(new Point(11,13));
+                    partyGrid.Add(new Point(9,13));
+                    partyGrid.Add(new Point(10,12));
+                    partyGrid.Add(new Point(11,12));
+                    partyGrid.Add(new Point(9,12));
 
-                    BattleBoard.Characters.Add(GenerateCombatant("Guard 1", "coliseum/guard", new Vector2(13, 31)));
-                    BattleBoard.Characters.Add(GenerateCombatant("Guard 2", "coliseum/guard", new Vector2(15, 31)));
-                    BattleBoard.Characters.Add(GenerateCombatant("Guard Captain", "coliseum/guard", new Vector2(14, 31)));
+                    BattleBoard.Characters.Add(GenerateCombatant("Guard 1", "coliseum/guard", new Vector2(9, 3)));
+                    BattleBoard.Characters.Add(GenerateCombatant("Guard 2", "coliseum/guard", new Vector2(11, 3)));
+                    BattleBoard.Characters.Add(GenerateCombatant("Guard Captain", "coliseum/guard", new Vector2(10, 3)));
 
                     
 
