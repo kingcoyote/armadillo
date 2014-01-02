@@ -86,7 +86,7 @@
     <Compile Include="ImageObject.cs" />
     <Compile Include="KeyboardInputLayer.cs" />
     <Compile Include="UserInterface\RadialButtonControl.cs" />
-    <Compile Include="UserInterface\RadialMenu.cs" />
+    <Compile Include="UserInterface\RadialMenuControl.cs" />
     <Compile Include="SpriteObject.cs" />
     <Compile Include="TextObject.cs" />
     <Compile Include="Layer.cs" />
