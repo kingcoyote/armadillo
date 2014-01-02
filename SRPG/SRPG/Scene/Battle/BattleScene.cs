@@ -100,7 +100,7 @@ namespace SRPG.Scene.Battle
             Components.Add(_hitLayer);
             Components.Add(_abilityStatLayer);
 
-            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/battle.xml");
+            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
 
             ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatQueuedCommandControlRenderer).Assembly);
             ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatImageButtonControlRenderer).Assembly);

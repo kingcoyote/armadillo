@@ -19,7 +19,7 @@ namespace SRPG.Scene.MainMenu
             _menuOptionsDialog.OnNewGamePressed += () => ((SRPGGame)Game).StartGame();
 
             Gui.Screen.Desktop.Children.Add(_menuOptionsDialog);
-            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_menu.xml");
+            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
         }
 
         protected override void OnEntered()

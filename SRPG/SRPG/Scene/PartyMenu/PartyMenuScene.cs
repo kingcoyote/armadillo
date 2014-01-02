@@ -38,7 +38,7 @@ namespace SRPG.Scene.PartyMenu
             Components.Add(_settingsMenu);
 
             Gui.DrawOrder = 1000;
-            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_menu.xml");
+            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
         }
 
         protected override void OnEntered()
