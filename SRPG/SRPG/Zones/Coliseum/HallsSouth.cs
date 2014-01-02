@@ -22,7 +22,7 @@ namespace SRPG.Zones.Coliseum
             Doors.Add(new Door { Location = new Rectangle(100, 100, 50, 35), Name = "halls-north", Orientation = Direction.Down });
             Doors.Add(new Door { Location = new Rectangle(660, 300, 35, 50), Name = "halls-east", Orientation = Direction.Left });
 
-            Objects.Add(new InteractiveObject { Interact = SimpleDoor("coliseum/cell", "halls"), Location = new Rectangle(345, 590, 50, 15) });
+            Objects.Add(new InteractiveObject { Interact = SimpleDoor("coliseum/cell", "halls"), Location = new Rectangle(345, 585, 50, 25) });
             Objects.Add(new InteractiveObject { Interact = SimpleDoor("coliseum/halls-north", "halls-south"), Location = new Rectangle(100, 90, 50, 15) });
             Objects.Add(new InteractiveObject { Interact = SimpleDoor("coliseum/halls-east", "halls-south"), Location = new Rectangle(700, 300, 15, 50) });
         }
