@@ -346,6 +346,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Characters\Ranger.png">
+      <Name>Ranger</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="Dialog\coliseum\cell.js">
       <Name>cell</Name>
       <Importer>XmlImporter</Importer>
