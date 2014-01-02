@@ -36,7 +36,7 @@ namespace SRPG.Scene.Overworld
             Avatar = Avatar.GenerateAvatar(Game, _environment, "fighter");
 
             Gui.DrawOrder = 1000;
-            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_menu.xml");
+            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
         }
 
         public override void Update(GameTime gametime)

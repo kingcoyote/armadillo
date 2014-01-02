@@ -79,6 +79,19 @@
       <text font="menu_font" hplacement="center" vplacement="center" color="#FFF000" />
     </frame>
 
+	<frame name="imagebutton.depressed">
+      <region source="menu_skin_bitmap" hplacement="left" vplacement="top" x="42" y="0" w="10" h="10" />
+      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="top" x="52" y="0" w="1" h="10" />
+      <region source="menu_skin_bitmap" hplacement="right" vplacement="top" x="53" y="0" w="10" h="10" />
+      <region source="menu_skin_bitmap" hplacement="left" vplacement="stretch" x="42" y="10" w="10" h="1" />
+      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="stretch" x="52" y="10" w="1" h="1" />
+      <region source="menu_skin_bitmap" hplacement="right" vplacement="stretch" x="53" y="10" w="10" h="1" />
+      <region source="menu_skin_bitmap" hplacement="left" vplacement="bottom" x="42" y="11" w="10" h="10" />
+      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="bottom" x="52" y="11" w="1" h="10" />
+      <region source="menu_skin_bitmap" hplacement="right" vplacement="bottom" x="53" y="11" w="10" h="10" />
+      <text font="menu_font" hplacement="center" vplacement="center" color="#17daf7" />
+    </frame>
+	
     <frame name="progress">
       <region source="menu_skin_bitmap" hplacement="left" vplacement="top" x="21" y="0" w="10" h="10" />
       <region source="menu_skin_bitmap" hplacement="stretch" vplacement="top" x="31" y="0" w="1" h="10" />
@@ -101,19 +114,6 @@
       <region source="menu_skin_bitmap" hplacement="stretch" vplacement="bottom" x="31" y="11" w="1" h="10" />
       <text font="menu_font" hplacement="center" vplacement="center" color="#FFF000" />
     </frame>
-
-    <frame name="imagebutton.depressed">
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="top" x="42" y="0" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="top" x="52" y="0" w="1" h="10" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="top" x="53" y="0" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="stretch" x="42" y="10" w="10" h="1" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="stretch" x="52" y="10" w="1" h="1" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="stretch" x="53" y="10" w="10" h="1" />
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="bottom" x="42" y="11" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="bottom" x="52" y="11" w="1" h="10" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="bottom" x="53" y="11" w="10" h="10" />
-      <text font="menu_font" hplacement="center" vplacement="center" color="#17daf7" />
-    </frame>
     
     <frame name="label">
       <text font="menu_font" hplacement="left" vplacement="top" color="#FFFFFF" />
@@ -131,132 +131,72 @@
       <region source="menu_skin_bitmap" hplacement="right" vplacement="bottom" x="11" y="11" w="10" h="10" />
     </frame>
 
-    <frame name="radial.move.normal">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="0" y="0" w="50" h="50"/>
+    <frame name="radialbuttoncontrol.normal">
+      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="stretch" x="0" y="21" w="64" h="64" />
     </frame>
 
-    <frame name="radial.move.highlighted">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="50" y="0" w="50" h="50"/>
+    <frame name="radialbuttoncontrol.highlighted">
+      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="stretch" x="64" y="21" w="64" h="64" />
     </frame>
 
-    <frame name="radial.move.depressed">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="100" y="0" w="50" h="50"/>
+    <frame name="radialbuttoncontrol.depressed">
+      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="stretch" x="0" y="85" w="64" h="64" />
+    </frame>
+	
+	<frame name="radialbuttoncontrol.disabled">
+      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="stretch" x="64" y="85" w="64" h="64" />
     </frame>
 
-    <frame name="radial.move.disabled">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="150" y="0" w="50" h="50"/>
+    <frame name="radialcontrol.images.attack.normal">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="0" y="0" w="64" h="64"/>
+    </frame>
+	<frame name="radialcontrol.images.attack.highlighted">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="64" y="0" w="64" h="64"/>
+    </frame>
+	<frame name="radialcontrol.images.attack.depressed">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="128" y="0" w="64" h="64"/>
+    </frame>
+	<frame name="radialcontrol.images.attack.disabled">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="192" y="0" w="64" h="64"/>
     </frame>
 
-    <frame name="radial.attack.normal">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="0" y="50" w="50" h="50"/>
+	<frame name="radialcontrol.images.item.normal">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="0" y="64" w="64" h="64"/>
     </frame>
-
-    <frame name="radial.attack.highlighted">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="50" y="50" w="50" h="50"/>
+	<frame name="radialcontrol.images.item.highlighted">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="64" y="64" w="64" h="64"/>
     </frame>
-
-    <frame name="radial.attack.depressed">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="100" y="50" w="50" h="50"/>
+	<frame name="radialcontrol.images.item.depressed">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="128" y="64" w="64" h="64"/>
     </frame>
-
-    <frame name="radial.attack.disabled">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="150" y="50" w="50" h="50"/>
+	<frame name="radialcontrol.images.item.disabled">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="192" y="64" w="64" h="64"/>
     </frame>
-
-    <frame name="radial.item.normal">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="0" y="100" w="50" h="50"/>
+	
+	<frame name="radialcontrol.images.move.normal">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="0" y="128" w="64" h="64"/>
     </frame>
-
-    <frame name="radial.item.highlighted">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="50" y="100" w="50" h="50"/>
+	<frame name="radialcontrol.images.move.highlighted">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="64" y="128" w="64" h="64"/>
     </frame>
-
-    <frame name="radial.item.depressed">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="100" y="100" w="50" h="50"/>
+	<frame name="radialcontrol.images.move.depressed">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="128" y="128" w="64" h="64"/>
     </frame>
-
-    <frame name="radial.item.disabled">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="150" y="100" w="50" h="50"/>
+	<frame name="radialcontrol.images.move.disabled">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="192" y="128" w="64" h="64"/>
     </frame>
-
-    <frame name="radial.special.normal">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="0" y="150" w="50" h="50"/>
+	
+	<frame name="radialcontrol.images.special.normal">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="0" y="192" w="64" h="64"/>
     </frame>
-
-    <frame name="radial.special.highlighted">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="50" y="150" w="50" h="50"/>
+	<frame name="radialcontrol.images.special.highlighted">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="64" y="192" w="64" h="64"/>
     </frame>
-
-    <frame name="radial.special.depressed">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="100" y="150" w="50" h="50"/>
+	<frame name="radialcontrol.images.special.depressed">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="128" y="192" w="64" h="64"/>
     </frame>
-
-    <frame name="radial.special.disabled">
-      <region source="clear" hplacement="left" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="right" vplacement="stretch" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="top" x="0" y="0" w="5" h="5"/>
-      <region source="clear" hplacement="stretch" vplacement="bottom" x="0" y="0" w="5" h="5"/>
-      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="150" y="150" w="50" h="50"/>
+	<frame name="radialcontrol.images.special.disabled">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="192" y="192" w="64" h="64"/>
     </frame>
 
   </frames>

@@ -18,7 +18,7 @@ namespace Torch.UserInterface
                 {
                     stateIndex = 3;
                 }
-                else if (control.MouseHovering || control.HasFocus)
+                else if (control.MouseHovering)
                 {
                     stateIndex = 2;
                 }
@@ -29,8 +29,8 @@ namespace Torch.UserInterface
             }
 
             // Draw the button's frame
-            graphics.DrawElement("imagebutton" + states[stateIndex], controlBounds);
-            graphics.DrawElement(control.ImageFrame + states[stateIndex], controlBounds);
+            graphics.DrawElement("radialbuttoncontrol" + states[stateIndex], controlBounds);
+            graphics.DrawElement("radialcontrol.images." + control.ImageFrame + states[stateIndex], controlBounds);
         }
 
         /// <summary>Names of the states the button control can be in</summary>
