@@ -64,6 +64,7 @@
     <Reference Include="Nuclex.Input">
       <HintPath>nuclex\Nuclex.Input.dll</HintPath>
     </Reference>
+    <Reference Include="Nuclex.Support, Version=1.0.0.0, Culture=neutral, PublicKeyToken=96bb577564343f16, processorArchitecture=MSIL" />
     <Reference Include="Nuclex.UserInterface">
       <HintPath>nuclex\Nuclex.UserInterface.dll</HintPath>
     </Reference>

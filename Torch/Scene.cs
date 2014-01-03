@@ -6,6 +6,8 @@ using Nuclex.Game.States;
 using Nuclex.Input;
 using Nuclex.UserInterface;
 using Nuclex.UserInterface.Input;
+using Nuclex.UserInterface.Visuals.Flat;
+using Torch.UserInterface;
 
 namespace Torch
 {

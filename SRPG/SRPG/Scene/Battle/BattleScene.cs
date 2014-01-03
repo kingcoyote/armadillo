@@ -102,7 +102,6 @@ namespace SRPG.Scene.Battle
 
             Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
 
-            ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatQueuedCommandControlRenderer).Assembly);
             ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatImageButtonControlRenderer).Assembly);
             ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatTiledIconControlRenderer).Assembly);
             ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatRadialButtonControlRenderer).Assembly);
@@ -608,7 +607,7 @@ namespace SRPG.Scene.Battle
                             new Grid(1, 1)
                             );
                     };
-                //icon.MouseOut += () => _battleBoard.ResetGrid();
+                icon.MouseOut += () => _battleBoard.ResetGrid();
                 icon.MouseClick += () => SelectAbilityTarget(character, Ability.Factory(Game, "move"));
             }
             else

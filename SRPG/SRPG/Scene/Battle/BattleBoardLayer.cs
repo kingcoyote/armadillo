@@ -4,8 +4,11 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nuclex.Input;
+using Nuclex.UserInterface;
+using Nuclex.UserInterface.Visuals.Flat;
 using SRPG.Data;
 using Torch;
+using Torch.UserInterface;
 using Game = Torch.Game;
 
 namespace SRPG.Scene.Battle
@@ -19,14 +22,18 @@ namespace SRPG.Scene.Battle
         public delegate void CharacterDelegate(Combatant character);
         public CharacterDelegate CharacterSelected = c => { };
 
+        public delegate void GridDelegate(int x, int y);
+        public GridDelegate GridCellSelected = (x, y) => { };
+
         private Grid _targettingGrid;
         private Grid _impactGrid;
         private Grid _grid;
         private Dictionary<String, SpriteObject> _characters = new Dictionary<string, SpriteObject>();
-        private SpriteObject[,] _gridCells;
+        private GridCellControl[,] _gridCells;
         private ImageObject _bg;
         private const int CamScrollSpeed = 450;
         private BattleBoard _board;
+        private GuiManager _gui;
 
         public BattleBoardLayer(Torch.Scene scene, Torch.Object parent) : base(scene, parent) { }
 
@@ -34,9 +41,24 @@ namespace SRPG.Scene.Battle
         {
             _bg = new ImageObject(Game, this, imageName) { DrawOrder = -1000 };
             Components.Add(_bg);
+            
             Width = _bg.Width;
             Height = _bg.Height;
 
+            _gui = new GuiManager(
+                (GraphicsDeviceManager)Game.Services.GetService(typeof(IGraphicsDeviceManager)),
+                (IInputService)Game.Services.GetService(typeof(IInputService))
+            );
+            _gui.Screen = new Screen(_bg.Width, _bg.Height);
+            _gui.Screen.Desktop.Bounds = new UniRectangle(0, 0, _bg.Width, _bg.Height);
+            _gui.DrawOrder = 10000;
+            _gui.Initialize();
+
+            _gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
+            ((FlatGuiVisualizer)_gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatGridCellControlRenderer).Assembly);
+            
+            Components.Add(_gui);
+            
             ((IInputService) Game.Services.GetService(typeof (IInputService))).GetMouse().MouseButtonPressed += OnMouseButtonPressed;
         }
 
@@ -175,8 +197,15 @@ namespace SRPG.Scene.Battle
                 }
 
                HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
-               //_gridCells[cursor.X, cursor.Y].Click = (s, a) => scene.ExecuteAimAbility(cursor.X, cursor.Y);
             }
+        }
+
+        public override void Draw(GameTime gametime)
+        {
+            base.Draw(gametime);
+            _spriteBatch.End();
+            _spriteBatch.Begin();
+            _gui.Draw(gametime);
         }
 
         private bool ValidCell(int x, int y)
@@ -189,15 +218,7 @@ namespace SRPG.Scene.Battle
 
         public GridHighlight CellType(int x, int y)
         {
-            
-            switch(_gridCells[x,y].GetAnimation())
-            {
-                case "Normal":     return GridHighlight.Normal;
-                case "Selectable": return GridHighlight.Selectable;
-                case "Targetted":  return GridHighlight.Targetted;
-                case "Splashed":   return GridHighlight.Splashed;
-                default:           throw new Exception(String.Format("location {0},{1} is not on the grid", x, y));
-            }
+            return _gridCells[x, y].Highlight;
         }
 
         public void RemoveCharacter(Combatant character)
@@ -208,24 +229,22 @@ namespace SRPG.Scene.Battle
 
         private void UpdateGrid()
         {
-            _gridCells = new SpriteObject[_grid.Size.Width,_grid.Size.Height];
+            _gridCells = new GridCellControl[_grid.Size.Width,_grid.Size.Height];
 
             for(var i = 0; i < _grid.Size.Width; i++)
             {
                 for(var j = 0; j < _grid.Size.Height; j++)
                 {
-                    if (_grid.Weight[i, j] > 128)
-                    {
-                        var gridCell = new SpriteObject(Game, this, "Battle/gridhighlight") { X = i*50, Y = j*50, DrawOrder = -10 };
-                        gridCell.AddAnimation("Normal", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 0 });
-                        gridCell.AddAnimation("Selectable", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 50 });
-                        gridCell.AddAnimation("Targetted", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 100 });
-                        gridCell.AddAnimation("Splashed", new SpriteAnimation { FrameCount = 1, FrameRate = 1, Size = new Rectangle(0, 0, 50, 50), StartRow = 150 });
-                        gridCell.SetAnimation("Normal");
+                    if (_grid.Weight[i, j] <= 128) continue;
 
-                        _gridCells[i, j] = gridCell;
-                        Components.Add(gridCell);
-                    }
+                    var li = i;
+                    var lj = j;
+
+                    var gridCell = new GridCellControl();
+                    gridCell.Bounds = new UniRectangle(i*50, j*50, 50, 50);
+                    gridCell.GridClicked += () => GridCellSelected.Invoke(li, lj);
+                    _gridCells[i, j] = gridCell;
+                    _gui.Screen.Desktop.Children.Add(gridCell);
                 }
             }
         }
@@ -234,7 +253,7 @@ namespace SRPG.Scene.Battle
         {
             if (_gridCells[x, y] == null) return;
 
-            _gridCells[x, y].SetAnimation(type.ToString());
+            _gridCells[x, y].Highlight = type;
         }
 
         private void HighlightGrid(Grid grid, GridHighlight highlightType)
@@ -267,7 +286,7 @@ namespace SRPG.Scene.Battle
                 for (int j = 0; j < _grid.Size.Height; j++)
                 {
                     if (_gridCells[i, j] == null) continue;
-                    _gridCells[i, j].SetAnimation("Normal");
+                    _gridCells[i, j].Highlight = GridHighlight.Normal;
                 }
             }
         }
