@@ -596,7 +596,7 @@ namespace SRPG.Scene.Battle
                 };
 
             // move icon, plus event handlers
-            var icon = new RadialButtonControl {ImageFrame = "move", Bounds = new UniRectangle(0, 0, 55, 55)};
+            var icon = new RadialButtonControl {ImageFrame = "move", Bounds = new UniRectangle(0, 0, 64, 64)};
             if (character.CanMove)
             {
                 icon.MouseOver += () =>
@@ -623,7 +623,7 @@ namespace SRPG.Scene.Battle
             menu.AddOption("move", icon);
 
             //// attack icon, plus handlers
-            icon = new RadialButtonControl() { ImageFrame = "attack", Bounds = new UniRectangle(0, 0, 55, 55) };
+            icon = new RadialButtonControl() { ImageFrame = "attack", Bounds = new UniRectangle(0, 0, 64, 64) };
             if (character.CanAct)
             {
                 var ability = Ability.Factory(Game, "attack");
@@ -654,7 +654,7 @@ namespace SRPG.Scene.Battle
             menu.AddOption("attack", icon);
 
             //// special abilities icon, plus event handlers
-            icon = new RadialButtonControl() { ImageFrame = "special", Bounds = new UniRectangle(200, 200, 55, 55) };
+            icon = new RadialButtonControl() { ImageFrame = "special", Bounds = new UniRectangle(0, 0, 64, 64) };
             if (character.CanAct)
             {
                 icon.MouseRelease += () => SelectSpecialAbility(character);
@@ -669,7 +669,7 @@ namespace SRPG.Scene.Battle
             }
             menu.AddOption("special", icon);
 
-            icon = new RadialButtonControl() { ImageFrame = "item", Bounds = new UniRectangle(0, 0, 55, 55) };
+            icon = new RadialButtonControl() { ImageFrame = "item", Bounds = new UniRectangle(0, 0, 64, 64) };
             menu.AddOption("item", icon);
 
             _radialMenuControl = menu;
