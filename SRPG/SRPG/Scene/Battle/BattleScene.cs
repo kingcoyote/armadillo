@@ -599,74 +599,74 @@ namespace SRPG.Scene.Battle
             var icon = new RadialButtonControl {ImageFrame = "move", Bounds = new UniRectangle(0, 0, 55, 55)};
             if (character.CanMove)
             {
-                //icon.Pressed += (sender, args) =>
-                //    {
-                //        if (!character.CanMove) return;
+                icon.MouseOver += () =>
+                    {
+                        if (!character.CanMove) return;
 
-                //        _battleBoard.SetTargettingGrid(
-                //            character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)),
-                //            new Grid(1, 1)
-                //            );
-                //    };
-                //icon.MouseOut += (sender, args) => _battleBoard.ResetGrid();
-                //icon.MouseRelease += SelectAbilityTarget(character, Ability.Factory("move"));
+                        _battleBoard.SetTargettingGrid(
+                            character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)),
+                            new Grid(1, 1)
+                            );
+                    };
+                //icon.MouseOut += () => _battleBoard.ResetGrid();
+                icon.MouseClick += () => SelectAbilityTarget(character, Ability.Factory(Game, "move"));
             }
             else
             {
                 // if they can't move, this icon does nothing
-                //icon.MouseOver = (sender, args) => { };
-                //icon.MouseOut = (sender, args) => { };
-                //icon.MouseClick = (sender, args) => { };
-                //icon.MouseRelease = (sender, args) => { };
+                icon.MouseOver = () => { };
+                icon.MouseOut = () => { };
+                icon.MouseClick = () => { };
+                icon.MouseRelease = () => { };
             }
 
             menu.AddOption("move", icon);
 
             //// attack icon, plus handlers
             icon = new RadialButtonControl() { ImageFrame = "attack", Bounds = new UniRectangle(0, 0, 55, 55) };
-            //if (character.CanAct)
-            //{
-            //    var ability = Ability.Factory(Game, "attack");
-            //    ability.Character = character;
+            if (character.CanAct)
+            {
+                var ability = Ability.Factory(Game, "attack");
+                ability.Character = character;
 
-            //    //icon.MouseOver += (sender, args) =>
-            //    //    {
-            //    //        if (!character.CanAct) return;
+                icon.MouseOver += () =>
+                    {
+                        if (!character.CanAct) return;
 
-            //    //        _battleBoard.SetTargettingGrid(
-            //    //            ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
-            //    //            new Grid(1, 1)
-            //    //            );
-            //    //    };
-            //    //icon.MouseOut += (sender, args) => _battleBoard.ResetGrid();
-                
-            //    //icon.MouseRelease += SelectAbilityTarget(character, ability);
-            //}
-            //else
-            //{
-            //    // if they can't act, this icon does nothing
-            //    //icon.MouseOver = (sender, args) => { };
-            //    //icon.MouseOut = (sender, args) => { };
-            //    //icon.MouseClick = (sender, args) => { };
-            //    //icon.MouseRelease = (sender, args) => { };
-            //}
+                        _battleBoard.SetTargettingGrid(
+                            ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
+                            new Grid(1, 1)
+                            );
+                    };
+                icon.MouseOut += () => _battleBoard.ResetGrid();
+
+                icon.MouseRelease += () => SelectAbilityTarget(character, ability);
+            }
+            else
+            {
+                // if they can't act, this icon does nothing
+                icon.MouseOver = () => { };
+                icon.MouseOut = () => { };
+                icon.MouseClick = () => { };
+                icon.MouseRelease = () => { };
+            }
 
             menu.AddOption("attack", icon);
 
             //// special abilities icon, plus event handlers
             icon = new RadialButtonControl() { ImageFrame = "special", Bounds = new UniRectangle(200, 200, 55, 55) };
-            //if (character.CanAct)
-            //{
-            //    //icon.MouseRelease += SelectSpecialAbility(character);
-            //}
-            //else
-            //{
-            //    // if they can't act, this icon does nothing
-            //    //icon.MouseOver = (sender, args) => { };
-            //    //icon.MouseOut = (sender, args) => { };
-            //    //icon.MouseClick = (sender, args) => { };
-            //    //icon.MouseRelease = (sender, args) => { };
-            //}
+            if (character.CanAct)
+            {
+                icon.MouseRelease += () => SelectSpecialAbility(character);
+            }
+            else
+            {
+                // if they can't act, this icon does nothing
+                icon.MouseOver = () => { };
+                icon.MouseOut = () => { };
+                icon.MouseClick = () => { };
+                icon.MouseRelease = () => { };
+            }
             menu.AddOption("special", icon);
 
             icon = new RadialButtonControl() { ImageFrame = "item", Bounds = new UniRectangle(0, 0, 55, 55) };
@@ -704,59 +704,57 @@ namespace SRPG.Scene.Battle
         /// <param name="character">The character whose attack is being chosen.</param>
         /// <param name="ability">The ability currently being aimed.</param>
         /// <returns></returns>
-        private EventHandler SelectAbilityTarget(Combatant character, Ability ability)
+        private void SelectAbilityTarget(Combatant character, Ability ability)
         {
-            return (sender, args) =>
-            {
-                _state = BattleState.AimingAbility;
-                Gui.Screen.Desktop.Children.Remove(_radialMenuControl);
+
+            _state = BattleState.AimingAbility;
+            Gui.Screen.Desktop.Children.Remove(_radialMenuControl);
 
 
-                _battleBoard.SetTargettingGrid(
-                    ability.Name == "Move" ? 
-                        character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)) : 
-                        ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
-                    ability.GenerateImpactGrid()
-                );
+            _battleBoard.SetTargettingGrid(
+                ability.Name == "Move" ? 
+                    character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)) : 
+                    ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
+                ability.GenerateImpactGrid()
+            );
                 
-                _battleBoard.AllowAim = true;
+            _battleBoard.AllowAim = true;
 
-                _aimAbility = (x, y) =>
-                    {
-                        // only target enemies with angry spells and allies with friendly spells
-                        if (!ability.CanTarget(BattleBoard.IsOccupied(new Point(x, y))))
-                            return false;
+            _aimAbility = (x, y) =>
+                {
+                    // only target enemies with angry spells and allies with friendly spells
+                    if (!ability.CanTarget(BattleBoard.IsOccupied(new Point(x, y))))
+                        return false;
 
-                        character.Avatar.UpdateVelocity(x - character.Avatar.Location.X, y - character.Avatar.Location.Y);
-                        character.Avatar.UpdateVelocity(0, 0);
+                    character.Avatar.UpdateVelocity(x - character.Avatar.Location.X, y - character.Avatar.Location.Y);
+                    character.Avatar.UpdateVelocity(0, 0);
 
-                        // make sure the ability knows who is casting it. this probably shouldn't
-                        // be done here, but there are issues doing it elsewhere.
-                        ability.Character = character;
+                    // make sure the ability knows who is casting it. this probably shouldn't
+                    // be done here, but there are issues doing it elsewhere.
+                    ability.Character = character;
 
-                        var command = new Command
-                            {
-                                Character = character, 
-                                Target = new Point(x, y), 
-                                Ability = ability
-                            };
-
-                        if(ability.Name == "Move")
+                    var command = new Command
                         {
-                            ExecuteCommand(command);
-                            return true;
-                        }
+                            Character = character, 
+                            Target = new Point(x, y), 
+                            Ability = ability
+                        };
 
-                        character.CanAct = false;
-                        QueuedCommands.Add(command);
-                        _state = BattleState.Delay;
-                        _delayState = BattleState.PlayerTurn;
-                        _delayTimer = 0.05F;
-                        ResetState();
-
+                    if(ability.Name == "Move")
+                    {
+                        ExecuteCommand(command);
                         return true;
-                    };
-            };
+                    }
+
+                    character.CanAct = false;
+                    QueuedCommands.Add(command);
+                    _state = BattleState.Delay;
+                    _delayState = BattleState.PlayerTurn;
+                    _delayTimer = 0.05F;
+                    ResetState();
+
+                    return true;
+                };
         }
 
         /// <summary>
@@ -764,39 +762,41 @@ namespace SRPG.Scene.Battle
         /// </summary>
         /// <param name="character">The character being selected for special abilities</param>
         /// <returns>An event handler to execute to show the abilities.</returns>
-        private EventHandler SelectSpecialAbility(Combatant character)
+        private void SelectSpecialAbility(Combatant character)
         {
-            return (sender, args) =>
+            // delete the current radial menu options, which should be move/attack/special/item for the character.
+            // should.
+            _radialMenuControl.ClearOptions();
+
+            // go through each ability the character can currently use
+            foreach (var ability in character.GetAbilities().Where(character.CanUseAbility).Where(a => a.AbilityType == AbilityType.Active))
+            {
+                var tempAbility = ability;
+
+                var button = new RadialButtonControl();
+                button.ImageFrame = ability.ImageName;
+                button.Bounds = new UniRectangle(0, 0, 64, 64);
+
+                // only bind event handlers onto abilities that are cheap enough to use
+                if (ability.ManaCost <= character.CurrentMana)
                 {
-                    // delete the current radial menu options, which should be move/attack/special/item for the character.
-                    // should.
-                    _radialMenuControl.ClearOptions();
-
-                    // go through each ability the character can currently use
-                    foreach (var ability in character.GetAbilities().Where(character.CanUseAbility).Where(a => a.AbilityType == AbilityType.Active))
-                    {
-                        var tempAbility = ability;
-
-                        // only bind event handlers onto abilities that are cheap enough to use
-                        if (ability.ManaCost <= character.CurrentMana)
+                    button.MouseOver = () => PreviewAbility(tempAbility);
+                    button.MouseOut = () =>
                         {
-                            //ability.Icon.MouseOver = (o, eventArgs) => PreviewAbility(tempAbility);
-                            //ability.Icon.MouseOut = (o, eventArgs) =>
-                            //    {
-                            //        _abilityStatLayer.Visible = false;
-                            //        _battleBoard.ResetGrid();
-                            //    };
-                            //ability.Icon.MouseClick = (o, eventArgs) => { };
-                            //ability.Icon.MouseRelease = SelectAbilityTarget(character, tempAbility);
-                        }
-                        else
-                        {
-                            //ability.Icon.MouseRelease =  (o, eventArgs) => { };
-                        }
+                            _abilityStatLayer.Visible = false;
+                            _battleBoard.ResetGrid();
+                        };
+                    button.MouseClick = () => { };
+                    button.MouseRelease += () => SelectAbilityTarget(character, tempAbility);
+                }
+                else
+                {
+                    button.MouseRelease =  () => { };
+                }
 
-                        //_radialMenuControl.AddOption(ability.Name, ability.Icon);
-                    }
-                };
+                _radialMenuControl.AddOption(ability.Name, button);
+            }
+                
         }
 
         /// <summary>

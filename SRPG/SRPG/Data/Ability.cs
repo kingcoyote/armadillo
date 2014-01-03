@@ -35,6 +35,8 @@ namespace SRPG.Data
 
         protected Ability(Game game) : base(game) { }
 
+        public string ImageName = "ability";
+
         /// <summary>
         /// Generate one or more hits to be used to damage the targets.
         /// </summary>

@@ -199,6 +199,19 @@
       <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="192" y="192" w="64" h="64"/>
     </frame>
 
+    <frame name="radialcontrol.images.ability.normal">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="0" y="256" w="64" h="64"/>
+    </frame>
+    <frame name="radialcontrol.images.ability.highlighted">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="64" y="256" w="64" h="64"/>
+    </frame>
+    <frame name="radialcontrol.images.ability.depressed">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="128" y="256" w="64" h="64"/>
+    </frame>
+    <frame name="radialcontrol.images.ability.disabled">
+      <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="192" y="256" w="64" h="64"/>
+    </frame>
+
   </frames>
 
 </skin>
