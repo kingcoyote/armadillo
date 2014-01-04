@@ -274,7 +274,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Battle\gridhighlight.png">
+    <Compile Include="Gui\gridhighlight.png">
       <Name>gridhighlight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

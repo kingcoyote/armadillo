@@ -8,7 +8,7 @@ using Torch.UserInterface;
 
 namespace SRPG.Scene.Battle
 {
-    class GridCellControl : ButtonControl
+    public class GridCellControl : PressableControl
     {
         public GridHighlight Highlight;
         public Action GridClicked = () => { };

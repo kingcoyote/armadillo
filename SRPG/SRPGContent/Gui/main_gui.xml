@@ -8,6 +8,7 @@
     <font name="menu_font" contentPath="menu_font" />
     <bitmap name="menu_skin_bitmap" contentPath="menu_skin" />
     <bitmap name="battle_radial_bitmap" contentPath="battle_radial" />
+    <bitmap name="grid" contentPath="gridhighlight"/>
     <bitmap name="clear" contentPath="clear" />
   </resources>
 
@@ -114,7 +115,23 @@
       <region source="menu_skin_bitmap" hplacement="stretch" vplacement="bottom" x="31" y="11" w="1" h="10" />
       <text font="menu_font" hplacement="center" vplacement="center" color="#FFF000" />
     </frame>
-    
+
+    <frame name="gridcell.normal">
+      <region source="grid" hplacement="stretch" vplacement="stretch" x="0" y="0" w="50" h="50" />
+    </frame>
+
+    <frame name="gridcell.selectable">
+      <region source="grid" hplacement="stretch" vplacement="stretch" x="0" y="50" w="50" h="50" />
+    </frame>
+
+    <frame name="gridcell.targetted">
+      <region source="grid" hplacement="stretch" vplacement="stretch" x="0" y="100" w="50" h="50" />
+    </frame>
+
+    <frame name="gridcell.splashed">
+      <region source="grid" hplacement="stretch" vplacement="stretch" x="0" y="150" w="50" h="50" />
+    </frame>
+
     <frame name="label">
       <text font="menu_font" hplacement="left" vplacement="top" color="#FFFFFF" />
     </frame>

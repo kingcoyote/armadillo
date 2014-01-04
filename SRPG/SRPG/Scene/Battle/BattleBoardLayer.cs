@@ -51,7 +51,7 @@ namespace SRPG.Scene.Battle
             );
             _gui.Screen = new Screen(_bg.Width, _bg.Height);
             _gui.Screen.Desktop.Bounds = new UniRectangle(0, 0, _bg.Width, _bg.Height);
-            _gui.DrawOrder = 10000;
+            _gui.DrawOrder = 0;
             _gui.Initialize();
 
             _gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
@@ -105,6 +105,8 @@ namespace SRPG.Scene.Battle
         public override void Update(GameTime gametime)
         {
             base.Update(gametime);
+            _gui.Screen.Desktop.Bounds.Location.X.Offset = OffsetX();
+            _gui.Screen.Desktop.Bounds.Location.Y.Offset = OffsetY();
 
             var scene = ((BattleScene) Scene);
 
@@ -202,10 +204,20 @@ namespace SRPG.Scene.Battle
 
         public override void Draw(GameTime gametime)
         {
-            base.Draw(gametime);
+            foreach (var component in (from IDrawable c in Components where c.DrawOrder <= _gui.DrawOrder orderby c.DrawOrder select c).ToArray())
+            {
+                component.Draw(gametime);
+            }
+
             _spriteBatch.End();
             _spriteBatch.Begin();
+
             _gui.Draw(gametime);
+
+            foreach (var component in (from IDrawable c in Components  where c.DrawOrder > _gui.DrawOrder orderby c.DrawOrder select c).ToArray())
+            {
+                component.Draw(gametime);
+            }
         }
 
         private bool ValidCell(int x, int y)
@@ -237,11 +249,11 @@ namespace SRPG.Scene.Battle
                 {
                     if (_grid.Weight[i, j] <= 128) continue;
 
+                    // create local instances of i and js so the anon GridClicked function won't misbehave
                     var li = i;
                     var lj = j;
 
-                    var gridCell = new GridCellControl();
-                    gridCell.Bounds = new UniRectangle(i*50, j*50, 50, 50);
+                    var gridCell = new GridCellControl { Bounds = new UniRectangle(i*50, j*50, 50, 50) };
                     gridCell.GridClicked += () => GridCellSelected.Invoke(li, lj);
                     _gridCells[i, j] = gridCell;
                     _gui.Screen.Desktop.Children.Add(gridCell);
