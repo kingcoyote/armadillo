@@ -116,7 +116,7 @@ namespace SRPG.Scene.Battle
             foreach(var character in _board.Characters)
             {
                 _characters[character.Name].X = (int)(character.Avatar.Location.X * 50 + 25 - character.Avatar.Sprite.Width/2.0) + OffsetX();
-                _characters[character.Name].Y = (int)(character.Avatar.Location.Y * 50 + 25 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0) + OffsetY();
+                _characters[character.Name].Y = (int)(character.Avatar.Location.Y * 50 + 35 - character.Avatar.Sprite.Height + character.Avatar.GetFeet().Height / 2.0) + OffsetY();
                 _characters[character.Name].DrawOrder = (int)character.Avatar.Sprite.Y;
             }
 
