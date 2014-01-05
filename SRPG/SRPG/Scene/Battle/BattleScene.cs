@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Nuclex.Input;
 using Nuclex.UserInterface;
 using Nuclex.UserInterface.Visuals.Flat;
@@ -108,12 +109,17 @@ namespace SRPG.Scene.Battle
             ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatTiledIconControlRenderer).Assembly);
             ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatRadialButtonControlRenderer).Assembly);
             ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatQueuedCommandControlRenderer).Assembly);
+
+            var keyboard = new KeyboardInputLayer(this, null);
+            keyboard.AddKeyDownBinding(Keys.Escape, Cancel);
+            Components.Add(keyboard);
         }
 
         protected override void OnResume()
         {
             base.OnResume();
             Game.IsMouseVisible = true;
+            
         }
 
         public override void Update(GameTime gametime)
