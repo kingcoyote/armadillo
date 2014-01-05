@@ -3,8 +3,6 @@ using Microsoft.Xna.Framework;
 using Nuclex.Input.Devices;
 using Nuclex.UserInterface;
 using Nuclex.UserInterface.Controls;
-using Nuclex.UserInterface.Controls.Desktop;
-
 namespace Torch.UserInterface
 {
     public class RadialMenuControl : Control
@@ -21,7 +19,7 @@ namespace Torch.UserInterface
         public RadialMenuControl(IMouse mouse)
         {
             _mouse = mouse;
-            Bounds = new UniRectangle(0, 0, (UniScalar)(ExitDistance * 2), (UniScalar)(ExitDistance * 2));
+            Bounds = new UniRectangle(0, 0, (ExitDistance * 2), (ExitDistance * 2));
         }
 
         public void AddOption(string name, ImageButtonControl button)

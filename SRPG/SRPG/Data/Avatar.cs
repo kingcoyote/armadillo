@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Torch;
 using Game = Microsoft.Xna.Framework.Game;
@@ -50,7 +48,7 @@ namespace SRPG.Data
         public Rectangle GetFeet()
         {
             return new Rectangle(
-                (int)(Location.X + Sprite.Width / 2 - FeetWidth / 2),
+                (int)(Location.X + Sprite.Width / 2.0 - FeetWidth / 2.0),
                 (int)(Location.Y + Sprite.Height - FeetHeight),
                 FeetWidth,
                 FeetHeight
@@ -124,7 +122,7 @@ namespace SRPG.Data
             }
         }
 
-        public static Avatar GenerateAvatar(Microsoft.Xna.Framework.Game game, Torch.Object parent, string className)
+        public static Avatar GenerateAvatar(Game game, Torch.Object parent, string className)
         {
             Avatar character;
 

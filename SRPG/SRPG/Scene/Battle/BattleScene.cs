@@ -201,10 +201,8 @@ namespace SRPG.Scene.Battle
 
                 return;
             }
-            else
-            {
-                ExecuteQueuedCommands();
-            }
+
+            ExecuteQueuedCommands();
 
             // all enemy players have moved / attacked
             ChangeFaction(0);
@@ -627,7 +625,7 @@ namespace SRPG.Scene.Battle
             menu.AddOption("move", icon);
 
             //// attack icon, plus handlers
-            icon = new RadialButtonControl() { ImageFrame = "attack", Bounds = new UniRectangle(0, 0, 64, 64) };
+            icon = new RadialButtonControl { ImageFrame = "attack", Bounds = new UniRectangle(0, 0, 64, 64) };
             if (character.CanAct)
             {
                 var ability = Ability.Factory(Game, "attack");
@@ -660,7 +658,7 @@ namespace SRPG.Scene.Battle
             menu.AddOption("attack", icon);
 
             //// special abilities icon, plus event handlers
-            icon = new RadialButtonControl() { ImageFrame = "special", Bounds = new UniRectangle(0, 0, 64, 64) };
+            icon = new RadialButtonControl { ImageFrame = "special", Bounds = new UniRectangle(0, 0, 64, 64) };
             if (character.CanAct)
             {
                 icon.MouseRelease += () => SelectSpecialAbility(character);  
@@ -675,7 +673,7 @@ namespace SRPG.Scene.Battle
             }
             menu.AddOption("special", icon);
 
-            icon = new RadialButtonControl() { ImageFrame = "item", Bounds = new UniRectangle(0, 0, 64, 64) };
+            icon = new RadialButtonControl { ImageFrame = "item", Bounds = new UniRectangle(0, 0, 64, 64) };
             menu.AddOption("item", icon);
 
             _radialMenuControl = menu;
@@ -779,9 +777,8 @@ namespace SRPG.Scene.Battle
             {
                 var tempAbility = ability;
 
-                var button = new RadialButtonControl();
-                button.ImageFrame = ability.ImageName;
-                button.Bounds = new UniRectangle(0, 0, 64, 64);
+                var button = new RadialButtonControl
+                    {ImageFrame = ability.ImageName, Bounds = new UniRectangle(0, 0, 64, 64)};
 
                 // only bind event handlers onto abilities that are cheap enough to use
                 if (ability.ManaCost <= character.CurrentMana)

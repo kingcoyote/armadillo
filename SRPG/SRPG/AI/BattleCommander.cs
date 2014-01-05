@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using SRPG.Data;
-using Torch;
 
 namespace SRPG.AI
 {
