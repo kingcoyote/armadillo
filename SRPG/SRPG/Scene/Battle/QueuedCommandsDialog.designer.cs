@@ -17,12 +17,14 @@ namespace SRPG.Scene.Battle
             _controls = new List<QueuedCommandControl>();
             Bounds = new UniRectangle(
                 new UniScalar(0.0f, 0.0f), new UniScalar(1.0f, 0.0f),
-                new UniScalar(0.0f, 200.0f), new UniScalar(0.0f, 0.0f)
+                new UniScalar(0.0f, 200.0f), new UniScalar(0.0f, 100.0f)
             );
             UpdateControls();
+
+            _xPos = Bounds.Location.X.Offset;
         }
 
-        private void UpdateControls()
+        public void UpdateControls()
         {
             foreach(var control in _controls)
             {
@@ -46,13 +48,12 @@ namespace SRPG.Scene.Battle
                 Children.Add(control);
             }
 
-            Bounds.Location.Y.Offset = 15 + 45*(Commands.Count + 1);
-            Bounds.Size.X.Offset = 15 + 45*(Commands.Count + 1);
+            Bounds.Location.Y.Offset = 0 - (15 + 45*(Commands.Count + 1));
+            Bounds.Size.Y.Offset = 15 + 45*(Commands.Count + 1);
         }
 
         public void Hide()
         {
-            _xPos = Bounds.Location.X.Offset;
             Bounds.Location.X.Offset = -10000;
         }
 

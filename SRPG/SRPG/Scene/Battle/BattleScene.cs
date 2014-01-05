@@ -107,6 +107,7 @@ namespace SRPG.Scene.Battle
             ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatImageButtonControlRenderer).Assembly);
             ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatTiledIconControlRenderer).Assembly);
             ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatRadialButtonControlRenderer).Assembly);
+            ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatQueuedCommandControlRenderer).Assembly);
         }
 
         protected override void OnResume()
@@ -752,6 +753,7 @@ namespace SRPG.Scene.Battle
 
                     character.CanAct = false;
                     QueuedCommands.Add(command);
+                    _queuedCommands.UpdateControls();
                     _state = BattleState.Delay;
                     _delayState = BattleState.PlayerTurn;
                     _delayTimer = 0.05F;
