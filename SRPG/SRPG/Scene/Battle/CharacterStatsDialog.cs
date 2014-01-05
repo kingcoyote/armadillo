@@ -25,8 +25,8 @@ namespace SRPG.Scene.Battle
             _class.Text = character.Class;
             _health.Text = character.CurrentHealth.ToString();
             _mana.Text = character.CurrentMana.ToString();
-            _healthBar.Progress = character.CurrentHealth/character.MaxHealth;
-            _manaBar.Progress = character.CurrentMana/character.MaxMana;
+            _healthBar.Progress = (float)character.CurrentHealth/(float)character.MaxHealth;
+            _manaBar.Progress = (float)character.CurrentMana/(float)character.MaxMana;
         }
 
         public void SetVisibility(bool visible)
