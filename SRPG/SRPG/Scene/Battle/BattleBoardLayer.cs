@@ -222,8 +222,8 @@ namespace SRPG.Scene.Battle
 
         private bool ValidCell(int x, int y)
         {
-            if (x < 0 || x > _grid.Size.Width) return false;
-            if (y < 0 || y > _grid.Size.Height) return false;
+            if (x < 0 || x >= _grid.Size.Width) return false;
+            if (y < 0 || y >= _grid.Size.Height) return false;
 
             return _grid.Weight[x, y] > 0;
         }
