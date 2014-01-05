@@ -12,7 +12,7 @@ namespace Torch.UserInterface
         public int Distance = 95;
         public int CenterX = 0;
         public int CenterY = 0;
-        public int ExitDistance = 140;
+        public int ExitDistance = 175;
 
         public Action OnExit;
 
