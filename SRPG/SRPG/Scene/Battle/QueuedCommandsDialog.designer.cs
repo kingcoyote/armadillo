@@ -33,6 +33,14 @@ namespace SRPG.Scene.Battle
             }
             _controls.Clear();
 
+            ButtonControl executeControl = new ButtonControl();
+            executeControl.Text = "Execute!";
+            executeControl.Bounds = new UniRectangle(
+                new UniScalar(0.0f, 15.0f), new UniScalar(1.0f, -45.0f),
+                new UniScalar(1.0f, -30.0f), new UniScalar(0.0f, 30.0f)
+            );
+            Children.Add(executeControl);
+
             for (var i = 0; i < Commands.Count; i++)
             {
                 var command = Commands.ElementAt(i);
