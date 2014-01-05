@@ -25,7 +25,7 @@
       <region source="menu_skin_bitmap" hplacement="left" vplacement="bottom" x="21" y="11" w="10" h="10" />
       <region source="menu_skin_bitmap" hplacement="stretch" vplacement="bottom" x="31" y="11" w="1" h="10" />
       <region source="menu_skin_bitmap" hplacement="right" vplacement="bottom" x="32" y="11" w="10" h="10" />
-      <text font="menu_font" hplacement="center" vplacement="center" color="#EFEFEF" />
+      <text font="menu_font" hplacement="center" vplacement="center" color="#000000" />
     </frame>
 
     <frame name="button.highlighted">
@@ -38,7 +38,7 @@
       <region source="menu_skin_bitmap" hplacement="left" vplacement="bottom" x="42" y="11" w="10" h="10" />
       <region source="menu_skin_bitmap" hplacement="stretch" vplacement="bottom" x="52" y="11" w="1" h="10" />
       <region source="menu_skin_bitmap" hplacement="right" vplacement="bottom" x="53" y="11" w="10" h="10" />
-      <text font="menu_font" hplacement="center" vplacement="center" color="#FFF000" />
+      <text font="menu_font" hplacement="center" vplacement="center" color="#000000" />
     </frame>
 
     <frame name="button.depressed">
@@ -51,7 +51,7 @@
       <region source="menu_skin_bitmap" hplacement="left" vplacement="bottom" x="42" y="11" w="10" h="10" />
       <region source="menu_skin_bitmap" hplacement="stretch" vplacement="bottom" x="52" y="11" w="1" h="10" />
       <region source="menu_skin_bitmap" hplacement="right" vplacement="bottom" x="53" y="11" w="10" h="10" />
-      <text font="menu_font" hplacement="center" vplacement="center" color="#17daf7" />
+      <text font="menu_font" hplacement="center" vplacement="center" color="#333333" />
     </frame>
 
     <frame name="imagebutton.normal">
@@ -133,7 +133,7 @@
     </frame>
 
     <frame name="label">
-      <text font="menu_font" hplacement="left" vplacement="top" color="#FFFFFF" />
+      <text font="menu_font" hplacement="left" vplacement="top" color="#000000" />
     </frame>
 
     <frame name="window">
