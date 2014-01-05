@@ -42,7 +42,9 @@ namespace SRPG.Scene.Battle
         /// Callback that executes when an ability is aimed. This can be a move ability callback moving a character, or a combat ability
         /// callback queuing the command.
         /// </summary>
-        private Func<int, int, bool> _aimAbility = (x, y) => true; 
+        private Func<int, int, bool> _aimAbility = (x, y) => true;
+
+        private DateTime _aimTime;
         /// <summary>
         /// A queued list of commands awaiting execution. This list is added to when telling a character to attack, use an ability or use an item.
         /// </summary>
@@ -607,8 +609,10 @@ namespace SRPG.Scene.Battle
                             new Grid(1, 1)
                             );
                     };
-                icon.MouseOut += () => _battleBoard.ResetGrid();
-                icon.MouseClick += () => SelectAbilityTarget(character, Ability.Factory(Game, "move"));
+                icon.MouseOut += () => { if (_aimAbility == null) _battleBoard.ResetGrid(); };
+                icon.MouseClick += () => { SelectAbilityTarget(character, Ability.Factory(Game, "move"));
+                                             _aimTime = DateTime.Now;
+                };
             }
             else
             {
@@ -878,6 +882,8 @@ namespace SRPG.Scene.Battle
 
         public void ExecuteAimAbility(int x, int y)
         {
+            if (DateTime.Now.Subtract(_aimTime).TotalMilliseconds <= 250) return;
+
             if(_aimAbility(x, y))
             {
                 _battleBoard.ResetGrid();

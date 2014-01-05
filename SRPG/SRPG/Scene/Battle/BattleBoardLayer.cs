@@ -257,6 +257,7 @@ namespace SRPG.Scene.Battle
                     gridCell.GridClicked += () => GridCellSelected.Invoke(li, lj);
                     _gridCells[i, j] = gridCell;
                     _gui.Screen.Desktop.Children.Add(gridCell);
+                    gridCell.GridClicked += () => { ((BattleScene) Scene).ExecuteAimAbility(li, lj); };
                 }
             }
         }

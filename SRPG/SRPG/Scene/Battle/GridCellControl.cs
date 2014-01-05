@@ -16,6 +16,9 @@ namespace SRPG.Scene.Battle
         protected override void OnPressed()
         {
             base.OnPressed();
+
+            if (Highlight != GridHighlight.Targetted) return; 
+
             GridClicked.Invoke();
         }
     }
