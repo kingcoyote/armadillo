@@ -9,10 +9,10 @@ namespace Torch.UserInterface
 {
     public class RadialMenuControl : Control
     {
-        public int Distance = 75;
+        public int Distance = 95;
         public int CenterX = 0;
         public int CenterY = 0;
-        public int ExitDistance = 125;
+        public int ExitDistance = 140;
 
         public Action OnExit;
 
