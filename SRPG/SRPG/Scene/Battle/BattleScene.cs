@@ -93,6 +93,7 @@ namespace SRPG.Scene.Battle
             Gui.Screen.Desktop.Children.Add(_hud);
 
             _queuedCommands = new QueuedCommandsDialog(QueuedCommands);
+            _queuedCommands.ExecuteClicked += ExecuteQueuedCommands;
             Gui.Screen.Desktop.Children.Add(_queuedCommands);
 
             _hitLayer = new HitLayer(this, null) { DrawOrder = 5000 };

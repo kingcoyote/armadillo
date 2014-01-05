@@ -12,6 +12,8 @@ namespace SRPG.Scene.Battle
         private List<QueuedCommandControl> _controls;
         private float _xPos;
 
+        public Action ExecuteClicked = () => { };
+
         private void InitializeComponent()
         {
             _controls = new List<QueuedCommandControl>();
@@ -39,6 +41,7 @@ namespace SRPG.Scene.Battle
                 new UniScalar(0.0f, 15.0f), new UniScalar(1.0f, -55.0f),
                 new UniScalar(1.0f, -30.0f), new UniScalar(0.0f, 40.0f)
             );
+            executeControl.Pressed += (s, a) => ExecuteClicked.Invoke();
             Children.Add(executeControl);
 
             for (var i = 0; i < Commands.Count; i++)
