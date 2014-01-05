@@ -400,7 +400,8 @@ namespace SRPG.Scene.Battle
                     BattleBoard.Characters.Add(GenerateCombatant("Guard 2", "coliseum/guard", new Vector2(11, 3)));
                     BattleBoard.Characters.Add(GenerateCombatant("Guard Captain", "coliseum/guard", new Vector2(10, 3)));
 
-                    
+                    BattleBoard.Characters.Add(GenerateCombatant("Guard 3", "coliseum/guard", new Vector2(9, 10)));
+                    BattleBoard.Characters.Add(GenerateCombatant("Guard 4", "coliseum/guard", new Vector2(11, 10)));
 
                     break;
                 default:
