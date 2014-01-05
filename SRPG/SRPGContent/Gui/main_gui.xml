@@ -10,6 +10,7 @@
     <bitmap name="battle_radial_bitmap" contentPath="battle_radial" />
     <bitmap name="grid" contentPath="gridhighlight"/>
     <bitmap name="clear" contentPath="clear" />
+    <bitmap name="avatar_icon" contentPath="avatar_icon"/>
   </resources>
 
   <frames>
@@ -229,6 +230,10 @@
       <region source="battle_radial_bitmap" hplacement="stretch" vplacement="stretch" x="192" y="256" w="64" h="64"/>
     </frame>
 
+    <frame name="avatar.icon.anon">
+      <region source="avatar_icon" hplacement="stretch" vplacement="stretch" x="0" y="0" w="50" h="63"/>
+    </frame>
+    
   </frames>
 
 </skin>

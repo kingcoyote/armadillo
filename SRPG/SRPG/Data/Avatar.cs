@@ -18,6 +18,8 @@ namespace SRPG.Data
         /// </summary>
         /// 
         public SpriteObject Sprite;
+
+        public string Icon = "anon";
         /// <summary>
         /// An X,Y pair indicating where on the current battlefield this character is located. Outside of a battle scene,
         /// this is not applicable and can be ignored.

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nuclex.UserInterface;
+﻿using Nuclex.UserInterface;
 using Nuclex.UserInterface.Visuals.Flat;
 
 namespace SRPG.Scene.Battle
@@ -11,11 +7,23 @@ namespace SRPG.Scene.Battle
     {
         public void Render(QueuedCommandControl control, IFlatGuiGraphics graphics)
         {
-            RectangleF controlBounds = control.GetAbsoluteBounds();
+            var controlBounds = control.GetAbsoluteBounds();
 
-            // Draw the button's frame
-            graphics.DrawElement("imagebutton.normal", controlBounds);
-            graphics.DrawString("imagebutton.normal", controlBounds, control.Command.Ability.Name);
+            // Draw the ability name
+            graphics.DrawString("button.normal", controlBounds, control.Command.Ability.Name);
+            
+            var avatarBounds = new RectangleF(controlBounds.X, controlBounds.Y, controlBounds.Width, controlBounds.Height);
+            avatarBounds.Height -= 10;
+            avatarBounds.Width = avatarBounds.Height;
+            avatarBounds.X += 5;
+            avatarBounds.Y += 5;
+            graphics.DrawElement("avatar.icon." + control.Command.Character.Avatar.Icon, avatarBounds);
+            var abilityBounds = new RectangleF(controlBounds.X, controlBounds.Y, controlBounds.Width, controlBounds.Height);
+            abilityBounds.Height -= 10;
+            abilityBounds.Width = abilityBounds.Height;
+            abilityBounds.X += controlBounds.Width - 5 - abilityBounds.Width;
+            abilityBounds.Y += 5;
+            graphics.DrawElement("radialcontrol.images." + control.Command.Ability.ImageName + ".normal", abilityBounds);
         }
     }
 }

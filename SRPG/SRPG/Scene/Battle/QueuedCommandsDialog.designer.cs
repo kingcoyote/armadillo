@@ -17,7 +17,7 @@ namespace SRPG.Scene.Battle
             _controls = new List<QueuedCommandControl>();
             Bounds = new UniRectangle(
                 new UniScalar(0.0f, 0.0f), new UniScalar(1.0f, 0.0f),
-                new UniScalar(0.0f, 200.0f), new UniScalar(0.0f, 100.0f)
+                new UniScalar(0.0f, 300.0f), new UniScalar(0.0f, 100.0f)
             );
             UpdateControls();
 
@@ -36,8 +36,8 @@ namespace SRPG.Scene.Battle
             ButtonControl executeControl = new ButtonControl();
             executeControl.Text = "Execute!";
             executeControl.Bounds = new UniRectangle(
-                new UniScalar(0.0f, 15.0f), new UniScalar(1.0f, -45.0f),
-                new UniScalar(1.0f, -30.0f), new UniScalar(0.0f, 30.0f)
+                new UniScalar(0.0f, 15.0f), new UniScalar(1.0f, -55.0f),
+                new UniScalar(1.0f, -30.0f), new UniScalar(0.0f, 40.0f)
             );
             Children.Add(executeControl);
 
@@ -48,16 +48,16 @@ namespace SRPG.Scene.Battle
                 control.Command = command;
 
                 control.Bounds = new UniRectangle(
-                    new UniScalar(0.0f, 15.0f), new UniScalar(0.0f, 15.0f + (45.0f * i)), 
-                    new UniScalar(1.0f, -30.0f), new UniScalar(0.0f, 30.0f) 
+                    new UniScalar(0.0f, 15.0f), new UniScalar(0.0f, 15.0f + (49.0f * i)), 
+                    new UniScalar(1.0f, -30.0f), new UniScalar(0.0f, 50.0f) 
                 );
 
                 _controls.Add(control);
                 Children.Add(control);
             }
 
-            Bounds.Location.Y.Offset = 0 - (15 + 45*(Commands.Count + 1));
-            Bounds.Size.Y.Offset = 15 + 45*(Commands.Count + 1);
+            Bounds.Size.Y.Offset = 95 + 49 * (Commands.Count);
+            Bounds.Location.Y.Offset = 0 - Bounds.Size.Y.Offset;
         }
 
         public void Hide()
