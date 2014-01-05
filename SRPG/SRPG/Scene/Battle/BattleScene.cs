@@ -642,9 +642,11 @@ namespace SRPG.Scene.Battle
                             new Grid(1, 1)
                             );
                     };
-                icon.MouseOut += () => _battleBoard.ResetGrid();
+                icon.MouseOut += () => { if (_aimAbility == null) _battleBoard.ResetGrid(); };
 
-                icon.MouseRelease += () => SelectAbilityTarget(character, ability);
+                icon.MouseRelease += () => { SelectAbilityTarget(character, ability);
+                                               _aimTime = DateTime.Now;
+                };
             }
             else
             {
@@ -661,7 +663,7 @@ namespace SRPG.Scene.Battle
             icon = new RadialButtonControl() { ImageFrame = "special", Bounds = new UniRectangle(0, 0, 64, 64) };
             if (character.CanAct)
             {
-                icon.MouseRelease += () => SelectSpecialAbility(character);
+                icon.MouseRelease += () => SelectSpecialAbility(character);  
             }
             else
             {
@@ -787,11 +789,15 @@ namespace SRPG.Scene.Battle
                     button.MouseOver = () => PreviewAbility(tempAbility);
                     button.MouseOut = () =>
                         {
+                            if (_aimAbility != null) return;
+
                             _abilityStatLayer.Visible = false;
                             _battleBoard.ResetGrid();
                         };
                     button.MouseClick = () => { };
-                    button.MouseRelease += () => SelectAbilityTarget(character, tempAbility);
+                    button.MouseRelease += () => { SelectAbilityTarget(character, tempAbility);
+                                                     _aimTime = DateTime.Now;
+                    };
                 }
                 else
                 {
