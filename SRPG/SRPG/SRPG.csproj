@@ -167,6 +167,10 @@
       <DependentUpon>DialogLayer.cs</DependentUpon>
     </Compile>
     <Compile Include="FontManager.cs" />
+    <Compile Include="Scene\Battle\AbilityStatDialog.cs" />
+    <Compile Include="Scene\Battle\AbilityStatDialog.designer.cs">
+      <DependentUpon>AbilityStatDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\Battle\AbilityStatLayer.cs" />
     <Compile Include="Scene\Battle\BattleBoardLayer.cs" />
     <Compile Include="Scene\Battle\CharacterStatsDialog.cs" />

@@ -67,7 +67,7 @@ namespace SRPG.Scene.Battle
         private HUDDialog _hud;
         private QueuedCommandsDialog _queuedCommands;
         private HitLayer _hitLayer;
-        private AbilityStatLayer _abilityStatLayer;
+        private AbilityStatDialog _abilityStatLayer;
         private BattleBoardLayer _battleBoard;
         private RadialMenuControl _radialMenuControl;
 
@@ -96,13 +96,15 @@ namespace SRPG.Scene.Battle
             _queuedCommands.ExecuteClicked += ExecuteQueuedCommands;
             Gui.Screen.Desktop.Children.Add(_queuedCommands);
 
+            _abilityStatLayer = new AbilityStatDialog();
+            Gui.Screen.Desktop.Children.Add(_abilityStatLayer);
+
             _hitLayer = new HitLayer(this, null) { DrawOrder = 5000 };
-            _abilityStatLayer = new AbilityStatLayer(this, null) { DrawOrder = 5000, Visible = false };
+            
 
             Game.IsMouseVisible = true;
 
             Components.Add(_hitLayer);
-            Components.Add(_abilityStatLayer);
 
             Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
 
@@ -797,7 +799,7 @@ namespace SRPG.Scene.Battle
                         {
                             if (_aimAbility != null) return;
 
-                            _abilityStatLayer.Visible = false;
+                            _abilityStatLayer.Hide();
                             _battleBoard.ResetGrid();
                         };
                     button.MouseClick = () => { };
@@ -822,7 +824,7 @@ namespace SRPG.Scene.Battle
         private void PreviewAbility(Ability ability)
         {
             _abilityStatLayer.SetAbility(ability);
-            _abilityStatLayer.Visible = true;
+            _abilityStatLayer.Show();
             _battleBoard.SetTargettingGrid(
                 ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
                 new Grid(1, 1)
@@ -861,7 +863,7 @@ namespace SRPG.Scene.Battle
             _aimAbility = null;
             _selectedCharacter = null;
             HideCharacterStats();
-            _abilityStatLayer.Visible = false;
+            _abilityStatLayer.Hide();
         }
 
         /// <summary>
