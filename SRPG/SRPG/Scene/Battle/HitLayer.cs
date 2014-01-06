@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Nuclex.Input;
+using Nuclex.UserInterface;
+using Nuclex.UserInterface.Controls;
 using Torch;
 
 namespace SRPG.Scene.Battle
@@ -10,8 +13,24 @@ namespace SRPG.Scene.Battle
     {
         private readonly Dictionary<string, int> _displayedHits = new Dictionary<string, int>();
         private readonly Dictionary<string, float> _hitLocations = new Dictionary<string, float>();
+        private GuiManager _gui;
+        private readonly Dictionary<string, LabelControl> _hitLabels = new Dictionary<string, LabelControl>(); 
         
-        public HitLayer(Torch.Scene scene, Torch.Object parent) : base(scene, parent) { }
+        public HitLayer(Torch.Scene scene, Torch.Object parent) : base(scene, parent)
+        {
+            _gui = new GuiManager(
+                (GraphicsDeviceManager)Game.Services.GetService(typeof(IGraphicsDeviceManager)),
+                (IInputService)Game.Services.GetService(typeof(IInputService))
+            );
+            _gui.Screen = new Screen(Game.GraphicsDevice.Viewport.Width, Game.GraphicsDevice.Viewport.Height);
+            _gui.Screen.Desktop.Bounds = new UniRectangle(
+              new UniScalar(0.01F, 0.0F), new UniScalar(0.01F, 0.0F),
+              new UniScalar(0.98F, 0.0F), new UniScalar(0.98F, 0.0F)
+            );
+            _gui.DrawOrder = 0;
+            _gui.Initialize();
+            Components.Add(_gui);
+        }
 
         public void DisplayHit(int amount, Color color, Point target)
         {
@@ -24,8 +43,10 @@ namespace SRPG.Scene.Battle
                 new Random().Next()
             );
 
-            //Objects.Add(key, new TextObject{ Font = FontManager.Get("Menu"), Color = color, Value = amount.ToString(), X = target.X * 50 + 25, Y = target.Y * 50, Z = 1000, Alignment = TextObject.AlignTypes.Center});
-            _hitLocations.Add(key, target.Y * 50);
+            var label = new LabelControl {Text = amount.ToString(), Bounds = new UniRectangle(OffsetX() + target.X*50, OffsetY() + target.Y*50 + 25, 75, 30)};
+            _gui.Screen.Desktop.Children.Add(label);
+            _hitLabels.Add(key, label);
+            _hitLocations.Add(key, target.Y * 50 + 25);
             _displayedHits.Add(key, 0);
         }
 
@@ -38,14 +59,15 @@ namespace SRPG.Scene.Battle
                 _displayedHits[key] += gametime.ElapsedGameTime.Milliseconds;
                 if (_displayedHits[key] > 1200)
                 {
-                    //Objects.Remove(key);
+                    _gui.Screen.Desktop.Children.Remove(_hitLabels[key]);
+                    _hitLabels.Remove(key);
                     _displayedHits.Remove(key);
                 }
                 else
                 {
                    
                     _hitLocations[key] -= 75F*gametime.ElapsedGameTime.Milliseconds/1000F;
-                    //Objects[key].Y = (int)_hitLocations[key];
+                    _hitLabels[key].Bounds.Location.Y.Offset = (int) _hitLocations[key];
                 }
             }
         }
