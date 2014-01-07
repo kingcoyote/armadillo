@@ -179,7 +179,6 @@
     <Compile Include="Scene\Battle\FlatGridCellControlRenderer.cs" />
     <Compile Include="Scene\Battle\FlatQueuedCommandControlRenderer.cs" />
     <Compile Include="Scene\Battle\GridCellControl.cs" />
-    <Compile Include="Scene\Battle\HitLayer.cs" />
     <Compile Include="Scene\Battle\HUDDialog.cs" />
     <Compile Include="Scene\Battle\HUDDialog.Designer.cs">
       <DependentUpon>HUDDialog.cs</DependentUpon>

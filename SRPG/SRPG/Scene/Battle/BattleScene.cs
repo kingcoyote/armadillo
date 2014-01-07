@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nuclex.Input;
 using Nuclex.UserInterface;
+using Nuclex.UserInterface.Controls;
 using Nuclex.UserInterface.Visuals.Flat;
 using SRPG.AI;
 using SRPG.Data;
@@ -66,10 +67,16 @@ namespace SRPG.Scene.Battle
         private CharacterStatsDialog _characterStats;
         private HUDDialog _hud;
         private QueuedCommandsDialog _queuedCommands;
-        private HitLayer _hitLayer;
         private AbilityStatDialog _abilityStatLayer;
         private BattleBoardLayer _battleBoard;
         private RadialMenuControl _radialMenuControl;
+
+        private readonly Dictionary<string, int> _displayedHits = new Dictionary<string, int>();
+        private readonly Dictionary<string, float> _hitLocations = new Dictionary<string, float>();
+        private readonly Dictionary<string, LabelControl> _hitLabels = new Dictionary<string, LabelControl>();
+
+        private float _x;
+        private float _y;
 
         public BattleScene(Game game) : base(game)
         {
@@ -99,12 +106,7 @@ namespace SRPG.Scene.Battle
             _abilityStatLayer = new AbilityStatDialog();
             Gui.Screen.Desktop.Children.Add(_abilityStatLayer);
 
-            _hitLayer = new HitLayer(this, null) { DrawOrder = 5000 };
-            
-
             Game.IsMouseVisible = true;
-
-            Components.Add(_hitLayer);
 
             Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
 
@@ -150,6 +152,7 @@ namespace SRPG.Scene.Battle
 
             // misc update logic for the current state
             UpdateBattleState(dt);
+            UpdateHits(dt);
         }
 
         /// <summary>
@@ -239,7 +242,7 @@ namespace SRPG.Scene.Battle
                     hit = character.ProcessHit(hit);
                     character.ReceiveHit(hit);
                     var damage = hit.Damage;
-                    _hitLayer.DisplayHit(
+                    DisplayHit(
                         Math.Abs(damage), 
                         hit.Damage > 0 ? Color.White : Color.LightGreen, 
                         hit.Target
@@ -326,6 +329,28 @@ namespace SRPG.Scene.Battle
             }
         }
 
+        private void UpdateHits(float dt)
+        {
+            for (var i = _displayedHits.Count; i > 0; i--)
+            {
+                var key = _displayedHits.Keys.ElementAt(i - 1);
+
+                _displayedHits[key] += (int)(dt * 1000);
+                if (_displayedHits[key] > 1200)
+                {
+                    Gui.Screen.Desktop.Children.Remove(_hitLabels[key]);
+                    _hitLabels.Remove(key);
+                    _displayedHits.Remove(key);
+                }
+                else
+                {
+
+                    _hitLocations[key] -= 75F * dt;
+                    _hitLabels[key].Bounds.Location.Y.Offset = (int)_hitLocations[key];
+                }
+            }
+        }
+
         private void CheckCharacterDeath()
         {
             // kill off any character with 0 or less health
@@ -346,7 +371,7 @@ namespace SRPG.Scene.Battle
         /// </summary>
         public void UpdateCamera(float x, float y)
         {
-            var layers = new List<Layer> {_battleBoard, _hitLayer};
+            var layers = new List<Layer> {_battleBoard};
 
             if (_battleBoard.Width < Game.GraphicsDevice.Viewport.Width)
             {
@@ -357,6 +382,9 @@ namespace SRPG.Scene.Battle
             {
                 y = Game.GraphicsDevice.Viewport.Height / 2 - _battleBoard.Height / 2;
             }
+
+            _x = x;
+            _y = y;
 
             // update all layers that are locked to the camera
             foreach (var layer in layers)
@@ -903,6 +931,24 @@ namespace SRPG.Scene.Battle
             {
                 _battleBoard.ResetGrid();
             }
+        }
+
+        public void DisplayHit(int amount, Color color, Point target)
+        {
+            var key = string.Format(
+                "hit/{0}/{1}/{2},{3}/{4}",
+                amount,
+                color,
+                target.X,
+                target.Y,
+                new Random().Next()
+            );
+
+            var label = new LabelControl { Text = amount.ToString(), Bounds = new UniRectangle(_x + target.X * 50, _y + target.Y * 50 + 25, 75, 30) };
+            Gui.Screen.Desktop.Children.Add(label);
+            _hitLabels.Add(key, label);
+            _hitLocations.Add(key, target.Y * 50 + 25);
+            _displayedHits.Add(key, 0);
         }
     }
 
