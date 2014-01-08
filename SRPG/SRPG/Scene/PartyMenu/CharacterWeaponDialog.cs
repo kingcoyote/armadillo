@@ -15,8 +15,13 @@ namespace SRPG.Scene.PartyMenu
 
         public void UpdateCharacter(Combatant character)
         {
-            _weaponText.Text = character.GetEquippedWeapon().Name;
-            _armorText.Text = character.GetEquippedArmor().Name;
+            var weapon = character.GetEquippedWeapon();
+            var armor = character.GetEquippedArmor();
+            var acc = character.GetEquippedAccessory();
+
+            _weaponText.Text = weapon == null ? "---" : weapon.Name;
+            _armorText.Text = armor == null ? "---" : armor.Name;
+            _accText.Text = acc == null ? "---" : acc.Name;
         }
     }
 }
