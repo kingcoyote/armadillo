@@ -17,6 +17,8 @@ namespace SRPG.Scene.Battle
 
         private void InitializeComponent()
         {
+            EnableDragging = false;
+
             Bounds = new UniRectangle(
                 new UniScalar(0.0f, 0.0f), new UniScalar(0.0f, 0.0f),
                 new UniScalar(0.0f, 170.0f), new UniScalar(0.0f, 130.0f) 

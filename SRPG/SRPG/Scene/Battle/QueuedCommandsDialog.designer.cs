@@ -16,6 +16,8 @@ namespace SRPG.Scene.Battle
 
         private void InitializeComponent()
         {
+            EnableDragging = false;
+
             _controls = new List<QueuedCommandControl>();
             Bounds = new UniRectangle(
                 new UniScalar(0.0f, 0.0f), new UniScalar(1.0f, 0.0f),
