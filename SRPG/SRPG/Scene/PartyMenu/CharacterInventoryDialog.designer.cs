@@ -26,10 +26,7 @@ namespace SRPG.Scene.PartyMenu
             // weaponLabel
             //
             _weaponLabel = new LabelControl();
-            _weaponLabel.Bounds = new UniRectangle(
-                new UniScalar(0.0F, 0.0F), new UniScalar(0.0F, 0.0F),
-                new UniScalar(150.0F, 0.0F), new UniScalar(25.0F, 0.0F)
-            );
+            _weaponLabel.Bounds = new UniRectangle(0, 3, 150, 25);
             _weaponLabel.Text = "Weapon";
             Children.Add(_weaponLabel);
 
@@ -37,20 +34,22 @@ namespace SRPG.Scene.PartyMenu
             // weaponText
             //
             _weaponText = new LabelControl();
-            _weaponText.Bounds = new UniRectangle(
-                new UniScalar(0.0F, 155.0F), new UniScalar(0.0F, 0.0F),
-                new UniScalar(450.0F, 0.0F), new UniScalar(25.0F, 0.0F)
-            );
+            _weaponText.Bounds = new UniRectangle(130, 3, 170, 25);
             Children.Add(_weaponText);
+
+            //
+            // weaponButton
+            //
+            _weaponButton = new ButtonControl();
+            _weaponButton.Bounds = new UniRectangle(300, 0, 200, 30);
+            _weaponButton.Text = "Change Weapon";
+            Children.Add(_weaponButton);
 
             //
             // armorLabel
             //
             _armorLabel = new LabelControl();
-            _armorLabel.Bounds = new UniRectangle(
-                new UniScalar(0.0F, 0.0F), new UniScalar(0.0F, 35.0F),
-                new UniScalar(150.0F, 0.0F), new UniScalar(25.0F, 0.0F)
-            );
+            _armorLabel.Bounds = new UniRectangle(0, 38, 150, 25);
             _armorLabel.Text = "Armor";
             Children.Add(_armorLabel);
 
@@ -58,20 +57,22 @@ namespace SRPG.Scene.PartyMenu
             // armorText
             //
             _armorText = new LabelControl();
-            _armorText.Bounds = new UniRectangle(
-                new UniScalar(0.0F, 155.0F), new UniScalar(0.0F, 35.0F),
-                new UniScalar(450.0F, 0.0F), new UniScalar(25.0F, 0.0F)
-            );
+            _armorText.Bounds = new UniRectangle(130, 38, 170, 25);
             Children.Add(_armorText);
+
+            //
+            // armorButton
+            //
+            _armorButton = new ButtonControl();
+            _armorButton.Bounds = new UniRectangle(300, 35, 200, 30);
+            _armorButton.Text = "Change Armor";
+            Children.Add(_armorButton);
 
             //
             // accLabel
             //
             _accLabel = new LabelControl();
-            _accLabel.Bounds = new UniRectangle(
-                new UniScalar(0.0F, 0.0F), new UniScalar(0.0F, 70.0F),
-                new UniScalar(150.0F, 0.0F), new UniScalar(25.0F, 0.0F)
-            );
+            _accLabel.Bounds = new UniRectangle(0, 73, 150, 25);
             _accLabel.Text = "Accessory";
             Children.Add(_accLabel);
 
@@ -79,11 +80,16 @@ namespace SRPG.Scene.PartyMenu
             // accText
             //
             _accText = new LabelControl();
-            _accText.Bounds = new UniRectangle(
-                new UniScalar(0.0F, 155.0F), new UniScalar(0.0F, 70.0F),
-                new UniScalar(450.0F, 0.0F), new UniScalar(25.0F, 0.0F)
-            );
+            _accText.Bounds = new UniRectangle(130, 73, 170, 25);
             Children.Add(_accText);
+
+            //
+            // weaponButton
+            //
+            _accButton = new ButtonControl();
+            _accButton.Bounds = new UniRectangle(300, 70, 200, 30);
+            _accButton.Text = "Change Accessory";
+            Children.Add(_accButton);
         }
     }
 }
