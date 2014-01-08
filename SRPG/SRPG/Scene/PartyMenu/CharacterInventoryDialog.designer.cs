@@ -4,17 +4,21 @@ using System.Linq;
 using System.Text;
 using Nuclex.UserInterface;
 using Nuclex.UserInterface.Controls;
+using Nuclex.UserInterface.Controls.Desktop;
 
 namespace SRPG.Scene.PartyMenu
 {
-    public partial class CharacterWeaponDialog : Control
+    public partial class CharacterInventoryDialog : Control
     {
         private LabelControl _weaponLabel;
         private LabelControl _weaponText;
+        private ButtonControl _weaponButton;
         private LabelControl _armorLabel;
         private LabelControl _armorText;
+        private ButtonControl _armorButton;
         private LabelControl _accLabel;
         private LabelControl _accText;
+        private ButtonControl _accButton;
 
         private void InitializeComponent()
         {

@@ -6,9 +6,9 @@ using SRPG.Data;
 
 namespace SRPG.Scene.PartyMenu
 {
-    public partial class CharacterWeaponDialog
+    public partial class CharacterInventoryDialog
     {
-        public CharacterWeaponDialog()
+        public CharacterInventoryDialog()
         {
             InitializeComponent();
         }

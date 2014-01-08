@@ -28,7 +28,7 @@ namespace SRPG.Scene.PartyMenu
             _manaText.Text = _character.MaxMana.ToString();
 
             _statsControl.UpdateCharacter(_character);
-            _weaponDialog.UpdateCharacter(_character);
+            _inventoryDialog.UpdateCharacter(_character);
         }
     }
 }

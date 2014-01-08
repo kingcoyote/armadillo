@@ -18,7 +18,7 @@ namespace SRPG.Scene.PartyMenu
         private LabelControl _manaText;
 
         private CharacterStatsDialog _statsControl;
-        private CharacterWeaponDialog _weaponDialog;
+        private CharacterInventoryDialog _inventoryDialog;
 
         private void InitializeComponent()
         {
@@ -84,12 +84,12 @@ namespace SRPG.Scene.PartyMenu
             );
             Children.Add(_statsControl);
 
-            _weaponDialog = new CharacterWeaponDialog();
-            _weaponDialog.Bounds = new UniRectangle(
+            _inventoryDialog = new CharacterInventoryDialog();
+            _inventoryDialog.Bounds = new UniRectangle(
                 new UniScalar(0.0F, 20.0F), new UniScalar(0.0F, 230.0F),
                 new UniScalar(0.5F, 0.0F), new UniScalar(0.0f, 95.0f)
             );
-            Children.Add(_weaponDialog);
+            Children.Add(_inventoryDialog);
 
             // abilities
         }
