@@ -238,7 +238,6 @@
     <Compile Include="Scene\Intro\CreditSlide.cs" />
     <Compile Include="Scene\Intro\IntroScene.cs" />
     <Compile Include="Scene\Intro\XnaSlide.cs" />
-    <Compile Include="Scene\PartyMenu\InventoryMenu.cs" />
     <Compile Include="Scene\PartyMenu\MenuDialog.cs" />
     <Compile Include="Scene\PartyMenu\PartyMenuScene.cs" />
     <Compile Include="Scene\Options\OptionsScene.cs" />
@@ -248,9 +247,7 @@
     <Compile Include="Scene\Overworld\OverworldScene.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Scene\PartyMenu\SettingsMenu.cs" />
     <Compile Include="Scene\PartyMenu\PartyMenuDialog.cs" />
-    <Compile Include="Scene\PartyMenu\SubmenuLayer.cs" />
     <Compile Include="Scene\Shop\ShopScene.cs" />
     <Compile Include="SRPGGame.cs" />
     <Compile Include="Zones\Village\Inn.cs" />

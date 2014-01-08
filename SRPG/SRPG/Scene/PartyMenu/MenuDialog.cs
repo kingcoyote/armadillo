@@ -11,6 +11,7 @@ using Game = Torch.Game;
 
 namespace SRPG.Scene.PartyMenu
 {
+
     partial class MenuDialog
     {
         public MenuDialog()

@@ -13,9 +13,6 @@ namespace SRPG.Scene.PartyMenu
         private PartyMenuDialog _partyMenuDialog;
         private CharacterStatsDialog _characterStatsDialog;
 
-        private InventoryMenu _inventoryMenu;
-        private SettingsMenu _settingsMenu;
-
         public PartyMenuScene(Game game) : base(game)
         {
             var keyboard = new KeyboardInputLayer(this, null);
@@ -32,12 +29,6 @@ namespace SRPG.Scene.PartyMenu
             _characterStatsDialog = new CharacterStatsDialog();
             _characterStatsDialog.Hide();
             Gui.Screen.Desktop.Children.Add(_characterStatsDialog);
-
-            _inventoryMenu = new InventoryMenu(this, null);
-            Components.Add(_inventoryMenu);
-
-            _settingsMenu = new SettingsMenu(this, null);
-            Components.Add(_settingsMenu);
 
             Gui.DrawOrder = 1000;
             Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
