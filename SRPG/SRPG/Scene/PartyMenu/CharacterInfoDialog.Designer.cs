@@ -16,6 +16,8 @@ namespace SRPG.Scene.PartyMenu
 
         private void InitializeComponent()
         {
+            EnableDragging = false;
+
             Bounds = new UniRectangle(
                 new UniScalar(0.2f, 15.0f), new UniScalar(0.0f, 105.0f),
                 new UniScalar(0.8f, -15.0f), new UniScalar(1.0f, -105.0f)
@@ -27,7 +29,7 @@ namespace SRPG.Scene.PartyMenu
             _overviewDialog = new CharacterOverviewDialog();
             _overviewDialog.Bounds =  new UniRectangle(
                 new UniScalar(20), new UniScalar(0, 20.0F),
-                new UniScalar(0.6F, -20.0F), new UniScalar(0.0f, 220.0f)
+                new UniScalar(0.6F, -40.0F), new UniScalar(0.0f, 220.0f)
             );
             Children.Add(_overviewDialog);
 
@@ -46,8 +48,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _inventoryDialog = new CharacterInventoryDialog();
             _inventoryDialog.Bounds = new UniRectangle(
-                new UniScalar(0.0F, 20.0F), new UniScalar(0.0F, 240.0F),
-                new UniScalar(0.6F, -20.0F), new UniScalar(0.0f, 115.0f)
+                new UniScalar(0.0F, 20.0F), new UniScalar(0.0F, 260.0F),
+                new UniScalar(0.6F, -40.0F), new UniScalar(0.0f, 120.0f)
             );
             Children.Add(_inventoryDialog);
 
