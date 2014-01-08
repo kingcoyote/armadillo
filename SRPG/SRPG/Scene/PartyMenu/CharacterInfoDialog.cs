@@ -5,8 +5,6 @@ namespace SRPG.Scene.PartyMenu
 {
     partial class CharacterInfoDialog : WindowControl
     {
-        private Combatant _character;
-
         public CharacterInfoDialog()
         {
             InitializeComponent();
@@ -14,21 +12,9 @@ namespace SRPG.Scene.PartyMenu
 
         public void SetCharacter(Combatant character)
         {
-            _character = character;
-
-            RefreshComponents();
-        }
-
-        private void RefreshComponents()
-        {
-            _nameText.Text = _character.Name;
-            _classText.Text = _character.Class;
-
-            _healthText.Text = _character.MaxHealth.ToString();
-            _manaText.Text = _character.MaxMana.ToString();
-
-            _statsControl.UpdateCharacter(_character);
-            _inventoryDialog.UpdateCharacter(_character);
+            _overviewDialog.UpdateCharacter(character);
+            _statsDialog.UpdateCharacter(character);
+            _inventoryDialog.UpdateCharacter(character);
         }
     }
 }
