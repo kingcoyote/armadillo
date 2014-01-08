@@ -18,13 +18,7 @@ namespace SRPG.Scene.PartyMenu
         private LabelControl _manaText;
 
         private CharacterAbilityDialog _abilityControl;
-
-        private LabelControl _weaponLabel;
-        private LabelControl _weaponText;
-        private LabelControl _armorLabel;
-        private LabelControl _armorText;
-        private LabelControl _accLabel;
-        private LabelControl _accText;
+        private CharacterWeaponDialog _weaponDialog;
 
         private void InitializeComponent()
         {
@@ -90,68 +84,12 @@ namespace SRPG.Scene.PartyMenu
             );
             Children.Add(_abilityControl);
 
-            // 
-            // weaponLabel
-            //
-            _weaponLabel = new LabelControl();
-            _weaponLabel.Bounds = new UniRectangle(
+            _weaponDialog = new CharacterWeaponDialog();
+            _weaponDialog.Bounds = new UniRectangle(
                 new UniScalar(0.0F, 20.0F), new UniScalar(0.0F, 230.0F),
-                new UniScalar(150.0F, 0.0F), new UniScalar(25.0F, 0.0F)
+                new UniScalar(0.5F, 0.0F), new UniScalar(0.0f, 95.0f)
             );
-            _weaponLabel.Text = "Weapon";
-            Children.Add(_weaponLabel);
-
-            //
-            // weaponText
-            //
-            _weaponText = new LabelControl();
-            _weaponText.Bounds = new UniRectangle(
-                new UniScalar(0.0F, 175.0F), new UniScalar(0.0F, 230.0F),
-                new UniScalar(450.0F, 0.0F), new UniScalar(25.0F, 0.0F)
-            );
-            Children.Add(_weaponText);
-
-            //
-            // armorLabel
-            //
-            _armorLabel = new LabelControl();
-            _armorLabel.Bounds = new UniRectangle(
-                new UniScalar(0.0F, 20.0F), new UniScalar(0.0F, 265.0F),
-                new UniScalar(150.0F, 0.0F), new UniScalar(25.0F, 0.0F)
-            );
-            _armorLabel.Text = "Armor";
-            Children.Add(_armorLabel);
-
-            // 
-            // armorText
-            //
-            _armorText = new LabelControl();
-            _armorText.Bounds = new UniRectangle(
-                new UniScalar(0.0F, 175.0F), new UniScalar(0.0F, 265.0F),
-                new UniScalar(450.0F, 0.0F), new UniScalar(25.0F, 0.0F)
-            );
-            Children.Add(_armorText);
-
-            //
-            // accLabel
-            //
-            _accLabel = new LabelControl();
-            _accLabel.Bounds = new UniRectangle(
-                new UniScalar(0.0F, 20.0F), new UniScalar(0.0F, 300.0F),
-                new UniScalar(150.0F, 0.0F), new UniScalar(25.0F, 0.0F)
-            );
-            _accLabel.Text = "Accessory";
-            Children.Add(_accLabel);
-
-            //
-            // accText
-            //
-            _accText = new LabelControl();
-            _accText.Bounds = new UniRectangle(
-                new UniScalar(0.0F, 175.0F), new UniScalar(0.0F, 300.0F),
-                new UniScalar(450.0F, 0.0F), new UniScalar(25.0F, 0.0F)
-            );
-            Children.Add(_accText);
+            Children.Add(_weaponDialog);
 
             // abilities
         }

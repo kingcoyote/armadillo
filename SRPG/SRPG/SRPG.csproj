@@ -203,6 +203,10 @@
     <Compile Include="Scene\PartyMenu\CharacterStatsDialog.Designer.cs">
       <DependentUpon>CharacterStatsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scene\PartyMenu\CharacterWeaponDialog.cs" />
+    <Compile Include="Scene\PartyMenu\CharacterWeaponDialog.designer.cs">
+      <DependentUpon>CharacterWeaponDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\PartyMenu\MenuDialog.Designer.cs">
       <DependentUpon>MenuDialog.cs</DependentUpon>
     </Compile>

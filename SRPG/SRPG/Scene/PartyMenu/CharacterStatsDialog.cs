@@ -28,11 +28,7 @@ namespace SRPG.Scene.PartyMenu
             _manaText.Text = _character.MaxMana.ToString();
 
             _abilityControl.UpdateCharacter(_character);
-
-            _weaponText.Text = _character.GetEquippedWeapon().Name;
-            _armorText.Text = _character.GetEquippedArmor().Name;
-            
-
+            _weaponDialog.UpdateCharacter(_character);
         }
     }
 }
