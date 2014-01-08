@@ -11,7 +11,7 @@ namespace SRPG.Scene.PartyMenu
 
         private MenuDialog _menu;
         private PartyMenuDialog _partyMenuDialog;
-        private CharacterStatsDialog _characterStatsDialog;
+        private CharacterInfoDialog _characterInfoDialog;
 
         public PartyMenuScene(Game game) : base(game)
         {
@@ -26,9 +26,9 @@ namespace SRPG.Scene.PartyMenu
             _partyMenuDialog.OnCharacterChange += SetCharacter;
             Gui.Screen.Desktop.Children.Add(_partyMenuDialog);
 
-            _characterStatsDialog = new CharacterStatsDialog();
-            _characterStatsDialog.Hide();
-            Gui.Screen.Desktop.Children.Add(_characterStatsDialog);
+            _characterInfoDialog = new CharacterInfoDialog();
+            _characterInfoDialog.Hide();
+            Gui.Screen.Desktop.Children.Add(_characterInfoDialog);
 
             Gui.DrawOrder = 1000;
             Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
@@ -60,8 +60,8 @@ namespace SRPG.Scene.PartyMenu
 
         public void SetCharacter(Combatant character)
         {
-            _characterStatsDialog.SetCharacter(character);
-            _characterStatsDialog.Show();
+            _characterInfoDialog.SetCharacter(character);
+            _characterInfoDialog.Show();
         }
     }
 }
