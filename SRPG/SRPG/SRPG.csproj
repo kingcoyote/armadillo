@@ -197,6 +197,8 @@
     <Compile Include="Scene\Options\MenuDialog.designer.cs">
       <DependentUpon>MenuDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scene\PartyMenu\CharacterAbilityDialog.cs" />
+    <Compile Include="Scene\PartyMenu\CharacterAbilityDialog.designer.cs" />
     <Compile Include="Scene\PartyMenu\CharacterStatsDialog.cs" />
     <Compile Include="Scene\PartyMenu\CharacterStatsDialog.Designer.cs">
       <DependentUpon>CharacterStatsDialog.cs</DependentUpon>

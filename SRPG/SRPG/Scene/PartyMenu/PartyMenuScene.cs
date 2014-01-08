@@ -30,11 +30,13 @@ namespace SRPG.Scene.PartyMenu
             Gui.Screen.Desktop.Children.Add(_partyMenuDialog);
 
             _characterStatsDialog = new CharacterStatsDialog();
+            _characterStatsDialog.Hide();
             Gui.Screen.Desktop.Children.Add(_characterStatsDialog);
 
             _inventoryMenu = new InventoryMenu(this, null);
-            _settingsMenu = new SettingsMenu(this, null);
             Components.Add(_inventoryMenu);
+
+            _settingsMenu = new SettingsMenu(this, null);
             Components.Add(_settingsMenu);
 
             Gui.DrawOrder = 1000;
@@ -67,7 +69,8 @@ namespace SRPG.Scene.PartyMenu
 
         public void SetCharacter(Combatant character)
         {
-           _characterStatsDialog.SetCharacter(character);
+            _characterStatsDialog.SetCharacter(character);
+            _characterStatsDialog.Show();
         }
     }
 }
