@@ -373,7 +373,9 @@ namespace SRPG.Data
             var neighbors = new List<int[]> { new[] { 0, -1 }, new[] { 1, 0 }, new[] { 0, 1 }, new[] { -1, 0 } };
             var lastRound = new List<int[]> { new[] { (int)Avatar.Location.X, (int)Avatar.Location.Y } };
 
-            for (var i = 0; i < Stats[Stat.Speed] / 3; i++)
+            int distance = 3 + (int)Math.Log(Stats[Stat.Speed], 4);
+
+            for (var i = 0; i < distance; i++)
             {
                 var currentRound = new List<int[]>();
 
