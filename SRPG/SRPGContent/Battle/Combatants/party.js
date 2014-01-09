@@ -44,8 +44,8 @@
       attack : 10,
       wisdom : 5,
       intelligence : 5,
-      speed : 30,
-      hit : 20
+      speed : 20,
+      hit : 30
     },
     statxp : {
       defense : 110,
@@ -77,8 +77,8 @@
       attack : 10,
       wisdom : 10,
       intelligence : 5,
-      speed : 20,
-      hit : 30
+      speed : 30,
+      hit : 20
     },
     statxp : {
       defense : 75,
@@ -143,8 +143,8 @@
       attack : 5,
       wisdom : 10,
       intelligence : 30,
-      speed : 10,
-      hit : 20
+      speed : 20,
+      hit : 10
     },
     statxp : {
       defense : 50,
