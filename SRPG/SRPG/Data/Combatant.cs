@@ -345,15 +345,18 @@ namespace SRPG.Data
                     {Stat.Hit, (int)(nodeList[templateName]["stats"]["hit"])},
                 };
 
-            combatant.StatExperienceLevels = new Dictionary<Stat, int>
-                {
-                    {Stat.Defense, (int) (nodeList[templateName]["statxp"]["defense"])},
-                    {Stat.Attack, (int) (nodeList[templateName]["statxp"]["attack"])},
-                    {Stat.Wisdom, (int) (nodeList[templateName]["statxp"]["wisdom"])},
-                    {Stat.Intelligence, (int) (nodeList[templateName]["statxp"]["intelligence"])},
-                    {Stat.Speed, (int) (nodeList[templateName]["statxp"]["speed"])},
-                    {Stat.Hit, (int) (nodeList[templateName]["statxp"]["hit"])}
-                };
+            if (nodeList[templateName].SelectToken("statxp") != null)
+            {
+                combatant.StatExperienceLevels = new Dictionary<Stat, int>
+                    {
+                        {Stat.Defense, (int) (nodeList[templateName]["statxp"]["defense"])},
+                        {Stat.Attack, (int) (nodeList[templateName]["statxp"]["attack"])},
+                        {Stat.Wisdom, (int) (nodeList[templateName]["statxp"]["wisdom"])},
+                        {Stat.Intelligence, (int) (nodeList[templateName]["statxp"]["intelligence"])},
+                        {Stat.Speed, (int) (nodeList[templateName]["statxp"]["speed"])},
+                        {Stat.Hit, (int) (nodeList[templateName]["statxp"]["hit"])}
+                    };
+            }
 
             combatant.AbilityExperienceLevels = nodeList[templateName]["abilities"].ToDictionary(
                 ability => Ability.Factory(game, ability["name"].ToString()), 
