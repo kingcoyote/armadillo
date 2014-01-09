@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input;
 using Nuclex.UserInterface.Visuals.Flat;
 using SRPG.Data;
 using Torch;
@@ -12,6 +13,8 @@ namespace SRPG.Scene.PartyMenu
         private MenuDialog _menu;
         private PartyMenuDialog _partyMenuDialog;
         private CharacterInfoDialog _characterInfoDialog;
+
+        private bool _changingItem = false;
 
         public PartyMenuScene(Game game) : base(game)
         {
@@ -27,6 +30,7 @@ namespace SRPG.Scene.PartyMenu
             Gui.Screen.Desktop.Children.Add(_partyMenuDialog);
 
             _characterInfoDialog = new CharacterInfoDialog();
+            _characterInfoDialog.ChangeItem += ChangeItem;
             _characterInfoDialog.Hide();
             Gui.Screen.Desktop.Children.Add(_characterInfoDialog);
 
@@ -62,6 +66,46 @@ namespace SRPG.Scene.PartyMenu
         {
             _characterInfoDialog.SetCharacter(character);
             _characterInfoDialog.Show();
+        }
+
+        private void ChangeItem(Combatant character, ItemEquipType type)
+        {
+            if (_changingItem) return;
+            _changingItem = true;
+
+            var dialog = new ChangeItemDialog();
+            var items = new List<Item>();
+            var inventory = ((SRPGGame) Game).Inventory;
+            foreach(var item in inventory)
+            {
+                switch(type)
+                {
+                    case ItemEquipType.Armor:
+                        if (character.CanEquipArmor(item)) items.Add(item);
+                        break;
+                    case ItemEquipType.Weapon:
+                        if (character.CanEquipWeapon(item)) items.Add(item);
+                        break;
+                    case ItemEquipType.Accessory:
+                        items.Add(item);
+                        break;
+                }
+            }
+            dialog.SetItems(items);
+            Gui.Screen.Desktop.Children.Add(dialog);
+            
+            dialog.ItemSelected += i =>
+                {
+                    inventory.Add(character.EquipItem(i));
+                    dialog.Close();
+                    _changingItem = false;
+                };
+
+            dialog.ItemCancelled += () =>
+                {
+                    dialog.Close();
+                    _changingItem = false;
+                };
         }
     }
 }
