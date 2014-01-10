@@ -35,7 +35,22 @@ namespace SRPG.Scene.Battle
         private BattleBoard _board;
         private GuiManager _gui;
 
-        public BattleBoardLayer(Torch.Scene scene, Torch.Object parent) : base(scene, parent) { }
+        public BattleBoardLayer(Torch.Scene scene, Torch.Object parent) : base(scene, parent)
+        {
+            _gui = new GuiManager(
+                (GraphicsDeviceManager)Game.Services.GetService(typeof(IGraphicsDeviceManager)),
+                (IInputService)Game.Services.GetService(typeof(IInputService))
+            );
+            _gui.DrawOrder = 0;
+            _gui.Initialize();
+
+            _gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
+            ((FlatGuiVisualizer)_gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatGridCellControlRenderer).Assembly);
+
+            Components.Add(_gui);
+
+            ((IInputService)Game.Services.GetService(typeof(IInputService))).GetMouse().MouseButtonPressed += OnMouseButtonPressed;
+        }
 
         public void SetBackground(string imageName)
         {
@@ -45,21 +60,13 @@ namespace SRPG.Scene.Battle
             Width = _bg.Width;
             Height = _bg.Height;
 
-            _gui = new GuiManager(
-                (GraphicsDeviceManager)Game.Services.GetService(typeof(IGraphicsDeviceManager)),
-                (IInputService)Game.Services.GetService(typeof(IInputService))
-            );
             _gui.Screen = new Screen(_bg.Width, _bg.Height);
             _gui.Screen.Desktop.Bounds = new UniRectangle(0, 0, _bg.Width, _bg.Height);
-            _gui.DrawOrder = 0;
-            _gui.Initialize();
+        }
 
-            _gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
-            ((FlatGuiVisualizer)_gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatGridCellControlRenderer).Assembly);
-            
-            Components.Add(_gui);
-            
-            ((IInputService) Game.Services.GetService(typeof (IInputService))).GetMouse().MouseButtonPressed += OnMouseButtonPressed;
+        public void AddImage(ImageObject image)
+        {
+            Components.Add(image);
         }
 
         private void OnMouseButtonPressed(MouseButtons buttons)
