@@ -487,6 +487,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Zones\Village\Village\house.png">
+      <Name>house</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <None Include="Gui\main_gui.xml">
       <Name>main_gui</Name>
       <Importer>XmlImporter</Importer>
