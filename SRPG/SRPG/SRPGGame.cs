@@ -47,7 +47,7 @@ namespace SRPG
             base.Initialize();
 
             PushScene(new MainMenu(this));
-            //PushScene(new IntroScene(this));
+            PushScene(new IntroScene(this));
         }
 
         public void StartGame()

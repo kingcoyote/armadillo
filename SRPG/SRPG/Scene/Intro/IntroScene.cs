@@ -7,7 +7,7 @@ namespace SRPG.Scene.Intro
     class IntroScene : Torch.Scene
     {
         public IntroScene(Game game) : base(game) { }
-        private const int SlideDuration = 3000;
+        private const int SlideDuration = 2000;
         private int _slideTimer = SlideDuration;
         private int _currentSlide;
         private readonly List<Layer> _slides = new List<Layer>();
@@ -26,13 +26,13 @@ namespace SRPG.Scene.Intro
             _slides.Add(new CreditSlide(this, null) { Visible = false });
             Components.Add(_slides[0]);
 
-            _slides.Add(new XnaSlide(this, null) { Visible = false });
-            Components.Add(_slides[1]);
+            //_slides.Add(new XnaSlide(this, null) { Visible = false });
+            //Components.Add(_slides[1]);
 
             _slides[_currentSlide].X = 0;
         }
 
-        public new void Update(Microsoft.Xna.Framework.GameTime gametime)
+        public override void Update(Microsoft.Xna.Framework.GameTime gametime)
         {
             base.Update(gametime);
 
