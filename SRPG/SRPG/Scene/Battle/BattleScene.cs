@@ -135,7 +135,9 @@ namespace SRPG.Scene.Battle
             {
                 _radialMenuControl.Update(gametime);
             }
-    
+
+            _battleBoard.FreeAim = _state == BattleState.PlayerTurn;
+
             // get the amount of time, in seconds, since the last frame. this should be 0.016 at 60fps.
             float dt = gametime.ElapsedGameTime.Milliseconds/1000F;
 
@@ -768,7 +770,7 @@ namespace SRPG.Scene.Battle
                 ability.GenerateImpactGrid()
             );
                 
-            _battleBoard.AllowAim = true;
+            _battleBoard.AbilityAim = true;
 
             _aimAbility = (x, y) =>
                 {

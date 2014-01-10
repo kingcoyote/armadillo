@@ -17,7 +17,8 @@ namespace SRPG.Scene.Battle
     {
         public new int Width;
         public new int Height;
-        public bool AllowAim;
+        public bool AbilityAim;
+        public bool FreeAim;
 
         public delegate void CharacterDelegate(Combatant character);
         public CharacterDelegate CharacterSelected = c => { };
@@ -73,9 +74,15 @@ namespace SRPG.Scene.Battle
         {
             var mouse = ((IInputService)Game.Services.GetService(typeof(IInputService))).GetMouse().GetState();
 
+            var cursor = new Point(
+                (int)Math.Floor((mouse.X - X) / 50.0),
+                (int)Math.Floor((mouse.Y - Y) / 50.0)
+            );
+
+            // check if the cursor is over a character
             foreach (var character in _board.Characters)
             {
-                if (character.Avatar.Sprite.Rectangle.Contains(mouse.X, mouse.Y))
+                if (Math.Abs(character.Avatar.Location.X - cursor.X) < 1 && Math.Abs(character.Avatar.Location.Y - cursor.Y) < 1)
                 {
                     CharacterSelected.Invoke(character);
                     break;
@@ -163,24 +170,11 @@ namespace SRPG.Scene.Battle
 
             scene.UpdateCamera(X, Y);
 
-            // check if the cursor is over a character
-            foreach (var character in _board.Characters)
-            {
-                if (character.Avatar.Sprite.Rectangle.Contains(mouse.X, mouse.Y))
-                {
-                    scene.ShowCharacterStats(character);
-                    
-                    break;
-                }
-                
-                scene.HideCharacterStats();
-            }
+            
 
             DefaultGrid();
             
             HighlightGrid(_targettingGrid, GridHighlight.Selectable);
-
-            if (AllowAim == false) return;
 
             // compensate for the camera not being at 0,0
             // as well as do a 50:1 scaling to convert from the screen to the grid
@@ -188,24 +182,45 @@ namespace SRPG.Scene.Battle
                 (int)Math.Floor((mouse.X - X) / 50.0),
                 (int)Math.Floor((mouse.Y - Y) / 50.0)
             );
-            
-            if (ValidCell(cursor.X, cursor.Y) && _targettingGrid.Weight[cursor.X, cursor.Y] > 0)
-            {
-               for (var x = 0; x < _impactGrid.Size.Width; x++)
-                {
-                    for (var y = 0; y < _impactGrid.Size.Height; y++)
-                    {
-                        if (_impactGrid.Weight[x, y] < 1) continue;
 
-                        HighlightCell(
-                            cursor.X - (_impactGrid.Size.Width / 2) + x,
-                            cursor.Y - (_impactGrid.Size.Height / 2) + y,
-                            GridHighlight.Splashed
-                        );
-                    }
+            // check if the cursor is over a character
+            foreach (var character in _board.Characters)
+            {
+                if (Math.Abs(character.Avatar.Location.X - cursor.X) < 1 && Math.Abs(character.Avatar.Location.Y - cursor.Y) < 1)
+                {
+                    scene.ShowCharacterStats(character);
+
+                    break;
                 }
 
-               HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
+                scene.HideCharacterStats();
+            }
+
+            if (FreeAim)
+            {
+                HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
+            }
+            else if (AbilityAim)
+            {
+                if (ValidCell(cursor.X, cursor.Y) && _targettingGrid.Weight[cursor.X, cursor.Y] > 0)
+                {
+                    for (var x = 0; x < _impactGrid.Size.Width; x++)
+                    {
+                        for (var y = 0; y < _impactGrid.Size.Height; y++)
+                        {
+                            if (_impactGrid.Weight[x, y] < 1) continue;
+
+                            HighlightCell
+                                (
+                                    cursor.X - (_impactGrid.Size.Width/2) + x,
+                                    cursor.Y - (_impactGrid.Size.Height/2) + y,
+                                    GridHighlight.Splashed
+                                );
+                        }
+                    }
+
+                    HighlightCell(cursor.X, cursor.Y, GridHighlight.Targetted);
+                }
             }
         }
 
@@ -271,6 +286,7 @@ namespace SRPG.Scene.Battle
 
         private void HighlightCell(int x, int y, GridHighlight type)
         {
+            if (x < 0 || x >= _grid.Size.Width || y < 0 || y >= _grid.Size.Height) return;
             if (_gridCells[x, y] == null) return;
 
             _gridCells[x, y].Highlight = type;
@@ -295,7 +311,7 @@ namespace SRPG.Scene.Battle
             DefaultGrid();
             _targettingGrid = new Grid(0, 0);
             _impactGrid = new Grid(0, 0);
-            AllowAim = false;
+            AbilityAim = false;
         }
 
         private void DefaultGrid()
