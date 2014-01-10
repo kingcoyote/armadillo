@@ -424,6 +424,13 @@ namespace SRPG.Scene.Battle
                     _battleBoard.SetBackground("Zones/Coliseum/Halls/north");
                     _battleBoard.SetGrid("Zones/Coliseum/Halls/battle");
                     BattleBoard.Sandbag = Grid.FromBitmap(Game.Services, "Zones/Coliseum/Halls/battle");
+                    _battleBoard.AddImage(new ImageObject(Game, _battleBoard, "Zones/Coliseum/Halls/north"));
+                    _battleBoard.AddImage(new ImageObject(Game, _battleBoard, "Zones/Coliseum/pillar") { X = 393, Y = 190, DrawOrder = 248 });
+                    _battleBoard.AddImage(new ImageObject(Game, _battleBoard, "Zones/Coliseum/pillar") { X = 393, Y = 390, DrawOrder = 448 });
+                    _battleBoard.AddImage(new ImageObject(Game, _battleBoard, "Zones/Coliseum/pillar") { X = 393, Y = 590, DrawOrder = 648 });
+                    _battleBoard.AddImage(new ImageObject(Game, _battleBoard, "Zones/Coliseum/pillar") { X = 593, Y = 190, DrawOrder = 248 });
+                    _battleBoard.AddImage(new ImageObject(Game, _battleBoard, "Zones/Coliseum/pillar") { X = 593, Y = 390, DrawOrder = 448 });
+                    _battleBoard.AddImage(new ImageObject(Game, _battleBoard, "Zones/Coliseum/pillar") { X = 593, Y = 590, DrawOrder = 648 });
 
                     partyGrid.Add(new Point(10,13));
                     partyGrid.Add(new Point(11,13));

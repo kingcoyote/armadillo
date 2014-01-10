@@ -12,6 +12,12 @@ namespace SRPG.Zones.Coliseum
             Name = "Coliseum Halls North";
             Sandbag = Grid.FromBitmap(Game.Services, "Zones/Coliseum/Halls/north-sb");
             ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/Halls/north"));
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/pillar") { X = 393, Y = 190, DrawOrder = 248 });
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/pillar") { X = 393, Y = 390, DrawOrder = 448 });
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/pillar") { X = 393, Y = 590, DrawOrder = 648 });
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/pillar") { X = 593, Y = 190, DrawOrder = 248 });
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/pillar") { X = 593, Y = 390, DrawOrder = 448 });
+            ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/pillar") { X = 593, Y = 590, DrawOrder = 648 });
 
             Doors.Add(new Door {Location = new Rectangle(500, 715, 50, 35), Name = "halls-south", Orientation = Direction.Up });
             Doors.Add(new Door { Location = new Rectangle(455, 100, 140, 35), Name = "village", Orientation = Direction.Up });
