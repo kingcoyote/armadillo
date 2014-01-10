@@ -712,6 +712,7 @@ namespace SRPG.Scene.Battle
             menu.AddOption("special", icon);
 
             icon = new RadialButtonControl { ImageFrame = "item", Bounds = new UniRectangle(0, 0, 64, 64) };
+            icon.Enabled = false;
             menu.AddOption("item", icon);
 
             _radialMenuControl = menu;

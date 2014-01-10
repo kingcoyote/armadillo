@@ -17,6 +17,9 @@ namespace SRPG.Scene.PartyMenu
         public MenuDialog()
         {
             InitializeComponent();
+
+            _inventoryButton.Enabled = false;
+            _settingsButton.Enabled = false;
         }
     }
 }
