@@ -17,23 +17,24 @@ namespace SRPG.Data
         Hit
     }
 
+    [Flags]
     public enum ItemType
     {
-        Sword,
-        Hammer,
-        Gun,
-        Book,
-        Staff,
-        Unarmed,
+        Sword = 1,
+        Hammer = 2,
+        Gun = 4,
+        Book = 8,
+        Staff = 16,
+        Unarmed = 32,
 
-        Cloth,
-        Leather,
-        Mail,
-        Plate,
+        Cloth = 64,
+        Leather = 128,
+        Mail = 256,
+        Plate = 512,
         
-        Accessory,
+        Accessory = 1024,
         
-        Consumable
+        Consumable = 2048
     }
 
     public enum ItemEquipType

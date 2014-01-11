@@ -292,7 +292,7 @@ namespace SRPG.Data
         /// <returns>true if this class can equip this armor.</returns>
         public bool CanEquipArmor(Item armor)
         {
-            throw new NotImplementedException();
+            return (ArmorTypes & armor.ItemType) == armor.ItemType;
         }
 
         /// <summary>
@@ -302,7 +302,7 @@ namespace SRPG.Data
         /// <returns>true if this class can equip this weapon.</returns>
         public bool CanEquipWeapon(Item weapon)
         {
-            throw new NotImplementedException();
+            return (WeaponTypes & weapon.ItemType) == weapon.ItemType;
         }
 
         /// <summary>
