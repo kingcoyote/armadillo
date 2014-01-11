@@ -132,6 +132,10 @@ namespace SRPG
             Party = new List<Combatant>();
             Inventory = new List<Item>();
 
+#if DEBUG
+            Inventory.Add(Item.Factory(this, "sword/longsword"));
+#endif
+
             var character = Combatant.FromTemplate(this, "party/jaha");
             character.Name = "Jaha";
             Party.Add(character);
