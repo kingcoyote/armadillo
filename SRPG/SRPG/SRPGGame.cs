@@ -27,10 +27,6 @@ namespace SRPG
 
         public SRPGGame()
         {
-            IsFullScreen = false;
-            ScreenWidth = 1280;
-            ScreenHeight = 1024;
-
             CurrentScene = "intro";
         }
 
@@ -44,7 +40,17 @@ namespace SRPG
             FontManager.Add("Dialog", FontSize.Normal, Content.Load<SpriteFont>("Fonts/DialogNormal"));
             FontManager.Add("Dialog", FontSize.Small, Content.Load<SpriteFont>("Fonts/DialogSmall"));
 
-            base.Initialize();
+            IsFullScreen = true;
+            ScreenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            ScreenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+
+#if DEBUG
+            IsFullScreen = false;
+            ScreenWidth = 1024;
+            ScreenHeight = 768;
+#endif
+
+            base.Initialize();      
 
             PushScene(new MainMenu(this));
             PushScene(new IntroScene(this));
