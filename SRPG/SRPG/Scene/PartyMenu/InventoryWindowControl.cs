@@ -2,7 +2,11 @@
 
 namespace SRPG.Scene.PartyMenu
 {
-    public class InventoryWindowControl : WindowControl
+    public partial class InventoryWindowControl
     {
+        public InventoryWindowControl()
+        {
+            InitializeComponent();
+        }
     }
 }

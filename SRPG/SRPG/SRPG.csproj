@@ -218,6 +218,9 @@
       <DependentUpon>CharacterInventoryDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Scene\PartyMenu\InventoryWindowControl.cs" />
+    <Compile Include="Scene\PartyMenu\InventoryWindowControl.designer.cs">
+      <DependentUpon>InventoryWindowControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\PartyMenu\MenuDialog.Designer.cs">
       <DependentUpon>MenuDialog.cs</DependentUpon>
     </Compile>
