@@ -1,0 +1,25 @@
+/* ----------------------------------------------------
+   created with http://www.codeandweb.com/texturepacker 
+   ----------------------------------------------------
+   $TexturePacker:SmartUpdate:890c35ed3b77604aebb1078c48f39f5b:263cd58f4e5ae852efd21b2b8a5bef1e:fa4efc5762080ce7e0d3008214cf71a6$
+   ----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(ColProps.png);}
+
+.barrel1 {width:41px; height:51px; background-position: -99px -63px}
+.barrel2 {width:41px; height:50px; background-position: -140px -63px}
+.bed1 {width:94px; height:50px; background-position: -161px -0px}
+.bed2 {width:47px; height:87px; background-position: -52px -0px}
+.bone {width:29px; height:16px; background-position: -0px -95px}
+.boots {width:33px; height:33px; background-position: -218px -50px}
+.bucket {width:30px; height:34px; background-position: -218px -83px}
+.chest1 {width:52px; height:95px; background-position: -0px -0px}
+.pillar {width:62px; height:63px; background-position: -99px -0px}
+.skull {width:30px; height:28px; background-position: -52px -87px}
+.stool {width:37px; height:36px; background-position: -181px -50px}
