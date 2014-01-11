@@ -19,9 +19,18 @@ namespace SRPG.Scene.PartyMenu
             _itemList = new ListControl();
             _itemList.Bounds = new UniRectangle(
                 new UniScalar(0, 10), new UniScalar(0, 10),
-                new UniScalar(1, -20), new UniScalar(1, -20)
+                new UniScalar(1, -20), new UniScalar(1, -65)
             );
             Children.Add(_itemList);
+
+            var cancelButton = new ButtonControl();
+            cancelButton.Text = "Cancel";
+            cancelButton.Pressed += (s, a) => { ItemCancelled.Invoke(); };
+            cancelButton.Bounds = new UniRectangle(
+                new UniScalar(0, 10), new UniScalar(1, -45),
+                new UniScalar(1, -20), new UniScalar(35)
+            );
+            Children.Add(cancelButton);
         }
     }
 }
