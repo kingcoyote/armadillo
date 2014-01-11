@@ -22,10 +22,6 @@ namespace SRPG.Scene.PartyMenu
             _weaponText.Text = weapon == null ? "---" : weapon.Name;
             _armorText.Text = armor == null ? "---" : armor.Name;
             _accText.Text = acc == null ? "---" : acc.Name;
-
-            _armorButton.Enabled = false;
-            _weaponButton.Enabled = false;
-            _accButton.Enabled = false;
         }
     }
 }

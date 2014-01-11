@@ -47,8 +47,8 @@ namespace SRPG.Scene.PartyMenu
             // weaponButton
             //
             _weaponButton = new ButtonControl();
-            _weaponButton.Bounds = new UniRectangle(new UniScalar(1.0f, -210), 10, 200, 30);
-            _weaponButton.Text = "Change Weapon";
+            _weaponButton.Bounds = new UniRectangle(new UniScalar(1.0f, -110), 10, 100, 30);
+            _weaponButton.Text = "Change";
             _weaponButton.Pressed += (s, a) => WeaponChange.Invoke();
             Children.Add(_weaponButton);
 
@@ -71,8 +71,8 @@ namespace SRPG.Scene.PartyMenu
             // armorButton
             //
             _armorButton = new ButtonControl();
-            _armorButton.Bounds = new UniRectangle(new UniScalar(1.0f, -210), 45, 200, 30);
-            _armorButton.Text = "Change Armor";
+            _armorButton.Bounds = new UniRectangle(new UniScalar(1.0f, -110), 45, 100, 30);
+            _armorButton.Text = "Change";
             _armorButton.Pressed += (s, a) => ArmorChange.Invoke();
             Children.Add(_armorButton);
 
@@ -95,8 +95,8 @@ namespace SRPG.Scene.PartyMenu
             // accButton
             //
             _accButton = new ButtonControl();
-            _accButton.Bounds = new UniRectangle(new UniScalar(1.0f, -210), 80, 200, 30);
-            _accButton.Text = "Change Accessory";
+            _accButton.Bounds = new UniRectangle(new UniScalar(1.0f, -110), 80, 100, 30);
+            _accButton.Text = "Change";
             _accButton.Pressed += (s, a) => AccessoryChange.Invoke();
             Children.Add(_accButton);
         }
