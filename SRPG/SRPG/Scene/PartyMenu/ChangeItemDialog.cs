@@ -19,7 +19,9 @@ namespace SRPG.Scene.PartyMenu
 
         public void SetItems(IEnumerable<Item> items)
         {
-            
+            _itemList.Items.Clear();
+            foreach (var item in items)
+                _itemList.Items.Add(item.Name);
         }
     }
 }

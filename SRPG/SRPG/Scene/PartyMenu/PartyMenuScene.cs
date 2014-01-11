@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
+using Nuclex.UserInterface;
 using Nuclex.UserInterface.Visuals.Flat;
 using SRPG.Data;
 using Torch;
@@ -74,6 +75,10 @@ namespace SRPG.Scene.PartyMenu
             _changingItem = true;
 
             var dialog = new ChangeItemDialog();
+            dialog.Bounds = new UniRectangle(
+                new UniScalar(0.5f, 0 - 100), new UniScalar(0.5f, 0 - 200),
+                200, 400
+            );
             var items = new List<Item>();
             var inventory = ((SRPGGame) Game).Inventory;
             foreach(var item in inventory)
@@ -92,7 +97,8 @@ namespace SRPG.Scene.PartyMenu
                 }
             }
             dialog.SetItems(items);
-            Gui.Screen.Desktop.Children.Add(dialog);
+            _characterInfoDialog.Children.Add(dialog);
+            dialog.BringToFront();
             
             dialog.ItemSelected += i =>
                 {
