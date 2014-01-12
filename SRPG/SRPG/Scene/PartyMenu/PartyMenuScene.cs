@@ -128,7 +128,9 @@ namespace SRPG.Scene.PartyMenu
             
             dialog.ItemSelected += i =>
                 {
+                    inventory.Remove(i);
                     inventory.Add(character.EquipItem(i));
+                    SetCharacter(character);
                     dialog.Close();
                     _changingItem = false;
                 };

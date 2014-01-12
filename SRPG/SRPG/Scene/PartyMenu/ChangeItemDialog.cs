@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SRPG.Data;
+using Nuclex.UserInterface.Controls.Desktop;
+using Nuclex.UserInterface;
 
 namespace SRPG.Scene.PartyMenu
 {
@@ -19,9 +21,16 @@ namespace SRPG.Scene.PartyMenu
 
         public void SetItems(IEnumerable<Item> items)
         {
-            _itemList.Items.Clear();
-            foreach (var item in items)
-                _itemList.Items.Add(item.Name);
+            _itemList.Children.Clear();
+            for (var i = 0; i < items.Count(); i++)
+            {
+                var item = items.ElementAt(i);
+                var button = new ButtonControl();
+                button.Bounds = new UniRectangle(10, 5 + 50*i, new UniScalar(1.0f, -20.0f), 40);
+                button.Pressed += (s, a) => ItemSelected.Invoke(item);
+                button.Text = item.Name;
+                _itemList.Children.Add(button);
+            }
         }
     }
 }

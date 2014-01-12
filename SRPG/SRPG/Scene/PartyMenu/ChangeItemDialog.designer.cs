@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using Nuclex.UserInterface;
 using Nuclex.UserInterface.Controls.Desktop;
+using Nuclex.UserInterface.Controls;
 
 namespace SRPG.Scene.PartyMenu
 {
     public partial class ChangeItemDialog : WindowControl
     {
-        private ListControl _itemList;
+        private Control _itemList;
 
         private void InitializeComponent()
         {
-            Title = "Select Item";
             Bounds = new Nuclex.UserInterface.UniRectangle(200, 200, 200, 400);
 
             _itemList = new ListControl();
