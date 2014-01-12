@@ -13,6 +13,7 @@ namespace SRPG.Scene.PartyMenu
         private CharacterOverviewDialog _overviewDialog;
         private CharacterStatsDialog _statsDialog;
         private CharacterInventoryDialog _inventoryDialog;
+        private CharacterAbilityDialog _abilityDialog;
 
         private void InitializeComponent()
         {
@@ -53,7 +54,15 @@ namespace SRPG.Scene.PartyMenu
             );
             Children.Add(_inventoryDialog);
 
-            // todo add abilities dialog
+            //
+            // ability dialog
+            //
+            _abilityDialog = new CharacterAbilityDialog();
+            _abilityDialog.Bounds = new UniRectangle(
+                new UniScalar(20), new UniScalar(400),
+                new UniScalar(1.0f, -40), new UniScalar(1.0f, -420.0f)
+            );
+            Children.Add(_abilityDialog);
         }
     }
 }

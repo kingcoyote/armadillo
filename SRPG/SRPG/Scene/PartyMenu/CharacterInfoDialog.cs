@@ -26,6 +26,7 @@ namespace SRPG.Scene.PartyMenu
             _overviewDialog.UpdateCharacter(_character);
             _statsDialog.UpdateCharacter(_character);
             _inventoryDialog.UpdateCharacter(_character);
+            _abilityDialog.UpdateCharacter(_character);
         }
     }
 }

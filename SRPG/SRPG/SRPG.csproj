@@ -197,9 +197,17 @@
     <Compile Include="Scene\Options\MenuDialog.designer.cs">
       <DependentUpon>MenuDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scene\PartyMenu\AbilityDisplay.cs" />
+    <Compile Include="Scene\PartyMenu\AbilityDisplay.designer.cs">
+      <DependentUpon>AbilityDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\PartyMenu\ChangeItemDialog.cs" />
     <Compile Include="Scene\PartyMenu\ChangeItemDialog.designer.cs">
       <DependentUpon>ChangeItemDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene\PartyMenu\CharacterAbilityDialog.cs" />
+    <Compile Include="Scene\PartyMenu\CharacterAbilityDialog.designer.cs">
+      <DependentUpon>CharacterAbilityDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Scene\PartyMenu\CharacterOverviewDialog.cs" />
     <Compile Include="Scene\PartyMenu\CharacterOverviewDialog.designer.cs">
