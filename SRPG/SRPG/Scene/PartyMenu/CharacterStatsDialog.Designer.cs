@@ -8,7 +8,7 @@ using Nuclex.UserInterface.Controls.Desktop;
 
 namespace SRPG.Scene.PartyMenu
 {
-    public partial class CharacterStatsDialog : InventoryWindowControl
+    public partial class CharacterStatsDialog : WindowControl
     {
         private LabelControl _defLabel;
         private LabelControl _defText;

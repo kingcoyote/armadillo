@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Nuclex.UserInterface;
+using Nuclex.UserInterface.Controls.Desktop;
 using Torch.UserInterface;
 
 namespace SRPG.Scene.Battle
 {
-    public partial class QueuedCommandsDialog : WindowControl
+    public partial class QueuedCommandsDialog : Torch.UserInterface.WindowControl
     {
         private List<QueuedCommandControl> _controls;
 
