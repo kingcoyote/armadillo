@@ -221,6 +221,10 @@
     <Compile Include="Scene\PartyMenu\InventoryDialog.designer.cs">
       <DependentUpon>InventoryDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scene\PartyMenu\ItemDisplay.cs" />
+    <Compile Include="Scene\PartyMenu\ItemDisplay.designer.cs">
+      <DependentUpon>ItemDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\PartyMenu\MenuDialog.Designer.cs">
       <DependentUpon>MenuDialog.cs</DependentUpon>
     </Compile>

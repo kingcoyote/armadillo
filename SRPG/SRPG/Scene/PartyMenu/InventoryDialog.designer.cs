@@ -13,7 +13,7 @@ namespace SRPG.Scene.PartyMenu
         {
             Bounds = new UniRectangle(
                 new UniScalar(0.0f, 0.0f), new UniScalar(0.0f, 105.0f),
-                new UniScalar(0.2f, 0.0f), new UniScalar(1.0f, -105.0f)
+                new UniScalar(1.0f, 0.0f), new UniScalar(1.0f, -105.0f)
             );
             EnableDragging = false;
         }
