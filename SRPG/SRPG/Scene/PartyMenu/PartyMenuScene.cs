@@ -14,6 +14,7 @@ namespace SRPG.Scene.PartyMenu
         private MenuDialog _menu;
         private PartyMenuDialog _partyMenuDialog;
         private CharacterInfoDialog _characterInfoDialog;
+        private InventoryDialog _inventoryDialog;
 
         private bool _changingItem = false;
 
@@ -24,6 +25,7 @@ namespace SRPG.Scene.PartyMenu
             Components.Add(keyboard);
 
             _menu = new MenuDialog();
+            _menu.MenuChanged += ChangeMenu;
             Gui.Screen.Desktop.Children.Add(_menu);
 
             _partyMenuDialog = new PartyMenuDialog(((SRPGGame)Game).Party);
@@ -32,8 +34,10 @@ namespace SRPG.Scene.PartyMenu
 
             _characterInfoDialog = new CharacterInfoDialog();
             _characterInfoDialog.ChangeItem += ChangeItem;
-            _characterInfoDialog.Hide();
             Gui.Screen.Desktop.Children.Add(_characterInfoDialog);
+
+            _inventoryDialog = new InventoryDialog();
+            Gui.Screen.Desktop.Children.Add(_inventoryDialog);
 
             Gui.DrawOrder = 1000;
             Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
@@ -44,6 +48,8 @@ namespace SRPG.Scene.PartyMenu
             base.OnEntered();
 
             Game.IsMouseVisible = true;
+
+            ChangeMenu("party");
         }
 
         protected override void OnLeaving()
@@ -60,7 +66,27 @@ namespace SRPG.Scene.PartyMenu
 
         public void ChangeMenu(string menu)
         {
+            if (menu == _currentMenu) return;
 
+            _currentMenu = menu;
+
+            _partyMenuDialog.Visible = false;
+            _characterInfoDialog.Visible = false;
+
+            _inventoryDialog.Visible = false;
+
+            switch (menu)
+            {
+                case "party":
+                    _partyMenuDialog.Visible = true;
+                    break;
+                case "inventory":
+                    _inventoryDialog.SetInventory(((SRPGGame)Game).Inventory);
+                    _inventoryDialog.Visible = true;
+                    break;
+                case "settings":
+                    break;
+            }
         }
 
         public void SetCharacter(Combatant character)

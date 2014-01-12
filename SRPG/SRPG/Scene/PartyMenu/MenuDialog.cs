@@ -11,15 +11,19 @@ using Game = Torch.Game;
 
 namespace SRPG.Scene.PartyMenu
 {
-
     partial class MenuDialog
     {
+        public delegate void MenuChangedDelegate(string menu);
+        public MenuChangedDelegate MenuChanged;
         public MenuDialog()
         {
             InitializeComponent();
 
-            _inventoryButton.Enabled = false;
             _settingsButton.Enabled = false;
+
+            _statusButton.Pressed += (s, a) => MenuChanged("party");
+            _inventoryButton.Pressed += (s, a) => MenuChanged("inventory");
+            _settingsButton.Pressed += (s, a) => MenuChanged("settings");
         }
     }
 }
