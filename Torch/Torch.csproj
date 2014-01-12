@@ -95,6 +95,7 @@
     <Compile Include="TextureObject.cs" />
     <Compile Include="UserInterface\TiledIconControl.cs" />
     <Compile Include="TorchHelper.cs" />
+    <Compile Include="UserInterface\WindowControl.cs" />
     <Compile Include="Velocity.cs" />
     <Compile Include="Object.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

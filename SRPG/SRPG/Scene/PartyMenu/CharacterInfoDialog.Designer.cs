@@ -55,19 +55,5 @@ namespace SRPG.Scene.PartyMenu
 
             // todo add abilities dialog
         }
-
-        public void Hide()
-        {
-            if (Bounds.Location.X.Offset < -50000) return;
-
-            Bounds.Location.X.Offset -= 50000;
-        }
-
-        public void Show()
-        {
-            if (Bounds.Location.X.Offset > -40000) return;
-
-            Bounds.Location.X.Offset += 50000;
-        }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Nuclex.UserInterface;
 using Nuclex.UserInterface.Controls;
-using Nuclex.UserInterface.Controls.Desktop;
+using Torch.UserInterface;
 
 namespace SRPG.Scene.Battle
 {
@@ -35,16 +35,6 @@ namespace SRPG.Scene.Battle
                 new UniScalar(0.0f, 25.0f), new UniScalar(0.0f, 20.0f)
             );
             Children.Add(_mana);
-        }
-
-        public void Hide()
-        {
-            Bounds.Location.Y.Fraction = -1.0f;
-        }
-
-        public void Show()
-        {
-            Bounds.Location.Y.Fraction = 1.0f;
         }
     }
 }

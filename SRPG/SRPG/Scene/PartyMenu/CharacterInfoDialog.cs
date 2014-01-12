@@ -1,4 +1,4 @@
-﻿using Nuclex.UserInterface.Controls.Desktop;
+﻿using Torch.UserInterface;
 using SRPG.Data;
 
 namespace SRPG.Scene.PartyMenu

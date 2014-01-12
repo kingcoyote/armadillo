@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Nuclex.UserInterface;
-using Nuclex.UserInterface.Controls.Desktop;
+using Torch.UserInterface;
 
 namespace SRPG.Scene.Battle
 {
     public partial class QueuedCommandsDialog : WindowControl
     {
         private List<QueuedCommandControl> _controls;
-        private float _xPos;
 
         public Action ExecuteClicked = () => { };
 
@@ -24,8 +23,6 @@ namespace SRPG.Scene.Battle
                 new UniScalar(0.0f, 300.0f), new UniScalar(0.0f, 100.0f)
             );
             UpdateControls();
-
-            _xPos = Bounds.Location.X.Offset;
         }
 
         public void UpdateControls()
@@ -63,16 +60,6 @@ namespace SRPG.Scene.Battle
 
             Bounds.Size.Y.Offset = 95 + 49 * (Commands.Count);
             Bounds.Location.Y.Offset = 0 - Bounds.Size.Y.Offset;
-        }
-
-        public void Hide()
-        {
-            Bounds.Location.X.Offset = -10000;
-        }
-
-        public void Show()
-        {
-            Bounds.Location.X.Offset = _xPos;
         }
     }
 }
