@@ -8,7 +8,7 @@ using Torch.UserInterface;
 
 namespace SRPG.Scene.Battle
 {
-    public partial class QueuedCommandsDialog : Torch.UserInterface.WindowControl
+    public partial class QueuedCommandsDialog : WindowControl
     {
         private List<QueuedCommandControl> _controls;
 

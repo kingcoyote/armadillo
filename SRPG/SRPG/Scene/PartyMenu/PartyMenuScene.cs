@@ -70,19 +70,19 @@ namespace SRPG.Scene.PartyMenu
 
             _currentMenu = menu;
 
-            _partyMenuDialog.Visible = false;
-            _characterInfoDialog.Visible = false;
+            HideGui(_partyMenuDialog);
+            HideGui(_characterInfoDialog);
 
-            _inventoryDialog.Visible = false;
+            HideGui(_inventoryDialog);
 
             switch (menu)
             {
                 case "party":
-                    _partyMenuDialog.Visible = true;
+                    ShowGui(_partyMenuDialog);
                     break;
                 case "inventory":
                     _inventoryDialog.SetInventory(((SRPGGame)Game).Inventory);
-                    _inventoryDialog.Visible = true;
+                    ShowGui(_inventoryDialog);
                     break;
                 case "settings":
                     break;
@@ -92,7 +92,7 @@ namespace SRPG.Scene.PartyMenu
         public void SetCharacter(Combatant character)
         {
             _characterInfoDialog.SetCharacter(character);
-            _characterInfoDialog.Show();
+            ShowGui(_characterInfoDialog);
         }
 
         private void ChangeItem(Combatant character, ItemEquipType type)

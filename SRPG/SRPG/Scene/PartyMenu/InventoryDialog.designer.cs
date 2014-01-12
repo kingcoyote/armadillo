@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Torch.UserInterface;
+using Nuclex.UserInterface.Controls.Desktop;
 using Nuclex.UserInterface;
 
 namespace SRPG.Scene.PartyMenu

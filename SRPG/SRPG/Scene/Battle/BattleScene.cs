@@ -101,10 +101,8 @@ namespace SRPG.Scene.Battle
 
             _queuedCommands = new QueuedCommandsDialog(QueuedCommands);
             _queuedCommands.ExecuteClicked += ExecuteQueuedCommands;
-            Gui.Screen.Desktop.Children.Add(_queuedCommands);
 
             _abilityStatLayer = new AbilityStatDialog();
-            Gui.Screen.Desktop.Children.Add(_abilityStatLayer);
 
             Game.IsMouseVisible = true;
 
@@ -144,10 +142,10 @@ namespace SRPG.Scene.Battle
             // during player turn, show queued commands if possible
             if(_state != BattleState.EnemyTurn && QueuedCommands.Count > 0)
             {
-                _queuedCommands.Show();
+                ShowGui(_queuedCommands);
             } else
             {
-                _queuedCommands.Hide();   
+                HideGui(_queuedCommands);   
             }
 
             _hud.SetStatus(RoundNumber, FactionTurn);
@@ -837,7 +835,7 @@ namespace SRPG.Scene.Battle
                         {
                             if (_aimAbility != null) return;
 
-                            _abilityStatLayer.Hide();
+                            HideGui(_abilityStatLayer);
                             _battleBoard.ResetGrid();
                         };
                     button.MouseClick = () => { };
@@ -862,7 +860,7 @@ namespace SRPG.Scene.Battle
         private void PreviewAbility(Ability ability)
         {
             _abilityStatLayer.SetAbility(ability);
-            _abilityStatLayer.Show();
+            ShowGui(_abilityStatLayer);
             _battleBoard.SetTargettingGrid(
                 ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
                 new Grid(1, 1)
@@ -901,7 +899,7 @@ namespace SRPG.Scene.Battle
             _aimAbility = null;
             _selectedCharacter = null;
             HideCharacterStats();
-            _abilityStatLayer.Hide();
+            HideGui(_abilityStatLayer);
         }
 
         /// <summary>

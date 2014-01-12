@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Nuclex.UserInterface;
 using Nuclex.UserInterface.Controls;
-using Torch.UserInterface;
+using Nuclex.UserInterface.Controls.Desktop;
 
 namespace SRPG.Scene.Battle
 {

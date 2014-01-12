@@ -7,6 +7,7 @@ using Nuclex.Input;
 using Nuclex.UserInterface;
 using Nuclex.UserInterface.Input;
 using Nuclex.UserInterface.Visuals.Flat;
+using Nuclex.UserInterface.Controls;
 using Torch.UserInterface;
 
 namespace Torch
@@ -109,6 +110,20 @@ namespace Torch
         public void Dispose()
         {
             Gui.Dispose();
+        }
+
+        protected void ShowGui(Control control)
+        {
+            if (Gui.Screen.Desktop.Children.Contains(control)) return;
+
+            Gui.Screen.Desktop.Children.Add(control);
+        }
+
+        protected void HideGui(Control control)
+        {
+            if (!Gui.Screen.Desktop.Children.Contains(control)) return;
+
+            Gui.Screen.Desktop.Children.Remove(control);
         }
     }
 }

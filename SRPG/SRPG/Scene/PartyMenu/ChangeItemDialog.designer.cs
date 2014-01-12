@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Torch.UserInterface;
 using Nuclex.UserInterface;
 using Nuclex.UserInterface.Controls.Desktop;
 
 namespace SRPG.Scene.PartyMenu
 {
-    public partial class ChangeItemDialog : Torch.UserInterface.WindowControl
+    public partial class ChangeItemDialog : WindowControl
     {
         private ListControl _itemList;
 
