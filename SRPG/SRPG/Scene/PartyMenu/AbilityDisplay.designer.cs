@@ -13,7 +13,7 @@ namespace SRPG.Scene.PartyMenu
         private void InitializeComponent()
         {
             Bounds = new UniRectangle(
-                10, 10, new UniScalar(1.0f, -20), 40    
+                10, 10, new UniScalar(1.0f, -20), 35   
             );
 
             var label = new LabelControl();
@@ -26,15 +26,15 @@ namespace SRPG.Scene.PartyMenu
             label.Bounds = new UniRectangle(190, 5, 30, 30);
             Children.Add(label);
 
-            label = new LabelControl();
-            label.Text = ((int)(_exp % 100)).ToString();
-            label.Bounds = new UniRectangle(225, 5, 30, 30);
-            Children.Add(label);
-
             var progress = new ProgressControl();
             progress.Progress = (_exp % 100) / 100.0f;
-            progress.Bounds = new UniRectangle(260, 5, 300, 40);
+            progress.Bounds = new UniRectangle(225, 5, new UniScalar(1.0f, -270), new UniScalar(1.0f, -5.0f));
             Children.Add(progress);
+
+            label = new LabelControl();
+            label.Text = ((int)(_exp % 100)).ToString();
+            label.Bounds = new UniRectangle(new UniScalar(1.0f, -35), 5, 30, 30);
+            Children.Add(label);
         }
     }
 }

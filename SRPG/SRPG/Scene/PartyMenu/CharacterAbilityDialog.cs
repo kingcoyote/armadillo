@@ -15,6 +15,7 @@ namespace SRPG.Scene.PartyMenu
 
         public void UpdateCharacter(Combatant character)
         {
+            Children.Clear();
             var abilities = character.GetAbilities();
             for (var i = 0; i < abilities.Count(); i++)
             {
