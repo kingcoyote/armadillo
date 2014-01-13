@@ -31,12 +31,12 @@ namespace SRPG.Scene.PartyMenu
             _spdProg.Progress = (character.StatExperienceLevels[Stat.Speed] % 100) / 100f;
             _hitProg.Progress = (character.StatExperienceLevels[Stat.Hit] % 100) / 100f;
 
-            _defLevel.Text = (character.StatExperienceLevels[Stat.Defense] / 100).ToString();
-            _attLevel.Text = (character.StatExperienceLevels[Stat.Attack] / 100).ToString();
-            _wisLevel.Text = (character.StatExperienceLevels[Stat.Wisdom] / 100).ToString();
-            _intLevel.Text = (character.StatExperienceLevels[Stat.Intelligence] / 100).ToString();
-            _spdLevel.Text = (character.StatExperienceLevels[Stat.Speed] / 100).ToString();
-            _hitLevel.Text = (character.StatExperienceLevels[Stat.Hit] / 100).ToString();
+            _defLevel.Text = (character.StatExperienceLevels[Stat.Defense] % 100).ToString();
+            _attLevel.Text = (character.StatExperienceLevels[Stat.Attack] % 100).ToString();
+            _wisLevel.Text = (character.StatExperienceLevels[Stat.Wisdom] % 100).ToString();
+            _intLevel.Text = (character.StatExperienceLevels[Stat.Intelligence] % 100).ToString();
+            _spdLevel.Text = (character.StatExperienceLevels[Stat.Speed] % 100).ToString();
+            _hitLevel.Text = (character.StatExperienceLevels[Stat.Hit] % 100).ToString();
         }
     }
 }
