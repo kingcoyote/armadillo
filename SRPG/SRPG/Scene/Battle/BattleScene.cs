@@ -44,7 +44,7 @@ namespace SRPG.Scene.Battle
         /// Callback that executes when an ability is aimed. This can be a move ability callback moving a character, or a combat ability
         /// callback queuing the command.
         /// </summary>
-        private Func<int, int, bool> _aimAbility = (x, y) => true;
+        private Func<int, int, bool> _aimAbility = null;
 
         private DateTime _aimTime;
         /// <summary>
@@ -934,6 +934,7 @@ namespace SRPG.Scene.Battle
         public void ExecuteAimAbility(int x, int y)
         {
             if (DateTime.Now.Subtract(_aimTime).TotalMilliseconds <= 250) return;
+            if (_aimAbility == null) return;
 
             if(_aimAbility(x, y))
             {
