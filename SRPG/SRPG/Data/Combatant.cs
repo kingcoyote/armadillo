@@ -89,7 +89,6 @@ namespace SRPG.Data
 
         public Avatar Avatar;
 
-        public Dictionary<Stat, int> StatExperienceLevels;
         public Dictionary<Ability, int> AbilityExperienceLevels = new Dictionary<Ability, int>();
 
         public Combatant(Game game) : base(game) { }
@@ -345,19 +344,6 @@ namespace SRPG.Data
                     {Stat.Hit, (int)(nodeList[templateName]["stats"]["hit"])},
                 };
 
-            if (nodeList[templateName].SelectToken("statxp") != null)
-            {
-                combatant.StatExperienceLevels = new Dictionary<Stat, int>
-                    {
-                        {Stat.Defense, (int) (nodeList[templateName]["statxp"]["defense"])},
-                        {Stat.Attack, (int) (nodeList[templateName]["statxp"]["attack"])},
-                        {Stat.Wisdom, (int) (nodeList[templateName]["statxp"]["wisdom"])},
-                        {Stat.Intelligence, (int) (nodeList[templateName]["statxp"]["intelligence"])},
-                        {Stat.Speed, (int) (nodeList[templateName]["statxp"]["speed"])},
-                        {Stat.Hit, (int) (nodeList[templateName]["statxp"]["hit"])}
-                    };
-            }
-
             combatant.AbilityExperienceLevels = nodeList[templateName]["abilities"].ToDictionary(
                 ability => Ability.Factory(game, ability["name"].ToString()), 
                 ability => (int) ability["experience"]
@@ -373,7 +359,7 @@ namespace SRPG.Data
             var neighbors = new List<int[]> { new[] { 0, -1 }, new[] { 1, 0 }, new[] { 0, 1 }, new[] { -1, 0 } };
             var lastRound = new List<int[]> { new[] { (int)Avatar.Location.X, (int)Avatar.Location.Y } };
 
-            int distance = 3 + (int)Math.Log(Stats[Stat.Speed], 4);
+            int distance = 3 + (int)Math.Log(Stats[Stat.Speed], 15);
 
             for (var i = 0; i < distance; i++)
             {

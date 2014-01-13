@@ -11,34 +11,34 @@ namespace SRPG.Scene.PartyMenu
     public partial class CharacterStatsDialog : WindowControl
     {
         private LabelControl _defLabel;
-        private LabelControl _defText;
-        private ProgressControl _defProg;
         private LabelControl _defLevel;
+        private ProgressControl _defProg;
+        private LabelControl _defExp;
 
         private LabelControl _attLabel;
-        private LabelControl _attText;
-        private ProgressControl _attProg;
         private LabelControl _attLevel;
+        private ProgressControl _attProg;
+        private LabelControl _attExp;
 
         private LabelControl _wisLabel;
-        private LabelControl _wisText;
-        private ProgressControl _wisProg;
         private LabelControl _wisLevel;
+        private ProgressControl _wisProg;
+        private LabelControl _wisExp;
 
         private LabelControl _intLabel;
-        private LabelControl _intText;
-        private ProgressControl _intProg;
         private LabelControl _intLevel;
+        private ProgressControl _intProg;
+        private LabelControl _intExp;
 
         private LabelControl _spdLabel;
-        private LabelControl _spdText;
-        private ProgressControl _spdProg;
         private LabelControl _spdLevel;
+        private ProgressControl _spdProg;
+        private LabelControl _spdExp;
 
         private LabelControl _hitLabel;
-        private LabelControl _hitText;
-        private ProgressControl _hitProg;
         private LabelControl _hitLevel;
+        private ProgressControl _hitProg;
+        private LabelControl _hitExp;
 
         private void InitializeComponent()
         {
@@ -63,12 +63,12 @@ namespace SRPG.Scene.PartyMenu
             //
             // defText
             //
-            _defText = new LabelControl();
-            _defText.Bounds = new UniRectangle(
+            _defLevel = new LabelControl();
+            _defLevel.Bounds = new UniRectangle(
                 new UniScalar(0, 60), new UniScalar(1 / (2 * n), -12.5f),
                 new UniScalar(0.0F, 40.0F), new UniScalar(0.0F, 25.0F)
                 );
-            Children.Add(_defText);
+            Children.Add(_defLevel);
 
             //
             // defProg
@@ -84,13 +84,13 @@ namespace SRPG.Scene.PartyMenu
             //
             // defLevel
             //
-            _defLevel = new LabelControl();
-            _defLevel.Bounds = new UniRectangle(
+            _defExp = new LabelControl();
+            _defExp.Bounds = new UniRectangle(
                 new UniScalar(1, -35), new UniScalar(1 / (2 * n), -12.5f),
                 new UniScalar(0.0F, 25.0F), new UniScalar(0.0F, 25.0F)
                 );
-            _defLevel.Text = "1";
-            Children.Add(_defLevel);
+            _defExp.Text = "1";
+            Children.Add(_defExp);
 
             //
             // attLabel
@@ -106,12 +106,12 @@ namespace SRPG.Scene.PartyMenu
             //
             // attText
             //
-            _attText = new LabelControl();
-            _attText.Bounds = new UniRectangle(
+            _attLevel = new LabelControl();
+            _attLevel.Bounds = new UniRectangle(
                 new UniScalar(0, 60), new UniScalar(3 / (2 * n), -12.5f),
                 new UniScalar(0.0F, 40.0F), new UniScalar(0.0F, 25.0F)
                 );
-            Children.Add(_attText);
+            Children.Add(_attLevel);
 
             //
             // attProg
@@ -127,13 +127,13 @@ namespace SRPG.Scene.PartyMenu
             //
             // attLevel
             //
-            _attLevel = new LabelControl();
-            _attLevel.Bounds = new UniRectangle(
+            _attExp = new LabelControl();
+            _attExp.Bounds = new UniRectangle(
                 new UniScalar(1, -35), new UniScalar(3 / (2 * n), -12.5f),
                 new UniScalar(0.0F, 25.0F), new UniScalar(0.0F, 25.0F)
                 );
-            _attLevel.Text = "1";
-            Children.Add(_attLevel);
+            _attExp.Text = "1";
+            Children.Add(_attExp);
 
             //
             // wisLabel
@@ -149,12 +149,12 @@ namespace SRPG.Scene.PartyMenu
             //
             // wisText
             //
-            _wisText = new LabelControl();
-            _wisText.Bounds = new UniRectangle(
+            _wisLevel = new LabelControl();
+            _wisLevel.Bounds = new UniRectangle(
                 new UniScalar(0, 60), new UniScalar(5 / (2 * n), -12.5f),
                 new UniScalar(0.0F, 40.0F), new UniScalar(0.0F, 25.0F)
                 );
-            Children.Add(_wisText);
+            Children.Add(_wisLevel);
 
             //
             // wisProg
@@ -170,13 +170,13 @@ namespace SRPG.Scene.PartyMenu
             //
             // wisLevel
             //
-            _wisLevel = new LabelControl();
-            _wisLevel.Bounds = new UniRectangle(
+            _wisExp = new LabelControl();
+            _wisExp.Bounds = new UniRectangle(
                 new UniScalar(1, -35), new UniScalar(5 / (2 * n), -12.5f),
                 new UniScalar(0.0F, 25.0F), new UniScalar(0.0F, 25.0F)
                 );
-            _wisLevel.Text = "1";
-            Children.Add(_wisLevel);
+            _wisExp.Text = "1";
+            Children.Add(_wisExp);
 
             //
             // intLabel
@@ -192,12 +192,12 @@ namespace SRPG.Scene.PartyMenu
             //
             // intText
             //
-            _intText = new LabelControl();
-            _intText.Bounds = new UniRectangle(
+            _intLevel = new LabelControl();
+            _intLevel.Bounds = new UniRectangle(
                 new UniScalar(0, 60), new UniScalar(7 / (2 * n), -12.5f),
                 new UniScalar(0.0F, 40.0F), new UniScalar(0.0F, 25.0F)
                 );
-            Children.Add(_intText);
+            Children.Add(_intLevel);
 
             //
             // intProg
@@ -213,13 +213,13 @@ namespace SRPG.Scene.PartyMenu
             //
             // intLevel
             //
-            _intLevel = new LabelControl();
-            _intLevel.Bounds = new UniRectangle(
+            _intExp = new LabelControl();
+            _intExp.Bounds = new UniRectangle(
                 new UniScalar(1, -35), new UniScalar(7 / (2 * n), -12.5f),
                 new UniScalar(0.0F, 25.0F), new UniScalar(0.0F, 25.0F)
                 );
-            _intLevel.Text = "1";
-            Children.Add(_intLevel);
+            _intExp.Text = "1";
+            Children.Add(_intExp);
 
             //
             // spdLabel
@@ -235,12 +235,12 @@ namespace SRPG.Scene.PartyMenu
             //
             // spdText
             //
-            _spdText = new LabelControl();
-            _spdText.Bounds = new UniRectangle(
+            _spdLevel = new LabelControl();
+            _spdLevel.Bounds = new UniRectangle(
                 new UniScalar(0, 60), new UniScalar(9 / (2 * n), -12.5f),
                 new UniScalar(0.0F, 40.0F), new UniScalar(0.0F, 25.0F)
                 );
-            Children.Add(_spdText);
+            Children.Add(_spdLevel);
 
             //
             // spdProg
@@ -256,13 +256,13 @@ namespace SRPG.Scene.PartyMenu
             //
             // spdLevel
             //
-            _spdLevel = new LabelControl();
-            _spdLevel.Bounds = new UniRectangle(
+            _spdExp = new LabelControl();
+            _spdExp.Bounds = new UniRectangle(
                 new UniScalar(1, -35), new UniScalar(9 / (2 * n), -12.5f),
                 new UniScalar(0.0F, 25.0F), new UniScalar(0.0F, 25.0F)
                 );
-            _spdLevel.Text = "1";
-            Children.Add(_spdLevel);
+            _spdExp.Text = "1";
+            Children.Add(_spdExp);
 
             //
             // hitLabel
@@ -278,12 +278,12 @@ namespace SRPG.Scene.PartyMenu
             //
             // hitText
             //
-            _hitText = new LabelControl();
-            _hitText.Bounds = new UniRectangle(
+            _hitLevel = new LabelControl();
+            _hitLevel.Bounds = new UniRectangle(
                 new UniScalar(0, 60), new UniScalar(11 / (2 * n), -12.5f),
                 new UniScalar(0.0F, 40.0F), new UniScalar(0.0F, 13.0F)
                 );
-            Children.Add(_hitText);
+            Children.Add(_hitLevel);
 
             //
             // hitProg
@@ -299,13 +299,13 @@ namespace SRPG.Scene.PartyMenu
             //
             // hitLevel
             //
-            _hitLevel = new LabelControl();
-            _hitLevel.Bounds = new UniRectangle(
+            _hitExp = new LabelControl();
+            _hitExp.Bounds = new UniRectangle(
                 new UniScalar(1, -35), new UniScalar(11 / (2 * n), -12.5f),
                 new UniScalar(0.0F, 25.0F), new UniScalar(0.0F, 25.0F)
                 );
-            _hitLevel.Text = "1";
-            Children.Add(_hitLevel);
+            _hitExp.Text = "1";
+            Children.Add(_hitExp);
         }
     }
 }

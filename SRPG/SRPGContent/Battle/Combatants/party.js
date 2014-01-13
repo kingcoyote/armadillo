@@ -7,14 +7,6 @@
     weapontype : "sword",
     armortype : "plate",
     stats : {
-      defense : 30,
-      attack : 20,
-      wisdom : 10,
-      intelligence : 10,
-      speed : 5,
-      hit : 5
-    },
-    statxp : {
       defense : 325,
       attack : 265,
       wisdom : 110,
@@ -40,14 +32,6 @@
     weapontype : "gun",
     armortype : "mail",
     stats : {
-      defense : 10,
-      attack : 10,
-      wisdom : 5,
-      intelligence : 5,
-      speed : 20,
-      hit : 30
-    },
-    statxp : {
       defense : 110,
       attack : 130,
       wisdom : 50,
@@ -73,14 +57,6 @@
     weapontype : "unarmed",
     armortype : "leather",
     stats : {
-      defense : 5,
-      attack : 10,
-      wisdom : 10,
-      intelligence : 5,
-      speed : 30,
-      hit : 20
-    },
-    statxp : {
       defense : 75,
       attack : 130,
       wisdom : 110,
@@ -106,14 +82,6 @@
     weapontype : "book",
     armortype : "cloth",
     stats : {
-      defense : 5,
-      attack : 5,
-      wisdom : 30,
-      intelligence : 20,
-      speed : 10,
-      hit : 10
-    },
-    statxp : {
       defense : 75,
       attack : 50,
       wisdom : 325,
@@ -139,14 +107,6 @@
     weapontype : "staff",
     armortype : "cloth",
     stats : {
-      defense : 5,
-      attack : 5,
-      wisdom : 10,
-      intelligence : 30,
-      speed : 20,
-      hit : 10
-    },
-    statxp : {
       defense : 50,
       attack : 75,
       wisdom : 130,
