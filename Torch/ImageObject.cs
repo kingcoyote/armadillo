@@ -7,6 +7,7 @@ namespace Torch
     public class ImageObject : Object
     {
         protected readonly Texture2D _image;
+        protected readonly string _imageName;
         public float XScale = 1.0F;
         public float YScale = 1.0F;
         public Rectangle SourceRectangle;
@@ -31,6 +32,7 @@ namespace Torch
         public ImageObject(Microsoft.Xna.Framework.Game game, Torch.Object parent, string imageName) : base(game, parent)
         {
             Content = (ContentManager)(Game.Services.GetService(typeof (ContentManager)));
+            _imageName = imageName;
             _image = Content.Load<Texture2D>(imageName);
             SourceRectangle = new Rectangle(0, 0, _image.Width, _image.Height);
         }

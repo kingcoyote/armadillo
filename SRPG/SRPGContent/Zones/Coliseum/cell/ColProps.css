@@ -8,6 +8,9 @@
 
    replace {-spritename-} with the sprite you like to use
 
+   regex mask : \.{[a-z0-9]+} \{width\:{[0-9]+}px; height\:{[0-9]+}px; background-position\: -{[0-9]+}px -{[0-9]+}px\}
+   regex replace: .AddAnimation("\1", new SpriteAnimation { FrameCount = 1, Size = new Rectangle(0, 0, \2, \3), StartRow = \4, StartCol = \5 });
+
 */
 
 .sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(ColProps.png);}

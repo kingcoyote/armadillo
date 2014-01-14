@@ -91,6 +91,17 @@ namespace Torch
         {
             return 1000/_animations[_currentAnimation].FrameRate;
         }
+
+        public SpriteObject Clone()
+        {
+            var sprite = new SpriteObject(Game, Parent, _imageName);
+            foreach(var animation in _animations)
+            {
+                sprite.AddAnimation(animation.Key, animation.Value);
+            }
+            sprite.SetAnimation(_currentAnimation);
+            return sprite;
+        }
     }
 
     public struct SpriteAnimation

@@ -30,6 +30,25 @@ namespace SRPG.Zones.Coliseum
             Objects.Add(new InteractiveObject
                 {Interact = TestBattle("coliseum/halls"), Location = new Rectangle(230, 700, 10, 50)});
 #endif
+            var propsSprite = new SpriteObject(Game, parent, "Zones/Coliseum/Cell/props");
+            propsSprite.AddAnimation("barrel1", new SpriteAnimation { FrameRate = 1, FrameCount = 2, Size = new Rectangle(0, 0, 41, 51), StartRow = 99, StartCol = 63 });
+            propsSprite.AddAnimation("barrel2", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 41, 50), StartRow = 140, StartCol = 63 });
+            propsSprite.AddAnimation("bed1", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 94, 50), StartRow = 161, StartCol = 0 });
+            propsSprite.AddAnimation("bed2", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 47, 87), StartRow = 52, StartCol = 0 });
+            propsSprite.AddAnimation("bone", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 29, 16), StartRow = 0, StartCol = 95 });
+            propsSprite.AddAnimation("boots", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 33, 33), StartRow = 218, StartCol = 50 });
+            propsSprite.AddAnimation("bucket", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 30, 34), StartRow = 218, StartCol = 83 });
+            propsSprite.AddAnimation("chest1", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 52, 95), StartRow = 0, StartCol = 0 });
+            propsSprite.AddAnimation("pillar", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 62, 63), StartRow = 99, StartCol = 0 });
+            propsSprite.AddAnimation("skull", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 30, 28), StartRow = 52, StartCol = 87 });
+            propsSprite.AddAnimation("stool", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 37, 36), StartRow = 181, StartCol = 50 });
+
+            propsSprite.SetAnimation("barrel1");
+            propsSprite.X = 500;
+            propsSprite.Y = 400;
+            propsSprite.DrawOrder = 50000;
+
+            ImageLayers.Add(propsSprite.Clone());
 
             Characters.Add("guard", Avatar.GenerateAvatar(game, null, "enemy"));
             Characters["guard"].Location.X = 150;
