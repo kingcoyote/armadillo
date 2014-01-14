@@ -2,10 +2,10 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Armadillo"
-#define MyAppVersion "alpha"
+#define MyAppVersion "alpha1"
 #define MyAppPublisher ""
 #define MyAppURL "http://www.github.com/kingcoyote/armadillo"
-#define MyAppExeName "SystemTester.exe"
+#define MyAppExeName "SRPG.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -47,8 +47,8 @@ Source: ".\Nuclex.Graphics.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\Nuclex.Game.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\NMock.StrongNamed.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\LzmaSharp.dll.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Content\*"; Flags: recursesubdirs
+Source: ".\LzmaSharp.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: ".\Content\*"; DestDir: "{app}\Content\"; Flags: recursesubdirs
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
