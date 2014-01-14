@@ -100,6 +100,9 @@ namespace Torch
                 sprite.AddAnimation(animation.Key, animation.Value);
             }
             sprite.SetAnimation(_currentAnimation);
+            sprite.X = X;
+            sprite.Y = Y;
+            sprite.DrawOrder = DrawOrder;
             return sprite;
         }
     }

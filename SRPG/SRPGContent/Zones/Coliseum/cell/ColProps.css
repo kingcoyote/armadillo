@@ -9,20 +9,20 @@
    replace {-spritename-} with the sprite you like to use
 
    regex mask : \.{[a-z0-9]+} \{width\:{[0-9]+}px; height\:{[0-9]+}px; background-position\: -{[0-9]+}px -{[0-9]+}px\}
-   regex replace: .AddAnimation("\1", new SpriteAnimation { FrameCount = 1, Size = new Rectangle(0, 0, \2, \3), StartRow = \4, StartCol = \5 });
+   regex replace: .AddAnimation("\1", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, \2, \3), StartRow = \5, StartCol = \4 });
 
 */
 
 .sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(ColProps.png);}
 
-.barrel1 {width:41px; height:51px; background-position: -99px -63px}
-.barrel2 {width:41px; height:50px; background-position: -140px -63px}
-.bed1 {width:94px; height:50px; background-position: -161px -0px}
-.bed2 {width:47px; height:87px; background-position: -52px -0px}
-.bone {width:29px; height:16px; background-position: -0px -95px}
-.boots {width:33px; height:33px; background-position: -218px -50px}
-.bucket {width:30px; height:34px; background-position: -218px -83px}
-.chest1 {width:52px; height:95px; background-position: -0px -0px}
-.pillar {width:62px; height:63px; background-position: -99px -0px}
-.skull {width:30px; height:28px; background-position: -52px -87px}
-.stool {width:37px; height:36px; background-position: -181px -50px}
+.AddAnimation("barrel1", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 41, 51), StartRow = 63, StartCol = 99 });
+.AddAnimation("barrel2", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 41, 50), StartRow = 63, StartCol = 140 });
+.AddAnimation("bed1", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 94, 50), StartRow = 0, StartCol = 161 });
+.AddAnimation("bed2", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 47, 87), StartRow = 0, StartCol = 52 });
+.AddAnimation("bone", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 29, 16), StartRow = 95, StartCol = 0 });
+.AddAnimation("boots", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 33, 33), StartRow = 50, StartCol = 218 });
+.AddAnimation("bucket", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 30, 34), StartRow = 83, StartCol = 218 });
+.AddAnimation("chest1", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 52, 95), StartRow = 0, StartCol = 0 });
+.AddAnimation("pillar", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 62, 63), StartRow = 0, StartCol = 99 });
+.AddAnimation("skull", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 30, 28), StartRow = 87, StartCol = 52 });
+.AddAnimation("stool", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 37, 36), StartRow = 50, StartCol = 181 });
