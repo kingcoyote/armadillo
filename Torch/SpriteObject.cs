@@ -92,17 +92,14 @@ namespace Torch
             return 1000/_animations[_currentAnimation].FrameRate;
         }
 
-        public SpriteObject Clone()
+        public SpriteObject Clone(string animation, int x, int y, int z)
         {
             var sprite = new SpriteObject(Game, Parent, _imageName);
-            foreach(var animation in _animations)
-            {
-                sprite.AddAnimation(animation.Key, animation.Value);
-            }
-            sprite.SetAnimation(_currentAnimation);
-            sprite.X = X;
-            sprite.Y = Y;
-            sprite.DrawOrder = DrawOrder;
+            sprite.AddAnimation(animation, _animations[animation]);
+            sprite.SetAnimation(animation);
+            sprite.X = x;
+            sprite.Y = y;
+            sprite.DrawOrder = z;
             return sprite;
         }
     }

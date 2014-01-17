@@ -43,19 +43,8 @@ namespace SRPG.Zones.Coliseum
             propsSprite.AddAnimation("skull", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 30, 28), StartRow = 87, StartCol = 52 });
             propsSprite.AddAnimation("stool", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 37, 36), StartRow = 50, StartCol = 181 });
 
-            propsSprite.SetAnimation("barrel1");
-            propsSprite.X = 650;
-            propsSprite.Y = 100;
-            propsSprite.DrawOrder = 100;
-
-            ImageLayers.Add(propsSprite.Clone());
-
-            propsSprite.SetAnimation("bed1");
-            propsSprite.X = 515;
-            propsSprite.Y = 100;
-            propsSprite.DrawOrder = 100;
-
-            ImageLayers.Add(propsSprite.Clone());
+            ImageLayers.Add(propsSprite.Clone("barrel1", 650, 100, 100));
+            ImageLayers.Add(propsSprite.Clone("bed1", 515, 100, 100));
 
             Characters.Add("guard", Avatar.GenerateAvatar(game, null, "enemy"));
             Characters["guard"].Location.X = 150;
