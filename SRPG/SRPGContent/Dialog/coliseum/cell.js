@@ -10,7 +10,7 @@
             },
             {
                 identifier : 2,
-                text : "The north gate is clear, but the east gate guards are admitting new slaves and the couldn't be distracted.",
+                text : "The north gate is clear, but the east gate guards are admitting new slaves and they couldn't be distracted.",
                 options: [
                     { text: "Default", node: 3 }
                 ]
