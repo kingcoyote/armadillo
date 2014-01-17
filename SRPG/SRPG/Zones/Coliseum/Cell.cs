@@ -34,6 +34,7 @@ namespace SRPG.Zones.Coliseum
             propsSprite.AddAnimation("barrel1", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 41, 51), StartRow = 63, StartCol = 99 });
             propsSprite.AddAnimation("barrel2", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 41, 50), StartRow = 63, StartCol = 140 });
             propsSprite.AddAnimation("bed1", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 94, 50), StartRow = 0, StartCol = 161 });
+            propsSprite.AddAnimation("bed1-r", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 94, 50), StartRow = 0, StartCol = 161 });
             propsSprite.AddAnimation("bed2", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 47, 87), StartRow = 0, StartCol = 52 });
             propsSprite.AddAnimation("bone", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 29, 16), StartRow = 95, StartCol = 0 });
             propsSprite.AddAnimation("boots", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 33, 33), StartRow = 50, StartCol = 218 });
@@ -43,8 +44,41 @@ namespace SRPG.Zones.Coliseum
             propsSprite.AddAnimation("skull", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 30, 28), StartRow = 87, StartCol = 52 });
             propsSprite.AddAnimation("stool", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 37, 36), StartRow = 50, StartCol = 181 });
 
+            // bottom left room props
+            ImageLayers.Add(propsSprite.Clone("bed2", 50, 550, 550));
+            ImageLayers.Add(propsSprite.Clone("bed1-r", 145, 700, 150));
+            ImageLayers.Add(propsSprite.Clone("bucket", 60, 700, 60));
+            ImageLayers.Add(propsSprite.Clone("stool", 175, 640, 60));
+
+            // bottom middle room props
+            ImageLayers.Add(propsSprite.Clone("bed2", 260, 550, 550));
+            ImageLayers.Add(propsSprite.Clone("bed2", 440, 550, 550));
+            ImageLayers.Add(propsSprite.Clone("bucket", 270, 700, 270));
+            ImageLayers.Add(propsSprite.Clone("boots", 450, 640, 270));
+
+            // bottom right room props
+            ImageLayers.Add(propsSprite.Clone("bed2", 50 + 460, 550, 550));
+            ImageLayers.Add(propsSprite.Clone("bed1-r", 155 + 360, 700, 150));
+            ImageLayers.Add(propsSprite.Clone("skull", 205 + 460, 710, 60));
+            ImageLayers.Add(propsSprite.Clone("bucket", 175 + 480, 660, 60));
+
+            // top left room props
+            ImageLayers.Add(propsSprite.Clone("bed2", 50, 550 - 450, 550));
+            ImageLayers.Add(propsSprite.Clone("bed1-r", 50, 750 - 450, 150));
+            ImageLayers.Add(propsSprite.Clone("bucket", 200, 550 - 450, 150));
+
+            // top middle room props
+            ImageLayers.Add(propsSprite.Clone("bed2", 260, 550 - 450, 550));
+            ImageLayers.Add(propsSprite.Clone("bed2", 440, 550 - 450, 550));
+            ImageLayers.Add(propsSprite.Clone("bucket", 270, 700 - 450, 270));
+            ImageLayers.Add(propsSprite.Clone("boots", 450, 640 - 450, 270));
+
+            // top right room props
             ImageLayers.Add(propsSprite.Clone("barrel1", 650, 100, 100));
             ImageLayers.Add(propsSprite.Clone("bed1", 515, 100, 100));
+
+            // outside the cells
+            ImageLayers.Add(propsSprite.Clone("chest1", 50, 380, 50));
 
             Characters.Add("guard", Avatar.GenerateAvatar(game, null, "enemy"));
             Characters["guard"].Location.X = 150;
