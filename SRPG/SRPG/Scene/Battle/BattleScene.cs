@@ -62,7 +62,7 @@ namespace SRPG.Scene.Battle
 
         private BattleState _delayState;
         private float _delayTimer;
-        private readonly BattleCommander _commander = new BattleCommander();
+        private readonly BattleCommander _commander;
 
         private CharacterStatsDialog _characterStats;
         private HUDDialog _hud;
@@ -81,6 +81,7 @@ namespace SRPG.Scene.Battle
         public BattleScene(Game game) : base(game)
         {
             QueuedCommands = new List<Command>();
+            _commander = new BattleCommander(game);
         }
 
         /// <summary>
@@ -206,9 +207,12 @@ namespace SRPG.Scene.Battle
                         Target = decision.Destination
                     };
 
-                QueuedCommands.Add(decision.Command);
-                
-                ExecuteCommand(moveCommand);
+                QueuedCommands.Add(moveCommand);
+
+                if (decision.Command.Ability != null)
+                    QueuedCommands.Add(decision.Command);
+
+                ExecuteQueuedCommands();
 
                 return;
             }
@@ -319,7 +323,7 @@ namespace SRPG.Scene.Battle
             if (_movementCoords.Count == 0)
             {
                 // move to the next state
-                _state = _selectedCharacter.Faction == 0 ? BattleState.PlayerTurn : BattleState.EnemyTurn;
+                _state = BattleState.ExecutingCommand;
 
                 // change the character to have a standing animation
                 _selectedCharacter.Avatar.UpdateVelocity(0, 0);
@@ -535,6 +539,8 @@ namespace SRPG.Scene.Battle
 
                         command.Character.CanMove = false;
 
+                        if (FactionTurn == 1) break;
+
                         // if this character has any queued commands, cancel them upon moving
                         var queuedCommands = (from c in QueuedCommands where c.Character == command.Character select c).ToArray();
 
@@ -606,6 +612,7 @@ namespace SRPG.Scene.Battle
             combatant.Name = name;
             combatant.Avatar.Location = location;
             combatant.Faction = 1;
+            combatant.EquipItem(Item.Factory(Game, "sword/shortsword"));
 
             return combatant;
         }

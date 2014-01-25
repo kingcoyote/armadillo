@@ -14,7 +14,6 @@ namespace SRPG.Scene.Battle
         {
             InitializeComponent();
 
-            _endTurn.Enabled = false;
             _endTurn.Pressed += (s, a) => EndTurnPressed.Invoke();
         }
 

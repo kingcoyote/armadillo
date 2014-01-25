@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using SRPG.Data;
 
@@ -9,11 +10,55 @@ namespace SRPG.AI
     {
         public BattleBoard BattleBoard;
 
-        private Dictionary<Combatant, int> _threat = new Dictionary<Combatant, int>(); 
+        private Game _game;
+        private readonly Dictionary<Combatant, int> _threat = new Dictionary<Combatant, int>(); 
+
+        public BattleCommander(Game game)
+        {
+            _game = game;
+        }
 
         public BattleDecision CalculateAction(Combatant character)
         {
-            throw new NotImplementedException();
+            var decision = new BattleDecision();
+            decision.Destination = new Point((int)character.Avatar.Location.X, (int)character.Avatar.Location.Y);
+
+            if (_threat.Count == 0) return decision;
+
+            // find the enemy with the highest threat
+            var enemy = (from ckv in _threat orderby ckv.Value descending select ckv.Key).First();
+            
+            // find the point that brings you closest to them
+            var grid = character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction));
+            
+            var distance = 65535;
+            for (var x = 0; x < grid.Size.Width; x++)
+            {
+                for (var y = 0; y < grid.Size.Height; y++)
+                {
+                    if (grid.Weight[x, y] != 1) continue;
+
+                    var d = BattleBoard.Sandbag.Pathfind(
+                        new Point(x, y), 
+                        new Point((int)enemy.Avatar.Location.X, (int)enemy.Avatar.Location.Y)
+                    ).Count();
+
+                    if (d >= distance || d > 2) continue;
+
+                    decision.Destination = new Point(x, y);
+                    distance = d;
+                }
+            }
+
+            // attack
+            decision.Command = new Command
+                {
+                    Ability = Ability.Factory(_game, "attack"),
+                    Character = character,
+                    Target = new Point((int)enemy.Avatar.Location.X, (int)enemy.Avatar.Location.Y)
+                };
+
+            return decision;
         }
 
         public void RecordCommand(Command command, List<Hit> hits)
