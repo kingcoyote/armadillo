@@ -29,7 +29,7 @@ namespace SRPG.Zones.Coliseum
             Objects.Add(new InteractiveObject { Interact = SimpleDoor("coliseum/halls-south", "cell"), Location = new Rectangle(905, 190, 45, 15) });
 #if DEBUG
             Objects.Add(new InteractiveObject
-                {Interact = TestBattle("coliseum/halls"), Location = new Rectangle(230, 700, 10, 50)});
+                {Interact = TestBattle("coliseum/halls"), Location = new Rectangle(230, 550, 10, 50)});
 #endif
             var propsSprite = new SpriteObject(Game, parent, "Zones/Coliseum/Cell/props");
             propsSprite.AddAnimation("barrel1", new SpriteAnimation { FrameRate = 1, FrameCount = 1, Size = new Rectangle(0, 0, 41, 51), StartRow = 63, StartCol = 99 });
