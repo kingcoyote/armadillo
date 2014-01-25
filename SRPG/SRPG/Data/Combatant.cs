@@ -397,5 +397,10 @@ namespace SRPG.Data
 
             return grid;
         }
+
+        public new string ToString()
+        {
+            return Name;
+        }
     }
 }
