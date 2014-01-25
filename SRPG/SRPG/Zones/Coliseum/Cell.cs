@@ -58,21 +58,21 @@ namespace SRPG.Zones.Coliseum
             ImageLayers.Add(propsSprite.Clone("boots", 450, 640, 270));
 
             // bottom right room props
-            ImageLayers.Add(propsSprite.Clone("bed2", 50 + 460, 550, 550));
-            ImageLayers.Add(propsSprite.Clone("bed1-r", 155 + 360, 700, 150));
-            ImageLayers.Add(propsSprite.Clone("skull", 205 + 460, 710, 60));
-            ImageLayers.Add(propsSprite.Clone("bucket", 175 + 480, 660, 60));
+            ImageLayers.Add(propsSprite.Clone("bed2", 510, 550, 550));
+            ImageLayers.Add(propsSprite.Clone("bed1-r", 515, 700, 150));
+            ImageLayers.Add(propsSprite.Clone("skull", 665, 710, 60));
+            ImageLayers.Add(propsSprite.Clone("bucket", 655, 660, 60));
 
             // top left room props
-            ImageLayers.Add(propsSprite.Clone("bed2", 50, 550 - 450, 550));
-            ImageLayers.Add(propsSprite.Clone("bed1-r", 50, 750 - 450, 150));
-            ImageLayers.Add(propsSprite.Clone("bucket", 200, 550 - 450, 150));
+            ImageLayers.Add(propsSprite.Clone("bed2", 50, 100, 100));
+            ImageLayers.Add(propsSprite.Clone("bed1-r", 50, 300, 150));
+            ImageLayers.Add(propsSprite.Clone("bucket", 200, 100, 150));
 
             // top middle room props
-            ImageLayers.Add(propsSprite.Clone("bed2", 260, 550 - 450, 550));
-            ImageLayers.Add(propsSprite.Clone("bed2", 440, 550 - 450, 550));
-            ImageLayers.Add(propsSprite.Clone("bucket", 270, 700 - 450, 270));
-            ImageLayers.Add(propsSprite.Clone("boots", 450, 640 - 450, 270));
+            ImageLayers.Add(propsSprite.Clone("bed2", 260, 100, 100));
+            ImageLayers.Add(propsSprite.Clone("bed2", 440, 100, 100));
+            ImageLayers.Add(propsSprite.Clone("bucket", 270, 250, 270));
+            ImageLayers.Add(propsSprite.Clone("boots", 450, 190, 190));
 
             // top right room props
             ImageLayers.Add(propsSprite.Clone("barrel1", 650, 100, 100));
