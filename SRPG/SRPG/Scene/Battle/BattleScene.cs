@@ -192,8 +192,6 @@ namespace SRPG.Scene.Battle
 
             if (combatants.Any())
             {
-                _commander.BattleBoard = BattleBoard;
-
                 // find first character that can move
                 _selectedCharacter = combatants[0];
 
@@ -461,6 +459,7 @@ namespace SRPG.Scene.Battle
             }
 
             _battleBoard.SetBoard(BattleBoard);
+            _commander.BattleBoard = BattleBoard;
 
             // center camera on partyGrid[0]
             UpdateCamera(
@@ -557,6 +556,8 @@ namespace SRPG.Scene.Battle
                             hits.RemoveAt(i);
                         }
                     }
+
+                    _commander.RecordCommand(command, hits);
 
                     // if this ability still has hits left, process them normally
                     if (hits.Count > 0)
