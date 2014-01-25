@@ -15,7 +15,8 @@ namespace SRPG.Zones.Coliseum
         public HallsSouth(Game game, Torch.Object parent) : base(game)
         {
             Name = "Coliseum Halls South";
-            Sandbag = Grid.FromBitmap(Game.Services, "Zones/Coliseum/Halls/south-sb");
+            SandbagImage = "Zones/Coliseum/Halls/south-sb";
+            Sandbag = Grid.FromBitmap(Game.Services, SandbagImage);
             ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/Halls/south"));
 
             Doors.Add(new Door {Location = new Rectangle(345, 550, 50, 35), Name = "cell", Orientation = Direction.Up });

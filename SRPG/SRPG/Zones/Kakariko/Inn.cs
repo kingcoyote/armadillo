@@ -12,7 +12,8 @@ namespace SRPG.Zones.Kakariko
         public Inn(Game game, Torch.Object parent) : base(game)
         {
             Name = "Kakariko Inn";
-            Sandbag = Grid.FromBitmap(Game.Services, "Zones/Kakariko/Inn/sandbag");
+            SandbagImage = "Zones/Kakariko/Inn/sandbag";
+            Sandbag = Grid.FromBitmap(Game.Services, SandbagImage);
             ImageLayers = new List<ImageObject>
                 {
                     new ImageObject(Game, parent, "Zones/Kakariko/Inn/inn") { DrawOrder = -1},

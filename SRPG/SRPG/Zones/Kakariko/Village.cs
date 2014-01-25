@@ -11,7 +11,8 @@ namespace SRPG.Zones.Kakariko
         {
 
             Name = "Kakariko Village";
-            Sandbag = Grid.FromBitmap(Game.Services, "Zones/Kakariko/village/sandbag");
+            SandbagImage = "Zones/Kakariko/village/sandbag";
+            Sandbag = Grid.FromBitmap(Game.Services, SandbagImage);
             ImageLayers = new List<ImageObject>
                 {
                     new ImageObject(Game, parent, "Zones/Kakariko/Village/village") {DrawOrder = -1}, 

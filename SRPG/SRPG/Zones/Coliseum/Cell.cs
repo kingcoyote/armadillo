@@ -18,7 +18,8 @@ namespace SRPG.Zones.Coliseum
         public Cell(Game game, Torch.Object parent) : base(game)
         {
             Name = "Coliseum Slave Cells";
-            Sandbag = Grid.FromBitmap(Game.Services, "Zones/Coliseum/Cell/sandbag");
+            SandbagImage = "Zones/Coliseum/Cell/sandbag";
+            Sandbag = Grid.FromBitmap(Game.Services, SandbagImage);
             ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/Cell/cell"));
             ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/Cell/bars") { X = 50, Y = 300, DrawOrder = 350 });
             ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/Cell/bars") { X = 50, Y = 500, DrawOrder = 550 });

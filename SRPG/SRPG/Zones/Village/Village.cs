@@ -15,7 +15,8 @@ namespace SRPG.Zones.Village
         public Village(Game game, Torch.Object parent) : base(game)
         {
             Name = "Desert Village";
-            Sandbag = Grid.FromBitmap(Game.Services, "Zones/Village/Village/sandbag");
+            SandbagImage = "Zones/Village/Village/sandbag";
+            Sandbag = Grid.FromBitmap(Game.Services, SandbagImage);
             
             ImageLayers.Add(new ImageObject(Game, parent, "Zones/Village/Village/village"));
 

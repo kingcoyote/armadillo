@@ -14,7 +14,8 @@ namespace SRPG.Zones.Village
         public Warehouse(Microsoft.Xna.Framework.Game game, Torch.Object parent) : base(game)
         {
             Name = "Village Warehouse";
-            Sandbag = Grid.FromBitmap(Game.Services, "Zones/Village/Warehouse/sandbag");
+            SandbagImage = "Zones/Village/Warehouse/sandbag";
+            Sandbag = Grid.FromBitmap(Game.Services, SandbagImage);
 
             ImageLayers.Add(new ImageObject(Game, parent, "Zones/Village/Warehouse/warehouse"));
 

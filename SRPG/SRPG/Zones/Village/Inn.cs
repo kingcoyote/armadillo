@@ -15,7 +15,8 @@ namespace SRPG.Zones.Village
         public Inn(Game game, Torch.Object parent) : base(game)
         {
             Name = "Village Inn";
-            Sandbag = Grid.FromBitmap(Game.Services, "Zones/Village/Inn/sandbag");
+            SandbagImage = "Zones/Village/Inn/sandbag";
+            Sandbag = Grid.FromBitmap(Game.Services, SandbagImage);
             ImageLayers.Add(new ImageObject(Game, parent, "Zones/Village/Inn/inn"));
             Doors.Add(new Door { Location = new Rectangle(53*6, 95*6, 13*6, 2), Zone = "village/village", ZoneDoor = "inn exit", Name = "entrance", Orientation = Direction.Up });
         }

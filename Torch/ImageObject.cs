@@ -10,6 +10,7 @@ namespace Torch
         protected readonly string _imageName;
         public float XScale = 1.0F;
         public float YScale = 1.0F;
+        public float Alpha = 1.0F;
         public Rectangle SourceRectangle;
 
         private int _width = -1;
@@ -48,7 +49,7 @@ namespace Torch
                 offsety = Parent.OffsetY();
             }
 
-            _spriteBatch.Draw(_image, new Rectangle((int)X + (int)offsetx, (int)Y + (int)offsety, Width, Height), SourceRectangle, Color.White);
+            _spriteBatch.Draw(_image, new Rectangle((int)X + (int)offsetx, (int)Y + (int)offsety, (int)(Width * XScale), (int)(Height * YScale)), SourceRectangle, new Color(Alpha, Alpha, Alpha, Alpha));
         }
     }
 }

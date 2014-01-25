@@ -57,7 +57,8 @@ namespace SRPG.Scene.Overworld
                         Width = door.Location.Width,
                         Height = door.Location.Height,
                         Color = Color.LightGreen,
-                        DrawOrder = 10000
+                        DrawOrder = 10001,
+                        Alpha = 0.75f
                     });
             }
 
@@ -71,9 +72,18 @@ namespace SRPG.Scene.Overworld
                         Width = obj.Location.Width,
                         Height = obj.Location.Height,
                         Color = Color.Orange,
-                        DrawOrder = 10000
+                        DrawOrder = 10002,
+                        Alpha = 0.75f
                     });
             }
+
+            // show the sandbag layer
+            Components.Add(new ImageObject(Game, this, _zone.SandbagImage){
+                Alpha = 0.5f,
+                XScale = 6.0f,
+                YScale = 6.0f,
+                DrawOrder = 10000
+            });
 #endif
 
             // sandbags are down scaled 1:6

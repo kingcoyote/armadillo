@@ -12,7 +12,8 @@ namespace SRPG.Zones.Kakariko
         public Bombshop(Microsoft.Xna.Framework.Game game, Torch.Object parent) : base(game)
         {
             Name = "Kakariko Shop";
-            Sandbag = Grid.FromBitmap(Game.Services, "Zones/Kakariko/Bombshop/sandbag");
+            SandbagImage = "Zones/Kakariko/Bombshop/sandbag";
+            Sandbag = Grid.FromBitmap(Game.Services, SandbagImage);
             ImageLayers = new List<ImageObject>
                 {
                     new ImageObject(Game, parent, "Zones/Kakariko/Bombshop/bombshop") {DrawOrder = -1},

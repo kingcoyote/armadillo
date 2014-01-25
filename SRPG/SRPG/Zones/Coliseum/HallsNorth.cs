@@ -11,7 +11,8 @@ namespace SRPG.Zones.Coliseum
         public HallsNorth(Game game, Object parent) : base(game)
         {
             Name = "Coliseum Halls North";
-            Sandbag = Grid.FromBitmap(Game.Services, "Zones/Coliseum/Halls/north-sb");
+            SandbagImage = "Zones/Coliseum/Halls/north-sb";
+            Sandbag = Grid.FromBitmap(Game.Services, SandbagImage);
             ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/Halls/north"));
             ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/pillar") { X = 393, Y = 190, DrawOrder = 248 });
             ImageLayers.Add(new ImageObject(Game, parent, "Zones/Coliseum/pillar") { X = 393, Y = 390, DrawOrder = 448 });

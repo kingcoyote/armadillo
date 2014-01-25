@@ -17,6 +17,8 @@ namespace SRPG.Data
         /// A grid indicating whether or not a square is accessible. 0 means accessible, 1 means inaccessible.
         /// </summary>
         public Grid Sandbag;
+
+        public string SandbagImage;
         /// <summary>
         /// A collection of images that represent the visual elements of this zone. The player is at Z-index 1, so anything below
         /// will be background, anything above will be above the player.

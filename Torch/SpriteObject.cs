@@ -72,9 +72,9 @@ namespace Torch
 
             _spriteBatch.Draw(
                 _image, 
-                new Vector2(X + offsetx, Y + offsety),
+                new Rectangle((int)(X + offsetx), (int)(Y + offsety), Width, Height),
                 new Rectangle(a.StartCol + _currentFrame*a.Size.Width, a.StartRow , a.Size.Width, a.Size.Height),
-                Color.White
+                new Color(Alpha, Alpha, Alpha, Alpha)
             );
         }
 

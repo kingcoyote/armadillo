@@ -7,7 +7,7 @@ namespace Torch
     public class TextureObject : Object
     {
         public Color Color;
-        public Color Alpha = Color.White;
+        public float Alpha = 1.0f;
 
         private readonly Texture2D _texture;
 
@@ -28,7 +28,7 @@ namespace Torch
             }
 
             _texture.SetData(new [] {Color});
-            _spriteBatch.Draw(_texture, new Rectangle((int)X + (int)offsetx, (int)Y + (int)offsety, Width, Height), Alpha);
+            _spriteBatch.Draw(_texture, new Rectangle((int)X + (int)offsetx, (int)Y + (int)offsety, Width, Height), new Color(Alpha, Alpha, Alpha, Alpha));
         }
     }
 }
