@@ -6,6 +6,7 @@
 >
   <resources>
     <font name="menu_font" contentPath="menu_font" />
+    <font name="hitlabel_font" contentPath="hitlabel_font" />
     <bitmap name="menu_skin_bitmap" contentPath="menu_skin" />
     <bitmap name="battle_radial_bitmap" contentPath="battle_radial" />
     <bitmap name="grid" contentPath="gridhighlight"/>
@@ -151,6 +152,14 @@
 
     <frame name="label">
       <text font="menu_font" hplacement="left" vplacement="top" color="#000000" />
+    </frame>
+
+    <frame name="hitlabel.damage">
+      <text font="hitlabel_font" hplacement="left" vplacement="top" color="#FFFF00" />
+    </frame>
+
+    <frame name="hitlabel.healing">
+      <text font="hitlabel_font" hplacement="left" vplacement="top" color="#00FF00" />
     </frame>
 
     <frame name="window">

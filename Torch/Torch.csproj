@@ -70,6 +70,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -81,6 +82,7 @@
     <Compile Include="BackgroundLayer.cs" />
     <Compile Include="UserInterface\FlatImageButtonControlRenderer.cs" />
     <Compile Include="UserInterface\FlatRadialButtonControlRenderer.cs" />
+    <Compile Include="UserInterface\FlatStyledTextControlRenderer.cs" />
     <Compile Include="UserInterface\FlatTiledIconControlRenderer.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="UserInterface\ImageButtonControl.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Layer.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="TextureObject.cs" />
+    <Compile Include="UserInterface\StyledTextControl.cs" />
     <Compile Include="UserInterface\TiledIconControl.cs" />
     <Compile Include="TorchHelper.cs" />
     <Compile Include="Velocity.cs" />

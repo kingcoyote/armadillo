@@ -179,6 +179,11 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
+    <Compile Include="Gui\hitlabel_font.spritefont">
+      <Name>hitlabel_font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <None Include="Gui\skin.xsd">
       <Name>skin</Name>
       <SubType>Designer</SubType>

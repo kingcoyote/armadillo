@@ -246,7 +246,7 @@ namespace SRPG.Scene.Battle
                     var damage = hit.Damage;
                     DisplayHit(
                         Math.Abs(damage), 
-                        hit.Damage > 0 ? Color.White : Color.LightGreen, 
+                        hit.Damage > 0 ? "damage" : "healing", 
                         hit.Target
                     );
                 }
@@ -949,21 +949,22 @@ namespace SRPG.Scene.Battle
             }
         }
 
-        public void DisplayHit(int amount, Color color, Point target)
+        public void DisplayHit(int amount, string style, Point target)
         {
             var key = string.Format(
                 "hit/{0}/{1}/{2},{3}/{4}",
                 amount,
-                color,
+                style,
                 target.X,
                 target.Y,
                 new Random().Next()
             );
 
-            var label = new LabelControl { Text = amount.ToString(), Bounds = new UniRectangle(_x + target.X * 50, _y + target.Y * 50 + 25, 75, 30) };
+            var label = new StyledTextControl { Text = amount.ToString(), Bounds = new UniRectangle(_x + target.X * 50 + 5, _y + target.Y * 50 - 75, 75, 30) };
+            label.Font = "hitlabel." + style;
             Gui.Screen.Desktop.Children.Add(label);
             _hitLabels.Add(key, label);
-            _hitLocations.Add(key, target.Y * 50 + 25);
+            _hitLocations.Add(key, target.Y * 50 - 75);
             _displayedHits.Add(key, 0);
         }
     }
