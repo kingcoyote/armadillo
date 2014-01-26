@@ -18,6 +18,8 @@ namespace SRPG.Scene.PartyMenu
             _nameText.Text = character.Name;
             _classText.Text = character.Class;
 
+            _picture.Frame = "avatar.icon." + character.Avatar.Icon;
+
             _healthText.Text = character.MaxHealth.ToString();
             _manaText.Text = character.MaxMana.ToString();
         }

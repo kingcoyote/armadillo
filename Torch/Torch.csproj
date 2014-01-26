@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="BackgroundLayer.cs" />
     <Compile Include="UserInterface\FlatImageButtonControlRenderer.cs" />
+    <Compile Include="UserInterface\FlatPictureControlRenderer.cs" />
     <Compile Include="UserInterface\FlatRadialButtonControlRenderer.cs" />
     <Compile Include="UserInterface\FlatStyledTextControlRenderer.cs" />
     <Compile Include="UserInterface\FlatTiledIconControlRenderer.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="UserInterface\ImageButtonControl.cs" />
     <Compile Include="ImageObject.cs" />
     <Compile Include="KeyboardInputLayer.cs" />
+    <Compile Include="UserInterface\PictureControl.cs" />
     <Compile Include="UserInterface\RadialButtonControl.cs" />
     <Compile Include="UserInterface\RadialMenuControl.cs" />
     <Compile Include="SpriteObject.cs" />

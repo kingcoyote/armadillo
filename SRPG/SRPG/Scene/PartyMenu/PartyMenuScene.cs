@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework.Input;
 using Nuclex.UserInterface;
 using Nuclex.UserInterface.Visuals.Flat;
 using SRPG.Data;
+using SRPG.Scene.Battle;
 using Torch;
+using Torch.UserInterface;
 
 namespace SRPG.Scene.PartyMenu
 {
@@ -41,6 +43,7 @@ namespace SRPG.Scene.PartyMenu
 
             Gui.DrawOrder = 1000;
             Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
+            ((FlatGuiVisualizer)Gui.Visualizer).RendererRepository.AddAssembly(typeof(FlatPictureControlRenderer).Assembly);
         }
 
         protected override void OnEntered()

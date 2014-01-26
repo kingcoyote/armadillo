@@ -12,6 +12,11 @@
     <bitmap name="grid" contentPath="gridhighlight"/>
     <bitmap name="clear" contentPath="clear" />
     <bitmap name="avatar_icon" contentPath="avatar_icon"/>
+    <bitmap name="jaha_icon" contentPath="jaha_icon"/>
+    <bitmap name="sheena_icon" contentPath="sheena_icon"/>
+    <bitmap name="meera_icon" contentPath="meera_icon"/>
+    <bitmap name="hahn_icon" contentPath="hahn_icon"/>
+    <bitmap name="gratho_icon" contentPath="gratho_icon"/>
   </resources>
 
   <frames>
@@ -335,6 +340,26 @@
 
     <frame name="avatar.icon.anon">
       <region source="avatar_icon" hplacement="stretch" vplacement="stretch" x="0" y="0" w="50" h="63"/>
+    </frame>
+
+    <frame name="avatar.icon.jaha">
+      <region source="jaha_icon" hplacement="stretch" vplacement="stretch" x="0" y="0" w="150" h="150"/>
+    </frame>
+
+    <frame name="avatar.icon.sheena">
+      <region source="sheena_icon" hplacement="stretch" vplacement="stretch" x="0" y="0" w="150" h="150"/>
+    </frame>
+
+    <frame name="avatar.icon.meera">
+      <region source="meera_icon" hplacement="stretch" vplacement="stretch" x="0" y="0" w="150" h="150"/>
+    </frame>
+
+    <frame name="avatar.icon.hahn">
+      <region source="hahn_icon" hplacement="stretch" vplacement="stretch" x="0" y="0" w="150" h="150"/>
+    </frame>
+
+    <frame name="avatar.icon.gratho">
+      <region source="gratho_icon" hplacement="stretch" vplacement="stretch" x="0" y="0" w="150" h="150"/>
     </frame>
     
   </frames>

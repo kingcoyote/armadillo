@@ -2,6 +2,7 @@
   jaha : {
     class : "Fighter",
     avatar : "fighter",
+    icon : "jaha",
     health : 40,
     mana : 8,
     weapontype : "sword",
@@ -27,6 +28,7 @@
   meera : {
     class : "Ranger",
     avatar : "ranger",
+    icon : "meera",
     health : 30,
     mana : 15,
     weapontype : "gun",
@@ -52,6 +54,7 @@
   gratho : {
     class : "Monk",
     avatar : "monk",
+    icon : "gratho",
     health : 25,
     mana : 18,
     weapontype : "unarmed",
@@ -74,9 +77,10 @@
   },  
   
   
-  aeris : {
+  hahn : {
     class : "Cleric",
     avatar : "cleric",
+    icon : "hahn",
     health : 16,
     mana : 30,
     weapontype : "book",
@@ -102,6 +106,7 @@
   sheena : {
     class : "Wizard",
     avatar : "wizard",
+    icon : "sheena",
     health : 12,
     mana : 40,
     weapontype : "staff",

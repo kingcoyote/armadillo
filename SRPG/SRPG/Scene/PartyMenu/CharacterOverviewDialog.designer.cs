@@ -5,6 +5,7 @@ using System.Text;
 using Nuclex.UserInterface;
 using Nuclex.UserInterface.Controls;
 using Nuclex.UserInterface.Controls.Desktop;
+using Torch.UserInterface;
 
 namespace SRPG.Scene.PartyMenu
 {
@@ -12,6 +13,8 @@ namespace SRPG.Scene.PartyMenu
     {
         private LabelControl _nameText;
         private LabelControl _classText;
+
+        private PictureControl _picture;
 
         private LabelControl _healthLabel;
         private LabelControl _manaLabel;
@@ -22,7 +25,13 @@ namespace SRPG.Scene.PartyMenu
         {
             EnableDragging = false;
 
-            // todo portrait (top right)
+            _picture = new PictureControl();
+            _picture.Frame = "avatar.icon.anon";
+            _picture.Bounds = new UniRectangle(
+                new UniScalar(1, -160), new UniScalar(10),
+                new UniScalar(150), new UniScalar(150)
+            );
+            Children.Add(_picture);
 
             // name (top left)
             _nameText = new LabelControl();

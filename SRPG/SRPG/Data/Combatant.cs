@@ -324,6 +324,9 @@ namespace SRPG.Data
             combatant.Class = nodeList[templateName]["class"].ToString();
             combatant.Avatar = Avatar.GenerateAvatar(game, null, nodeList[templateName]["avatar"].ToString());
 
+            if (nodeList[templateName].SelectToken("icon") != null) 
+                combatant.Avatar.Icon = (nodeList[templateName]["icon"]).ToString();
+
             combatant.CurrentHealth = (int)(nodeList[templateName]["health"]);
             combatant.MaxHealth = (int)(nodeList[templateName]["health"]);
             combatant.CurrentMana = (int)(nodeList[templateName]["mana"]);
