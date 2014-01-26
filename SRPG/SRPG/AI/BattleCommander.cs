@@ -43,17 +43,20 @@ namespace SRPG.AI
                         new Point((int)enemy.Avatar.Location.X, (int)enemy.Avatar.Location.Y)
                     ).Count();
 
-                    if (d >= distance || d > 2) continue;
+                    if (d >= distance || d > 2 || BattleBoard.GetCharacterAt(new Point(x, y)) != null) continue;
 
                     decision.Destination = new Point(x, y);
                     distance = d;
                 }
             }
 
+            var ability = Ability.Factory(_game, "attack");
+            ability.Character = character;
+
             // attack
             decision.Command = new Command
                 {
-                    Ability = Ability.Factory(_game, "attack"),
+                    Ability = ability,
                     Character = character,
                     Target = new Point((int)enemy.Avatar.Location.X, (int)enemy.Avatar.Location.Y)
                 };

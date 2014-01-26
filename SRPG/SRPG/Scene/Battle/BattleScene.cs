@@ -612,7 +612,6 @@ namespace SRPG.Scene.Battle
             combatant.Name = name;
             combatant.Avatar.Location = location;
             combatant.Faction = 1;
-            combatant.EquipItem(Item.Factory(Game, "sword/shortsword"));
 
             return combatant;
         }
