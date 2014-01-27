@@ -50,8 +50,6 @@ namespace SRPG.Scene.MainMenu
             Children.Add(_loadGame);
             Children.Add(_options);
             Children.Add(_exit);
-
-            Bounds = new UniRectangle(10, 10, 180, 275);
         }
     }
 }

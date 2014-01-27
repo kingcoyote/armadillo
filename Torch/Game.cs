@@ -94,6 +94,7 @@ namespace Torch
             // initialize current scene
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Services.AddService(typeof(SpriteBatch), _spriteBatch);
+            Services.AddService(typeof(GraphicsDeviceManager), _graphics);
         }
 
         /// <summary>
