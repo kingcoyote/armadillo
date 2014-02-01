@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Nuclex.UserInterface;
+using Nuclex.UserInterface.Controls.Desktop;
+using Torch.UserInterface;
 using Game = Torch.Game;
 
 namespace SRPG.Scene.MainMenu
@@ -42,7 +45,28 @@ namespace SRPG.Scene.MainMenu
 
         private void ShowResolutions(object sender, EventArgs args)
         {
-            
+            var dropdown = new DropDownControl();
+            dropdown.Bounds = new UniRectangle(
+                new UniScalar(0), new UniScalar(0),
+                new UniScalar(1, 0), new UniScalar(1, 0)
+            );
+            Children.Add(dropdown);
+            dropdown.BringToFront();
+
+            foreach (var d in GraphicsAdapter.DefaultAdapter.SupportedDisplayModes)
+            {
+                if ((d.Format != SurfaceFormat.Color)) continue;
+                if (!(Math.Abs(d.AspectRatio - 1.33) < 0.03 || Math.Abs(d.AspectRatio - 1.6) < 0.03 || Math.Abs(d.AspectRatio - 1.77) < 0.03)) continue;
+                if (d.Height < 768) continue;
+
+                dropdown.AddItem(d.Width + "x" + d.Height);
+            }
+
+            dropdown.ItemSelected += i =>
+                {
+                    _resolutionButton.Text = i;
+                    Children.Remove(dropdown);
+                };
         }
     }
 }
