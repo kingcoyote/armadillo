@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackgroundLayer.cs" />
+    <Compile Include="UserInterface\DropDownControl.cs" />
     <Compile Include="UserInterface\FlatImageButtonControlRenderer.cs" />
     <Compile Include="UserInterface\FlatPictureControlRenderer.cs" />
     <Compile Include="UserInterface\FlatRadialButtonControlRenderer.cs" />
