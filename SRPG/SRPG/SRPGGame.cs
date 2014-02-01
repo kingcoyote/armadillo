@@ -152,14 +152,6 @@ namespace SRPG
             character.Name = "Sheena";
             Party.Add(character);
         }
-
-        public override void ChangeResolution(int width, int height)
-        {
-            base.ChangeResolution(width, height);
-
-            FontManager.Initialize(ScreenHeight >= 1024 ? FontSize.Normal : FontSize.Small);
-        }
-
         
         public void ReturnToMainMenu()
         {
