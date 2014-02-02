@@ -137,6 +137,8 @@ namespace SRPG.Data
                 case "move": return new Move(game);
                 case "attack": return new Attack(game);
 
+                case "drink potion": return new DrinkPotion(game);
+
                 default: throw new Exception(string.Format("Unknown ability {0}", name));
 
             }
