@@ -154,16 +154,11 @@ namespace Torch
             }
         }
 
-        public virtual void ChangeResolution(int width, int height)
+        public virtual void ChangeResolution(bool fullscreen, int width, int height)
         {
             ScreenWidth = width;
             ScreenHeight = height;
-            InitializeGraphics();
-        }
-
-        public virtual void SetFullScreen(bool enabled)
-        {
-            IsFullScreen = enabled;
+            IsFullScreen = fullscreen;
             InitializeGraphics();
         }
     }

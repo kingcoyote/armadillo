@@ -18,8 +18,14 @@ namespace SRPG.Scene.MainMenu
             _optionsControl = new OptionsControl();
             _optionsControl.Bounds = new UniRectangle(
                 new UniScalar(0, 200), new UniScalar(10),
-                new UniScalar(310), new UniScalar(275) 
+                new UniScalar(310), new UniScalar(500) 
             );
+            _optionsControl.OptionsCanceled += () => HideGui(_optionsControl);
+            _optionsControl.OptionsSaved += (fullscreen, width, height) =>
+                {
+                    Game.ChangeResolution(fullscreen, width, height);
+                    HideGui(_optionsControl);
+                };
             HideGui(_optionsControl);
 
             _menuOptionsDialog.OnExitPressed += () => Game.Exit();
