@@ -82,8 +82,22 @@ namespace SRPG.Zones.Coliseum
             ImageLayers.Add(propsSprite.Clone("chest1", 50, 380, 50));
 
             Characters.Add("guard", Avatar.GenerateAvatar(game, null, "enemy"));
-            Characters["guard"].Location.X = 150;
-            Characters["guard"].Location.Y = 440;
+
+            if (data.Length == 0) data = new byte[1];
+
+            if (data[0] == 0x00)
+            {
+                Characters["guard"].Location.X = 150;
+                Characters["guard"].Location.Y = 440;
+            } else
+            {
+                Characters["guard"].Location.X = 97;
+                Characters["guard"].Location.Y = 440;
+                Characters["guard"].UpdateVelocity(1, 0);
+                Characters["guard"].UpdateVelocity(0, 0);
+
+                _guardMoved = true;
+            }
 
             Characters["guard"].Interact = TalkToGuard;
         }
@@ -102,6 +116,13 @@ namespace SRPG.Zones.Coliseum
                 ((OverworldScene) sender).StartDialog(dialog);
                 _guardMoved = true;
             }
+        }
+
+        public override byte[] ReadData()
+        {
+            var data = new byte[1];
+            data[0] = (byte)(_guardMoved ? 0x01 : 0x00);
+            return data;
         }
     }
 }
