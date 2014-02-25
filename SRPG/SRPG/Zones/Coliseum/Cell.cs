@@ -15,7 +15,7 @@ namespace SRPG.Zones.Coliseum
     {
         private bool _guardMoved;
 
-        public Cell(Game game, Torch.Object parent) : base(game)
+        public Cell(Game game, Torch.Object parent, byte[] data) : base(game, data)
         {
             Name = "Coliseum Slave Cells";
             SandbagImage = "Zones/Coliseum/Cell/sandbag";

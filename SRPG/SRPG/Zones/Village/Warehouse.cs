@@ -6,12 +6,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SRPG.Data;
 using Torch;
+using Game = Microsoft.Xna.Framework.Game;
 
 namespace SRPG.Zones.Village
 {
     class Warehouse : Zone
     {
-        public Warehouse(Microsoft.Xna.Framework.Game game, Torch.Object parent) : base(game)
+        public Warehouse(Game game, Torch.Object parent, byte[] data)
+            : base(game, data)
         {
             Name = "Village Warehouse";
             SandbagImage = "Zones/Village/Warehouse/sandbag";

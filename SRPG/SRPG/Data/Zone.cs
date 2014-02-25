@@ -10,9 +10,13 @@ namespace SRPG.Data
     public class Zone : GameComponent
     {
         /// <summary>
-        /// Machine readable zone name.
+        /// Human readable zone name.
         /// </summary>
         public string Name;
+        /// <summary>
+        /// Machine readable zone name.
+        /// </summary>
+        public string Key;
         /// <summary>
         /// A grid indicating whether or not a square is accessible. 0 means accessible, 1 means inaccessible.
         /// </summary>
@@ -35,38 +39,54 @@ namespace SRPG.Data
 
         private List<string> _clearedChests = new List<string>();
 
-        public Zone(Game game) : base(game) { }
+        public Zone(Game game, byte[] data) : base(game) { }
 
         public static Zone Factory(Game game, Torch.Object parent, string name)
         {
+            var data = ((SRPGGame) game).ZoneData.ContainsKey(name) ? ((SRPGGame)game).ZoneData[name] : new byte[] {};
+            Zone zone;
+
             switch(name)
             {
                 case "kakariko/village":
-                    return new Zones.Kakariko.Village(game, parent);
+                    zone =  new Zones.Kakariko.Village(game, parent, data);
+                    break;
                 case "kakariko/bombshop":
-                    return new Zones.Kakariko.Bombshop(game, parent);
+                    zone =  new Zones.Kakariko.Bombshop(game, parent, data);
+                    break;
                 case "kakariko/inn":
-                    return new Zones.Kakariko.Inn(game, parent);
+                    zone =  new Zones.Kakariko.Inn(game, parent, data);
+                    break;
 
                 case "village/village":
-                    return new Zones.Village.Village(game, parent);
+                    zone =  new Zones.Village.Village(game, parent, data);
+                    break;
                 case "village/warehouse":
-                    return new Zones.Village.Warehouse(game, parent);
+                    zone =  new Zones.Village.Warehouse(game, parent, data);
+                    break;
                 case "village/inn":
-                    return new Zones.Village.Inn(game, parent);
+                    zone =  new Zones.Village.Inn(game, parent, data);
+                    break;
 
                 case "coliseum/cell":
-                    return new Zones.Coliseum.Cell(game, parent);
+                    zone =  new Zones.Coliseum.Cell(game, parent, data);
+                    break;
                 case "coliseum/halls-south":
-                    return new Zones.Coliseum.HallsSouth(game, parent);
+                    zone =  new Zones.Coliseum.HallsSouth(game, parent, data);
+                    break;
                 case "coliseum/halls-north":
-                    return new Zones.Coliseum.HallsNorth(game, parent);
+                    zone =  new Zones.Coliseum.HallsNorth(game, parent, data);
+                    break;
                 case "coliseum/halls-east":
-                    return new Zones.Coliseum.HallsEast(game, parent);
+                    zone =  new Zones.Coliseum.HallsEast(game, parent, data);
+                    break;
 
                 default:
                     throw new ZoneException(String.Format("Unable to generate unknown zone '{0}'.", name));
             }
+
+            zone.Key = name;
+            return zone;
         }
 
         #region "InteractiveObject helpers"
@@ -124,6 +144,11 @@ namespace SRPG.Data
         public EventHandler<InteractEventArgs> TestBattle(string battleName)
         {
             return (sender, args) => ((SRPGGame) Game).StartBattle(battleName);
+        }
+
+        public virtual byte[] ReadData()
+        {
+            return new byte[0]; 
         }
     }
 

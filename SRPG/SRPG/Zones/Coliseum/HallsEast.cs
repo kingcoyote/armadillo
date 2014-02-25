@@ -12,7 +12,8 @@ namespace SRPG.Zones.Coliseum
 {
     class HallsEast : Zone
     {
-        public HallsEast(Game game, Torch.Object parent) : base(game)
+        public HallsEast(Game game, Torch.Object parent, byte[] data)
+            : base(game, data)
         {
             Name = "Coliseum Halls East";
             SandbagImage = "Zones/Coliseum/Halls/east-sb";

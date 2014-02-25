@@ -9,7 +9,8 @@ namespace SRPG.Zones.Kakariko
 {
     class Inn : Zone
     {
-        public Inn(Game game, Torch.Object parent) : base(game)
+        public Inn(Game game, Torch.Object parent, byte[] data)
+            : base(game, data)
         {
             Name = "Kakariko Inn";
             SandbagImage = "Zones/Kakariko/Inn/sandbag";

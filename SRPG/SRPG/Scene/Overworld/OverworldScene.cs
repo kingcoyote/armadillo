@@ -175,6 +175,17 @@ namespace SRPG.Scene.Overworld
 
         public void SetZone(Zone zone, string doorName)
         {
+            if (Zone != null)
+            {
+                var zoneData = Zone.ReadData();
+
+                if (!(((SRPGGame) Game).ZoneData.ContainsKey(Zone.Key)))
+                {
+                    ((SRPGGame) Game).ZoneData.Add(Zone.Key, new byte[0]);
+                }
+                ((SRPGGame) Game).ZoneData[Zone.Key] = zoneData;
+            }
+
             Zone = zone;
             _environment.SetZone(zone);
 

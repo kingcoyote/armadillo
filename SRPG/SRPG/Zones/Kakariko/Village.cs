@@ -2,12 +2,14 @@ using Microsoft.Xna.Framework;
 using SRPG.Data;
 using Torch;
 using System.Collections.Generic;
+using Game = Microsoft.Xna.Framework.Game;
 
 namespace SRPG.Zones.Kakariko
 {
     class Village : Zone
     {
-        public Village(Microsoft.Xna.Framework.Game game, Torch.Object parent) : base(game)
+        public Village(Game game, Torch.Object parent, byte[] data)
+            : base(game, data)
         {
 
             Name = "Kakariko Village";

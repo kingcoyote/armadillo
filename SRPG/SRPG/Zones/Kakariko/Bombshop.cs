@@ -3,13 +3,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SRPG.Data;
 using Torch;
-using Game = Torch.Game;
+using Game = Microsoft.Xna.Framework.Game;
 
 namespace SRPG.Zones.Kakariko
 {
     class Bombshop : Zone
     {
-        public Bombshop(Microsoft.Xna.Framework.Game game, Torch.Object parent) : base(game)
+        public Bombshop(Game game, Torch.Object parent, byte[] data)
+            : base(game, data)
         {
             Name = "Kakariko Shop";
             SandbagImage = "Zones/Kakariko/Bombshop/sandbag";

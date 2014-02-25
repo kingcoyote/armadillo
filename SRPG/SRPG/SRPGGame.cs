@@ -22,6 +22,7 @@ namespace SRPG
         public List<Combatant> Party;
         public List<Item> Inventory;
         public int Money;
+        public readonly Dictionary<string, byte[]> ZoneData = new Dictionary<string, byte[]>(); 
 
         public const int TileSize = 64;
 

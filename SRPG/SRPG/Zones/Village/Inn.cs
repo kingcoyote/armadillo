@@ -12,7 +12,8 @@ namespace SRPG.Zones.Village
 {
     class Inn : Zone
     {
-        public Inn(Game game, Torch.Object parent) : base(game)
+        public Inn(Game game, Torch.Object parent, byte[] data)
+            : base(game, data)
         {
             Name = "Village Inn";
             SandbagImage = "Zones/Village/Inn/sandbag";
