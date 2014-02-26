@@ -67,6 +67,9 @@ namespace SRPG.Data
                 case "village/inn":
                     zone =  new Zones.Village.Inn(game, parent, data);
                     break;
+                case "village/shop":
+                    zone = new Zones.Village.Shop(game, parent, data);
+                    break;
 
                 case "coliseum/cell":
                     zone =  new Zones.Coliseum.Cell(game, parent, data);
