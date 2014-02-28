@@ -48,9 +48,12 @@ namespace SRPG.Scene.Overworld
             var mouse = ((IInputService)Game.Services.GetService(typeof(IInputService))).GetMouse().GetState();
             var keyboard = ((IInputService)Game.Services.GetService(typeof(IInputService))).GetKeyboard().GetState();
 
-            // update the player's avatar
-            UpdateAvatarMovement(dt, keyboard, mouse);
-            CheckAvatarDoor();
+            if (_dialog == null)
+            {
+                // update the player's avatar
+                UpdateAvatarMovement(dt, keyboard, mouse);
+                CheckAvatarDoor();
+            }
 
             // update all characters in the zone
             UpdateCharacterMovements(dt);
