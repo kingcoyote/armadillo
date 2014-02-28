@@ -20,9 +20,7 @@ namespace SRPG.Zones.Village
 
             ImageLayers.Add(new ImageObject(Game, parent, "Zones/Village/Shop/shop"));
 
-            Objects.Add(new InteractiveObject { Interact = SimpleDoor("village/village", "shop"), Location = new Rectangle(180, 390, 80, 40) });
-
-            Doors.Add(new Door { Location = new Rectangle(190, 370, 80, 15), Name = "village", Orientation = Direction.Up });
+            Doors.Add(new Door { Location = new Rectangle(33*6, 67*6, 8*6, 6), Name = "village", Orientation = Direction.Up, Zone = "village/village", ZoneDoor = "shop" });
         }
     }
 }
