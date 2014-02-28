@@ -537,6 +537,12 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <None Include="Dialog\village.js">
+      <Name>village</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Gui\main_gui.xml">
       <Name>main_gui</Name>
       <Importer>XmlImporter</Importer>
