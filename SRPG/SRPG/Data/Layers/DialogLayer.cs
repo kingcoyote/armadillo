@@ -73,6 +73,7 @@ namespace SRPG.Data.Layers
 
         private void UpdateOptionHighlight()
         {
+            // todo fix the option highlighting
             if (_currentOption == -1)
             {
                 //Objects["dialog highlight"].Y = -1000;
@@ -95,6 +96,7 @@ namespace SRPG.Data.Layers
 
             _charCount += text.Length;
 
+            // todo allow for multi-line / multi window text
             /*while (dialogText.Height > dialogWindow.Height - 20)
             {
                 // find the last space
@@ -129,6 +131,7 @@ namespace SRPG.Data.Layers
             // if there is more than 1 option to choose from
             if (_dialog.CurrentNode.Options.Count > 1 && _optionsDisplayed == false)
             {
+                // todo change this from text to buttons
                 _dialogText.Text = String.Join(" \n", _dialog.CurrentNode.Options.Keys);
                 _currentOption = 0;
                 UpdateOptionHighlight();
