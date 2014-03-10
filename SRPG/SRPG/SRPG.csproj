@@ -244,12 +244,6 @@
     <Compile Include="Scene\PartyMenu\PartyMenuDialog.Designer.cs">
       <DependentUpon>PartyMenuDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scene\Shop\Background.cs" />
-    <Compile Include="Scene\Shop\Inventory.cs" />
-    <Compile Include="Scene\Shop\Options.cs" />
-    <Compile Include="Scene\Shop\PlayerInventory.cs" />
-    <Compile Include="Scene\Shop\PlayerStats.cs" />
-    <Compile Include="Scene\Shop\ShopInventory.cs" />
     <Compile Include="Zones\Coliseum\Cell.cs" />
     <Compile Include="Zones\Coliseum\HallsNorth.cs" />
     <Compile Include="Zones\Coliseum\HallsEast.cs" />

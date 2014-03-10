@@ -2,6 +2,9 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Nuclex.UserInterface;
+using Nuclex.UserInterface.Controls.Desktop;
+using Nuclex.UserInterface.Visuals.Flat;
 using SRPG.Data;
 using Torch;
 using Game = Torch.Game;
@@ -12,33 +15,23 @@ namespace SRPG.Scene.Shop
     {
         private List<Item> _inventory = new List<Item>();
 
-        private ShopInventory _shopInventory;
-        private PlayerInventory _playerInventory;
-
         public ShopScene(Game game) : base(game)
         {
-        }
-
-        protected override void OnEntered()
-        {
-            Components.Clear();
-
             var keyboard = new KeyboardInputLayer(this, null);
             keyboard.AddKeyDownBinding(Keys.Escape, () => Game.PopScene());
             Components.Add(keyboard);
 
-            Components.Add(new Background(this, null));
+            Game.IsMouseVisible = true;
 
-            // store inventory layer
-            _playerInventory = new PlayerInventory(this, null, ((SRPGGame)Game).Inventory) { X = Game.GraphicsDevice.Viewport.Width - 400, Y = 50 };
-            Components.Add(_playerInventory);
+            Gui.DrawOrder = 1000;
+            Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
 
-            // player inventory layer
-            _shopInventory = new ShopInventory(this, null, _inventory) { X = 50, Y = 50 };
-            Components.Add(_shopInventory);
-
-            Components.Add(new Options(this, null));
-            Components.Add(new PlayerStats(this, null));
+            // GUI elements:
+            // shop inventory
+            // player inventory
+            // exit button
+            // money
+            // party
 
             // buy selected
             // sell selected
@@ -47,19 +40,23 @@ namespace SRPG.Scene.Shop
             // buy and equip
         }
 
-        public void RefreshShop()
+        protected override void OnEntered()
         {
-            
+            Game.IsMouseVisible = true;
+
+            base.OnEntered();
         }
 
         protected override void OnResume()
         {
             Game.IsMouseVisible = true;
+
+            base.OnResume();
         }
 
-        protected override void OnPause()
+        public void RefreshShop()
         {
-            Game.IsMouseVisible = false;
+            
         }
 
         public void SetInventory(List<Item> inventory)
@@ -69,7 +66,7 @@ namespace SRPG.Scene.Shop
 
         public void SellSelectedItems()
         {
-            var items = _playerInventory.GetSelectedInventory();
+            var items = new List<Item>();
 
             foreach (var item in items)
             {
@@ -79,7 +76,7 @@ namespace SRPG.Scene.Shop
 
         public void BuySelectedItems()
         {
-            var items = _shopInventory.GetSelectedInventory();
+            var items = new List<Item>();
             var cost = (from item in items select item.Cost).Sum();
 
             if (cost > ((SRPGGame)Game).Money) return;

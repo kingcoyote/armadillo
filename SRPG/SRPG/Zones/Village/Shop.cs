@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using SRPG.Data;
+using SRPG.Scene.Options;
 using SRPG.Scene.Overworld;
 using Torch;
 using Game = Microsoft.Xna.Framework.Game;
@@ -29,6 +30,11 @@ namespace SRPG.Zones.Village
         private void Merchant(object sender, InteractEventArgs e)
         {
             var dialog = Dialog.Fetch("village", "merchant");
+            dialog.Nodes[2].OnExit += (s, a) =>
+                {
+                    ((OverworldScene) sender).EndDialog();
+                    ((SRPGGame) Game).LaunchShop("village", "merchant");
+                };
             ((OverworldScene)sender).StartDialog(dialog);
         }
     }
