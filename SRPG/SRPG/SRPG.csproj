@@ -244,6 +244,9 @@
     <Compile Include="Scene\PartyMenu\PartyMenuDialog.Designer.cs">
       <DependentUpon>PartyMenuDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scene\Shop\InfoDialog.cs" />
+    <Compile Include="Scene\Shop\InventoryDialog.cs" />
+    <Compile Include="Scene\Shop\PartyDialog.cs" />
     <Compile Include="Zones\Coliseum\Cell.cs" />
     <Compile Include="Zones\Coliseum\HallsNorth.cs" />
     <Compile Include="Zones\Coliseum\HallsEast.cs" />
