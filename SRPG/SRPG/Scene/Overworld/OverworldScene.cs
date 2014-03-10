@@ -203,7 +203,7 @@ namespace SRPG.Scene.Overworld
 
         public void Interact()
         {
-            if (IsRunning == false) return;
+            if (_dialog != null) return;
 
             var eventArgs = new InteractEventArgs() {Character = Avatar, Scene = this};
             Rectangle scanBox;
@@ -265,8 +265,6 @@ namespace SRPG.Scene.Overworld
         {
             StopCharacter();
 
-            IsRunning = false;
-
             dialog.OnExit += EndDialogEvent;
             _dialog = new DialogLayer(this, dialog);
             Gui.Screen.Desktop.Children.Add(_dialog);
@@ -279,7 +277,6 @@ namespace SRPG.Scene.Overworld
 
         public void EndDialog()
         {
-            IsRunning = true;
             Gui.Screen.Desktop.Children.Remove(_dialog);
             _dialog = null;
         }
@@ -291,7 +288,8 @@ namespace SRPG.Scene.Overworld
 
         public void OpenPartyMenu()
         {
-            if (IsRunning == false) return;
+            if (_dialog != null) return;
+
             StopCharacter();
 
             Game.PushScene(new PartyMenuScene(Game));
