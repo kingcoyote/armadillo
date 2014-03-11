@@ -60,7 +60,7 @@ namespace SRPG
         public void StartGame()
         {
             var overworldScene = new OverworldScene(this);
-            overworldScene.SetZone(Zone.Factory(this, null, "village/village"), "coliseum");
+            overworldScene.SetZone(Zone.Factory(this, null, "coliseum/cell"), "bed");
             PushScene(overworldScene);
 
             BeginNewGame();
