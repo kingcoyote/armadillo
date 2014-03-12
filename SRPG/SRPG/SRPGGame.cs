@@ -68,10 +68,11 @@ namespace SRPG
 
         public void LaunchShop(string filename, string merchantname)
         {
-            var inventory = GenerateShopInventory(filename, merchantname);
-            var shopScene = new ShopScene(this);
-            shopScene.SetInventory(inventory);
-            PushScene(shopScene);
+            PushScene(new ShopScene(
+                this, 
+                Inventory, 
+                GenerateShopInventory(filename, merchantname)
+            ));
         }
 
         public void StartBattle(string battleName)
