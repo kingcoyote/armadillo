@@ -35,7 +35,17 @@ namespace SRPG.Data
         /// <summary>
         /// A dictionary indicationg what stats are given xp multipliers by this item, and by how much.
         /// </summary>
-        public Dictionary<Stat, int> StatMultipliers;
+        public Dictionary<Stat, int> StatMultipliers = new Dictionary<Stat, int>()
+            {
+                {Stat.Health, 0},
+                {Stat.Mana, 0},
+                {Stat.Defense, 0},
+                {Stat.Attack, 0},
+                {Stat.Wisdom, 0},
+                {Stat.Intelligence, 0},
+                {Stat.Speed, 0},
+                {Stat.Hit, 0},
+            };
         /// <summary>
         /// An optional ability tied to this item - passive for armor and active for weapons.
         /// </summary>
@@ -108,6 +118,11 @@ namespace SRPG.Data
             {
                 item.StatBoosts[StringToStat(node["stat"].ToString())] = Convert.ToUInt16(node["amount"].ToString());
             }
+
+            if (nodeList[itemName].SelectToken("statMulti") != null) foreach (var node in nodeList[itemName]["statMulti"])
+                {
+                    item.StatMultipliers[StringToStat(node["stat"].ToString())] = Convert.ToUInt16(node["amount"].ToString());
+                }
 
             if(nodeList[itemName].SelectToken("ability") != null)
             {
