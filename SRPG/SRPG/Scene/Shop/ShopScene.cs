@@ -13,19 +13,24 @@ namespace SRPG.Scene.Shop
 {
     class ShopScene : Torch.Scene
     {
-        private List<Item> _inventory = new List<Item>();
-
-        private InventoryDialog _shopInventory;
-        private InventoryDialog _playerInventory;
+        private List<Item> _playerInventory; 
+        private List<Item> _shopInventory;
+        
+        private InventoryDialog _shopInventoryDialog;
+        private InventoryDialog _playerInventoryDialog;
         private InfoDialog _infoDialog;
         private PartyDialog _partyDialog;
+        private ItemPreviewDialog _itemPreviewDialog;
 
         private ButtonControl _exitButton;
         private ButtonControl _buyButton;
         private ButtonControl _sellButton;
 
-        public ShopScene(Game game) : base(game)
+        public ShopScene(Game game, List<Item> playerInventory, List<Item> shopInventory) : base(game)
         {
+            _playerInventory = playerInventory;
+            _shopInventory = shopInventory;
+
             var keyboard = new KeyboardInputLayer(this, null);
             keyboard.AddKeyDownBinding(Keys.Escape, () => Game.PopScene());
             Components.Add(keyboard);
@@ -36,19 +41,30 @@ namespace SRPG.Scene.Shop
             Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
 
             // GUI elements:
-            _shopInventory = new InventoryDialog();
-            _shopInventory.Bounds = new UniRectangle(
+            _shopInventoryDialog = new InventoryDialog(_shopInventory);
+            _shopInventoryDialog.Bounds = new UniRectangle(
                 new UniScalar(0), new UniScalar(0),
-                new UniScalar(1.0F, -160), new UniScalar(0.3F, -27.5F) 
+                new UniScalar(225), new UniScalar(0.6F, -45) 
             );
-            Gui.Screen.Desktop.Children.Add(_shopInventory);
+            _shopInventoryDialog.SelectionChanged += ShopSelectionChanged;
+            _shopInventoryDialog.HoverChanged += UpdateItemFocus;
+            Gui.Screen.Desktop.Children.Add(_shopInventoryDialog);
 
-            _playerInventory = new InventoryDialog();
-            _playerInventory.Bounds = new UniRectangle(
-                new UniScalar(0), new UniScalar(0.3F, 27.5F),
-                new UniScalar(1.0F, -160), new UniScalar(0.3F, -27.5F) 
+            _playerInventoryDialog = new InventoryDialog(_playerInventory);
+            _playerInventoryDialog.Bounds = new UniRectangle(
+                new UniScalar(235), new UniScalar(0),
+                new UniScalar(225), new UniScalar(0.6F, -45) 
             );
-            Gui.Screen.Desktop.Children.Add(_playerInventory);
+            _playerInventoryDialog.SelectionChanged += PlayerSelectionChanged;
+            _playerInventoryDialog.HoverChanged += UpdateItemFocus;
+            Gui.Screen.Desktop.Children.Add(_playerInventoryDialog);
+
+            _itemPreviewDialog = new ItemPreviewDialog();
+            _itemPreviewDialog.Bounds = new UniRectangle(
+                new UniScalar(470), new UniScalar(0),
+                new UniScalar(1.0f, -630), new UniScalar(0.6F, 0)
+            );
+            Gui.Screen.Desktop.Children.Add(_itemPreviewDialog);
 
             // money / information
             _infoDialog = new InfoDialog();
@@ -80,8 +96,8 @@ namespace SRPG.Scene.Shop
             _buyButton = new ButtonControl();
             _buyButton.Text = "Buy";
             _buyButton.Bounds = new UniRectangle(
-                new UniScalar(0), new UniScalar(0.3F, -17.5F),
-                new UniScalar(150), new UniScalar(35)
+                new UniScalar(0), new UniScalar(0.6F, -35),
+                new UniScalar(225), new UniScalar(35) 
             );
             Gui.Screen.Desktop.Children.Add(_buyButton);
 
@@ -89,10 +105,25 @@ namespace SRPG.Scene.Shop
             _sellButton = new ButtonControl();
             _sellButton.Text = "Sell";
             _sellButton.Bounds = new UniRectangle(
-                new UniScalar(1.0F, -310), new UniScalar(0.3F, -17.5F),
-                new UniScalar(150), new UniScalar(35)
+                new UniScalar(235), new UniScalar(0.6F, -35),
+                new UniScalar(225), new UniScalar(35) 
             );
             Gui.Screen.Desktop.Children.Add(_sellButton);
+        }
+
+        private void PlayerSelectionChanged(List<Item> items)
+        {
+            
+        }
+
+        private void ShopSelectionChanged(List<Item> items)
+        {
+            
+        }
+
+        private void UpdateItemFocus(Item item)
+        {
+            
         }
 
         protected override void OnEntered()
@@ -112,11 +143,6 @@ namespace SRPG.Scene.Shop
         public void RefreshShop()
         {
             
-        }
-
-        public void SetInventory(List<Item> inventory)
-        {
-            _inventory = inventory;
         }
 
         public void SellSelectedItems()

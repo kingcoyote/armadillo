@@ -189,7 +189,13 @@
       <region source="menu_skin_bitmap" hplacement="left" vplacement="bottom" x="21" y="11" w="10" h="10" />
       <region source="menu_skin_bitmap" hplacement="stretch" vplacement="bottom" x="31" y="11" w="1" h="10" />
       <region source="menu_skin_bitmap" hplacement="right" vplacement="bottom" x="32" y="11" w="10" h="10" />
-      <text font="menu_font" hplacement="center" vplacement="center" color="#000000" />
+      <text font="menu_font" hplacement="left" vplacement="center" color="#000000" xoffset="10"/>
+    </frame>
+
+    <frame name="list.selection">
+      <region source="menu_skin_bitmap" hplacement="left" vplacement="stretch" x="42" y="10" w="10" h="1" />
+      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="stretch" x="52" y="10" w="1" h="1" />
+      <region source="menu_skin_bitmap" hplacement="right" vplacement="stretch" x="53" y="10" w="10" h="1" />
     </frame>
 
     <frame name="rail.vertical">
