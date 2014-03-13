@@ -148,6 +148,8 @@ namespace SRPG.Scene.Shop
             _playerInventoryDialog.SetInventory(_playerInventory);
 
             _shopInventoryDialog.SetInventory(_shopInventory);
+
+            _infoDialog.UpdateInfo(((SRPGGame)Game).Money);
         }
 
         public void SellSelectedItems(object sender, EventArgs eventArgs)

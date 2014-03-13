@@ -6,7 +6,16 @@ using Nuclex.UserInterface.Controls.Desktop;
 
 namespace SRPG.Scene.Shop
 {
-    class InfoDialog : WindowControl
+    partial class InfoDialog : WindowControl
     {
+        public InfoDialog()
+        {
+            InitializeComponent();
+        }
+
+        public void UpdateInfo(int gold)
+        {
+            _goldAmount.Text = gold.ToString() + "g";
+        }
     }
 }
