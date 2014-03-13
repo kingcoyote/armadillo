@@ -123,7 +123,7 @@ namespace SRPG.Scene.Shop
 
         private void UpdateItemFocus(Item item)
         {
-            
+            _itemPreviewDialog.SetItem(item);
         }
 
         protected override void OnEntered()
