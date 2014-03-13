@@ -13,8 +13,8 @@ namespace SRPG.Scene.Shop
 
         public delegate void HoverClearedDelegate();
 
-        public HoverChangeDelegate HoverChange;
-        public HoverClearedDelegate HoverCleared;
+        public HoverChangeDelegate HoverChange = i => { };
+        public HoverClearedDelegate HoverCleared = () => { };
 
         private int _hover = -1;
 

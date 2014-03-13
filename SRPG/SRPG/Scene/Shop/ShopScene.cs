@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -26,9 +27,8 @@ namespace SRPG.Scene.Shop
         private ButtonControl _buyButton;
         private ButtonControl _sellButton;
 
-        public ShopScene(Game game, List<Item> playerInventory, List<Item> shopInventory) : base(game)
+        public ShopScene(Game game, List<Item> shopInventory) : base(game)
         {
-            _playerInventory = playerInventory;
             _shopInventory = shopInventory;
 
             var keyboard = new KeyboardInputLayer(this, null);
@@ -41,22 +41,22 @@ namespace SRPG.Scene.Shop
             Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
 
             // GUI elements:
-            _shopInventoryDialog = new InventoryDialog(_shopInventory);
+            _shopInventoryDialog = new InventoryDialog();
+            
             _shopInventoryDialog.Bounds = new UniRectangle(
                 new UniScalar(0), new UniScalar(0),
                 new UniScalar(225), new UniScalar(0.6F, -45) 
             );
-            _shopInventoryDialog.SelectionChanged += ShopSelectionChanged;
+            _shopInventoryDialog.SetInventory(_shopInventory);
             _shopInventoryDialog.HoverChanged += UpdateItemFocus;
             _shopInventoryDialog.HoverCleared += ClearItemFocus;
             Gui.Screen.Desktop.Children.Add(_shopInventoryDialog);
 
-            _playerInventoryDialog = new InventoryDialog(_playerInventory);
+            _playerInventoryDialog = new InventoryDialog();
             _playerInventoryDialog.Bounds = new UniRectangle(
                 new UniScalar(235), new UniScalar(0),
                 new UniScalar(225), new UniScalar(0.6F, -45) 
             );
-            _playerInventoryDialog.SelectionChanged += PlayerSelectionChanged;
             _playerInventoryDialog.HoverChanged += UpdateItemFocus;
             _playerInventoryDialog.HoverCleared += ClearItemFocus;
             Gui.Screen.Desktop.Children.Add(_playerInventoryDialog);
@@ -101,6 +101,7 @@ namespace SRPG.Scene.Shop
                 new UniScalar(0), new UniScalar(0.6F, -35),
                 new UniScalar(225), new UniScalar(35) 
             );
+            _buyButton.Pressed += BuySelectedItems;
             Gui.Screen.Desktop.Children.Add(_buyButton);
 
             // sell selected
@@ -110,19 +111,11 @@ namespace SRPG.Scene.Shop
                 new UniScalar(235), new UniScalar(0.6F, -35),
                 new UniScalar(225), new UniScalar(35) 
             );
+            _sellButton.Pressed += SellSelectedItems;
             Gui.Screen.Desktop.Children.Add(_sellButton);
 
             ClearItemFocus();
-        }
-
-        private void PlayerSelectionChanged(List<Item> items)
-        {
-            
-        }
-
-        private void ShopSelectionChanged(List<Item> items)
-        {
-            
+            RefreshShop();
         }
 
         private void UpdateItemFocus(Item item)
@@ -151,22 +144,27 @@ namespace SRPG.Scene.Shop
 
         public void RefreshShop()
         {
-            
+            _playerInventory = ((SRPGGame)Game).Inventory;
+            _playerInventoryDialog.SetInventory(_playerInventory);
+
+            _shopInventoryDialog.SetInventory(_shopInventory);
         }
 
-        public void SellSelectedItems()
+        public void SellSelectedItems(object sender, EventArgs eventArgs)
         {
-            var items = new List<Item>();
+            var items = _playerInventoryDialog.SelectedItems;
 
             foreach (var item in items)
             {
                 ((SRPGGame) Game).SellItem(item);
             }
+
+            RefreshShop();
         }
 
-        public void BuySelectedItems()
+        public void BuySelectedItems(object sender, EventArgs eventArgs)
         {
-            var items = new List<Item>();
+            var items = _shopInventoryDialog.SelectedItems;
             var cost = (from item in items select item.Cost).Sum();
 
             if (cost > ((SRPGGame)Game).Money) return;
@@ -175,6 +173,8 @@ namespace SRPG.Scene.Shop
             {
                 ((SRPGGame) Game).BuyItem(item);
             }
+
+            RefreshShop();
         }
     }
 }

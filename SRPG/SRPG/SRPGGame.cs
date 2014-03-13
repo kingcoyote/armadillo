@@ -70,7 +70,6 @@ namespace SRPG
         {
             PushScene(new ShopScene(
                 this, 
-                Inventory, 
                 GenerateShopInventory(filename, merchantname)
             ));
         }

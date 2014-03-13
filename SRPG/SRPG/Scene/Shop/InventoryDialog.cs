@@ -11,8 +11,9 @@ namespace SRPG.Scene.Shop
 {
     public partial class InventoryDialog : WindowControl
     {
-        private readonly List<Item> _inventory;
-        private Item _hover;
+        public List<Item> SelectedItems;
+        
+        private List<Item> _inventory;
 
         public delegate void InventoryChangeDelegate(List<Item> items);
 
@@ -24,11 +25,17 @@ namespace SRPG.Scene.Shop
         public HoverChangeDelegate HoverChanged = i => { };
         public HoverClearedDelegate HoverCleared = () => { };
 
-        public InventoryDialog(List<Item> inventory)
+        public InventoryDialog()
+        {
+            InitializeComponent();
+        }
+
+        public void SetInventory(List<Item> inventory)
         {
             _inventory = inventory;
 
-            InitializeComponent();
+            _itemList.Items.Clear();
+            _itemList.SelectedItems.Clear();
 
             foreach (var item in _inventory)
             {
@@ -42,7 +49,8 @@ namespace SRPG.Scene.Shop
 
         private void ItemSelectionChanged(object sender, EventArgs e)
         {
-            SelectionChanged.Invoke(_itemList.SelectedItems.Select(i => _inventory[i]).ToList());
+            SelectedItems = _itemList.SelectedItems.Select(i => _inventory[i]).ToList();
+            SelectionChanged.Invoke(SelectedItems);
         }
     }
 }
