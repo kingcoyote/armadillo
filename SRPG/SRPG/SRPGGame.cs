@@ -137,6 +137,8 @@ namespace SRPG
             Inventory.Add(Item.Factory(this, "sword/longsword"));
             Inventory.Add(Item.Factory(this, "consumable/potion"));
             Inventory.Add(Item.Factory(this, "consumable/potion"));
+
+            Money = 250;
 #endif
 
             var character = Combatant.FromTemplate(this, "party/jaha");
