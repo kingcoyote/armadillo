@@ -18,8 +18,11 @@ namespace SRPG.Scene.Shop
 
         public delegate void HoverChangeDelegate(Item item);
 
+        public delegate void HoverClearedDelegate();
+
         public InventoryChangeDelegate SelectionChanged = i => { };
         public HoverChangeDelegate HoverChanged = i => { };
+        public HoverClearedDelegate HoverCleared = () => { };
 
         public InventoryDialog(List<Item> inventory)
         {
@@ -34,6 +37,7 @@ namespace SRPG.Scene.Shop
 
             _itemList.SelectionChanged += ItemSelectionChanged;
             _itemList.HoverChange += (i) => HoverChanged.Invoke(_inventory[i]);
+            _itemList.HoverCleared += () => HoverCleared.Invoke();
         }
 
         private void ItemSelectionChanged(object sender, EventArgs e)

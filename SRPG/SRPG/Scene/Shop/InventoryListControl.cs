@@ -11,9 +11,12 @@ namespace SRPG.Scene.Shop
     {
         public delegate void HoverChangeDelegate(int i);
 
-        public HoverChangeDelegate HoverChange;
+        public delegate void HoverClearedDelegate();
 
-        private int _hover;
+        public HoverChangeDelegate HoverChange;
+        public HoverClearedDelegate HoverCleared;
+
+        private int _hover = -1;
 
         protected override void OnMouseMoved(float x, float y)
         {
@@ -24,7 +27,15 @@ namespace SRPG.Scene.Shop
                 y
             );
 
-            if (row < 0 || row >= Items.Count) return;
+            if (row < 0 || row >= Items.Count)
+            {
+                if (_hover != -1)
+                {
+                    _hover = -1;
+                    HoverCleared.Invoke();
+                }
+                return;
+            }
 
             var newHover = row;
 
@@ -35,6 +46,13 @@ namespace SRPG.Scene.Shop
             }
 
             base.OnMouseMoved(x, y);
+        }
+
+        protected override void OnMouseLeft()
+        {
+            base.OnMouseLeft();
+            _hover = -1;
+            HoverCleared.Invoke();
         }
     }
 }

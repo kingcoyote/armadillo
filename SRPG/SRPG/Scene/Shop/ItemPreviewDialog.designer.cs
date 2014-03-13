@@ -112,9 +112,9 @@ namespace SRPG.Scene.Shop
             Children.Add(_priceLabel);
 
             // range
-            _hitLabel = new LabelControl();
-            _hitLabel.Bounds = new UniRectangle(0, 0, 0, 0);
-            Children.Add(_hitLabel);
+            //_hitLabel = new LabelControl();
+            //_hitLabel.Bounds = new UniRectangle(0, 0, 0, 0);
+            //Children.Add(_hitLabel);
         }
     }
 }

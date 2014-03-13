@@ -48,6 +48,7 @@ namespace SRPG.Scene.Shop
             );
             _shopInventoryDialog.SelectionChanged += ShopSelectionChanged;
             _shopInventoryDialog.HoverChanged += UpdateItemFocus;
+            _shopInventoryDialog.HoverCleared += ClearItemFocus;
             Gui.Screen.Desktop.Children.Add(_shopInventoryDialog);
 
             _playerInventoryDialog = new InventoryDialog(_playerInventory);
@@ -57,6 +58,7 @@ namespace SRPG.Scene.Shop
             );
             _playerInventoryDialog.SelectionChanged += PlayerSelectionChanged;
             _playerInventoryDialog.HoverChanged += UpdateItemFocus;
+            _playerInventoryDialog.HoverCleared += ClearItemFocus;
             Gui.Screen.Desktop.Children.Add(_playerInventoryDialog);
 
             _itemPreviewDialog = new ItemPreviewDialog();
@@ -109,6 +111,8 @@ namespace SRPG.Scene.Shop
                 new UniScalar(225), new UniScalar(35) 
             );
             Gui.Screen.Desktop.Children.Add(_sellButton);
+
+            ClearItemFocus();
         }
 
         private void PlayerSelectionChanged(List<Item> items)
@@ -124,6 +128,11 @@ namespace SRPG.Scene.Shop
         private void UpdateItemFocus(Item item)
         {
             _itemPreviewDialog.SetItem(item);
+        }
+
+        private void ClearItemFocus()
+        {
+            _itemPreviewDialog.ClearItem();
         }
 
         protected override void OnEntered()
