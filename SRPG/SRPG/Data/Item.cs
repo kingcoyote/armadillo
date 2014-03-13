@@ -170,5 +170,10 @@ namespace SRPG.Data
 
             throw new Exception("item does not have a valid item type");
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
