@@ -244,6 +244,10 @@
     <Compile Include="Scene\PartyMenu\PartyMenuDialog.Designer.cs">
       <DependentUpon>PartyMenuDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scene\Shop\CharacterDialog.cs" />
+    <Compile Include="Scene\Shop\CharacterDialog.Designer.cs">
+      <DependentUpon>CharacterDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\Shop\InfoDialog.cs" />
     <Compile Include="Scene\Shop\InfoDialog.Designer.cs">
       <DependentUpon>InfoDialog.cs</DependentUpon>
@@ -258,6 +262,9 @@
       <DependentUpon>ItemPreviewDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Scene\Shop\PartyDialog.cs" />
+    <Compile Include="Scene\Shop\PartyDialog.Designer.cs">
+      <DependentUpon>PartyDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Zones\Coliseum\Cell.cs" />
     <Compile Include="Zones\Coliseum\HallsNorth.cs" />
     <Compile Include="Zones\Coliseum\HallsEast.cs" />

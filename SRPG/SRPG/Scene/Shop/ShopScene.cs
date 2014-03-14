@@ -77,7 +77,7 @@ namespace SRPG.Scene.Shop
             Gui.Screen.Desktop.Children.Add(_infoDialog);
             
             // party
-            _partyDialog = new PartyDialog();
+            _partyDialog = new PartyDialog(((SRPGGame)Game).Party);
             _partyDialog.Bounds = new UniRectangle(
                 new UniScalar(0), new UniScalar(0.6F, 10),
                 new UniScalar(1.0F, 0), new UniScalar(0.4F, -10)
@@ -121,11 +121,13 @@ namespace SRPG.Scene.Shop
         private void UpdateItemFocus(Item item)
         {
             _itemPreviewDialog.SetItem(item);
+            _partyDialog.PreviewItem(item);
         }
 
         private void ClearItemFocus()
         {
             _itemPreviewDialog.ClearItem();
+            _partyDialog.ResetParty();
         }
 
         protected override void OnEntered()

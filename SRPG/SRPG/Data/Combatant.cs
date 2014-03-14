@@ -180,6 +180,15 @@ namespace SRPG.Data
             return number;
         }
 
+        public int CompareStat(Stat stat, Item item)
+        {
+            var oldStat = ReadStat(stat);
+            var oldItem = EquipItem(item);
+            var newStat = ReadStat(stat);
+            EquipItem(oldItem);
+            return newStat - oldStat;
+        }
+
         public Dictionary<Stat, int> ReadAllStats()
         {
             return new Dictionary<Stat, int>
@@ -302,6 +311,11 @@ namespace SRPG.Data
         public bool CanEquipWeapon(Item weapon)
         {
             return (WeaponTypes & weapon.ItemType) == weapon.ItemType;
+        }
+
+        public bool CanEquipItem(Item item)
+        {
+            return CanEquipArmor(item) || CanEquipWeapon(item);
         }
 
         /// <summary>
