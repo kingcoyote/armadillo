@@ -25,7 +25,7 @@ namespace SRPG.Data.Layers
             Children.Add(_dialogText);
 
             Bounds = new UniRectangle(
-                new UniScalar(0.0f, 0.0f), new UniScalar(1.0f, -250.0f),      
+                new UniScalar(0.0f, 0.0f), new UniScalar(1.0f, -225.0f),      
                 new UniScalar(1.0f, 0.0f), new UniScalar(0.0f, 225.0f) 
             );
         }
