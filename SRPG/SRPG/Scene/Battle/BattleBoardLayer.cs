@@ -188,6 +188,7 @@ namespace SRPG.Scene.Battle
             {
                 if (Math.Abs(character.Avatar.Location.X - cursor.X) < 1 && Math.Abs(character.Avatar.Location.Y - cursor.Y) < 1)
                 {
+                    // todo turn this into an event that BattleScene handles
                     scene.ShowCharacterStats(character);
 
                     break;

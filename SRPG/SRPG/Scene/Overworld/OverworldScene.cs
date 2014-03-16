@@ -270,11 +270,6 @@ namespace SRPG.Scene.Overworld
             Gui.Screen.Desktop.Children.Add(_dialog);
         }
 
-        private void StopCharacter()
-        {
-            Avatar.UpdateVelocity(0, 0);
-        }
-
         public void EndDialog()
         {
             Gui.Screen.Desktop.Children.Remove(_dialog);
@@ -284,6 +279,11 @@ namespace SRPG.Scene.Overworld
         public void EndDialogEvent(object sender, EventArgs args)
         {
             EndDialog();
+        }
+
+        private void StopCharacter()
+        {
+            Avatar.UpdateVelocity(0, 0);
         }
 
         public void OpenPartyMenu()
