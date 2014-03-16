@@ -11,12 +11,10 @@ namespace SRPG.Scene.Battle
     public partial class CharacterStatsDialog
     {
         public bool Visible;
-        private readonly float _locX;
 
         public CharacterStatsDialog()
         {
             InitializeComponent();
-            _locX = Bounds.Location.X.Offset;
         }
 
         public void SetCharacter(Combatant character)
@@ -27,11 +25,6 @@ namespace SRPG.Scene.Battle
             _mana.Text = character.CurrentMana.ToString();
             _healthBar.Progress = (float)character.CurrentHealth/(float)character.MaxHealth;
             _manaBar.Progress = (float)character.CurrentMana/(float)character.MaxMana;
-        }
-
-        public void SetVisibility(bool visible)
-        {
-            Bounds.Location.X.Offset = visible ? _locX : -10000;
         }
     }
 }

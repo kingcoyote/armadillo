@@ -356,12 +356,18 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Content Include="Dialog\coliseum\cell.js">
-      <Name>cell</Name>
+    <None Include="Dialog\coliseum.js">
+      <Name>coliseum</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
+    <None Include="Dialog\coliseum\cell.js">
+      <Name>cell</Name>
+      <Importer>XImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Compile Include="Zones\Village\Village\inn.png">
       <Name>inn</Name>
       <Importer>TextureImporter</Importer>

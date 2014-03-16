@@ -44,7 +44,7 @@ namespace SRPG.Scene.Battle
         /// Callback that executes when an ability is aimed. This can be a move ability callback moving a character, or a combat ability
         /// callback queuing the command.
         /// </summary>
-        private Func<int, int, bool> _aimAbility = null;
+        private Func<int, int, bool> _aimAbility;
 
         private DateTime _aimTime;
         /// <summary>
@@ -68,8 +68,11 @@ namespace SRPG.Scene.Battle
         private HUDDialog _hud;
         private QueuedCommandsDialog _queuedCommands;
         private AbilityStatDialog _abilityStatLayer;
-        private BattleBoardLayer _battleBoard;
+        private BattleBoardLayer _battleBoardLayer;
         private RadialMenuControl _radialMenuControl;
+        private DialogLayer _dialog;
+
+        private Dialog _startingDialog;
 
         private readonly Dictionary<string, int> _displayedHits = new Dictionary<string, int>();
         private readonly Dictionary<string, float> _hitLocations = new Dictionary<string, float>();
@@ -117,6 +120,12 @@ namespace SRPG.Scene.Battle
             var keyboard = new KeyboardInputLayer(this, null);
             keyboard.AddKeyDownBinding(Keys.Escape, Cancel);
             Components.Add(keyboard);
+
+            if (_startingDialog != null)
+            {
+                StartDialog(_startingDialog);
+                _startingDialog = null;
+            }
         }
 
         protected override void OnResume()
@@ -135,7 +144,7 @@ namespace SRPG.Scene.Battle
                 _radialMenuControl.Update(gametime);
             }
 
-            _battleBoard.FreeAim = _state == BattleState.PlayerTurn;
+            _battleBoardLayer.FreeAim = _state == BattleState.PlayerTurn;
 
             // get the amount of time, in seconds, since the last frame. this should be 0.016 at 60fps.
             float dt = gametime.ElapsedGameTime.Milliseconds/1000F;
@@ -183,6 +192,9 @@ namespace SRPG.Scene.Battle
                     {
                         _state = _delayState;
                     }
+                    break;
+                case BattleState.Dialog:
+                    UpdateBattleStateDialog(dt);
                     break;
             }
         }
@@ -331,6 +343,11 @@ namespace SRPG.Scene.Battle
             }
         }
 
+        private void UpdateBattleStateDialog(float dt)
+        {
+            
+        }
+
         private void UpdateHits(float dt)
         {
             for (var i = _displayedHits.Count; i > 0; i--)
@@ -364,7 +381,7 @@ namespace SRPG.Scene.Battle
             {
                 character.Die();
                 BattleBoard.Characters.Remove(character);
-                _battleBoard.RemoveCharacter(character);
+                _battleBoardLayer.RemoveCharacter(character);
             }
         }
 
@@ -373,16 +390,16 @@ namespace SRPG.Scene.Battle
         /// </summary>
         public void UpdateCamera(float x, float y)
         {
-            var layers = new List<Layer> {_battleBoard};
+            var layers = new List<Layer> {_battleBoardLayer};
 
-            if (_battleBoard.Width < Game.GraphicsDevice.Viewport.Width)
+            if (_battleBoardLayer.Width < Game.GraphicsDevice.Viewport.Width)
             {
-                x = Game.GraphicsDevice.Viewport.Width/2 - _battleBoard.Width/2;
+                x = Game.GraphicsDevice.Viewport.Width/2 - _battleBoardLayer.Width/2;
             }
 
-            if (_battleBoard.Height < Game.GraphicsDevice.Viewport.Height)
+            if (_battleBoardLayer.Height < Game.GraphicsDevice.Viewport.Height)
             {
-                y = Game.GraphicsDevice.Viewport.Height / 2 - _battleBoard.Height / 2;
+                y = Game.GraphicsDevice.Viewport.Height / 2 - _battleBoardLayer.Height / 2;
             }
 
             _x = x;
@@ -415,24 +432,24 @@ namespace SRPG.Scene.Battle
             _state = BattleState.PlayerTurn;
             var partyGrid = new List<Point>();
 
-            _battleBoard = new BattleBoardLayer(this, null);
-            _battleBoard.CharacterSelected += SelectCharacter;
+            _battleBoardLayer = new BattleBoardLayer(this, null);
+            _battleBoardLayer.CharacterSelected += SelectCharacter;
 
-            Components.Add(_battleBoard);
+            Components.Add(_battleBoardLayer);
 
             switch(battleName)
             {
                 case "coliseum/halls":
-                    _battleBoard.SetBackground("Zones/Coliseum/Halls/north");
-                    _battleBoard.SetGrid("Zones/Coliseum/Halls/battle");
+                    _battleBoardLayer.SetBackground("Zones/Coliseum/Halls/north");
+                    _battleBoardLayer.SetGrid("Zones/Coliseum/Halls/battle");
                     BattleBoard.Sandbag = Grid.FromBitmap(Game.Services, "Zones/Coliseum/Halls/battle");
-                    _battleBoard.AddImage(new ImageObject(Game, _battleBoard, "Zones/Coliseum/Halls/north"));
-                    _battleBoard.AddImage(new ImageObject(Game, _battleBoard, "Zones/Coliseum/pillar") { X = 393, Y = 190, DrawOrder = 248 });
-                    _battleBoard.AddImage(new ImageObject(Game, _battleBoard, "Zones/Coliseum/pillar") { X = 393, Y = 390, DrawOrder = 448 });
-                    _battleBoard.AddImage(new ImageObject(Game, _battleBoard, "Zones/Coliseum/pillar") { X = 393, Y = 590, DrawOrder = 648 });
-                    _battleBoard.AddImage(new ImageObject(Game, _battleBoard, "Zones/Coliseum/pillar") { X = 593, Y = 190, DrawOrder = 248 });
-                    _battleBoard.AddImage(new ImageObject(Game, _battleBoard, "Zones/Coliseum/pillar") { X = 593, Y = 390, DrawOrder = 448 });
-                    _battleBoard.AddImage(new ImageObject(Game, _battleBoard, "Zones/Coliseum/pillar") { X = 593, Y = 590, DrawOrder = 648 });
+                    _battleBoardLayer.AddImage(new ImageObject(Game, _battleBoardLayer, "Zones/Coliseum/Halls/north"));
+                    _battleBoardLayer.AddImage(new ImageObject(Game, _battleBoardLayer, "Zones/Coliseum/pillar") { X = 393, Y = 190, DrawOrder = 248 });
+                    _battleBoardLayer.AddImage(new ImageObject(Game, _battleBoardLayer, "Zones/Coliseum/pillar") { X = 393, Y = 390, DrawOrder = 448 });
+                    _battleBoardLayer.AddImage(new ImageObject(Game, _battleBoardLayer, "Zones/Coliseum/pillar") { X = 393, Y = 590, DrawOrder = 648 });
+                    _battleBoardLayer.AddImage(new ImageObject(Game, _battleBoardLayer, "Zones/Coliseum/pillar") { X = 593, Y = 190, DrawOrder = 248 });
+                    _battleBoardLayer.AddImage(new ImageObject(Game, _battleBoardLayer, "Zones/Coliseum/pillar") { X = 593, Y = 390, DrawOrder = 448 });
+                    _battleBoardLayer.AddImage(new ImageObject(Game, _battleBoardLayer, "Zones/Coliseum/pillar") { X = 593, Y = 590, DrawOrder = 648 });
 
                     partyGrid.Add(new Point(10,13));
                     partyGrid.Add(new Point(11,13));
@@ -448,6 +465,8 @@ namespace SRPG.Scene.Battle
                     BattleBoard.Characters.Add(GenerateCombatant("Guard 3", "coliseum/guard", new Vector2(9, 10)));
                     BattleBoard.Characters.Add(GenerateCombatant("Guard 4", "coliseum/guard", new Vector2(11, 10)));
 
+                    _startingDialog = Dialog.Fetch("coliseum", "guards");
+
                     break;
                 default:
                     throw new Exception("unknown battle " + battleName);
@@ -462,7 +481,7 @@ namespace SRPG.Scene.Battle
                 BattleBoard.Characters.Add(character);
             }
 
-            _battleBoard.SetBoard(BattleBoard);
+            _battleBoardLayer.SetBoard(BattleBoard);
             _commander.BattleBoard = BattleBoard;
 
             // center camera on partyGrid[0]
@@ -586,7 +605,7 @@ namespace SRPG.Scene.Battle
             if (_state != BattleState.PlayerTurn) return;
 
             _characterStats.SetCharacter(character);
-            _characterStats.SetVisibility(true);
+            ShowGui(_characterStats);
         }
 
         /// <summary>
@@ -596,7 +615,7 @@ namespace SRPG.Scene.Battle
         {
             if (_state != BattleState.PlayerTurn) return;
 
-            _characterStats.SetVisibility(false);
+            HideGui(_characterStats);
         }
 
         /// <summary>
@@ -655,12 +674,12 @@ namespace SRPG.Scene.Battle
                     {
                         if (!character.CanMove) return;
 
-                        _battleBoard.SetTargettingGrid(
+                        _battleBoardLayer.SetTargettingGrid(
                             character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)),
                             new Grid(1, 1)
                             );
                     };
-                icon.MouseOut += () => { if (_aimAbility == null) _battleBoard.ResetGrid(); };
+                icon.MouseOut += () => { if (_aimAbility == null) _battleBoardLayer.ResetGrid(); };
                 icon.MouseClick += () => { SelectAbilityTarget(character, Ability.Factory(Game, "move"));
                                              _aimTime = DateTime.Now;
                 };
@@ -687,12 +706,12 @@ namespace SRPG.Scene.Battle
                     {
                         if (!character.CanAct) return;
 
-                        _battleBoard.SetTargettingGrid(
+                        _battleBoardLayer.SetTargettingGrid(
                             ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
                             new Grid(1, 1)
                             );
                     };
-                icon.MouseOut += () => { if (_aimAbility == null) _battleBoard.ResetGrid(); };
+                icon.MouseOut += () => { if (_aimAbility == null) _battleBoardLayer.ResetGrid(); };
 
                 icon.MouseRelease += () => { SelectAbilityTarget(character, ability);
                                                _aimTime = DateTime.Now;
@@ -725,8 +744,8 @@ namespace SRPG.Scene.Battle
             }
             menu.AddOption("special", icon);
 
-            icon = new RadialButtonControl { ImageFrame = "item", Bounds = new UniRectangle(0, 0, 64, 64) };
-            icon.Enabled = false;
+            icon = new RadialButtonControl
+                {ImageFrame = "item", Bounds = new UniRectangle(0, 0, 64, 64), Enabled = false};
             menu.AddOption("item", icon);
 
             _radialMenuControl = menu;
@@ -768,14 +787,14 @@ namespace SRPG.Scene.Battle
             Gui.Screen.Desktop.Children.Remove(_radialMenuControl);
 
 
-            _battleBoard.SetTargettingGrid(
+            _battleBoardLayer.SetTargettingGrid(
                 ability.Name == "Move" ? 
                     character.GetMovementGrid(BattleBoard.GetAccessibleGrid(character.Faction)) : 
                     ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
                 ability.GenerateImpactGrid()
             );
                 
-            _battleBoard.AbilityAim = true;
+            _battleBoardLayer.AbilityAim = true;
 
             _aimAbility = (x, y) =>
                 {
@@ -843,7 +862,7 @@ namespace SRPG.Scene.Battle
                             if (_aimAbility != null) return;
 
                             HideGui(_abilityStatLayer);
-                            _battleBoard.ResetGrid();
+                            _battleBoardLayer.ResetGrid();
                         };
                     button.MouseClick = () => { };
                     button.MouseRelease += () => { SelectAbilityTarget(character, tempAbility);
@@ -868,7 +887,7 @@ namespace SRPG.Scene.Battle
         {
             _abilityStatLayer.SetAbility(ability);
             ShowGui(_abilityStatLayer);
-            _battleBoard.SetTargettingGrid(
+            _battleBoardLayer.SetTargettingGrid(
                 ability.GenerateTargetGrid(BattleBoard.Sandbag.Clone()),
                 new Grid(1, 1)
             );
@@ -902,7 +921,7 @@ namespace SRPG.Scene.Battle
         /// </summary>
         private void ResetState()
         {
-            _battleBoard.ResetGrid();
+            _battleBoardLayer.ResetGrid();
             _aimAbility = null;
             _selectedCharacter = null;
             HideCharacterStats();
@@ -945,7 +964,7 @@ namespace SRPG.Scene.Battle
 
             if(_aimAbility(x, y))
             {
-                _battleBoard.ResetGrid();
+                _battleBoardLayer.ResetGrid();
             }
         }
 
@@ -960,12 +979,42 @@ namespace SRPG.Scene.Battle
                 new Random().Next()
             );
 
-            var label = new StyledTextControl { Text = amount.ToString(), Bounds = new UniRectangle(_x + target.X * 50 + 5, _y + target.Y * 50 - 75, 75, 30) };
-            label.Font = "hitlabel." + style;
+            var label = new StyledTextControl
+                {
+                    Text = amount.ToString(),
+                    Bounds = new UniRectangle(_x + target.X*50 + 5, _y + target.Y*50 - 75, 75, 30),
+                    Font = "hitlabel." + style
+                };
             Gui.Screen.Desktop.Children.Add(label);
             _hitLabels.Add(key, label);
             _hitLocations.Add(key, target.Y * 50 - 75);
             _displayedHits.Add(key, 0);
+        }
+
+        public void StartDialog(Dialog dialog)
+        {
+            dialog.OnExit += EndDialogEvent;
+            _dialog = new DialogLayer(this, dialog);
+            Gui.Screen.Desktop.Children.Add(_dialog);
+            
+            _state = BattleState.Dialog;
+            _battleBoardLayer.FreeAim = false;
+            _battleBoardLayer.AbilityAim = false;
+            HideGui(_characterStats);
+            HideGui(_hud);
+        }
+
+        public void EndDialog()
+        {
+            _state = BattleState.PlayerTurn;
+            Gui.Screen.Desktop.Children.Remove(_dialog);
+            _dialog = null;
+            ShowGui(_hud);
+        }
+
+        public void EndDialogEvent(object sender, EventArgs args)
+        {
+            EndDialog();
         }
     }
 
@@ -980,6 +1029,7 @@ namespace SRPG.Scene.Battle
         ExecutingCommand,
         DisplayingHits,
         MovingCharacter,
-        Delay
+        Delay,
+        Dialog
     }
 }
