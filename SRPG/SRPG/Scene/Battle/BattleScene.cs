@@ -9,6 +9,7 @@ using Nuclex.UserInterface.Controls;
 using Nuclex.UserInterface.Visuals.Flat;
 using SRPG.AI;
 using SRPG.Data;
+using SRPG.Data.Layers;
 using Torch;
 using Torch.UserInterface;
 using Game = Torch.Game;
