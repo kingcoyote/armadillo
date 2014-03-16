@@ -356,6 +356,12 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="HUD\interacticon.png">
+      <Name>interacticon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <None Include="Dialog\coliseum.js">
       <Name>coliseum</Name>
       <Importer>XmlImporter</Importer>

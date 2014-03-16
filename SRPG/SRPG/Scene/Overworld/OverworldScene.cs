@@ -21,6 +21,7 @@ namespace SRPG.Scene.Overworld
         private readonly Dictionary<string, Vector2[]> _characterMovements = new Dictionary<string, Vector2[]>();
         private string _startDoor = "";
         private readonly Environment _environment;
+        private readonly HUD _hud;
         private DialogLayer _dialog;
 
         public OverworldScene(Game game) : base(game)
@@ -30,7 +31,8 @@ namespace SRPG.Scene.Overworld
             var keyboardInput = new KeyboardInput(this, null);
             Components.Add(keyboardInput);
 
-            Components.Add(new HUD(this, null) { DrawOrder = 5 });
+            _hud = new HUD(this, null) {DrawOrder = 5};
+            Components.Add(_hud);
             Components.Add(_environment);
 
             Avatar = Avatar.GenerateAvatar(Game, _environment, "fighter");
@@ -54,6 +56,8 @@ namespace SRPG.Scene.Overworld
                 UpdateAvatarMovement(dt, keyboard, mouse);
                 CheckAvatarDoor();
             }
+
+            CheckAvatarInteraction();
 
             // update all characters in the zone
             UpdateCharacterMovements(dt);
@@ -206,11 +210,72 @@ namespace SRPG.Scene.Overworld
             if (_dialog != null) return;
 
             var eventArgs = new InteractEventArgs() {Character = Avatar, Scene = this};
+
+            var scanBox = GetScanBox();
+
+            foreach(InteractiveObject obj in Zone.Objects)
+            {
+                if (obj.Location.Intersects(scanBox))
+                {
+                    obj.Interact.Invoke(this, eventArgs);
+                }
+            }
+
+            foreach(var character in Zone.Characters.Values)
+            {
+                if(scanBox.Intersects(character.GetFeet()))
+                {
+                    character.Interact.Invoke(this, eventArgs);
+                }
+            }
+
+            // scan the area in front of the player
+            // if there is a valid interaction object
+            //    execute the interact callback for that object
+
+            // dialog would need to pause the controls and create a dialog layer, which will unpause when done
+            // doors would need to change the zone
+            // chests would need to pause the controls, create a dialog layer, give the player a new item, and unpause when done
+            // levers would need to update some part of the zone (i have zero ways to do this!)
+        }
+
+        private void CheckAvatarInteraction()
+        {
+            var scanBox = GetScanBox();
+
+            _hud.HideInteractIcon();
+
+            if (_dialog != null) return;
+
+            var x = (int)(Avatar.Sprite.Rectangle.Center.X + _environment.X);
+            var y = (int)(Avatar.Sprite.Rectangle.Top + _environment.Y) - 15;
+
+            foreach (InteractiveObject obj in Zone.Objects)
+            {
+                if (obj.Location.Intersects(scanBox))
+                {
+                    _hud.ShowInteractIcon(x, y);
+                    return;
+                }
+            }
+
+            foreach (var character in Zone.Characters.Values)
+            {
+                if (scanBox.Intersects(character.GetFeet()))
+                {
+                    _hud.ShowInteractIcon(x, y);
+                    return;
+                }
+            }
+        }
+
+        private Rectangle GetScanBox()
+        {
             Rectangle scanBox;
 
             Rectangle feet = Avatar.GetFeet();
 
-            switch(Avatar.Direction)
+            switch (Avatar.Direction)
             {
                 case Direction.Up:
                     scanBox = new Rectangle(feet.X, feet.Y - 5, feet.Width, 5);
@@ -226,33 +291,8 @@ namespace SRPG.Scene.Overworld
                     break;
                 default:
                     throw new Exception("unable to process interaction without a valid avatar direction");
-
             }
-
-            foreach(InteractiveObject obj in Zone.Objects)
-            {
-                if (obj.Location.Intersects(scanBox))
-                {
-                    obj.Interact.Invoke(this, eventArgs);
-                }
-            }
-
-            foreach(var character in Zone.Characters.Values)
-            {
-                if(scanBox.Intersects(character.GetFeet()))
-                {
-                    character.Interact(this, new EventArgs());
-                }
-            }
-
-            // scan the area in front of the player
-            // if there is a valid interaction object
-            //    execute the interact callback for that object
-
-            // dialog would need to pause the controls and create a dialog layer, which will unpause when done
-            // doors would need to change the zone
-            // chests would need to pause the controls, create a dialog layer, give the player a new item, and unpause when done
-            // levers would need to update some part of the zone (i have zero ways to do this!)
+            return scanBox;
         }
 
         public void MoveCharacter(string name, Vector2[] directions)
