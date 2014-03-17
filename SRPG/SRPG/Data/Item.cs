@@ -14,6 +14,8 @@ namespace SRPG.Data
         /// Human readable name of this item.
         /// </summary>
         public string Name;
+
+        public string Key;
         /// <summary>
         /// A small picture showing an icon for this item.
         /// </summary>
@@ -99,7 +101,7 @@ namespace SRPG.Data
         {
             if (_itemList.ContainsKey(name)) return _itemList[name];
 
-            var item = new Item(game);
+            var item = new Item(game) { Key = name };
 
             var itemType = name.Split('/')[0];
             var itemName = name.Split('/')[1];

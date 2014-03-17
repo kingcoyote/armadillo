@@ -37,6 +37,8 @@ namespace SRPG.Data
         /// </summary>
         public Dictionary<Stat, int> Stats = new Dictionary<Stat, int>()
             {
+                {Stat.Health, 0},
+                {Stat.Mana, 0},
                 {Stat.Defense, 0},
                 {Stat.Attack, 0},
                 {Stat.Wisdom, 0},
@@ -193,6 +195,8 @@ namespace SRPG.Data
         {
             return new Dictionary<Stat, int>
                 {
+                    {Stat.Health, ReadStat(Stat.Health)},
+                    {Stat.Mana, ReadStat(Stat.Defense)},
                     {Stat.Defense, ReadStat(Stat.Defense)},
                     {Stat.Attack, ReadStat(Stat.Attack)},
                     {Stat.Wisdom, ReadStat(Stat.Wisdom)},
@@ -353,6 +357,8 @@ namespace SRPG.Data
 
             combatant.Stats = new Dictionary<Stat, int>
                 {
+                    {Stat.Health, 0},
+                    {Stat.Mana, 0},
                     {Stat.Defense, (int)(nodeList[templateName]["stats"]["defense"])},
                     {Stat.Attack, (int)(nodeList[templateName]["stats"]["attack"])},
                     {Stat.Wisdom, (int)(nodeList[templateName]["stats"]["wisdom"])},

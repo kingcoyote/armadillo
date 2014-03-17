@@ -158,6 +158,23 @@ namespace SRPG
             Party.Add(character);
         }
         
+        public void SaveGame(int filenumber, string zone, string door)
+        {
+            new SaveGame { Inventory = Inventory, Party = Party, Money = Money, Zone = zone, Door = door, Name="test" }.Save(filenumber);
+        }
+
+        public void LoadGame(int filenumber)
+        {
+            var save = Data.SaveGame.Load(this, filenumber);
+            Inventory = save.Inventory;
+            Party = save.Party;
+            Money = save.Money;
+
+            var overworldScene = new OverworldScene(this);
+            overworldScene.SetZone(Zone.Factory(this, null, save.Zone), save.Door);
+            PushScene(overworldScene);
+        }
+
         public void ReturnToMainMenu()
         {
             while (!(GameStates.ActiveState is MainMenu))
