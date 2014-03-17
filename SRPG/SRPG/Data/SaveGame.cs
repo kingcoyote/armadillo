@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace SRPG.Data
 {
@@ -155,8 +156,12 @@ namespace SRPG.Data
 
             var r = new BinaryReader(File.OpenRead(filename));
 
+            var guid = r.ReadBytes(16);
+            var filetype = r.ReadInt16();
+            var version = r.ReadInt16();
+
             // confirm the file is correct
-            if (r.ReadBytes(16) != Guid || r.ReadInt16() != 1 || r.ReadInt16() != 1) 
+            if (!guid.SequenceEqual(Guid) || filetype != 1 || version != 1) 
                 throw new Exception("file is not in correct format");
 
             // skip save date
@@ -194,7 +199,7 @@ namespace SRPG.Data
 
                 character.EquipItem(Item.Factory(game, r.ReadString()));
                 character.EquipItem(Item.Factory(game, r.ReadString()));
-                character.EquipItem(Item.Factory(game, r.ReadString()));
+                //character.EquipItem(Item.Factory(game, r.ReadString()));
 
                 save.Party.Add(character);
             }
@@ -206,6 +211,8 @@ namespace SRPG.Data
             for (var i = 0; i < inventoryCount; i++)
             {
                 var item = Item.Factory(game, r.ReadString());
+                // todo process quantity properly
+                r.ReadInt16();
                 save.Inventory.Add(item);
             }
             
@@ -236,6 +243,21 @@ namespace SRPG.Data
             r.Close();
 
             return save;
+        }
+
+        public static List<SaveGame> FetchAll(SRPGGame game)
+        {
+            var files = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Armadillo\\Save").GetFiles("*.asg", SearchOption.TopDirectoryOnly);
+            var savegames = new List<SaveGame>();
+            foreach (var f in files)
+            {
+                int number;
+                if(int.TryParse(f.Name.Replace("save", "").Replace(".asg", ""), out number))
+                {
+                    savegames.Add(Load(game, number));
+                }
+            }
+            return savegames;
         }
     }
 }

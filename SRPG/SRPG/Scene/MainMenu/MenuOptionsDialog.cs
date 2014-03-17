@@ -19,9 +19,6 @@ namespace SRPG.Scene.MainMenu
         {
             InitializeComponent();
 
-            _continue.Enabled = false;
-            _loadGame.Enabled = false;
-
             _newGame.Pressed += (s, a) => OnNewGamePressed.Invoke();
             _continue.Pressed += (s, a) => OnContinuePressed.Invoke();
             _loadGame.Pressed += (s, a) => OnLoadGamePressed.Invoke();

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SRPG.Data;
 using SRPG.Scene.Battle;
 using SRPG.Scene.Intro;
+using SRPG.Scene.LoadGame;
 using SRPG.Scene.MainMenu;
 using SRPG.Scene.PartyMenu;
 using SRPG.Scene.Options;
@@ -22,6 +23,8 @@ namespace SRPG
         public List<Combatant> Party;
         public List<Item> Inventory;
         public int Money;
+        public long GameTime;
+
         public readonly Dictionary<string, byte[]> ZoneData = new Dictionary<string, byte[]>(); 
 
         public const int TileSize = 64;
@@ -63,6 +66,7 @@ namespace SRPG
             overworldScene.SetZone(Zone.Factory(this, null, "coliseum/cell"), "bed");
             PushScene(overworldScene);
 
+            ResetGame();
             BeginNewGame();
         }
 
@@ -165,14 +169,27 @@ namespace SRPG
 
         public void LoadGame(int filenumber)
         {
+            ResetGame();
+
             var save = Data.SaveGame.Load(this, filenumber);
             Inventory = save.Inventory;
             Party = save.Party;
             Money = save.Money;
+            GameTime = save.GameTime;
 
             var overworldScene = new OverworldScene(this);
             overworldScene.SetZone(Zone.Factory(this, null, save.Zone), save.Door);
             PushScene(overworldScene);
+        }
+
+        public void ShowLoadScreen()
+        {
+            PushScene(new LoadGameScene(this));
+        }
+
+        public void ContinueLastGame()
+        {
+            throw new NotImplementedException();
         }
 
         public void ReturnToMainMenu()
@@ -180,6 +197,21 @@ namespace SRPG
             while (!(GameStates.ActiveState is MainMenu))
             {
                 PopScene();
+            }
+        }
+
+        private void ResetGame()
+        {
+            GameTime = 0;
+        }
+
+        protected override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            if (GameStates.ActiveState is OverworldScene || GameStates.ActiveState is ShopScene || GameStates.ActiveState is BattleScene)
+            {
+                GameTime += (long)gameTime.ElapsedGameTime.TotalMilliseconds;
             }
         }
     }

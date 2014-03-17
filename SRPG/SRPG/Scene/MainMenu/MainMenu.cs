@@ -37,6 +37,9 @@ namespace SRPG.Scene.MainMenu
                     _optionsControl.UpdateSettings(game);
                 };
 
+            _menuOptionsDialog.OnLoadGamePressed += () => ((SRPGGame)Game).ShowLoadScreen();
+            _menuOptionsDialog.OnContinuePressed += () => ((SRPGGame)Game).ContinueLastGame();
+
             Gui.Screen.Desktop.Children.Add(_menuOptionsDialog);
             Gui.Visualizer = FlatGuiVisualizer.FromFile(Game.Services, "Content/Gui/main_gui.xml");
         }

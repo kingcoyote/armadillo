@@ -189,6 +189,11 @@
     <Compile Include="Scene\Battle\QueuedCommandsDialog.designer.cs">
       <DependentUpon>QueuedCommandsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scene\LoadGame\LoadGameScene.cs" />
+    <Compile Include="Scene\LoadGame\SavedGameDialog.cs" />
+    <Compile Include="Scene\LoadGame\SavedGameDialog.Designer.cs">
+      <DependentUpon>SavedGameDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\MainMenu\MainMenu.cs" />
     <Compile Include="Scene\MainMenu\MenuOptionsDialog.cs" />
     <Compile Include="Scene\MainMenu\MenuOptionsDialog.designer.cs">
@@ -244,6 +249,7 @@
     <Compile Include="Scene\PartyMenu\PartyMenuDialog.Designer.cs">
       <DependentUpon>PartyMenuDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scene\SaveGame\SaveGameScene.cs" />
     <Compile Include="Scene\Shop\CharacterDialog.cs" />
     <Compile Include="Scene\Shop\CharacterDialog.Designer.cs">
       <DependentUpon>CharacterDialog.cs</DependentUpon>
