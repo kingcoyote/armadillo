@@ -98,7 +98,7 @@ namespace SRPG.Data
         {
             // todo : there has to be a less tedious way to do this...
 
-            switch(name)
+            switch(name.ToLower())
             {
                 case "lunge": return new Lunge(game);
                 case "cleave": return new Cleave(game);
