@@ -339,6 +339,7 @@ namespace SRPG.Data
 
             var nodeList = JObject.Parse(settingString);
 
+            combatant.Name = nodeList[templateName]["name"].ToString();
             combatant.Class = nodeList[templateName]["class"].ToString();
             combatant.Avatar = Avatar.GenerateAvatar(game, null, nodeList[templateName]["avatar"].ToString());
 

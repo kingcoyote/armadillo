@@ -145,21 +145,10 @@ namespace SRPG
             Money = 250;
 #endif
 
-            var character = Combatant.FromTemplate(this, "party/jaha");
-            character.Name = "Jaha";
-            Party.Add(character);
-
-            character = Combatant.FromTemplate(this, "party/meera");
-            character.Name = "Meera";
-            Party.Add(character);
-
-            character = Combatant.FromTemplate(this, "party/hahn");
-            character.Name = "Hahn";
-            Party.Add(character);
-
-            character = Combatant.FromTemplate(this, "party/sheena");
-            character.Name = "Sheena";
-            Party.Add(character);
+            Party.Add(Combatant.FromTemplate(this, "party/jaha"));
+            Party.Add(Combatant.FromTemplate(this, "party/meera"));
+            Party.Add(Combatant.FromTemplate(this, "party/hahn"));
+            Party.Add(Combatant.FromTemplate(this, "party/sheena"));
         }
         
         public void SaveGame(int filenumber, string zone, string door)

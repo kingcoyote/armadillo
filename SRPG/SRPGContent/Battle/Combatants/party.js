@@ -1,5 +1,6 @@
 ﻿{
   jaha : {
+    name : "Jaha",
     class : "Fighter",
     avatar : "fighter",
     icon : "jaha",
@@ -26,6 +27,7 @@
   
   
   meera : {
+    name : "Meera",
     class : "Ranger",
     avatar : "ranger",
     icon : "meera",
@@ -52,6 +54,7 @@
   
   
   gratho : {
+    name : "Gratho",
     class : "Monk",
     avatar : "monk",
     icon : "gratho",
@@ -78,6 +81,7 @@
   
   
   hahn : {
+    name : "Hahn",
     class : "Cleric",
     avatar : "cleric",
     icon : "hahn",
@@ -104,6 +108,7 @@
   
   
   sheena : {
+    name : "Sheena",
     class : "Wizard",
     avatar : "wizard",
     icon : "sheena",
