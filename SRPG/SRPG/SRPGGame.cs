@@ -162,7 +162,7 @@ namespace SRPG
                     Money = Money, 
                     Zone = zone, 
                     Door = door, 
-                    Name="test",
+                    Name=DateTime.Now.ToString(),
                     GameTime = GameTime / 1000 * 1000
                 }.Save(filenumber);
         }
