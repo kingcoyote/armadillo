@@ -153,6 +153,17 @@ namespace SRPG.Data
         {
             return new byte[0]; 
         }
+
+        public void AddSavepoint(int x, int y)
+        {
+            ImageLayers.Add(new ImageObject(Game, null, "Zones/savepoint") { X = x, Y = y, DrawOrder = 1 });
+            Objects.Add(new InteractiveObject { Location = new Rectangle(x, y, 75, 75), Interact = ShowSaveGame });
+        }
+
+        private void ShowSaveGame(object sender, InteractEventArgs e)
+        {
+            ((SRPGGame) Game).ShowSaveScreen(Key, "save");
+        }
     }
 
     class ZoneException : Exception

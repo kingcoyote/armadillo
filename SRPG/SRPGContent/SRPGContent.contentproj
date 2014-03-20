@@ -362,6 +362,11 @@
       <Processor>TextureProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Zones\savepoint.png">
+      <Name>savepoint</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <None Include="Dialog\coliseum.js">
       <Name>coliseum</Name>
       <Importer>XmlImporter</Importer>

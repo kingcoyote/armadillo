@@ -20,6 +20,9 @@ namespace SRPG.Zones.Village
             Sandbag = Grid.FromBitmap(Game.Services, SandbagImage);
             ImageLayers.Add(new ImageObject(Game, parent, "Zones/Village/Inn/inn"));
             Doors.Add(new Door { Location = new Rectangle(63*6, 93*6, 13*6, 2), Zone = "village/village", ZoneDoor = "inn exit", Name = "entrance", Orientation = Direction.Up });
+            Doors.Add(new Door { Location = new Rectangle(215, 265, 75, 75), Name = "save", Orientation = Direction.Down });
+
+            AddSavepoint(215, 265);
         }
     }
 }
