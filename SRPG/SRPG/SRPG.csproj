@@ -249,6 +249,10 @@
     <Compile Include="Scene\PartyMenu\PartyMenuDialog.Designer.cs">
       <DependentUpon>PartyMenuDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scene\SaveGame\SavedGameDialog.cs" />
+    <Compile Include="Scene\SaveGame\SavedGameDialog.Designer.cs">
+      <DependentUpon>SavedGameDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene\SaveGame\SaveGameScene.cs" />
     <Compile Include="Scene\Shop\CharacterDialog.cs" />
     <Compile Include="Scene\Shop\CharacterDialog.Designer.cs">

@@ -11,7 +11,9 @@ using SRPG.Scene.MainMenu;
 using SRPG.Scene.PartyMenu;
 using SRPG.Scene.Options;
 using SRPG.Scene.Overworld;
+using SRPG.Scene.SaveGame;
 using SRPG.Scene.Shop;
+using Environment = System.Environment;
 
 namespace SRPG
 {
@@ -183,6 +185,26 @@ namespace SRPG
         public void ShowLoadScreen()
         {
             PushScene(new LoadGameScene(this));
+        }
+
+        public void ShowSaveScreen(string zone, string door)
+        {
+            PushScene(new SaveGameScene(this, zone, door));
+        }
+
+        public void NewSaveGame(string zone, string door)
+        {
+            var files = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Armadillo\\Save").GetFiles("save*.asg", SearchOption.TopDirectoryOnly);
+            var n = 0;
+            foreach (var f in files)
+            {
+                int number;
+                if (int.TryParse(f.Name.Replace("save", "").Replace(".asg", ""), out number))
+                {
+                    if (number >= n) n = number + 1;
+                }
+            }
+            SaveGame(n, zone, door);
         }
 
         public void ContinueLastGame()
