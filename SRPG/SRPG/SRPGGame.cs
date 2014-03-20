@@ -153,7 +153,16 @@ namespace SRPG
         
         public void SaveGame(int filenumber, string zone, string door)
         {
-            new SaveGame { Inventory = Inventory, Party = Party, Money = Money, Zone = zone, Door = door, Name="test" }.Save(filenumber);
+            new SaveGame
+                {
+                    Inventory = Inventory, 
+                    Party = Party, 
+                    Money = Money, 
+                    Zone = zone, 
+                    Door = door, 
+                    Name="test",
+                    GameTime = GameTime / 1000 * 1000
+                }.Save(filenumber);
         }
 
         public void LoadGame(int filenumber)

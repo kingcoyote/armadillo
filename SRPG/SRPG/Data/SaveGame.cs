@@ -7,6 +7,7 @@ namespace SRPG.Data
 {
     public class SaveGame
     {
+        public int Number;
         public string Name;
         public long GameTime;
 
@@ -141,7 +142,7 @@ namespace SRPG.Data
         /// <param name="fileNumber">The file number to be loaded.</param>
         public static SaveGame Load(SRPGGame game, int fileNumber)
         {
-            var save = new SaveGame();
+            var save = new SaveGame() { Number = fileNumber };
 
             var filename = string.Format(
                 "{0}\\Armadillo\\Save\\save{1}.asg",
