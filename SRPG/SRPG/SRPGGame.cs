@@ -209,7 +209,24 @@ namespace SRPG
 
         public void ContinueLastGame()
         {
-            throw new NotImplementedException();
+            var files = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Armadillo\\Save").GetFiles("save*.asg", SearchOption.TopDirectoryOnly);
+            var n = 0;
+            var modTime = DateTime.FromBinary(0);
+            foreach (var f in files)
+            {
+                int number;
+                if (!int.TryParse(f.Name.Replace("save", "").Replace(".asg", ""), out number))
+                {
+                    continue;
+                }
+
+                if (f.LastWriteTime > modTime)
+                {
+                    modTime = f.LastWriteTime;
+                    n = number;
+                }
+            }
+            LoadGame(n);
         }
 
         public void ReturnToMainMenu()
