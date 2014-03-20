@@ -14,6 +14,12 @@ namespace SRPG.Scene.LoadGame
         public SavedGameDialog(Data.SaveGame game)
         {
             InitializeComponent();
+
+            _number.Text = game.Number.ToString();
+            _name.Text = game.Name;
+            _gameTime.Text = new TimeSpan(game.GameTime * TimeSpan.TicksPerMillisecond).ToString();
+
+            _loadButton.Pressed += (s, a) => OnSelect.Invoke();
         }
     }
 }

@@ -21,8 +21,8 @@ namespace SRPG.Scene.LoadGame
                 var saveGame = saveGameList[i];
                 var dlg = new SavedGameDialog(saveGame);
                 dlg.Bounds = new UniRectangle(
-                    new UniScalar(0), new UniScalar(160 * i),
-                    new UniScalar(1.0f, -160), new UniScalar(150) 
+                    new UniScalar(0), new UniScalar(100 * i),
+                    new UniScalar(1.0f, -160), new UniScalar(100) 
                 );
                 var fileNumber = i;
                 dlg.OnSelect += () => ((SRPGGame) Game).LoadGame(fileNumber);
