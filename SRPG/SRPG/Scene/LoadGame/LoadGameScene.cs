@@ -24,7 +24,8 @@ namespace SRPG.Scene.LoadGame
                     new UniScalar(0), new UniScalar(160 * i),
                     new UniScalar(1.0f, -160), new UniScalar(150) 
                 );
-                dlg.OnSelect += () => ((SRPGGame) Game).LoadGame(i);
+                var fileNumber = i;
+                dlg.OnSelect += () => ((SRPGGame) Game).LoadGame(fileNumber);
                 Gui.Screen.Desktop.Children.Add(dlg);
             }
 
