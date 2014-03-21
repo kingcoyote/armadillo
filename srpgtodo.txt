@@ -1,0 +1,51 @@
+1 - create a proper UI stylesheet
+1 - fix splash damage bug
+1 - fix dialog option display
+1 - fix dialog option selection bug
+1 - create a battle complete screen
+1 - add accessories to the game
+
+2 - make sure all items have real abilities
+2 - fix combat movement / cast bug
+2 - add sound
+2 - clarify exactly how DAWISH stats work
+2 - highlight enemy stats when targetting spells
+2 - fix UI window control seam bug
+
+3 - disable attack / ability in combat as needed
+3 - modify the resolution selection to use a dropdown
+3 - come up with real names / story
+3 - add placeholder icons for all remaining abilities
+3 - fix queued command flicker during combat
+
+4 - remove the 'selected' style from buttons
+4 - add attack animations with weapon binding
+4 - fix the up/down walking animation bug
+4 - create a better looking main menu screen
+4 - tutorial WASD icons
+4 - use lists to select different armor/weapon/acc
+
+5 - add other people to the cells / village
+5 - add more information to the save/load game dialogs
+5 - add the road and oasis zones
+5 - add save game delete
+5 - fully implement the cells battle
+5 - add confirmation to save game overwrite
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
