@@ -27,9 +27,9 @@
       <region source="rpg_skin" hplacement="left" vplacement="top" x="38" y="124" w="10" h="10" />
       <region source="rpg_skin" hplacement="stretch" vplacement="top" x="48" y="124" w="214" h="10" />
       <region source="rpg_skin" hplacement="right" vplacement="top" x="262" y="124" w="13" h="10" />
-      <region source="rpg_skin" hplacement="left" vplacement="stretch" x="12" y="134" w="36" h="36" />
+      <region source="rpg_skin" hplacement="left" vplacement="stretch" x="38" y="134" w="10" h="36" />
       <region source="rpg_skin" hplacement="stretch" vplacement="stretch" x="48" y="134" w="214" h="36" />
-      <region source="rpg_skin" hplacement="right" vplacement="stretch" x="262" y="134" w="36" h="36" />
+      <region source="rpg_skin" hplacement="right" vplacement="stretch" x="262" y="134" w="10" h="36" />
       <region source="rpg_skin" hplacement="left" vplacement="bottom" x="38" y="170" w="10" h="10" />
       <region source="rpg_skin" hplacement="stretch" vplacement="bottom" x="48" y="170" w="214" h="10" />
       <region source="rpg_skin" hplacement="right" vplacement="bottom" x="262" y="170" w="13" h="10" />
@@ -40,9 +40,9 @@
       <region source="rpg_skin" hplacement="left" vplacement="top" x="38" y="202" w="10" h="10" />
       <region source="rpg_skin" hplacement="stretch" vplacement="top" x="48" y="202" w="214" h="10" />
       <region source="rpg_skin" hplacement="right" vplacement="top" x="262" y="202" w="13" h="10" />
-      <region source="rpg_skin" hplacement="left" vplacement="stretch" x="12" y="212" w="36" h="36" />
+      <region source="rpg_skin" hplacement="left" vplacement="stretch" x="38" y="212" w="10" h="36" />
       <region source="rpg_skin" hplacement="stretch" vplacement="stretch" x="48" y="212" w="214" h="36" />
-      <region source="rpg_skin" hplacement="right" vplacement="stretch" x="262" y="212" w="36" h="36" />
+      <region source="rpg_skin" hplacement="right" vplacement="stretch" x="262" y="212" w="10" h="36" />
       <region source="rpg_skin" hplacement="left" vplacement="bottom" x="38" y="248" w="10" h="10" />
       <region source="rpg_skin" hplacement="stretch" vplacement="bottom" x="48" y="248" w="214" h="10" />
       <region source="rpg_skin" hplacement="right" vplacement="bottom" x="262" y="248" w="13" h="10" />
@@ -53,9 +53,9 @@
       <region source="rpg_skin" hplacement="left" vplacement="top" x="38" y="280" w="10" h="10" />
       <region source="rpg_skin" hplacement="stretch" vplacement="top" x="48" y="280" w="214" h="10" />
       <region source="rpg_skin" hplacement="right" vplacement="top" x="262" y="280" w="13" h="10" />
-      <region source="rpg_skin" hplacement="left" vplacement="stretch" x="12" y="290" w="36" h="36" />
+      <region source="rpg_skin" hplacement="left" vplacement="stretch" x="38" y="290" w="10" h="36" />
       <region source="rpg_skin" hplacement="stretch" vplacement="stretch" x="48" y="290" w="214" h="36" />
-      <region source="rpg_skin" hplacement="right" vplacement="stretch" x="262" y="290" w="36" h="36" />
+      <region source="rpg_skin" hplacement="right" vplacement="stretch" x="262" y="290" w="10" h="36" />
       <region source="rpg_skin" hplacement="left" vplacement="bottom" x="38" y="326" w="10" h="10" />
       <region source="rpg_skin" hplacement="stretch" vplacement="bottom" x="48" y="326" w="214" h="10" />
       <region source="rpg_skin" hplacement="right" vplacement="bottom" x="262" y="326" w="13" h="10" />
@@ -66,9 +66,9 @@
       <region source="rpg_skin" hplacement="left" vplacement="top" x="38" y="358" w="10" h="10" />
       <region source="rpg_skin" hplacement="stretch" vplacement="top" x="48" y="358" w="214" h="10" />
       <region source="rpg_skin" hplacement="right" vplacement="top" x="262" y="358" w="13" h="10" />
-      <region source="rpg_skin" hplacement="left" vplacement="stretch" x="12" y="368" w="36" h="36" />
+      <region source="rpg_skin" hplacement="left" vplacement="stretch" x="38" y="368" w="10" h="36" />
       <region source="rpg_skin" hplacement="stretch" vplacement="stretch" x="48" y="368" w="214" h="36" />
-      <region source="rpg_skin" hplacement="right" vplacement="stretch" x="262" y="368" w="36" h="36" />
+      <region source="rpg_skin" hplacement="right" vplacement="stretch" x="262" y="368" w="10" h="36" />
       <region source="rpg_skin" hplacement="left" vplacement="bottom" x="38" y="404" w="10" h="10" />
       <region source="rpg_skin" hplacement="stretch" vplacement="bottom" x="48" y="404" w="214" h="10" />
       <region source="rpg_skin" hplacement="right" vplacement="bottom" x="262" y="404" w="13" h="10" />
