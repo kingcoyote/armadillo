@@ -21,7 +21,7 @@ namespace SRPG.Scene.Battle
 
             Bounds = new UniRectangle(
                 new UniScalar(0.0f, 0.0f), new UniScalar(0.0f, 0.0f),
-                new UniScalar(0.0f, 170.0f), new UniScalar(0.0f, 130.0f) 
+                new UniScalar(0.0f, 170.0f), new UniScalar(0.0f, 125.0f) 
             );
 
             _roundLabel = new LabelControl();
@@ -35,24 +35,24 @@ namespace SRPG.Scene.Battle
             Children.Add(_endTurn);
 
             _faction.Bounds = new UniRectangle(
-                new UniScalar(0.0f, 10.0f), new UniScalar(0.0f, 10.0f),
+                new UniScalar(0.0f, 15.0f), new UniScalar(0.0f, 10.0f),
                 new UniScalar(1.0f, -20.0f), new UniScalar(0.0f, 30.0f) 
             );
 
             _roundLabel.Bounds = new UniRectangle(
-                new UniScalar(0.0f, 10.0f), new UniScalar(0.0f, 50.0f),
+                new UniScalar(0.0f, 15.0f), new UniScalar(0.0f, 40.0f),
                 new UniScalar(0.5f, -10.0f), new UniScalar(0.0f, 30.0f)
             );
             _roundLabel.Text = "Round: ";
 
             _roundNumber.Bounds = new UniRectangle(
-                new UniScalar(0.5f, 10.0f), new UniScalar(0.0f, 50.0f),
+                new UniScalar(0.5f, 10.0f), new UniScalar(0.0f, 40.0f),
                 new UniScalar(0.5f, -10.0f), new UniScalar(0.0f, 30.0f)
             );
 
             _endTurn.Bounds = new UniRectangle(
-                new UniScalar(0.0f, 10.0f), new UniScalar(0.0f, 90.0f),
-                new UniScalar(1.0f, -20.0f), new UniScalar(0.0f, 30.0f)
+                new UniScalar(0.0f, 10.0f), new UniScalar(0.0f, 70.0f),
+                new UniScalar(1.0f, -20.0f), new UniScalar(0.0f, 45.0f)
             );
             _endTurn.Text = "End Turn";
         }

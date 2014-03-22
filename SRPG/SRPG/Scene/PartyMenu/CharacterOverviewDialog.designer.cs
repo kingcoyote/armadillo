@@ -28,24 +28,24 @@ namespace SRPG.Scene.PartyMenu
             _picture = new PictureControl();
             _picture.Frame = "avatar.icon.anon";
             _picture.Bounds = new UniRectangle(
-                new UniScalar(1, -160), new UniScalar(10),
+                new UniScalar(1, -165), new UniScalar(15),
                 new UniScalar(150), new UniScalar(150)
             );
             Children.Add(_picture);
 
             // name (top left)
             _nameText = new LabelControl();
-            _nameText.Bounds = new UniRectangle(10, 10, 150, 25);
+            _nameText.Bounds = new UniRectangle(15, 10, 150, 25);
             Children.Add(_nameText);
 
             // class (top left)
             _classText = new LabelControl();
-            _classText.Bounds = new UniRectangle(10, 45, 150, 25);
+            _classText.Bounds = new UniRectangle(15, 45, 150, 25);
             Children.Add(_classText);
 
             // health
             _healthLabel = new LabelControl();
-            _healthLabel.Bounds = new UniRectangle(10, 105, 150, 25);
+            _healthLabel.Bounds = new UniRectangle(15, 105, 150, 25);
             _healthLabel.Text = "Health";
             Children.Add(_healthLabel);
 
@@ -55,7 +55,7 @@ namespace SRPG.Scene.PartyMenu
 
             // mana
             _manaLabel = new LabelControl();
-            _manaLabel.Bounds = new UniRectangle(10, 140, 150, 25);
+            _manaLabel.Bounds = new UniRectangle(15, 140, 150, 25);
             _manaLabel.Text = "Mana";
             Children.Add(_manaLabel);
 

@@ -56,7 +56,7 @@
       <region source="rpg_skin" hplacement="left" vplacement="bottom" x="38" y="248" w="10" h="10" />
       <region source="rpg_skin" hplacement="stretch" vplacement="bottom" x="48" y="248" w="214" h="10" />
       <region source="rpg_skin" hplacement="right" vplacement="bottom" x="262" y="248" w="13" h="10" />
-      <text font="menu_font" hplacement="center" vplacement="center" color="#ffff00" />
+      <text font="menu_font" hplacement="center" vplacement="center" color="#ffffff" />
     </frame>
 
     <frame name="button.highlighted">
@@ -69,7 +69,7 @@
       <region source="rpg_skin" hplacement="left" vplacement="bottom" x="38" y="326" w="10" h="10" />
       <region source="rpg_skin" hplacement="stretch" vplacement="bottom" x="48" y="326" w="214" h="10" />
       <region source="rpg_skin" hplacement="right" vplacement="bottom" x="262" y="326" w="13" h="10" />
-      <text font="menu_font" hplacement="center" vplacement="center" color="#ffff00" />
+      <text font="menu_font" hplacement="center" vplacement="center" color="#ffffff" />
     </frame>
 
     <frame name="button.disabled">

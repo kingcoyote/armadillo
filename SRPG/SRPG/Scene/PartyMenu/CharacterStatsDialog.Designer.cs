@@ -44,18 +44,13 @@ namespace SRPG.Scene.PartyMenu
         {
             EnableDragging = false;
 
-            // number of abilities to show (DAWISH)
-            // leaving this dynamic incase i change the count and don't
-            // want to recalculate all numbers
-            var n = 6f;
-
             //
             // defLabel
             //
             _defLabel = new LabelControl();
             _defLabel.Bounds = new UniRectangle(
-                new UniScalar(10), new UniScalar(1 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 50.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(15), new UniScalar(10),
+                new UniScalar(0.0F, 50.0F), new UniScalar(25)
                 );
             _defLabel.Text = "DEF";
             Children.Add(_defLabel);
@@ -65,8 +60,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _defLevel = new LabelControl();
             _defLevel.Bounds = new UniRectangle(
-                new UniScalar(0, 60), new UniScalar(1 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 40.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(0, 60), new UniScalar(10),
+                new UniScalar(0.0F, 40.0F), new UniScalar(25)
                 );
             Children.Add(_defLevel);
 
@@ -75,8 +70,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _defProg = new ProgressControl();
             _defProg.Bounds = new UniRectangle(
-                new UniScalar(0, 100), new UniScalar(0, 5),
-                new UniScalar(1.0F, -150.0F), new UniScalar(1f / n, -10.0F)
+                new UniScalar(0, 100), new UniScalar(10),
+                new UniScalar(1.0F, -150.0F), new UniScalar(30)
             );
             _defProg.Progress = 0.5f;
             Children.Add(_defProg);
@@ -86,8 +81,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _defExp = new LabelControl();
             _defExp.Bounds = new UniRectangle(
-                new UniScalar(1, -35), new UniScalar(1 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 25.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(1, -35), new UniScalar(10),
+                new UniScalar(0.0F, 25.0F), new UniScalar(25)
                 );
             _defExp.Text = "1";
             Children.Add(_defExp);
@@ -97,8 +92,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _attLabel = new LabelControl();
             _attLabel.Bounds = new UniRectangle(
-                new UniScalar(10), new UniScalar(3 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 50.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(15), new UniScalar(40),
+                new UniScalar(0.0F, 50.0F), new UniScalar(25)
                 );
             _attLabel.Text = "ATT";
             Children.Add(_attLabel);
@@ -108,8 +103,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _attLevel = new LabelControl();
             _attLevel.Bounds = new UniRectangle(
-                new UniScalar(0, 60), new UniScalar(3 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 40.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(0, 60), new UniScalar(40),
+                new UniScalar(0.0F, 40.0F), new UniScalar(25)
                 );
             Children.Add(_attLevel);
 
@@ -118,8 +113,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _attProg = new ProgressControl();
             _attProg.Bounds = new UniRectangle(
-                new UniScalar(0, 100), new UniScalar(1f / n, 5),
-                new UniScalar(1.0F, -150.0F), new UniScalar(1f / n, -10.0F)
+                new UniScalar(0, 100), new UniScalar(40),
+                new UniScalar(1.0F, -150.0F), new UniScalar(30)
             );
             _attProg.Progress = 0.5f;
             Children.Add(_attProg);
@@ -129,8 +124,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _attExp = new LabelControl();
             _attExp.Bounds = new UniRectangle(
-                new UniScalar(1, -35), new UniScalar(3 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 25.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(1, -35), new UniScalar(40),
+                new UniScalar(0.0F, 25.0F), new UniScalar(25)
                 );
             _attExp.Text = "1";
             Children.Add(_attExp);
@@ -140,8 +135,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _wisLabel = new LabelControl();
             _wisLabel.Bounds = new UniRectangle(
-                new UniScalar(10), new UniScalar(5 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 50.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(15), new UniScalar(70),
+                new UniScalar(0.0F, 50.0F), new UniScalar(25)
                 );
             _wisLabel.Text = "WIS";
             Children.Add(_wisLabel);
@@ -151,8 +146,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _wisLevel = new LabelControl();
             _wisLevel.Bounds = new UniRectangle(
-                new UniScalar(0, 60), new UniScalar(5 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 40.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(0, 60), new UniScalar(70),
+                new UniScalar(0.0F, 40.0F), new UniScalar(25)
                 );
             Children.Add(_wisLevel);
 
@@ -161,8 +156,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _wisProg = new ProgressControl();
             _wisProg.Bounds = new UniRectangle(
-                new UniScalar(0, 100), new UniScalar(2f / n, 5),
-                new UniScalar(1.0F, -150.0F), new UniScalar(1f / n, -10.0F)
+                new UniScalar(0, 100), new UniScalar(70),
+                new UniScalar(1.0F, -150.0F), new UniScalar(30)
             );
             _wisProg.Progress = 0.5f;
             Children.Add(_wisProg);
@@ -172,8 +167,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _wisExp = new LabelControl();
             _wisExp.Bounds = new UniRectangle(
-                new UniScalar(1, -35), new UniScalar(5 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 25.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(1, -35), new UniScalar(70),
+                new UniScalar(0.0F, 25.0F), new UniScalar(25)
                 );
             _wisExp.Text = "1";
             Children.Add(_wisExp);
@@ -183,8 +178,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _intLabel = new LabelControl();
             _intLabel.Bounds = new UniRectangle(
-                new UniScalar(10), new UniScalar(7 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 50.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(15), new UniScalar(100),
+                new UniScalar(0.0F, 50.0F), new UniScalar(25)
                 );
             _intLabel.Text = "INT";
             Children.Add(_intLabel);
@@ -194,8 +189,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _intLevel = new LabelControl();
             _intLevel.Bounds = new UniRectangle(
-                new UniScalar(0, 60), new UniScalar(7 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 40.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(0, 60), new UniScalar(100),
+                new UniScalar(0.0F, 40.0F), new UniScalar(25)
                 );
             Children.Add(_intLevel);
 
@@ -204,8 +199,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _intProg = new ProgressControl();
             _intProg.Bounds = new UniRectangle(
-                new UniScalar(0, 100), new UniScalar(3f / n, 5),
-                new UniScalar(1.0F, -150.0F), new UniScalar(1f / n, -10.0F)
+                new UniScalar(0, 100), new UniScalar(100),
+                new UniScalar(1.0F, -150.0F), new UniScalar(30)
             );
             _intProg.Progress = 0.5f;
             Children.Add(_intProg);
@@ -215,8 +210,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _intExp = new LabelControl();
             _intExp.Bounds = new UniRectangle(
-                new UniScalar(1, -35), new UniScalar(7 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 25.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(1, -35), new UniScalar(100),
+                new UniScalar(0.0F, 25.0F), new UniScalar(25)
                 );
             _intExp.Text = "1";
             Children.Add(_intExp);
@@ -226,8 +221,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _spdLabel = new LabelControl();
             _spdLabel.Bounds = new UniRectangle(
-                new UniScalar(10), new UniScalar(9 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 50.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(15), new UniScalar(130),
+                new UniScalar(0.0F, 50.0F), new UniScalar(25)
                 );
             _spdLabel.Text = "SPD";
             Children.Add(_spdLabel);
@@ -237,8 +232,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _spdLevel = new LabelControl();
             _spdLevel.Bounds = new UniRectangle(
-                new UniScalar(0, 60), new UniScalar(9 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 40.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(0, 60), new UniScalar(130),
+                new UniScalar(0.0F, 40.0F), new UniScalar(25)
                 );
             Children.Add(_spdLevel);
 
@@ -247,8 +242,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _spdProg = new ProgressControl();
             _spdProg.Bounds = new UniRectangle(
-                new UniScalar(0, 100), new UniScalar(4f / n, 5),
-                new UniScalar(1.0F, -150.0F), new UniScalar(1f / n, -10.0F)
+                new UniScalar(0, 100), new UniScalar(130),
+                new UniScalar(1.0F, -150.0F), new UniScalar(30)
             );
             _spdProg.Progress = 0.5f;
             Children.Add(_spdProg);
@@ -258,8 +253,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _spdExp = new LabelControl();
             _spdExp.Bounds = new UniRectangle(
-                new UniScalar(1, -35), new UniScalar(9 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 25.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(1, -35), new UniScalar(130),
+                new UniScalar(0.0F, 25.0F), new UniScalar(25)
                 );
             _spdExp.Text = "1";
             Children.Add(_spdExp);
@@ -269,8 +264,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _hitLabel = new LabelControl();
             _hitLabel.Bounds = new UniRectangle(
-                new UniScalar(10), new UniScalar(11 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 50.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(15), new UniScalar(160),
+                new UniScalar(0.0F, 50.0F), new UniScalar(25)
                 );
             _hitLabel.Text = "HIT";
             Children.Add(_hitLabel);
@@ -280,8 +275,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _hitLevel = new LabelControl();
             _hitLevel.Bounds = new UniRectangle(
-                new UniScalar(0, 60), new UniScalar(11 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 40.0F), new UniScalar(0.0F, 13.0F)
+                new UniScalar(0, 60), new UniScalar(160),
+                new UniScalar(0.0F, 40.0F), new UniScalar(25)
                 );
             Children.Add(_hitLevel);
 
@@ -290,8 +285,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _hitProg = new ProgressControl();
             _hitProg.Bounds = new UniRectangle(
-                new UniScalar(0, 100), new UniScalar(5f / n, 5),
-                new UniScalar(1.0F, -150.0F), new UniScalar(1f / n, -10.0F)
+                new UniScalar(0, 100), new UniScalar(160),
+                new UniScalar(1.0F, -150.0F), new UniScalar(30)
             );
             _hitProg.Progress = 0.5f;
             Children.Add(_hitProg);
@@ -301,8 +296,8 @@ namespace SRPG.Scene.PartyMenu
             //
             _hitExp = new LabelControl();
             _hitExp.Bounds = new UniRectangle(
-                new UniScalar(1, -35), new UniScalar(11 / (2 * n), -12.5f),
-                new UniScalar(0.0F, 25.0F), new UniScalar(0.0F, 25.0F)
+                new UniScalar(1, -35), new UniScalar(160),
+                new UniScalar(0.0F, 25.0F), new UniScalar(25)
                 );
             _hitExp.Text = "1";
             Children.Add(_hitExp);

@@ -18,20 +18,20 @@ namespace SRPG.Scene.Battle
             EnableDragging = false;
 
             Bounds =  new UniRectangle(
-                new UniScalar(1.0f, -200.0f), new UniScalar(1.0f, -38.0f), 
-                new UniScalar(0.0f, 200.0f), new UniScalar(0.0f, 38.0f)
+                new UniScalar(1.0f, -210.0f), new UniScalar(1.0f, -48.0f), 
+                new UniScalar(0.0f, 210.0f), new UniScalar(0.0f, 48.0f)
             );
 
             _name = new LabelControl();
             _name.Bounds = new UniRectangle(
-                new UniScalar(0.0f, 5.0f), new UniScalar(0.0f, 5.0f),
+                new UniScalar(0.0f, 10.0f), new UniScalar(0.0f, 10.0f),
                 new UniScalar(1.0f, -35.0f), new UniScalar(0.0f, 20.0f)
             );
             Children.Add(_name);
 
             _mana = new LabelControl();
             _mana.Bounds = new UniRectangle(
-                new UniScalar(1.0f, -30.0f), new UniScalar(0.0f, 5.0f),
+                new UniScalar(1.0f, -30.0f), new UniScalar(0.0f, 10.0f),
                 new UniScalar(0.0f, 25.0f), new UniScalar(0.0f, 20.0f)
             );
             Children.Add(_mana);

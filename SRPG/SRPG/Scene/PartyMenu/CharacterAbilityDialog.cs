@@ -22,7 +22,7 @@ namespace SRPG.Scene.PartyMenu
                 var ability = abilities.ElementAt(i);
                 var exp = character.AbilityExperienceLevels.ContainsKey(ability) ? character.AbilityExperienceLevels[ability] : 0;
                 var display = new AbilityDisplay(ability, exp);
-                display.Bounds.Location.Y.Offset = 10 + 50 * i;
+                display.Bounds.Location.Y.Offset = 10 + 30 * i;
                 Children.Add(display);
             }
         }

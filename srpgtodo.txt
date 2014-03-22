@@ -1,4 +1,3 @@
-1 - create a proper UI stylesheet
 1 - fix splash damage bug
 1 - fix dialog option display
 1 - fix dialog option selection bug
@@ -17,6 +16,7 @@
 3 - come up with real names / story
 3 - add placeholder icons for all remaining abilities
 3 - fix queued command flicker during combat
+3 - add data compression for content files
 
 4 - remove the 'selected' style from buttons
 4 - add attack animations with weapon binding

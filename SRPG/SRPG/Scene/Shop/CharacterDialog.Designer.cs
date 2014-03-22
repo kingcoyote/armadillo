@@ -26,17 +26,17 @@ namespace SRPG.Scene.Shop
             
             // name
             _nameLabel = new LabelControl();
-            _nameLabel.Bounds = new UniRectangle(5, 5, new UniScalar(1, -10), 25);
+            _nameLabel.Bounds = new UniRectangle(10, 5, new UniScalar(1, -10), 25);
             Children.Add(_nameLabel);
 
             // class
             _classLabel = new LabelControl();
-            _classLabel.Bounds = new UniRectangle(5, 35, new UniScalar(1, -10), 25);
+            _classLabel.Bounds = new UniRectangle(10, 35, new UniScalar(1, -10), 25);
             Children.Add(_classLabel);
 
             // dawish
             label = new LabelControl();
-            label.Bounds = new UniRectangle(5, 75, new UniScalar(0.4f, -5), 25);
+            label.Bounds = new UniRectangle(10, 75, new UniScalar(0.4f, -5), 25);
             label.Text = "DEF";
             Children.Add(label);
 
@@ -45,7 +45,7 @@ namespace SRPG.Scene.Shop
             Children.Add(_defLabel);
 
             label = new LabelControl();
-            label.Bounds = new UniRectangle(5, 105, new UniScalar(0.4f, -5), 25);
+            label.Bounds = new UniRectangle(10, 105, new UniScalar(0.4f, -5), 25);
             label.Text = "ATT";
             Children.Add(label);
 
@@ -54,7 +54,7 @@ namespace SRPG.Scene.Shop
             Children.Add(_attLabel);
 
             label = new LabelControl();
-            label.Bounds = new UniRectangle(5, 135, new UniScalar(0.4f, -5), 25);
+            label.Bounds = new UniRectangle(10, 135, new UniScalar(0.4f, -5), 25);
             label.Text = "WIS";
             Children.Add(label);
 
@@ -63,7 +63,7 @@ namespace SRPG.Scene.Shop
             Children.Add(_wisLabel);
 
             label = new LabelControl();
-            label.Bounds = new UniRectangle(5, 165, new UniScalar(0.4f, -5), 25);
+            label.Bounds = new UniRectangle(10, 165, new UniScalar(0.4f, -5), 25);
             label.Text = "INT";
             Children.Add(label);
 
@@ -72,7 +72,7 @@ namespace SRPG.Scene.Shop
             Children.Add(_intLabel);
 
             label = new LabelControl();
-            label.Bounds = new UniRectangle(5, 195, new UniScalar(0.4f, -5), 25);
+            label.Bounds = new UniRectangle(10, 195, new UniScalar(0.4f, -5), 25);
             label.Text = "SPD";
             Children.Add(label);
 
@@ -81,7 +81,7 @@ namespace SRPG.Scene.Shop
             Children.Add(_spdLabel);
 
             label = new LabelControl();
-            label.Bounds = new UniRectangle(5, 225, new UniScalar(0.4f, -5), 25);
+            label.Bounds = new UniRectangle(10, 225, new UniScalar(0.4f, -5), 25);
             label.Text = "HIT";
             Children.Add(label);
 

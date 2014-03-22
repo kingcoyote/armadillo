@@ -36,7 +36,7 @@ namespace SRPG.Scene.Battle
 
             _name.Bounds = new UniRectangle
                 (
-                new UniScalar(0.0f, 10.0f), new UniScalar(0.0f, 10.0f),
+                new UniScalar(0.0f, 15.0f), new UniScalar(0.0f, 10.0f),
                 new UniScalar(0.5f, -15.0f), new UniScalar(0.0f, 30.0f)
                 );
             _name.Text = "Name";
@@ -44,7 +44,7 @@ namespace SRPG.Scene.Battle
 
             _class.Bounds = new UniRectangle
                 (
-                new UniScalar(0.5f, 10.0f), new UniScalar(0.0f, 10.0f),
+                new UniScalar(0.5f, 15.0f), new UniScalar(0.0f, 10.0f),
                 new UniScalar(0.5f, -15.0f), new UniScalar(0.0f, 30.0f)
                 );
             _class.Text = "Class";

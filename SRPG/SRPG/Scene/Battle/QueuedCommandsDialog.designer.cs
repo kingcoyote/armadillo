@@ -38,8 +38,8 @@ namespace SRPG.Scene.Battle
             ButtonControl executeControl = new ButtonControl();
             executeControl.Text = "Execute!";
             executeControl.Bounds = new UniRectangle(
-                new UniScalar(0.0f, 15.0f), new UniScalar(1.0f, -55.0f),
-                new UniScalar(1.0f, -30.0f), new UniScalar(0.0f, 40.0f)
+                new UniScalar(0.0f, 15.0f), new UniScalar(1.0f, -60.0f),
+                new UniScalar(1.0f, -30.0f), new UniScalar(0.0f, 45.0f)
             );
             executeControl.Pressed += (s, a) => ExecuteClicked.Invoke();
             Children.Add(executeControl);

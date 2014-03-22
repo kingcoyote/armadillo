@@ -11,6 +11,7 @@ namespace SRPG.Scene.PartyMenu
     {
         private void InitializeComponent()
         {
+            EnableDragging = false;
         }
     }
 }

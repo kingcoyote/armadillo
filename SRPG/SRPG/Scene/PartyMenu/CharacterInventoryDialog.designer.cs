@@ -32,7 +32,7 @@ namespace SRPG.Scene.PartyMenu
             // weaponLabel
             //
             _weaponLabel = new LabelControl();
-            _weaponLabel.Bounds = new UniRectangle(10, 13, 150, 25);
+            _weaponLabel.Bounds = new UniRectangle(15, 13, 150, 25);
             _weaponLabel.Text = "Weapon";
             Children.Add(_weaponLabel);
 
@@ -47,7 +47,7 @@ namespace SRPG.Scene.PartyMenu
             // weaponButton
             //
             _weaponButton = new ButtonControl();
-            _weaponButton.Bounds = new UniRectangle(new UniScalar(1.0f, -110), 10, 100, 30);
+            _weaponButton.Bounds = new UniRectangle(new UniScalar(1.0f, -110), 10, 100, 40);
             _weaponButton.Text = "Change";
             _weaponButton.Pressed += (s, a) => WeaponChange.Invoke();
             Children.Add(_weaponButton);
@@ -56,7 +56,7 @@ namespace SRPG.Scene.PartyMenu
             // armorLabel
             //
             _armorLabel = new LabelControl();
-            _armorLabel.Bounds = new UniRectangle(10, 48, 150, 25);
+            _armorLabel.Bounds = new UniRectangle(15, 58, 150, 25);
             _armorLabel.Text = "Armor";
             Children.Add(_armorLabel);
 
@@ -64,14 +64,14 @@ namespace SRPG.Scene.PartyMenu
             // armorText
             //
             _armorText = new LabelControl();
-            _armorText.Bounds = new UniRectangle(130, 48, 170, 25);
+            _armorText.Bounds = new UniRectangle(130, 58, 170, 25);
             Children.Add(_armorText);
 
             //
             // armorButton
             //
             _armorButton = new ButtonControl();
-            _armorButton.Bounds = new UniRectangle(new UniScalar(1.0f, -110), 45, 100, 30);
+            _armorButton.Bounds = new UniRectangle(new UniScalar(1.0f, -110), 55, 100, 40);
             _armorButton.Text = "Change";
             _armorButton.Pressed += (s, a) => ArmorChange.Invoke();
             Children.Add(_armorButton);
@@ -80,7 +80,7 @@ namespace SRPG.Scene.PartyMenu
             // accLabel
             //
             _accLabel = new LabelControl();
-            _accLabel.Bounds = new UniRectangle(10, 83, 150, 25);
+            _accLabel.Bounds = new UniRectangle(15, 103, 150, 25);
             _accLabel.Text = "Accessory";
             Children.Add(_accLabel);
 
@@ -88,14 +88,14 @@ namespace SRPG.Scene.PartyMenu
             // accText
             //
             _accText = new LabelControl();
-            _accText.Bounds = new UniRectangle(130, 83, 170, 25);
+            _accText.Bounds = new UniRectangle(130, 103, 170, 25);
             Children.Add(_accText);
 
             //
             // accButton
             //
             _accButton = new ButtonControl();
-            _accButton.Bounds = new UniRectangle(new UniScalar(1.0f, -110), 80, 100, 30);
+            _accButton.Bounds = new UniRectangle(new UniScalar(1.0f, -110), 100, 100, 40);
             _accButton.Text = "Change";
             _accButton.Pressed += (s, a) => AccessoryChange.Invoke();
             Children.Add(_accButton);
