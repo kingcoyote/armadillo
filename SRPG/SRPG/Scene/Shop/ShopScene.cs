@@ -118,6 +118,13 @@ namespace SRPG.Scene.Shop
             RefreshShop();
         }
 
+        public override void Update(GameTime gametime)
+        {
+            base.Update(gametime);
+
+            Game.IsMouseVisible = true;
+        }
+
         private void UpdateItemFocus(Item item)
         {
             _itemPreviewDialog.SetItem(item);

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Nuclex.Input;
 using Nuclex.Input.Devices;
+using Nuclex.UserInterface.Controls.Desktop;
 using Torch;
 using Game = Torch.Game;
 
@@ -15,11 +16,9 @@ namespace SRPG.Data.Layers
     public partial class DialogLayer
     {
         private readonly Dialog _dialog;
-        private int _currentOption;
         private int _charCount;
         private bool _optionsDisplayed;
         private IKeyboard _keyboard;
-
 
         public DialogLayer(Torch.Scene scene, Dialog dialog)
         {
@@ -29,6 +28,11 @@ namespace SRPG.Data.Layers
 
             _keyboard = ((InputManager)scene.Game.Services.GetService(typeof(IInputService))).GetKeyboard();
             _keyboard.KeyPressed += OnKeyPress;
+
+            _optionsList.SelectionChanged += (s, a) =>
+                    _dialog.SetOption(_optionsList.SelectedItems.Count > 0 ? _optionsList.SelectedItems[0] : -1);
+
+            _nextButton.Pressed += (s, a) => OnKeyPress(Keys.E);
 
             InitializeDialog();
         }
@@ -47,22 +51,6 @@ namespace SRPG.Data.Layers
                 case (Keys.Space):
                     dialogContinues = UpdateDialog();
                     break;
-                case (Keys.Up):
-                case (Keys.W):
-                    if (_optionsDisplayed == false) break;
-                    _currentOption++;
-                    if (_currentOption >= _dialog.CurrentNode.Options.Count) _currentOption = 0;
-                    _dialog.SetOption(_currentOption);
-                    UpdateOptionHighlight();
-                    break;
-                case (Keys.Down):
-                case (Keys.S):
-                    if (_optionsDisplayed == false) break;
-                    _currentOption--;
-                    if (_currentOption < 0) _currentOption = _dialog.CurrentNode.Options.Count - 1;
-                    _dialog.SetOption(_currentOption);
-                    UpdateOptionHighlight();
-                    break;
             }
 
             if (!dialogContinues)
@@ -74,14 +62,6 @@ namespace SRPG.Data.Layers
         private void UpdateOptionHighlight()
         {
             // todo fix the option highlighting
-            if (_currentOption == -1)
-            {
-                //Objects["dialog highlight"].Y = -1000;
-            }
-            else
-            {
-                //Objects["dialog highlight"].Y = Objects["dialog text"].Y + Objects["dialog text"].Height*_currentOption;
-            }
         }
 
         private void InitializeDialog()
@@ -131,14 +111,22 @@ namespace SRPG.Data.Layers
             // if there is more than 1 option to choose from
             if (_dialog.CurrentNode.Options.Count > 1 && _optionsDisplayed == false)
             {
-                // todo change this from text to buttons
-                _dialogText.Text = String.Join(" \n", _dialog.CurrentNode.Options.Keys);
-                _currentOption = 0;
+                UpdateText("");
+                _optionsList.Items.Clear();
+                Children.Add(_optionsList);
+                Children.Remove(_dialogText);
+                foreach (var option in _dialog.CurrentNode.Options.Keys)
+                {
+                    _optionsList.Items.Add(option);
+                }
                 UpdateOptionHighlight();
-                _dialog.SetOption(_currentOption);
                 _optionsDisplayed = true;
                 return true;
-            }
+            } else if (_dialog.CurrentNode.Options.Count > 1)
+            {
+                Children.Remove(_optionsList);
+                Children.Add(_dialogText);
+            } 
 
             // invoke the old node's OnExit method
             _dialog.CurrentNode.OnExit.Invoke(_dialog, new DialogNodeEventArgs());
@@ -146,7 +134,6 @@ namespace SRPG.Data.Layers
             // advance to the next node
             _dialog.Continue();
 
-            _currentOption = -1;
             _optionsDisplayed = false;
             UpdateOptionHighlight();
 

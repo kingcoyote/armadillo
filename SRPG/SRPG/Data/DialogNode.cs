@@ -14,6 +14,11 @@ namespace SRPG.Data
         public EventHandler<DialogNodeEventArgs> OnExit = ((sender, args) => { });
         public Dictionary<string, int> Options = new Dictionary<string, int>();
         public SpriteObject Sprite;
+
+        public string ToString()
+        {
+            return Identifier.ToString() + " : " + Text;
+        }
     }
 
     public class DialogNodeEventArgs : EventArgs { }

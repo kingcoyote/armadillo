@@ -23,6 +23,11 @@ namespace SRPG.Data
 
         public void Continue()
         {
+            if (CurrentNode != null && CurrentNode.Options.Count > 1 && _currentOption == -1)
+            {
+                return;
+            }
+
             if (CurrentNode == null)
             {
                 CurrentNode = Nodes[1];

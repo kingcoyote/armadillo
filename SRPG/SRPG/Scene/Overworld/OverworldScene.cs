@@ -305,6 +305,8 @@ namespace SRPG.Scene.Overworld
         {
             StopCharacter();
 
+            Game.IsMouseVisible = true;
+
             dialog.OnExit += EndDialogEvent;
             _dialog = new DialogLayer(this, dialog);
             Gui.Screen.Desktop.Children.Add(_dialog);
@@ -312,6 +314,8 @@ namespace SRPG.Scene.Overworld
 
         public void EndDialog()
         {
+            Game.IsMouseVisible = false;
+
             Gui.Screen.Desktop.Children.Remove(_dialog);
             _dialog = null;
         }
