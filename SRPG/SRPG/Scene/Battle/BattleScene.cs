@@ -465,6 +465,7 @@ namespace SRPG.Scene.Battle
 
                     BattleBoard.Characters.Add(GenerateCombatant("Guard 3", "coliseum/guard", new Vector2(9, 10)));
                     BattleBoard.Characters.Add(GenerateCombatant("Guard 4", "coliseum/guard", new Vector2(11, 10)));
+                    BattleBoard.Characters.Add(GenerateCombatant("Guard 5", "coliseum/guard", new Vector2(10, 10)));
 
                     _startingDialog = Dialog.Fetch("coliseum", "guards");
 

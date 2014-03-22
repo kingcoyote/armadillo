@@ -40,7 +40,7 @@ namespace SRPG.Abilities
                     hits.Add(new Hit {
                             Target = currentTarget,
                             Critical = 50,
-                            Damage = 7,
+                            Damage = (int)(7 * (grid.Weight[x, y] / 255.0)),
                     });
                 }
             }
@@ -50,12 +50,12 @@ namespace SRPG.Abilities
 
         public override Grid GenerateTargetGrid()
         {
-            return Grid.FromBitmap(Game.Services, "Items/target_melee_large");
+            return Grid.FromBitmap(Game.Services, "Items/target_melee_medium");
         }
 
         public override Grid GenerateImpactGrid()
         {
-            return Grid.FromBitmap(Game.Services, "Items/target_melee_small");
+            return Grid.FromBitmap(Game.Services, "Items/target_splash_small");
         }
     }
 }

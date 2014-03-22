@@ -372,6 +372,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Items\target_splash_small.png">
+      <Name>target_splash_small</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <None Include="Dialog\coliseum.js">
       <Name>coliseum</Name>
       <Importer>XmlImporter</Importer>

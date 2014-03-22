@@ -36,7 +36,7 @@ namespace SRPG.Abilities
 
         public override Grid GenerateTargetGrid()
         {
-            return Grid.FromBitmap(Game.Services, "Items/target_melee_medium");
+            return Grid.FromBitmap(Game.Services, "Items/target_melee_large");
         }
     }
 }
