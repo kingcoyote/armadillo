@@ -367,6 +367,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Gui\RPG_GUI_v1.png">
+      <Name>RPG_GUI_v1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <None Include="Dialog\coliseum.js">
       <Name>coliseum</Name>
       <Importer>XmlImporter</Importer>

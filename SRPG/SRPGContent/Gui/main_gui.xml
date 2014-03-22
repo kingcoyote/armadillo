@@ -8,6 +8,7 @@
     <font name="menu_font" contentPath="menu_font" />
     <font name="hitlabel_font" contentPath="hitlabel_font" />
     <bitmap name="menu_skin_bitmap" contentPath="menu_skin" />
+    <bitmap name="rpg_skin" contentPath="RPG_GUI_v1" />
     <bitmap name="battle_radial_bitmap" contentPath="battle_radial" />
     <bitmap name="grid" contentPath="gridhighlight"/>
     <bitmap name="clear" contentPath="clear" />
@@ -23,55 +24,55 @@
     <!-- Frame used for a pushbutton in its normal state -->
     
     <frame name="button.normal">
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="top" x="21" y="0" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="top" x="31" y="0" w="1" h="10" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="top" x="32" y="0" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="stretch" x="21" y="10" w="10" h="1" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="stretch" x="31" y="10" w="1" h="1" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="stretch" x="32" y="10" w="10" h="1" />
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="bottom" x="21" y="11" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="bottom" x="31" y="11" w="1" h="10" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="bottom" x="32" y="11" w="10" h="10" />
-      <text font="menu_font" hplacement="center" vplacement="center" color="#000000" />
-    </frame>
-
-    <frame name="button.highlighted">
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="top" x="42" y="0" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="top" x="52" y="0" w="1" h="10" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="top" x="53" y="0" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="stretch" x="42" y="10" w="10" h="1" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="stretch" x="52" y="10" w="1" h="1" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="stretch" x="53" y="10" w="10" h="1" />
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="bottom" x="42" y="11" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="bottom" x="52" y="11" w="1" h="10" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="bottom" x="53" y="11" w="10" h="10" />
-      <text font="menu_font" hplacement="center" vplacement="center" color="#000000" />
+      <region source="rpg_skin" hplacement="left" vplacement="top" x="38" y="124" w="10" h="10" />
+      <region source="rpg_skin" hplacement="stretch" vplacement="top" x="48" y="124" w="214" h="10" />
+      <region source="rpg_skin" hplacement="right" vplacement="top" x="262" y="124" w="13" h="10" />
+      <region source="rpg_skin" hplacement="left" vplacement="stretch" x="12" y="134" w="36" h="36" />
+      <region source="rpg_skin" hplacement="stretch" vplacement="stretch" x="48" y="134" w="214" h="36" />
+      <region source="rpg_skin" hplacement="right" vplacement="stretch" x="262" y="134" w="36" h="36" />
+      <region source="rpg_skin" hplacement="left" vplacement="bottom" x="38" y="170" w="10" h="10" />
+      <region source="rpg_skin" hplacement="stretch" vplacement="bottom" x="48" y="170" w="214" h="10" />
+      <region source="rpg_skin" hplacement="right" vplacement="bottom" x="262" y="170" w="13" h="10" />
+      <text font="menu_font" hplacement="center" vplacement="center" color="#ffffff" />
     </frame>
 
     <frame name="button.depressed">
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="top" x="42" y="0" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="top" x="52" y="0" w="1" h="10" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="top" x="53" y="0" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="stretch" x="42" y="10" w="10" h="1" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="stretch" x="52" y="10" w="1" h="1" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="stretch" x="53" y="10" w="10" h="1" />
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="bottom" x="42" y="11" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="bottom" x="52" y="11" w="1" h="10" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="bottom" x="53" y="11" w="10" h="10" />
-      <text font="menu_font" hplacement="center" vplacement="center" color="#333333" />
+      <region source="rpg_skin" hplacement="left" vplacement="top" x="38" y="202" w="10" h="10" />
+      <region source="rpg_skin" hplacement="stretch" vplacement="top" x="48" y="202" w="214" h="10" />
+      <region source="rpg_skin" hplacement="right" vplacement="top" x="262" y="202" w="13" h="10" />
+      <region source="rpg_skin" hplacement="left" vplacement="stretch" x="12" y="212" w="36" h="36" />
+      <region source="rpg_skin" hplacement="stretch" vplacement="stretch" x="48" y="212" w="214" h="36" />
+      <region source="rpg_skin" hplacement="right" vplacement="stretch" x="262" y="212" w="36" h="36" />
+      <region source="rpg_skin" hplacement="left" vplacement="bottom" x="38" y="248" w="10" h="10" />
+      <region source="rpg_skin" hplacement="stretch" vplacement="bottom" x="48" y="248" w="214" h="10" />
+      <region source="rpg_skin" hplacement="right" vplacement="bottom" x="262" y="248" w="13" h="10" />
+      <text font="menu_font" hplacement="center" vplacement="center" color="#ffff00" />
+    </frame>
+
+    <frame name="button.highlighted">
+      <region source="rpg_skin" hplacement="left" vplacement="top" x="38" y="280" w="10" h="10" />
+      <region source="rpg_skin" hplacement="stretch" vplacement="top" x="48" y="280" w="214" h="10" />
+      <region source="rpg_skin" hplacement="right" vplacement="top" x="262" y="280" w="13" h="10" />
+      <region source="rpg_skin" hplacement="left" vplacement="stretch" x="12" y="290" w="36" h="36" />
+      <region source="rpg_skin" hplacement="stretch" vplacement="stretch" x="48" y="290" w="214" h="36" />
+      <region source="rpg_skin" hplacement="right" vplacement="stretch" x="262" y="290" w="36" h="36" />
+      <region source="rpg_skin" hplacement="left" vplacement="bottom" x="38" y="326" w="10" h="10" />
+      <region source="rpg_skin" hplacement="stretch" vplacement="bottom" x="48" y="326" w="214" h="10" />
+      <region source="rpg_skin" hplacement="right" vplacement="bottom" x="262" y="326" w="13" h="10" />
+      <text font="menu_font" hplacement="center" vplacement="center" color="#ffff00" />
     </frame>
 
     <frame name="button.disabled">
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="top" x="63" y="0" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="top" x="73" y="0" w="1" h="10" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="top" x="74" y="0" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="stretch" x="63" y="10" w="10" h="1" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="stretch" x="73" y="10" w="1" h="1" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="stretch" x="74" y="10" w="10" h="1" />
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="bottom" x="63" y="11" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="bottom" x="73" y="11" w="1" h="10" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="bottom" x="74" y="11" w="10" h="10" />
-      <text font="menu_font" hplacement="center" vplacement="center" color="#666666" />
+      <region source="rpg_skin" hplacement="left" vplacement="top" x="38" y="358" w="10" h="10" />
+      <region source="rpg_skin" hplacement="stretch" vplacement="top" x="48" y="358" w="214" h="10" />
+      <region source="rpg_skin" hplacement="right" vplacement="top" x="262" y="358" w="13" h="10" />
+      <region source="rpg_skin" hplacement="left" vplacement="stretch" x="12" y="368" w="36" h="36" />
+      <region source="rpg_skin" hplacement="stretch" vplacement="stretch" x="48" y="368" w="214" h="36" />
+      <region source="rpg_skin" hplacement="right" vplacement="stretch" x="262" y="368" w="36" h="36" />
+      <region source="rpg_skin" hplacement="left" vplacement="bottom" x="38" y="404" w="10" h="10" />
+      <region source="rpg_skin" hplacement="stretch" vplacement="bottom" x="48" y="404" w="214" h="10" />
+      <region source="rpg_skin" hplacement="right" vplacement="bottom" x="262" y="404" w="13" h="10" />
+      <text font="menu_font" hplacement="center" vplacement="center" color="#000000" />
     </frame>
 
     <frame name="imagebutton.normal">
@@ -168,15 +169,15 @@
     </frame>
 
     <frame name="window">
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="top" x="0" y="0" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="top" x="10" y="0" w="1" h="10" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="top" x="11" y="0" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="stretch" x="0" y="10" w="10" h="1" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="stretch" x="10" y="10" w="1" h="1" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="stretch" x="11" y="10" w="10" h="1" />
-      <region source="menu_skin_bitmap" hplacement="left" vplacement="bottom" x="0" y="11" w="10" h="10" />
-      <region source="menu_skin_bitmap" hplacement="stretch" vplacement="bottom" x="10" y="11" w="1" h="10" />
-      <region source="menu_skin_bitmap" hplacement="right" vplacement="bottom" x="11" y="11" w="10" h="10" />
+        <region source="rpg_skin" hplacement="left" vplacement="top" x="344" y="377" w="19" h="19" />
+        <region source="rpg_skin" hplacement="stretch" vplacement="top" x="363" y="377" w="74" h="19" />
+        <region source="rpg_skin" hplacement="right" vplacement="top" x="437" y="377" w="19" h="19" />
+        <region source="rpg_skin" hplacement="left" vplacement="stretch" x="344" y="396" w="19" h="58" />
+        <region source="rpg_skin" hplacement="stretch" vplacement="stretch" x="363" y="396" w="74" h="58" />
+        <region source="rpg_skin" hplacement="right" vplacement="stretch" x="437" y="396" w="19" h="58" />
+        <region source="rpg_skin" hplacement="left" vplacement="bottom" x="344" y="455" w="19" h="19" />
+        <region source="rpg_skin" hplacement="stretch" vplacement="bottom" x="363" y="455" w="74" h="19" />
+        <region source="rpg_skin" hplacement="right" vplacement="bottom" x="437" y="455" w="19" h="19" />
     </frame>
 
     <frame name="list">
