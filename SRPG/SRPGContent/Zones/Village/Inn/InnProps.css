@@ -1,0 +1,18 @@
+/* ----------------------------------------------------
+   created with http://www.codeandweb.com/texturepacker 
+   ----------------------------------------------------
+   $TexturePacker:SmartUpdate:c85e65601cd95e0da42bd23f2b257ff2:cdeeef50a43e1c6cc66e84eb4c905911:854eb3ecb0580820d4007f01082ad244$
+   ----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(InnProps.png);}
+
+.BarStool {width:37px; height:49px; background-position: -568px -50px}
+.Barrel {width:41px; height:50px; background-position: -568px -0px}
+.Counter {width:378px; height:184px; background-position: -0px -0px}
+.Table {width:190px; height:177px; background-position: -378px -0px}
