@@ -11,7 +11,6 @@
 3 - modify the resolution selection to use a dropdown
 3 - come up with real names / story
 3 - add placeholder icons for all remaining abilities
-3 - fix queued command flicker during combat
 3 - add data compression for content files
 
 4 - remove the 'selected' style from buttons

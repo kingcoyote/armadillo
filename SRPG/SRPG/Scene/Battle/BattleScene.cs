@@ -151,7 +151,7 @@ namespace SRPG.Scene.Battle
             float dt = gametime.ElapsedGameTime.Milliseconds/1000F;
 
             // during player turn, show queued commands if possible
-            if(_state != BattleState.EnemyTurn && QueuedCommands.Count > 0)
+            if(FactionTurn == 0 && QueuedCommands.Count > 0)
             {
                 ShowGui(_queuedCommands);
             } else
