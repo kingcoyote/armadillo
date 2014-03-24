@@ -2,7 +2,6 @@
 1 - add accessories to the game
 
 2 - make sure all items have real abilities
-2 - fix combat movement / cast bug
 2 - add sound
 2 - clarify exactly how DAWISH stats work
 2 - highlight enemy stats when targetting spells

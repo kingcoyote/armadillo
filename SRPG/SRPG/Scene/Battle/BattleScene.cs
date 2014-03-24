@@ -336,7 +336,7 @@ namespace SRPG.Scene.Battle
             if (_movementCoords.Count == 0)
             {
                 // move to the next state
-                _state = BattleState.ExecutingCommand;
+                _state = FactionTurn == 0 ? BattleState.PlayerTurn : BattleState.ExecutingCommand;
 
                 // change the character to have a standing animation
                 _selectedCharacter.Avatar.UpdateVelocity(0, 0);
