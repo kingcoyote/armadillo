@@ -7,7 +7,6 @@
 2 - highlight enemy stats when targetting spells
 2 - fix UI window control seam bug
 
-3 - disable attack / ability in combat as needed
 3 - modify the resolution selection to use a dropdown
 3 - come up with real names / story
 3 - add placeholder icons for all remaining abilities

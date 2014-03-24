@@ -688,11 +688,13 @@ namespace SRPG.Scene.Battle
             }
             else
             {
+
                 // if they can't move, this icon does nothing
                 icon.MouseOver = () => { };
                 icon.MouseOut = () => { };
                 icon.MouseClick = () => { };
                 icon.MouseRelease = () => { };
+                icon.Enabled = false;
             }
 
             menu.AddOption("move", icon);
@@ -726,6 +728,7 @@ namespace SRPG.Scene.Battle
                 icon.MouseOut = () => { };
                 icon.MouseClick = () => { };
                 icon.MouseRelease = () => { };
+                icon.Enabled = false;
             }
 
             menu.AddOption("attack", icon);
@@ -743,6 +746,7 @@ namespace SRPG.Scene.Battle
                 icon.MouseOut = () => { };
                 icon.MouseClick = () => { };
                 icon.MouseRelease = () => { };
+                icon.Enabled = false;
             }
             menu.AddOption("special", icon);
 
