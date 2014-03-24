@@ -857,11 +857,12 @@ namespace SRPG.Scene.Battle
                 var tempAbility = ability;
 
                 var button = new RadialButtonControl
-                    {ImageFrame = ability.ImageName, Bounds = new UniRectangle(0, 0, 64, 64)};
+                    {ImageFrame = ability.ImageName, Bounds = new UniRectangle(0, 0, 64, 64), Enabled = false};
 
                 // only bind event handlers onto abilities that are cheap enough to use
                 if (ability.ManaCost <= character.CurrentMana)
                 {
+                    button.Enabled = true;
                     button.MouseOver = () => PreviewAbility(tempAbility);
                     button.MouseOut = () =>
                         {
