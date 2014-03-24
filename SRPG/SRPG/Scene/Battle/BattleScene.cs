@@ -604,7 +604,7 @@ namespace SRPG.Scene.Battle
         /// <param name="character">The character to be shown.</param>
         public void ShowCharacterStats(Combatant character)
         {
-            if (_state != BattleState.PlayerTurn) return;
+            if (_state != BattleState.PlayerTurn && _state != BattleState.AimingAbility) return;
 
             _characterStats.SetCharacter(character);
             ShowGui(_characterStats);
@@ -615,7 +615,7 @@ namespace SRPG.Scene.Battle
         /// </summary>
         public void HideCharacterStats()
         {
-            if (_state != BattleState.PlayerTurn) return;
+            if (_state != BattleState.PlayerTurn && _state != BattleState.AimingAbility) return;
 
             HideGui(_characterStats);
         }

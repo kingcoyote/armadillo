@@ -183,6 +183,8 @@ namespace SRPG.Scene.Battle
                 (int)Math.Floor((mouse.Y - Y) / 50.0)
             );
 
+            scene.HideCharacterStats();
+
             // check if the cursor is over a character
             foreach (var character in _board.Characters)
             {
@@ -193,8 +195,6 @@ namespace SRPG.Scene.Battle
 
                     break;
                 }
-
-                scene.HideCharacterStats();
             }
 
             if (FreeAim)
