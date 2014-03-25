@@ -13,7 +13,6 @@
 
 4 - remove the 'selected' style from buttons
 4 - add attack animations with weapon binding
-4 - fix the up/down walking animation bug
 4 - create a better looking main menu screen
 4 - tutorial WASD icons
 4 - use lists to select different armor/weapon/acc
